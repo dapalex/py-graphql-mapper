@@ -188,6 +188,9 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 The development is in progress, so far the library allows the creation of basic queries and mutations (python language -> GraphQL language) and parsing of responses from a GraphQL server (GraphQL language -> python language):
 
+If you find this library useful and/or want the developments to proceed please [donate](https://github.com/sponsors/dapalex)
+
+
 ### Potential further implementations
 
 * CLI allowing to automatic generate python files containing mapped python classes \*_already in progress_\* (<u>mapping from a GraphQL object type to a python class WILL NOT BE NECESSARY ANYMORE<u>)
@@ -205,6 +208,3 @@ The development is in progress, so far the library allows the creation of basic 
 * Usage of Directives
 
 * more...
-
-
-If you find this library useful and/or want the developments to proceed please [donate](https://github.com/sponsors/dapalex)
