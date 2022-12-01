@@ -186,7 +186,7 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 ## Final words
 
-The development is in progress, so far the library allows the creation of basic queries and mutations (python language -> GraphQL language) and parsing of responses from a GraphQL server (GraphQL language -> python language):
+The development is in progress, so far the library allows the creation of basic queries and mutations (python language -> GraphQL language) and parsing of responses from a GraphQL server (GraphQL language -> python language)
 
 If you find this library useful and/or want the developments to proceed please [donate](https://github.com/sponsors/dapalex)
 
