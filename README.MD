@@ -193,7 +193,7 @@ If you find this library useful and/or want the developments to proceed please [
 
 ### Potential further implementations
 
-* CLI allowing to automatic generate python files containing mapped python classes \*_already in progress_\* (<u>mapping from a GraphQL object type to a python class WILL NOT BE NECESSARY ANYMORE<u>)
+* CLI allowing to automatic generate from a schema python files containing mapped python classes \*_already in progress_\* (<u>mapping from a GraphQL object type to a python class WILL NOT BE NECESSARY ANYMORE<u>)
 
 * Friendlier usage of library \*_already in progress_\* (e.g.: avoiding the necessity of implementing the init function for GQLObjects)
 
