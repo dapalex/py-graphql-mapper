@@ -1,21 +1,23 @@
-import copy
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass
 import inspect
-from typing import NewType, Union
-
+from typing import NewType, TypeVar, Union
 from pygqlmap.src.logger import Logger
-
 from .src.components import GQLCPPageInfo, GQLEdge, FSTree
 from .src.base import GQLList, FieldsShow, GQLExporter, GQLBaseArgsSet
-from .src.consts import commaConcat
+from .src.consts import commaConcat, argsDeclaration
 from .src.utils import addTupleUniqueElement, getDotNotationInfo, getClassName, mergeTupleUniqueElements
 from .enums import ArgType, OperationType
 from .src.translator import Translate
 
+@dataclass
 class GQLOperationArgs(GQLBaseArgsSet):
-    location: str
-    arguments: dict[str, dict]
+    # location: str
+    # arguments: dict[str, dict]
     
+    def __init_subclass__(cls):
+        cls = dataclass(cls)                                
+        cls.__init__ = subClassInit
+        
     def setArgKey(self, fieldName, fieldValue):
         output = '$' + Translate.toGraphQLFieldName(fieldName)
         if not fieldValue is None: output += ': ' + Translate.toGraphQLType(fieldValue)
@@ -81,12 +83,17 @@ class GQLOperationArgs(GQLBaseArgsSet):
         
         output += ' }'
         return output
-
+    
+@dataclass
 class GQLArgsSet(GQLBaseArgsSet):
 
-    def __init__(self, location=''):
-        self.location = location
-        super().__init__()
+    def __init_subclass__(cls):
+        cls = dataclass(cls)                                
+        cls.__init__ = subClassInit
+        
+    # def __init__(self, location=''):
+    #     self.location = location
+    #     super().__init__()
     
     def setArgKey(self, fieldName, fieldValue):
         """ For internal use only """
@@ -94,34 +101,34 @@ class GQLArgsSet(GQLBaseArgsSet):
         output += commaConcat
         return output
     
-    def addArg(self, argKey, argValue):
-        """Add a single argument in the argument set
+    # def addArg(self, argKey, argValue):
+    #     """Add a single argument in the argument set
 
-        Args:
-            argKey: name of the argument
-            argValue: value of the argument, it can be a scalar mapped type or a dict for structured objects
+    #     Args:
+    #         argKey: name of the argument
+    #         argValue: value of the argument, it can be a scalar mapped type or a dict for structured objects
 
-        Raises:
-            Exception: if the argument name is already present
-        """
-        if not argKey in self.arguments.keys():
-            self.arguments.update({ argKey : argValue })
-        else:
-            raise Exception('argument name: ' + argKey + ' already present!')
+    #     Raises:
+    #         Exception: if the argument name is already present
+    #     """
+    #     if not argKey in self.arguments.keys():
+    #         self.arguments.update({ argKey : argValue })
+    #     else:
+    #         raise Exception('argument name: ' + argKey + ' already present!')
 
-    def addArgs(self, args: dict):
-        """_summary_
+    # def addArgs(self, args: dict):
+    #     """_summary_
 
-        Args:
-            args (dict): _description_
-        """
-        self.arguments.update(args)
+    #     Args:
+    #         args (dict): _description_
+    #     """
+    #     self.arguments.update(args)
 
-    def removeArg(self, key):
-        """ Not tested yet """
-        if not self.arguments:
-            raise Exception('No arguments')
-        self.arguments.pop(key)
+    # def removeArg(self, key):
+    #     """ Not tested yet """
+    #     if not self.arguments:
+    #         raise Exception('No arguments')
+    #     self.arguments.pop(key)
 
     @property
     def exportGQLArgsAndValues(self):
@@ -135,60 +142,13 @@ class GQLArgsSet(GQLBaseArgsSet):
                     output += ': ' + Translate.toGraphQLValue(argValue)
                     output += commaConcat 
                 except:
-                    raise Exception('Issue exporting arg and value for: ' + argKey, argValue)
-        except:
-            raise Exception('Issue with items exporting args and values')
+                    raise Exception('Issue during export of arg and value for: ' + argKey, argValue + " - " + ex.args[0])
 
-        output = output.removesuffix(commaConcat)
+            output = output.removesuffix(commaConcat)
 
+        except Exception as ex:
+            raise Exception('Issue during export of args and values for ' + str(self) + " - " + ex.args[0])
         return output
-
-
-def subClassInit(obj, circularRef: list = []):
-    import sys
-    from enum import Enum
-    
-    for fieldName in obj.__dataclass_fields__:
-        fieldType = obj.__dataclass_fields__[fieldName].type
-        if hasattr(obj, fieldName):
-            ##careful here
-            continue
-        if fieldType == int or fieldType == float:
-            setattr(obj, fieldName, 0)
-        elif fieldType == list:
-            setattr(obj, fieldName, [])
-        elif fieldType == bool:
-            setattr(obj, fieldName, False)
-        elif fieldType == str:
-            setattr(obj, fieldName, '')
-        elif inspect.isclass(fieldType):
-            if issubclass(fieldType, Enum):
-                setattr(obj, fieldName, list(map(lambda c: c.value, fieldType))[0]) ##set first value from enum
-            else:
-                setattr(obj, fieldName, fieldType())
-        elif type(fieldType) == NewType:
-            if hasattr(sys.modules[obj.__module__], fieldType.__name__):
-                print('circular reference for ' + fieldName + ' of type ' + fieldType.__name__ + '!')
-                currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
-                # setattr(obj, fieldName, obj.__dataclass_fields__[fieldName])
-                if circularRef.__contains__(fieldType.__name__): 
-                    setattr(obj, fieldName, '')
-                    # circularRef.remove(fieldType.__name__)
-                else:
-                    circularRef.append(fieldType.__name__)
-                    setattr(obj, fieldName, currentClass())
-            else:
-                Logger.logErrorMessage('something is wrong')
-        elif fieldType == Union:
-            print('Union here')
-            setattr(obj, fieldName, '')
-            pass
-        else:
-            Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
-            setattr(obj, fieldName, '')
-        
-    parent = super(obj.__class__, obj)
-    parent.__init__()
 
 @dataclass
 class GQLObject(FieldsShow, GQLExporter): 
@@ -196,7 +156,6 @@ class GQLObject(FieldsShow, GQLExporter):
     def __init_subclass__(cls):
         cls = dataclass(cls)                                
         cls.__init__ = subClassInit
-        # #### TRY YO DEFINE __init__ OF THE SUBCLASS HERE    
         
     def __post_init__(self, logProgress: bool = False):
         self.initFieldsShow()
@@ -226,97 +185,97 @@ class GQLEdges(GQLList):
             edge.node = edge.sampleNode
         self.append(edge)
         
-@dataclass
-class GQLConnection(FieldsShow):
-    edges: field(default_factory=GQLEdges, init=True)
-    totalCount: field(default_factory=int, init=True) = 0
-    pageInfo: field(default_factory=GQLCPPageInfo, init=True) = GQLCPPageInfo()
-    gqlExportedArgsTuple = ()
+# @dataclass
+# class GQLConnection(FieldsShow):
+#     edges: field(default_factory=GQLEdges, init=True)
+#     totalCount: field(default_factory=int, init=True) = 0
+#     pageInfo: field(default_factory=GQLCPPageInfo, init=True) = GQLCPPageInfo()
+#     gqlExportedArgsTuple = ()
     
-    def __init_subclass__(cls):
-        cls = dataclass(cls)
+#     def __init_subclass__(cls):
+#         cls = dataclass(cls)
     
-    def __post_init__(self):
-        self.initFieldsShow()
-        self.gqlExportedArgsTuple = ()
+#     def __post_init__(self):
+#         self.initFieldsShow()
+#         self.gqlExportedArgsTuple = ()
         
-    def setArgs(self, args: GQLArgsSet, argsType: ArgType):
-        """ For internal use only """
-        self._args = args
-        self._argsType = argsType
+#     def setArgs(self, args: GQLArgsSet, argsType: ArgType):
+#         """ For internal use only """
+#         self._args = args
+#         self._argsType = argsType
      
-    def findContainer(self, path):
-        """ For internal use only """
-        attrContainer = self
+#     def findContainer(self, path):
+#         """ For internal use only """
+#         attrContainer = self
         
-        for p in path:
-            if len(self.edges) > 0:
-                attrContainer = self.edges[0]                  
-            elif self.edges.sampleElement.sampleNode:
-                if p == getClassName(self.edges.sampleElement.sampleNode):
-                    attrContainer = self.edges.sampleElement.sampleNode
-                else:
-                    attrContainer = self.edges.sampleElement     
+#         for p in path:
+#             if len(self.edges) > 0:
+#                 attrContainer = self.edges[0]                  
+#             elif self.edges.sampleElement.sampleNode:
+#                 if p == getClassName(self.edges.sampleElement.sampleNode):
+#                     attrContainer = self.edges.sampleElement.sampleNode
+#                 else:
+#                     attrContainer = self.edges.sampleElement     
         
-        return attrContainer
+#         return attrContainer
        
-    def moveForward(self, first: int, after: str):
-        self.args.first = first
-        self.args.after = after
+#     def moveForward(self, first: int, after: str):
+#         self.args.first = first
+#         self.args.after = after
         
-    def moveBackward(self, last: int, before: str):
-        self.args.last = last
-        self.args.before = before
+#     def moveBackward(self, last: int, before: str):
+#         self.args.last = last
+#         self.args.before = before
 
-    @property
-    def exportGqlSource(self):  
-        """Return the GraphQL syntax for the current connection
+#     @property
+#     def exportGqlSource(self):  
+#         """Return the GraphQL syntax for the current connection
 
-        Returns:
-            str: GraphQL Query exported 
-        """
-        gqlDict = asdict(self)
-        outputGqlDict = {}
+#         Returns:
+#             str: GraphQL Query exported 
+#         """
+#         gqlDict = asdict(self)
+#         outputGqlDict = {}
                 
-        for field in gqlDict.keys():
-            if self.fieldsShow[field]:
-                #List management START
-                if list in inspect.getmro(type(getattr(self, field))):
-                    currentList = getattr(self, field)
-                    innerList = []
-                    for i in range(len(currentList)): #it will be 1
-                        if GQLExporter in inspect.getmro(type(currentList[i])):
-                            gqlSource, tempExportedArgsTuple = currentList[i].exportGqlSource
-                            self.gqlExportedArgsTuple = mergeTupleUniqueElements(self.gqlExportedArgsTuple, tempExportedArgsTuple)
-                            if gqlSource:
-                                innerList.append(gqlSource)
+#         for field in gqlDict.keys():
+#             if self.fieldsShow[field]:
+#                 #List management START
+#                 if list in inspect.getmro(type(getattr(self, field))):
+#                     currentList = getattr(self, field)
+#                     innerList = []
+#                     for i in range(len(currentList)): #it will be 1
+#                         if GQLExporter in inspect.getmro(type(currentList[i])):
+#                             gqlSource, tempExportedArgsTuple = currentList[i].exportGqlSource
+#                             self.gqlExportedArgsTuple = mergeTupleUniqueElements(self.gqlExportedArgsTuple, tempExportedArgsTuple)
+#                             if gqlSource:
+#                                 innerList.append(gqlSource)
                     
-                    if innerList:
-                        outputGqlDict[field] = innerList
-                #List management END
-                elif FieldsShow in inspect.getmro(type(getattr(self, field))):
-                    outputGqlDict[field], gqlArgs = getattr(self, field).exportGqlSource
-                else:
-                    outputGqlDict[field] = gqlDict[field]
+#                     if innerList:
+#                         outputGqlDict[field] = innerList
+#                 #List management END
+#                 elif FieldsShow in inspect.getmro(type(getattr(self, field))):
+#                     outputGqlDict[field], gqlArgs = getattr(self, field).exportGqlSource
+#                 else:
+#                     outputGqlDict[field] = gqlDict[field]
         
-        gqlArgs = ''     
-        if hasattr(self, '_args'):
-            if self._argsType == ArgType.LiteralValues:
-                    gqlArgs = '(' + self._args.exportGQLArgsAndValues + ')'
-            elif self._argsType == ArgType.Variables:
-                    gqlArgs = '(' + self._args.exportGQLArgKeys + ')'
-            self.gqlExportedArgsTuple = addTupleUniqueElement(self.gqlExportedArgsTuple, gqlArgs)
+#         gqlArgs = ''     
+#         if hasattr(self, '_args'):
+#             if self._argsType == ArgType.LiteralValues:
+#                     gqlArgs = '(' + self._args.exportGQLArgsAndValues + ')'
+#             elif self._argsType == ArgType.Variables:
+#                     gqlArgs = '(' + self._args.exportGQLArgKeys + ')'
+#             self.gqlExportedArgsTuple = addTupleUniqueElement(self.gqlExportedArgsTuple, gqlArgs)
            
-        gqlResult = gqlArgs + Translate.graphQLize(str(outputGqlDict), self.gqlExportedArgsTuple)
+#         gqlResult = gqlArgs + Translate.graphQLize(str(outputGqlDict), self.gqlExportedArgsTuple)
         
-        return gqlResult, self.gqlExportedArgsTuple
+#         return gqlResult, self.gqlExportedArgsTuple
       
 class GQLOperation(GQLExporter): 
     name: str
     operationType: OperationType
     obj: any 
     
-    def __init__(self, operationType: OperationType, dataType, operationName: str = None, logProgress: bool = False, rootName: str = None, recursionLevel: int = 0): #, inputFieldName: str = None
+    def __init__(self, operationType: OperationType, dataType, operationName: str = None, logProgress: bool = False, rootName: str = None): #, inputFieldName: str = None
         """_summary_
 
         Args:
@@ -340,7 +299,6 @@ class GQLOperation(GQLExporter):
         self.fieldsShowTree = FSTree(self.obj, rootName if rootName else None)
         self.logProgress = logProgress
         self.rootName = rootName
-        self.recursionLevel = recursionLevel
     
     def setShow(self, keys: str or list[str], isVisible: bool):
         """_summary_
@@ -362,43 +320,43 @@ class GQLOperation(GQLExporter):
         else:
             raise Exception('setShow accepts only ''str'' or ''list'' types') ##why not throwing?
     
-    def setArgs(self, argSets: GQLArgsSet, argsType: ArgType):
-        """Integrates arguments into the operation
-        """
+    # def setArgs(self, argSets: GQLArgsSet, argsType: ArgType):
+    #     """Integrates arguments into the operation
+    #     """
         
-        self._args = GQLOperationArgs()
-        if hasattr(argSets, '__iter__'): 
-            for mainArgs in argSets:
-                self._args.arguments.update({ mainArgs.location: mainArgs })
-        else:
-            self._args.arguments = { argSets.location: argSets }
+    #     self._args = GQLOperationArgs()
+    #     if hasattr(argSets, '__iter__'): 
+    #         for mainArgs in argSets:
+    #             self._args.arguments.update({ mainArgs.location: mainArgs })
+    #     else:
+    #         self._args.arguments = { argSets.location: argSets }
             
-        self._argsType = argsType
+    #     self._argsType = argsType
             
-        if hasattr(argSets, '__iter__'): 
-            for args in argSets:
-                self.injectArgsSet(args, argsType)
-        else:
-            self.injectArgsSet(argSets, argsType)
+    #     if hasattr(argSets, '__iter__'): 
+    #         for args in argSets:
+    #             self.injectArgsSet(args, argsType)
+    #     else:
+    #         self.injectArgsSet(argSets, argsType)
             
-    def injectArgsSet(self, args, argsType):
-        """ For internal use only """
-        for locationKey, argsSet in self._args.arguments.items():
-            attrContainer = self.obj
+    # def injectArgsSet(self, args, argsType):
+    #     """ For internal use only """
+    #     for locationKey, argsSet in self._args.arguments.items():
+    #         attrContainer = self.obj
             
-            if locationKey:
-                    owner = getDotNotationInfo(locationKey)
-                    if owner[0]:
-                        while owner[0] and (pathStep := owner[0].pop(0)):
-                            if pathStep == getClassName(self.obj) or (self.rootName and self.rootName == pathStep): continue
-                            # if pathStep == 'edges': 
-                            #     attrContainer = attrContainer.findContainer(owner[0])
-                            # else: 
-                            attrContainer = getattr(attrContainer, pathStep)
+    #         if locationKey:
+    #                 owner = getDotNotationInfo(locationKey)
+    #                 if owner[0]:
+    #                     while owner[0] and (pathStep := owner[0].pop(0)):
+    #                         if pathStep == getClassName(self.obj) or (self.rootName and self.rootName == pathStep): continue
+    #                         # if pathStep == 'edges': 
+    #                         #     attrContainer = attrContainer.findContainer(owner[0])
+    #                         # else: 
+    #                         attrContainer = getattr(attrContainer, pathStep)
                                 
-                        attrContainer = getattr(attrContainer, owner[1])
+    #                     attrContainer = getattr(attrContainer, owner[1])
                     
-            attrContainer.setArgs(copy.deepcopy(argsSet), argsType)
+    #         attrContainer.setArgs(copy.deepcopy(argsSet), argsType)
      
     @property
     def exportGqlSource(self):
@@ -408,16 +366,75 @@ class GQLOperation(GQLExporter):
             str: GraphQL Query exported 
         """
         
-        if hasattr(self, 'generated'):
-            if hasattr(self.obj, 'args'):
-                print('transform args in _args?????')
-            pass
-        else:
+        # if hasattr(self, 'generated'):
+        #     if hasattr(self.obj, 'args'):
+        #         print('transform args in _args?????')
+        #     pass
+        # else:
+        try:
             prefix = self.operationType.name + ' ' + self.name + ' ' 
             self.obj.logProgress = self.logProgress
             rootName = self.rootName if self.rootName else getClassName(self.obj)
-            if hasattr(self, '_args'):
+            if hasattr(self, argsDeclaration):
                 if self._argsType == ArgType.Variables:
                     prefix += '(' + self._args.exportGQLArgKeys + ')'
             return prefix + ' { ' + rootName + self.obj.exportGqlSource[0] + ' } '
+        except Exception as ex:
+            raise Exception('Issue during export of ' + self.name + ' - ' + ex.args[0])
     
+def subClassInit(obj, circularRef: list = []):
+    import sys
+    from enum import Enum
+    
+    try:
+        # print(str(obj.__class__) + ' type instantiation')
+        for fieldName in obj.__dataclass_fields__:
+            try:
+                # print(str(type(obj)) + ' type -> ' + fieldName)
+                fieldType = obj.__dataclass_fields__[fieldName].type
+                if hasattr(obj, fieldName):
+                    ##careful here
+                    continue
+                if fieldType == int or fieldType == float:
+                    setattr(obj, fieldName, 0)
+                elif fieldType == list:
+                    setattr(obj, fieldName, [])
+                elif fieldType == bool:
+                    setattr(obj, fieldName, False)
+                elif fieldType == str:
+                    setattr(obj, fieldName, '')
+                elif inspect.isclass(fieldType):
+                    if issubclass(fieldType, Enum):
+                        setattr(obj, fieldName, list(map(lambda c: c.value, fieldType))[0]) ##set first value from enum
+                    else:
+                        # print(str(fieldType) + ' type instantiation')
+                        setattr(obj, fieldName, fieldType())
+                elif type(fieldType) == NewType or type(fieldType) == TypeVar:
+                    if hasattr(sys.modules[obj.__module__], fieldType.__name__):
+                        # print('circular reference for ' + fieldName + ' of type ' + fieldType.__name__ + '!')
+                        currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
+                        # setattr(obj, fieldName, obj.__dataclass_fields__[fieldName])
+                        if circularRef.__contains__(fieldType.__name__): 
+                            # print('SKIP CIRCULAR ' + str(currentClass) + ' - it has to be managed manually')
+                            setattr(obj, fieldName, str(currentClass))
+                            # circularRef.remove(fieldType.__name__)
+                        else:
+                            circularRef.append(fieldType.__name__)
+                            # print(str(currentClass) + ' type instantiation CIRCULAR')
+                            setattr(obj, fieldName, currentClass())
+                    else:
+                        Logger.logErrorMessage('something is wrong')
+                elif fieldType == Union:
+                    print('Union here')
+                    setattr(obj, fieldName, '')
+                    pass
+                else:
+                    Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
+                    setattr(obj, fieldName, '')
+            except Exception as ex:
+                raise Exception('Exception during init of ' + fieldName + ' in ' + str(obj) + ' - ' + ex.args[0])
+            
+        # parent = super(obj.__class__, obj)
+        # parent.__init__()
+    except Exception as ex:
+        raise ex

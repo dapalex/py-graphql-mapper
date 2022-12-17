@@ -96,13 +96,14 @@ async def RunGithubAddCommentMutation():
         from output.github.gqlTypes import AddCommentInput
         from output.github.mutations import Mutations
 
+        # wrapper = redirectOutputToFile('logrecurs.log')
         mutation = Mutations.addComment.value()
+        # restoreOutput(wrapper)
         print('Inserting python mutation input data...')
-        mutation.input = AddCommentInput()
         
-        mutation.input.subjectId = 'something'
-        mutation.input.body = 'This is the body'
-        mutation.input.clientMutationId = 'Me'
+        mutation._args.input.subjectId = 'something'
+        mutation._args.input.body = 'This is the body'
+        mutation._args.input.clientMutationId = 'Me'
         print('Creating GQLOperation for mutation...')
         myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyAddCommentMutation')
         wrapper = redirectOutputToFile('superQuery')

@@ -5,14 +5,18 @@ from .src.spBuilder import SchemaBuilder, SchemaTypeBuilder
 from .src.spSchema import GQLSchema, SCType
 
 def fetchSchemaResponse(url, headers, query):
-    payload = { "query": query }
-    response = request("POST", url, json=payload, headers=headers)
+    try:
+        payload = { "query": query }
+        response = request("POST", url, json=payload, headers=headers)
+    except Exception as ex:
+        raise ex
     
     return GQLSchemaResponse(response)
 
 def fetchSchemaObject(url, headers, query):
     gqlResponse = fetchSchemaResponse(url, headers, query)
     gqlResponse.mapGQLDataToObj()
+    gqlResponse.printMessageOutput()
     return gqlResponse.resultObject
 
 

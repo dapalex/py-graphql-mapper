@@ -1,1 +1,1 @@
-from .components import (GQLConnection, GQLEdges, GQLObject, GQLOperation, GQLArgsSet)
+from .components import (GQLEdges, GQLObject, GQLOperation, GQLArgsSet) #GQLConnection, 

@@ -417,33 +417,35 @@ class Extractor():
         try:
             codeLst = []
         
-            singleLineCode = scType.name + ' = '
+            singleLineCode = "class " + scType.name + '(GQLObject): \n' + self.indent + 'pass'
             
-            if multipleTypes := len(scType.possibleTypes) > 1: 
-                singleLineCode += 'Union['
+            # singleLineCode = scType.name + ' = '
+            
+            # if multipleTypes := len(scType.possibleTypes) > 1: 
+            #     singleLineCode += 'Union['
                 
-            while scType.possibleTypes:
-                argument = scType.possibleTypes.popitem()
-                try:
-                    if argument[0] in circularRefTypes.keys() and scType.name + '.' + argument[0] in circularRefTypes[argument[0]]:
-                        singleLineCode += "'" + Translate.toPythonVariableName(argument[0]) + "'" + ','
-                        self.removeFromCheckCircularTypes(argument[0], scType.name + '.' + argument[0], circularRefTypes)
-                        # circularRefTypes[argument[0]].remove(scType.name + '.' + argument[0])
-                        # if not circularRefTypes[argument[0]]:
-                        #     circularRefTypes.pop(argument[0])
-                    else:
-                        singleLineCode += Translate.toPythonVariableName(argument[0]) + ', ' 
+            # while scType.possibleTypes:
+            #     argument = scType.possibleTypes.popitem()
+            #     try:
+            #         if argument[0] in circularRefTypes.keys() and scType.name + '.' + argument[0] in circularRefTypes[argument[0]]:
+            #             singleLineCode += "'" + Translate.toPythonVariableName(argument[0]) + "'" + ','
+            #             self.removeFromCheckCircularTypes(argument[0], scType.name + '.' + argument[0], circularRefTypes)
+            #             # circularRefTypes[argument[0]].remove(scType.name + '.' + argument[0])
+            #             # if not circularRefTypes[argument[0]]:
+            #             #     circularRefTypes.pop(argument[0])
+            #         else:
+            #             singleLineCode += Translate.toPythonVariableName(argument[0]) + ', ' 
                 
-                except Exception as ex:
-                    Logger.logErrorMessage('Error during extraction of element ' + argument[0] + ' - ' + ex.args[0])
+            #     except Exception as ex:
+            #         Logger.logErrorMessage('Error during extraction of element ' + argument[0] + ' - ' + ex.args[0])
             
-            singleLineCode = singleLineCode.removesuffix(',')
+            # singleLineCode = singleLineCode.removesuffix(',')
             
-            if multipleTypes:
-                singleLineCode += ']'
+            # if multipleTypes:
+            #     singleLineCode += ']'
             
-            if self.addDescription and scType.description:
-                    codeLst.append('"""\n' + scType.description + '\n"""\n')
+            # if self.addDescription and scType.description:
+            #         codeLst.append('"""\n' + scType.description + '\n"""\n')
             codeLst.append(singleLineCode)
         
         except Exception as ex:
@@ -482,7 +484,7 @@ class Extractor():
             fieldsDocCodeList = []
             
             if type(scType) == SCField:
-                fieldsCodeList = self.extractSchemaFieldCode(scType, circularRefTypes)
+                fieldsCodeList = self.extractSchemaFieldCode(scType, objType, circularRefTypes)
             elif hasattr(scType, 'kind') and scType.kind == 'OBJECT': #fields
                     fieldsDocCodeList, fieldsCodeList =  self.extractSchemaTypeContent(scType, circularRefTypes, actualType, 'fields')
             elif hasattr(scType, 'kind') and scType.kind == 'INTERFACE':
@@ -551,11 +553,12 @@ class Extractor():
         
             return arguedClassSignature%(arguedName, scTypeName) + ':' 
     
-    def extractSchemaFieldCode(self, scType, circularRefTypes):
+    def extractSchemaFieldCode(self, scType, objType: OperationType, circularRefTypes):
         codeLst = []
         
         if hasattr(scType, 'args') and scType.args:
-            codeLst.append(self.indent + "class Args(): ")
+            parentClass = "GQLArgsSet" if objType == OperationType.genericType else "GQLOperationArgs"
+            codeLst.append(self.indent + "class Args(" + parentClass + "): ")
             
             queryArgDocLst = []
             queryArgCodeLst = []
