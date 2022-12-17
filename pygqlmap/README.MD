@@ -13,12 +13,10 @@ This document explains in detail how the pygqlmap library works.
     2. [GQLConnection](#gqlconnection)
         1. [GQLEdges](#gqledges)
 3. [GQLOperation](#gqloperation)
-    1. [Query generation](#query-generation)
-    2. [Mutation generation](#mutation-generation)
+    1. [Query](#query)
+    2. [Mutation](#mutation)
     3. [Arguments management](#arguments-management)
-        1. [GQLArgsSet](#gqlargsset)
-            1. [Arguments as literal values](#arguments-as-literal-values)
-            2. [Arguments and variables](#arguments-and-variables)
+        1. [GQLArgs](#gqlargs)
     4. [Dynamic visibility of fields](#dynamic-visibility-of-fields)
 4. [Parsing of a response](#parsing-of-a-response)
     1. [GQLResponse](#gqlresponse)
@@ -27,7 +25,7 @@ This document explains in detail how the pygqlmap library works.
 
 ## Installation
 
-This package can be installed launching the following command from the main folder
+This module can be installed launching the following command from the main folder
 
 ```
 python setupPyGqlMap.py install
@@ -45,7 +43,7 @@ The functionalities of this package will be available under _pygqlmap_ module na
 Example:
 
 ```python
-from pygqlmap import GQLObject
+from pygqlmap.components import GQLObject
 
 class myCustomObject(GQLObject): 
     myString: str
@@ -65,12 +63,11 @@ Requirements for the class definition:
 * Inheriting _GQLObject_ class
 * Fields must be:
     * statically declared 
-* *\_\_init\_\_* function must be implemented. 
-  Within:
+* *\_\_init\_\_* function has to be implemented. Within:
     * Primitive fields (int, float, str, ...) must be initialized with a dummy value (the value will be ignored)
-    * Fields declared as GQLObject or GQLConnection types must be instantiated
+    * Fields being GQLObject or GQLConnection types must be instantiated
     * *super().\_\_init\_\_()* must be called (at the end of the function)
-* If the class corresponds to the root GraphQL object of a query its name has to match the expected name by the GraphQL server.
+* If the class is the root GraphQL object of a query its name has to match the name expected by the GraphQL server.
 
 The example above will be able to generate the following GraphQL object
 
@@ -82,9 +79,9 @@ myCustomObject {
 }
 ```
 
-A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectTest.py) 
+A use case can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectTest.py) 
 
-Note: further developments will allow to avoid the implementation of *__init__* function.
+Note: further developments should be able to avoid the implementation of *__init__* function.
 
 
 ### GQLConnection
@@ -94,7 +91,7 @@ Note: further developments will allow to avoid the implementation of *__init__* 
 Example using *myCustomObject* from above:
 
 ```python
-from pygqlmap import GQLConnection, GQLEdges
+from pygqlmap.components import GQLConnection, GQLEdges
 
 class MyConnection(GQLConnection): 
     
@@ -105,12 +102,11 @@ class MyConnection(GQLConnection):
 Requirements for the creation:
 
 * Inheriting GQLConnection class
-* *\_\_init\_\_* function must be implemented. |
-  Within:
+* *\_\_init\_\_* function has to be implemented. Within:
     * *super().\_\_init\_\_()* must be called passing _[GQLEdges](#gqledges)_ object as parameter 
-* If the class corresponds to the root GraphQL object of a query its name has to match the expected name by the GraphQL server.
+* If the class is the root GraphQL object of a query its name has to match the name expected by the GraphQL server.
 
-The example above will be able to generate the following GraphQL object
+The example above will correspond to the following GraphQL object
 
 ```
 MyConnection {
@@ -126,9 +122,7 @@ MyConnection {
 }
 ```
 
-Note: further developments will allow to avoid the implementation of *__init__* function.
-
-A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/connectionObjectTest.py) 
+A use case can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/connectionObjectTest.py) 
 
 
 #### GQLEdges
@@ -137,10 +131,12 @@ This class is in charge of managing the internal structure of a connection autom
 It takes the node object as parameter in the constructor, the parameter can be omitted if retrieving the node is not necessary.
 
 ```python
+...
 GQLEdges(myCustomObject())
+...
 ```
 
-The construction will be able to reproduce the current structure
+The construction above will be able to reproduce the current structure
 
 ```
 edges {
@@ -153,20 +149,20 @@ edges {
 }
 ```
 
-Note: currently the Connection structure is internally managed, with the next developments the management of connections should become more flexible and straightforward. 
+Currently the Connection structure is internally managed, with the next developments the management of connections should become more flexible and straightforward. 
 
 
 ## GQLOperation
 
 GQLOperation is the object in charge of composing a GraphQL query or mutation.
 
-### Query generation
+### Query
 
-Example using _MyConnection_ python object above:
+Example:
 
 ```python
-from pygqlmap import GQLOperation
 from pygqlmap.enums import OperationType
+from pygqlmap.components import GQLOperation
 
 query = GQLOperation(OperationType.query, MyConnection, 'myQuery')
 
@@ -183,7 +179,9 @@ Optional parameters are:
 * operationName: string used to give a name to the operation
 * logProgress: boolean activating basic logs of the GQL generation progress
 
-The property *exportGqlSource* in this case will generate the following GraphQL syntax:
+The _MyConnection_ object will be available in the field _obj_ (_query.obj_)
+
+The function *exportGqlSource* will generate the following GraphQL syntax:
 
 ```
 query myQuery {
@@ -207,10 +205,10 @@ Example using _requests_:
 response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
 ```
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/) 
+Use cases can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/) 
 
 
-### Mutation generation
+### Mutation
 
 Supposed a GQLObject _updateRepository_ created for a mutation
 
@@ -232,24 +230,24 @@ class updateRepository(GQLObject):
 Similarly to queries the creation of a mutation would be:
 
 ```python
-from pygqlmap import GQLOperation, GQLArgsSet
 from pygqlmap.enums import OperationType, ArgType
+from pygqlmap.components import GQLOperation, GQLArgsSet
 
-myMutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualMutationUpdateRepository', logProgress=True)
+coreMutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualMutationUpdateRepository', logProgress=True)
 
 argsUpdateRepository = GQLArgsSet()
 argsUpdateRepository.addArg("input", { 'repositoryId': "someID", 'hasIssuesEnabled': False })
 
-myMutation.setArgs([argsUpdateRepository], ArgType.LiteralValues)
+coreMutation.setArgs([argsUpdateRepository], ArgType.LiteralValues)
 
-response = request("POST", graphQLServerUrl, json={ "query": myMutation.exportGqlSource }, headers=headers)
+response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
 ```
 
-The property *exportGqlSource* in this case will generate the following GraphQL syntax:
+The function *exportGqlSource* will generate the following GraphQL syntax:
 
 ```
 mutation myManualUpdateRepository  { 
-    updateRepository(input:  { repositoryId: "someID", hasIssuesEnabled: false } ) { 
+    updateRepository(input:  { repositoryId: "R_kgDOH7MI4g", hasIssuesEnabled: false } ) { 
         clientMutationId     
         repository   { 
             ....content of Repository....
@@ -258,20 +256,20 @@ mutation myManualUpdateRepository  {
 }
 ```
 
-Note: [Next developments](https://github.com/dapalex/py-graphql-mapper/blob/main/README.MD#L156) will allow the usage of automatically generated classes for the queries and mutations
+Note: Next developments shall allow the usage of automatically generated classes for the queries and mutations
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstmutation/) 
+Use cases can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstmutation/) 
 
 
 ### Arguments management
 
-Arguments can be added to a _GQLOperation_, these can be done through _GQLArgsSet_ class.
+Arguments can be added to a _GQLOperation_, these can be done through _GQLArgs_ and added through _setArgs_ function.
 
 Example:
 
 ```python
-from pygqlmap import GQLOperation, GQLArgsSet
 from pygqlmap.enums import OperationType, ArgType
+from pygqlmap.components import GQLOperation, GQLArgsSet
 
 query = GQLOperation(OperationType.query, myCustomObject, 'myQuery')
 
@@ -286,11 +284,7 @@ print(query.exportGqlSource)
 print(query.exportGqlVariables)
 ```
 
-The constructor of _GQLArgsSet_ takes no parameters unless the 'location' of the argument set is different from the root object (see [here](#gqlargsset)).
-Arguments can be added through the functions _addArg_ and _addArgs_.
-Finally the created arguments set can be integrated into the operation through _GQLOperation_ _setArgs_ function.
-
-_exportGqlSource_ property in this case will generate the following GraphQL syntax:
+_exportGqlSource_ will generate the following GraphQL object:
 
 ```
 query myQuery($myCode: Int, $myString: String) { 
@@ -302,7 +296,7 @@ query myQuery($myCode: Int, $myString: String) {
 }
 ```
 
-and _exportGqlVariables_ property the following variables:
+and _exportGqlVariables_ the following variables:
 
 ```
 {
@@ -319,50 +313,31 @@ request("POST", graphQLUrl, json={ "query": query.exportGqlSource, "variables": 
 
 Note: Right now Arguments as Variables are not supported for mutations
 
-Use cases for queries can be seen here: 
-
-[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_LiteralValuesTest.py) <br />
-[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_VariablesTest.py) <br />
-[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/connectionObjectArgs_VariablesTest.py)  <br />
-[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/connectionobjectArgs_LiteralValuesTest.py) 
-
-
-#### GQLArgsSet
-
-*GQLArgsSet* is the container of one set of arguments. Arguments can be integrated into an operation as literal values or with variables.
+Use cases for queries can be seen here:
+[Object with arguments as literal values](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_LiteralValuesTest.py) 
+[Object with arguments and variables ](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_VariablesTest.py) 
+[Connection with arguments and variables](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/connectionObjectArgs_VariablesTest.py)  
+[Connection with arguments as literal values](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/connectionobjectArgs_LiteralValuesTest.py) 
 
 
-##### Arguments as literal values
+#### GQLArgs
 
-The following code uses arguments as literal values (using *ArgType.LiteralValues*)
+*GQLArgs* is the container of a set of arguments.
+
+The following code, using *ArgType.LiteralValues*
 
 ```python
-from pygqlmap import GQLOperation, GQLArgsSet
 from pygqlmap.enums import OperationType, ArgType
+from pygqlmap.components import GQLOperation, GQLArgsSet
 from pygqlmap.gqlTypes import ID
 
 query = GQLOperation(OperationType.query, countries, 'myCountriesQuery')
-
 argsRegion = GQLArgsSet('countries.edges.node.region')
 argsRegion.addArg('code', ID("CN"))
 query.setArgs([argsRegion], ArgType.LiteralValues)
 
 response = request("POST", graphQLUrl, json={ "query": query.exportGqlSource, "variables": query.exportGQLVariables }, headers=headers)
 ```
-
-The constructor takes the following parameter:
-
-* location: it represents the path (passed in dot notation) where the args will be located into the query.
-If the location is root there is no need to pass the parameter.
-
-Arguments can be added to _GQLArgs_ using the function _addArg_ which takes a name and a value as parameters.
-
-_setArgs_ function requires the following parameters:
-
-* argSets: a _GQLArgsSet_ object or a list of _GQLArgsSet_ objects
-* argsType: a value from the enum [ArgType]
-    * LiteralValues: argument values will be directly inserted within the query 
-    * Variables: argument keys in the query, argument values in variables
 
 The corresponding GraphQL sintax will be:
 
@@ -387,20 +362,27 @@ query myCountriesQuery {
 }
 ```
 
-Use case involving the objects in the example can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/complexObjectTest.py) 
+The constructor takes the following parameter:
+
+* location: it represents the path (passed in dot notation) where the args will be located within the query.
+If the location is root there is no need to pass the parameter.
+
+Arguments can be added to _GQLArgs_ using the function _addArg_ which takes a _GQLArg_ object as parameter.
+
+_setArgs_ function requires the following parameters:
+
+* argSets: a list of [GQLArg] objects
+* argsType: a value from the enum [ArgType](#arg)
+    * EmbeddedArgs: argument values will be directly inserted within the query 
+    * Variables: argument keys in the query, argument values in variables
+
+Use case involving the objects in the example can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/complexObjectTest.py) 
 
 
-##### Arguments and variables
-
-The following example uses arguments and variables (using *ArgType.Variables*)
+Following the same ...... using ArgType.Variables:
 
 ```python
 .......
-from pygqlmap import GQLOperation, GQLArgsSet
-from pygqlmap.enums import OperationType, ArgType
-
-query = GQLOperation(OperationType.query, rateLimit, operationName='mySimpleQueryArgsVars')
-
 argsSet = GQLArgsSet()
 argsSet.addArg('dryRun', False)
 query.setArgs(argsSet, ArgType.Variables)
@@ -414,15 +396,18 @@ response = requests.request('POST', url=githubUrl,
 The corresponding GraphQL sintax will be:
 
 ```
-query MyQuery {
-    rateLimit {
-        cost                -> Int     
-        limit               -> Int                 
-        nodeCount           -> Int
-        remaining           -> Int
-        resetAt             -> String
-        used                -> Int        
-    }
+query myQuery($myString: String) {
+    MyConnection {
+        totalCount
+        edges {
+            cursor
+            node(myString: $myString) {
+                myString
+                myCode
+                myList
+            }
+        }
+    }  
 }
 ```
 
@@ -430,16 +415,19 @@ with variables
 
 ```
 {
-    "dryRun": false
+    "myString": "CNY"
 }
 ```
 
-An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_VariablesTest.py) 
+An use case can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectArgs_VariablesTest.py) 
+
+
+~~~~~~~~~~It is also possible removing arguments from a created GQLArgs calling *removeArg*~~~~~~~~~~~~
 
 
 ### Dynamic visibility of fields
 
-It is possible to hide fields of an object or connection if no needed for an operation execution.
+For an operation it is possible to hide fields of a GQLObject if no needed.
 
 Given a python object created in this way:
 
@@ -468,7 +456,7 @@ class myCustomObject(GQLObject):
 
         super().__init__()
 ```
-corresponding to a GraphQL syntax 
+The mapped GraphQL version of a query would be
 
 ```
 query {
@@ -483,7 +471,7 @@ query {
 }
 ```
 
-It is possible to hide unnecessary fields for an operation, this can be done using *setShow* function:
+It is possible to 'temporarily' hide unnecessary fields, this can be done using *setShow* function:
 
 With the following code
 
@@ -497,12 +485,7 @@ query.setShow('myCustomObject.myNestedfield.fieldB', False)
 query.exportGqlSource
 ```
 
-_setShow_ function takes the following parameters:
-
-* keys: path + field name (passed in dot notation)
-* isVisible: set visibility of the field 
-
-The mapped GraphQL syntax would become
+the mapped GraphQL version of _query_ would become
 
 ```
 query myQuery{
@@ -515,14 +498,14 @@ query myQuery{
 }
 ```
 
-Hence hiding _myCode_ and _fieldB_.
+hiding _myCode_ and _fieldB_.
 
-An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectChangeVisibilityTest.py) 
+An use case can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectChangeVisibilityTest.py) 
 
 
 ## Parsing of a response
 
-A response received from a GraphQL server can be automatically converted into a python object declared for the query through _mapGQLDataToObj_ function
+Responses received from a GraphQL server can be automatically converted into a python object declared for the query through _mapGQLDataToObj_ function
 
 
 ```python
@@ -541,14 +524,14 @@ To parse the GraphQL response:
 
 * Instantiate a [GQLResponse](#gqlresponse) python object passing the response received from the server
 
-* Call _mapGQLDataToObj_ function passing the _obj_ field available in the query object used for the communication with the server (or alternatively an empty instance of the class).
+* Call mapGQLDataToObj function passing the _obj_ field within query object that has been used for the communication with the server (or alternatively an empty instance of the class).
 
 _printMessageOutput_ function will print the outcome of the request
 
 
 ### GQLResponse
 
-The purpose of GQLResponse object is to manage the response received from a GraphQL server.
+The purpose of GQLResponse object is managing the responses received from a GraphQL server.
 
 The constructor requires the following parameter:
 
@@ -557,7 +540,7 @@ The constructor requires the following parameter:
 The function *mapGQLDataToObj* maps all the information from the HTTP response to the relating python object.
 It requires the following parameter:
 
-* opObject: the python object that has been created for the [GQLOperation](#gqloperation) construction
+* queryObject: the python object that has been created for the [GQLOperation](#gqloperation)
 
 Optional parameter:
 
@@ -571,10 +554,8 @@ Optional parameter:
 
 So far the following GraphQL scalar types are being mapped to python types:
 
-| GraphQL Scalar Type | python type | 
-|:---------:|:-----------:|
-|Int | int |
-|String | str |
-|Boolean | bool |
-|Float | float |
-|ID | ID class (_pygqlmap.gqlTypes_) |
+* Int -> int
+* String -> str
+* Boolean -> bool
+* Float -> float
+* ID -> ID class (_pgqlmCore.gqlTypes.ID_)
