@@ -1,9 +1,9 @@
 
 from dataclasses import dataclass, field
 import inspect
-
-from .base import FieldsShow, GQLExporter
 from .utils import getClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
+from .base import FieldsShow, GQLExporter
+
 
 @dataclass
 class GQLCPPageInfo(FieldsShow, GQLExporter):
@@ -49,11 +49,11 @@ class FSTree():
                     if not hasattr(self, 'children'): self.children = []
                     self.children.append(FSTree(objField, field))
         
-     ##connection stuff......
-    def getFSEdgeContainer(self):
-        for childBranch in self.children:
-            if childBranch.name == 'GQLEdge':
-                return childBranch       
+    #  ##connection stuff......
+    # def getFSEdgeContainer(self):
+    #     for childBranch in self.children:
+    #         if childBranch.name == 'GQLEdge':
+    #             return childBranch       
           
     def setFieldShow(self, property: str, show: bool):
         info = getDotNotationInfo(property)
@@ -77,11 +77,8 @@ class FSTree():
             field = path.pop(0)
             if attrContainer.name == field: ##container object
                 continue
-            else:
-                for child in attrContainer.children:
-                    if child.name == field:  
-                        attrContainer = child
-                        if attrContainer.name == 'edges': 
-                            attrContainer = attrContainer.getFSEdgeContainer()
+            for child in attrContainer.children:
+                if child.name == field:  
+                    attrContainer = child
         return attrContainer
         

@@ -1,6 +1,9 @@
 import copy
 from dataclasses import asdict, dataclass, field
 import inspect
+from typing import NewType, Union
+
+from pygqlmap.src.logger import Logger
 
 from .src.components import GQLCPPageInfo, GQLEdge, FSTree
 from .src.base import GQLList, FieldsShow, GQLExporter, GQLBaseArgsSet
@@ -140,11 +143,60 @@ class GQLArgsSet(GQLBaseArgsSet):
 
         return output
 
+
+def subClassInit(obj, circularRef: list = []):
+    import sys
+    from enum import Enum
+    
+    for fieldName in obj.__dataclass_fields__:
+        fieldType = obj.__dataclass_fields__[fieldName].type
+        if hasattr(obj, fieldName):
+            ##careful here
+            continue
+        if fieldType == int or fieldType == float:
+            setattr(obj, fieldName, 0)
+        elif fieldType == list:
+            setattr(obj, fieldName, [])
+        elif fieldType == bool:
+            setattr(obj, fieldName, False)
+        elif fieldType == str:
+            setattr(obj, fieldName, '')
+        elif inspect.isclass(fieldType):
+            if issubclass(fieldType, Enum):
+                setattr(obj, fieldName, list(map(lambda c: c.value, fieldType))[0]) ##set first value from enum
+            else:
+                setattr(obj, fieldName, fieldType())
+        elif type(fieldType) == NewType:
+            if hasattr(sys.modules[obj.__module__], fieldType.__name__):
+                print('circular reference for ' + fieldName + ' of type ' + fieldType.__name__ + '!')
+                currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
+                # setattr(obj, fieldName, obj.__dataclass_fields__[fieldName])
+                if circularRef.__contains__(fieldType.__name__): 
+                    setattr(obj, fieldName, '')
+                    # circularRef.remove(fieldType.__name__)
+                else:
+                    circularRef.append(fieldType.__name__)
+                    setattr(obj, fieldName, currentClass())
+            else:
+                Logger.logErrorMessage('something is wrong')
+        elif fieldType == Union:
+            print('Union here')
+            setattr(obj, fieldName, '')
+            pass
+        else:
+            Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
+            setattr(obj, fieldName, '')
+        
+    parent = super(obj.__class__, obj)
+    parent.__init__()
+
 @dataclass
 class GQLObject(FieldsShow, GQLExporter): 
       
     def __init_subclass__(cls):
-        cls = dataclass(cls)
+        cls = dataclass(cls)                                
+        cls.__init__ = subClassInit
+        # #### TRY YO DEFINE __init__ OF THE SUBCLASS HERE    
         
     def __post_init__(self, logProgress: bool = False):
         self.initFieldsShow()
@@ -208,6 +260,14 @@ class GQLConnection(FieldsShow):
         
         return attrContainer
        
+    def moveForward(self, first: int, after: str):
+        self.args.first = first
+        self.args.after = after
+        
+    def moveBackward(self, last: int, before: str):
+        self.args.last = last
+        self.args.before = before
+
     @property
     def exportGqlSource(self):  
         """Return the GraphQL syntax for the current connection
@@ -256,7 +316,7 @@ class GQLOperation(GQLExporter):
     operationType: OperationType
     obj: any 
     
-    def __init__(self, operationType: OperationType, dataType, operationName: str = '', logProgress: bool = False):
+    def __init__(self, operationType: OperationType, dataType, operationName: str = None, logProgress: bool = False, rootName: str = None, recursionLevel: int = 0): #, inputFieldName: str = None
         """_summary_
 
         Args:
@@ -269,12 +329,18 @@ class GQLOperation(GQLExporter):
         Raises:
             Exception: _description_
         """
-        self.name = operationName
+        if operationName: self.name = operationName
         
         self.operationType = operationType
-        self.obj = dataType() 
-        self.fieldsShowTree = FSTree(self.obj)
+        if inspect.isclass(dataType):
+            self.obj = dataType() 
+        else:
+            self.generatedData = True
+            self.obj = dataType
+        self.fieldsShowTree = FSTree(self.obj, rootName if rootName else None)
         self.logProgress = logProgress
+        self.rootName = rootName
+        self.recursionLevel = recursionLevel
     
     def setShow(self, keys: str or list[str], isVisible: bool):
         """_summary_
@@ -324,9 +390,11 @@ class GQLOperation(GQLExporter):
                     owner = getDotNotationInfo(locationKey)
                     if owner[0]:
                         while owner[0] and (pathStep := owner[0].pop(0)):
-                            if pathStep == getClassName(self.obj): continue
-                            if pathStep == 'edges': attrContainer = attrContainer.findContainer(owner[0])
-                            else: attrContainer = getattr(attrContainer, pathStep)
+                            if pathStep == getClassName(self.obj) or (self.rootName and self.rootName == pathStep): continue
+                            # if pathStep == 'edges': 
+                            #     attrContainer = attrContainer.findContainer(owner[0])
+                            # else: 
+                            attrContainer = getattr(attrContainer, pathStep)
                                 
                         attrContainer = getattr(attrContainer, owner[1])
                     
@@ -339,11 +407,17 @@ class GQLOperation(GQLExporter):
         Returns:
             str: GraphQL Query exported 
         """
-        prefix = self.operationType.name + ' ' + self.name + ' ' 
-        self.obj.logProgress = self.logProgress
         
-        if hasattr(self, '_args'):
-            if self._argsType == ArgType.Variables:
-                prefix += '(' + self._args.exportGQLArgKeys + ')'
-        return prefix + ' { ' + getClassName(self.obj) + self.obj.exportGqlSource[0] + ' } '
+        if hasattr(self, 'generated'):
+            if hasattr(self.obj, 'args'):
+                print('transform args in _args?????')
+            pass
+        else:
+            prefix = self.operationType.name + ' ' + self.name + ' ' 
+            self.obj.logProgress = self.logProgress
+            rootName = self.rootName if self.rootName else getClassName(self.obj)
+            if hasattr(self, '_args'):
+                if self._argsType == ArgType.Variables:
+                    prefix += '(' + self._args.exportGQLArgKeys + ')'
+            return prefix + ' { ' + rootName + self.obj.exportGqlSource[0] + ' } '
     

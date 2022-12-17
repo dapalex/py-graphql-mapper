@@ -2,6 +2,8 @@
 import inspect
 import keyword
 from enum import Enum
+
+from pygqlmap.src.logger import Logger
 from .utils import executeRegex, getClassName
 from .consts import commaConcat
 
@@ -64,6 +66,7 @@ class Translate():
         elif type(pyVariable) == type: #should never get in
             return 'Type'  
         elif type(pyVariable) == bool:  
+            # return str(pyVariable).lower()
             return 'Boolean'
         elif type(pyVariable) == dict:  
             output = ' { '
@@ -74,7 +77,7 @@ class Translate():
             output += ' } '
             return output
         else:
-            print('type not managed!')
+            Logger.logErrorMessage('type not managed!')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     

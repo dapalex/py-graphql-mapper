@@ -33,7 +33,7 @@ class FieldsShow(ABC):
         
 class GQLExporter(Logger):                
 
-    gqlExportedArgsTuple = ()
+    gqlExportedArgsTuple = () #base class
     logProgress: bool
     
     @property
