@@ -4,7 +4,7 @@ from pygqlmap.src.logger import Logger
 from pygqlmap.src.translator import Translate, switchStrType
 from .enums import TypeKind
 from .spSchema import GQLSchema, SCField, SCType
-from .utils import getObjectTypeDefs, getUsedGQLObjectNames, getValidFieldsList, isDeprecated, splitDictionary
+from .utils import isDeprecated, splitDictionary
 from .priority import ExtractionResults, PriorElement
 from .consts import scalarSignature, classSignature, enumSignature, arguedClassSignature, interfaceSignature
 
@@ -121,7 +121,7 @@ class Extractor():
     
     def generateScalar(self, schemaScalar: SCType):
         if self.logProgress: Logger.logInfoMessage('Started extraction of scalar ' + schemaScalar.name)
-        schemaScalar.typeDefs = getObjectTypeDefs(schemaScalar) 
+        schemaScalar.typeDefs = schemaScalar.getObjectTypeDefs() 
 
         if schemaScalar.name in switchStrType: 
             scalarType = switchStrType[schemaScalar.name]
@@ -223,7 +223,7 @@ class Extractor():
                 if priorElement.name.endswith('Field'):
                     realType = False
                     
-                    priorElement.schemaType.typeDefs = getObjectTypeDefs(priorElement.schemaType) 
+                    priorElement.schemaType.typeDefs = priorElement.schemaType.getObjectTypeDefs() 
                     
                     if TypeKind.LIST.name in priorElement.schemaType.typeDefs: isList = True
                     
@@ -306,7 +306,9 @@ class Extractor():
         currentTypeName = currentType.name if not arguedName else arguedName
         if self.logProgress: Logger.logInfoMessage('Started extraction of type ' + currentTypeName)
         
-        if self.isAlreadyExtracted(currentTypeName): return
+        if self.isAlreadyExtracted(currentTypeName):
+            Logger.logWarningMessage(currentTypeName + " already extracted!")
+            return
         
         usedTypes = []
         try:
@@ -325,7 +327,9 @@ class Extractor():
             for usedTypeNameKey, occurrences in usedTypesDict.items():
                 try:
                     if self.logProgress: Logger.logInfoMessage(currentTypeName + ' uses ' + usedTypeNameKey)
-                    if self.isAlreadyExtracted(usedTypeNameKey): continue
+                    if self.isAlreadyExtracted(usedTypeNameKey):
+                        Logger.logWarningMessage(currentTypeName + " already extracted!") 
+                        continue
                     elif self.types.get(usedTypeNameKey): 
                         poppedUsedType = self.types.pop(usedTypeNameKey)
                         
@@ -462,7 +466,7 @@ class Extractor():
                 if hasattr(scType, 'description') and scType.description: 
                     docsLst.append(self.indent + scTypeName + ' - ' + scType.description + '\n')
                     
-            scType.typeDefs = getObjectTypeDefs(scType) 
+            scType.typeDefs = scType.getObjectTypeDefs() 
             
             if TypeKind.LIST.name in scType.typeDefs: isList = True
             
@@ -625,7 +629,7 @@ class Extractor():
                 if hasattr(element, 'description') and element.description: 
                     docLine = self.indent + element.name + ' - ' + element.description + '\n'
                     
-            element.typeDefs = getObjectTypeDefs(element) 
+            element.typeDefs = element.getObjectTypeDefs() 
             claimedElType, actualElType = element.composePythonType()
             
             arguedNameRef = None
@@ -637,7 +641,7 @@ class Extractor():
                 self.extractSchemaType(element, circularRefTypes, arguedName)
                 arguedNameRef = claimedElType.replace(actualElType, (actualElType if not actualElType in primitivesStringified else element.name) + 'Field') 
             
-            if getUsedGQLObjectNames(element) and circularRefTypes:
+            if element.getUsedGQLObjectNames() and circularRefTypes:
                 circTypeUtilizer = self.startCheckCircularRefTypes(element, parentType, actualElType, circularRefTypes)
                     
                 if circTypeUtilizer:
@@ -670,11 +674,11 @@ class Extractor():
         if self.logProgress: Logger.logInfoMessage('Started extraction of used types for ' + scType.name)
         objNames = {}
                 
-        fieldsList = getValidFieldsList(scType)
+        fieldsList = scType.getValidFieldsList()
         
         try:
             for field in fieldsList:
-                objNames.update({ field.name: getUsedGQLObjectNames(field) })
+                objNames.update({ field.name: field.getUsedGQLObjectNames() })
                 if self.logProgress and objNames: Logger.logInfoMessage('Found used Types: ' + str(objNames) + 'for field ' + field.name)
                 
         except Exception as ex:
