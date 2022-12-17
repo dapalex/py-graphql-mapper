@@ -1,3 +1,4 @@
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
@@ -8,7 +9,7 @@ class codeOfConduct(GQLObject):
    codeOfConduct - Look up a code of conduct by its key
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       key - The code of conduct's key
 
@@ -27,7 +28,7 @@ class enterprise(GQLObject):
    enterprise - Look up an enterprise by URL slug.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       slug - The enterprise URL slug.
 
@@ -47,7 +48,7 @@ class enterpriseAdministratorInvitation(GQLObject):
    enterpriseAdministratorInvitation - Look up a pending enterprise administrator invitation by invitee, enterprise and role.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       userLogin - The login of the user invited to join the business.
 
@@ -70,7 +71,7 @@ class enterpriseAdministratorInvitationByToken(GQLObject):
    enterpriseAdministratorInvitationByToken - Look up a pending enterprise administrator invitation by invitation token.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       invitationToken - The invitation token sent with the invitation email.
 
@@ -87,7 +88,7 @@ class license(GQLObject):
    license - Look up an open source license by its key
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       key - The license's downcased SPDX ID
 
@@ -111,7 +112,7 @@ class marketplaceCategories(GQLObject):
    marketplaceCategories - Get alphabetically sorted list of Marketplace categories
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       includeCategories - Return only the specified categories.
 
@@ -134,7 +135,7 @@ class marketplaceCategory(GQLObject):
    marketplaceCategory - Look up a Marketplace category by its slug.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       slug - The URL slug of the category.
 
@@ -154,7 +155,7 @@ class marketplaceListing(GQLObject):
    marketplaceListing - Look up a single Marketplace listing
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       slug - Select the listing that matches this slug. It's the short name of the listing used in its URL.
 
@@ -171,7 +172,7 @@ class marketplaceListings(GQLObject):
    marketplaceListings - Look up Marketplace listings
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -235,7 +236,7 @@ class node(GQLObject):
    node - Fetches an object given its ID.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       id - ID of the object.
 
@@ -252,7 +253,7 @@ class nodes(GQLObject):
    nodes - Lookup nodes by a list of IDs.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       ids - The list of node IDs.
 
@@ -269,7 +270,7 @@ class organization(GQLObject):
    organization - Lookup a organization by login.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       login - The organization's login.
 
@@ -286,7 +287,7 @@ class rateLimit(GQLObject):
    rateLimit - The client's rate limit information.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       dryRun - If true, calculate the cost for the query without evaluating it
 
@@ -310,7 +311,7 @@ class repository(GQLObject):
    repository - Lookup a given repository by the owner and repository name.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       owner - The login field of a user or organization
 
@@ -333,7 +334,7 @@ class repositoryOwner(GQLObject):
    repositoryOwner - Lookup a repository owner (ie. either a User or an Organization) by login.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       login - The username to lookup the owner by.
 
@@ -350,7 +351,7 @@ class resource(GQLObject):
    resource - Lookup resource by a URL.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       url - The URL.
 
@@ -367,7 +368,7 @@ class search(GQLObject):
    search - Perform a search across resources, returning a maximum of 1,000 results.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -399,7 +400,7 @@ class securityAdvisories(GQLObject):
    securityAdvisories - GitHub Security Advisories
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       orderBy - Ordering options for the returned topics.
 
@@ -440,7 +441,7 @@ class securityAdvisory(GQLObject):
    securityAdvisory - Fetch a Security Advisory by its GHSA ID
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       ghsaId - GitHub Security Advisory ID.
 
@@ -457,7 +458,7 @@ class securityVulnerabilities(GQLObject):
    securityVulnerabilities - Software Vulnerabilities documented by GitHub Security Advisories
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       orderBy - Ordering options for the returned topics.
 
@@ -498,7 +499,7 @@ class sponsorables(GQLObject):
    sponsorables - Users and organizations who can be sponsored via GitHub Sponsors.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -544,7 +545,7 @@ class topic(GQLObject):
    topic - Look up a topic by name.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       name - The topic's name.
 
@@ -561,7 +562,7 @@ class user(GQLObject):
    user - Lookup a user by login.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       login - The user's login.
 

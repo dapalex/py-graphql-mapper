@@ -1,5 +1,5 @@
 from typing import Generic, Union
-from pygqlmap.components import GQLObject
+from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
 from typing import NewType
 from .gqlSimpleTypes import *
@@ -31,7 +31,7 @@ class TimeZonesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnection]):
-   class Args(): 
+   class Args(GQLArgsSet): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
@@ -69,7 +69,7 @@ class CountryRegionsConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class CountryRegionField(CountryRegion):
-   class Args(): 
+   class Args(GQLArgsSet): 
       code: ID
 
    _args: Args
@@ -77,7 +77,7 @@ class CountryRegionField(CountryRegion):
 
 
 class CountryRegionsConnectionField(CountryRegionsConnection):
-   class Args(): 
+   class Args(GQLArgsSet): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       first: int
@@ -107,7 +107,7 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
-   class Args(): 
+   class Args(GQLArgsSet): 
       radius: float
       distanceUnit: DistanceUnit
       countryIds: list[ID]

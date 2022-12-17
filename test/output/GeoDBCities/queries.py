@@ -1,3 +1,4 @@
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
@@ -8,7 +9,7 @@ class country(GQLObject):
    country - Look up a country
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       id - An ISO-3166 country code or WikiData id
 
@@ -28,7 +29,7 @@ class countries(GQLObject):
    countries - Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       currencyCode - Only countries supporting this currency
 
@@ -66,7 +67,7 @@ class currencies(GQLObject):
    currencies - Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       countryId - Currencies for this country id
 
@@ -97,7 +98,7 @@ class locales(GQLObject):
    locales - Get all known locales
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -123,7 +124,7 @@ class populatedPlace(GQLObject):
    populatedPlace - Look up a populated place
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       id -  A place id (either native id or Wikidata ID)
 
@@ -143,7 +144,7 @@ class populatedPlaces(GQLObject):
    populatedPlaces - Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       location - Only places near this location
 
@@ -213,7 +214,7 @@ class timeZone(GQLObject):
    timeZone - Look up a time-zone
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       id: ID ##NON NULL
 
    _args: Args
@@ -226,7 +227,7 @@ class timeZones(GQLObject):
    timeZones - Get all known time-zones
 
    """
-   class Args(): 
+   class Args(GQLOperationArgs): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 

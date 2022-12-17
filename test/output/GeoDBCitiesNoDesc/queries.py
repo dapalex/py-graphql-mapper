@@ -1,10 +1,11 @@
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
 class country(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
@@ -14,7 +15,7 @@ class country(GQLObject):
    type: Country
 
 class countries(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       currencyCode: str
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -30,7 +31,7 @@ class countries(GQLObject):
    type: CountriesConnection
 
 class currencies(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       countryId: ID
       first: int
       after: str
@@ -45,7 +46,7 @@ class currencies(GQLObject):
 distanceBetween = float
 
 class locales(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       first: int
       after: str
       last: int
@@ -57,7 +58,7 @@ class locales(GQLObject):
    type: LocalesConnection
 
 class populatedPlace(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
@@ -67,7 +68,7 @@ class populatedPlace(GQLObject):
    type: PopulatedPlace
 
 class populatedPlaces(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       location: Location
       radius: float
       distanceUnit: DistanceUnit
@@ -93,7 +94,7 @@ class populatedPlaces(GQLObject):
    type: PopulatedPlacesConnection
 
 class timeZone(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       id: ID ##NON NULL
 
    _args: Args
@@ -102,7 +103,7 @@ class timeZone(GQLObject):
    type: TimeZone
 
 class timeZones(GQLObject):
-   class Args(): 
+   class Args(GQLOperationArgs): 
       first: int
       after: str
       last: int
