@@ -1,18 +1,16 @@
-from setuptools import setup
-
-excluded = [
-    './test/*'
-]
+from setuptools import find_packages, setup
 
 setup(
     name='pygqlmap',
-    version='0.2.0',    
-    description='Python-GraphQL Mapper',
+    version='0.3.0',    
+    description='Python-GraphQL Mapper core',
     url='https://github.com/dapalex/py-graphql-mapper/pygqlmap',
     author='Alex Dap',
     author_email='shlisi2017@gmail.com',
     license='MIT',
-    packages=['pygqlmap', 'pygqlmap.src'],
+    include_package_data=True,
+    packages=['pygqlmap', 'pygqlmap.src', 'codegen', 'codegen.src', 'codegen.src.templates'],
+    # packages=find_packages(where=['pygqlmap', 'pygqlmap.src', 'codegen', 'codegen.src', 'codegen.src.templates'], exclude=['test.*']),
     python_requires='>=3.10.6',
 
     classifiers=[
