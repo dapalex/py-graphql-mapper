@@ -4,80 +4,88 @@ import os
 import pathlib
 
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
+# sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).parent.absolute()) + '\\PyGraphQLHelper')
 
 import asyncio
-from utils import waitForInput
-from pgqlmCoreTest.tstquery.connectionObjectTest import testConnectionObject
-from pgqlmCoreTest.tstquery.connectionObjectChangeVisibilityTest import testConnectionObjectVisibility
-from pgqlmCoreTest.tstquery.connectionObjectArgs_VariablesTest import testConnectionObjectArgs_Variables
-from pgqlmCoreTest.tstquery.connectionobjectArgs_LiteralValuesTest import testConnectionObjectArgs_LiteralValues
-from pgqlmCoreTest.tstquery.simpleObjectArgs_LiteralValuesTest import testSimpleObjectArgs_LiteralValues
-from pgqlmCoreTest.tstquery.simpleObjectArgs_VariablesTest import testSimpleObjectArgs_Variables
-from pgqlmCoreTest.tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
-from pgqlmCoreTest.tstquery.complexObjectTest import testComplexObject
-from pgqlmCoreTest.tstquery.simpleObjectTest import testSimpleObject
-from pgqlmCoreTest.tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
-from pgqlmCoreTest.tstmutation.mutationInsertTest import testMutationInsertLiteralValues
+from utils import OutputType, waitForInput, cleanOutput
+from geoDBCitiesApiUnitTest import *
+from githubApiUnitTest import *
+from helpUnitTest import runGeneratorCommandHelp
+from rapidApiUnitTest import *
 
-from pgqlmCoreTest.unitTest import *
+# from pygqlGenerator.src.compScalarTypes import TypedFloat
+# myFloat = TypedFloat("my argument")
+# myFloat = 13.5
+
+# print(myFloat)
+# print(myFloat._args)
 
 lockOutput = input('Do you want to pause at each test? (Y/N) ')
 
-
-# CORE - START
-#SAMPLE TESTS - START
-asyncio.run(testSimpleObject())
+#GENERATOR - START
+cleanOutput(OutputType.SCHEMAS)
+asyncio.run(fetchGeoDBCitiesSchema())
 waitForInput(lockOutput)
-asyncio.run(testSimpleObjectArgs_LiteralValues())
+asyncio.run(fetchGeoDBCitiesSchemaNoDesc())
 waitForInput(lockOutput)
-asyncio.run(testSimpleObjectArgs_Variables())
+wrapper = redirectOutputToFile('logrecurs.log')
+asyncio.run(fetchGithubMutationTypesFromSchemaNoDesc())
+restoreOutput(wrapper)
 waitForInput(lockOutput)
-asyncio.run(testSimpleObjectVisibility())
+asyncio.run(fetchGithubMutationTypes())
 waitForInput(lockOutput)
-
-asyncio.run(testConnectionObject())
+asyncio.run(fetchRapidApiTestSchemaAndTypesNoDesc())
 waitForInput(lockOutput)
-asyncio.run(testConnectionObjectVisibility())
-waitForInput(lockOutput)
-asyncio.run(testConnectionObjectArgs_Variables())
-waitForInput(lockOutput)
-asyncio.run(testConnectionObjectArgs_LiteralValues())
+asyncio.run(fetchRapidApiTestSchemaAndTypes())
 waitForInput(lockOutput)
 
-asyncio.run(testComplexObject())
+#GITHUB API - START
+asyncio.run(RunGithubAddCommentMutation())
 waitForInput(lockOutput)
+asyncio.run(RunGithubUpdateRepositoryMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubDeleteProjectMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubDeleteProjectV2Mutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubCreateIssueMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubCreateProjectMutation())
+#GITHUB - END
 
-asyncio.run(testMutationUpdateLiteralValues()) 
+#RapidAPI - START
+asyncio.run(RunRapidApiCreateTransformationsMutation())
 waitForInput(lockOutput)
-asyncio.run(testMutationInsertLiteralValues()) 
+asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
 waitForInput(lockOutput)
-##SAMPLE TESTS - END
+asyncio.run(RunRapidApiEditUserAlertMutation())
+waitForInput(lockOutput)
+#RapidAPI - END
 
-#FURTHER TESTS
-asyncio.run(testNestedObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
-asyncio.run(testNestedObjectWithLiteralValueArgs())
-waitForInput(lockOutput)
-asyncio.run(testNestedObjectShowChange())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectWithLiteralValueArgs())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectShowChange())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectWithLiteralValueArgs2())
-waitForInput(lockOutput)
-asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
-waitForInput(lockOutput)
-asyncio.run(testNestedObjectWithLiteralValueArgsAndCursorPaginationArgs())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectWithLiteralValueArgs2WithLog()) 
-waitForInput(lockOutput)
-asyncio.run(testObjectWithComposedArgs()) 
-waitForInput(lockOutput)
-##Geo DB Cities - END
+#GeoDBCities API - START
+#GeoDBCities API - END
 
-#CORE - END
+#COMMANDS - START
+cleanOutput(OutputType.COMMANDS)
+
+asyncio.run(runGeneratorCommandHelp())
+waitForInput(lockOutput)
+asyncio.run(runDownloadCommandgdbcApiBySchemaFileRelPath())
+waitForInput(lockOutput)
+asyncio.run(runDownloadCommandGeoDBCitiesBySchemaFileRelPath())
+waitForInput(lockOutput)
+asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
+waitForInput(lockOutput)
+asyncio.run(runDownloadCommandGithubBySchemaFileRelPath())
+waitForInput(lockOutput)
+asyncio.run(runGenerateCommandGithubByApiAbsPath())
+waitForInput(lockOutput)
+asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
+waitForInput(lockOutput)
+asyncio.run(runDownloadCommandRapidApiBySchemaFileRelPath())
+waitForInput(lockOutput)
+asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
+waitForInput(lockOutput)
+#COMMANDS - END
+
+#GENERATOR - END
