@@ -62,16 +62,18 @@ class GQLExporter(Logger):
                 except Exception as ex:
                     raise Exception('Issue exporting field ' + field + ' for ' + str(self.__class__) + " - " + ex.args[0])
             
-            if len(outputGqlDict) == 0: return ''
+            if len(outputGqlDict) == 0: 
+                # return ''
+                pass
             
             gqlArgs = ''
             #Arguments management START
             if hasattr(self, argsDeclaration): 
                 try:
                     if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of args for: ' + getClassName(self))
-                    if self._argsType == ArgType.LiteralValues:
+                    if self._args._argsType == ArgType.LiteralValues:
                         gqlArgs = '(' + self._args.exportGQLArgsAndValues + ')'
-                    elif self._argsType == ArgType.Variables:
+                    elif self._args._argsType == ArgType.Variables:
                         gqlArgs = '(' + self._args.exportGQLArgKeys + ')'
                 except Exception as ex:
                     raise Exception('Issue exporting _args for ' + str(self.__class__) + " - " + ex.args[0])

@@ -93,7 +93,7 @@ async def RunGithubAddCommentMutation():
     print('\nRunning RunGithubAddCommentMutation...')
     try:
         print('Creating mutation python object...')
-        from output.github.gqlTypes import AddCommentInput
+        # from output.github.gqlTypes import AddCommentInput
         from output.github.mutations import Mutations
 
         # wrapper = redirectOutputToFile('logrecurs.log')
@@ -106,9 +106,7 @@ async def RunGithubAddCommentMutation():
         mutation._args.input.clientMutationId = 'Me'
         print('Creating GQLOperation for mutation...')
         myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyAddCommentMutation')
-        wrapper = redirectOutputToFile('superQuery')
         print(myMutation.exportGqlSource)
-        restoreOutput(wrapper)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 

@@ -16,17 +16,17 @@ class GQLCPPageInfo(FieldsShow, GQLExporter):
         self.initFieldsShow()
         self.logProgress = logProgress
 
-@dataclass
-class GQLEdge(FieldsShow, GQLExporter):
-    cursor: field(default_factory=str, init=True) = ''
-    node: field(init=True) = None
+# @dataclass
+# class GQLEdge(FieldsShow, GQLExporter):
+#     cursor: field(default_factory=str, init=True) = ''
+#     node: field(init=True) = None
 
-    def __post_init__(self, logProgress: bool = False):
-        self.initFieldsShow()
-        self.logProgress = logProgress
+#     def __post_init__(self, logProgress: bool = False):
+#         self.initFieldsShow()
+#         self.logProgress = logProgress
         
-    def setNodeType(self, sampleNode):
-        self.sampleNode = sampleNode
+#     def setNodeType(self, sampleNode):
+#         self.sampleNode = sampleNode
     
 class FSTree():
     def __init__(self, obj, fieldName: str = None):

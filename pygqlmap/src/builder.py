@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from .base import GQLList
 from .enums import BuildingType
-from ..components import GQLEdges
+# from ..components import GQLEdges
 from ..gqlTypes import ID
 from .logger import Logger
 from .utils import getClassName, popListElementByRef #uhm
@@ -31,20 +31,20 @@ class QueryBuilder(Builder, Logger):
             
             if type(pyObject) == GQLList:
                 print('management of list')
-            if type(pyObject) == GQLEdges:
-                item = input.popitem()
+            # if type(pyObject) == GQLEdges:
+            #     item = input.popitem()
                 
-                ##building response using query object, query object has to be cleaned
-                popListElementByRef(pyObject, pyObject.sampleElement)
+            #     ##building response using query object, query object has to be cleaned
+            #     popListElementByRef(pyObject, pyObject.sampleElement)
                 
-                for inputElement in item[1]:
-                    newObjElement = type(pyObject.sampleElement)()
-                    newObjElement.copyFieldsShow(pyObject.sampleElement.fieldsShow)
-                    if hasattr(pyObject.sampleElement, 'sampleNode'):
-                        self.setPyFields(inputElement, newObjElement, pyObject.sampleElement.sampleNode)
-                    else:
-                        self.setPyFields(inputElement, newObjElement)
-                    pyObject.append(newObjElement)
+            #     for inputElement in item[1]:
+            #         newObjElement = type(pyObject.sampleElement)()
+            #         newObjElement.copyFieldsShow(pyObject.sampleElement.fieldsShow)
+            #         if hasattr(pyObject.sampleElement, 'sampleNode'):
+            #             self.setPyFields(inputElement, newObjElement, pyObject.sampleElement.sampleNode)
+            #         else:
+            #             self.setPyFields(inputElement, newObjElement)
+            #         pyObject.append(newObjElement)
             else: 
                 item = input.popitem() ##extract the KV pair containing object name and content
                 self.setPyFields(item[1], pyObject)

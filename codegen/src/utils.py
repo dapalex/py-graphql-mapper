@@ -11,7 +11,7 @@ def performanceProfilerLog():
     ppFile = open('test/logs/performance analysis.log', 'w')
     return ppFile
     
-def splitDictionary(dictionary: dict[str, any]):
+def splitTypes(dictionary: dict[str, any]):
     myDeque = deque()
     simpleTypes = []
     while dictionary:

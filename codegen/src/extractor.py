@@ -4,7 +4,7 @@ from pygqlmap.src.logger import Logger
 from pygqlmap.src.translator import Translate, switchStrType
 from .enums import TypeKind
 from .spSchema import GQLSchema, SCField, SCType
-from .utils import isDeprecated, splitDictionary
+from .utils import isDeprecated, splitTypes
 from .priority import ExtractionResults, PriorElement
 from .consts import scalarSignature, classSignature, enumSignature, arguedClassSignature, interfaceSignature
 
@@ -101,7 +101,7 @@ class Extractor():
                 else:
                     tempTypes.update({ currentType[0]: currentType[1] })
                     
-            self.simpleTypes, self.types = splitDictionary(tempTypes)
+            self.simpleTypes, self.types = splitTypes(tempTypes)
         except Exception as ex:
             Logger.logErrorMessage('Error during GQL schema types extraction - ' + ex.args[0]) 
     
@@ -473,12 +473,14 @@ class Extractor():
             if TypeKind.LIST.name in scType.typeDefs: isList = True
             
             claimedType, actualType = scType.composePythonType()
+            arguedPrimitive = actualType in primitivesStringified
             
-            if isList and not arguedName:
-                return [scTypeName + ' = list[' + actualType + ']']
+            if not arguedName:
+                if isList:
+                    return [scTypeName + ' = list[' + actualType + ']']
             
-            if actualType in primitivesStringified and not arguedName: #TEMP - with NOT NULL managed should disappear
-                return [scTypeName + ' = ' + actualType]
+                if arguedPrimitive: #TEMP - with NOT NULL managed should disappear
+                    return [scTypeName + ' = ' + actualType]
             
             fieldsCodeList = []
             fieldsDocCodeList = []
@@ -513,7 +515,7 @@ class Extractor():
             
             try:
                 scTypeName = actualType if actualType not in primitivesStringified and objType == OperationType.genericType else scType.name
-                signature = self.generateTypeSignature(scTypeName, arguedName, possibleTypes, circularRefTypes)
+                signature = self.generateTypeSignature(scTypeName, arguedName, possibleTypes, circularRefTypes, arguedPrimitive)
             except Exception as ex:
                 Logger.logErrorMessage('Error during creation of signature for type ' + scTypeName + ' - ' + ex.args[0])
                     
@@ -533,25 +535,6 @@ class Extractor():
             Logger.logErrorMessage('Error during extraction of content for type ' + scTypeName + ' - ' + ex.args[0])
 
         return returnCodeList
-    
-    def generateTypeSignature(self, scTypeName, arguedName, possibleTypes, circularRefTypes):
-        if not arguedName:
-            if not possibleTypes:
-                return classSignature%scTypeName + ':' 
-            else:
-                return interfaceSignature%(scTypeName, possibleTypes) + ':'
-        else:
-            if scTypeName not in primitivesStringified and scTypeName not in self.extractionResults.scalarDefinitions.keys():
-                if scTypeName in circularRefTypes.keys() and arguedName in circularRefTypes[scTypeName]:
-                    ##creates circular ref type
-                    circularRefCodeLine = scTypeName + ' = TypeVar(\'' + scTypeName + '\', bound=GQLObject)'
-                    self.extractionResults.circularRefs.update({ scTypeName: circularRefCodeLine })
-                    #update signature with circular ref management
-                    signature = arguedClassSignature%(arguedName, "Generic[" + scTypeName + "]") + ':' 
-                    self.removeFromCheckCircularTypes(scTypeName, arguedName, circularRefTypes )
-                    return signature
-        
-            return arguedClassSignature%(arguedName, scTypeName) + ':' 
     
     def extractSchemaFieldCode(self, scType, objType: OperationType, circularRefTypes):
         codeLst = []
@@ -656,8 +639,6 @@ class Extractor():
                     self.removeFromCheckCircularTypes(actualElType, circTypeUtilizer, circularRefTypes)
                 else:
                     codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedNameRef else arguedNameRef)
-            ###ELIF??????????????        
-            # if not circTypeUtilizer:
             else:
                 codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedNameRef else arguedNameRef)
         
@@ -666,6 +647,35 @@ class Extractor():
             
         return docLine, codeLine
                 
+    def generateTypeSignature(self, scTypeName, arguedName, possibleTypes, circularRefTypes, arguedPrimitive = False):
+        if not arguedName:
+            if not possibleTypes:
+                return classSignature%scTypeName + ':' 
+            else:
+                return interfaceSignature%(scTypeName, possibleTypes) + ':'
+        else:
+            if scTypeName not in primitivesStringified and scTypeName not in self.extractionResults.scalarDefinitions.keys():
+                if scTypeName in circularRefTypes.keys() and arguedName in circularRefTypes[scTypeName]:
+                    ##creates circular ref type
+                    circularRefCodeLine = scTypeName + ' = TypeVar(\'' + scTypeName + '\', bound=GQLObject)'
+                    self.extractionResults.circularRefs.update({ scTypeName: circularRefCodeLine })
+                    #update signature with circular ref management
+                    signature = arguedClassSignature%(arguedName, "Generic[" + scTypeName + "]") + ':' 
+                    self.removeFromCheckCircularTypes(scTypeName, arguedName, circularRefTypes )
+                    return signature
+            else:
+                try:
+                    scalar = self.extractionResults.scalarDefinitions[scTypeName]
+                    scalar = scalar.split('##')[0].split('=')[1].strip()
+                except Exception as ex:
+                    raise Exception('Error during scalar code string extrapolation - ' + ex.args[0])
+                
+                gqlArguedScalar = 'Argued' + scalar.capitalize()
+                return arguedClassSignature%(arguedName, gqlArguedScalar) + ':' 
+                pass
+        
+            return arguedClassSignature%(arguedName, scTypeName) + ':' 
+    
     def extractUsedTypes(self, scType: SCType):
         """For internal use
 

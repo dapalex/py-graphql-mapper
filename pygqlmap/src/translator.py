@@ -28,11 +28,11 @@ class Translate():
         try:
             return gqlFieldName if gqlFieldName not in keyword.kwlist else gqlFieldName + '_'
         except Exception as ex:
-            raise Exception('Error during formatting of python variable name for ' + gqlFieldName + ' - ' + ex.args[0])
-    
+            raise Exception('Error during formatting of python variable name for ' + gqlFieldName + ' - ' + ex.args[0])   
      
     def toGraphQLValue(pyVariable):
         try:     
+            from pygqlmap.components import GQLObject
             if getClassName(pyVariable) == 'ID' or type(pyVariable) == str:
                 return '\"' + pyVariable + '\"'
             elif type(pyVariable) == int or type(pyVariable) == float or type(pyVariable) == list:
@@ -97,3 +97,27 @@ class Translate():
             return output if wentThrough else executeRegex(inputSchema)
         else:
             return executeRegex(inputSchema)
+
+    def toGraphQLDefinition(pyObject, argsType):
+        output = ''
+        
+        try: 
+            for field in pyObject.__dataclass_fields__:
+                try:
+                    from pygqlmap.components import GQLObject
+                    if GQLObject in inspect.getmro(type(getattr(pyObject, field))):
+                        output += ' { ' + Translate.toGraphQLDefinition(getattr(pyObject, field), argsType) + ' } '
+                        output += commaConcat 
+                    else:  
+                        if getattr(pyObject, field):
+                            output += Translate.toGraphQLFieldName(field)
+                            output += ': ' + Translate.toGraphQLValue(getattr(pyObject, field))
+                            output += commaConcat 
+                except:
+                    raise Exception('Issue during export of name and value for: ' + field, getattr(pyObject, field) + " - " + ex.args[0])
+
+            output = output.removesuffix(commaConcat)
+
+        except Exception as ex:
+            raise Exception('Issue during export of args and values for ' + str(pyObject) + " - " + ex.args[0])
+        return output
