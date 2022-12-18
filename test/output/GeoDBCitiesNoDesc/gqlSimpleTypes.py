@@ -1,10 +1,11 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
+from pygqlmap.src.gqlArguedPrimitives import *
 from .enums import *
 from .scalars import *
 
-class distanceField(distance):
+class distanceField(ArguedFloat):
    class Args(GQLArgsSet): 
       toPlaceId: ID
       distanceUnit: DistanceUnit

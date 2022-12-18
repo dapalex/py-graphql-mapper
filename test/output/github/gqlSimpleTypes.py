@@ -1,10 +1,11 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
+from pygqlmap.src.gqlArguedPrimitives import *
 from .enums import *
 from .scalars import *
 
-class organizationVerifiedDomainEmailsField(organizationVerifiedDomainEmails):
+class organizationVerifiedDomainEmailsField(ArguedStr):
    """
    organizationVerifiedDomainEmailsField - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
@@ -20,7 +21,7 @@ class organizationVerifiedDomainEmailsField(organizationVerifiedDomainEmails):
 
 
 
-class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(canReceiveOrganizationEmailsWhenNotificationsRestricted):
+class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
    """
    canReceiveOrganizationEmailsWhenNotificationsRestrictedField - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
@@ -36,7 +37,7 @@ class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(canReceiveOrg
 
 
 
-class anyPinnableItemsField(anyPinnableItems):
+class anyPinnableItemsField(ArguedStr):
    """
    anyPinnableItemsField - Determine if this repository owner has any items that can be pinned to their profile.
 
@@ -52,7 +53,7 @@ class anyPinnableItemsField(anyPinnableItems):
 
 
 
-class isSponsoredByField(isSponsoredBy):
+class isSponsoredByField(ArguedStr):
    """
    isSponsoredByField - Check if the given account is sponsoring this user/organization.
 
@@ -68,7 +69,7 @@ class isSponsoredByField(isSponsoredBy):
 
 
 
-class textField(text):
+class textField(ArguedStr):
    """
    textField - UTF8 text data or null if the file is binary
 
@@ -84,7 +85,7 @@ class textField(text):
 
 
 
-class totalRepositoryContributionsField(totalRepositoryContributions):
+class totalRepositoryContributionsField(ArguedStr):
    """
    totalRepositoryContributionsField - How many repositories the user created.
 
@@ -100,7 +101,7 @@ class totalRepositoryContributionsField(totalRepositoryContributions):
 
 
 
-class totalRepositoriesWithContributedPullRequestsField(totalRepositoriesWithContributedPullRequests):
+class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
    """
    totalRepositoriesWithContributedPullRequestsField - How many different repositories the user opened pull requests in.
 
@@ -119,7 +120,7 @@ class totalRepositoriesWithContributedPullRequestsField(totalRepositoriesWithCon
 
 
 
-class totalRepositoriesWithContributedIssuesField(totalRepositoriesWithContributedIssues):
+class totalRepositoriesWithContributedIssuesField(ArguedStr):
    """
    totalRepositoriesWithContributedIssuesField - How many different repositories the user opened issues in.
 
@@ -138,7 +139,7 @@ class totalRepositoriesWithContributedIssuesField(totalRepositoriesWithContribut
 
 
 
-class totalPullRequestContributionsField(totalPullRequestContributions):
+class totalPullRequestContributionsField(ArguedStr):
    """
    totalPullRequestContributionsField - How many pull requests the user opened.
 
@@ -157,7 +158,7 @@ class totalPullRequestContributionsField(totalPullRequestContributions):
 
 
 
-class totalIssueContributionsField(totalIssueContributions):
+class totalIssueContributionsField(ArguedStr):
    """
    totalIssueContributionsField - How many issues the user opened.
 
@@ -176,7 +177,7 @@ class totalIssueContributionsField(totalIssueContributions):
 
 
 
-class viewerMergeHeadlineTextField(viewerMergeHeadlineText):
+class viewerMergeHeadlineTextField(ArguedStr):
    """
    viewerMergeHeadlineTextField - The merge headline text for the viewer and method.
 
@@ -192,7 +193,7 @@ class viewerMergeHeadlineTextField(viewerMergeHeadlineText):
 
 
 
-class viewerMergeBodyTextField(viewerMergeBodyText):
+class viewerMergeBodyTextField(ArguedStr):
    """
    viewerMergeBodyTextField - The merge body text for the viewer and method.
 
@@ -208,7 +209,7 @@ class viewerMergeBodyTextField(viewerMergeBodyText):
 
 
 
-class trackedIssuesCountField(trackedIssuesCount):
+class trackedIssuesCountField(ArguedStr):
    """
    trackedIssuesCountField - The number of tracked issues for this issue
 
@@ -224,7 +225,7 @@ class trackedIssuesCountField(trackedIssuesCount):
 
 
 
-class HTMLField(HTML):
+class HTMLField(ArguedStr):
    """
    HTMLField - A description of the release, rendered to HTML without any links in it.
 
@@ -240,7 +241,7 @@ class HTMLField(HTML):
 
 
 
-class URIField(URI):
+class URIField(ArguedStr):
    """
    URIField - A URL pointing to the GitHub App's public avatar.
 
@@ -1185,7 +1186,7 @@ class RerequestCheckSuiteInput(GQLObject):
    checkSuiteId: ID ##NON NULL
    clientMutationId: str
 
-class isRequiredField(isRequired):
+class isRequiredField(ArguedStr):
    """
    isRequiredField - Whether this is required to pass before merging for a specific pull request.
 

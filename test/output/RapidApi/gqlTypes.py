@@ -1,6 +1,7 @@
 from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
+from pygqlmap.src.gqlArguedPrimitives import *
 from typing import NewType
 from .gqlSimpleTypes import *
 from .enums import *
@@ -1176,27 +1177,28 @@ class EventConfigUpdateInput(GQLObject):
 class EventUrlCreateInput(GQLObject):
    url: str ##NON NULL
 
-class EventLogSortablesSortingField(GQLObject):
-   fieldName: EventLogSortables ##NON NULL
-   order: Order
+class EventLogInput(GQLObject):
+   query: str
 
-class AdminAuditLogSortablesSortingField(GQLObject):
-   fieldName: AdminAuditLogSortables ##NON NULL
-   order: Order
+class AdminAuditLogInput(GQLObject):
+   query: str
 
 class EnvConfigTerm(GQLObject):
    key: str
    brand: Brand
    categoryId: int
 
-class GatewayTemplateParamsWhereInput(GQLObject):
-   status: str
+class GatewayTemplateParamsSortingFieldNameSortingField(GQLObject):
+   fieldName: GatewayTemplateParamsSortingFieldName ##NON NULL
+   order: Order
 
-class GatewayTemplateWhereInput(GQLObject):
-   status: str
+class GatewayTemplateSortingSortingField(GQLObject):
+   fieldName: GatewayTemplateSorting ##NON NULL
+   order: Order
 
-class GatewayInstanceWhereInput(GQLObject):
-   status: str
+class GatewayInstanceSortingSortingField(GQLObject):
+   fieldName: GatewayInstanceSorting ##NON NULL
+   order: Order
 
 class EventUrlWhereInput(GQLObject):
    url: str

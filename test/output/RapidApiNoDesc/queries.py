@@ -8,9 +8,9 @@ ping = str
 
 class eventUrls(GQLObject):
    class Args(GQLOperationArgs): 
-      order: EventUrlSortablesInput
-      where: EventUrlWhereInput
       pagination: PaginationArgs
+      where: EventUrlWhereInput
+      order: EventUrlSortablesInput
 
    _args: Args
 
@@ -34,9 +34,9 @@ class eventConfig(GQLObject):
 
 class gatewayInstances(GQLObject):
    class Args(GQLOperationArgs): 
-      order: GatewayInstanceSortingInput
-      where: GatewayInstanceWhereInput
       pagination: PaginationArgs
+      where: GatewayInstanceWhereInput
+      order: GatewayInstanceSortingInput
 
    _args: Args
 
@@ -54,9 +54,9 @@ class gatewayInstance(GQLObject):
 
 class gatewayTemplates(GQLObject):
    class Args(GQLOperationArgs): 
-      order: GatewayTemplateSortingInput
-      where: GatewayTemplateWhereInput
       pagination: PaginationArgs
+      where: GatewayTemplateWhereInput
+      order: GatewayTemplateSortingInput
 
    _args: Args
 
@@ -74,9 +74,9 @@ class gatewayTemplate(GQLObject):
 
 class gatewayTemplatesParams(GQLObject):
    class Args(GQLOperationArgs): 
-      order: GatewayTemplateParamSortingInput
-      where: GatewayTemplateParamsWhereInput
       pagination: PaginationArgs
+      where: GatewayTemplateParamsWhereInput
+      order: GatewayTemplateParamSortingInput
 
    _args: Args
 
@@ -115,9 +115,9 @@ class envConfigs(GQLObject):
 
 class adminAuditLogs(GQLObject):
    class Args(GQLOperationArgs): 
-      orderBy: AdminAuditLogSortablesInput
-      pagination: PaginationArgs
       where: AdminAuditLogInput
+      pagination: PaginationArgs
+      orderBy: AdminAuditLogSortablesInput
 
    _args: Args
 
@@ -126,9 +126,9 @@ class adminAuditLogs(GQLObject):
 
 class eventLogs(GQLObject):
    class Args(GQLOperationArgs): 
-      orderBy: EventLogSortablesInput
-      pagination: PaginationArgs
       where: EventLogInput
+      pagination: PaginationArgs
+      orderBy: EventLogSortablesInput
 
    _args: Args
 

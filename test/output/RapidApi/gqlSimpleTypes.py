@@ -1,10 +1,11 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
+from pygqlmap.src.gqlArguedPrimitives import *
 from .enums import *
 from .scalars import *
 
-class nameField(name):
+class nameField(ArguedStr):
    class Args(GQLArgsSet): 
       showDeleted: bool
 
@@ -1196,33 +1197,32 @@ class ExtensionWhereInput(GQLObject):
    page: str
    client: str
 
-class EventLogInput(GQLObject):
-   query: str
-
-class AdminAuditLogInput(GQLObject):
-   query: str
-
-class GatewayTemplateParamsSortingFieldNameSortingField(GQLObject):
-   fieldName: GatewayTemplateParamsSortingFieldName ##NON NULL
+class EventLogSortablesSortingField(GQLObject):
+   fieldName: EventLogSortables ##NON NULL
    order: Order
 
-class GatewayTemplateSortingSortingField(GQLObject):
-   fieldName: GatewayTemplateSorting ##NON NULL
+class AdminAuditLogSortablesSortingField(GQLObject):
+   fieldName: AdminAuditLogSortables ##NON NULL
    order: Order
 
-class GatewayInstanceSortingSortingField(GQLObject):
-   fieldName: GatewayInstanceSorting ##NON NULL
-   order: Order
+class GatewayTemplateParamsWhereInput(GQLObject):
+   status: str
 
-class EventUrlSortablesSortingField(GQLObject):
-   fieldName: EventUrlSortables ##NON NULL
-   order: Order
+class GatewayTemplateWhereInput(GQLObject):
+   status: str
+
+class GatewayInstanceWhereInput(GQLObject):
+   status: str
 
 class PaginationArgs(GQLObject):
    first: int
    last: int
    before: str
    after: str
+
+class EventUrlSortablesSortingField(GQLObject):
+   fieldName: EventUrlSortables ##NON NULL
+   order: Order
 
 class EnvConfig(GQLObject):
    id: int ##NON NULL

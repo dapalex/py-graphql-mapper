@@ -24,8 +24,8 @@ class updateEventUrl(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      id: ID ##NON NULL
       updateDto: EventUrlUpdateInput ##NON NULL
+      id: ID ##NON NULL
 
    _args: Args
 

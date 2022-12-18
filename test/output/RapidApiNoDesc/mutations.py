@@ -16,8 +16,8 @@ class createEventUrl(GQLObject):
 
 class updateEventUrl(GQLObject):
    class Args(GQLOperationArgs): 
-      updateDto: EventUrlUpdateInput ##NON NULL
       id: ID ##NON NULL
+      updateDto: EventUrlUpdateInput ##NON NULL
 
    _args: Args
 

@@ -12,9 +12,9 @@ class eventUrls(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      pagination: PaginationArgs
-      where: EventUrlWhereInput
       order: EventUrlSortablesInput
+      where: EventUrlWhereInput
+      pagination: PaginationArgs
 
    _args: Args
 
@@ -54,9 +54,9 @@ class gatewayInstances(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      pagination: PaginationArgs
-      where: GatewayInstanceWhereInput
       order: GatewayInstanceSortingInput
+      where: GatewayInstanceWhereInput
+      pagination: PaginationArgs
 
    _args: Args
 
@@ -82,9 +82,9 @@ class gatewayTemplates(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      pagination: PaginationArgs
-      where: GatewayTemplateWhereInput
       order: GatewayTemplateSortingInput
+      where: GatewayTemplateWhereInput
+      pagination: PaginationArgs
 
    _args: Args
 
@@ -110,9 +110,9 @@ class gatewayTemplatesParams(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      pagination: PaginationArgs
-      where: GatewayTemplateParamsWhereInput
       order: GatewayTemplateParamSortingInput
+      where: GatewayTemplateParamsWhereInput
+      pagination: PaginationArgs
 
    _args: Args
 
@@ -171,9 +171,9 @@ class adminAuditLogs(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      where: AdminAuditLogInput
-      pagination: PaginationArgs
       orderBy: AdminAuditLogSortablesInput
+      pagination: PaginationArgs
+      where: AdminAuditLogInput
 
    _args: Args
 
@@ -186,9 +186,9 @@ class eventLogs(GQLObject):
 
    """
    class Args(GQLOperationArgs): 
-      where: EventLogInput
-      pagination: PaginationArgs
       orderBy: EventLogSortablesInput
+      pagination: PaginationArgs
+      where: EventLogInput
 
    _args: Args
 
