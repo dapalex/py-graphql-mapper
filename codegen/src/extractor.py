@@ -1,4 +1,4 @@
-from pygqlmap.src.consts import primitivesStringified
+from pygqlmap.src.consts import primitivesStringified, arguedSignatureSuffix
 from pygqlmap.enums import OperationType
 from pygqlmap.src.logger import Logger
 from pygqlmap.src.translator import Translate, switchStrType
@@ -6,7 +6,7 @@ from .enums import TypeKind
 from .spSchema import GQLSchema, SCField, SCType
 from .utils import isDeprecated, splitTypes
 from .priority import ExtractionResults, PriorElement
-from .consts import scalarSignature, classSignature, enumSignature, arguedClassSignature, interfaceSignature
+from .consts import scalarSignature, classSignature, enumSignature, arguedClassSignature, interfaceSignature, querySignature, mutationSignature
 
 class Extractor():
     
@@ -220,7 +220,7 @@ class Extractor():
                     Logger.logErrorMessage('No body for type ' + priorElement.name)
                     
                 ##recheck for generated classes
-                if priorElement.name.endswith('Field'):
+                if priorElement.name.endswith(arguedSignatureSuffix):
                     realType = False
                     
                     priorElement.schemaType.typeDefs = priorElement.schemaType.getObjectTypeDefs() 
@@ -322,7 +322,7 @@ class Extractor():
                         usedTypesDict[objName] += 1 
                     
             if arguedName: 
-                usedTypesDict.update({ arguedName.removesuffix('Field'): 1 })
+                usedTypesDict.update({ arguedName.removesuffix(arguedSignatureSuffix): 1 })
             
             for usedTypeNameKey, occurrences in usedTypesDict.items():
                 try:
@@ -515,7 +515,7 @@ class Extractor():
             
             try:
                 scTypeName = actualType if actualType not in primitivesStringified and objType == OperationType.genericType else scType.name
-                signature = self.generateTypeSignature(scTypeName, arguedName, possibleTypes, circularRefTypes, arguedPrimitive)
+                signature = self.generateTypeSignature(objType, scTypeName, arguedName, possibleTypes, circularRefTypes)
             except Exception as ex:
                 Logger.logErrorMessage('Error during creation of signature for type ' + scTypeName + ' - ' + ex.args[0])
                     
@@ -541,7 +541,7 @@ class Extractor():
         
         if hasattr(scType, 'args') and scType.args:
             parentClass = "GQLArgsSet" if objType == OperationType.genericType else "GQLOperationArgs"
-            codeLst.append(self.indent + "class Args(" + parentClass + "): ")
+            codeLst.append(self.indent + "class Args(" + parentClass + ", GQLObject): ")
             
             queryArgDocLst = []
             queryArgCodeLst = []
@@ -622,10 +622,10 @@ class Extractor():
             
             if hasattr(element, 'args') and element.args: 
                 ## Goes back up to construct an object
-                arguedName = (actualElType if not actualElType in primitivesStringified else element.name) + 'Field'
+                arguedName = (actualElType if not actualElType in primitivesStringified else element.name) + arguedSignatureSuffix
                 ##CAREFUL HERE - Pass element.name as usedTypes in extractSchemaType
                 self.extractSchemaType(element, circularRefTypes, arguedName)
-                arguedNameRef = claimedElType.replace(actualElType, (actualElType if not actualElType in primitivesStringified else element.name) + 'Field') 
+                arguedNameRef = claimedElType.replace(actualElType, (actualElType if not actualElType in primitivesStringified else element.name) + arguedSignatureSuffix) 
             
             if element.getUsedGQLObjectNames() and circularRefTypes:
                 circTypeUtilizer = self.startCheckCircularRefTypes(element, parentType, actualElType, circularRefTypes)
@@ -647,10 +647,15 @@ class Extractor():
             
         return docLine, codeLine
                 
-    def generateTypeSignature(self, scTypeName, arguedName, possibleTypes, circularRefTypes, arguedPrimitive = False):
+    def generateTypeSignature(self, objType: OperationType, scTypeName, arguedName, possibleTypes, circularRefTypes):
         if not arguedName:
             if not possibleTypes:
-                return classSignature%scTypeName + ':' 
+                if objType == OperationType.query:
+                    return querySignature%scTypeName + ':' 
+                if objType == OperationType.mutation:
+                    return mutationSignature%scTypeName + ':' 
+                else:
+                    return classSignature%scTypeName + ':' 
             else:
                 return interfaceSignature%(scTypeName, possibleTypes) + ':'
         else:

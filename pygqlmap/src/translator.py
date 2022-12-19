@@ -2,9 +2,9 @@
 import inspect
 import keyword
 from enum import Enum
-
-from pygqlmap.src.logger import Logger
-from .utils import executeRegex, getClassName
+from .logger import Logger
+from .utils import executeRegex, getObjectClassName
+from pygqlmap.gqlTypes import ID
 from .consts import commaConcat
 
 
@@ -32,8 +32,7 @@ class Translate():
      
     def toGraphQLValue(pyVariable):
         try:     
-            from pygqlmap.components import GQLObject
-            if getClassName(pyVariable) == 'ID' or type(pyVariable) == str:
+            if type(pyVariable) == ID or type(pyVariable) == str:
                 return '\"' + pyVariable + '\"'
             elif type(pyVariable) == int or type(pyVariable) == float or type(pyVariable) == list:
                 return str(pyVariable).replace('\'', '\"')
@@ -61,7 +60,7 @@ class Translate():
             return 'String'
         elif type(pyVariable) == int:
             return 'Int'
-        elif getClassName(pyVariable) == 'ID':
+        elif type(pyVariable) == ID:
             return 'ID'
         elif type(pyVariable) == type: #should never get in
             return 'Type'  
@@ -106,10 +105,10 @@ class Translate():
                 try:
                     from pygqlmap.components import GQLObject
                     if GQLObject in inspect.getmro(type(getattr(pyObject, field))):
-                        output += ' { ' + Translate.toGraphQLDefinition(getattr(pyObject, field), argsType) + ' } '
+                        output += field + ' { ' + Translate.toGraphQLDefinition(getattr(pyObject, field), argsType) + ' } '
                         output += commaConcat 
                     else:  
-                        if getattr(pyObject, field):
+                        if hasattr(pyObject, field) and not getattr(pyObject, field) == None:
                             output += Translate.toGraphQLFieldName(field)
                             output += ': ' + Translate.toGraphQLValue(getattr(pyObject, field))
                             output += commaConcat 

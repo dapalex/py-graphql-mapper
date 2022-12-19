@@ -1,7 +1,7 @@
 
 from dataclasses import dataclass, field
 import inspect
-from .utils import getClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
+from .utils import getObjectClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
 from .base import FieldsShow, GQLExporter
 
 
@@ -16,18 +16,6 @@ class GQLCPPageInfo(FieldsShow, GQLExporter):
         self.initFieldsShow()
         self.logProgress = logProgress
 
-# @dataclass
-# class GQLEdge(FieldsShow, GQLExporter):
-#     cursor: field(default_factory=str, init=True) = ''
-#     node: field(init=True) = None
-
-#     def __post_init__(self, logProgress: bool = False):
-#         self.initFieldsShow()
-#         self.logProgress = logProgress
-        
-#     def setNodeType(self, sampleNode):
-#         self.sampleNode = sampleNode
-    
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
         if list in inspect.getmro(type(obj)):
@@ -40,7 +28,7 @@ class FSTree():
                     if not hasattr(element, 'children'): self.children = []
                     self.children.append(FSTree(element))
         else:
-            self.name =  fieldName if fieldName else getClassName(obj)
+            self.name =  fieldName if fieldName else getObjectClassName(obj)
             if hasattr(obj, 'fieldsShow'):
                 self.fieldsShow = obj.fieldsShow
                 for field in obj.fieldsShow.keys():
@@ -49,12 +37,6 @@ class FSTree():
                     if not hasattr(self, 'children'): self.children = []
                     self.children.append(FSTree(objField, field))
         
-    #  ##connection stuff......
-    # def getFSEdgeContainer(self):
-    #     for childBranch in self.children:
-    #         if childBranch.name == 'GQLEdge':
-    #             return childBranch       
-          
     def setFieldShow(self, property: str, show: bool):
         info = getDotNotationInfo(property)
         path = info[0]

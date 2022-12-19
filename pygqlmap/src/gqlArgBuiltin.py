@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from pygqlmap.components import subClassInit
+from .gqlObjectInit import subClassInit
 
 class ArguedInt(int):
     def __init_subclass__(cls):

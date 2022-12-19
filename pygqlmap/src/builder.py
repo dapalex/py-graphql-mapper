@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from .base import GQLList
 from .enums import BuildingType
 # from ..components import GQLEdges
 from ..gqlTypes import ID
@@ -28,26 +27,8 @@ class QueryBuilder(Builder, Logger):
         
         try:
             if self.logProgress: Logger.logInfoMessage('Started building of python object: ' + getClassName(pyObject))
-            
-            if type(pyObject) == GQLList:
-                print('management of list')
-            # if type(pyObject) == GQLEdges:
-            #     item = input.popitem()
-                
-            #     ##building response using query object, query object has to be cleaned
-            #     popListElementByRef(pyObject, pyObject.sampleElement)
-                
-            #     for inputElement in item[1]:
-            #         newObjElement = type(pyObject.sampleElement)()
-            #         newObjElement.copyFieldsShow(pyObject.sampleElement.fieldsShow)
-            #         if hasattr(pyObject.sampleElement, 'sampleNode'):
-            #             self.setPyFields(inputElement, newObjElement, pyObject.sampleElement.sampleNode)
-            #         else:
-            #             self.setPyFields(inputElement, newObjElement)
-            #         pyObject.append(newObjElement)
-            else: 
-                item = input.popitem() ##extract the KV pair containing object name and content
-                self.setPyFields(item[1], pyObject)
+            item = input.popitem() ##extract the KV pair containing object name and content
+            self.setPyFields(item[1], pyObject)
             
         except Exception as ex:
             Logger.logErrorMessage('Building of python object failed - ' + ex.args[0]) 

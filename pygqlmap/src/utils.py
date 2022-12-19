@@ -1,13 +1,17 @@
+import os
+import pathlib
 import re
-
-from pygqlmap.src.logger import Logger
-from .consts import primitives
 import sys
 from io import TextIOWrapper
+from .logger import Logger
+from .consts import primitives
 
 stdOut = sys.stdout
 
-def getClassName(object):
+def getClassName(cls):
+    return str(cls).split('\'')[1].split('.')[len(str(cls).split('\'')[1].split('.')) - 1]
+
+def getObjectClassName(object):
     try:
         if len(splitType := str(type(object)).split('\'')) > 0:
             if splitPath := splitType[1].split('.'):
@@ -79,4 +83,3 @@ def restoreOutput(ioWrapper: TextIOWrapper):
         sys.stdout = stdOut
     except Exception as ex:
         Logger.logErrorMessage('Error during output restore - ' + ex.args[0])
-

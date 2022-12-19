@@ -1,7 +1,7 @@
 from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from typing import NewType
 from .gqlSimpleTypes import *
 from .enums import *

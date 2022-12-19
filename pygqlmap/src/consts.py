@@ -7,3 +7,5 @@ primitivesStringified = ('int', 'str', 'bool', 'float', 'NoneType')
 commaConcat = ', '
 
 argsDeclaration = '_args'
+
+arguedSignatureSuffix = 'Field'

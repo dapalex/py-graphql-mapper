@@ -1,20 +1,12 @@
 from abc import ABC, abstractmethod
-from dataclasses import asdict
+from dataclasses import asdict, dataclass
 import inspect
 from .consts import commaConcat, argsDeclaration
 from ..enums import ArgType
 from .logger import Logger
-from .utils import addTupleUniqueElement, getDotNotationInfo, getClassName, isNoneOrBuiltinPrimitive, mergeTupleUniqueElements
+from .utils import addTupleUniqueElement, getObjectClassName, mergeTupleUniqueElements
 from .translator import Translate
 
-class GQLList(list):
-    
-    sampleElement: any
-    
-    def __init__(self, sampleElement=None):
-        if sampleElement:
-            self.sampleElement = sampleElement
-    
 class FieldsShow(ABC):
     
     @property
@@ -43,7 +35,7 @@ class GQLExporter(Logger):
         Returns:
             str: GraphQL object exported 
         """
-        if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of python: ' + getClassName(self))
+        if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of python: ' + getObjectClassName(self))
         
         gqlDict = asdict(self) 
         outputGqlDict = {}
@@ -70,7 +62,7 @@ class GQLExporter(Logger):
             #Arguments management START
             if hasattr(self, argsDeclaration): 
                 try:
-                    if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of args for: ' + getClassName(self))
+                    if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of args for: ' + getObjectClassName(self))
                     if self._args._argsType == ArgType.LiteralValues:
                         gqlArgs = '(' + self._args.exportGQLArgsAndValues + ')'
                     elif self._args._argsType == ArgType.Variables:
@@ -81,7 +73,7 @@ class GQLExporter(Logger):
                 self.gqlExportedArgsTuple = addTupleUniqueElement(self.gqlExportedArgsTuple, gqlArgs)
             #Arguments management START
             
-            gqlResult = gqlArgs + Translate.graphQLize(str(outputGqlDict), self.gqlExportedArgsTuple) #
+            gqlResult = gqlArgs + (Translate.graphQLize(str(outputGqlDict), self.gqlExportedArgsTuple) if outputGqlDict else '') #
         
         except Exception as ex:
             raise Exception('Issue exporting for ' + str(self.__class__) + " - " + ex.args[0])
@@ -101,37 +93,12 @@ class GQLExporter(Logger):
             raise Exception('No variables to export')
 
 class GQLBaseArgsSet():
-    location: str
-    arguments: dict
-    
-    def __init__(self):
-        self.arguments = {}
     
     @abstractmethod
     def setArgKey(self, fieldName, fieldValue):
         """ For internal use only """
         raise Exception('setArgKey function not implemented')
     
-    # @property
-    # def updateArg(self, key, value):
-    #     """Updates an existing argument
-
-    #     Args:
-    #         key: name of the argument
-    #         value: value of the argument, it can be a scalar mapped type or a dict for structured objects
-
-    #     Raises:
-    #         Exception: if key not present
-    #         Exception: if key not valid
-    #     """
-    #     try:
-    #         if key in self.arguments.keys():
-    #                 self.arguments[key] = value
-    #         else:
-    #             raise Exception("Key not present") 
-    #     except:
-    #         raise Exception("Key not valid")            
-
     @property
     def exportGQLArgKeys(self):
         """ For internal use only """
