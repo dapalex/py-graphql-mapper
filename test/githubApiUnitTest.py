@@ -38,17 +38,6 @@ async def fetchGithubMutationTypes():
         print('Response Received')
         
         if gqlSchema:
-            # myCustomTypes = { 'DateTime': 'str',
-            #                   'URI': 'str',
-            #                   'GitTimestamp': 'str',
-            #                   'HTML': 'str',
-            #                   'GitObjectID': 'ID',
-            #                   'Date': 'str',
-            #                   'Base64String': 'str',
-            #                   'PreciseDateTime': 'str',
-            #                   'GitSSHRemote': 'str',
-            #                   'X509Certificate': 'str' }
-            
             print('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='test\\output\\github\\', logProgress=True, addDescription=True)
 
@@ -64,22 +53,9 @@ async def fetchGithubMutationTypesFromSchemaNoDesc():
     try:
         print('Calling GraphQL Server...')
         gqlSchema = fetchSchemaObject(githubUrl, githubHeaders, querySchemaAndTypes)
-        # gqlResponse = GQLResponse(response)
-        # gqlSchema = buildSchema(json.dumps(gqlResponse.data))
         print('Response Received')
         
         if gqlSchema:
-            # myCustomTypes = { 'DateTime': 'str',
-            #                   'URI': 'str',
-            #                   'GitTimestamp': 'str',
-            #                   'HTML': 'str',
-            #                   'GitObjectID': 'ID',
-            #                   'Date': 'str',
-            #                   'Base64String': 'str',
-            #                   'PreciseDateTime': 'str',
-            #                   'GitSSHRemote': 'str',
-            #                   'X509Certificate': 'str' }
-            
             print('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='test\\output\\githubNoDesc\\', logProgress=True, addDescription=False)
 
@@ -90,10 +66,9 @@ async def fetchGithubMutationTypesFromSchemaNoDesc():
     print("End of fetchGithubMutationTypesNoDesc")
 
 async def RunGithubAddCommentMutation():
-    print('\nRunning RunGithubAddCommentMutation...')
+    print('\nRunning RunGithubAddCommentMutation... - stack limit for recursion depth')
     try:
         print('Creating mutation python object...')
-        # from output.github.gqlTypes import AddCommentInput
         from output.github.mutations import Mutations
 
         # wrapper = redirectOutputToFile('logrecurs.log')
@@ -105,12 +80,11 @@ async def RunGithubAddCommentMutation():
         mutation._args.input.body = 'This is the body'
         mutation._args.input.clientMutationId = 'Me'
         print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyAddCommentMutation')
-        print(myMutation.exportGqlSource)
+        print(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -124,24 +98,23 @@ async def RunGithubAddCommentMutation():
 async def RunGithubUpdateRepositoryMutation():
     print('\nRunning RunGithubUpdateRepositoryMutation...')
     try:
-        from output.github.gqlTypes import UpdateRepositoryInput
+        # from output.github.gqlTypes import UpdateRepositoryInput
         from output.github.mutations import Mutations
         
         print('Creating mutation python object...')
         mutation = Mutations.updateRepository.value()
         print('Inserting python mutation input data...')
-        mutation.input = UpdateRepositoryInput()
         
-        mutation.input.repositoryId = "R_kgDOH7MI4g"
-        mutation.input.hasIssuesEnabled = True
-        mutation.input.hasWikiEnabled = True
+        mutation._args.input.repositoryId = "R_kgDOH7MI4g"
+        mutation._args.input.hasIssuesEnabled = True
+        mutation._args.input.hasWikiEnabled = True
         
         print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
-        pprint(myMutation.exportGqlSource)
+        # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
+        pprint(mutation.exportGqlSource)
             
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         gqlResponse = GQLResponse(response)
         
@@ -163,9 +136,9 @@ async def RunGithubCreateProjectMutation():
         print('Inserting python mutation input data...')
         mutation.input = CreateProjectInput()
         
-        mutation.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
-        mutation.input.name = "Test create project from Mutation" + datetime.now().ctime()
-        mutation.input.repositoryIds = ["R_kgDOH7MI4g"]
+        mutation._args.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
+        mutation._args.input.name = "Test create project from Mutation" + datetime.now().ctime()
+        mutation._args.input.repositoryIds = ["R_kgDOH7MI4g"]
         
         mutation._customPayload = '{ project { id } }'
         print('Creating GQLOperation for mutation...')
