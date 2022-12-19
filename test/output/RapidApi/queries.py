@@ -1,4 +1,4 @@
-from pygqlmap.components import GQLOperationArgs
+from pygqlmap.components import GQLOperationArgs, GQLQuery
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
@@ -6,12 +6,12 @@ from .scalars import *
 
 ping = str
 
-class eventUrls(GQLObject):
+class eventUrls(GQLQuery):
    """
    eventUrls - Get all URLs for an Event
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       order: EventUrlSortablesInput
       where: EventUrlWhereInput
       pagination: PaginationArgs
@@ -21,12 +21,12 @@ class eventUrls(GQLObject):
 
    type: EventUrlConnection ##NON NULL
 
-class eventUrl(GQLObject):
+class eventUrl(GQLQuery):
    """
    eventUrl - Get details of the specific URL for the Event
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -34,26 +34,26 @@ class eventUrl(GQLObject):
 
    type: EventUrl
 
-class eventTypes(GQLObject):
+class eventTypes(GQLQuery):
    """
    eventTypes - Get types of Events
 
    """
    type: EventType ##NON NULL
 
-class eventConfig(GQLObject):
+class eventConfig(GQLQuery):
    """
    eventConfig - Get event configuration information
 
    """
    type: EventConfig
 
-class gatewayInstances(GQLObject):
+class gatewayInstances(GQLQuery):
    """
    gatewayInstances - Get all gateway instances
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       order: GatewayInstanceSortingInput
       where: GatewayInstanceWhereInput
       pagination: PaginationArgs
@@ -63,12 +63,12 @@ class gatewayInstances(GQLObject):
 
    type: GatewayInstanceConnection ##NON NULL
 
-class gatewayInstance(GQLObject):
+class gatewayInstance(GQLQuery):
    """
    gatewayInstance - Get the gateway instance information
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -76,12 +76,12 @@ class gatewayInstance(GQLObject):
 
    type: GatewayInstance ##NON NULL
 
-class gatewayTemplates(GQLObject):
+class gatewayTemplates(GQLQuery):
    """
    gatewayTemplates - Get all templates
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       order: GatewayTemplateSortingInput
       where: GatewayTemplateWhereInput
       pagination: PaginationArgs
@@ -91,12 +91,12 @@ class gatewayTemplates(GQLObject):
 
    type: GatewayTemplateConnection ##NON NULL
 
-class gatewayTemplate(GQLObject):
+class gatewayTemplate(GQLQuery):
    """
    gatewayTemplate - Get details of a specific tempalte 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -104,12 +104,12 @@ class gatewayTemplate(GQLObject):
 
    type: GwTemplate ##NON NULL
 
-class gatewayTemplatesParams(GQLObject):
+class gatewayTemplatesParams(GQLQuery):
    """
    gatewayTemplatesParams - Get all parameters across a tempalte
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       order: GatewayTemplateParamSortingInput
       where: GatewayTemplateParamsWhereInput
       pagination: PaginationArgs
@@ -119,12 +119,12 @@ class gatewayTemplatesParams(GQLObject):
 
    type: GatewayTemplateParamConnection ##NON NULL
 
-class gatewayTemplateParam(GQLObject):
+class gatewayTemplateParam(GQLQuery):
    """
    gatewayTemplateParam - Get details of a specific template prameter
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -132,19 +132,19 @@ class gatewayTemplateParam(GQLObject):
 
    type: GatewayTemplateParam ##NON NULL
 
-class envConfigCategories(GQLObject):
+class envConfigCategories(GQLQuery):
    """
    envConfigCategories - A category of enterprise congfiguration
 
    """
    type: EnvConfigCategory ##NON NULL
 
-class envConfig(GQLObject):
+class envConfig(GQLQuery):
    """
    envConfig - An individaul enterprise configruation
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int ##NON NULL
 
    _args: Args
@@ -152,12 +152,12 @@ class envConfig(GQLObject):
 
    type: EnvConfig ##NON NULL
 
-class envConfigs(GQLObject):
+class envConfigs(GQLQuery):
    """
    envConfigs - All configurations for an Enterprise
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       envConfigTerm: EnvConfigTerm ##NON NULL
 
    _args: Args
@@ -165,12 +165,12 @@ class envConfigs(GQLObject):
 
    type: EnvConfig ##NON NULL
 
-class adminAuditLogs(GQLObject):
+class adminAuditLogs(GQLQuery):
    """
    adminAuditLogs - Enterprise admin audit logs 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orderBy: AdminAuditLogSortablesInput
       pagination: PaginationArgs
       where: AdminAuditLogInput
@@ -180,12 +180,12 @@ class adminAuditLogs(GQLObject):
 
    type: AdminAuditLogConnection
 
-class eventLogs(GQLObject):
+class eventLogs(GQLQuery):
    """
    eventLogs - Get audit trail(s) for Events
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orderBy: EventLogSortablesInput
       pagination: PaginationArgs
       where: EventLogInput
@@ -197,12 +197,12 @@ class eventLogs(GQLObject):
 
 extensions = list[Extension]
 
-class getSEOTagsByURL(GQLObject):
+class getSEOTagsByURL(GQLQuery):
    """
    getSEOTagsByURL - returns the CEO tags defined for an API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       url: str
 
    _args: Args
@@ -210,12 +210,12 @@ class getSEOTagsByURL(GQLObject):
 
    type: SEO
 
-class getUserAlertById(GQLObject):
+class getUserAlertById(GQLQuery):
    """
    getUserAlertById - Get alert created by an API Provider by Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -225,19 +225,19 @@ class getUserAlertById(GQLObject):
 
 getUserAlertsByScope = list[UserAlert]
 
-class getAlertsDefinitions(GQLObject):
+class getAlertsDefinitions(GQLQuery):
    """
    getAlertsDefinitions - Get definitions of alerts across RapidAPI
 
    """
    type: AlertDefinition ##NON NULL
 
-class userAlerts(GQLObject):
+class userAlerts(GQLQuery):
    """
    userAlerts - Get alerts created by an API provider for an API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: UserAlertsWhereInput ##NON NULL
 
    _args: Args
@@ -245,12 +245,12 @@ class userAlerts(GQLObject):
 
    type: UserAlertsConnection ##NON NULL
 
-class userAlert(GQLObject):
+class userAlert(GQLQuery):
    """
    userAlert - Get alert created by an API provider for an API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -260,12 +260,12 @@ class userAlert(GQLObject):
 
 allowedPlanDeveloperByPlanId = list[AllowedPlanDeveloper]
 
-class apiCertificate(GQLObject):
+class apiCertificate(GQLQuery):
    """
    apiCertificate - returns the API Certificate details based on the certificate Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiCertificateId: ID ##NON NULL
 
    _args: Args
@@ -273,12 +273,12 @@ class apiCertificate(GQLObject):
 
    type: ApiCertificate
 
-class apiCertificates(GQLObject):
+class apiCertificates(GQLQuery):
    """
    apiCertificates - returns the API Certificates details based on the API Id and User Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ApiCertificateWhereInput
       orderBy: ApiCertificateOrderByInput
       pagination: PaginationInput
@@ -288,12 +288,12 @@ class apiCertificates(GQLObject):
 
    type: ApiCertificateConnection ##NON NULL
 
-class apiDevelopersByApiId(GQLObject):
+class apiDevelopersByApiId(GQLQuery):
    """
    apiDevelopersByApiId - returns API developer details based on the API Id parameter
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
       pagingArgs: PagingArgs
 
@@ -302,12 +302,12 @@ class apiDevelopersByApiId(GQLObject):
 
    type: ApiDeveloper ##NON NULL
 
-class apiFollowers(GQLObject):
+class apiFollowers(GQLQuery):
    """
    apiFollowers - Returns a list of users who follow a specific API(s)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ApiFollowerWhereInput ##NON NULL
       orderBy: ApiFollowerOrderByInput
       pagination: PaginationInput
@@ -317,12 +317,12 @@ class apiFollowers(GQLObject):
 
    type: ApiFollowerConnection ##NON NULL
 
-class apiReferenceByApiAndVersionId(GQLObject):
+class apiReferenceByApiAndVersionId(GQLQuery):
    """
    apiReferenceByApiAndVersionId - [will be deprecated; do not use] Use apiReferences
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str ##NON NULL
       versionId: str ##NON NULL
 
@@ -331,12 +331,12 @@ class apiReferenceByApiAndVersionId(GQLObject):
 
    type: ApiReference
 
-class apiReferences(GQLObject):
+class apiReferences(GQLQuery):
    """
    apiReferences - Something with API Spotlights...
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ApiReferenceWhereInput
 
    _args: Args
@@ -344,12 +344,12 @@ class apiReferences(GQLObject):
 
    type: ApiReferenceConnection ##NON NULL
 
-class apiSearch(GQLObject):
+class apiSearch(GQLQuery):
    """
    apiSearch - [will be deprecated; do not use] Search for API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       searchArguments: SearchArguments
 
    _args: Args
@@ -357,12 +357,12 @@ class apiSearch(GQLObject):
 
    type: ApiSearchPaged
 
-class apiSearchV3(GQLObject):
+class apiSearchV3(GQLQuery):
    """
    apiSearchV3 - [will be deprecated; do not use] Search for API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       searchArguments: SearchArguments
 
    _args: Args
@@ -370,12 +370,12 @@ class apiSearchV3(GQLObject):
 
    type: ApiSearchPaged
 
-class apiSpecImportProgresses(GQLObject):
+class apiSpecImportProgresses(GQLQuery):
    """
    apiSpecImportProgresses - Supports the async process for the API import (especially for long time upload might be a result of a big file import. Polling request from the client to the backend - returns success result only when the API was completely imported. 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       trackingIds: list[ID] ##NON NULL
 
    _args: Args
@@ -383,12 +383,12 @@ class apiSpecImportProgresses(GQLObject):
 
    type: ApiSpecImportProcess ##NON NULL
 
-class bulkApisSummaryByTrackingIds(GQLObject):
+class bulkApisSummaryByTrackingIds(GQLQuery):
    """
    bulkApisSummaryByTrackingIds - Check to see if the API import operation has completed across multiple APIs
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       trackingIds: list[ID] ##NON NULL
 
    _args: Args
@@ -396,12 +396,12 @@ class bulkApisSummaryByTrackingIds(GQLObject):
 
    type: BatchTrackingIdsSummary
 
-class calculatedStatistics(GQLObject):
+class calculatedStatistics(GQLQuery):
    """
    calculatedStatistics - Get API usage analytics
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str ##NON NULL
       resolution: str
@@ -419,12 +419,12 @@ class calculatedStatistics(GQLObject):
 
    type: CalculatedStatistics
 
-class getApiVersion(GQLObject):
+class getApiVersion(GQLQuery):
    """
    getApiVersion - [will be deprecated; do not use] return the apiVersion information based on the apiVersion's Id input
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       versionId: ID ##NON NULL
 
    _args: Args
@@ -432,12 +432,12 @@ class getApiVersion(GQLObject):
 
    type: ApiVersion
 
-class apiVersion(GQLObject):
+class apiVersion(GQLQuery):
    """
    apiVersion - [will be deprecated; do not use] return the apiVersion information based on the apiVersion's Id input
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiVersionId: ID ##NON NULL
 
    _args: Args
@@ -445,12 +445,12 @@ class apiVersion(GQLObject):
 
    type: ApiVersion
 
-class apiVersions(GQLObject):
+class apiVersions(GQLQuery):
    """
    apiVersions - returns a list of apiVersions based on the ApiVersionWhereInput
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ApiVersionWhereInput
       orderBy: ApiVersionOrderByInput
       pagination: PaginationInput
@@ -460,14 +460,14 @@ class apiVersions(GQLObject):
 
    type: ApiVersionConnection ##NON NULL
 
-class api(GQLObject):
+class api(GQLQuery):
    """
    api - Obtain an API's details, such as its name and current version.
 
 https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#obtain-an-apis-details
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -475,7 +475,7 @@ https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#obtain-a
 
    type: Api
 
-class apis(GQLObject):
+class apis(GQLQuery):
    """
    apis - Returns the APIs based on the APIWhereInput
 
@@ -484,7 +484,7 @@ https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#query-ap
 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ApiWhereInput
       orderBy: ApiOrderByInput
       pagination: PaginationInput
@@ -494,14 +494,14 @@ https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#query-ap
 
    type: ApiConnection ##NON NULL
 
-class exportOpenApi(GQLObject):
+class exportOpenApi(GQLQuery):
    """
    exportOpenApi - Returns a generated OAS 3 representation of a certain API version in the platform, including the RapidAPI metadata extension properties.\n\n`apiId` and the optional `apiVersionId` args specify which API and version to target for export.\nOmitting the `apiVersionId` arg will target the *current* version of the API specified by `apiId`.\n\nA non-null result would be returned only in accordance with the following rules:\n- the target `apiId` or `apiVersionId` (if specifically provided) have some match in the platform, and either:\n  - the target API is defined with `PUBLIC` visibility, or\n  - the target API is defined with `PRIVATE` visibility and either:\n    - the requestor or any team they are a member of is owning the target API or\n    - the requestor or any team they are a member of is **invited** to the target API\n\nIf the API is visible to the requestor for export but not owned by it, certain sensitive fields (e.g `servers` array) in the exported document may be returned blank.
 
 https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#export-an-oas-document-for-an-api
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: ID ##NON NULL
       apiVersionId: ID
 
@@ -510,12 +510,12 @@ https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#export-a
 
    type: Any
 
-class validateSwagger(GQLObject):
+class validateSwagger(GQLQuery):
    """
    validateSwagger - [marked for deprecation; do not use] Validates a swagger input
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       input: validateSwaggerInput
 
    _args: Args
@@ -523,12 +523,12 @@ class validateSwagger(GQLObject):
 
    type: Any
 
-class applicationAuthorization(GQLObject):
+class applicationAuthorization(GQLQuery):
    """
    applicationAuthorization - get application authorization (x-rapid-key/oauth)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -536,12 +536,12 @@ class applicationAuthorization(GQLObject):
 
    type: ApplicationAuthorization ##NON NULL
 
-class applicationAuthorizations(GQLObject):
+class applicationAuthorizations(GQLQuery):
    """
    applicationAuthorizations - get application authorization (x-rapid-key/oauth)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: AppAuthorizationsWhereInput ##NON NULL
 
    _args: Args
@@ -549,12 +549,12 @@ class applicationAuthorizations(GQLObject):
 
    type: ApplicationAuthorization ##NON NULL
 
-class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLObject):
+class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLQuery):
    """
    applicationEnvironmentsKeysByApplicationIdAndEnvironment - applicationEnvironments (applicationAuthorization) by application Id. going to be deprecated, please don't know
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       applicationId: str
       environment: str
 
@@ -563,12 +563,12 @@ class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLObject):
 
    type: ApplicationEnvironmentPaging
 
-class applicationEnvironmentsByApplicationIdAndEnvironment(GQLObject):
+class applicationEnvironmentsByApplicationIdAndEnvironment(GQLQuery):
    """
    applicationEnvironmentsByApplicationIdAndEnvironment - applicationEnvironments (applicationAuthorization) by application Id.  going to be deprecated, please don't know 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       applicationId: str
       environment: str
 
@@ -577,12 +577,12 @@ class applicationEnvironmentsByApplicationIdAndEnvironment(GQLObject):
 
    type: ApplicationEnvironment
 
-class applicationById(GQLObject):
+class applicationById(GQLQuery):
    """
    applicationById - application by Id 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int
 
    _args: Args
@@ -590,12 +590,12 @@ class applicationById(GQLObject):
 
    type: Application
 
-class asset(GQLObject):
+class asset(GQLQuery):
    """
    asset - Fetch an asset by ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -603,12 +603,12 @@ class asset(GQLObject):
 
    type: Asset
 
-class assets(GQLObject):
+class assets(GQLQuery):
    """
    assets - Query assets by IDs or external IDs, optional filter on visibility
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: AssetWhereInput ##NON NULL
 
    _args: Args
@@ -616,12 +616,12 @@ class assets(GQLObject):
 
    type: Asset ##NON NULL
 
-class assetsDownloadUrls(GQLObject):
+class assetsDownloadUrls(GQLQuery):
    """
    assetsDownloadUrls - Query assets by IDs or external IDs, optional filter on visibility; Includes download URL in response
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: AssetWhereInput ##NON NULL
 
    _args: Args
@@ -629,12 +629,12 @@ class assetsDownloadUrls(GQLObject):
 
    type: AssetForDownload ##NON NULL
 
-class asyncApiConfigurations(GQLObject):
+class asyncApiConfigurations(GQLQuery):
    """
    asyncApiConfigurations - [experimental] Get async API configuration
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: AsyncApiConfigurationWhereInput ##NON NULL
 
    _args: Args
@@ -642,12 +642,12 @@ class asyncApiConfigurations(GQLObject):
 
    type: AsyncApiConfigurationConnection ##NON NULL
 
-class userAttributesByUserId(GQLObject):
+class userAttributesByUserId(GQLQuery):
    """
    userAttributesByUserId - Get all user attributes by user ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       userId: int
 
    _args: Args
@@ -655,12 +655,12 @@ class userAttributesByUserId(GQLObject):
 
    type: UserAttributes
 
-class auditByOrganizationId(GQLObject):
+class auditByOrganizationId(GQLQuery):
    """
    auditByOrganizationId - Organization level Audits (e.g. creation, user invited, etc...)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       searchTerm: str
       from_: int
       orgId: int
@@ -670,12 +670,12 @@ class auditByOrganizationId(GQLObject):
 
    type: auditTrails
 
-class audit(GQLObject):
+class audit(GQLQuery):
    """
    audit - Enterprise Admin Audit (e.g. config CRUD events)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: AuditWhereInput ##NON NULL
 
    _args: Args
@@ -683,12 +683,12 @@ class audit(GQLObject):
 
    type: auditTrails
 
-class auditLogin(GQLObject):
+class auditLogin(GQLQuery):
    """
    auditLogin - Audit for user logins
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       from_: int
       userId: str
 
@@ -697,12 +697,12 @@ class auditLogin(GQLObject):
 
    type: auditTrails
 
-class userByEmail(GQLObject):
+class userByEmail(GQLQuery):
    """
    userByEmail - Get user ID by user email address
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       email: str
 
    _args: Args
@@ -710,7 +710,7 @@ class userByEmail(GQLObject):
 
    type: User
 
-class activeUser(GQLObject):
+class activeUser(GQLQuery):
    """
    activeUser - The User making the request
 
@@ -725,12 +725,12 @@ getBillingFeaturesByApiId = list[BillingFeature]
 
 isMonetizationEnabled = bool
 
-class billingItems(GQLObject):
+class billingItems(GQLQuery):
    """
    billingItems - Get Billing items where input must include apiId or apiVersionId,\nPagination not supported
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: BillingItemsWhereInput ##NON NULL
 
    _args: Args
@@ -738,12 +738,12 @@ class billingItems(GQLObject):
 
    type: BillingItemConnection
 
-class getFreeSeatsObj(GQLObject):
+class getFreeSeatsObj(GQLQuery):
    """
    getFreeSeatsObj - Get billing information attached to an org
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orgId: ID ##NON NULL
 
    _args: Args
@@ -751,12 +751,12 @@ class getFreeSeatsObj(GQLObject):
 
    type: SeatsBillingInformation
 
-class getBillingPlanVersionsByApiId(GQLObject):
+class getBillingPlanVersionsByApiId(GQLQuery):
    """
    getBillingPlanVersionsByApiId - [will be deprecated; do not use] use billingPlanVersions query
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str ##NON NULL
       apiVersionId: str
       pagingArgs: PagingArgsBilling
@@ -767,12 +767,12 @@ class getBillingPlanVersionsByApiId(GQLObject):
 
    type: BillingPlanVersionsResponse
 
-class getBillingPlanVersionById(GQLObject):
+class getBillingPlanVersionById(GQLQuery):
    """
    getBillingPlanVersionById - [will be deprecated; do not use] use billingPlanVersion query
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       billingPlanVersionId: str ##NON NULL
 
    _args: Args
@@ -780,12 +780,12 @@ class getBillingPlanVersionById(GQLObject):
 
    type: BillingPlanVersion
 
-class billingPlanVersion(GQLObject):
+class billingPlanVersion(GQLQuery):
    """
    billingPlanVersion - Get Billing Plan Version details
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -793,12 +793,12 @@ class billingPlanVersion(GQLObject):
 
    type: BillingPlanVersion
 
-class billingPlanVersions(GQLObject):
+class billingPlanVersions(GQLQuery):
    """
    billingPlanVersions -  Get Billing Plan versions\nPagination is not fully supported yet. 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: BillingPlanVersionWhereInput
       pagination: PaginationInput
 
@@ -807,12 +807,12 @@ class billingPlanVersions(GQLObject):
 
    type: BillingPlanVersionConnection
 
-class calculatedStatisticsByEndpointAndApiversion(GQLObject):
+class calculatedStatisticsByEndpointAndApiversion(GQLQuery):
    """
    calculatedStatisticsByEndpointAndApiversion - Get API usage analytics by endpoint and API Version
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str ##NON NULL
       resolution: str
@@ -828,12 +828,12 @@ class calculatedStatisticsByEndpointAndApiversion(GQLObject):
 
    type: CalculatedStatistics
 
-class categoriesV2(GQLObject):
+class categoriesV2(GQLQuery):
    """
    categoriesV2 - [will be deprecated; do not use] Returns a list categories
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: CategoryWhereInput
       orderBy: CategoryOrderByInput
       pagination: PaginationInput
@@ -849,12 +849,12 @@ categories = list[Category]
 
 collectionsItemsByIds = list[CollectionItem]
 
-class collections(GQLObject):
+class collections(GQLQuery):
    """
    collections - Get API collection list
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: CollectionsWhereInput
       orderBy: CollectionsOrderByInput
       minWeightToFetchApis: int
@@ -864,12 +864,12 @@ class collections(GQLObject):
 
    type: CollectionsResponse
 
-class collectionsByOwnerId(GQLObject):
+class collectionsByOwnerId(GQLQuery):
    """
    collectionsByOwnerId - Returns the collections for a specific tenant id (Assumption Owner = tenant in this context)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orderByField: str
       orderDirection: OrderDirection
       minWeightToFetchApis: int
@@ -880,12 +880,12 @@ class collectionsByOwnerId(GQLObject):
 
    type: CollectionsResponse
 
-class getOrgHomepageCollections(GQLObject):
+class getOrgHomepageCollections(GQLQuery):
    """
    getOrgHomepageCollections - Returns a list of collections for a specific organization
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orderByField: str
       orderDirection: OrderDirection
       minWeightToFetchApis: int
@@ -895,12 +895,12 @@ class getOrgHomepageCollections(GQLObject):
 
    type: CollectionsResponse
 
-class collectionById(GQLObject):
+class collectionById(GQLQuery):
    """
    collectionById - Returns a collection based on Collection ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       collectionId: ID ##NON NULL
 
    _args: Args
@@ -908,12 +908,12 @@ class collectionById(GQLObject):
 
    type: Collection
 
-class collection(GQLObject):
+class collection(GQLQuery):
    """
    collection - Returns a collection based on Collection ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -923,12 +923,12 @@ class collection(GQLObject):
 
 collapsedCollections = list[CollapsedCollection]
 
-class collectionBySlugifiedKey(GQLObject):
+class collectionBySlugifiedKey(GQLQuery):
    """
    collectionBySlugifiedKey - Returns a collection based on name
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -940,12 +940,12 @@ getPrivateCollections = list[Collection]
 
 getPrivateCollectionsV2 = list[Collection]
 
-class collectionBySlugifiedKeyV2(GQLObject):
+class collectionBySlugifiedKeyV2(GQLQuery):
    """
    collectionBySlugifiedKeyV2 - Returns a collection based on name V2
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -953,12 +953,12 @@ class collectionBySlugifiedKeyV2(GQLObject):
 
    type: CollectionV2
 
-class collectionBySlugifiedKeyV3(GQLObject):
+class collectionBySlugifiedKeyV3(GQLQuery):
    """
    collectionBySlugifiedKeyV3 - Returns a collection based on name V3
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -966,12 +966,12 @@ class collectionBySlugifiedKeyV3(GQLObject):
 
    type: CollectionV3
 
-class getCommentsByIssueIdV2(GQLObject):
+class getCommentsByIssueIdV2(GQLQuery):
    """
    getCommentsByIssueIdV2 - Returns the comments by an issue ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       issueId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -980,12 +980,12 @@ class getCommentsByIssueIdV2(GQLObject):
 
    type: PaginatedComments
 
-class getCommentByIdV2(GQLObject):
+class getCommentByIdV2(GQLQuery):
    """
    getCommentByIdV2 - Returns the comment by an issue and comment ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       issueId: int ##NON NULL
       commentId: int ##NON NULL
 
@@ -994,12 +994,12 @@ class getCommentByIdV2(GQLObject):
 
    type: Comment
 
-class search(GQLObject):
+class search(GQLQuery):
    """
    search - Returns a list of APIs based on search parameters
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       term: str ##NON NULL
 
    _args: Args
@@ -1009,12 +1009,12 @@ class search(GQLObject):
 
 searchEntityByApiId = list[Any]
 
-class getOpenApiSpecByApiId(GQLObject):
+class getOpenApiSpecByApiId(GQLQuery):
    """
    getOpenApiSpecByApiId - [will be deprecated; do not use] returns the OAS for the API ID parameter provided
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: ID
 
    _args: Args
@@ -1022,12 +1022,12 @@ class getOpenApiSpecByApiId(GQLObject):
 
    type: Any
 
-class entityById(GQLObject):
+class entityById(GQLQuery):
    """
    entityById - returns (User/Team/organization) by entityId
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID
 
    _args: Args
@@ -1035,19 +1035,19 @@ class entityById(GQLObject):
 
    type: Entity
 
-class activeEntity(GQLObject):
+class activeEntity(GQLQuery):
    """
    activeEntity - The entity ( User/Team ) making the request 
 
    """
    type: Entity
 
-class apiByNameAndOwnerName(GQLObject):
+class apiByNameAndOwnerName(GQLQuery):
    """
    apiByNameAndOwnerName - [will be deprecated; do not use] Query an API by Name and Owner Name
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiName: str
       ownerName: str
 
@@ -1056,12 +1056,12 @@ class apiByNameAndOwnerName(GQLObject):
 
    type: Api
 
-class apiBySlugifiedNameAndOwnerName(GQLObject):
+class apiBySlugifiedNameAndOwnerName(GQLQuery):
    """
    apiBySlugifiedNameAndOwnerName - [will be deprecated; do not use] Query and API by Slugified Name and Owner Name
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedName: str
       ownerName: str
 
@@ -1070,12 +1070,12 @@ class apiBySlugifiedNameAndOwnerName(GQLObject):
 
    type: Api
 
-class apiByNameAndOwnerId(GQLObject):
+class apiByNameAndOwnerId(GQLQuery):
    """
    apiByNameAndOwnerId - [will be deprecated; do not use] Query an API by Name and Owner Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiName: str
       ownerId: str
 
@@ -1086,12 +1086,12 @@ class apiByNameAndOwnerId(GQLObject):
 
 userFollows = list[FollowUser]
 
-class apiById(GQLObject):
+class apiById(GQLQuery):
    """
    apiById - [will be deprecated; do not use] Query an API by id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
 
    _args: Args
@@ -1101,12 +1101,12 @@ class apiById(GQLObject):
 
 apisById = list[Api]
 
-class followUserAction(GQLObject):
+class followUserAction(GQLQuery):
    """
    followUserAction - **This needs to be updated to a mutation** Follow a provider
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       followerId: int
       followeeId: int
 
@@ -1125,12 +1125,12 @@ organizationsTreeToken = str
 
 getMinimumSeats = int
 
-class transactionsById(GQLObject):
+class transactionsById(GQLQuery):
    """
    transactionsById - Get a transaction based on an API Id or a User Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
       userId: int
       type: str
@@ -1143,12 +1143,12 @@ class transactionsById(GQLObject):
 
    type: TransactionsPaging
 
-class unionDiscussionsByAuthor(GQLObject):
+class unionDiscussionsByAuthor(GQLQuery):
    """
    unionDiscussionsByAuthor - [marked for deprecation; do not use] Returns discussions by author
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       authorId: int
       limit: int
       offset: int
@@ -1161,26 +1161,26 @@ class unionDiscussionsByAuthor(GQLObject):
 
    type: DiscussionObject
 
-class getActiveUserContext(GQLObject):
+class getActiveUserContext(GQLQuery):
    """
    getActiveUserContext - Get the active user context of the logged in user 
 
    """
    type: ContextEntity
 
-class getActiveTeamContext(GQLObject):
+class getActiveTeamContext(GQLQuery):
    """
    getActiveTeamContext - Get the active team context of the logged in user
 
    """
    type: ContextEntity
 
-class transactionsAnalyticsByApiId(GQLObject):
+class transactionsAnalyticsByApiId(GQLQuery):
    """
    transactionsAnalyticsByApiId - Returns the transactions analytics for one API by ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
       fromDate: str
       toDate: str
@@ -1191,12 +1191,12 @@ class transactionsAnalyticsByApiId(GQLObject):
 
    type: TransactionsAnalytics
 
-class getConsumers(GQLObject):
+class getConsumers(GQLQuery):
    """
    getConsumers - Gets a list of consumers for an API by type (Free, Paid, All)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
       userId: list[int]
       offset: int
@@ -1211,12 +1211,12 @@ class getConsumers(GQLObject):
 
    type: Consumers
 
-class getFreeConsumers(GQLObject):
+class getFreeConsumers(GQLQuery):
    """
    getFreeConsumers - Return free users by Api Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: list[ID] ##NON NULL
       offset: int
       limit: int
@@ -1230,12 +1230,12 @@ class getFreeConsumers(GQLObject):
 
    type: Consumers
 
-class consumers(GQLObject):
+class consumers(GQLQuery):
    """
    consumers - return all the consumers based on the API ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: ConsumersWhereInput ##NON NULL
 
    _args: Args
@@ -1245,12 +1245,12 @@ class consumers(GQLObject):
 
 requestAdminToSubscribeToAnAPI = bool
 
-class getCountryMetadata(GQLObject):
+class getCountryMetadata(GQLQuery):
    """
    getCountryMetadata - Get metadata about a Country
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       ip: str
 
    _args: Args
@@ -1258,12 +1258,12 @@ class getCountryMetadata(GQLObject):
 
    type: Country
 
-class unionIssuesByAuthorV2(GQLObject):
+class unionIssuesByAuthorV2(GQLQuery):
    """
    unionIssuesByAuthorV2 - Returns discussions by author
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       authorId: int
       type: str
       pagingArgs: PagingArgs
@@ -1274,12 +1274,12 @@ class unionIssuesByAuthorV2(GQLObject):
 
    type: DiscussionObject
 
-class getIssuesByApiIdV2(GQLObject):
+class getIssuesByApiIdV2(GQLQuery):
    """
    getIssuesByApiIdV2 - Returns the issues associated with an API id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str ##NON NULL
       pagingArgs: PagingArgs
       providerId: str
@@ -1289,12 +1289,12 @@ class getIssuesByApiIdV2(GQLObject):
 
    type: IssueObject
 
-class getIssuesByApiIdsV2(GQLObject):
+class getIssuesByApiIdsV2(GQLQuery):
    """
    getIssuesByApiIdsV2 - Returns the issues associated with an APIs ids
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiIds: list[str] ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1311,12 +1311,12 @@ endpointStatsByEntityV2 = list[VersionEndpointStats]
 
 getEndpointsWithinDateByParameters = list[EndpointStats]
 
-class endpoint(GQLObject):
+class endpoint(GQLQuery):
    """
    endpoint - Get an Endpoint
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -1324,12 +1324,12 @@ class endpoint(GQLObject):
 
    type: Endpoint
 
-class endpoints(GQLObject):
+class endpoints(GQLQuery):
    """
    endpoints - Get a list of endpoints
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: EndpointWhereInput ##NON NULL
 
    _args: Args
@@ -1339,8 +1339,8 @@ class endpoints(GQLObject):
 
 searchEntities = list[Entity]
 
-class entitiesMetadata(GQLObject):
-   class Args(GQLOperationArgs): 
+class entitiesMetadata(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       where: EntityMetadataWhereInput ##NON NULL
       orderBy: EntityMetadataOrderByInput
       pagination: PaginationInput
@@ -1352,12 +1352,12 @@ class entitiesMetadata(GQLObject):
 
 getEntitiesRoles = list[EntityRole]
 
-class entitiesRoles(GQLObject):
+class entitiesRoles(GQLQuery):
    """
    entitiesRoles - get roles assigned to Entity
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: EntityRoleWhereInput ##NON NULL
       orderBy: EntityRoleOrderByInput
       pagination: PaginationInput
@@ -1369,12 +1369,12 @@ class entitiesRoles(GQLObject):
 
 getLogsCSV = list[LogsCSV]
 
-class exportLogsCSVProvider(GQLObject):
+class exportLogsCSVProvider(GQLQuery):
    """
    exportLogsCSVProvider - Export CSV of audit trails for Provider related actions
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       contextId: ID ##NON NULL
       fromDate: DateTime ##NON NULL
       toDate: DateTime ##NON NULL
@@ -1387,12 +1387,12 @@ class exportLogsCSVProvider(GQLObject):
 
    type: LogsCSVExports
 
-class exportLogsCSVDeveloper(GQLObject):
+class exportLogsCSVDeveloper(GQLQuery):
    """
    exportLogsCSVDeveloper - Export CSV of audit trails for Developer related actions
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       contextId: ID ##NON NULL
       fromDate: DateTime ##NON NULL
       toDate: DateTime ##NON NULL
@@ -1405,7 +1405,7 @@ class exportLogsCSVDeveloper(GQLObject):
 
    type: LogsCSVExports
 
-class gateways(GQLObject):
+class gateways(GQLQuery):
    """
    gateways - [will be deprecated; do not use] Get all gateway instance
 
@@ -1414,12 +1414,12 @@ class gateways(GQLObject):
 
 getGateways = list[Gateway]
 
-class getGatewayConfiguration(GQLObject):
+class getGatewayConfiguration(GQLQuery):
    """
    getGatewayConfiguration - Get the configuration of a Gateway
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int ##NON NULL
 
    _args: Args
@@ -1427,12 +1427,12 @@ class getGatewayConfiguration(GQLObject):
 
    type: ApiGatewayConfiguration
 
-class graphQlIntrospectionSchema(GQLObject):
+class graphQlIntrospectionSchema(GQLQuery):
    """
    graphQlIntrospectionSchema - Get the current GraphQL __schema using introspectionCall query
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       introspectionCallUrl: str ##NON NULL
 
    _args: Args
@@ -1442,12 +1442,12 @@ class graphQlIntrospectionSchema(GQLObject):
 
 headlinesByApiNameAndOwnerId = list[Headline]
 
-class getIssuesByOrganizatonId(GQLObject):
+class getIssuesByOrganizatonId(GQLQuery):
    """
    getIssuesByOrganizatonId - Return the issues associated with an organziation Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: str ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1460,12 +1460,12 @@ getResponseTimeByProviderId = float
 
 getAverageResponseTime = float
 
-class unionIssuesByAuthor(GQLObject):
+class unionIssuesByAuthor(GQLQuery):
    """
    unionIssuesByAuthor - [marked for deprecation; do not use] Returns discussions by author
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       authorId: int
       type: str
       pagingArgs: PagingArgs
@@ -1475,12 +1475,12 @@ class unionIssuesByAuthor(GQLObject):
 
    type: DiscussionObject
 
-class getIssueByIdV2(GQLObject):
+class getIssueByIdV2(GQLQuery):
    """
    getIssueByIdV2 - Returns the issues by Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       issueId: int
 
    _args: Args
@@ -1488,12 +1488,12 @@ class getIssueByIdV2(GQLObject):
 
    type: Issue
 
-class getIssuesByOrganizationId(GQLObject):
+class getIssuesByOrganizationId(GQLQuery):
    """
    getIssuesByOrganizationId - Return the issues associated with an organziation Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: str
       pagingArgs: PagingArgs
 
@@ -1502,12 +1502,12 @@ class getIssuesByOrganizationId(GQLObject):
 
    type: IssueObject
 
-class getIssuesByTeamIdV2(GQLObject):
+class getIssuesByTeamIdV2(GQLQuery):
    """
    getIssuesByTeamIdV2 - Returns the issues associated with a team id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: str
       pagingArgs: PagingArgs
 
@@ -1518,12 +1518,12 @@ class getIssuesByTeamIdV2(GQLObject):
 
 getIssuesFollowsByUserIdV2 = list[IssueFollow]
 
-class kafkaConfiguration(GQLObject):
+class kafkaConfiguration(GQLQuery):
    """
    kafkaConfiguration - returns the kafka configuration for the apiVersion
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1531,12 +1531,12 @@ class kafkaConfiguration(GQLObject):
 
    type: KafkaConfiguration
 
-class kafkaTopics(GQLObject):
+class kafkaTopics(GQLQuery):
    """
    kafkaTopics - returns a list of all the kafka topics related to the apiVersion
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1544,12 +1544,12 @@ class kafkaTopics(GQLObject):
 
    type: KafkaTopics
 
-class kafkaSchemas(GQLObject):
+class kafkaSchemas(GQLQuery):
    """
    kafkaSchemas - returns a list of all the kafka schemas related to the apiVersion
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1557,12 +1557,12 @@ class kafkaSchemas(GQLObject):
 
    type: KafkaSchemas
 
-class kafkaTopicMetadata(GQLObject):
+class kafkaTopicMetadata(GQLQuery):
    """
    kafkaTopicMetadata - returns the kafka topic metadata
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiVersionId: str ##NON NULL
       topicName: str ##NON NULL
 
@@ -1571,12 +1571,12 @@ class kafkaTopicMetadata(GQLObject):
 
    type: TopicMetadataResponse
 
-class getTemplate(GQLObject):
+class getTemplate(GQLQuery):
    """
    getTemplate - Gets the document for Docusign workflow
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       accountId: str
       templateId: str
 
@@ -1585,19 +1585,19 @@ class getTemplate(GQLObject):
 
    type: EnvelopeTemplate
 
-class getLegalAgreementInfo(GQLObject):
+class getLegalAgreementInfo(GQLQuery):
    """
    getLegalAgreementInfo - Gets the created legal document provider information
 
    """
    type: LegalAgreementInfo
 
-class updateLegalAgreementInfo(GQLObject):
+class updateLegalAgreementInfo(GQLQuery):
    """
    updateLegalAgreementInfo - Update the attributes attached to an API's legal agreement
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       input: UpdateLegalAgreementInfo
 
    _args: Args
@@ -1605,12 +1605,12 @@ class updateLegalAgreementInfo(GQLObject):
 
    type: LegalAgreementInfo
 
-class createLegalAgreementInfo(GQLObject):
+class createLegalAgreementInfo(GQLQuery):
    """
    createLegalAgreementInfo - Create a new legal agreement provider integration for API plans
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       input: CreateLegalAgreementInfo
 
    _args: Args
@@ -1618,12 +1618,12 @@ class createLegalAgreementInfo(GQLObject):
 
    type: LegalAgreementInfo
 
-class deleteLegalAgreementInfo(GQLObject):
+class deleteLegalAgreementInfo(GQLQuery):
    """
    deleteLegalAgreementInfo - Upadte existing legal agreement provider integration for API plans
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       entityId: str
 
    _args: Args
@@ -1631,12 +1631,12 @@ class deleteLegalAgreementInfo(GQLObject):
 
    type: Any
 
-class getLegalAgreementSigningURL(GQLObject):
+class getLegalAgreementSigningURL(GQLQuery):
    """
    getLegalAgreementSigningURL - Build a legal agreement signging url for the UI as an external integration for signing on plans 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       input: GetLegalAgreementSigningURLInput ##NON NULL
 
    _args: Args
@@ -1644,12 +1644,12 @@ class getLegalAgreementSigningURL(GQLObject):
 
    type: Any
 
-class logPayloadByRequestId(GQLObject):
+class logPayloadByRequestId(GQLQuery):
    """
    logPayloadByRequestId - Returns the details of a request by Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       requestId: ID
       callTime: str
 
@@ -1658,12 +1658,12 @@ class logPayloadByRequestId(GQLObject):
 
    type: LogPayload
 
-class logPayloadByRequestIdWithLoggingRestrictions(GQLObject):
+class logPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
    """
    logPayloadByRequestIdWithLoggingRestrictions - Returns the details of the request by Id with logging restrictions
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       requestId: ID
       callTime: str
       apiId: str
@@ -1673,12 +1673,12 @@ class logPayloadByRequestIdWithLoggingRestrictions(GQLObject):
 
    type: RestrictedLogPayload
 
-class developerLogPayloadByRequestIdWithLoggingRestrictions(GQLObject):
+class developerLogPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
    """
    developerLogPayloadByRequestIdWithLoggingRestrictions - Get request payload for developer
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       requestId: ID
       callTime: str
       apiId: str
@@ -1689,12 +1689,12 @@ class developerLogPayloadByRequestIdWithLoggingRestrictions(GQLObject):
 
    type: RestrictedLogPayload
 
-class messageThreads(GQLObject):
+class messageThreads(GQLQuery):
    """
    messageThreads - Search for message threads by specific filters
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: MessageThreadsWhereInput
 
    _args: Args
@@ -1708,12 +1708,12 @@ getApiAverageResponseTime = float
 
 getProviderAverageResponseTime = float
 
-class getRelativeAverageResponseTime(GQLObject):
+class getRelativeAverageResponseTime(GQLQuery):
    """
    getRelativeAverageResponseTime - returns provider response time compared to other providers
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       providerId: int ##NON NULL
 
    _args: Args
@@ -1721,12 +1721,12 @@ class getRelativeAverageResponseTime(GQLObject):
 
    type: RelativeARTResponse
 
-class getMessageThread(GQLObject):
+class getMessageThread(GQLQuery):
    """
    getMessageThread - Get the messages of a thread
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       threadId: int
 
    _args: Args
@@ -1738,12 +1738,12 @@ newNotificationsByUserId = list[NewNotification]
 
 notificationsByUserId = list[Notification]
 
-class organization(GQLObject):
+class organization(GQLQuery):
    """
    organization - Getting an organization list of the API requestor
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -1755,12 +1755,12 @@ organizations = list[Organization]
 
 getOrganizations = list[Organization]
 
-class getOrganizationBySlugifiedName(GQLObject):
+class getOrganizationBySlugifiedName(GQLQuery):
    """
    getOrganizationBySlugifiedName - [will be deprecated; do not use] returns the organization based on the Sluggified name
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedName: str
 
    _args: Args
@@ -1768,12 +1768,12 @@ class getOrganizationBySlugifiedName(GQLObject):
 
    type: Organization
 
-class getOrganizationById(GQLObject):
+class getOrganizationById(GQLQuery):
    """
    getOrganizationById - [will be deprecated; do not use]  returns the organization based on the orgId
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orgId: ID ##NON NULL
 
    _args: Args
@@ -1781,7 +1781,7 @@ class getOrganizationById(GQLObject):
 
    type: Organization
 
-class getEmailDomainAndCheckIfIgnored(GQLObject):
+class getEmailDomainAndCheckIfIgnored(GQLQuery):
    """
    getEmailDomainAndCheckIfIgnored - Get the email domain and check if it's ignored by an org
 
@@ -1792,12 +1792,12 @@ getOrganizationsWithTheSameEmail = list[CorporateDomainOrganization]
 
 searchOrganizations = list[Entity]
 
-class validateResetPasswordToken(GQLObject):
+class validateResetPasswordToken(GQLQuery):
    """
    validateResetPasswordToken - Takes a password reset token and returns whether it is valid
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       token: str ##NON NULL
 
    _args: Args
@@ -1807,12 +1807,12 @@ class validateResetPasswordToken(GQLObject):
 
 getProjectAllowedAPIs = list[ProjectAllowedAPI]
 
-class requestLogsByEntity(GQLObject):
+class requestLogsByEntity(GQLQuery):
    """
    requestLogsByEntity - getting API calls logs associated to an application 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: str
       projectId: str
       fromDate: str ##NON NULL
@@ -1833,12 +1833,12 @@ getAccessControlRoles = list[Role]
 
 getRoles = list[Role]
 
-class roles(GQLObject):
+class roles(GQLQuery):
    """
    roles - get roles metada
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: RoleWhereInput ##NON NULL
       orderBy: RoleOrderByInput
       pagination: PaginationInput
@@ -1848,12 +1848,12 @@ class roles(GQLObject):
 
    type: RoleConnection ##NON NULL
 
-class searchApis(GQLObject):
+class searchApis(GQLQuery):
    """
    searchApis - Returns a list of APIs based on search parameters
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SearchApiWhereInput ##NON NULL
       orderBy: SearchApiOrderByInput
       pagination: PaginationInput
@@ -1863,12 +1863,12 @@ class searchApis(GQLObject):
 
    type: SearchApiConnection ##NON NULL
 
-class searchBlogPosts(GQLObject):
+class searchBlogPosts(GQLQuery):
    """
    searchBlogPosts - Returns a list of blog posts based on search parameters
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SearchBlogPostWhereInput ##NON NULL
       pagination: PaginationInput
 
@@ -1877,12 +1877,12 @@ class searchBlogPosts(GQLObject):
 
    type: SearchBlogPostConnection
 
-class searchCollections(GQLObject):
+class searchCollections(GQLQuery):
    """
    searchCollections - Returns list of collections 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SearchCollectionWhereInput
       orderBy: SearchCollectionOrderByInput
       pagination: PaginationInput
@@ -1892,12 +1892,12 @@ class searchCollections(GQLObject):
 
    type: SearchCollectionConnection
 
-class spotlights(GQLObject):
+class spotlights(GQLQuery):
    """
    spotlights - Returns the spotlights for a specific API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SpotlightWhereInput ##NON NULL
       orderBy: SpotlightOrderByInput
       pagination: PaginationInput
@@ -1915,12 +1915,12 @@ getInternalSubscriptions = list[BillingSubscription]
 
 searchSubscribedEntityByApiId = list[Any]
 
-class getSubscriptions(GQLObject):
+class getSubscriptions(GQLQuery):
    """
    getSubscriptions - [will be deprecated; do not use] Get subscriptions by Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int
       userId: int
       apiId: str
@@ -1932,12 +1932,12 @@ class getSubscriptions(GQLObject):
 
    type: SubscriptionsPaging
 
-class getOrganizationSubscriptions(GQLObject):
+class getOrganizationSubscriptions(GQLQuery):
    """
    getOrganizationSubscriptions - [will be deprecated; do not use] Get the subscriptions owned by an organization
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1945,12 +1945,12 @@ class getOrganizationSubscriptions(GQLObject):
 
    type: OrgSubscriptions
 
-class subscriptions(GQLObject):
+class subscriptions(GQLQuery):
    """
    subscriptions - Returns a set of subscriptions
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SubscriptionsWhereInput
       pagination: PaginationInput
 
@@ -1959,12 +1959,12 @@ class subscriptions(GQLObject):
 
    type: SubscriptionConnection
 
-class subscription(GQLObject):
+class subscription(GQLQuery):
    """
    subscription - Returns one subscription.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int
 
    _args: Args
@@ -1976,19 +1976,19 @@ subscriptionsCount = list[SubscriptionsCount]
 
 getTagsList = list[TagDefinition]
 
-class tagDefinitions(GQLObject):
+class tagDefinitions(GQLQuery):
    """
    tagDefinitions - Returns the tag's definitions 
 
    """
    type: TagDefinitionConnection
 
-class paginatedTeamUsersByOrganizationId(GQLObject):
+class paginatedTeamUsersByOrganizationId(GQLQuery):
    """
    paginatedTeamUsersByOrganizationId - Get organization users ( should be deprecated , please don't use)
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orgId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1997,12 +1997,12 @@ class paginatedTeamUsersByOrganizationId(GQLObject):
 
    type: PaginatedTeamUsers
 
-class paginatedTeamUsersByOrganizationIdV2(GQLObject):
+class paginatedTeamUsersByOrganizationIdV2(GQLQuery):
    """
    paginatedTeamUsersByOrganizationIdV2 - Get organization users 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orgId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -2011,12 +2011,12 @@ class paginatedTeamUsersByOrganizationIdV2(GQLObject):
 
    type: PaginatedTeamUsers
 
-class teamUserByEmailAndOrgId(GQLObject):
+class teamUserByEmailAndOrgId(GQLQuery):
    """
    teamUserByEmailAndOrgId - Get user in a team by email and Organization id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       email: str
       orgId: int
 
@@ -2025,12 +2025,12 @@ class teamUserByEmailAndOrgId(GQLObject):
 
    type: TeamUser
 
-class teamUser(GQLObject):
+class teamUser(GQLQuery):
    """
    teamUser - Get user by organization Id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: TeamUserWhereInput ##NON NULL
 
    _args: Args
@@ -2040,12 +2040,12 @@ class teamUser(GQLObject):
 
 findUsersInOrganization = list[TeamUser]
 
-class teamByTeamId(GQLObject):
+class teamByTeamId(GQLQuery):
    """
    teamByTeamId - get a team based on it's team id and organization id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       teamId: int
       orgId: int
 
@@ -2056,12 +2056,12 @@ class teamByTeamId(GQLObject):
 
 teamsByOrganizationId = list[Team]
 
-class getTeamBySlugifiedName(GQLObject):
+class getTeamBySlugifiedName(GQLQuery):
    """
    getTeamBySlugifiedName - Gets teams by slugified key
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       slugifiedName: str
 
    _args: Args
@@ -2071,12 +2071,12 @@ class getTeamBySlugifiedName(GQLObject):
 
 searchTeams = list[Team]
 
-class team(GQLObject):
+class team(GQLQuery):
    """
    team - get a team based on its id
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -2086,19 +2086,19 @@ class team(GQLObject):
 
 teams = list[Team]
 
-class tenant(GQLObject):
+class tenant(GQLQuery):
    """
    tenant - Get tenant by tenant ID.
 
    """
    type: Tenant
 
-class transactions(GQLObject):
+class transactions(GQLQuery):
    """
    transactions - Get all transactions by the filters in 'where' input.\n\nNote: Pagination using PaginationInput is only partially supported.\nUse PagingArgs in Where input instead, both for pagination and for sorting.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: TransactionsWhereInput
       pagination: PaginationInput
 
@@ -2107,12 +2107,12 @@ class transactions(GQLObject):
 
    type: TransactionConnection
 
-class transactionsSummary(GQLObject):
+class transactionsSummary(GQLQuery):
    """
    transactionsSummary - Get details about transactions
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: TransactionsSummaryWhereInput
 
    _args: Args
@@ -2120,12 +2120,12 @@ class transactionsSummary(GQLObject):
 
    type: TransactionsSummary
 
-class transformations(GQLObject):
+class transformations(GQLQuery):
    """
    transformations - Get a list of all the transformations from the API Version
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: TransformationWhereInput
       orderBy: TransformationOrderByInput
       pagination: PaginationInput
@@ -2135,12 +2135,12 @@ class transformations(GQLObject):
 
    type: TransformationConnection ##NON NULL
 
-class tutorials(GQLObject):
+class tutorials(GQLQuery):
    """
    tutorials - Returns the tutorials for a specified API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: TutorialWhereInput ##NON NULL
       orderBy: TutorialOrderByInput
       pagination: PaginationInput
@@ -2164,12 +2164,12 @@ getUsagesAndParentUsageForSubscriptionByBuckets = list[UsagesStats]
 
 getUsagesAgrregatedByTeamsForSubscriptionByBuckets = list[UsagesStats]
 
-class organizationQuotaUsageByApiIdV2(GQLObject):
+class organizationQuotaUsageByApiIdV2(GQLQuery):
    """
    organizationQuotaUsageByApiIdV2 - Returns the usage of an organization's quota by one API
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       apiId: ID
       apiVersionId: ID
       internalData: Any
@@ -2179,12 +2179,12 @@ class organizationQuotaUsageByApiIdV2(GQLObject):
 
    type: OrganizationApiUsagesV2
 
-class getUserInviteByToken(GQLObject):
+class getUserInviteByToken(GQLQuery):
    """
    getUserInviteByToken - Get all user invited instances by per organization level token 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       token: str ##NON NULL
 
    _args: Args
@@ -2194,12 +2194,12 @@ class getUserInviteByToken(GQLObject):
 
 checkUserInvitesBranding = bool
 
-class checkIfEmailsAlreadyInvited(GQLObject):
+class checkIfEmailsAlreadyInvited(GQLQuery):
    """
    checkIfEmailsAlreadyInvited - check if user is already invite to an organization 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       orgId: ID ##NON NULL
       emails: list[str] ##NON NULL
 
@@ -2210,12 +2210,12 @@ class checkIfEmailsAlreadyInvited(GQLObject):
 
 searchUsersToInvite = list[InviteUsersSearch]
 
-class getUserSavedApis(GQLObject):
+class getUserSavedApis(GQLQuery):
    """
    getUserSavedApis - Gets uses saved APIs
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       userCollectionId: str
 
    _args: Args
@@ -2223,12 +2223,12 @@ class getUserSavedApis(GQLObject):
 
    type: UserSavedApi ##NON NULL
 
-class userById(GQLObject):
+class userById(GQLQuery):
    """
    userById - Get user by ID
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: int
 
    _args: Args
@@ -2236,12 +2236,12 @@ class userById(GQLObject):
 
    type: User
 
-class userByUsername(GQLObject):
+class userByUsername(GQLQuery):
    """
    userByUsername - Get user by username
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       username: str
       includeUserAttributes: bool
 
@@ -2254,12 +2254,12 @@ getPrivateApisJwt = str
 
 searchUsers = list[User]
 
-class searchUsersV2(GQLObject):
+class searchUsersV2(GQLQuery):
    """
    searchUsersV2 - Returns a list of users
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       where: SearchUsersWhereInput ##NON NULL
 
    _args: Args
@@ -2267,12 +2267,12 @@ class searchUsersV2(GQLObject):
 
    type: User ##NON NULL
 
-class user(GQLObject):
+class user(GQLQuery):
    """
    user - Get details about a user
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -2286,12 +2286,12 @@ getVirtualPermissions = list[Permission]
 
 virtualPermissions = list[VirtualPermission]
 
-class getWorkflowsForProvider(GQLObject):
+class getWorkflowsForProvider(GQLQuery):
    """
    getWorkflowsForProvider - Get the approval list requested to the the API caller that is a provider
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -2300,12 +2300,12 @@ class getWorkflowsForProvider(GQLObject):
 
    type: WorkFlowsResponse
 
-class getWorkflowsForDeveloper(GQLObject):
+class getWorkflowsForDeveloper(GQLQuery):
    """
    getWorkflowsForDeveloper - Get the approval list requested by the API caller 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -2314,12 +2314,12 @@ class getWorkflowsForDeveloper(GQLObject):
 
    type: WorkFlowsResponse
 
-class getWorkflowsByRequestor(GQLObject):
+class getWorkflowsByRequestor(GQLQuery):
    """
    getWorkflowsByRequestor - Get the approval list requested to the  the API caller
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -2328,12 +2328,12 @@ class getWorkflowsByRequestor(GQLObject):
 
    type: WorkFlowsResponse
 
-class getWorkflowsByRequestee(GQLObject):
+class getWorkflowsByRequestee(GQLQuery):
    """
    getWorkflowsByRequestee - Get the approval list requested by the API caller
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -2344,12 +2344,12 @@ class getWorkflowsByRequestee(GQLObject):
 
 canWorkflowBeSubmitted = bool
 
-class getWorkflowAudits(GQLObject):
+class getWorkflowAudits(GQLQuery):
    """
    getWorkflowAudits - Get workflows operations audits 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       workflowId: int
 
    _args: Args

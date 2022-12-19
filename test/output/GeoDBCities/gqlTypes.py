@@ -1,7 +1,7 @@
 from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from typing import NewType
 from .gqlSimpleTypes import *
 from .enums import *
@@ -82,7 +82,7 @@ class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnecti
    RegionPopulatedPlacesConnectionField - Find populated places in this region
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       namePrefix - Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -190,7 +190,7 @@ class CountryRegionField(CountryRegion):
    CountryRegionField - Look up a region in this country
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       code - An ISO-3166 or FIPS region code
 
@@ -206,7 +206,7 @@ class CountryRegionsConnectionField(CountryRegionsConnection):
    CountryRegionsConnectionField - Find regions in this country
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       namePrefix - Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -288,7 +288,7 @@ class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
    NearbyPopulatedPlacesConnectionField - Find nearby populated places
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       radius - The location radius within which to find places
 

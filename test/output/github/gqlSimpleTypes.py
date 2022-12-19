@@ -1,7 +1,7 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
@@ -10,7 +10,7 @@ class organizationVerifiedDomainEmailsField(ArguedStr):
    organizationVerifiedDomainEmailsField - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       login - The login of the organization to match verified domains from.
 
@@ -26,7 +26,7 @@ class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
    canReceiveOrganizationEmailsWhenNotificationsRestrictedField - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       login - The login of the organization to check.
 
@@ -42,7 +42,7 @@ class anyPinnableItemsField(ArguedStr):
    anyPinnableItemsField - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       type - Filter to only a particular kind of pinnable item.
 
@@ -58,7 +58,7 @@ class isSponsoredByField(ArguedStr):
    isSponsoredByField - Check if the given account is sponsoring this user/organization.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       accountLogin - The target account's login.
 
@@ -74,7 +74,7 @@ class textField(ArguedStr):
    textField - UTF8 text data or null if the file is binary
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       truncate - Optionally truncate the returned file to this length.
 
@@ -90,7 +90,7 @@ class totalRepositoryContributionsField(ArguedStr):
    totalRepositoryContributionsField - How many repositories the user created.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first repository ever be excluded from this count.
 
@@ -106,7 +106,7 @@ class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
    totalRepositoriesWithContributedPullRequestsField - How many different repositories the user opened pull requests in.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first pull request ever be excluded from this count.
 
@@ -125,7 +125,7 @@ class totalRepositoriesWithContributedIssuesField(ArguedStr):
    totalRepositoriesWithContributedIssuesField - How many different repositories the user opened issues in.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first issue ever be excluded from this count.
 
@@ -144,7 +144,7 @@ class totalPullRequestContributionsField(ArguedStr):
    totalPullRequestContributionsField - How many pull requests the user opened.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first pull request ever be excluded from this count.
 
@@ -163,7 +163,7 @@ class totalIssueContributionsField(ArguedStr):
    totalIssueContributionsField - How many issues the user opened.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first issue ever be excluded from this count.
 
@@ -182,7 +182,7 @@ class viewerMergeHeadlineTextField(ArguedStr):
    viewerMergeHeadlineTextField - The merge headline text for the viewer and method.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       mergeType - The merge method for the message.
 
@@ -198,7 +198,7 @@ class viewerMergeBodyTextField(ArguedStr):
    viewerMergeBodyTextField - The merge body text for the viewer and method.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       mergeType - The merge method for the message.
 
@@ -214,7 +214,7 @@ class trackedIssuesCountField(ArguedStr):
    trackedIssuesCountField - The number of tracked issues for this issue
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       states - Limit the count to tracked issues with the specified states.
 
@@ -230,7 +230,7 @@ class HTMLField(ArguedStr):
    HTMLField - A description of the release, rendered to HTML without any links in it.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       limit - How many characters to return.
 
@@ -246,7 +246,7 @@ class URIField(ArguedStr):
    URIField - A URL pointing to the GitHub App's public avatar.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       size - The size of the resulting square image.
 
@@ -1191,7 +1191,7 @@ class isRequiredField(ArguedStr):
    isRequiredField - Whether this is required to pass before merging for a specific pull request.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       pullRequestId - The id of the pull request this is required for
 

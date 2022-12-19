@@ -1,7 +1,7 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
@@ -13,7 +13,7 @@ This field has two forms:
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.
 
    """
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       toPlaceId - The distance to this place
 

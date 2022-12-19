@@ -1,16 +1,16 @@
-from pygqlmap.components import GQLOperationArgs
+from pygqlmap.components import GQLOperationArgs, GQLMutation
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
 
-class abortQueuedMigrations(GQLObject):
+class abortQueuedMigrations(GQLMutation):
    """
    abortQueuedMigrations - Clear all of a customer's queued migrations
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AbortQueuedMigrations
 
@@ -22,12 +22,12 @@ class abortQueuedMigrations(GQLObject):
 
    type: AbortQueuedMigrationsPayload
 
-class acceptEnterpriseAdministratorInvitation(GQLObject):
+class acceptEnterpriseAdministratorInvitation(GQLMutation):
    """
    acceptEnterpriseAdministratorInvitation - Accepts a pending invitation for a user to become an administrator of an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AcceptEnterpriseAdministratorInvitation
 
@@ -39,12 +39,12 @@ class acceptEnterpriseAdministratorInvitation(GQLObject):
 
    type: AcceptEnterpriseAdministratorInvitationPayload
 
-class acceptTopicSuggestion(GQLObject):
+class acceptTopicSuggestion(GQLMutation):
    """
    acceptTopicSuggestion - Applies a suggested topic to the repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AcceptTopicSuggestion
 
@@ -56,12 +56,12 @@ class acceptTopicSuggestion(GQLObject):
 
    type: AcceptTopicSuggestionPayload
 
-class addAssigneesToAssignable(GQLObject):
+class addAssigneesToAssignable(GQLMutation):
    """
    addAssigneesToAssignable - Adds assignees to an assignable object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddAssigneesToAssignable
 
@@ -73,12 +73,12 @@ class addAssigneesToAssignable(GQLObject):
 
    type: AddAssigneesToAssignablePayload
 
-class addComment(GQLObject):
+class addComment(GQLMutation):
    """
    addComment - Adds a comment to an Issue or Pull Request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddComment
 
@@ -90,12 +90,12 @@ class addComment(GQLObject):
 
    type: AddCommentPayload
 
-class addDiscussionComment(GQLObject):
+class addDiscussionComment(GQLMutation):
    """
    addDiscussionComment - Adds a comment to a Discussion, possibly as a reply to another comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddDiscussionComment
 
@@ -107,12 +107,12 @@ class addDiscussionComment(GQLObject):
 
    type: AddDiscussionCommentPayload
 
-class addDiscussionPollVote(GQLObject):
+class addDiscussionPollVote(GQLMutation):
    """
    addDiscussionPollVote - Vote for an option in a discussion poll.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddDiscussionPollVote
 
@@ -124,12 +124,12 @@ class addDiscussionPollVote(GQLObject):
 
    type: AddDiscussionPollVotePayload
 
-class addEnterpriseOrganizationMember(GQLObject):
+class addEnterpriseOrganizationMember(GQLMutation):
    """
    addEnterpriseOrganizationMember - Adds enterprise members to an organization within the enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddEnterpriseOrganizationMember
 
@@ -141,12 +141,12 @@ class addEnterpriseOrganizationMember(GQLObject):
 
    type: AddEnterpriseOrganizationMemberPayload
 
-class addEnterpriseSupportEntitlement(GQLObject):
+class addEnterpriseSupportEntitlement(GQLMutation):
    """
    addEnterpriseSupportEntitlement - Adds a support entitlement to an enterprise member.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddEnterpriseSupportEntitlement
 
@@ -158,12 +158,12 @@ class addEnterpriseSupportEntitlement(GQLObject):
 
    type: AddEnterpriseSupportEntitlementPayload
 
-class addLabelsToLabelable(GQLObject):
+class addLabelsToLabelable(GQLMutation):
    """
    addLabelsToLabelable - Adds labels to a labelable object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddLabelsToLabelable
 
@@ -175,12 +175,12 @@ class addLabelsToLabelable(GQLObject):
 
    type: AddLabelsToLabelablePayload
 
-class addProjectCard(GQLObject):
+class addProjectCard(GQLMutation):
    """
    addProjectCard - Adds a card to a ProjectColumn. Either `contentId` or `note` must be provided but **not** both.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectCard
 
@@ -192,12 +192,12 @@ class addProjectCard(GQLObject):
 
    type: AddProjectCardPayload
 
-class addProjectColumn(GQLObject):
+class addProjectColumn(GQLMutation):
    """
    addProjectColumn - Adds a column to a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectColumn
 
@@ -209,12 +209,12 @@ class addProjectColumn(GQLObject):
 
    type: AddProjectColumnPayload
 
-class addProjectDraftIssue(GQLObject):
+class addProjectDraftIssue(GQLMutation):
    """
    addProjectDraftIssue - Creates a new draft issue and add it to a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectDraftIssue
 
@@ -226,12 +226,12 @@ class addProjectDraftIssue(GQLObject):
 
    type: AddProjectDraftIssuePayload
 
-class addProjectNextItem(GQLObject):
+class addProjectNextItem(GQLMutation):
    """
    addProjectNextItem - Adds an existing item (Issue or PullRequest) to a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectNextItem
 
@@ -243,12 +243,12 @@ class addProjectNextItem(GQLObject):
 
    type: AddProjectNextItemPayload
 
-class addProjectV2DraftIssue(GQLObject):
+class addProjectV2DraftIssue(GQLMutation):
    """
    addProjectV2DraftIssue - Creates a new draft issue and add it to a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectV2DraftIssue
 
@@ -260,12 +260,12 @@ class addProjectV2DraftIssue(GQLObject):
 
    type: AddProjectV2DraftIssuePayload
 
-class addProjectV2ItemById(GQLObject):
+class addProjectV2ItemById(GQLMutation):
    """
    addProjectV2ItemById - Links an existing content instance to a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddProjectV2ItemById
 
@@ -277,12 +277,12 @@ class addProjectV2ItemById(GQLObject):
 
    type: AddProjectV2ItemByIdPayload
 
-class addPullRequestReview(GQLObject):
+class addPullRequestReview(GQLMutation):
    """
    addPullRequestReview - Adds a review to a Pull Request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddPullRequestReview
 
@@ -294,12 +294,12 @@ class addPullRequestReview(GQLObject):
 
    type: AddPullRequestReviewPayload
 
-class addPullRequestReviewComment(GQLObject):
+class addPullRequestReviewComment(GQLMutation):
    """
    addPullRequestReviewComment - Adds a comment to a review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddPullRequestReviewComment
 
@@ -311,12 +311,12 @@ class addPullRequestReviewComment(GQLObject):
 
    type: AddPullRequestReviewCommentPayload
 
-class addPullRequestReviewThread(GQLObject):
+class addPullRequestReviewThread(GQLMutation):
    """
    addPullRequestReviewThread - Adds a new thread to a pending Pull Request Review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddPullRequestReviewThread
 
@@ -328,12 +328,12 @@ class addPullRequestReviewThread(GQLObject):
 
    type: AddPullRequestReviewThreadPayload
 
-class addReaction(GQLObject):
+class addReaction(GQLMutation):
    """
    addReaction - Adds a reaction to a subject.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddReaction
 
@@ -345,12 +345,12 @@ class addReaction(GQLObject):
 
    type: AddReactionPayload
 
-class addStar(GQLObject):
+class addStar(GQLMutation):
    """
    addStar - Adds a star to a Starrable.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddStar
 
@@ -362,12 +362,12 @@ class addStar(GQLObject):
 
    type: AddStarPayload
 
-class addUpvote(GQLObject):
+class addUpvote(GQLMutation):
    """
    addUpvote - Add an upvote to a discussion or discussion comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddUpvote
 
@@ -379,12 +379,12 @@ class addUpvote(GQLObject):
 
    type: AddUpvotePayload
 
-class addVerifiableDomain(GQLObject):
+class addVerifiableDomain(GQLMutation):
    """
    addVerifiableDomain - Adds a verifiable domain to an owning account.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for AddVerifiableDomain
 
@@ -396,12 +396,12 @@ class addVerifiableDomain(GQLObject):
 
    type: AddVerifiableDomainPayload
 
-class approveDeployments(GQLObject):
+class approveDeployments(GQLMutation):
    """
    approveDeployments - Approve all pending deployments under one or more environments
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ApproveDeployments
 
@@ -413,12 +413,12 @@ class approveDeployments(GQLObject):
 
    type: ApproveDeploymentsPayload
 
-class approveVerifiableDomain(GQLObject):
+class approveVerifiableDomain(GQLMutation):
    """
    approveVerifiableDomain - Approve a verifiable domain for notification delivery.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ApproveVerifiableDomain
 
@@ -430,12 +430,12 @@ class approveVerifiableDomain(GQLObject):
 
    type: ApproveVerifiableDomainPayload
 
-class archiveProjectV2Item(GQLObject):
+class archiveProjectV2Item(GQLMutation):
    """
    archiveProjectV2Item - Archives a ProjectV2Item
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ArchiveProjectV2Item
 
@@ -447,12 +447,12 @@ class archiveProjectV2Item(GQLObject):
 
    type: ArchiveProjectV2ItemPayload
 
-class archiveRepository(GQLObject):
+class archiveRepository(GQLMutation):
    """
    archiveRepository - Marks a repository as archived.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ArchiveRepository
 
@@ -464,12 +464,12 @@ class archiveRepository(GQLObject):
 
    type: ArchiveRepositoryPayload
 
-class cancelEnterpriseAdminInvitation(GQLObject):
+class cancelEnterpriseAdminInvitation(GQLMutation):
    """
    cancelEnterpriseAdminInvitation - Cancels a pending invitation for an administrator to join an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CancelEnterpriseAdminInvitation
 
@@ -481,12 +481,12 @@ class cancelEnterpriseAdminInvitation(GQLObject):
 
    type: CancelEnterpriseAdminInvitationPayload
 
-class cancelSponsorship(GQLObject):
+class cancelSponsorship(GQLMutation):
    """
    cancelSponsorship - Cancel an active sponsorship.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CancelSponsorship
 
@@ -498,12 +498,12 @@ class cancelSponsorship(GQLObject):
 
    type: CancelSponsorshipPayload
 
-class changeUserStatus(GQLObject):
+class changeUserStatus(GQLMutation):
    """
    changeUserStatus - Update your status on GitHub.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ChangeUserStatus
 
@@ -515,12 +515,12 @@ class changeUserStatus(GQLObject):
 
    type: ChangeUserStatusPayload
 
-class clearLabelsFromLabelable(GQLObject):
+class clearLabelsFromLabelable(GQLMutation):
    """
    clearLabelsFromLabelable - Clears all labels from a labelable object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ClearLabelsFromLabelable
 
@@ -532,12 +532,12 @@ class clearLabelsFromLabelable(GQLObject):
 
    type: ClearLabelsFromLabelablePayload
 
-class clearProjectV2ItemFieldValue(GQLObject):
+class clearProjectV2ItemFieldValue(GQLMutation):
    """
    clearProjectV2ItemFieldValue - This mutation clears the value of a field for an item in a Project. Currently only text, number, date, assignees, labels, single-select, iteration and milestone fields are supported.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ClearProjectV2ItemFieldValue
 
@@ -549,12 +549,12 @@ class clearProjectV2ItemFieldValue(GQLObject):
 
    type: ClearProjectV2ItemFieldValuePayload
 
-class cloneProject(GQLObject):
+class cloneProject(GQLMutation):
    """
    cloneProject - Creates a new project by cloning configuration from an existing project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CloneProject
 
@@ -566,12 +566,12 @@ class cloneProject(GQLObject):
 
    type: CloneProjectPayload
 
-class cloneTemplateRepository(GQLObject):
+class cloneTemplateRepository(GQLMutation):
    """
    cloneTemplateRepository - Create a new repository with the same files and directory structure as a template repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CloneTemplateRepository
 
@@ -583,12 +583,12 @@ class cloneTemplateRepository(GQLObject):
 
    type: CloneTemplateRepositoryPayload
 
-class closeIssue(GQLObject):
+class closeIssue(GQLMutation):
    """
    closeIssue - Close an issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CloseIssue
 
@@ -600,12 +600,12 @@ class closeIssue(GQLObject):
 
    type: CloseIssuePayload
 
-class closePullRequest(GQLObject):
+class closePullRequest(GQLMutation):
    """
    closePullRequest - Close a pull request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ClosePullRequest
 
@@ -617,12 +617,12 @@ class closePullRequest(GQLObject):
 
    type: ClosePullRequestPayload
 
-class convertProjectCardNoteToIssue(GQLObject):
+class convertProjectCardNoteToIssue(GQLMutation):
    """
    convertProjectCardNoteToIssue - Convert a project note card to one associated with a newly created issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ConvertProjectCardNoteToIssue
 
@@ -634,12 +634,12 @@ class convertProjectCardNoteToIssue(GQLObject):
 
    type: ConvertProjectCardNoteToIssuePayload
 
-class convertPullRequestToDraft(GQLObject):
+class convertPullRequestToDraft(GQLMutation):
    """
    convertPullRequestToDraft - Converts a pull request to draft
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ConvertPullRequestToDraft
 
@@ -651,12 +651,12 @@ class convertPullRequestToDraft(GQLObject):
 
    type: ConvertPullRequestToDraftPayload
 
-class createAttributionInvitation(GQLObject):
+class createAttributionInvitation(GQLMutation):
    """
    createAttributionInvitation - Invites a user to claim reattributable data
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateAttributionInvitation
 
@@ -668,12 +668,12 @@ class createAttributionInvitation(GQLObject):
 
    type: CreateAttributionInvitationPayload
 
-class createBranchProtectionRule(GQLObject):
+class createBranchProtectionRule(GQLMutation):
    """
    createBranchProtectionRule - Create a new branch protection rule
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateBranchProtectionRule
 
@@ -685,12 +685,12 @@ class createBranchProtectionRule(GQLObject):
 
    type: CreateBranchProtectionRulePayload
 
-class createCheckRun(GQLObject):
+class createCheckRun(GQLMutation):
    """
    createCheckRun - Create a check run.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateCheckRun
 
@@ -702,12 +702,12 @@ class createCheckRun(GQLObject):
 
    type: CreateCheckRunPayload
 
-class createCheckSuite(GQLObject):
+class createCheckSuite(GQLMutation):
    """
    createCheckSuite - Create a check suite
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateCheckSuite
 
@@ -719,7 +719,7 @@ class createCheckSuite(GQLObject):
 
    type: CreateCheckSuitePayload
 
-class createCommitOnBranch(GQLObject):
+class createCommitOnBranch(GQLMutation):
    """
    createCommitOnBranch - Appends a commit to the given branch as the authenticated user.
 
@@ -766,7 +766,7 @@ supported and will be marked as verified in the user interface.
 
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateCommitOnBranch
 
@@ -778,12 +778,12 @@ supported and will be marked as verified in the user interface.
 
    type: CreateCommitOnBranchPayload
 
-class createDiscussion(GQLObject):
+class createDiscussion(GQLMutation):
    """
    createDiscussion - Create a discussion.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateDiscussion
 
@@ -795,12 +795,12 @@ class createDiscussion(GQLObject):
 
    type: CreateDiscussionPayload
 
-class createEnterpriseOrganization(GQLObject):
+class createEnterpriseOrganization(GQLMutation):
    """
    createEnterpriseOrganization - Creates an organization as part of an enterprise account.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateEnterpriseOrganization
 
@@ -812,12 +812,12 @@ class createEnterpriseOrganization(GQLObject):
 
    type: CreateEnterpriseOrganizationPayload
 
-class createEnvironment(GQLObject):
+class createEnvironment(GQLMutation):
    """
    createEnvironment - Creates an environment or simply returns it if already exists.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateEnvironment
 
@@ -829,12 +829,12 @@ class createEnvironment(GQLObject):
 
    type: CreateEnvironmentPayload
 
-class createIpAllowListEntry(GQLObject):
+class createIpAllowListEntry(GQLMutation):
    """
    createIpAllowListEntry - Creates a new IP allow list entry.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateIpAllowListEntry
 
@@ -846,12 +846,12 @@ class createIpAllowListEntry(GQLObject):
 
    type: CreateIpAllowListEntryPayload
 
-class createIssue(GQLObject):
+class createIssue(GQLMutation):
    """
    createIssue - Creates a new issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateIssue
 
@@ -863,12 +863,12 @@ class createIssue(GQLObject):
 
    type: CreateIssuePayload
 
-class createLinkedBranch(GQLObject):
+class createLinkedBranch(GQLMutation):
    """
    createLinkedBranch - Create a branch linked to an issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateLinkedBranch
 
@@ -880,12 +880,12 @@ class createLinkedBranch(GQLObject):
 
    type: CreateLinkedBranchPayload
 
-class createMigrationSource(GQLObject):
+class createMigrationSource(GQLMutation):
    """
    createMigrationSource - Creates a GitHub Enterprise Importer (GEI) migration source.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateMigrationSource
 
@@ -897,12 +897,12 @@ class createMigrationSource(GQLObject):
 
    type: CreateMigrationSourcePayload
 
-class createProject(GQLObject):
+class createProject(GQLMutation):
    """
    createProject - Creates a new project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateProject
 
@@ -914,12 +914,12 @@ class createProject(GQLObject):
 
    type: CreateProjectPayload
 
-class createProjectV2(GQLObject):
+class createProjectV2(GQLMutation):
    """
    createProjectV2 - Creates a new project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateProjectV2
 
@@ -931,12 +931,12 @@ class createProjectV2(GQLObject):
 
    type: CreateProjectV2Payload
 
-class createPullRequest(GQLObject):
+class createPullRequest(GQLMutation):
    """
    createPullRequest - Create a new pull request
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreatePullRequest
 
@@ -948,12 +948,12 @@ class createPullRequest(GQLObject):
 
    type: CreatePullRequestPayload
 
-class createRef(GQLObject):
+class createRef(GQLMutation):
    """
    createRef - Create a new Git Ref.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateRef
 
@@ -965,12 +965,12 @@ class createRef(GQLObject):
 
    type: CreateRefPayload
 
-class createRepository(GQLObject):
+class createRepository(GQLMutation):
    """
    createRepository - Create a new repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateRepository
 
@@ -982,12 +982,12 @@ class createRepository(GQLObject):
 
    type: CreateRepositoryPayload
 
-class createSponsorsListing(GQLObject):
+class createSponsorsListing(GQLMutation):
    """
    createSponsorsListing - Create a GitHub Sponsors profile to allow others to sponsor you or your organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateSponsorsListing
 
@@ -999,12 +999,12 @@ class createSponsorsListing(GQLObject):
 
    type: CreateSponsorsListingPayload
 
-class createSponsorsTier(GQLObject):
+class createSponsorsTier(GQLMutation):
    """
    createSponsorsTier - Create a new payment tier for your GitHub Sponsors profile.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateSponsorsTier
 
@@ -1016,12 +1016,12 @@ class createSponsorsTier(GQLObject):
 
    type: CreateSponsorsTierPayload
 
-class createSponsorship(GQLObject):
+class createSponsorship(GQLMutation):
    """
    createSponsorship - Start a new sponsorship of a maintainer in GitHub Sponsors, or reactivate a past sponsorship.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateSponsorship
 
@@ -1033,12 +1033,12 @@ class createSponsorship(GQLObject):
 
    type: CreateSponsorshipPayload
 
-class createTeamDiscussion(GQLObject):
+class createTeamDiscussion(GQLMutation):
    """
    createTeamDiscussion - Creates a new team discussion.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateTeamDiscussion
 
@@ -1050,12 +1050,12 @@ class createTeamDiscussion(GQLObject):
 
    type: CreateTeamDiscussionPayload
 
-class createTeamDiscussionComment(GQLObject):
+class createTeamDiscussionComment(GQLMutation):
    """
    createTeamDiscussionComment - Creates a new team discussion comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for CreateTeamDiscussionComment
 
@@ -1067,12 +1067,12 @@ class createTeamDiscussionComment(GQLObject):
 
    type: CreateTeamDiscussionCommentPayload
 
-class declineTopicSuggestion(GQLObject):
+class declineTopicSuggestion(GQLMutation):
    """
    declineTopicSuggestion - Rejects a suggested topic for the repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeclineTopicSuggestion
 
@@ -1084,12 +1084,12 @@ class declineTopicSuggestion(GQLObject):
 
    type: DeclineTopicSuggestionPayload
 
-class deleteBranchProtectionRule(GQLObject):
+class deleteBranchProtectionRule(GQLMutation):
    """
    deleteBranchProtectionRule - Delete a branch protection rule
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteBranchProtectionRule
 
@@ -1101,12 +1101,12 @@ class deleteBranchProtectionRule(GQLObject):
 
    type: DeleteBranchProtectionRulePayload
 
-class deleteDeployment(GQLObject):
+class deleteDeployment(GQLMutation):
    """
    deleteDeployment - Deletes a deployment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteDeployment
 
@@ -1118,12 +1118,12 @@ class deleteDeployment(GQLObject):
 
    type: DeleteDeploymentPayload
 
-class deleteDiscussion(GQLObject):
+class deleteDiscussion(GQLMutation):
    """
    deleteDiscussion - Delete a discussion and all of its replies.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteDiscussion
 
@@ -1135,12 +1135,12 @@ class deleteDiscussion(GQLObject):
 
    type: DeleteDiscussionPayload
 
-class deleteDiscussionComment(GQLObject):
+class deleteDiscussionComment(GQLMutation):
    """
    deleteDiscussionComment - Delete a discussion comment. If it has replies, wipe it instead.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteDiscussionComment
 
@@ -1152,12 +1152,12 @@ class deleteDiscussionComment(GQLObject):
 
    type: DeleteDiscussionCommentPayload
 
-class deleteEnvironment(GQLObject):
+class deleteEnvironment(GQLMutation):
    """
    deleteEnvironment - Deletes an environment
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteEnvironment
 
@@ -1169,12 +1169,12 @@ class deleteEnvironment(GQLObject):
 
    type: DeleteEnvironmentPayload
 
-class deleteIpAllowListEntry(GQLObject):
+class deleteIpAllowListEntry(GQLMutation):
    """
    deleteIpAllowListEntry - Deletes an IP allow list entry.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteIpAllowListEntry
 
@@ -1186,12 +1186,12 @@ class deleteIpAllowListEntry(GQLObject):
 
    type: DeleteIpAllowListEntryPayload
 
-class deleteIssue(GQLObject):
+class deleteIssue(GQLMutation):
    """
    deleteIssue - Deletes an Issue object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteIssue
 
@@ -1203,12 +1203,12 @@ class deleteIssue(GQLObject):
 
    type: DeleteIssuePayload
 
-class deleteIssueComment(GQLObject):
+class deleteIssueComment(GQLMutation):
    """
    deleteIssueComment - Deletes an IssueComment object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteIssueComment
 
@@ -1220,12 +1220,12 @@ class deleteIssueComment(GQLObject):
 
    type: DeleteIssueCommentPayload
 
-class deleteLinkedBranch(GQLObject):
+class deleteLinkedBranch(GQLMutation):
    """
    deleteLinkedBranch - Unlink a branch from an issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteLinkedBranch
 
@@ -1237,12 +1237,12 @@ class deleteLinkedBranch(GQLObject):
 
    type: DeleteLinkedBranchPayload
 
-class deleteProject(GQLObject):
+class deleteProject(GQLMutation):
    """
    deleteProject - Deletes a project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteProject
 
@@ -1254,12 +1254,12 @@ class deleteProject(GQLObject):
 
    type: DeleteProjectPayload
 
-class deleteProjectCard(GQLObject):
+class deleteProjectCard(GQLMutation):
    """
    deleteProjectCard - Deletes a project card.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteProjectCard
 
@@ -1271,12 +1271,12 @@ class deleteProjectCard(GQLObject):
 
    type: DeleteProjectCardPayload
 
-class deleteProjectColumn(GQLObject):
+class deleteProjectColumn(GQLMutation):
    """
    deleteProjectColumn - Deletes a project column.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteProjectColumn
 
@@ -1288,12 +1288,12 @@ class deleteProjectColumn(GQLObject):
 
    type: DeleteProjectColumnPayload
 
-class deleteProjectNextItem(GQLObject):
+class deleteProjectNextItem(GQLMutation):
    """
    deleteProjectNextItem - Deletes an item from a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteProjectNextItem
 
@@ -1305,12 +1305,12 @@ class deleteProjectNextItem(GQLObject):
 
    type: DeleteProjectNextItemPayload
 
-class deleteProjectV2Item(GQLObject):
+class deleteProjectV2Item(GQLMutation):
    """
    deleteProjectV2Item - Deletes an item from a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteProjectV2Item
 
@@ -1322,12 +1322,12 @@ class deleteProjectV2Item(GQLObject):
 
    type: DeleteProjectV2ItemPayload
 
-class deletePullRequestReview(GQLObject):
+class deletePullRequestReview(GQLMutation):
    """
    deletePullRequestReview - Deletes a pull request review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeletePullRequestReview
 
@@ -1339,12 +1339,12 @@ class deletePullRequestReview(GQLObject):
 
    type: DeletePullRequestReviewPayload
 
-class deletePullRequestReviewComment(GQLObject):
+class deletePullRequestReviewComment(GQLMutation):
    """
    deletePullRequestReviewComment - Deletes a pull request review comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeletePullRequestReviewComment
 
@@ -1356,12 +1356,12 @@ class deletePullRequestReviewComment(GQLObject):
 
    type: DeletePullRequestReviewCommentPayload
 
-class deleteRef(GQLObject):
+class deleteRef(GQLMutation):
    """
    deleteRef - Delete a Git Ref.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteRef
 
@@ -1373,12 +1373,12 @@ class deleteRef(GQLObject):
 
    type: DeleteRefPayload
 
-class deleteTeamDiscussion(GQLObject):
+class deleteTeamDiscussion(GQLMutation):
    """
    deleteTeamDiscussion - Deletes a team discussion.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteTeamDiscussion
 
@@ -1390,12 +1390,12 @@ class deleteTeamDiscussion(GQLObject):
 
    type: DeleteTeamDiscussionPayload
 
-class deleteTeamDiscussionComment(GQLObject):
+class deleteTeamDiscussionComment(GQLMutation):
    """
    deleteTeamDiscussionComment - Deletes a team discussion comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteTeamDiscussionComment
 
@@ -1407,12 +1407,12 @@ class deleteTeamDiscussionComment(GQLObject):
 
    type: DeleteTeamDiscussionCommentPayload
 
-class deleteVerifiableDomain(GQLObject):
+class deleteVerifiableDomain(GQLMutation):
    """
    deleteVerifiableDomain - Deletes a verifiable domain.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DeleteVerifiableDomain
 
@@ -1424,12 +1424,12 @@ class deleteVerifiableDomain(GQLObject):
 
    type: DeleteVerifiableDomainPayload
 
-class disablePullRequestAutoMerge(GQLObject):
+class disablePullRequestAutoMerge(GQLMutation):
    """
    disablePullRequestAutoMerge - Disable auto merge on the given pull request
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DisablePullRequestAutoMerge
 
@@ -1441,12 +1441,12 @@ class disablePullRequestAutoMerge(GQLObject):
 
    type: DisablePullRequestAutoMergePayload
 
-class dismissPullRequestReview(GQLObject):
+class dismissPullRequestReview(GQLMutation):
    """
    dismissPullRequestReview - Dismisses an approved or rejected pull request review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DismissPullRequestReview
 
@@ -1458,12 +1458,12 @@ class dismissPullRequestReview(GQLObject):
 
    type: DismissPullRequestReviewPayload
 
-class dismissRepositoryVulnerabilityAlert(GQLObject):
+class dismissRepositoryVulnerabilityAlert(GQLMutation):
    """
    dismissRepositoryVulnerabilityAlert - Dismisses the Dependabot alert.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for DismissRepositoryVulnerabilityAlert
 
@@ -1475,12 +1475,12 @@ class dismissRepositoryVulnerabilityAlert(GQLObject):
 
    type: DismissRepositoryVulnerabilityAlertPayload
 
-class enablePullRequestAutoMerge(GQLObject):
+class enablePullRequestAutoMerge(GQLMutation):
    """
    enablePullRequestAutoMerge - Enable the default auto-merge on a pull request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for EnablePullRequestAutoMerge
 
@@ -1492,12 +1492,12 @@ class enablePullRequestAutoMerge(GQLObject):
 
    type: EnablePullRequestAutoMergePayload
 
-class followOrganization(GQLObject):
+class followOrganization(GQLMutation):
    """
    followOrganization - Follow an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for FollowOrganization
 
@@ -1509,12 +1509,12 @@ class followOrganization(GQLObject):
 
    type: FollowOrganizationPayload
 
-class followUser(GQLObject):
+class followUser(GQLMutation):
    """
    followUser - Follow a user.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for FollowUser
 
@@ -1526,12 +1526,12 @@ class followUser(GQLObject):
 
    type: FollowUserPayload
 
-class grantEnterpriseOrganizationsMigratorRole(GQLObject):
+class grantEnterpriseOrganizationsMigratorRole(GQLMutation):
    """
    grantEnterpriseOrganizationsMigratorRole - Grant the migrator role to a user for all organizations under an enterprise account.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for GrantEnterpriseOrganizationsMigratorRole
 
@@ -1543,12 +1543,12 @@ class grantEnterpriseOrganizationsMigratorRole(GQLObject):
 
    type: GrantEnterpriseOrganizationsMigratorRolePayload
 
-class grantMigratorRole(GQLObject):
+class grantMigratorRole(GQLMutation):
    """
    grantMigratorRole - Grant the migrator role to a user or a team.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for GrantMigratorRole
 
@@ -1560,12 +1560,12 @@ class grantMigratorRole(GQLObject):
 
    type: GrantMigratorRolePayload
 
-class inviteEnterpriseAdmin(GQLObject):
+class inviteEnterpriseAdmin(GQLMutation):
    """
    inviteEnterpriseAdmin - Invite someone to become an administrator of the enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for InviteEnterpriseAdmin
 
@@ -1577,12 +1577,12 @@ class inviteEnterpriseAdmin(GQLObject):
 
    type: InviteEnterpriseAdminPayload
 
-class linkProjectV2ToRepository(GQLObject):
+class linkProjectV2ToRepository(GQLMutation):
    """
    linkProjectV2ToRepository - Links a project to a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for LinkProjectV2ToRepository
 
@@ -1594,12 +1594,12 @@ class linkProjectV2ToRepository(GQLObject):
 
    type: LinkProjectV2ToRepositoryPayload
 
-class linkProjectV2ToTeam(GQLObject):
+class linkProjectV2ToTeam(GQLMutation):
    """
    linkProjectV2ToTeam - Links a project to a team.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for LinkProjectV2ToTeam
 
@@ -1611,12 +1611,12 @@ class linkProjectV2ToTeam(GQLObject):
 
    type: LinkProjectV2ToTeamPayload
 
-class linkRepositoryToProject(GQLObject):
+class linkRepositoryToProject(GQLMutation):
    """
    linkRepositoryToProject - Creates a repository link for a project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for LinkRepositoryToProject
 
@@ -1628,12 +1628,12 @@ class linkRepositoryToProject(GQLObject):
 
    type: LinkRepositoryToProjectPayload
 
-class lockLockable(GQLObject):
+class lockLockable(GQLMutation):
    """
    lockLockable - Lock a lockable object
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for LockLockable
 
@@ -1645,12 +1645,12 @@ class lockLockable(GQLObject):
 
    type: LockLockablePayload
 
-class markDiscussionCommentAsAnswer(GQLObject):
+class markDiscussionCommentAsAnswer(GQLMutation):
    """
    markDiscussionCommentAsAnswer - Mark a discussion comment as the chosen answer for discussions in an answerable category.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MarkDiscussionCommentAsAnswer
 
@@ -1662,12 +1662,12 @@ class markDiscussionCommentAsAnswer(GQLObject):
 
    type: MarkDiscussionCommentAsAnswerPayload
 
-class markFileAsViewed(GQLObject):
+class markFileAsViewed(GQLMutation):
    """
    markFileAsViewed - Mark a pull request file as viewed
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MarkFileAsViewed
 
@@ -1679,12 +1679,12 @@ class markFileAsViewed(GQLObject):
 
    type: MarkFileAsViewedPayload
 
-class markPullRequestReadyForReview(GQLObject):
+class markPullRequestReadyForReview(GQLMutation):
    """
    markPullRequestReadyForReview - Marks a pull request ready for review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MarkPullRequestReadyForReview
 
@@ -1696,12 +1696,12 @@ class markPullRequestReadyForReview(GQLObject):
 
    type: MarkPullRequestReadyForReviewPayload
 
-class mergeBranch(GQLObject):
+class mergeBranch(GQLMutation):
    """
    mergeBranch - Merge a head into a branch.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MergeBranch
 
@@ -1713,12 +1713,12 @@ class mergeBranch(GQLObject):
 
    type: MergeBranchPayload
 
-class mergePullRequest(GQLObject):
+class mergePullRequest(GQLMutation):
    """
    mergePullRequest - Merge a pull request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MergePullRequest
 
@@ -1730,12 +1730,12 @@ class mergePullRequest(GQLObject):
 
    type: MergePullRequestPayload
 
-class minimizeComment(GQLObject):
+class minimizeComment(GQLMutation):
    """
    minimizeComment - Minimizes a comment on an Issue, Commit, Pull Request, or Gist
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MinimizeComment
 
@@ -1747,12 +1747,12 @@ class minimizeComment(GQLObject):
 
    type: MinimizeCommentPayload
 
-class moveProjectCard(GQLObject):
+class moveProjectCard(GQLMutation):
    """
    moveProjectCard - Moves a project card to another place.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MoveProjectCard
 
@@ -1764,12 +1764,12 @@ class moveProjectCard(GQLObject):
 
    type: MoveProjectCardPayload
 
-class moveProjectColumn(GQLObject):
+class moveProjectColumn(GQLMutation):
    """
    moveProjectColumn - Moves a project column to another place.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for MoveProjectColumn
 
@@ -1781,12 +1781,12 @@ class moveProjectColumn(GQLObject):
 
    type: MoveProjectColumnPayload
 
-class pinIssue(GQLObject):
+class pinIssue(GQLMutation):
    """
    pinIssue - Pin an issue to a repository
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for PinIssue
 
@@ -1798,12 +1798,12 @@ class pinIssue(GQLObject):
 
    type: PinIssuePayload
 
-class publishSponsorsTier(GQLObject):
+class publishSponsorsTier(GQLMutation):
    """
    publishSponsorsTier - Publish an existing sponsorship tier that is currently still a draft to a GitHub Sponsors profile.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for PublishSponsorsTier
 
@@ -1815,12 +1815,12 @@ class publishSponsorsTier(GQLObject):
 
    type: PublishSponsorsTierPayload
 
-class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLObject):
+class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLMutation):
    """
    regenerateEnterpriseIdentityProviderRecoveryCodes - Regenerates the identity provider recovery codes for an enterprise
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RegenerateEnterpriseIdentityProviderRecoveryCodes
 
@@ -1832,12 +1832,12 @@ class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLObject):
 
    type: RegenerateEnterpriseIdentityProviderRecoveryCodesPayload
 
-class regenerateVerifiableDomainToken(GQLObject):
+class regenerateVerifiableDomainToken(GQLMutation):
    """
    regenerateVerifiableDomainToken - Regenerates a verifiable domain's verification token.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RegenerateVerifiableDomainToken
 
@@ -1849,12 +1849,12 @@ class regenerateVerifiableDomainToken(GQLObject):
 
    type: RegenerateVerifiableDomainTokenPayload
 
-class rejectDeployments(GQLObject):
+class rejectDeployments(GQLMutation):
    """
    rejectDeployments - Reject all pending deployments under one or more environments
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RejectDeployments
 
@@ -1866,12 +1866,12 @@ class rejectDeployments(GQLObject):
 
    type: RejectDeploymentsPayload
 
-class removeAssigneesFromAssignable(GQLObject):
+class removeAssigneesFromAssignable(GQLMutation):
    """
    removeAssigneesFromAssignable - Removes assignees from an assignable object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveAssigneesFromAssignable
 
@@ -1883,12 +1883,12 @@ class removeAssigneesFromAssignable(GQLObject):
 
    type: RemoveAssigneesFromAssignablePayload
 
-class removeEnterpriseAdmin(GQLObject):
+class removeEnterpriseAdmin(GQLMutation):
    """
    removeEnterpriseAdmin - Removes an administrator from the enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveEnterpriseAdmin
 
@@ -1900,12 +1900,12 @@ class removeEnterpriseAdmin(GQLObject):
 
    type: RemoveEnterpriseAdminPayload
 
-class removeEnterpriseIdentityProvider(GQLObject):
+class removeEnterpriseIdentityProvider(GQLMutation):
    """
    removeEnterpriseIdentityProvider - Removes the identity provider from an enterprise
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveEnterpriseIdentityProvider
 
@@ -1917,12 +1917,12 @@ class removeEnterpriseIdentityProvider(GQLObject):
 
    type: RemoveEnterpriseIdentityProviderPayload
 
-class removeEnterpriseOrganization(GQLObject):
+class removeEnterpriseOrganization(GQLMutation):
    """
    removeEnterpriseOrganization - Removes an organization from the enterprise
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveEnterpriseOrganization
 
@@ -1934,12 +1934,12 @@ class removeEnterpriseOrganization(GQLObject):
 
    type: RemoveEnterpriseOrganizationPayload
 
-class removeEnterpriseSupportEntitlement(GQLObject):
+class removeEnterpriseSupportEntitlement(GQLMutation):
    """
    removeEnterpriseSupportEntitlement - Removes a support entitlement from an enterprise member.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveEnterpriseSupportEntitlement
 
@@ -1951,12 +1951,12 @@ class removeEnterpriseSupportEntitlement(GQLObject):
 
    type: RemoveEnterpriseSupportEntitlementPayload
 
-class removeLabelsFromLabelable(GQLObject):
+class removeLabelsFromLabelable(GQLMutation):
    """
    removeLabelsFromLabelable - Removes labels from a Labelable object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveLabelsFromLabelable
 
@@ -1968,12 +1968,12 @@ class removeLabelsFromLabelable(GQLObject):
 
    type: RemoveLabelsFromLabelablePayload
 
-class removeOutsideCollaborator(GQLObject):
+class removeOutsideCollaborator(GQLMutation):
    """
    removeOutsideCollaborator - Removes outside collaborator from all repositories in an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveOutsideCollaborator
 
@@ -1985,12 +1985,12 @@ class removeOutsideCollaborator(GQLObject):
 
    type: RemoveOutsideCollaboratorPayload
 
-class removeReaction(GQLObject):
+class removeReaction(GQLMutation):
    """
    removeReaction - Removes a reaction from a subject.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveReaction
 
@@ -2002,12 +2002,12 @@ class removeReaction(GQLObject):
 
    type: RemoveReactionPayload
 
-class removeStar(GQLObject):
+class removeStar(GQLMutation):
    """
    removeStar - Removes a star from a Starrable.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveStar
 
@@ -2019,12 +2019,12 @@ class removeStar(GQLObject):
 
    type: RemoveStarPayload
 
-class removeUpvote(GQLObject):
+class removeUpvote(GQLMutation):
    """
    removeUpvote - Remove an upvote to a discussion or discussion comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RemoveUpvote
 
@@ -2036,12 +2036,12 @@ class removeUpvote(GQLObject):
 
    type: RemoveUpvotePayload
 
-class reopenIssue(GQLObject):
+class reopenIssue(GQLMutation):
    """
    reopenIssue - Reopen a issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ReopenIssue
 
@@ -2053,12 +2053,12 @@ class reopenIssue(GQLObject):
 
    type: ReopenIssuePayload
 
-class reopenPullRequest(GQLObject):
+class reopenPullRequest(GQLMutation):
    """
    reopenPullRequest - Reopen a pull request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ReopenPullRequest
 
@@ -2070,12 +2070,12 @@ class reopenPullRequest(GQLObject):
 
    type: ReopenPullRequestPayload
 
-class requestReviews(GQLObject):
+class requestReviews(GQLMutation):
    """
    requestReviews - Set review requests on a pull request.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RequestReviews
 
@@ -2087,12 +2087,12 @@ class requestReviews(GQLObject):
 
    type: RequestReviewsPayload
 
-class rerequestCheckSuite(GQLObject):
+class rerequestCheckSuite(GQLMutation):
    """
    rerequestCheckSuite - Rerequests an existing check suite.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RerequestCheckSuite
 
@@ -2104,12 +2104,12 @@ class rerequestCheckSuite(GQLObject):
 
    type: RerequestCheckSuitePayload
 
-class resolveReviewThread(GQLObject):
+class resolveReviewThread(GQLMutation):
    """
    resolveReviewThread - Marks a review thread as resolved.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for ResolveReviewThread
 
@@ -2121,12 +2121,12 @@ class resolveReviewThread(GQLObject):
 
    type: ResolveReviewThreadPayload
 
-class revokeEnterpriseOrganizationsMigratorRole(GQLObject):
+class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
    """
    revokeEnterpriseOrganizationsMigratorRole - Revoke the migrator role to a user for all organizations under an enterprise account.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RevokeEnterpriseOrganizationsMigratorRole
 
@@ -2138,12 +2138,12 @@ class revokeEnterpriseOrganizationsMigratorRole(GQLObject):
 
    type: RevokeEnterpriseOrganizationsMigratorRolePayload
 
-class revokeMigratorRole(GQLObject):
+class revokeMigratorRole(GQLMutation):
    """
    revokeMigratorRole - Revoke the migrator role from a user or a team.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for RevokeMigratorRole
 
@@ -2155,12 +2155,12 @@ class revokeMigratorRole(GQLObject):
 
    type: RevokeMigratorRolePayload
 
-class setEnterpriseIdentityProvider(GQLObject):
+class setEnterpriseIdentityProvider(GQLMutation):
    """
    setEnterpriseIdentityProvider - Creates or updates the identity provider for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for SetEnterpriseIdentityProvider
 
@@ -2172,12 +2172,12 @@ class setEnterpriseIdentityProvider(GQLObject):
 
    type: SetEnterpriseIdentityProviderPayload
 
-class setOrganizationInteractionLimit(GQLObject):
+class setOrganizationInteractionLimit(GQLMutation):
    """
    setOrganizationInteractionLimit - Set an organization level interaction limit for an organization's public repositories.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for SetOrganizationInteractionLimit
 
@@ -2189,12 +2189,12 @@ class setOrganizationInteractionLimit(GQLObject):
 
    type: SetOrganizationInteractionLimitPayload
 
-class setRepositoryInteractionLimit(GQLObject):
+class setRepositoryInteractionLimit(GQLMutation):
    """
    setRepositoryInteractionLimit - Sets an interaction limit setting for a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for SetRepositoryInteractionLimit
 
@@ -2206,12 +2206,12 @@ class setRepositoryInteractionLimit(GQLObject):
 
    type: SetRepositoryInteractionLimitPayload
 
-class setUserInteractionLimit(GQLObject):
+class setUserInteractionLimit(GQLMutation):
    """
    setUserInteractionLimit - Set a user level interaction limit for an user's public repositories.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for SetUserInteractionLimit
 
@@ -2223,12 +2223,12 @@ class setUserInteractionLimit(GQLObject):
 
    type: SetUserInteractionLimitPayload
 
-class startRepositoryMigration(GQLObject):
+class startRepositoryMigration(GQLMutation):
    """
    startRepositoryMigration - Starts a GitHub Enterprise Importer (GEI) repository migration.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for StartRepositoryMigration
 
@@ -2240,12 +2240,12 @@ class startRepositoryMigration(GQLObject):
 
    type: StartRepositoryMigrationPayload
 
-class submitPullRequestReview(GQLObject):
+class submitPullRequestReview(GQLMutation):
    """
    submitPullRequestReview - Submits a pending pull request review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for SubmitPullRequestReview
 
@@ -2257,12 +2257,12 @@ class submitPullRequestReview(GQLObject):
 
    type: SubmitPullRequestReviewPayload
 
-class transferEnterpriseOrganization(GQLObject):
+class transferEnterpriseOrganization(GQLMutation):
    """
    transferEnterpriseOrganization - Transfer an organization from one enterprise to another enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for TransferEnterpriseOrganization
 
@@ -2274,12 +2274,12 @@ class transferEnterpriseOrganization(GQLObject):
 
    type: TransferEnterpriseOrganizationPayload
 
-class transferIssue(GQLObject):
+class transferIssue(GQLMutation):
    """
    transferIssue - Transfer an issue to a different repository
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for TransferIssue
 
@@ -2291,12 +2291,12 @@ class transferIssue(GQLObject):
 
    type: TransferIssuePayload
 
-class unarchiveProjectV2Item(GQLObject):
+class unarchiveProjectV2Item(GQLMutation):
    """
    unarchiveProjectV2Item - Unarchives a ProjectV2Item
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnarchiveProjectV2Item
 
@@ -2308,12 +2308,12 @@ class unarchiveProjectV2Item(GQLObject):
 
    type: UnarchiveProjectV2ItemPayload
 
-class unarchiveRepository(GQLObject):
+class unarchiveRepository(GQLMutation):
    """
    unarchiveRepository - Unarchives a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnarchiveRepository
 
@@ -2325,12 +2325,12 @@ class unarchiveRepository(GQLObject):
 
    type: UnarchiveRepositoryPayload
 
-class unfollowOrganization(GQLObject):
+class unfollowOrganization(GQLMutation):
    """
    unfollowOrganization - Unfollow an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnfollowOrganization
 
@@ -2342,12 +2342,12 @@ class unfollowOrganization(GQLObject):
 
    type: UnfollowOrganizationPayload
 
-class unfollowUser(GQLObject):
+class unfollowUser(GQLMutation):
    """
    unfollowUser - Unfollow a user.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnfollowUser
 
@@ -2359,12 +2359,12 @@ class unfollowUser(GQLObject):
 
    type: UnfollowUserPayload
 
-class unlinkProjectV2FromRepository(GQLObject):
+class unlinkProjectV2FromRepository(GQLMutation):
    """
    unlinkProjectV2FromRepository - Unlinks a project from a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnlinkProjectV2FromRepository
 
@@ -2376,12 +2376,12 @@ class unlinkProjectV2FromRepository(GQLObject):
 
    type: UnlinkProjectV2FromRepositoryPayload
 
-class unlinkProjectV2FromTeam(GQLObject):
+class unlinkProjectV2FromTeam(GQLMutation):
    """
    unlinkProjectV2FromTeam - Unlinks a project to a team.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnlinkProjectV2FromTeam
 
@@ -2393,12 +2393,12 @@ class unlinkProjectV2FromTeam(GQLObject):
 
    type: UnlinkProjectV2FromTeamPayload
 
-class unlinkRepositoryFromProject(GQLObject):
+class unlinkRepositoryFromProject(GQLMutation):
    """
    unlinkRepositoryFromProject - Deletes a repository link from a project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnlinkRepositoryFromProject
 
@@ -2410,12 +2410,12 @@ class unlinkRepositoryFromProject(GQLObject):
 
    type: UnlinkRepositoryFromProjectPayload
 
-class unlockLockable(GQLObject):
+class unlockLockable(GQLMutation):
    """
    unlockLockable - Unlock a lockable object
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnlockLockable
 
@@ -2427,12 +2427,12 @@ class unlockLockable(GQLObject):
 
    type: UnlockLockablePayload
 
-class unmarkDiscussionCommentAsAnswer(GQLObject):
+class unmarkDiscussionCommentAsAnswer(GQLMutation):
    """
    unmarkDiscussionCommentAsAnswer - Unmark a discussion comment as the chosen answer for discussions in an answerable category.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnmarkDiscussionCommentAsAnswer
 
@@ -2444,12 +2444,12 @@ class unmarkDiscussionCommentAsAnswer(GQLObject):
 
    type: UnmarkDiscussionCommentAsAnswerPayload
 
-class unmarkFileAsViewed(GQLObject):
+class unmarkFileAsViewed(GQLMutation):
    """
    unmarkFileAsViewed - Unmark a pull request file as viewed
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnmarkFileAsViewed
 
@@ -2461,12 +2461,12 @@ class unmarkFileAsViewed(GQLObject):
 
    type: UnmarkFileAsViewedPayload
 
-class unmarkIssueAsDuplicate(GQLObject):
+class unmarkIssueAsDuplicate(GQLMutation):
    """
    unmarkIssueAsDuplicate - Unmark an issue as a duplicate of another issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnmarkIssueAsDuplicate
 
@@ -2478,12 +2478,12 @@ class unmarkIssueAsDuplicate(GQLObject):
 
    type: UnmarkIssueAsDuplicatePayload
 
-class unminimizeComment(GQLObject):
+class unminimizeComment(GQLMutation):
    """
    unminimizeComment - Unminimizes a comment on an Issue, Commit, Pull Request, or Gist
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnminimizeComment
 
@@ -2495,12 +2495,12 @@ class unminimizeComment(GQLObject):
 
    type: UnminimizeCommentPayload
 
-class unpinIssue(GQLObject):
+class unpinIssue(GQLMutation):
    """
    unpinIssue - Unpin a pinned issue from a repository
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnpinIssue
 
@@ -2512,12 +2512,12 @@ class unpinIssue(GQLObject):
 
    type: UnpinIssuePayload
 
-class unresolveReviewThread(GQLObject):
+class unresolveReviewThread(GQLMutation):
    """
    unresolveReviewThread - Marks a review thread as unresolved.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UnresolveReviewThread
 
@@ -2529,12 +2529,12 @@ class unresolveReviewThread(GQLObject):
 
    type: UnresolveReviewThreadPayload
 
-class updateBranchProtectionRule(GQLObject):
+class updateBranchProtectionRule(GQLMutation):
    """
    updateBranchProtectionRule - Update a branch protection rule
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateBranchProtectionRule
 
@@ -2546,12 +2546,12 @@ class updateBranchProtectionRule(GQLObject):
 
    type: UpdateBranchProtectionRulePayload
 
-class updateCheckRun(GQLObject):
+class updateCheckRun(GQLMutation):
    """
    updateCheckRun - Update a check run
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateCheckRun
 
@@ -2563,12 +2563,12 @@ class updateCheckRun(GQLObject):
 
    type: UpdateCheckRunPayload
 
-class updateCheckSuitePreferences(GQLObject):
+class updateCheckSuitePreferences(GQLMutation):
    """
    updateCheckSuitePreferences - Modifies the settings of an existing check suite
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateCheckSuitePreferences
 
@@ -2580,12 +2580,12 @@ class updateCheckSuitePreferences(GQLObject):
 
    type: UpdateCheckSuitePreferencesPayload
 
-class updateDiscussion(GQLObject):
+class updateDiscussion(GQLMutation):
    """
    updateDiscussion - Update a discussion
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateDiscussion
 
@@ -2597,12 +2597,12 @@ class updateDiscussion(GQLObject):
 
    type: UpdateDiscussionPayload
 
-class updateDiscussionComment(GQLObject):
+class updateDiscussionComment(GQLMutation):
    """
    updateDiscussionComment - Update the contents of a comment on a Discussion
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateDiscussionComment
 
@@ -2614,12 +2614,12 @@ class updateDiscussionComment(GQLObject):
 
    type: UpdateDiscussionCommentPayload
 
-class updateEnterpriseAdministratorRole(GQLObject):
+class updateEnterpriseAdministratorRole(GQLMutation):
    """
    updateEnterpriseAdministratorRole - Updates the role of an enterprise administrator.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseAdministratorRole
 
@@ -2631,12 +2631,12 @@ class updateEnterpriseAdministratorRole(GQLObject):
 
    type: UpdateEnterpriseAdministratorRolePayload
 
-class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLObject):
+class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLMutation):
    """
    updateEnterpriseAllowPrivateRepositoryForkingSetting - Sets whether private repository forks are enabled for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseAllowPrivateRepositoryForkingSetting
 
@@ -2648,12 +2648,12 @@ class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLObject):
 
    type: UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayload
 
-class updateEnterpriseDefaultRepositoryPermissionSetting(GQLObject):
+class updateEnterpriseDefaultRepositoryPermissionSetting(GQLMutation):
    """
    updateEnterpriseDefaultRepositoryPermissionSetting - Sets the base repository permission for organizations in an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseDefaultRepositoryPermissionSetting
 
@@ -2665,12 +2665,12 @@ class updateEnterpriseDefaultRepositoryPermissionSetting(GQLObject):
 
    type: UpdateEnterpriseDefaultRepositoryPermissionSettingPayload
 
-class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLObject):
+class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLMutation):
    """
    updateEnterpriseMembersCanChangeRepositoryVisibilitySetting - Sets whether organization members with admin permissions on a repository can change repository visibility.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting
 
@@ -2682,12 +2682,12 @@ class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayload
 
-class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLObject):
+class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLMutation):
    """
    updateEnterpriseMembersCanCreateRepositoriesSetting - Sets the members can create repositories setting for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanCreateRepositoriesSetting
 
@@ -2699,12 +2699,12 @@ class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanCreateRepositoriesSettingPayload
 
-class updateEnterpriseMembersCanDeleteIssuesSetting(GQLObject):
+class updateEnterpriseMembersCanDeleteIssuesSetting(GQLMutation):
    """
    updateEnterpriseMembersCanDeleteIssuesSetting - Sets the members can delete issues setting for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanDeleteIssuesSetting
 
@@ -2716,12 +2716,12 @@ class updateEnterpriseMembersCanDeleteIssuesSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanDeleteIssuesSettingPayload
 
-class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLObject):
+class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLMutation):
    """
    updateEnterpriseMembersCanDeleteRepositoriesSetting - Sets the members can delete repositories setting for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanDeleteRepositoriesSetting
 
@@ -2733,12 +2733,12 @@ class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayload
 
-class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLObject):
+class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLMutation):
    """
    updateEnterpriseMembersCanInviteCollaboratorsSetting - Sets whether members can invite collaborators are enabled for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanInviteCollaboratorsSetting
 
@@ -2750,12 +2750,12 @@ class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayload
 
-class updateEnterpriseMembersCanMakePurchasesSetting(GQLObject):
+class updateEnterpriseMembersCanMakePurchasesSetting(GQLMutation):
    """
    updateEnterpriseMembersCanMakePurchasesSetting - Sets whether or not an organization admin can make purchases.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanMakePurchasesSetting
 
@@ -2767,12 +2767,12 @@ class updateEnterpriseMembersCanMakePurchasesSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanMakePurchasesSettingPayload
 
-class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLObject):
+class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLMutation):
    """
    updateEnterpriseMembersCanUpdateProtectedBranchesSetting - Sets the members can update protected branches setting for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting
 
@@ -2784,12 +2784,12 @@ class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayload
 
-class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLObject):
+class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLMutation):
    """
    updateEnterpriseMembersCanViewDependencyInsightsSetting - Sets the members can view dependency insights for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseMembersCanViewDependencyInsightsSetting
 
@@ -2801,12 +2801,12 @@ class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLObject):
 
    type: UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayload
 
-class updateEnterpriseOrganizationProjectsSetting(GQLObject):
+class updateEnterpriseOrganizationProjectsSetting(GQLMutation):
    """
    updateEnterpriseOrganizationProjectsSetting - Sets whether organization projects are enabled for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseOrganizationProjectsSetting
 
@@ -2818,12 +2818,12 @@ class updateEnterpriseOrganizationProjectsSetting(GQLObject):
 
    type: UpdateEnterpriseOrganizationProjectsSettingPayload
 
-class updateEnterpriseOwnerOrganizationRole(GQLObject):
+class updateEnterpriseOwnerOrganizationRole(GQLMutation):
    """
    updateEnterpriseOwnerOrganizationRole - Updates the role of an enterprise owner with an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseOwnerOrganizationRole
 
@@ -2835,12 +2835,12 @@ class updateEnterpriseOwnerOrganizationRole(GQLObject):
 
    type: UpdateEnterpriseOwnerOrganizationRolePayload
 
-class updateEnterpriseProfile(GQLObject):
+class updateEnterpriseProfile(GQLMutation):
    """
    updateEnterpriseProfile - Updates an enterprise's profile.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseProfile
 
@@ -2852,12 +2852,12 @@ class updateEnterpriseProfile(GQLObject):
 
    type: UpdateEnterpriseProfilePayload
 
-class updateEnterpriseRepositoryProjectsSetting(GQLObject):
+class updateEnterpriseRepositoryProjectsSetting(GQLMutation):
    """
    updateEnterpriseRepositoryProjectsSetting - Sets whether repository projects are enabled for a enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseRepositoryProjectsSetting
 
@@ -2869,12 +2869,12 @@ class updateEnterpriseRepositoryProjectsSetting(GQLObject):
 
    type: UpdateEnterpriseRepositoryProjectsSettingPayload
 
-class updateEnterpriseTeamDiscussionsSetting(GQLObject):
+class updateEnterpriseTeamDiscussionsSetting(GQLMutation):
    """
    updateEnterpriseTeamDiscussionsSetting - Sets whether team discussions are enabled for an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseTeamDiscussionsSetting
 
@@ -2886,12 +2886,12 @@ class updateEnterpriseTeamDiscussionsSetting(GQLObject):
 
    type: UpdateEnterpriseTeamDiscussionsSettingPayload
 
-class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLObject):
+class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLMutation):
    """
    updateEnterpriseTwoFactorAuthenticationRequiredSetting - Sets whether two factor authentication is required for all users in an enterprise.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnterpriseTwoFactorAuthenticationRequiredSetting
 
@@ -2903,12 +2903,12 @@ class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLObject):
 
    type: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayload
 
-class updateEnvironment(GQLObject):
+class updateEnvironment(GQLMutation):
    """
    updateEnvironment - Updates an environment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateEnvironment
 
@@ -2920,12 +2920,12 @@ class updateEnvironment(GQLObject):
 
    type: UpdateEnvironmentPayload
 
-class updateIpAllowListEnabledSetting(GQLObject):
+class updateIpAllowListEnabledSetting(GQLMutation):
    """
    updateIpAllowListEnabledSetting - Sets whether an IP allow list is enabled on an owner.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateIpAllowListEnabledSetting
 
@@ -2937,12 +2937,12 @@ class updateIpAllowListEnabledSetting(GQLObject):
 
    type: UpdateIpAllowListEnabledSettingPayload
 
-class updateIpAllowListEntry(GQLObject):
+class updateIpAllowListEntry(GQLMutation):
    """
    updateIpAllowListEntry - Updates an IP allow list entry.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateIpAllowListEntry
 
@@ -2954,12 +2954,12 @@ class updateIpAllowListEntry(GQLObject):
 
    type: UpdateIpAllowListEntryPayload
 
-class updateIpAllowListForInstalledAppsEnabledSetting(GQLObject):
+class updateIpAllowListForInstalledAppsEnabledSetting(GQLMutation):
    """
    updateIpAllowListForInstalledAppsEnabledSetting - Sets whether IP allow list configuration for installed GitHub Apps is enabled on an owner.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateIpAllowListForInstalledAppsEnabledSetting
 
@@ -2971,12 +2971,12 @@ class updateIpAllowListForInstalledAppsEnabledSetting(GQLObject):
 
    type: UpdateIpAllowListForInstalledAppsEnabledSettingPayload
 
-class updateIssue(GQLObject):
+class updateIssue(GQLMutation):
    """
    updateIssue - Updates an Issue.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateIssue
 
@@ -2988,12 +2988,12 @@ class updateIssue(GQLObject):
 
    type: UpdateIssuePayload
 
-class updateIssueComment(GQLObject):
+class updateIssueComment(GQLMutation):
    """
    updateIssueComment - Updates an IssueComment object.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateIssueComment
 
@@ -3005,12 +3005,12 @@ class updateIssueComment(GQLObject):
 
    type: UpdateIssueCommentPayload
 
-class updateNotificationRestrictionSetting(GQLObject):
+class updateNotificationRestrictionSetting(GQLMutation):
    """
    updateNotificationRestrictionSetting - Update the setting to restrict notifications to only verified or approved domains available to an owner.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateNotificationRestrictionSetting
 
@@ -3022,12 +3022,12 @@ class updateNotificationRestrictionSetting(GQLObject):
 
    type: UpdateNotificationRestrictionSettingPayload
 
-class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLObject):
+class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLMutation):
    """
    updateOrganizationAllowPrivateRepositoryForkingSetting - Sets whether private repository forks are enabled for an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateOrganizationAllowPrivateRepositoryForkingSetting
 
@@ -3039,12 +3039,12 @@ class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLObject):
 
    type: UpdateOrganizationAllowPrivateRepositoryForkingSettingPayload
 
-class updateOrganizationWebCommitSignoffSetting(GQLObject):
+class updateOrganizationWebCommitSignoffSetting(GQLMutation):
    """
    updateOrganizationWebCommitSignoffSetting - Sets whether contributors are required to sign off on web-based commits for repositories in an organization.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateOrganizationWebCommitSignoffSetting
 
@@ -3056,12 +3056,12 @@ class updateOrganizationWebCommitSignoffSetting(GQLObject):
 
    type: UpdateOrganizationWebCommitSignoffSettingPayload
 
-class updateProject(GQLObject):
+class updateProject(GQLMutation):
    """
    updateProject - Updates an existing project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProject
 
@@ -3073,12 +3073,12 @@ class updateProject(GQLObject):
 
    type: UpdateProjectPayload
 
-class updateProjectCard(GQLObject):
+class updateProjectCard(GQLMutation):
    """
    updateProjectCard - Updates an existing project card.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectCard
 
@@ -3090,12 +3090,12 @@ class updateProjectCard(GQLObject):
 
    type: UpdateProjectCardPayload
 
-class updateProjectColumn(GQLObject):
+class updateProjectColumn(GQLMutation):
    """
    updateProjectColumn - Updates an existing project column.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectColumn
 
@@ -3107,12 +3107,12 @@ class updateProjectColumn(GQLObject):
 
    type: UpdateProjectColumnPayload
 
-class updateProjectDraftIssue(GQLObject):
+class updateProjectDraftIssue(GQLMutation):
    """
    updateProjectDraftIssue - Updates a draft issue within a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectDraftIssue
 
@@ -3124,12 +3124,12 @@ class updateProjectDraftIssue(GQLObject):
 
    type: UpdateProjectDraftIssuePayload
 
-class updateProjectNext(GQLObject):
+class updateProjectNext(GQLMutation):
    """
    updateProjectNext - Updates an existing project (beta).
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectNext
 
@@ -3141,12 +3141,12 @@ class updateProjectNext(GQLObject):
 
    type: UpdateProjectNextPayload
 
-class updateProjectNextItemField(GQLObject):
+class updateProjectNextItemField(GQLMutation):
    """
    updateProjectNextItemField - Updates a field of an item from a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectNextItemField
 
@@ -3158,12 +3158,12 @@ class updateProjectNextItemField(GQLObject):
 
    type: UpdateProjectNextItemFieldPayload
 
-class updateProjectV2(GQLObject):
+class updateProjectV2(GQLMutation):
    """
    updateProjectV2 - Updates an existing project (beta).
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectV2
 
@@ -3175,12 +3175,12 @@ class updateProjectV2(GQLObject):
 
    type: UpdateProjectV2Payload
 
-class updateProjectV2DraftIssue(GQLObject):
+class updateProjectV2DraftIssue(GQLMutation):
    """
    updateProjectV2DraftIssue - Updates a draft issue within a Project.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectV2DraftIssue
 
@@ -3192,12 +3192,12 @@ class updateProjectV2DraftIssue(GQLObject):
 
    type: UpdateProjectV2DraftIssuePayload
 
-class updateProjectV2ItemFieldValue(GQLObject):
+class updateProjectV2ItemFieldValue(GQLMutation):
    """
    updateProjectV2ItemFieldValue - This mutation updates the value of a field for an item in a Project. Currently only single-select, text, number, date, and iteration fields are supported.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectV2ItemFieldValue
 
@@ -3209,12 +3209,12 @@ class updateProjectV2ItemFieldValue(GQLObject):
 
    type: UpdateProjectV2ItemFieldValuePayload
 
-class updateProjectV2ItemPosition(GQLObject):
+class updateProjectV2ItemPosition(GQLMutation):
    """
    updateProjectV2ItemPosition - This mutation updates the position of the item in the project, where the position represents the priority of an item.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateProjectV2ItemPosition
 
@@ -3226,12 +3226,12 @@ class updateProjectV2ItemPosition(GQLObject):
 
    type: UpdateProjectV2ItemPositionPayload
 
-class updatePullRequest(GQLObject):
+class updatePullRequest(GQLMutation):
    """
    updatePullRequest - Update a pull request
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdatePullRequest
 
@@ -3243,12 +3243,12 @@ class updatePullRequest(GQLObject):
 
    type: UpdatePullRequestPayload
 
-class updatePullRequestBranch(GQLObject):
+class updatePullRequestBranch(GQLMutation):
    """
    updatePullRequestBranch - Merge or Rebase HEAD from upstream branch into pull request branch
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdatePullRequestBranch
 
@@ -3260,12 +3260,12 @@ class updatePullRequestBranch(GQLObject):
 
    type: UpdatePullRequestBranchPayload
 
-class updatePullRequestReview(GQLObject):
+class updatePullRequestReview(GQLMutation):
    """
    updatePullRequestReview - Updates the body of a pull request review.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdatePullRequestReview
 
@@ -3277,12 +3277,12 @@ class updatePullRequestReview(GQLObject):
 
    type: UpdatePullRequestReviewPayload
 
-class updatePullRequestReviewComment(GQLObject):
+class updatePullRequestReviewComment(GQLMutation):
    """
    updatePullRequestReviewComment - Updates a pull request review comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdatePullRequestReviewComment
 
@@ -3294,12 +3294,12 @@ class updatePullRequestReviewComment(GQLObject):
 
    type: UpdatePullRequestReviewCommentPayload
 
-class updateRef(GQLObject):
+class updateRef(GQLMutation):
    """
    updateRef - Update a Git Ref.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateRef
 
@@ -3311,12 +3311,12 @@ class updateRef(GQLObject):
 
    type: UpdateRefPayload
 
-class updateRepository(GQLObject):
+class updateRepository(GQLMutation):
    """
    updateRepository - Update information about a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateRepository
 
@@ -3328,12 +3328,12 @@ class updateRepository(GQLObject):
 
    type: UpdateRepositoryPayload
 
-class updateRepositoryWebCommitSignoffSetting(GQLObject):
+class updateRepositoryWebCommitSignoffSetting(GQLMutation):
    """
    updateRepositoryWebCommitSignoffSetting - Sets whether contributors are required to sign off on web-based commits for a repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateRepositoryWebCommitSignoffSetting
 
@@ -3345,12 +3345,12 @@ class updateRepositoryWebCommitSignoffSetting(GQLObject):
 
    type: UpdateRepositoryWebCommitSignoffSettingPayload
 
-class updateSponsorshipPreferences(GQLObject):
+class updateSponsorshipPreferences(GQLMutation):
    """
    updateSponsorshipPreferences - Change visibility of your sponsorship and opt in or out of email updates from the maintainer.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateSponsorshipPreferences
 
@@ -3362,12 +3362,12 @@ class updateSponsorshipPreferences(GQLObject):
 
    type: UpdateSponsorshipPreferencesPayload
 
-class updateSubscription(GQLObject):
+class updateSubscription(GQLMutation):
    """
    updateSubscription - Updates the state for subscribable subjects.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateSubscription
 
@@ -3379,12 +3379,12 @@ class updateSubscription(GQLObject):
 
    type: UpdateSubscriptionPayload
 
-class updateTeamDiscussion(GQLObject):
+class updateTeamDiscussion(GQLMutation):
    """
    updateTeamDiscussion - Updates a team discussion.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateTeamDiscussion
 
@@ -3396,12 +3396,12 @@ class updateTeamDiscussion(GQLObject):
 
    type: UpdateTeamDiscussionPayload
 
-class updateTeamDiscussionComment(GQLObject):
+class updateTeamDiscussionComment(GQLMutation):
    """
    updateTeamDiscussionComment - Updates a discussion comment.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateTeamDiscussionComment
 
@@ -3413,12 +3413,12 @@ class updateTeamDiscussionComment(GQLObject):
 
    type: UpdateTeamDiscussionCommentPayload
 
-class updateTeamsRepository(GQLObject):
+class updateTeamsRepository(GQLMutation):
    """
    updateTeamsRepository - Update team repository.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateTeamsRepository
 
@@ -3430,12 +3430,12 @@ class updateTeamsRepository(GQLObject):
 
    type: UpdateTeamsRepositoryPayload
 
-class updateTopics(GQLObject):
+class updateTopics(GQLMutation):
    """
    updateTopics - Replaces the repository's topics with the given topics.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for UpdateTopics
 
@@ -3447,12 +3447,12 @@ class updateTopics(GQLObject):
 
    type: UpdateTopicsPayload
 
-class verifyVerifiableDomain(GQLObject):
+class verifyVerifiableDomain(GQLMutation):
    """
    verifyVerifiableDomain - Verify that a verifiable domain has the expected DNS record.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       input - Parameters for VerifyVerifiableDomain
 

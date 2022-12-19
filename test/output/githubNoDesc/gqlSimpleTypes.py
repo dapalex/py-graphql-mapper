@@ -1,12 +1,12 @@
 from typing import Generic
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
 class organizationVerifiedDomainEmailsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -14,7 +14,7 @@ class organizationVerifiedDomainEmailsField(ArguedStr):
 
 
 class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -22,7 +22,7 @@ class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
 
 
 class anyPinnableItemsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
    _args: Args
@@ -30,7 +30,7 @@ class anyPinnableItemsField(ArguedStr):
 
 
 class isSponsoredByField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       accountLogin: str ##NON NULL
 
    _args: Args
@@ -38,7 +38,7 @@ class isSponsoredByField(ArguedStr):
 
 
 class textField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       truncate: int
 
    _args: Args
@@ -46,7 +46,7 @@ class textField(ArguedStr):
 
 
 class totalRepositoryContributionsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       excludeFirst: bool
 
    _args: Args
@@ -54,7 +54,7 @@ class totalRepositoryContributionsField(ArguedStr):
 
 
 class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
@@ -63,7 +63,7 @@ class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
 
 
 class totalRepositoriesWithContributedIssuesField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
@@ -72,7 +72,7 @@ class totalRepositoriesWithContributedIssuesField(ArguedStr):
 
 
 class totalPullRequestContributionsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
@@ -81,7 +81,7 @@ class totalPullRequestContributionsField(ArguedStr):
 
 
 class totalIssueContributionsField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
@@ -90,7 +90,7 @@ class totalIssueContributionsField(ArguedStr):
 
 
 class viewerMergeHeadlineTextField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
    _args: Args
@@ -98,7 +98,7 @@ class viewerMergeHeadlineTextField(ArguedStr):
 
 
 class viewerMergeBodyTextField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
    _args: Args
@@ -106,7 +106,7 @@ class viewerMergeBodyTextField(ArguedStr):
 
 
 class trackedIssuesCountField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       states: list[TrackedIssueStates]
 
    _args: Args
@@ -114,7 +114,7 @@ class trackedIssuesCountField(ArguedStr):
 
 
 class HTMLField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       limit: int
 
    _args: Args
@@ -122,7 +122,7 @@ class HTMLField(ArguedStr):
 
 
 class URIField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       size: int
 
    _args: Args
@@ -434,7 +434,7 @@ class RerequestCheckSuiteInput(GQLObject):
    clientMutationId: str
 
 class isRequiredField(ArguedStr):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
 

@@ -1,11 +1,11 @@
-from pygqlmap.components import GQLOperationArgs
+from pygqlmap.components import GQLOperationArgs, GQLQuery
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
-class codeOfConduct(GQLObject):
-   class Args(GQLOperationArgs): 
+class codeOfConduct(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       key: str ##NON NULL
 
    _args: Args
@@ -15,8 +15,8 @@ class codeOfConduct(GQLObject):
 
 codesOfConduct = list[CodeOfConduct]
 
-class enterprise(GQLObject):
-   class Args(GQLOperationArgs): 
+class enterprise(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       slug: str ##NON NULL
       invitationToken: str
 
@@ -25,8 +25,8 @@ class enterprise(GQLObject):
 
    type: Enterprise
 
-class enterpriseAdministratorInvitation(GQLObject):
-   class Args(GQLOperationArgs): 
+class enterpriseAdministratorInvitation(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       userLogin: str ##NON NULL
       enterpriseSlug: str ##NON NULL
       role: EnterpriseAdministratorRole ##NON NULL
@@ -36,8 +36,8 @@ class enterpriseAdministratorInvitation(GQLObject):
 
    type: EnterpriseAdministratorInvitation
 
-class enterpriseAdministratorInvitationByToken(GQLObject):
-   class Args(GQLOperationArgs): 
+class enterpriseAdministratorInvitationByToken(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       invitationToken: str ##NON NULL
 
    _args: Args
@@ -45,8 +45,8 @@ class enterpriseAdministratorInvitationByToken(GQLObject):
 
    type: EnterpriseAdministratorInvitation
 
-class license(GQLObject):
-   class Args(GQLOperationArgs): 
+class license(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       key: str ##NON NULL
 
    _args: Args
@@ -54,11 +54,11 @@ class license(GQLObject):
 
    type: License
 
-class licenses(GQLObject):
+class licenses(GQLQuery):
    type: License ##NON NULL
 
-class marketplaceCategories(GQLObject):
-   class Args(GQLOperationArgs): 
+class marketplaceCategories(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       includeCategories: list[str] ##NON NULL
       excludeEmpty: bool
       excludeSubcategories: bool
@@ -68,8 +68,8 @@ class marketplaceCategories(GQLObject):
 
    type: MarketplaceCategory ##NON NULL
 
-class marketplaceCategory(GQLObject):
-   class Args(GQLOperationArgs): 
+class marketplaceCategory(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       slug: str ##NON NULL
       useTopicAliases: bool
 
@@ -78,8 +78,8 @@ class marketplaceCategory(GQLObject):
 
    type: MarketplaceCategory
 
-class marketplaceListing(GQLObject):
-   class Args(GQLOperationArgs): 
+class marketplaceListing(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       slug: str ##NON NULL
 
    _args: Args
@@ -87,8 +87,8 @@ class marketplaceListing(GQLObject):
 
    type: MarketplaceListing
 
-class marketplaceListings(GQLObject):
-   class Args(GQLOperationArgs): 
+class marketplaceListings(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       after: str
       before: str
       first: int
@@ -108,11 +108,11 @@ class marketplaceListings(GQLObject):
 
    type: MarketplaceListingConnection ##NON NULL
 
-class meta(GQLObject):
+class meta(GQLQuery):
    type: GitHubMetadata ##NON NULL
 
-class node(GQLObject):
-   class Args(GQLOperationArgs): 
+class node(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -120,8 +120,8 @@ class node(GQLObject):
 
    type: Node
 
-class nodes(GQLObject):
-   class Args(GQLOperationArgs): 
+class nodes(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       ids: list[ID] ##NON NULL
 
    _args: Args
@@ -129,8 +129,8 @@ class nodes(GQLObject):
 
    type: Node ##NON NULL
 
-class organization(GQLObject):
-   class Args(GQLOperationArgs): 
+class organization(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -138,8 +138,8 @@ class organization(GQLObject):
 
    type: Organization
 
-class rateLimit(GQLObject):
-   class Args(GQLOperationArgs): 
+class rateLimit(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       dryRun: bool
 
    _args: Args
@@ -147,11 +147,11 @@ class rateLimit(GQLObject):
 
    type: RateLimit
 
-class relay(GQLObject):
+class relay(GQLQuery):
    type: Query ##NON NULL
 
-class repository(GQLObject):
-   class Args(GQLOperationArgs): 
+class repository(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       owner: str ##NON NULL
       name: str ##NON NULL
       followRenames: bool
@@ -161,8 +161,8 @@ class repository(GQLObject):
 
    type: Repository
 
-class repositoryOwner(GQLObject):
-   class Args(GQLOperationArgs): 
+class repositoryOwner(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -170,8 +170,8 @@ class repositoryOwner(GQLObject):
 
    type: RepositoryOwner
 
-class resource(GQLObject):
-   class Args(GQLOperationArgs): 
+class resource(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       url: URI ##NON NULL
 
    _args: Args
@@ -179,8 +179,8 @@ class resource(GQLObject):
 
    type: UniformResourceLocatable
 
-class search(GQLObject):
-   class Args(GQLOperationArgs): 
+class search(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       after: str
       before: str
       first: int
@@ -193,8 +193,8 @@ class search(GQLObject):
 
    type: SearchResultItemConnection ##NON NULL
 
-class securityAdvisories(GQLObject):
-   class Args(GQLOperationArgs): 
+class securityAdvisories(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       orderBy: SecurityAdvisoryOrder
       identifier: SecurityAdvisoryIdentifierFilter
       publishedSince: DateTime
@@ -210,8 +210,8 @@ class securityAdvisories(GQLObject):
 
    type: SecurityAdvisoryConnection ##NON NULL
 
-class securityAdvisory(GQLObject):
-   class Args(GQLOperationArgs): 
+class securityAdvisory(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       ghsaId: str ##NON NULL
 
    _args: Args
@@ -219,8 +219,8 @@ class securityAdvisory(GQLObject):
 
    type: SecurityAdvisory
 
-class securityVulnerabilities(GQLObject):
-   class Args(GQLOperationArgs): 
+class securityVulnerabilities(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
@@ -236,8 +236,8 @@ class securityVulnerabilities(GQLObject):
 
    type: SecurityVulnerabilityConnection ##NON NULL
 
-class sponsorables(GQLObject):
-   class Args(GQLOperationArgs): 
+class sponsorables(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       after: str
       before: str
       first: int
@@ -253,8 +253,8 @@ class sponsorables(GQLObject):
 
    type: SponsorableItemConnection ##NON NULL
 
-class topic(GQLObject):
-   class Args(GQLOperationArgs): 
+class topic(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       name: str ##NON NULL
 
    _args: Args
@@ -262,8 +262,8 @@ class topic(GQLObject):
 
    type: Topic
 
-class user(GQLObject):
-   class Args(GQLOperationArgs): 
+class user(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -271,7 +271,7 @@ class user(GQLObject):
 
    type: User
 
-class viewer(GQLObject):
+class viewer(GQLQuery):
    type: User ##NON NULL
 
 

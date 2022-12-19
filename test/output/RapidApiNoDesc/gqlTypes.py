@@ -1,7 +1,7 @@
 from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from typing import NewType
 from .gqlSimpleTypes import *
 from .enums import *
@@ -1274,7 +1274,7 @@ class GraphQLSchema(GQLObject):
    documentation: list[GqlDoc]
 
 class GraphQLSchemaField(GraphQLSchema):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       withOverrides: bool
 
    _args: Args
@@ -1282,7 +1282,7 @@ class GraphQLSchemaField(GraphQLSchema):
 
 
 class ResponsePayloadField(ResponsePayload):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1372,7 +1372,7 @@ class UsageData(GQLObject):
    billingItem: NewType('BillingItem', GQLObject) ## Circular Reference for BillingItem
 
 class BillingItemEndpointField(BillingItemEndpoint):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1380,7 +1380,7 @@ class BillingItemEndpointField(BillingItemEndpoint):
 
 
 class UsageDataField(UsageData):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       subscriptionId: ID ##NON NULL
       fromDate: str
       toDate: str
@@ -1501,7 +1501,7 @@ class Transaction(GQLObject):
    invoicePeriodEnd: str
 
 class UsagePeriodGrouperField(UsagePeriodGrouper):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       billingItemIds: list[ID] ##NON NULL
       fromDate: str
       toDate: str
@@ -1543,7 +1543,7 @@ class BillingSubscription(GQLObject):
    transactions: list[Transaction]
 
 class ApiVersionBillingPlanVersionField(ApiVersionBillingPlanVersion):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: str
       filters: BillingPlanVersionFilters
 
@@ -1552,7 +1552,7 @@ class ApiVersionBillingPlanVersionField(ApiVersionBillingPlanVersion):
 
 
 class BillingLimitField(BillingLimit):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1590,7 +1590,7 @@ class TargetGroup(GQLObject):
    targetUrls: TargetUrl ##NON NULL
 
 class BillingPlanVersionField(BillingPlanVersion):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       id: str
       showDeleted: bool
 
@@ -1658,7 +1658,7 @@ class SecretData(GQLObject):
    apiversion: ID
 
 class EndpointField(Endpoint):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1666,7 +1666,7 @@ class EndpointField(Endpoint):
 
 
 class EndpointsGroupField(EndpointsGroup):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1674,7 +1674,7 @@ class EndpointsGroupField(EndpointsGroup):
 
 
 class PublicdnsField(Publicdns):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1682,7 +1682,7 @@ class PublicdnsField(Publicdns):
 
 
 class BillingPlanField(BillingPlan):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       showDeleted: bool
       visibility: Visibility
@@ -1692,7 +1692,7 @@ class BillingPlanField(BillingPlan):
 
 
 class HeadlineField(Headline):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1700,7 +1700,7 @@ class HeadlineField(Headline):
 
 
 class BillingItemField(BillingItem):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1708,7 +1708,7 @@ class BillingItemField(BillingItem):
 
 
 class AssetField(Asset):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       visible: bool
 
    _args: Args
@@ -1773,7 +1773,7 @@ class Comment(GQLObject):
    user: NewType('User', GQLObject) ##NON NULL ## Circular Reference for User
 
 class CommentField(Comment):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1857,7 +1857,7 @@ class RequestLogsResult(GQLObject):
    totalCount: int
 
 class IssueField(Issue):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1865,7 +1865,7 @@ class IssueField(Issue):
 
 
 class AnnouncementField(Announcement):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1873,7 +1873,7 @@ class AnnouncementField(Announcement):
 
 
 class ApiDeveloperField(ApiDeveloper):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1881,7 +1881,7 @@ class ApiDeveloperField(ApiDeveloper):
 
 
 class BillingFeatureField(BillingFeature):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1889,7 +1889,7 @@ class BillingFeatureField(BillingFeature):
 
 
 class RequestLogsResultField(RequestLogsResult):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str
       limit: int
@@ -1977,7 +1977,7 @@ class ProjectAllowedAPI(GQLObject):
    status: str
 
 class ProjectAllowedAPIField(ProjectAllowedAPI):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -2060,7 +2060,7 @@ class LegalAgreementInfo(GQLObject):
    docuSign: DocuSign
 
 class BillingSubscriptionField(BillingSubscription):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
       getAllSubscriptions: bool
@@ -2070,7 +2070,7 @@ class BillingSubscriptionField(BillingSubscription):
 
 
 class SubscriptionsPagingField(SubscriptionsPaging):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
       getAllSubscriptions: bool
@@ -2089,7 +2089,7 @@ class QueryFilters(GQLObject):
    filters: list[QueryFilter]
 
 class TransactionsPagingField(TransactionsPaging):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       apiNameFilter: str
       queryFilters: QueryFilters
@@ -2099,7 +2099,7 @@ class TransactionsPagingField(TransactionsPaging):
 
 
 class TransactionField(Transaction):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID
       mashapeId: ID
 
@@ -2108,7 +2108,7 @@ class TransactionField(Transaction):
 
 
 class StatsField(Stats):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: ID
       fromDate: DateTime ##NON NULL
       toDate: DateTime
@@ -2209,7 +2209,7 @@ class IssueObject(GQLObject):
    total: int
 
 class FollowersUserField(FollowersUser):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
    _args: Args
@@ -2217,7 +2217,7 @@ class FollowersUserField(FollowersUser):
 
 
 class IssueObjectField(IssueObject):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -2271,7 +2271,7 @@ class Organization(GQLObject):
    billingType: str
 
 class FollowUserField(FollowUser):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
    _args: Args
@@ -2279,7 +2279,7 @@ class FollowUserField(FollowUser):
 
 
 class ProjectField(Project):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       projectId: ID
       mashapeId: ID
 
@@ -2288,7 +2288,7 @@ class ProjectField(Project):
 
 
 class ProjectInfoField(ProjectInfo):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       projectId: ID ##NON NULL
 
    _args: Args
@@ -2434,7 +2434,7 @@ class SpotlightConnection(GQLObject):
    pageInfo: PageInfo
 
 class ApiField(Api):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       weightLowerThan: int
 
    _args: Args
@@ -2791,7 +2791,7 @@ class CollectionItem(GQLObject):
    pass
 
 class CollectionItemField(CollectionItem):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       apisSkip: int
       apisLimit: int
 

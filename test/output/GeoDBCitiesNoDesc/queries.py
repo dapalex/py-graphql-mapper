@@ -1,11 +1,11 @@
-from pygqlmap.components import GQLOperationArgs
+from pygqlmap.components import GQLOperationArgs, GQLQuery
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
-class country(GQLObject):
-   class Args(GQLOperationArgs): 
+class country(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
@@ -14,8 +14,8 @@ class country(GQLObject):
 
    type: Country
 
-class countries(GQLObject):
-   class Args(GQLOperationArgs): 
+class countries(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       currencyCode: str
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -30,8 +30,8 @@ class countries(GQLObject):
 
    type: CountriesConnection
 
-class currencies(GQLObject):
-   class Args(GQLOperationArgs): 
+class currencies(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       countryId: ID
       first: int
       after: str
@@ -45,8 +45,8 @@ class currencies(GQLObject):
 
 distanceBetween = float
 
-class locales(GQLObject):
-   class Args(GQLOperationArgs): 
+class locales(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       first: int
       after: str
       last: int
@@ -57,8 +57,8 @@ class locales(GQLObject):
 
    type: LocalesConnection
 
-class populatedPlace(GQLObject):
-   class Args(GQLOperationArgs): 
+class populatedPlace(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
@@ -67,8 +67,8 @@ class populatedPlace(GQLObject):
 
    type: PopulatedPlace
 
-class populatedPlaces(GQLObject):
-   class Args(GQLOperationArgs): 
+class populatedPlaces(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       location: Location
       radius: float
       distanceUnit: DistanceUnit
@@ -93,8 +93,8 @@ class populatedPlaces(GQLObject):
 
    type: PopulatedPlacesConnection
 
-class timeZone(GQLObject):
-   class Args(GQLOperationArgs): 
+class timeZone(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -102,8 +102,8 @@ class timeZone(GQLObject):
 
    type: TimeZone
 
-class timeZones(GQLObject):
-   class Args(GQLOperationArgs): 
+class timeZones(GQLQuery):
+   class Args(GQLOperationArgs, GQLObject): 
       first: int
       after: str
       last: int

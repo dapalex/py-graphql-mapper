@@ -1,7 +1,7 @@
 from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.gqlArguedPrimitives import *
+from pygqlmap.src.gqlArgBuiltin import *
 from typing import NewType
 from .gqlSimpleTypes import *
 from .enums import *
@@ -32,7 +32,7 @@ class TimeZonesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnection]):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
@@ -70,7 +70,7 @@ class CountryRegionsConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class CountryRegionField(CountryRegion):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       code: ID
 
    _args: Args
@@ -78,7 +78,7 @@ class CountryRegionField(CountryRegion):
 
 
 class CountryRegionsConnectionField(CountryRegionsConnection):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       first: int
@@ -108,7 +108,7 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
-   class Args(GQLArgsSet): 
+   class Args(GQLArgsSet, GQLObject): 
       radius: float
       distanceUnit: DistanceUnit
       countryIds: list[ID]

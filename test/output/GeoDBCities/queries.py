@@ -1,15 +1,15 @@
-from pygqlmap.components import GQLOperationArgs
+from pygqlmap.components import GQLOperationArgs, GQLQuery
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
-class country(GQLObject):
+class country(GQLQuery):
    """
    country - Look up a country
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       id - An ISO-3166 country code or WikiData id
 
@@ -24,12 +24,12 @@ class country(GQLObject):
 
    type: Country
 
-class countries(GQLObject):
+class countries(GQLQuery):
    """
    countries - Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       currencyCode - Only countries supporting this currency
 
@@ -62,12 +62,12 @@ class countries(GQLObject):
 
    type: CountriesConnection
 
-class currencies(GQLObject):
+class currencies(GQLQuery):
    """
    currencies - Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       countryId - Currencies for this country id
 
@@ -93,12 +93,12 @@ class currencies(GQLObject):
 
 distanceBetween = float
 
-class locales(GQLObject):
+class locales(GQLQuery):
    """
    locales - Get all known locales
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -119,12 +119,12 @@ class locales(GQLObject):
 
    type: LocalesConnection
 
-class populatedPlace(GQLObject):
+class populatedPlace(GQLQuery):
    """
    populatedPlace - Look up a populated place
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       id -  A place id (either native id or Wikidata ID)
 
@@ -139,12 +139,12 @@ class populatedPlace(GQLObject):
 
    type: PopulatedPlace
 
-class populatedPlaces(GQLObject):
+class populatedPlaces(GQLQuery):
    """
    populatedPlaces - Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       location - Only places near this location
 
@@ -209,12 +209,12 @@ where SORT_FIELD = countryCode | elevation | name | population
 
    type: PopulatedPlacesConnection
 
-class timeZone(GQLObject):
+class timeZone(GQLQuery):
    """
    timeZone - Look up a time-zone
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -222,12 +222,12 @@ class timeZone(GQLObject):
 
    type: TimeZone
 
-class timeZones(GQLObject):
+class timeZones(GQLQuery):
    """
    timeZones - Get all known time-zones
 
    """
-   class Args(GQLOperationArgs): 
+   class Args(GQLOperationArgs, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
