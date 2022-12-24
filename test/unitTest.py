@@ -1,6 +1,5 @@
 import requests
-from pygqlmap.enums import OperationType, ArgType
-from pygqlmap.components import GQLOperation
+from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
 from pygqlmap.gqlTypes import ID
 from consts import gdbcHeaders, gdbcUrl
@@ -53,7 +52,7 @@ async def testNestedObjectShowChange():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -91,7 +90,7 @@ async def testComplexObjectShowChange():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -116,7 +115,7 @@ async def testNestedObjectWithArgsAndVariables():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -137,7 +136,7 @@ async def testNestedObjectWithLiteralValueArgs():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -149,6 +148,9 @@ async def testComplexObjectWithLiteralValueArgs():
     query = countries() 
     query._args.currencyCode = 'CNY'
     query.type.edges.node.region._args.code = "CH"
+    query.type.edges.node.region.populatedPlaces._args.includeDeleted = False
+    query.type.edges.node.region.populatedPlaces._args.namePrefix = "gua"
+    query.type.edges.node.regions._args.namePrefix = 'gua'
 
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
@@ -159,7 +161,7 @@ async def testComplexObjectWithLiteralValueArgs():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -180,7 +182,7 @@ async def testComplexObjectWithLiteralValueArgs2():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -192,7 +194,7 @@ async def testComplexObjectWithArgsAndVariables():
     query = countries() 
     query._args.first = 3
     query._args.after = 'Mg=='
-    query = GQLOperation(OperationType.query, countries, 'myCountriesQuery')
+    query.name = 'myCountriesQuery'
     
     query.setShow('countries.edges.node.region', False)
     query._argsType = ArgType.Variables
@@ -207,7 +209,7 @@ async def testComplexObjectWithArgsAndVariables():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -230,7 +232,7 @@ async def testNestedObjectShowChangeWithArgsAndVariables():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -261,7 +263,7 @@ async def testComplexObjectShowChangeWithArgsAndVariables():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
@@ -285,7 +287,7 @@ async def testObjectWithComposedArgs():
         gqlResponse = GQLResponse(response, True)
         
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('!!executeQuery FAILED!! - ' + ex.args[0])

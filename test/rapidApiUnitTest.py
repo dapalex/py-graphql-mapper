@@ -1,7 +1,5 @@
 import os
 from pprint import pprint
-from pygqlmap.enums import OperationType
-from pygqlmap.components import GQLOperation
 from pygqlmap.network import GQLResponse
 import requests
 from codegen.network import fetchSchemaObject
@@ -99,15 +97,13 @@ async def RunRapidApiCreateTransformationsMutation():
         
         print('Inserting python mutation input data...')
         
-        mutation.transformations = [input1, input2]
+        mutation._args.transformations = [input1, input2]
         
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, inputFieldName='transformations', dataType=mutation, operationName='MyCreateTransformations')
-        pprint(myMutation.exportGqlSource)
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=rapidApiUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -127,34 +123,30 @@ async def RunRapidApiCreateGatewayInstanceMutation():
 
         mutation = Mutations.createGatewayInstance.value()
         
-        mutation.createDto = GatewayInstanceCreateInput()
-        mutation.createDto.apiGatewayCodeTemplateId = 12314
-        mutation.createDto.configurations = GatewayConfigurationCreateInput()
-        mutation.createDto.configurations.allowHttpTraffic = False
-        mutation.createDto.configurations.gatewayDefaultTimeOut = 100
-        mutation.createDto.configurations.limitRequestSize = 154000
-        mutation.createDto.customMessages = []
+        mutation._args.createDto = GatewayInstanceCreateInput()
+        mutation._args.createDto.apiGatewayCodeTemplateId = 12314
+        mutation._args.createDto.dns = 'mydomain.com'
+        mutation._args.createDto.configurations = GatewayConfigurationCreateInput()
+        mutation._args.createDto.configurations.allowHttpTraffic = False
+        mutation._args.createDto.configurations.gatewayDefaultTimeOut = 100
+        mutation._args.createDto.configurations.limitRequestSize = 154000
+        mutation._args.createDto.customMessages = []
         gcmci = GatewayCustomMessageCreateInput()
         gcmci.messageKey = MessageKey.API_MISSING
         gcmci.messageValue = 'Message'
         gcmci2 = GatewayCustomMessageCreateInput()
         gcmci2.messageKey = MessageKey.APP_LIMIT_API_ERROR
         gcmci2.messageValue = 'Message2'
-        mutation.createDto.customMessages.append([gcmci, gcmci2])
-        mutation.createDto.dns = 'myDns'
-        mutation.createDto.isDefault = False
-        mutation.createDto.type = GatewayType.Kong
+        mutation._args.createDto.customMessages.extend([gcmci, gcmci2])
+        mutation._args.createDto.dns = 'myDns'
+        mutation._args.createDto.isDefault = False
+        mutation._args.createDto.type = GatewayType.Kong
         
-        print('Inserting python mutation input data...')
-        
-        
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, inputFieldName='createDto', dataType=mutation, operationName='MyCreateGatewayInstance')
-        pprint(myMutation.exportGqlSource)
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=rapidApiUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -175,37 +167,30 @@ async def RunRapidApiEditUserAlertMutation():
 
         mutation = Mutations.editUserAlert.value()
         
-        mutation.input = editUserAlertInput()
-        mutation.input.apiIds = [123,32,56,23]
-        mutation.input.apiVersionsIds = [1,2,3,4]
-        mutation.input.baseUrl = 'http://shutup.bettermyurl'
-        mutation.input.billingPlansIds = [1,2,3,4]
-        mutation.input.channel = Channel.Email
-        mutation.input.condition = Condition.gte
-        mutation.input.description = 'description baby'
-        mutation.input.endpointHashes = ['FJWIR23jfjf43j2', 'd3jr4j3j43rf']
-        mutation.input.endpointsIds = [123,32,56,23]
-        mutation.input.id = 'sdasd'
-        mutation.input.minNextAlertTime = 'tomorrow'
-        mutation.input.name = 'go play soldier'
-        mutation.input.status = AlertStatus.Enabled
-        mutation.input.threshold = 23.45
-        mutation.input.throttleInterval = time.hour
-        mutation.input.throttlePeriod = 1
-        mutation.input.timeInterval = time.second
-        mutation.input.timePeriod = 10
-        mutation.input.typeId = 124
-        
-        print('Inserting python mutation input data...')
-        
-        
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyEditUserAlert')
-        pprint(myMutation.exportGqlSource)
+        mutation._args.input = editUserAlertInput()
+        mutation._args.input.apiIds = [123,32,56,23]
+        mutation._args.input.apiVersionsIds = [1,2,3,4]
+        mutation._args.input.baseUrl = 'http://shutup.bettermyurl'
+        mutation._args.input.billingPlansIds = [1,2,3,4]
+        mutation._args.input.channel = Channel.Email
+        mutation._args.input.condition = Condition.gte
+        mutation._args.input.description = 'description baby'
+        mutation._args.input.endpointHashes = ['FJWIR23jfjf43j2', 'd3jr4j3j43rf']
+        mutation._args.input.endpointsIds = [123,32,56,23]
+        mutation._args.input.id = 'sdasd'
+        mutation._args.input.minNextAlertTime = 'tomorrow'
+        mutation._args.input.name = 'go play soldier'
+        mutation._args.input.status = AlertStatus.Enabled
+        mutation._args.input.threshold = 23.45
+        mutation._args.input.throttleInterval = time.hour
+        mutation._args.input.throttlePeriod = 1
+        mutation._args.input.timeInterval = time.second
+        mutation._args.input.timePeriod = 10
+        mutation._args.input.typeId = 124
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=rapidApiUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -215,3 +200,41 @@ async def RunRapidApiEditUserAlertMutation():
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunRapidApiEditUserAlertMutation")
+    
+
+async def adminAuditLogsMutation():
+    print('\nRunning adminAuditLogsMutation...')
+    try:
+        # from output.github.gqlTypes import UpdateRepositoryInput
+        from output.RapidApi.queries import Queries
+        from output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField  
+        from output.RapidApi.enums import Order         
+        
+        print('Creating mutation python object...')
+        query = Queries.adminAuditLogs.value()
+        print('Inserting python mutation input data...')
+        
+        query._args.orderBy = AdminAuditLogSortablesInput()
+        field1 = AdminAuditLogSortablesSortingField()
+        field1.fieldName = 'MyField'
+        field1.order = Order.ASC
+        field2 = AdminAuditLogSortablesSortingField()
+        field2.fieldName = 'MyOtherField'
+        field2.order = Order.DESC
+        query._args.orderBy.sortingFields = [field1, field2]
+        
+        print('Creating GQLOperation for mutation...')
+        # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
+        pprint(query.exportGqlSource)
+            
+        response = requests.request('POST', url=rapidApiUrl, 
+                                    json= { "query": query.exportGqlSource }, 
+                                    headers=rapidApiHeaders) 
+        gqlResponse = GQLResponse(response)
+        
+        gqlResponse.printMessageOutput()
+        
+    except Exception as ex:
+        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        
+    print("End of adminAuditLogsMutation")

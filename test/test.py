@@ -44,19 +44,20 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 # asyncio.run(RunGithubCreateIssueMutation())
 # waitForInput(lockOutput)
 # asyncio.run(RunGithubCreateProjectMutation())
-# #GITHUB - END
+# waitForInput(lockOutput)
+#GITHUB - END
 
-# #RapidAPI - START
-# asyncio.run(RunRapidApiCreateTransformationsMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunRapidApiEditUserAlertMutation())
-# waitForInput(lockOutput)
-# #RapidAPI - END
+#RapidAPI - START
+asyncio.run(RunRapidApiCreateTransformationsMutation())
+waitForInput(lockOutput)
+asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
+waitForInput(lockOutput)
+asyncio.run(RunRapidApiEditUserAlertMutation())
+waitForInput(lockOutput)
+#RapidAPI - END
 
-# #GeoDBCities API - START
-# #GeoDBCities API - END
+#GeoDBCities API - START
+#GeoDBCities API - END
 
 # #COMMANDS - START
 # cleanOutput(OutputType.COMMANDS)
@@ -129,9 +130,11 @@ from unitTest import *
 # ##SAMPLE TESTS - END
 
 #FURTHER TESTS
-asyncio.run(testNestedObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
+# asyncio.run(adminAuditLogsMutation()) 
+# waitForInput(lockOutput)
 asyncio.run(testNestedObjectWithLiteralValueArgs())
+waitForInput(lockOutput)
+asyncio.run(testNestedObjectWithArgsAndVariables()) 
 waitForInput(lockOutput)
 asyncio.run(testNestedObjectShowChange())
 waitForInput(lockOutput)

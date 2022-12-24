@@ -1,8 +1,9 @@
-import os
-import pathlib
+import inspect
 import re
 import sys
 from io import TextIOWrapper
+from enum import Enum
+from pygqlmap.gqlTypes import ID
 from .logger import Logger
 from .consts import primitives
 
@@ -25,6 +26,29 @@ def getObjectClassName(object):
     
     return str(type(object))
 
+def isEmptyField(field):
+    if type(field) == str or  type(field) == ID:
+        return len(field) == 0
+    elif type(field) == int or type(field) == float:
+        return field < 0
+    elif type(field) == type: #should never get in
+        return field 
+    elif type(field) == bool:  
+        return False
+    elif type(field) == dict: 
+        return not not field
+    elif type(field) == list: 
+        return not field
+    elif Enum in inspect.getmro(type(field)): 
+        return not field
+    elif inspect.isclass(type(field)):
+        out = True
+        for innerField in field.__dataclass_fields__:
+            out = out and isEmptyField(getattr(field, innerField))
+        return out
+    else:
+        Logger.logErrorMessage('type not managed!')
+      
 def isNoneOrBuiltinPrimitive(obj):
     return isinstance(obj, primitives)
 
@@ -34,18 +58,27 @@ def popListElementByRef(lst: list, element):
         if id(lstEl) == id(element):
             return lst.pop(lst.index(element))
 
-def mergeTupleUniqueElements(tup1: tuple, tup2: tuple):
+def mergeTupleUniqueArguments(tup1: tuple, tup2: tuple):
     if tup2:
-        for elTup2 in tup2:
-            tup1 = addTupleUniqueElement(tup1, elTup2)
+       
+            tup1 = addTupleUniqueArgument(tup1, tup2[0], tup2[1])
     
     return tup1
 
-def addTupleUniqueElement(tup: tuple, element):
-    if element not in tup:
-        tup = tup + (element,)
+def addTupleUniqueArgument(tup: tuple, strArgument, location):
+    if (strArgument, location) not in tup:
+        tup = tup + (strArgument, location)
 
     return tup
+
+# def splitByArg(string: str, arg: str):
+#     if not arg: return [string]
+    
+#     argFirstIndex = string.find(arg)
+#     argLastIndex = string.rfind(arg)
+    
+#     strings = [string[0,argFirstIndex], string[argLastIndex,]]
+#     return strings
 
 def getDotNotationInfo(input: str) -> tuple:
     """for internal use

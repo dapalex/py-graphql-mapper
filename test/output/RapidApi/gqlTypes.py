@@ -1177,28 +1177,28 @@ class EventConfigUpdateInput(GQLObject):
 class EventUrlCreateInput(GQLObject):
    url: str ##NON NULL
 
-class EventLogInput(GQLObject):
-   query: str
+class EventLogSortablesSortingField(GQLObject):
+   fieldName: EventLogSortables ##NON NULL
+   order: Order
 
-class AdminAuditLogInput(GQLObject):
-   query: str
+class AdminAuditLogSortablesSortingField(GQLObject):
+   fieldName: AdminAuditLogSortables ##NON NULL
+   order: Order
 
 class EnvConfigTerm(GQLObject):
    key: str
    brand: Brand
    categoryId: int
+   hideInAdvancedSettingsUI: bool
 
-class GatewayTemplateParamsSortingFieldNameSortingField(GQLObject):
-   fieldName: GatewayTemplateParamsSortingFieldName ##NON NULL
-   order: Order
+class GatewayTemplateParamsWhereInput(GQLObject):
+   status: str
 
-class GatewayTemplateSortingSortingField(GQLObject):
-   fieldName: GatewayTemplateSorting ##NON NULL
-   order: Order
+class GatewayTemplateWhereInput(GQLObject):
+   status: str
 
-class GatewayInstanceSortingSortingField(GQLObject):
-   fieldName: GatewayInstanceSorting ##NON NULL
-   order: Order
+class GatewayInstanceWhereInput(GQLObject):
+   status: str
 
 class EventUrlWhereInput(GQLObject):
    url: str

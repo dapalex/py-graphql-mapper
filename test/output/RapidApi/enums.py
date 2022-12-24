@@ -528,6 +528,7 @@ class WorkflowTopic(Enum):
    RequestAccessPlan = 'RequestAccessPlan'
    SignupRequestApproval = 'SignupRequestApproval'
    JoinOrganization = 'JoinOrganization'
+   RequestApplicationAuthorization = 'RequestApplicationAuthorization'
 
 class SignupApprovalWorkflowTopic(Enum):
    SignupRequestApproval = 'SignupRequestApproval'

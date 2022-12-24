@@ -1,38 +1,29 @@
 
 from dataclasses import dataclass
-from .gqlObjectInit import subClassInit
+from .gqlInit import subClassInit
 
-class ArguedInt(int):
+class ArguedBuiltin():
     def __init_subclass__(cls):
         cls = dataclass(cls)                    
         cls.__init__ = subClassInit
+
+class ArguedInt(ArguedBuiltin, int):
         
     def __new__(cls, number):
         arguedInt = super().__new__(cls, number)
         return arguedInt
     
-class ArguedStr(str):
+class ArguedStr(ArguedBuiltin, str):
     
-    def __init_subclass__(cls):
-        cls = dataclass(cls)                    
-        cls.__init__ = subClassInit
-           
     def __new__(cls, *args, **kw):
         return str.__new__(cls, *args, **kw)
 
-class ArguedBool():
-    def __init_subclass__(cls):
-        cls = dataclass(cls)                    
-        cls.__init__ = subClassInit
+class ArguedBool(ArguedBuiltin):
         
     self = False
-    pass
 
-class ArguedFloat(float):
-    def __init_subclass__(cls):
-        cls = dataclass(cls)                    
-        cls.__init__ = subClassInit
-        
+class ArguedFloat(ArguedBuiltin, float):
+    
     def __init__(self,value): #Constructor like method
         self.value = value
         

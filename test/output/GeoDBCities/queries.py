@@ -1,4 +1,5 @@
-from pygqlmap.components import GQLOperationArgs, GQLQuery
+from pygqlmap import GQLQuery
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
@@ -9,7 +10,7 @@ class country(GQLQuery):
    country - Look up a country
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       id - An ISO-3166 country code or WikiData id
 
@@ -29,7 +30,7 @@ class countries(GQLQuery):
    countries - Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       currencyCode - Only countries supporting this currency
 
@@ -67,7 +68,7 @@ class currencies(GQLQuery):
    currencies - Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       countryId - Currencies for this country id
 
@@ -91,14 +92,35 @@ class currencies(GQLQuery):
 
    type: CurrenciesConnection
 
-distanceBetween = float
+class distanceBetween(GQLQuery):
+   """
+   distanceBetween - Get the distance between any two places
+
+   """
+   class Args(GQLArgsSet, GQLObject): 
+      """
+      fromPlaceId - From some place
+
+      toPlaceId - To some place
+
+      distanceUnit - The unit of distance to use
+
+      """
+      fromPlaceId: ID ##NON NULL
+      toPlaceId: ID ##NON NULL
+      distanceUnit: DistanceUnit
+
+   _args: Args
+
+
+   type: float
 
 class locales(GQLQuery):
    """
    locales - Get all known locales
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -124,7 +146,7 @@ class populatedPlace(GQLQuery):
    populatedPlace - Look up a populated place
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       id -  A place id (either native id or Wikidata ID)
 
@@ -144,7 +166,7 @@ class populatedPlaces(GQLQuery):
    populatedPlaces - Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       location - Only places near this location
 
@@ -214,7 +236,7 @@ class timeZone(GQLQuery):
    timeZone - Look up a time-zone
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -227,7 +249,7 @@ class timeZones(GQLQuery):
    timeZones - Get all known time-zones
 
    """
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 

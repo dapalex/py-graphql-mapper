@@ -46,108 +46,24 @@
         } 
     }
 
-
-    STEP 1: Define the python class corresponding to the GraphQL connection type and 'currency' corresponding the the connection node within the query 
 """
-##STEP 1
-from pygqlmap.components import GQLConnection, GQLEdges, GQLObject
-from utils import ManageException
-
-class User(GQLObject):
-    anyPinnableItems: bool ##NON NULL
-    avatarUrl: str ##NON NULL
-    bio: str
-    bioHTML: str ##NON NULL
-
-    def __init__(self):
-        self.avatarUrl = ''
-        self.anyPinnableItems = False 
-        self.bioHTML = ''  
-        self.bio = '' 
-        super().__init__()
-        
-class PageInfo(GQLObject):
-    endCursor: str
-    hasNextPage: bool ##NON NULL
-    hasPreviousPage: bool ##NON NULL
-    startCursor: str
-   
-    def __init__(self):
-        self.endCursor = ''
-        self.hasNextPage = False 
-        self.hasPreviousPage = False 
-        self.startCursor = '' 
-        super().__init__()
-
-class UserConnection(GQLConnection):
-  
-    def __init__(self):
-        super().__init__(GQLEdges(User())) 
-        
-
-class RepositoryCodeownersError(GQLObject):
-    column: int ##NON NULL
-    kind: str ##NON NULL
-    line: int ##NON NULL
-    message: str ##NON NULL
-    path: str ##NON NULL
-    source: str ##NON NULL
-    suggestion: str
-   
-    def __init__(self):
-        self.kind = ''
-        self.column = -1 
-        self.message = ''
-        self.line = -1 
-        self.path = ''
-        self.suggestion = ''
-        self.source = ''
-        super().__init__()
-        
-class RepositoryCodeowners(GQLObject):
-    errors: RepositoryCodeownersError
-    
-    def __init__(self):
-        self.errors = RepositoryCodeownersError()
-        super().__init__()
-    
-class Repository(GQLObject):
-    allowUpdateBranch: bool
-    assignableUsers: UserConnection ##NON NULL
-    autoMergeAllowed: bool ##NON NULL
-    codeowners: RepositoryCodeowners
-    
-    def __init__(self):
-        self.allowUpdateBranch = False
-        self.assignableUsers = UserConnection()
-        self.autoMergeAllowed = False
-        self.codeowners = RepositoryCodeowners()
-        super().__init__()
-        
-
-class updateRepository(GQLObject):
-    clientMutationId: str
-    repository: Repository
-    
-    def __init__(self):
-        self.clientMutationId = ''
-        self.repository = Repository()
-        super().__init__()
 
 ##
 
 """
-    STEP 2: Instantiate GQLOperation class representing the GraphQL mutation 
-    STEP 3: Instantiate GQLArgs object structure with argument type as LiteralValues
-    STEP 4: Query the GraphQL server
-    STEP 5: Pass the response received to the GQLResponse constructor
-    STEP 6: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 1: Instantiate GQLOperation class representing the GraphQL mutation 
+    STEP 2: Instantiate GQLArgs object structure with argument type as LiteralValues
+    STEP 3: Query the GraphQL server
+    STEP 4: Pass the response received to the GQLResponse constructor
+    STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: The object within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
 import requests
 from consts import githubUrl, githubHeaders
+from output.github.mutations import updateRepository
+from test.utils import ManageException
 
 async def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')
@@ -188,7 +104,7 @@ async def testMutationUpdateLiteralValues():
         gqlResponse.printMessageOutput()
         
 ##STEP 6
-        gqlResponse.mapGQLDataToObj(mutation.obj)
+        gqlResponse.mapGQLDataToObj(mutation.type)
 ##
         
 ##RESULT

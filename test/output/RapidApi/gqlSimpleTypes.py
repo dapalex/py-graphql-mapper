@@ -1197,32 +1197,33 @@ class ExtensionWhereInput(GQLObject):
    page: str
    client: str
 
-class EventLogSortablesSortingField(GQLObject):
-   fieldName: EventLogSortables ##NON NULL
+class EventLogInput(GQLObject):
+   query: str
+
+class AdminAuditLogInput(GQLObject):
+   query: str
+
+class GatewayTemplateParamsSortingFieldNameSortingField(GQLObject):
+   fieldName: GatewayTemplateParamsSortingFieldName ##NON NULL
    order: Order
 
-class AdminAuditLogSortablesSortingField(GQLObject):
-   fieldName: AdminAuditLogSortables ##NON NULL
+class GatewayTemplateSortingSortingField(GQLObject):
+   fieldName: GatewayTemplateSorting ##NON NULL
    order: Order
 
-class GatewayTemplateParamsWhereInput(GQLObject):
-   status: str
+class GatewayInstanceSortingSortingField(GQLObject):
+   fieldName: GatewayInstanceSorting ##NON NULL
+   order: Order
 
-class GatewayTemplateWhereInput(GQLObject):
-   status: str
-
-class GatewayInstanceWhereInput(GQLObject):
-   status: str
+class EventUrlSortablesSortingField(GQLObject):
+   fieldName: EventUrlSortables ##NON NULL
+   order: Order
 
 class PaginationArgs(GQLObject):
    first: int
    last: int
    before: str
    after: str
-
-class EventUrlSortablesSortingField(GQLObject):
-   fieldName: EventUrlSortables ##NON NULL
-   order: Order
 
 class EnvConfig(GQLObject):
    id: int ##NON NULL

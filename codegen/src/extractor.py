@@ -475,13 +475,6 @@ class Extractor():
             claimedType, actualType = scType.composePythonType()
             arguedPrimitive = actualType in primitivesStringified
             
-            if not arguedName:
-                if isList:
-                    return [scTypeName + ' = list[' + actualType + ']']
-            
-                if arguedPrimitive: #TEMP - with NOT NULL managed should disappear
-                    return [scTypeName + ' = ' + actualType]
-            
             fieldsCodeList = []
             fieldsDocCodeList = []
             
@@ -540,7 +533,7 @@ class Extractor():
         codeLst = []
         
         if hasattr(scType, 'args') and scType.args:
-            parentClass = "GQLArgsSet" if objType == OperationType.genericType else "GQLOperationArgs"
+            parentClass = "GQLArgsSet"# if objType == OperationType.genericType else "GQLOperationArgs"
             codeLst.append(self.indent + "class Args(" + parentClass + ", GQLObject): ")
             
             queryArgDocLst = []

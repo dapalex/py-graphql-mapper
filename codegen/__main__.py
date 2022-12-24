@@ -11,7 +11,6 @@ from .src.spSchema import GQLSchema
 from .src.utils import getValidFolder
 
 def main():
-    print('You got it ugly poisoned son of a bitch!')
     try:
 
         my_parser = argparse.ArgumentParser(description = """Welcome to the python-graphql mutations generator""")

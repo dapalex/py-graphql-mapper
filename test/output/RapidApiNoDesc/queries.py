@@ -1,13 +1,15 @@
-from pygqlmap.components import GQLOperationArgs, GQLQuery
+from pygqlmap import GQLQuery
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
-ping = str
+class ping(GQLQuery):
+   type: str ##NON NULL
 
 class eventUrls(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       pagination: PaginationArgs
       where: EventUrlWhereInput
       order: EventUrlSortablesInput
@@ -18,7 +20,7 @@ class eventUrls(GQLQuery):
    type: EventUrlConnection ##NON NULL
 
 class eventUrl(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -33,7 +35,7 @@ class eventConfig(GQLQuery):
    type: EventConfig
 
 class gatewayInstances(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       pagination: PaginationArgs
       where: GatewayInstanceWhereInput
       order: GatewayInstanceSortingInput
@@ -44,7 +46,7 @@ class gatewayInstances(GQLQuery):
    type: GatewayInstanceConnection ##NON NULL
 
 class gatewayInstance(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -53,7 +55,7 @@ class gatewayInstance(GQLQuery):
    type: GatewayInstance ##NON NULL
 
 class gatewayTemplates(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       pagination: PaginationArgs
       where: GatewayTemplateWhereInput
       order: GatewayTemplateSortingInput
@@ -64,7 +66,7 @@ class gatewayTemplates(GQLQuery):
    type: GatewayTemplateConnection ##NON NULL
 
 class gatewayTemplate(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -73,7 +75,7 @@ class gatewayTemplate(GQLQuery):
    type: GwTemplate ##NON NULL
 
 class gatewayTemplatesParams(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       pagination: PaginationArgs
       where: GatewayTemplateParamsWhereInput
       order: GatewayTemplateParamSortingInput
@@ -84,7 +86,7 @@ class gatewayTemplatesParams(GQLQuery):
    type: GatewayTemplateParamConnection ##NON NULL
 
 class gatewayTemplateParam(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -96,7 +98,7 @@ class envConfigCategories(GQLQuery):
    type: EnvConfigCategory ##NON NULL
 
 class envConfig(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int ##NON NULL
 
    _args: Args
@@ -105,7 +107,7 @@ class envConfig(GQLQuery):
    type: EnvConfig ##NON NULL
 
 class envConfigs(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       envConfigTerm: EnvConfigTerm ##NON NULL
 
    _args: Args
@@ -114,7 +116,7 @@ class envConfigs(GQLQuery):
    type: EnvConfig ##NON NULL
 
 class adminAuditLogs(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AdminAuditLogInput
       pagination: PaginationArgs
       orderBy: AdminAuditLogSortablesInput
@@ -125,7 +127,7 @@ class adminAuditLogs(GQLQuery):
    type: AdminAuditLogConnection
 
 class eventLogs(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: EventLogInput
       pagination: PaginationArgs
       orderBy: EventLogSortablesInput
@@ -135,10 +137,19 @@ class eventLogs(GQLQuery):
 
    type: EventLogConnection
 
-extensions = list[Extension]
+class extensions(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      client: str
+      page: str
+      path: str
+
+   _args: Args
+
+
+   type: list[Extension]
 
 class getSEOTagsByURL(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       url: str
 
    _args: Args
@@ -147,7 +158,7 @@ class getSEOTagsByURL(GQLQuery):
    type: SEO
 
 class getUserAlertById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -155,13 +166,20 @@ class getUserAlertById(GQLQuery):
 
    type: UserAlert
 
-getUserAlertsByScope = list[UserAlert]
+class getUserAlertsByScope(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      scope: ID ##NON NULL
+
+   _args: Args
+
+
+   type: list[UserAlert]
 
 class getAlertsDefinitions(GQLQuery):
    type: AlertDefinition ##NON NULL
 
 class userAlerts(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: UserAlertsWhereInput ##NON NULL
 
    _args: Args
@@ -170,7 +188,7 @@ class userAlerts(GQLQuery):
    type: UserAlertsConnection ##NON NULL
 
 class userAlert(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -178,10 +196,17 @@ class userAlert(GQLQuery):
 
    type: UserAlert
 
-allowedPlanDeveloperByPlanId = list[AllowedPlanDeveloper]
+class allowedPlanDeveloperByPlanId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      planId: str
+
+   _args: Args
+
+
+   type: list[AllowedPlanDeveloper]
 
 class apiCertificate(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiCertificateId: ID ##NON NULL
 
    _args: Args
@@ -190,7 +215,7 @@ class apiCertificate(GQLQuery):
    type: ApiCertificate
 
 class apiCertificates(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ApiCertificateWhereInput
       orderBy: ApiCertificateOrderByInput
       pagination: PaginationInput
@@ -201,7 +226,7 @@ class apiCertificates(GQLQuery):
    type: ApiCertificateConnection ##NON NULL
 
 class apiDevelopersByApiId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
       pagingArgs: PagingArgs
 
@@ -211,7 +236,7 @@ class apiDevelopersByApiId(GQLQuery):
    type: ApiDeveloper ##NON NULL
 
 class apiFollowers(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ApiFollowerWhereInput ##NON NULL
       orderBy: ApiFollowerOrderByInput
       pagination: PaginationInput
@@ -222,7 +247,7 @@ class apiFollowers(GQLQuery):
    type: ApiFollowerConnection ##NON NULL
 
 class apiReferenceByApiAndVersionId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str ##NON NULL
       versionId: str ##NON NULL
 
@@ -232,7 +257,7 @@ class apiReferenceByApiAndVersionId(GQLQuery):
    type: ApiReference
 
 class apiReferences(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ApiReferenceWhereInput
 
    _args: Args
@@ -241,7 +266,7 @@ class apiReferences(GQLQuery):
    type: ApiReferenceConnection ##NON NULL
 
 class apiSearch(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       searchArguments: SearchArguments
 
    _args: Args
@@ -250,7 +275,7 @@ class apiSearch(GQLQuery):
    type: ApiSearchPaged
 
 class apiSearchV3(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       searchArguments: SearchArguments
 
    _args: Args
@@ -259,7 +284,7 @@ class apiSearchV3(GQLQuery):
    type: ApiSearchPaged
 
 class apiSpecImportProgresses(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       trackingIds: list[ID] ##NON NULL
 
    _args: Args
@@ -268,7 +293,7 @@ class apiSpecImportProgresses(GQLQuery):
    type: ApiSpecImportProcess ##NON NULL
 
 class bulkApisSummaryByTrackingIds(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       trackingIds: list[ID] ##NON NULL
 
    _args: Args
@@ -277,7 +302,7 @@ class bulkApisSummaryByTrackingIds(GQLQuery):
    type: BatchTrackingIdsSummary
 
 class calculatedStatistics(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str ##NON NULL
       resolution: str
@@ -296,7 +321,7 @@ class calculatedStatistics(GQLQuery):
    type: CalculatedStatistics
 
 class getApiVersion(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       versionId: ID ##NON NULL
 
    _args: Args
@@ -305,7 +330,7 @@ class getApiVersion(GQLQuery):
    type: ApiVersion
 
 class apiVersion(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: ID ##NON NULL
 
    _args: Args
@@ -314,7 +339,7 @@ class apiVersion(GQLQuery):
    type: ApiVersion
 
 class apiVersions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ApiVersionWhereInput
       orderBy: ApiVersionOrderByInput
       pagination: PaginationInput
@@ -325,7 +350,7 @@ class apiVersions(GQLQuery):
    type: ApiVersionConnection ##NON NULL
 
 class api(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -334,7 +359,7 @@ class api(GQLQuery):
    type: Api
 
 class apis(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ApiWhereInput
       orderBy: ApiOrderByInput
       pagination: PaginationInput
@@ -345,7 +370,7 @@ class apis(GQLQuery):
    type: ApiConnection ##NON NULL
 
 class exportOpenApi(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: ID ##NON NULL
       apiVersionId: ID
 
@@ -355,7 +380,7 @@ class exportOpenApi(GQLQuery):
    type: Any
 
 class validateSwagger(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: validateSwaggerInput
 
    _args: Args
@@ -364,7 +389,7 @@ class validateSwagger(GQLQuery):
    type: Any
 
 class applicationAuthorization(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -373,7 +398,7 @@ class applicationAuthorization(GQLQuery):
    type: ApplicationAuthorization ##NON NULL
 
 class applicationAuthorizations(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AppAuthorizationsWhereInput ##NON NULL
 
    _args: Args
@@ -382,7 +407,7 @@ class applicationAuthorizations(GQLQuery):
    type: ApplicationAuthorization ##NON NULL
 
 class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       applicationId: str
       environment: str
 
@@ -392,7 +417,7 @@ class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLQuery):
    type: ApplicationEnvironmentPaging
 
 class applicationEnvironmentsByApplicationIdAndEnvironment(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       applicationId: str
       environment: str
 
@@ -402,7 +427,7 @@ class applicationEnvironmentsByApplicationIdAndEnvironment(GQLQuery):
    type: ApplicationEnvironment
 
 class applicationById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int
 
    _args: Args
@@ -411,7 +436,7 @@ class applicationById(GQLQuery):
    type: Application
 
 class asset(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -420,7 +445,7 @@ class asset(GQLQuery):
    type: Asset
 
 class assets(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AssetWhereInput ##NON NULL
 
    _args: Args
@@ -429,7 +454,7 @@ class assets(GQLQuery):
    type: Asset ##NON NULL
 
 class assetsDownloadUrls(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AssetWhereInput ##NON NULL
 
    _args: Args
@@ -438,7 +463,7 @@ class assetsDownloadUrls(GQLQuery):
    type: AssetForDownload ##NON NULL
 
 class asyncApiConfigurations(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AsyncApiConfigurationWhereInput ##NON NULL
 
    _args: Args
@@ -447,7 +472,7 @@ class asyncApiConfigurations(GQLQuery):
    type: AsyncApiConfigurationConnection ##NON NULL
 
 class userAttributesByUserId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       userId: int
 
    _args: Args
@@ -456,7 +481,7 @@ class userAttributesByUserId(GQLQuery):
    type: UserAttributes
 
 class auditByOrganizationId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       searchTerm: str
       from_: int
       orgId: int
@@ -467,7 +492,7 @@ class auditByOrganizationId(GQLQuery):
    type: auditTrails
 
 class audit(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: AuditWhereInput ##NON NULL
 
    _args: Args
@@ -476,7 +501,7 @@ class audit(GQLQuery):
    type: auditTrails
 
 class auditLogin(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       from_: int
       userId: str
 
@@ -486,7 +511,7 @@ class auditLogin(GQLQuery):
    type: auditTrails
 
 class userByEmail(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       email: str
 
    _args: Args
@@ -497,16 +522,32 @@ class userByEmail(GQLQuery):
 class activeUser(GQLQuery):
    type: User
 
-getAuthStrategies = list[authStrategy]
+class getAuthStrategies(GQLQuery):
+   type: list[authStrategy]
 
-getBillingFeaturesByApiVersionId = list[BillingFeature]
+class getBillingFeaturesByApiVersionId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      versionId: str
 
-getBillingFeaturesByApiId = list[BillingFeature]
+   _args: Args
 
-isMonetizationEnabled = bool
+
+   type: list[BillingFeature]
+
+class getBillingFeaturesByApiId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str ##NON NULL
+
+   _args: Args
+
+
+   type: list[BillingFeature]
+
+class isMonetizationEnabled(GQLQuery):
+   type: bool
 
 class billingItems(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: BillingItemsWhereInput ##NON NULL
 
    _args: Args
@@ -515,7 +556,7 @@ class billingItems(GQLQuery):
    type: BillingItemConnection
 
 class getFreeSeatsObj(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orgId: ID ##NON NULL
 
    _args: Args
@@ -524,7 +565,7 @@ class getFreeSeatsObj(GQLQuery):
    type: SeatsBillingInformation
 
 class getBillingPlanVersionsByApiId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str ##NON NULL
       apiVersionId: str
       pagingArgs: PagingArgsBilling
@@ -536,7 +577,7 @@ class getBillingPlanVersionsByApiId(GQLQuery):
    type: BillingPlanVersionsResponse
 
 class getBillingPlanVersionById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       billingPlanVersionId: str ##NON NULL
 
    _args: Args
@@ -545,7 +586,7 @@ class getBillingPlanVersionById(GQLQuery):
    type: BillingPlanVersion
 
 class billingPlanVersion(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -554,7 +595,7 @@ class billingPlanVersion(GQLQuery):
    type: BillingPlanVersion
 
 class billingPlanVersions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: BillingPlanVersionWhereInput
       pagination: PaginationInput
 
@@ -564,7 +605,7 @@ class billingPlanVersions(GQLQuery):
    type: BillingPlanVersionConnection
 
 class calculatedStatisticsByEndpointAndApiversion(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str ##NON NULL
       resolution: str
@@ -581,7 +622,7 @@ class calculatedStatisticsByEndpointAndApiversion(GQLQuery):
    type: CalculatedStatistics
 
 class categoriesV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: CategoryWhereInput
       orderBy: CategoryOrderByInput
       pagination: PaginationInput
@@ -591,14 +632,37 @@ class categoriesV2(GQLQuery):
 
    type: CategoryConnection ##NON NULL
 
-categoryEntities = list[CategoryEntity]
+class categoryEntities(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      lang: str
+      pagingArgs: PagingArgs
 
-categories = list[Category]
+   _args: Args
 
-collectionsItemsByIds = list[CollectionItem]
+
+   type: list[CategoryEntity]
+
+class categories(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orderByField: str
+      orderDirection: OrderDirection
+
+   _args: Args
+
+
+   type: list[Category]
+
+class collectionsItemsByIds(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      ids: list[ID] ##NON NULL
+
+   _args: Args
+
+
+   type: list[CollectionItem]
 
 class collections(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: CollectionsWhereInput
       orderBy: CollectionsOrderByInput
       minWeightToFetchApis: int
@@ -609,7 +673,7 @@ class collections(GQLQuery):
    type: CollectionsResponse
 
 class collectionsByOwnerId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orderByField: str
       orderDirection: OrderDirection
       minWeightToFetchApis: int
@@ -621,7 +685,7 @@ class collectionsByOwnerId(GQLQuery):
    type: CollectionsResponse
 
 class getOrgHomepageCollections(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orderByField: str
       orderDirection: OrderDirection
       minWeightToFetchApis: int
@@ -632,7 +696,7 @@ class getOrgHomepageCollections(GQLQuery):
    type: CollectionsResponse
 
 class collectionById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       collectionId: ID ##NON NULL
 
    _args: Args
@@ -641,7 +705,7 @@ class collectionById(GQLQuery):
    type: Collection
 
 class collection(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -649,10 +713,20 @@ class collection(GQLQuery):
 
    type: Collection
 
-collapsedCollections = list[CollapsedCollection]
+class collapsedCollections(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orderByField: str
+      orderDirection: OrderDirection
+      limit: int
+      page: int
+
+   _args: Args
+
+
+   type: list[CollapsedCollection]
 
 class collectionBySlugifiedKey(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -660,12 +734,14 @@ class collectionBySlugifiedKey(GQLQuery):
 
    type: Collection
 
-getPrivateCollections = list[Collection]
+class getPrivateCollections(GQLQuery):
+   type: list[Collection]
 
-getPrivateCollectionsV2 = list[Collection]
+class getPrivateCollectionsV2(GQLQuery):
+   type: list[Collection]
 
 class collectionBySlugifiedKeyV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -674,7 +750,7 @@ class collectionBySlugifiedKeyV2(GQLQuery):
    type: CollectionV2
 
 class collectionBySlugifiedKeyV3(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedKey: str
 
    _args: Args
@@ -683,7 +759,7 @@ class collectionBySlugifiedKeyV3(GQLQuery):
    type: CollectionV3
 
 class getCommentsByIssueIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       issueId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -693,7 +769,7 @@ class getCommentsByIssueIdV2(GQLQuery):
    type: PaginatedComments
 
 class getCommentByIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       issueId: int ##NON NULL
       commentId: int ##NON NULL
 
@@ -703,7 +779,7 @@ class getCommentByIdV2(GQLQuery):
    type: Comment
 
 class search(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       term: str ##NON NULL
 
    _args: Args
@@ -711,10 +787,19 @@ class search(GQLQuery):
 
    type: ApiSearch ##NON NULL
 
-searchEntityByApiId = list[Any]
+class searchEntityByApiId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userName: str ##NON NULL
+      apiId: str ##NON NULL
+      distinct: str
+
+   _args: Args
+
+
+   type: list[Any]
 
 class getOpenApiSpecByApiId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: ID
 
    _args: Args
@@ -723,7 +808,7 @@ class getOpenApiSpecByApiId(GQLQuery):
    type: Any
 
 class entityById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID
 
    _args: Args
@@ -735,7 +820,7 @@ class activeEntity(GQLQuery):
    type: Entity
 
 class apiByNameAndOwnerName(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiName: str
       ownerName: str
 
@@ -745,7 +830,7 @@ class apiByNameAndOwnerName(GQLQuery):
    type: Api
 
 class apiBySlugifiedNameAndOwnerName(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedName: str
       ownerName: str
 
@@ -755,7 +840,7 @@ class apiBySlugifiedNameAndOwnerName(GQLQuery):
    type: Api
 
 class apiByNameAndOwnerId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiName: str
       ownerId: str
 
@@ -764,10 +849,17 @@ class apiByNameAndOwnerId(GQLQuery):
 
    type: Api
 
-userFollows = list[FollowUser]
+class userFollows(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userId: int
+
+   _args: Args
+
+
+   type: list[FollowUser]
 
 class apiById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
 
    _args: Args
@@ -775,10 +867,17 @@ class apiById(GQLQuery):
 
    type: Api
 
-apisById = list[Api]
+class apisById(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      ids: list[ID] ##NON NULL
+
+   _args: Args
+
+
+   type: list[Api]
 
 class followUserAction(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       followerId: int
       followeeId: int
 
@@ -787,18 +886,41 @@ class followUserAction(GQLQuery):
 
    type: FollowPair
 
-userFollowers = list[Follower]
+class userFollowers(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userId: int
 
-calculateSeatsPrice = float
+   _args: Args
 
-getSeatsTransactionsByOrgId = list[OrgTransaction]
 
-organizationsTreeToken = str
+   type: list[Follower]
 
-getMinimumSeats = int
+class calculateSeatsPrice(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      seats: int ##NON NULL
+
+   _args: Args
+
+
+   type: float ##NON NULL
+
+class getSeatsTransactionsByOrgId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orgId: int ##NON NULL
+
+   _args: Args
+
+
+   type: list[OrgTransaction]
+
+class organizationsTreeToken(GQLQuery):
+   type: str
+
+class getMinimumSeats(GQLQuery):
+   type: int ##NON NULL
 
 class transactionsById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
       userId: int
       type: str
@@ -812,7 +934,7 @@ class transactionsById(GQLQuery):
    type: TransactionsPaging
 
 class unionDiscussionsByAuthor(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       authorId: int
       limit: int
       offset: int
@@ -832,7 +954,7 @@ class getActiveTeamContext(GQLQuery):
    type: ContextEntity
 
 class transactionsAnalyticsByApiId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
       fromDate: str
       toDate: str
@@ -844,7 +966,7 @@ class transactionsAnalyticsByApiId(GQLQuery):
    type: TransactionsAnalytics
 
 class getConsumers(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
       userId: list[int]
       offset: int
@@ -860,7 +982,7 @@ class getConsumers(GQLQuery):
    type: Consumers
 
 class getFreeConsumers(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: list[ID] ##NON NULL
       offset: int
       limit: int
@@ -875,7 +997,7 @@ class getFreeConsumers(GQLQuery):
    type: Consumers
 
 class consumers(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: ConsumersWhereInput ##NON NULL
 
    _args: Args
@@ -883,10 +1005,17 @@ class consumers(GQLQuery):
 
    type: ConsumerConnection
 
-requestAdminToSubscribeToAnAPI = bool
+class requestAdminToSubscribeToAnAPI(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      eventData: ContactAdminSubscribeToAPIEvent ##NON NULL
+
+   _args: Args
+
+
+   type: bool
 
 class getCountryMetadata(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       ip: str
 
    _args: Args
@@ -895,7 +1024,7 @@ class getCountryMetadata(GQLQuery):
    type: Country
 
 class unionIssuesByAuthorV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       authorId: int
       type: str
       pagingArgs: PagingArgs
@@ -907,7 +1036,7 @@ class unionIssuesByAuthorV2(GQLQuery):
    type: DiscussionObject
 
 class getIssuesByApiIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str ##NON NULL
       pagingArgs: PagingArgs
       providerId: str
@@ -918,7 +1047,7 @@ class getIssuesByApiIdV2(GQLQuery):
    type: IssueObject
 
 class getIssuesByApiIdsV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiIds: list[str] ##NON NULL
       pagingArgs: PagingArgs
 
@@ -927,16 +1056,64 @@ class getIssuesByApiIdsV2(GQLQuery):
 
    type: IssueObject
 
-endpointStats = list[EndpointStats]
+class endpointStats(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiIds: list[ID] ##NON NULL
+      projectIds: list[ID]
+      endpointIds: list[ID]
+      fromDate: str
+      toDate: str
+      resolution: str
 
-endpointStatsByEntity = list[EndpointStats]
+   _args: Args
 
-endpointStatsByEntityV2 = list[VersionEndpointStats]
 
-getEndpointsWithinDateByParameters = list[EndpointStats]
+   type: list[EndpointStats]
+
+class endpointStatsByEntity(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      entityId: ID
+      apiId: ID ##NON NULL
+      endpointIds: list[ID]
+      fromDate: DateTime
+      toDate: DateTime
+      resolution: Resolution
+      timeOffset: int
+      filters: list[StatsFilterBy]
+
+   _args: Args
+
+
+   type: list[EndpointStats]
+
+class endpointStatsByEntityV2(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      entityId: ID
+      apiId: ID ##NON NULL
+      endpointsAndApiVersions: list[EndpointAndVersion]
+      fromDate: DateTime
+      toDate: DateTime
+      resolution: Resolution
+      timeOffset: int
+      filters: list[StatsFilterBy]
+
+   _args: Args
+
+
+   type: list[VersionEndpointStats]
+
+class getEndpointsWithinDateByParameters(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      input: endpointsWithinDateInput ##NON NULL
+      showDeleted: bool
+
+   _args: Args
+
+
+   type: list[EndpointStats]
 
 class endpoint(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -945,7 +1122,7 @@ class endpoint(GQLQuery):
    type: Endpoint
 
 class endpoints(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: EndpointWhereInput ##NON NULL
 
    _args: Args
@@ -953,10 +1130,20 @@ class endpoints(GQLQuery):
 
    type: EndpointConnection
 
-searchEntities = list[Entity]
+class searchEntities(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      term: str
+      limit: int
+      status: str
+      type: str
+
+   _args: Args
+
+
+   type: list[Entity]
 
 class entitiesMetadata(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: EntityMetadataWhereInput ##NON NULL
       orderBy: EntityMetadataOrderByInput
       pagination: PaginationInput
@@ -966,10 +1153,19 @@ class entitiesMetadata(GQLQuery):
 
    type: EntityMetadataConnection ##NON NULL
 
-getEntitiesRoles = list[EntityRole]
+class getEntitiesRoles(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      entityIds: list[int]
+      orgId: int
+      parentIds: list[int]
+
+   _args: Args
+
+
+   type: list[EntityRole]
 
 class entitiesRoles(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: EntityRoleWhereInput ##NON NULL
       orderBy: EntityRoleOrderByInput
       pagination: PaginationInput
@@ -979,10 +1175,18 @@ class entitiesRoles(GQLQuery):
 
    type: EntityRoleConnection ##NON NULL
 
-getLogsCSV = list[LogsCSV]
+class getLogsCSV(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: ID
+      projectId: ID
+
+   _args: Args
+
+
+   type: list[LogsCSV]
 
 class exportLogsCSVProvider(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       contextId: ID ##NON NULL
       fromDate: DateTime ##NON NULL
       toDate: DateTime ##NON NULL
@@ -996,7 +1200,7 @@ class exportLogsCSVProvider(GQLQuery):
    type: LogsCSVExports
 
 class exportLogsCSVDeveloper(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       contextId: ID ##NON NULL
       fromDate: DateTime ##NON NULL
       toDate: DateTime ##NON NULL
@@ -1012,10 +1216,11 @@ class exportLogsCSVDeveloper(GQLQuery):
 class gateways(GQLQuery):
    type: GatewayConnection
 
-getGateways = list[Gateway]
+class getGateways(GQLQuery):
+   type: list[Gateway]
 
 class getGatewayConfiguration(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int ##NON NULL
 
    _args: Args
@@ -1024,7 +1229,7 @@ class getGatewayConfiguration(GQLQuery):
    type: ApiGatewayConfiguration
 
 class graphQlIntrospectionSchema(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       introspectionCallUrl: str ##NON NULL
 
    _args: Args
@@ -1032,10 +1237,19 @@ class graphQlIntrospectionSchema(GQLQuery):
 
    type: Any ##NON NULL
 
-headlinesByApiNameAndOwnerId = list[Headline]
+class headlinesByApiNameAndOwnerId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiName: str
+      apiOwnerId: str
+      size: int
+
+   _args: Args
+
+
+   type: list[Headline]
 
 class getIssuesByOrganizatonId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: str ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1044,12 +1258,20 @@ class getIssuesByOrganizatonId(GQLQuery):
 
    type: IssueObject
 
-getResponseTimeByProviderId = float
+class getResponseTimeByProviderId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      providerId: int ##NON NULL
 
-getAverageResponseTime = float
+   _args: Args
+
+
+   type: float ##NON NULL
+
+class getAverageResponseTime(GQLQuery):
+   type: float ##NON NULL
 
 class unionIssuesByAuthor(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       authorId: int
       type: str
       pagingArgs: PagingArgs
@@ -1060,7 +1282,7 @@ class unionIssuesByAuthor(GQLQuery):
    type: DiscussionObject
 
 class getIssueByIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       issueId: int
 
    _args: Args
@@ -1069,7 +1291,7 @@ class getIssueByIdV2(GQLQuery):
    type: Issue
 
 class getIssuesByOrganizationId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: str
       pagingArgs: PagingArgs
 
@@ -1079,7 +1301,7 @@ class getIssuesByOrganizationId(GQLQuery):
    type: IssueObject
 
 class getIssuesByTeamIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: str
       pagingArgs: PagingArgs
 
@@ -1088,10 +1310,17 @@ class getIssuesByTeamIdV2(GQLQuery):
 
    type: IssueObject
 
-getIssuesFollowsByUserIdV2 = list[IssueFollow]
+class getIssuesFollowsByUserIdV2(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userId: int
+
+   _args: Args
+
+
+   type: list[IssueFollow]
 
 class kafkaConfiguration(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1100,7 +1329,7 @@ class kafkaConfiguration(GQLQuery):
    type: KafkaConfiguration
 
 class kafkaTopics(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1109,7 +1338,7 @@ class kafkaTopics(GQLQuery):
    type: KafkaTopics
 
 class kafkaSchemas(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: str ##NON NULL
 
    _args: Args
@@ -1118,7 +1347,7 @@ class kafkaSchemas(GQLQuery):
    type: KafkaSchemas
 
 class kafkaTopicMetadata(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiVersionId: str ##NON NULL
       topicName: str ##NON NULL
 
@@ -1128,7 +1357,7 @@ class kafkaTopicMetadata(GQLQuery):
    type: TopicMetadataResponse
 
 class getTemplate(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       accountId: str
       templateId: str
 
@@ -1141,7 +1370,7 @@ class getLegalAgreementInfo(GQLQuery):
    type: LegalAgreementInfo
 
 class updateLegalAgreementInfo(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateLegalAgreementInfo
 
    _args: Args
@@ -1150,7 +1379,7 @@ class updateLegalAgreementInfo(GQLQuery):
    type: LegalAgreementInfo
 
 class createLegalAgreementInfo(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateLegalAgreementInfo
 
    _args: Args
@@ -1159,7 +1388,7 @@ class createLegalAgreementInfo(GQLQuery):
    type: LegalAgreementInfo
 
 class deleteLegalAgreementInfo(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       entityId: str
 
    _args: Args
@@ -1168,7 +1397,7 @@ class deleteLegalAgreementInfo(GQLQuery):
    type: Any
 
 class getLegalAgreementSigningURL(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: GetLegalAgreementSigningURLInput ##NON NULL
 
    _args: Args
@@ -1177,7 +1406,7 @@ class getLegalAgreementSigningURL(GQLQuery):
    type: Any
 
 class logPayloadByRequestId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       requestId: ID
       callTime: str
 
@@ -1187,7 +1416,7 @@ class logPayloadByRequestId(GQLQuery):
    type: LogPayload
 
 class logPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       requestId: ID
       callTime: str
       apiId: str
@@ -1198,7 +1427,7 @@ class logPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
    type: RestrictedLogPayload
 
 class developerLogPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       requestId: ID
       callTime: str
       apiId: str
@@ -1210,7 +1439,7 @@ class developerLogPayloadByRequestIdWithLoggingRestrictions(GQLQuery):
    type: RestrictedLogPayload
 
 class messageThreads(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: MessageThreadsWhereInput
 
    _args: Args
@@ -1218,14 +1447,35 @@ class messageThreads(GQLQuery):
 
    type: MessageThreadsObject
 
-messages = list[Message]
+class messages(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: MessagesWhereInput ##NON NULL
 
-getApiAverageResponseTime = float
+   _args: Args
 
-getProviderAverageResponseTime = float
+
+   type: list[Message]
+
+class getApiAverageResponseTime(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str ##NON NULL
+
+   _args: Args
+
+
+   type: float
+
+class getProviderAverageResponseTime(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      providerId: int ##NON NULL
+
+   _args: Args
+
+
+   type: float
 
 class getRelativeAverageResponseTime(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       providerId: int ##NON NULL
 
    _args: Args
@@ -1234,7 +1484,7 @@ class getRelativeAverageResponseTime(GQLQuery):
    type: RelativeARTResponse
 
 class getMessageThread(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       threadId: int
 
    _args: Args
@@ -1242,12 +1492,30 @@ class getMessageThread(GQLQuery):
 
    type: MessageThread
 
-newNotificationsByUserId = list[NewNotification]
+class newNotificationsByUserId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userId: int
+      limit: int
+      offset: int
 
-notificationsByUserId = list[Notification]
+   _args: Args
+
+
+   type: list[NewNotification]
+
+class notificationsByUserId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userId: int
+      limit: int
+      offset: int
+
+   _args: Args
+
+
+   type: list[Notification]
 
 class organization(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -1255,12 +1523,20 @@ class organization(GQLQuery):
 
    type: Organization
 
-organizations = list[Organization]
+class organizations(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: OrganizationWhereInput
 
-getOrganizations = list[Organization]
+   _args: Args
+
+
+   type: list[Organization]
+
+class getOrganizations(GQLQuery):
+   type: list[Organization]
 
 class getOrganizationBySlugifiedName(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedName: str
 
    _args: Args
@@ -1269,7 +1545,7 @@ class getOrganizationBySlugifiedName(GQLQuery):
    type: Organization
 
 class getOrganizationById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orgId: ID ##NON NULL
 
    _args: Args
@@ -1280,12 +1556,21 @@ class getOrganizationById(GQLQuery):
 class getEmailDomainAndCheckIfIgnored(GQLQuery):
    type: CorporateDomain
 
-getOrganizationsWithTheSameEmail = list[CorporateDomainOrganization]
+class getOrganizationsWithTheSameEmail(GQLQuery):
+   type: list[CorporateDomainOrganization]
 
-searchOrganizations = list[Entity]
+class searchOrganizations(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      term: str
+      limit: int
+
+   _args: Args
+
+
+   type: list[Entity]
 
 class validateResetPasswordToken(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       token: str ##NON NULL
 
    _args: Args
@@ -1293,10 +1578,19 @@ class validateResetPasswordToken(GQLQuery):
 
    type: ValidateTokenResponse
 
-getProjectAllowedAPIs = list[ProjectAllowedAPI]
+class getProjectAllowedAPIs(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      mashapeId: str ##NON NULL
+      projectId: int ##NON NULL
+      pagingArgs: PagingArgs
+
+   _args: Args
+
+
+   type: list[ProjectAllowedAPI]
 
 class requestLogsByEntity(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: str
       projectId: str
       fromDate: str ##NON NULL
@@ -1313,12 +1607,26 @@ class requestLogsByEntity(GQLQuery):
 
    type: RequestLogsResult
 
-getAccessControlRoles = list[Role]
+class getAccessControlRoles(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      roleLevels: list[RoleLevel]
 
-getRoles = list[Role]
+   _args: Args
+
+
+   type: list[Role]
+
+class getRoles(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      roleLevels: list[RoleLevel]
+
+   _args: Args
+
+
+   type: list[Role]
 
 class roles(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: RoleWhereInput ##NON NULL
       orderBy: RoleOrderByInput
       pagination: PaginationInput
@@ -1329,7 +1637,7 @@ class roles(GQLQuery):
    type: RoleConnection ##NON NULL
 
 class searchApis(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SearchApiWhereInput ##NON NULL
       orderBy: SearchApiOrderByInput
       pagination: PaginationInput
@@ -1340,7 +1648,7 @@ class searchApis(GQLQuery):
    type: SearchApiConnection ##NON NULL
 
 class searchBlogPosts(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SearchBlogPostWhereInput ##NON NULL
       pagination: PaginationInput
 
@@ -1350,7 +1658,7 @@ class searchBlogPosts(GQLQuery):
    type: SearchBlogPostConnection
 
 class searchCollections(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SearchCollectionWhereInput
       orderBy: SearchCollectionOrderByInput
       pagination: PaginationInput
@@ -1361,7 +1669,7 @@ class searchCollections(GQLQuery):
    type: SearchCollectionConnection
 
 class spotlights(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SpotlightWhereInput ##NON NULL
       orderBy: SpotlightOrderByInput
       pagination: PaginationInput
@@ -1371,16 +1679,43 @@ class spotlights(GQLQuery):
 
    type: SpotlightConnection ##NON NULL
 
-searchSubscribedEntityByApiIdAndAppName = list[Project]
+class searchSubscribedEntityByApiIdAndAppName(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      appName: str ##NON NULL
+      apiId: str ##NON NULL
 
-activeSubscriptionsCount = list[ActiveSubscriptionCount]
+   _args: Args
 
-getInternalSubscriptions = list[BillingSubscription]
 
-searchSubscribedEntityByApiId = list[Any]
+   type: list[Project]
+
+class activeSubscriptionsCount(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str
+      fromDate: str
+      toDate: str
+      resolution: Resolution
+
+   _args: Args
+
+
+   type: list[ActiveSubscriptionCount]
+
+class getInternalSubscriptions(GQLQuery):
+   type: list[BillingSubscription]
+
+class searchSubscribedEntityByApiId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      userName: str ##NON NULL
+      apiId: str ##NON NULL
+
+   _args: Args
+
+
+   type: list[Any]
 
 class getSubscriptions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int
       userId: int
       apiId: str
@@ -1393,7 +1728,7 @@ class getSubscriptions(GQLQuery):
    type: SubscriptionsPaging
 
 class getOrganizationSubscriptions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
    _args: Args
@@ -1402,7 +1737,7 @@ class getOrganizationSubscriptions(GQLQuery):
    type: OrgSubscriptions
 
 class subscriptions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SubscriptionsWhereInput
       pagination: PaginationInput
 
@@ -1412,7 +1747,7 @@ class subscriptions(GQLQuery):
    type: SubscriptionConnection
 
 class subscription(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int
 
    _args: Args
@@ -1420,15 +1755,23 @@ class subscription(GQLQuery):
 
    type: BillingSubscription
 
-subscriptionsCount = list[SubscriptionsCount]
+class subscriptionsCount(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: SubscriptionsCountWhereInput
 
-getTagsList = list[TagDefinition]
+   _args: Args
+
+
+   type: list[SubscriptionsCount]
+
+class getTagsList(GQLQuery):
+   type: list[TagDefinition]
 
 class tagDefinitions(GQLQuery):
    type: TagDefinitionConnection
 
 class paginatedTeamUsersByOrganizationId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orgId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1438,7 +1781,7 @@ class paginatedTeamUsersByOrganizationId(GQLQuery):
    type: PaginatedTeamUsers
 
 class paginatedTeamUsersByOrganizationIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orgId: int ##NON NULL
       pagingArgs: PagingArgs
 
@@ -1448,7 +1791,7 @@ class paginatedTeamUsersByOrganizationIdV2(GQLQuery):
    type: PaginatedTeamUsers
 
 class teamUserByEmailAndOrgId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       email: str
       orgId: int
 
@@ -1458,7 +1801,7 @@ class teamUserByEmailAndOrgId(GQLQuery):
    type: TeamUser
 
 class teamUser(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: TeamUserWhereInput ##NON NULL
 
    _args: Args
@@ -1466,10 +1809,18 @@ class teamUser(GQLQuery):
 
    type: TeamUser
 
-findUsersInOrganization = list[TeamUser]
+class findUsersInOrganization(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orgId: int
+      term: str
+
+   _args: Args
+
+
+   type: list[TeamUser]
 
 class teamByTeamId(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       teamId: int
       orgId: int
 
@@ -1478,10 +1829,17 @@ class teamByTeamId(GQLQuery):
 
    type: Team
 
-teamsByOrganizationId = list[Team]
+class teamsByOrganizationId(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orgId: int
+
+   _args: Args
+
+
+   type: list[Team]
 
 class getTeamBySlugifiedName(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slugifiedName: str
 
    _args: Args
@@ -1489,10 +1847,18 @@ class getTeamBySlugifiedName(GQLQuery):
 
    type: Team
 
-searchTeams = list[Team]
+class searchTeams(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      term: str
+      limit: int
+
+   _args: Args
+
+
+   type: list[Team]
 
 class team(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -1500,13 +1866,20 @@ class team(GQLQuery):
 
    type: Team
 
-teams = list[Team]
+class teams(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: TeamWhereInput
+
+   _args: Args
+
+
+   type: list[Team]
 
 class tenant(GQLQuery):
    type: Tenant
 
 class transactions(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: TransactionsWhereInput
       pagination: PaginationInput
 
@@ -1516,7 +1889,7 @@ class transactions(GQLQuery):
    type: TransactionConnection
 
 class transactionsSummary(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: TransactionsSummaryWhereInput
 
    _args: Args
@@ -1525,7 +1898,7 @@ class transactionsSummary(GQLQuery):
    type: TransactionsSummary
 
 class transformations(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: TransformationWhereInput
       orderBy: TransformationOrderByInput
       pagination: PaginationInput
@@ -1536,7 +1909,7 @@ class transformations(GQLQuery):
    type: TransformationConnection ##NON NULL
 
 class tutorials(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: TutorialWhereInput ##NON NULL
       orderBy: TutorialOrderByInput
       pagination: PaginationInput
@@ -1546,22 +1919,83 @@ class tutorials(GQLQuery):
 
    type: TutorialConnection
 
-getPhoneNumbers = list[Phone]
+class getPhoneNumbers(GQLQuery):
+   type: list[Phone]
 
-getRecoveryCodes = list[RecoveryCode]
+class getRecoveryCodes(GQLQuery):
+   type: list[RecoveryCode]
 
-isTwoFactorEnabledByType = bool
+class isTwoFactorEnabledByType(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      type: str ##NON NULL
 
-getUsagesAndParentUsageForSubscription = list[UsagesStats]
+   _args: Args
 
-getUsagesAgrregatedByTeamsForSubscription = list[UsagesStats]
 
-getUsagesAndParentUsageForSubscriptionByBuckets = list[UsagesStats]
+   type: bool
 
-getUsagesAgrregatedByTeamsForSubscriptionByBuckets = list[UsagesStats]
+class getUsagesAndParentUsageForSubscription(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str
+      subscriptionId: str
+      billingItemIds: list[str]
+      resolution: str
+      orderDir: str
+      periods: list[str]
+      parentId: int
+      isInternal: bool
+
+   _args: Args
+
+
+   type: list[UsagesStats]
+
+class getUsagesAgrregatedByTeamsForSubscription(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str
+      subscriptionId: str
+      billingItemIds: list[str]
+      resolution: str
+      orderDir: str
+      periods: list[str]
+      apiVersionId: str
+      internalData: list[str]
+
+   _args: Args
+
+
+   type: list[UsagesStats]
+
+class getUsagesAndParentUsageForSubscriptionByBuckets(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str
+      subscriptionId: str
+      billingItemIds: list[str]
+      resolution: str
+      periods: list[str]
+      parentId: int
+
+   _args: Args
+
+
+   type: list[UsagesStats]
+
+class getUsagesAgrregatedByTeamsForSubscriptionByBuckets(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      apiId: str
+      subscriptionId: str
+      billingItemIds: list[str]
+      resolution: str
+      periods: list[str]
+      apiVersionId: str
+
+   _args: Args
+
+
+   type: list[UsagesStats]
 
 class organizationQuotaUsageByApiIdV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       apiId: ID
       apiVersionId: ID
       internalData: Any
@@ -1572,7 +2006,7 @@ class organizationQuotaUsageByApiIdV2(GQLQuery):
    type: OrganizationApiUsagesV2
 
 class getUserInviteByToken(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       token: str ##NON NULL
 
    _args: Args
@@ -1580,10 +2014,17 @@ class getUserInviteByToken(GQLQuery):
 
    type: UserInvite
 
-checkUserInvitesBranding = bool
+class checkUserInvitesBranding(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      input: UserInvitesBrandingInput
+
+   _args: Args
+
+
+   type: bool
 
 class checkIfEmailsAlreadyInvited(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orgId: ID ##NON NULL
       emails: list[str] ##NON NULL
 
@@ -1592,10 +2033,21 @@ class checkIfEmailsAlreadyInvited(GQLQuery):
 
    type: Any
 
-searchUsersToInvite = list[InviteUsersSearch]
+class searchUsersToInvite(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      orgId: ID ##NON NULL
+      brand: str
+      term: str
+      offset: int
+      limit: int
+
+   _args: Args
+
+
+   type: list[InviteUsersSearch]
 
 class getUserSavedApis(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       userCollectionId: str
 
    _args: Args
@@ -1604,7 +2056,7 @@ class getUserSavedApis(GQLQuery):
    type: UserSavedApi ##NON NULL
 
 class userById(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: int
 
    _args: Args
@@ -1613,7 +2065,7 @@ class userById(GQLQuery):
    type: User
 
 class userByUsername(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       username: str
       includeUserAttributes: bool
 
@@ -1622,12 +2074,23 @@ class userByUsername(GQLQuery):
 
    type: User
 
-getPrivateApisJwt = str
+class getPrivateApisJwt(GQLQuery):
+   type: str
 
-searchUsers = list[User]
+class searchUsers(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      brand: str
+      term: str
+      offset: int
+      limit: int
+
+   _args: Args
+
+
+   type: list[User]
 
 class searchUsersV2(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       where: SearchUsersWhereInput ##NON NULL
 
    _args: Args
@@ -1636,7 +2099,7 @@ class searchUsersV2(GQLQuery):
    type: User ##NON NULL
 
 class user(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -1644,14 +2107,35 @@ class user(GQLQuery):
 
    type: User
 
-users = list[User]
+class users(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: UserWhereInput ##NON NULL
 
-getVirtualPermissions = list[Permission]
+   _args: Args
 
-virtualPermissions = list[VirtualPermission]
+
+   type: list[User]
+
+class getVirtualPermissions(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      permissionLevel: list[RoleLevel]
+
+   _args: Args
+
+
+   type: list[Permission]
+
+class virtualPermissions(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      where: VirtualPermissionWhereInput ##NON NULL
+
+   _args: Args
+
+
+   type: list[VirtualPermission]
 
 class getWorkflowsForProvider(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -1661,7 +2145,7 @@ class getWorkflowsForProvider(GQLQuery):
    type: WorkFlowsResponse
 
 class getWorkflowsForDeveloper(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -1671,7 +2155,7 @@ class getWorkflowsForDeveloper(GQLQuery):
    type: WorkFlowsResponse
 
 class getWorkflowsByRequestor(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -1681,7 +2165,7 @@ class getWorkflowsByRequestor(GQLQuery):
    type: WorkFlowsResponse
 
 class getWorkflowsByRequestee(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       options: GetWorkflowsOptions
       pagingArgs: PagingArgs
 
@@ -1690,10 +2174,17 @@ class getWorkflowsByRequestee(GQLQuery):
 
    type: WorkFlowsResponse
 
-canWorkflowBeSubmitted = bool
+class canWorkflowBeSubmitted(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      options: CanWorkflowBeSubmittedOptions
+
+   _args: Args
+
+
+   type: bool
 
 class getWorkflowAudits(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       workflowId: int
 
    _args: Args
@@ -1701,9 +2192,24 @@ class getWorkflowAudits(GQLQuery):
 
    type: WorkFlowAuditsResponse
 
-getWorkflowsCount = int
+class getWorkflowsCount(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      options: GetWorkflowCountOptions
 
-exclusions = list[Exclusion]
+   _args: Args
+
+
+   type: int
+
+class exclusions(GQLQuery):
+   class Args(GQLArgsSet, GQLObject): 
+      client: str
+      page: str
+
+   _args: Args
+
+
+   type: list[Exclusion]
 
 
 class Queries(Enum):

@@ -1,21 +1,59 @@
-
-from dataclasses import dataclass, field
 import inspect
 from .utils import getObjectClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
-from .base import FieldsShow, GQLExporter
 
 
-@dataclass
-class GQLCPPageInfo(FieldsShow, GQLExporter):
-    startCursor: field(default_factory=int, init=True) = 0
-    endCursor: field(default_factory=int, init=True) = 0
-    hasNextPage: field(default_factory=bool, init=True) = True
-    hasPreviousPage: field(default_factory=bool, init=True) = True
+# @dataclass
+# class GQLCPPageInfo(FieldsShow, GQLExporter):
+#     startCursor: field(default_factory=int, init=True) = 0
+#     endCursor: field(default_factory=int, init=True) = 0
+#     hasNextPage: field(default_factory=bool, init=True) = True
+#     hasPreviousPage: field(default_factory=bool, init=True) = True
     
-    def __post_init__(self, logProgress: bool = False):
-        self.initFieldsShow()
-        self.logProgress = logProgress
+#     def __post_init__(self, logProgress: bool = False):
+#         self.initFieldsShow()
+#         self.logProgress = logProgress
 
+# class ArgTree():
+    
+#     def __init__(self, obj, fieldName, currentLocation: str = ''):
+        
+#         currentLocation = '.' + fieldName
+        
+#         if list in inspect.getmro(type(obj)):
+#             self.name = fieldName if fieldName else 'dummyList'
+#             if hasattr(obj, argsDeclaration):
+#                 arguments = getattr(obj, argsDeclaration)
+#                 setattr(arguments, 'location', self.currentLocation) 
+#             for element in obj:
+#                 if isNoneOrBuiltinPrimitive(element): continue
+#                 if hasattr(element, argsDeclaration):
+#                     argChild = getattr(element, argsDeclaration)
+#                     setattr(argChild, 'location', self.currentLocation) 
+#                     # if not hasattr(element, 'children'): self.children = []
+#                     # self.children.append(ArgTree(element))
+#         else:
+#             self.name =  fieldName if fieldName else getObjectClassName(obj)
+#             if hasattr(obj, argsDeclaration):
+#                 arguments = getattr(obj, argsDeclaration)
+#                 setattr(arguments, 'location', self.currentLocation) 
+#                 for field in obj.__dataclass_fields__:
+#                     objField = getattr(obj, field)
+#                     if isNoneOrBuiltinPrimitive(objField): continue
+#                     # if not hasattr(self, 'children'): self.children = []
+#                     # self.children.append(ArgTree(objField, field))
+        
+    # def findBranchContainer(self, path: str):
+    #     attrContainer = self
+        
+    #     while len(path):
+    #         field = path.pop(0)
+    #         if attrContainer.name == field: ##container object
+    #             continue
+    #         for child in attrContainer.children:
+    #             if child.name == field:  
+    #                 attrContainer = child
+    #     return attrContainer
+        
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
         if list in inspect.getmro(type(obj)):

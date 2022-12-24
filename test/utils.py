@@ -3,6 +3,8 @@ from enum import Enum
 import os
 import pathlib
 
+from pygqlmap.src.logger import Logger
+
 
 class OutputType(Enum):
     COMMANDS = 1,
@@ -30,5 +32,5 @@ def waitForInput(isToWait: str):
     if isToWait and isToWait.lower() == 'y': input('Go on..')
     
 def ManageException(message: str):
-    print(message)
+    Logger.logCriticalMessage(message)
     input()

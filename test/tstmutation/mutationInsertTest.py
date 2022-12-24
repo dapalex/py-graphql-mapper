@@ -181,7 +181,7 @@ async def testMutationInsertLiteralValues():
         gqlResponse.printMessageOutput()
         
 ##STEP 6
-        gqlResponse.mapGQLDataToObj(mutation.obj)
+        gqlResponse.mapGQLDataToObj(mutation.type)
 ##
         
 ##RESULT

@@ -219,7 +219,7 @@ async def testComplexObject():
         gqlResponse.printMessageOutput()
         
 ##STEP 5
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT c)

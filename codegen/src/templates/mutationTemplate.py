@@ -1,4 +1,5 @@
-from pygqlmap.components import GQLOperationArgs, GQLMutation
+from pygqlmap import GQLMutation
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *

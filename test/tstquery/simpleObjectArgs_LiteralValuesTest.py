@@ -92,7 +92,7 @@ async def testSimpleObjectArgs_LiteralValues():
         gqlResponse.printMessageOutput()
         
 ##STEP 6
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT

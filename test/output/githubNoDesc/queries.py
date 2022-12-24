@@ -1,11 +1,12 @@
-from pygqlmap.components import GQLOperationArgs, GQLQuery
+from pygqlmap import GQLQuery
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
 from .scalars import *
 
 class codeOfConduct(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       key: str ##NON NULL
 
    _args: Args
@@ -13,10 +14,11 @@ class codeOfConduct(GQLQuery):
 
    type: CodeOfConduct
 
-codesOfConduct = list[CodeOfConduct]
+class codesOfConduct(GQLQuery):
+   type: list[CodeOfConduct]
 
 class enterprise(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slug: str ##NON NULL
       invitationToken: str
 
@@ -26,7 +28,7 @@ class enterprise(GQLQuery):
    type: Enterprise
 
 class enterpriseAdministratorInvitation(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       userLogin: str ##NON NULL
       enterpriseSlug: str ##NON NULL
       role: EnterpriseAdministratorRole ##NON NULL
@@ -37,7 +39,7 @@ class enterpriseAdministratorInvitation(GQLQuery):
    type: EnterpriseAdministratorInvitation
 
 class enterpriseAdministratorInvitationByToken(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       invitationToken: str ##NON NULL
 
    _args: Args
@@ -46,7 +48,7 @@ class enterpriseAdministratorInvitationByToken(GQLQuery):
    type: EnterpriseAdministratorInvitation
 
 class license(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       key: str ##NON NULL
 
    _args: Args
@@ -58,7 +60,7 @@ class licenses(GQLQuery):
    type: License ##NON NULL
 
 class marketplaceCategories(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       includeCategories: list[str] ##NON NULL
       excludeEmpty: bool
       excludeSubcategories: bool
@@ -69,7 +71,7 @@ class marketplaceCategories(GQLQuery):
    type: MarketplaceCategory ##NON NULL
 
 class marketplaceCategory(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slug: str ##NON NULL
       useTopicAliases: bool
 
@@ -79,7 +81,7 @@ class marketplaceCategory(GQLQuery):
    type: MarketplaceCategory
 
 class marketplaceListing(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       slug: str ##NON NULL
 
    _args: Args
@@ -88,7 +90,7 @@ class marketplaceListing(GQLQuery):
    type: MarketplaceListing
 
 class marketplaceListings(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -112,7 +114,7 @@ class meta(GQLQuery):
    type: GitHubMetadata ##NON NULL
 
 class node(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
    _args: Args
@@ -121,7 +123,7 @@ class node(GQLQuery):
    type: Node
 
 class nodes(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       ids: list[ID] ##NON NULL
 
    _args: Args
@@ -130,7 +132,7 @@ class nodes(GQLQuery):
    type: Node ##NON NULL
 
 class organization(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -139,7 +141,7 @@ class organization(GQLQuery):
    type: Organization
 
 class rateLimit(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       dryRun: bool
 
    _args: Args
@@ -151,7 +153,7 @@ class relay(GQLQuery):
    type: Query ##NON NULL
 
 class repository(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       owner: str ##NON NULL
       name: str ##NON NULL
       followRenames: bool
@@ -162,7 +164,7 @@ class repository(GQLQuery):
    type: Repository
 
 class repositoryOwner(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
    _args: Args
@@ -171,7 +173,7 @@ class repositoryOwner(GQLQuery):
    type: RepositoryOwner
 
 class resource(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       url: URI ##NON NULL
 
    _args: Args
@@ -180,7 +182,7 @@ class resource(GQLQuery):
    type: UniformResourceLocatable
 
 class search(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -194,7 +196,7 @@ class search(GQLQuery):
    type: SearchResultItemConnection ##NON NULL
 
 class securityAdvisories(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orderBy: SecurityAdvisoryOrder
       identifier: SecurityAdvisoryIdentifierFilter
       publishedSince: DateTime
@@ -211,7 +213,7 @@ class securityAdvisories(GQLQuery):
    type: SecurityAdvisoryConnection ##NON NULL
 
 class securityAdvisory(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       ghsaId: str ##NON NULL
 
    _args: Args
@@ -220,7 +222,7 @@ class securityAdvisory(GQLQuery):
    type: SecurityAdvisory
 
 class securityVulnerabilities(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
@@ -237,7 +239,7 @@ class securityVulnerabilities(GQLQuery):
    type: SecurityVulnerabilityConnection ##NON NULL
 
 class sponsorables(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -254,7 +256,7 @@ class sponsorables(GQLQuery):
    type: SponsorableItemConnection ##NON NULL
 
 class topic(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
    _args: Args
@@ -263,7 +265,7 @@ class topic(GQLQuery):
    type: Topic
 
 class user(GQLQuery):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
    _args: Args

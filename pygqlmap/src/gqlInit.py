@@ -23,42 +23,60 @@ def subClassInit(obj, fields = None):
                                 
                 if hasattr(obj, fieldName): 
                     continue
-                if fieldType.__name__ in circularRef.keys() and circularRef[fieldType.__name__] < int(mapConfig["recursionDepth"]):
+                if fieldType.__name__ in circularRef.keys() and circularRef[fieldType.__name__] >= int(mapConfig["recursionDepth"]):
                     #recursion depth limit reached
                     Logger.logWarningMessage(depthReached%(mapConfig["recursionDepth"], getObjectClassName(obj), fieldName, fieldType.__name__))
                     setattr(obj, fieldName, fieldType.__name__) 
                     continue
                 
-                if fieldType == int or fieldType == float:
-                    setattr(obj, fieldName, 0)
-                elif fieldType == list or (hasattr(fieldType, '__origin__') and fieldType.__origin__ == list):
-                    setattr(obj, fieldName, [])
-                elif fieldType == bool:
-                    setattr(obj, fieldName, False)
-                elif fieldType == str:
-                    setattr(obj, fieldName, '')
-                elif inspect.isclass(fieldType):
-                    if issubclass(fieldType, Enum):
-                        setattr(obj, fieldName, list(map(lambda c: c.value, fieldType))[0]) ##set first value from enum
-                    elif Generic in inspect.getmro(fieldType): ##recursive type
-                        specializeGeneric(obj, fieldName, fieldType)
-                    else:
-                        setattr(obj, fieldName, fieldType())
-                elif type(fieldType) == NewType or type(fieldType) == TypeVar:
-                    defineVariableType(obj, fieldName, fieldType)
-                elif fieldType == Union:
-                    print('Union here')
-                    setattr(obj, fieldName, '')
-                    # pass
-                else:
-                    Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
-                    setattr(obj, fieldName, '')
-                    
+                initType(obj, fieldType, fieldName)
+                
             except Exception as ex:
                 raise Exception('Exception during init of ' + fieldName + ' in ' + str(obj) + ' - ' + ex.args[0])
         
         if FieldsShow in inspect.getmro(type(obj)):
             obj.initFieldsShow() 
+    except Exception as ex:
+        raise ex
+
+def initType(obj, fieldType, fieldName):
+    try:
+        if fieldType == int or fieldType == float:
+            setattr(obj, fieldName, -1)
+        elif fieldType == list or (hasattr(fieldType, '__origin__') and fieldType.__origin__ == list):
+            initTypedListAsType(obj, fieldName, fieldType)
+        elif fieldType == bool:
+            setattr(obj, fieldName, False)
+        elif fieldType == str:
+            setattr(obj, fieldName, '')
+        elif inspect.isclass(fieldType):
+            if issubclass(fieldType, Enum):
+                setattr(obj, fieldName, list(map(lambda c: c.value, fieldType))[0]) ##set first value from enum
+            elif Generic in inspect.getmro(fieldType): ##recursive type
+                specializeGeneric(obj, fieldName, fieldType)
+            else:
+                setattr(obj, fieldName, fieldType())
+        elif type(fieldType) == NewType or type(fieldType) == TypeVar:
+            defineVariableType(obj, fieldName, fieldType)
+        elif fieldType == Union:
+            print('Union here')
+            setattr(obj, fieldName, '')
+            # pass
+        else:
+            Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
+            setattr(obj, fieldName, '')
+    except Exception as ex:
+        raise ex
+
+def initTypedListAsType(obj, fieldName, fieldType):
+    try:
+        elementType = fieldType.__args__[0]
+        if elementType.__name__ in circularRef.keys() and circularRef[elementType.__name__] >= int(mapConfig["recursionDepth"]):
+            #recursion depth limit reached
+            Logger.logWarningMessage(depthReached%(mapConfig["recursionDepth"], getObjectClassName(obj), fieldName, elementType.__name__))
+            setattr(obj, fieldName, elementType.__name__) 
+        else:
+            initType(obj, elementType, fieldName)
     except Exception as ex:
         raise ex
 
@@ -125,7 +143,7 @@ def defineVariableType(obj, fieldName, fieldType):
     
 def operationInit(obj):
     subClassInit(obj)
-    from pygqlmap.components import GQLMutation, GQLQuery
+    from pygqlmap import GQLMutation, GQLQuery
     if GQLMutation in obj.__class__.__bases__:
         mutationInit(obj)
     elif GQLQuery in obj.__class__.__bases__:
@@ -137,12 +155,12 @@ def mutationInit(obj):
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
-        from pygqlmap.components import GQLMutation
+        from pygqlmap import GQLMutation
         super(GQLMutation, obj).__init__(operationType=OperationType.mutation, dataType=obj.type, argsType=ArgType.LiteralValues)
 
 def queryInit(obj):
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
-        from pygqlmap.components import GQLQuery
+        from pygqlmap import GQLQuery
         super(GQLQuery, obj).__init__(operationType=OperationType.query, dataType=obj.type, argsType=ArgType.LiteralValues)

@@ -90,7 +90,7 @@ async def testConnectionObject():
         gqlResponse.printMessageOutput()
         
 ##STEP 5
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT

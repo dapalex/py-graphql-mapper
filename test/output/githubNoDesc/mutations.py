@@ -1,4 +1,5 @@
-from pygqlmap.components import GQLOperationArgs, GQLMutation
+from pygqlmap import GQLMutation
+from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *
@@ -6,7 +7,7 @@ from .scalars import *
 
 
 class abortQueuedMigrations(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AbortQueuedMigrationsInput ##NON NULL
 
    _args: Args
@@ -15,7 +16,7 @@ class abortQueuedMigrations(GQLMutation):
    type: AbortQueuedMigrationsPayload
 
 class acceptEnterpriseAdministratorInvitation(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AcceptEnterpriseAdministratorInvitationInput ##NON NULL
 
    _args: Args
@@ -24,7 +25,7 @@ class acceptEnterpriseAdministratorInvitation(GQLMutation):
    type: AcceptEnterpriseAdministratorInvitationPayload
 
 class acceptTopicSuggestion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AcceptTopicSuggestionInput ##NON NULL
 
    _args: Args
@@ -33,7 +34,7 @@ class acceptTopicSuggestion(GQLMutation):
    type: AcceptTopicSuggestionPayload
 
 class addAssigneesToAssignable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddAssigneesToAssignableInput ##NON NULL
 
    _args: Args
@@ -42,7 +43,7 @@ class addAssigneesToAssignable(GQLMutation):
    type: AddAssigneesToAssignablePayload
 
 class addComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddCommentInput ##NON NULL
 
    _args: Args
@@ -51,7 +52,7 @@ class addComment(GQLMutation):
    type: AddCommentPayload
 
 class addDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -60,7 +61,7 @@ class addDiscussionComment(GQLMutation):
    type: AddDiscussionCommentPayload
 
 class addDiscussionPollVote(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddDiscussionPollVoteInput ##NON NULL
 
    _args: Args
@@ -69,7 +70,7 @@ class addDiscussionPollVote(GQLMutation):
    type: AddDiscussionPollVotePayload
 
 class addEnterpriseOrganizationMember(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddEnterpriseOrganizationMemberInput ##NON NULL
 
    _args: Args
@@ -78,7 +79,7 @@ class addEnterpriseOrganizationMember(GQLMutation):
    type: AddEnterpriseOrganizationMemberPayload
 
 class addEnterpriseSupportEntitlement(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddEnterpriseSupportEntitlementInput ##NON NULL
 
    _args: Args
@@ -87,7 +88,7 @@ class addEnterpriseSupportEntitlement(GQLMutation):
    type: AddEnterpriseSupportEntitlementPayload
 
 class addLabelsToLabelable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddLabelsToLabelableInput ##NON NULL
 
    _args: Args
@@ -96,7 +97,7 @@ class addLabelsToLabelable(GQLMutation):
    type: AddLabelsToLabelablePayload
 
 class addProjectCard(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectCardInput ##NON NULL
 
    _args: Args
@@ -105,7 +106,7 @@ class addProjectCard(GQLMutation):
    type: AddProjectCardPayload
 
 class addProjectColumn(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectColumnInput ##NON NULL
 
    _args: Args
@@ -114,7 +115,7 @@ class addProjectColumn(GQLMutation):
    type: AddProjectColumnPayload
 
 class addProjectDraftIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectDraftIssueInput ##NON NULL
 
    _args: Args
@@ -123,7 +124,7 @@ class addProjectDraftIssue(GQLMutation):
    type: AddProjectDraftIssuePayload
 
 class addProjectNextItem(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectNextItemInput ##NON NULL
 
    _args: Args
@@ -132,7 +133,7 @@ class addProjectNextItem(GQLMutation):
    type: AddProjectNextItemPayload
 
 class addProjectV2DraftIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectV2DraftIssueInput ##NON NULL
 
    _args: Args
@@ -141,7 +142,7 @@ class addProjectV2DraftIssue(GQLMutation):
    type: AddProjectV2DraftIssuePayload
 
 class addProjectV2ItemById(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddProjectV2ItemByIdInput ##NON NULL
 
    _args: Args
@@ -150,7 +151,7 @@ class addProjectV2ItemById(GQLMutation):
    type: AddProjectV2ItemByIdPayload
 
 class addPullRequestReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewInput ##NON NULL
 
    _args: Args
@@ -159,7 +160,7 @@ class addPullRequestReview(GQLMutation):
    type: AddPullRequestReviewPayload
 
 class addPullRequestReviewComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewCommentInput ##NON NULL
 
    _args: Args
@@ -168,7 +169,7 @@ class addPullRequestReviewComment(GQLMutation):
    type: AddPullRequestReviewCommentPayload
 
 class addPullRequestReviewThread(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewThreadInput ##NON NULL
 
    _args: Args
@@ -177,7 +178,7 @@ class addPullRequestReviewThread(GQLMutation):
    type: AddPullRequestReviewThreadPayload
 
 class addReaction(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddReactionInput ##NON NULL
 
    _args: Args
@@ -186,7 +187,7 @@ class addReaction(GQLMutation):
    type: AddReactionPayload
 
 class addStar(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddStarInput ##NON NULL
 
    _args: Args
@@ -195,7 +196,7 @@ class addStar(GQLMutation):
    type: AddStarPayload
 
 class addUpvote(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddUpvoteInput ##NON NULL
 
    _args: Args
@@ -204,7 +205,7 @@ class addUpvote(GQLMutation):
    type: AddUpvotePayload
 
 class addVerifiableDomain(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: AddVerifiableDomainInput ##NON NULL
 
    _args: Args
@@ -213,7 +214,7 @@ class addVerifiableDomain(GQLMutation):
    type: AddVerifiableDomainPayload
 
 class approveDeployments(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ApproveDeploymentsInput ##NON NULL
 
    _args: Args
@@ -222,7 +223,7 @@ class approveDeployments(GQLMutation):
    type: ApproveDeploymentsPayload
 
 class approveVerifiableDomain(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ApproveVerifiableDomainInput ##NON NULL
 
    _args: Args
@@ -231,7 +232,7 @@ class approveVerifiableDomain(GQLMutation):
    type: ApproveVerifiableDomainPayload
 
 class archiveProjectV2Item(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ArchiveProjectV2ItemInput ##NON NULL
 
    _args: Args
@@ -240,7 +241,7 @@ class archiveProjectV2Item(GQLMutation):
    type: ArchiveProjectV2ItemPayload
 
 class archiveRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ArchiveRepositoryInput ##NON NULL
 
    _args: Args
@@ -249,7 +250,7 @@ class archiveRepository(GQLMutation):
    type: ArchiveRepositoryPayload
 
 class cancelEnterpriseAdminInvitation(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CancelEnterpriseAdminInvitationInput ##NON NULL
 
    _args: Args
@@ -258,7 +259,7 @@ class cancelEnterpriseAdminInvitation(GQLMutation):
    type: CancelEnterpriseAdminInvitationPayload
 
 class cancelSponsorship(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CancelSponsorshipInput ##NON NULL
 
    _args: Args
@@ -267,7 +268,7 @@ class cancelSponsorship(GQLMutation):
    type: CancelSponsorshipPayload
 
 class changeUserStatus(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ChangeUserStatusInput ##NON NULL
 
    _args: Args
@@ -276,7 +277,7 @@ class changeUserStatus(GQLMutation):
    type: ChangeUserStatusPayload
 
 class clearLabelsFromLabelable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ClearLabelsFromLabelableInput ##NON NULL
 
    _args: Args
@@ -285,7 +286,7 @@ class clearLabelsFromLabelable(GQLMutation):
    type: ClearLabelsFromLabelablePayload
 
 class clearProjectV2ItemFieldValue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ClearProjectV2ItemFieldValueInput ##NON NULL
 
    _args: Args
@@ -294,7 +295,7 @@ class clearProjectV2ItemFieldValue(GQLMutation):
    type: ClearProjectV2ItemFieldValuePayload
 
 class cloneProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CloneProjectInput ##NON NULL
 
    _args: Args
@@ -303,7 +304,7 @@ class cloneProject(GQLMutation):
    type: CloneProjectPayload
 
 class cloneTemplateRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CloneTemplateRepositoryInput ##NON NULL
 
    _args: Args
@@ -312,7 +313,7 @@ class cloneTemplateRepository(GQLMutation):
    type: CloneTemplateRepositoryPayload
 
 class closeIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CloseIssueInput ##NON NULL
 
    _args: Args
@@ -321,7 +322,7 @@ class closeIssue(GQLMutation):
    type: CloseIssuePayload
 
 class closePullRequest(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ClosePullRequestInput ##NON NULL
 
    _args: Args
@@ -330,7 +331,7 @@ class closePullRequest(GQLMutation):
    type: ClosePullRequestPayload
 
 class convertProjectCardNoteToIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ConvertProjectCardNoteToIssueInput ##NON NULL
 
    _args: Args
@@ -339,7 +340,7 @@ class convertProjectCardNoteToIssue(GQLMutation):
    type: ConvertProjectCardNoteToIssuePayload
 
 class convertPullRequestToDraft(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ConvertPullRequestToDraftInput ##NON NULL
 
    _args: Args
@@ -348,7 +349,7 @@ class convertPullRequestToDraft(GQLMutation):
    type: ConvertPullRequestToDraftPayload
 
 class createAttributionInvitation(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateAttributionInvitationInput ##NON NULL
 
    _args: Args
@@ -357,7 +358,7 @@ class createAttributionInvitation(GQLMutation):
    type: CreateAttributionInvitationPayload
 
 class createBranchProtectionRule(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateBranchProtectionRuleInput ##NON NULL
 
    _args: Args
@@ -366,7 +367,7 @@ class createBranchProtectionRule(GQLMutation):
    type: CreateBranchProtectionRulePayload
 
 class createCheckRun(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateCheckRunInput ##NON NULL
 
    _args: Args
@@ -375,7 +376,7 @@ class createCheckRun(GQLMutation):
    type: CreateCheckRunPayload
 
 class createCheckSuite(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateCheckSuiteInput ##NON NULL
 
    _args: Args
@@ -384,7 +385,7 @@ class createCheckSuite(GQLMutation):
    type: CreateCheckSuitePayload
 
 class createCommitOnBranch(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateCommitOnBranchInput ##NON NULL
 
    _args: Args
@@ -393,7 +394,7 @@ class createCommitOnBranch(GQLMutation):
    type: CreateCommitOnBranchPayload
 
 class createDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateDiscussionInput ##NON NULL
 
    _args: Args
@@ -402,7 +403,7 @@ class createDiscussion(GQLMutation):
    type: CreateDiscussionPayload
 
 class createEnterpriseOrganization(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateEnterpriseOrganizationInput ##NON NULL
 
    _args: Args
@@ -411,7 +412,7 @@ class createEnterpriseOrganization(GQLMutation):
    type: CreateEnterpriseOrganizationPayload
 
 class createEnvironment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateEnvironmentInput ##NON NULL
 
    _args: Args
@@ -420,7 +421,7 @@ class createEnvironment(GQLMutation):
    type: CreateEnvironmentPayload
 
 class createIpAllowListEntry(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateIpAllowListEntryInput ##NON NULL
 
    _args: Args
@@ -429,7 +430,7 @@ class createIpAllowListEntry(GQLMutation):
    type: CreateIpAllowListEntryPayload
 
 class createIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateIssueInput ##NON NULL
 
    _args: Args
@@ -438,7 +439,7 @@ class createIssue(GQLMutation):
    type: CreateIssuePayload
 
 class createLinkedBranch(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateLinkedBranchInput ##NON NULL
 
    _args: Args
@@ -447,7 +448,7 @@ class createLinkedBranch(GQLMutation):
    type: CreateLinkedBranchPayload
 
 class createMigrationSource(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateMigrationSourceInput ##NON NULL
 
    _args: Args
@@ -456,7 +457,7 @@ class createMigrationSource(GQLMutation):
    type: CreateMigrationSourcePayload
 
 class createProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateProjectInput ##NON NULL
 
    _args: Args
@@ -465,7 +466,7 @@ class createProject(GQLMutation):
    type: CreateProjectPayload
 
 class createProjectV2(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateProjectV2Input ##NON NULL
 
    _args: Args
@@ -474,7 +475,7 @@ class createProjectV2(GQLMutation):
    type: CreateProjectV2Payload
 
 class createPullRequest(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreatePullRequestInput ##NON NULL
 
    _args: Args
@@ -483,7 +484,7 @@ class createPullRequest(GQLMutation):
    type: CreatePullRequestPayload
 
 class createRef(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateRefInput ##NON NULL
 
    _args: Args
@@ -492,7 +493,7 @@ class createRef(GQLMutation):
    type: CreateRefPayload
 
 class createRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateRepositoryInput ##NON NULL
 
    _args: Args
@@ -501,7 +502,7 @@ class createRepository(GQLMutation):
    type: CreateRepositoryPayload
 
 class createSponsorsListing(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateSponsorsListingInput ##NON NULL
 
    _args: Args
@@ -510,7 +511,7 @@ class createSponsorsListing(GQLMutation):
    type: CreateSponsorsListingPayload
 
 class createSponsorsTier(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateSponsorsTierInput ##NON NULL
 
    _args: Args
@@ -519,7 +520,7 @@ class createSponsorsTier(GQLMutation):
    type: CreateSponsorsTierPayload
 
 class createSponsorship(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateSponsorshipInput ##NON NULL
 
    _args: Args
@@ -528,7 +529,7 @@ class createSponsorship(GQLMutation):
    type: CreateSponsorshipPayload
 
 class createTeamDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateTeamDiscussionInput ##NON NULL
 
    _args: Args
@@ -537,7 +538,7 @@ class createTeamDiscussion(GQLMutation):
    type: CreateTeamDiscussionPayload
 
 class createTeamDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: CreateTeamDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -546,7 +547,7 @@ class createTeamDiscussionComment(GQLMutation):
    type: CreateTeamDiscussionCommentPayload
 
 class declineTopicSuggestion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeclineTopicSuggestionInput ##NON NULL
 
    _args: Args
@@ -555,7 +556,7 @@ class declineTopicSuggestion(GQLMutation):
    type: DeclineTopicSuggestionPayload
 
 class deleteBranchProtectionRule(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteBranchProtectionRuleInput ##NON NULL
 
    _args: Args
@@ -564,7 +565,7 @@ class deleteBranchProtectionRule(GQLMutation):
    type: DeleteBranchProtectionRulePayload
 
 class deleteDeployment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteDeploymentInput ##NON NULL
 
    _args: Args
@@ -573,7 +574,7 @@ class deleteDeployment(GQLMutation):
    type: DeleteDeploymentPayload
 
 class deleteDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteDiscussionInput ##NON NULL
 
    _args: Args
@@ -582,7 +583,7 @@ class deleteDiscussion(GQLMutation):
    type: DeleteDiscussionPayload
 
 class deleteDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -591,7 +592,7 @@ class deleteDiscussionComment(GQLMutation):
    type: DeleteDiscussionCommentPayload
 
 class deleteEnvironment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteEnvironmentInput ##NON NULL
 
    _args: Args
@@ -600,7 +601,7 @@ class deleteEnvironment(GQLMutation):
    type: DeleteEnvironmentPayload
 
 class deleteIpAllowListEntry(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteIpAllowListEntryInput ##NON NULL
 
    _args: Args
@@ -609,7 +610,7 @@ class deleteIpAllowListEntry(GQLMutation):
    type: DeleteIpAllowListEntryPayload
 
 class deleteIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteIssueInput ##NON NULL
 
    _args: Args
@@ -618,7 +619,7 @@ class deleteIssue(GQLMutation):
    type: DeleteIssuePayload
 
 class deleteIssueComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteIssueCommentInput ##NON NULL
 
    _args: Args
@@ -627,7 +628,7 @@ class deleteIssueComment(GQLMutation):
    type: DeleteIssueCommentPayload
 
 class deleteLinkedBranch(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteLinkedBranchInput ##NON NULL
 
    _args: Args
@@ -636,7 +637,7 @@ class deleteLinkedBranch(GQLMutation):
    type: DeleteLinkedBranchPayload
 
 class deleteProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteProjectInput ##NON NULL
 
    _args: Args
@@ -645,7 +646,7 @@ class deleteProject(GQLMutation):
    type: DeleteProjectPayload
 
 class deleteProjectCard(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteProjectCardInput ##NON NULL
 
    _args: Args
@@ -654,7 +655,7 @@ class deleteProjectCard(GQLMutation):
    type: DeleteProjectCardPayload
 
 class deleteProjectColumn(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteProjectColumnInput ##NON NULL
 
    _args: Args
@@ -663,7 +664,7 @@ class deleteProjectColumn(GQLMutation):
    type: DeleteProjectColumnPayload
 
 class deleteProjectNextItem(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteProjectNextItemInput ##NON NULL
 
    _args: Args
@@ -672,7 +673,7 @@ class deleteProjectNextItem(GQLMutation):
    type: DeleteProjectNextItemPayload
 
 class deleteProjectV2Item(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteProjectV2ItemInput ##NON NULL
 
    _args: Args
@@ -681,7 +682,7 @@ class deleteProjectV2Item(GQLMutation):
    type: DeleteProjectV2ItemPayload
 
 class deletePullRequestReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeletePullRequestReviewInput ##NON NULL
 
    _args: Args
@@ -690,7 +691,7 @@ class deletePullRequestReview(GQLMutation):
    type: DeletePullRequestReviewPayload
 
 class deletePullRequestReviewComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeletePullRequestReviewCommentInput ##NON NULL
 
    _args: Args
@@ -699,7 +700,7 @@ class deletePullRequestReviewComment(GQLMutation):
    type: DeletePullRequestReviewCommentPayload
 
 class deleteRef(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteRefInput ##NON NULL
 
    _args: Args
@@ -708,7 +709,7 @@ class deleteRef(GQLMutation):
    type: DeleteRefPayload
 
 class deleteTeamDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteTeamDiscussionInput ##NON NULL
 
    _args: Args
@@ -717,7 +718,7 @@ class deleteTeamDiscussion(GQLMutation):
    type: DeleteTeamDiscussionPayload
 
 class deleteTeamDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteTeamDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -726,7 +727,7 @@ class deleteTeamDiscussionComment(GQLMutation):
    type: DeleteTeamDiscussionCommentPayload
 
 class deleteVerifiableDomain(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DeleteVerifiableDomainInput ##NON NULL
 
    _args: Args
@@ -735,7 +736,7 @@ class deleteVerifiableDomain(GQLMutation):
    type: DeleteVerifiableDomainPayload
 
 class disablePullRequestAutoMerge(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DisablePullRequestAutoMergeInput ##NON NULL
 
    _args: Args
@@ -744,7 +745,7 @@ class disablePullRequestAutoMerge(GQLMutation):
    type: DisablePullRequestAutoMergePayload
 
 class dismissPullRequestReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DismissPullRequestReviewInput ##NON NULL
 
    _args: Args
@@ -753,7 +754,7 @@ class dismissPullRequestReview(GQLMutation):
    type: DismissPullRequestReviewPayload
 
 class dismissRepositoryVulnerabilityAlert(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: DismissRepositoryVulnerabilityAlertInput ##NON NULL
 
    _args: Args
@@ -762,7 +763,7 @@ class dismissRepositoryVulnerabilityAlert(GQLMutation):
    type: DismissRepositoryVulnerabilityAlertPayload
 
 class enablePullRequestAutoMerge(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: EnablePullRequestAutoMergeInput ##NON NULL
 
    _args: Args
@@ -771,7 +772,7 @@ class enablePullRequestAutoMerge(GQLMutation):
    type: EnablePullRequestAutoMergePayload
 
 class followOrganization(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: FollowOrganizationInput ##NON NULL
 
    _args: Args
@@ -780,7 +781,7 @@ class followOrganization(GQLMutation):
    type: FollowOrganizationPayload
 
 class followUser(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: FollowUserInput ##NON NULL
 
    _args: Args
@@ -789,7 +790,7 @@ class followUser(GQLMutation):
    type: FollowUserPayload
 
 class grantEnterpriseOrganizationsMigratorRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: GrantEnterpriseOrganizationsMigratorRoleInput ##NON NULL
 
    _args: Args
@@ -798,7 +799,7 @@ class grantEnterpriseOrganizationsMigratorRole(GQLMutation):
    type: GrantEnterpriseOrganizationsMigratorRolePayload
 
 class grantMigratorRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: GrantMigratorRoleInput ##NON NULL
 
    _args: Args
@@ -807,7 +808,7 @@ class grantMigratorRole(GQLMutation):
    type: GrantMigratorRolePayload
 
 class inviteEnterpriseAdmin(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: InviteEnterpriseAdminInput ##NON NULL
 
    _args: Args
@@ -816,7 +817,7 @@ class inviteEnterpriseAdmin(GQLMutation):
    type: InviteEnterpriseAdminPayload
 
 class linkProjectV2ToRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: LinkProjectV2ToRepositoryInput ##NON NULL
 
    _args: Args
@@ -825,7 +826,7 @@ class linkProjectV2ToRepository(GQLMutation):
    type: LinkProjectV2ToRepositoryPayload
 
 class linkProjectV2ToTeam(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: LinkProjectV2ToTeamInput ##NON NULL
 
    _args: Args
@@ -834,7 +835,7 @@ class linkProjectV2ToTeam(GQLMutation):
    type: LinkProjectV2ToTeamPayload
 
 class linkRepositoryToProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: LinkRepositoryToProjectInput ##NON NULL
 
    _args: Args
@@ -843,7 +844,7 @@ class linkRepositoryToProject(GQLMutation):
    type: LinkRepositoryToProjectPayload
 
 class lockLockable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: LockLockableInput ##NON NULL
 
    _args: Args
@@ -852,7 +853,7 @@ class lockLockable(GQLMutation):
    type: LockLockablePayload
 
 class markDiscussionCommentAsAnswer(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MarkDiscussionCommentAsAnswerInput ##NON NULL
 
    _args: Args
@@ -861,7 +862,7 @@ class markDiscussionCommentAsAnswer(GQLMutation):
    type: MarkDiscussionCommentAsAnswerPayload
 
 class markFileAsViewed(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MarkFileAsViewedInput ##NON NULL
 
    _args: Args
@@ -870,7 +871,7 @@ class markFileAsViewed(GQLMutation):
    type: MarkFileAsViewedPayload
 
 class markPullRequestReadyForReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MarkPullRequestReadyForReviewInput ##NON NULL
 
    _args: Args
@@ -879,7 +880,7 @@ class markPullRequestReadyForReview(GQLMutation):
    type: MarkPullRequestReadyForReviewPayload
 
 class mergeBranch(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MergeBranchInput ##NON NULL
 
    _args: Args
@@ -888,7 +889,7 @@ class mergeBranch(GQLMutation):
    type: MergeBranchPayload
 
 class mergePullRequest(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MergePullRequestInput ##NON NULL
 
    _args: Args
@@ -897,7 +898,7 @@ class mergePullRequest(GQLMutation):
    type: MergePullRequestPayload
 
 class minimizeComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MinimizeCommentInput ##NON NULL
 
    _args: Args
@@ -906,7 +907,7 @@ class minimizeComment(GQLMutation):
    type: MinimizeCommentPayload
 
 class moveProjectCard(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MoveProjectCardInput ##NON NULL
 
    _args: Args
@@ -915,7 +916,7 @@ class moveProjectCard(GQLMutation):
    type: MoveProjectCardPayload
 
 class moveProjectColumn(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: MoveProjectColumnInput ##NON NULL
 
    _args: Args
@@ -924,7 +925,7 @@ class moveProjectColumn(GQLMutation):
    type: MoveProjectColumnPayload
 
 class pinIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: PinIssueInput ##NON NULL
 
    _args: Args
@@ -933,7 +934,7 @@ class pinIssue(GQLMutation):
    type: PinIssuePayload
 
 class publishSponsorsTier(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: PublishSponsorsTierInput ##NON NULL
 
    _args: Args
@@ -942,7 +943,7 @@ class publishSponsorsTier(GQLMutation):
    type: PublishSponsorsTierPayload
 
 class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RegenerateEnterpriseIdentityProviderRecoveryCodesInput ##NON NULL
 
    _args: Args
@@ -951,7 +952,7 @@ class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLMutation):
    type: RegenerateEnterpriseIdentityProviderRecoveryCodesPayload
 
 class regenerateVerifiableDomainToken(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RegenerateVerifiableDomainTokenInput ##NON NULL
 
    _args: Args
@@ -960,7 +961,7 @@ class regenerateVerifiableDomainToken(GQLMutation):
    type: RegenerateVerifiableDomainTokenPayload
 
 class rejectDeployments(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RejectDeploymentsInput ##NON NULL
 
    _args: Args
@@ -969,7 +970,7 @@ class rejectDeployments(GQLMutation):
    type: RejectDeploymentsPayload
 
 class removeAssigneesFromAssignable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveAssigneesFromAssignableInput ##NON NULL
 
    _args: Args
@@ -978,7 +979,7 @@ class removeAssigneesFromAssignable(GQLMutation):
    type: RemoveAssigneesFromAssignablePayload
 
 class removeEnterpriseAdmin(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseAdminInput ##NON NULL
 
    _args: Args
@@ -987,7 +988,7 @@ class removeEnterpriseAdmin(GQLMutation):
    type: RemoveEnterpriseAdminPayload
 
 class removeEnterpriseIdentityProvider(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseIdentityProviderInput ##NON NULL
 
    _args: Args
@@ -996,7 +997,7 @@ class removeEnterpriseIdentityProvider(GQLMutation):
    type: RemoveEnterpriseIdentityProviderPayload
 
 class removeEnterpriseOrganization(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseOrganizationInput ##NON NULL
 
    _args: Args
@@ -1005,7 +1006,7 @@ class removeEnterpriseOrganization(GQLMutation):
    type: RemoveEnterpriseOrganizationPayload
 
 class removeEnterpriseSupportEntitlement(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseSupportEntitlementInput ##NON NULL
 
    _args: Args
@@ -1014,7 +1015,7 @@ class removeEnterpriseSupportEntitlement(GQLMutation):
    type: RemoveEnterpriseSupportEntitlementPayload
 
 class removeLabelsFromLabelable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveLabelsFromLabelableInput ##NON NULL
 
    _args: Args
@@ -1023,7 +1024,7 @@ class removeLabelsFromLabelable(GQLMutation):
    type: RemoveLabelsFromLabelablePayload
 
 class removeOutsideCollaborator(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveOutsideCollaboratorInput ##NON NULL
 
    _args: Args
@@ -1032,7 +1033,7 @@ class removeOutsideCollaborator(GQLMutation):
    type: RemoveOutsideCollaboratorPayload
 
 class removeReaction(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveReactionInput ##NON NULL
 
    _args: Args
@@ -1041,7 +1042,7 @@ class removeReaction(GQLMutation):
    type: RemoveReactionPayload
 
 class removeStar(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveStarInput ##NON NULL
 
    _args: Args
@@ -1050,7 +1051,7 @@ class removeStar(GQLMutation):
    type: RemoveStarPayload
 
 class removeUpvote(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RemoveUpvoteInput ##NON NULL
 
    _args: Args
@@ -1059,7 +1060,7 @@ class removeUpvote(GQLMutation):
    type: RemoveUpvotePayload
 
 class reopenIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ReopenIssueInput ##NON NULL
 
    _args: Args
@@ -1068,7 +1069,7 @@ class reopenIssue(GQLMutation):
    type: ReopenIssuePayload
 
 class reopenPullRequest(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ReopenPullRequestInput ##NON NULL
 
    _args: Args
@@ -1077,7 +1078,7 @@ class reopenPullRequest(GQLMutation):
    type: ReopenPullRequestPayload
 
 class requestReviews(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RequestReviewsInput ##NON NULL
 
    _args: Args
@@ -1086,7 +1087,7 @@ class requestReviews(GQLMutation):
    type: RequestReviewsPayload
 
 class rerequestCheckSuite(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RerequestCheckSuiteInput ##NON NULL
 
    _args: Args
@@ -1095,7 +1096,7 @@ class rerequestCheckSuite(GQLMutation):
    type: RerequestCheckSuitePayload
 
 class resolveReviewThread(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: ResolveReviewThreadInput ##NON NULL
 
    _args: Args
@@ -1104,7 +1105,7 @@ class resolveReviewThread(GQLMutation):
    type: ResolveReviewThreadPayload
 
 class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RevokeEnterpriseOrganizationsMigratorRoleInput ##NON NULL
 
    _args: Args
@@ -1113,7 +1114,7 @@ class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
    type: RevokeEnterpriseOrganizationsMigratorRolePayload
 
 class revokeMigratorRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: RevokeMigratorRoleInput ##NON NULL
 
    _args: Args
@@ -1122,7 +1123,7 @@ class revokeMigratorRole(GQLMutation):
    type: RevokeMigratorRolePayload
 
 class setEnterpriseIdentityProvider(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: SetEnterpriseIdentityProviderInput ##NON NULL
 
    _args: Args
@@ -1131,7 +1132,7 @@ class setEnterpriseIdentityProvider(GQLMutation):
    type: SetEnterpriseIdentityProviderPayload
 
 class setOrganizationInteractionLimit(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: SetOrganizationInteractionLimitInput ##NON NULL
 
    _args: Args
@@ -1140,7 +1141,7 @@ class setOrganizationInteractionLimit(GQLMutation):
    type: SetOrganizationInteractionLimitPayload
 
 class setRepositoryInteractionLimit(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: SetRepositoryInteractionLimitInput ##NON NULL
 
    _args: Args
@@ -1149,7 +1150,7 @@ class setRepositoryInteractionLimit(GQLMutation):
    type: SetRepositoryInteractionLimitPayload
 
 class setUserInteractionLimit(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: SetUserInteractionLimitInput ##NON NULL
 
    _args: Args
@@ -1158,7 +1159,7 @@ class setUserInteractionLimit(GQLMutation):
    type: SetUserInteractionLimitPayload
 
 class startRepositoryMigration(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: StartRepositoryMigrationInput ##NON NULL
 
    _args: Args
@@ -1167,7 +1168,7 @@ class startRepositoryMigration(GQLMutation):
    type: StartRepositoryMigrationPayload
 
 class submitPullRequestReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: SubmitPullRequestReviewInput ##NON NULL
 
    _args: Args
@@ -1176,7 +1177,7 @@ class submitPullRequestReview(GQLMutation):
    type: SubmitPullRequestReviewPayload
 
 class transferEnterpriseOrganization(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: TransferEnterpriseOrganizationInput ##NON NULL
 
    _args: Args
@@ -1185,7 +1186,7 @@ class transferEnterpriseOrganization(GQLMutation):
    type: TransferEnterpriseOrganizationPayload
 
 class transferIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: TransferIssueInput ##NON NULL
 
    _args: Args
@@ -1194,7 +1195,7 @@ class transferIssue(GQLMutation):
    type: TransferIssuePayload
 
 class unarchiveProjectV2Item(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnarchiveProjectV2ItemInput ##NON NULL
 
    _args: Args
@@ -1203,7 +1204,7 @@ class unarchiveProjectV2Item(GQLMutation):
    type: UnarchiveProjectV2ItemPayload
 
 class unarchiveRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnarchiveRepositoryInput ##NON NULL
 
    _args: Args
@@ -1212,7 +1213,7 @@ class unarchiveRepository(GQLMutation):
    type: UnarchiveRepositoryPayload
 
 class unfollowOrganization(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnfollowOrganizationInput ##NON NULL
 
    _args: Args
@@ -1221,7 +1222,7 @@ class unfollowOrganization(GQLMutation):
    type: UnfollowOrganizationPayload
 
 class unfollowUser(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnfollowUserInput ##NON NULL
 
    _args: Args
@@ -1230,7 +1231,7 @@ class unfollowUser(GQLMutation):
    type: UnfollowUserPayload
 
 class unlinkProjectV2FromRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnlinkProjectV2FromRepositoryInput ##NON NULL
 
    _args: Args
@@ -1239,7 +1240,7 @@ class unlinkProjectV2FromRepository(GQLMutation):
    type: UnlinkProjectV2FromRepositoryPayload
 
 class unlinkProjectV2FromTeam(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnlinkProjectV2FromTeamInput ##NON NULL
 
    _args: Args
@@ -1248,7 +1249,7 @@ class unlinkProjectV2FromTeam(GQLMutation):
    type: UnlinkProjectV2FromTeamPayload
 
 class unlinkRepositoryFromProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnlinkRepositoryFromProjectInput ##NON NULL
 
    _args: Args
@@ -1257,7 +1258,7 @@ class unlinkRepositoryFromProject(GQLMutation):
    type: UnlinkRepositoryFromProjectPayload
 
 class unlockLockable(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnlockLockableInput ##NON NULL
 
    _args: Args
@@ -1266,7 +1267,7 @@ class unlockLockable(GQLMutation):
    type: UnlockLockablePayload
 
 class unmarkDiscussionCommentAsAnswer(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnmarkDiscussionCommentAsAnswerInput ##NON NULL
 
    _args: Args
@@ -1275,7 +1276,7 @@ class unmarkDiscussionCommentAsAnswer(GQLMutation):
    type: UnmarkDiscussionCommentAsAnswerPayload
 
 class unmarkFileAsViewed(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnmarkFileAsViewedInput ##NON NULL
 
    _args: Args
@@ -1284,7 +1285,7 @@ class unmarkFileAsViewed(GQLMutation):
    type: UnmarkFileAsViewedPayload
 
 class unmarkIssueAsDuplicate(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnmarkIssueAsDuplicateInput ##NON NULL
 
    _args: Args
@@ -1293,7 +1294,7 @@ class unmarkIssueAsDuplicate(GQLMutation):
    type: UnmarkIssueAsDuplicatePayload
 
 class unminimizeComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnminimizeCommentInput ##NON NULL
 
    _args: Args
@@ -1302,7 +1303,7 @@ class unminimizeComment(GQLMutation):
    type: UnminimizeCommentPayload
 
 class unpinIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnpinIssueInput ##NON NULL
 
    _args: Args
@@ -1311,7 +1312,7 @@ class unpinIssue(GQLMutation):
    type: UnpinIssuePayload
 
 class unresolveReviewThread(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UnresolveReviewThreadInput ##NON NULL
 
    _args: Args
@@ -1320,7 +1321,7 @@ class unresolveReviewThread(GQLMutation):
    type: UnresolveReviewThreadPayload
 
 class updateBranchProtectionRule(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateBranchProtectionRuleInput ##NON NULL
 
    _args: Args
@@ -1329,7 +1330,7 @@ class updateBranchProtectionRule(GQLMutation):
    type: UpdateBranchProtectionRulePayload
 
 class updateCheckRun(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateCheckRunInput ##NON NULL
 
    _args: Args
@@ -1338,7 +1339,7 @@ class updateCheckRun(GQLMutation):
    type: UpdateCheckRunPayload
 
 class updateCheckSuitePreferences(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateCheckSuitePreferencesInput ##NON NULL
 
    _args: Args
@@ -1347,7 +1348,7 @@ class updateCheckSuitePreferences(GQLMutation):
    type: UpdateCheckSuitePreferencesPayload
 
 class updateDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateDiscussionInput ##NON NULL
 
    _args: Args
@@ -1356,7 +1357,7 @@ class updateDiscussion(GQLMutation):
    type: UpdateDiscussionPayload
 
 class updateDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -1365,7 +1366,7 @@ class updateDiscussionComment(GQLMutation):
    type: UpdateDiscussionCommentPayload
 
 class updateEnterpriseAdministratorRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseAdministratorRoleInput ##NON NULL
 
    _args: Args
@@ -1374,7 +1375,7 @@ class updateEnterpriseAdministratorRole(GQLMutation):
    type: UpdateEnterpriseAdministratorRolePayload
 
 class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput ##NON NULL
 
    _args: Args
@@ -1383,7 +1384,7 @@ class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLMutation):
    type: UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayload
 
 class updateEnterpriseDefaultRepositoryPermissionSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseDefaultRepositoryPermissionSettingInput ##NON NULL
 
    _args: Args
@@ -1392,7 +1393,7 @@ class updateEnterpriseDefaultRepositoryPermissionSetting(GQLMutation):
    type: UpdateEnterpriseDefaultRepositoryPermissionSettingPayload
 
 class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput ##NON NULL
 
    _args: Args
@@ -1401,7 +1402,7 @@ class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLMutation):
    type: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayload
 
 class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanCreateRepositoriesSettingInput ##NON NULL
 
    _args: Args
@@ -1410,7 +1411,7 @@ class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanCreateRepositoriesSettingPayload
 
 class updateEnterpriseMembersCanDeleteIssuesSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanDeleteIssuesSettingInput ##NON NULL
 
    _args: Args
@@ -1419,7 +1420,7 @@ class updateEnterpriseMembersCanDeleteIssuesSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanDeleteIssuesSettingPayload
 
 class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput ##NON NULL
 
    _args: Args
@@ -1428,7 +1429,7 @@ class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayload
 
 class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput ##NON NULL
 
    _args: Args
@@ -1437,7 +1438,7 @@ class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayload
 
 class updateEnterpriseMembersCanMakePurchasesSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanMakePurchasesSettingInput ##NON NULL
 
    _args: Args
@@ -1446,7 +1447,7 @@ class updateEnterpriseMembersCanMakePurchasesSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanMakePurchasesSettingPayload
 
 class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput ##NON NULL
 
    _args: Args
@@ -1455,7 +1456,7 @@ class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayload
 
 class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput ##NON NULL
 
    _args: Args
@@ -1464,7 +1465,7 @@ class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLMutation):
    type: UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayload
 
 class updateEnterpriseOrganizationProjectsSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseOrganizationProjectsSettingInput ##NON NULL
 
    _args: Args
@@ -1473,7 +1474,7 @@ class updateEnterpriseOrganizationProjectsSetting(GQLMutation):
    type: UpdateEnterpriseOrganizationProjectsSettingPayload
 
 class updateEnterpriseOwnerOrganizationRole(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseOwnerOrganizationRoleInput ##NON NULL
 
    _args: Args
@@ -1482,7 +1483,7 @@ class updateEnterpriseOwnerOrganizationRole(GQLMutation):
    type: UpdateEnterpriseOwnerOrganizationRolePayload
 
 class updateEnterpriseProfile(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseProfileInput ##NON NULL
 
    _args: Args
@@ -1491,7 +1492,7 @@ class updateEnterpriseProfile(GQLMutation):
    type: UpdateEnterpriseProfilePayload
 
 class updateEnterpriseRepositoryProjectsSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseRepositoryProjectsSettingInput ##NON NULL
 
    _args: Args
@@ -1500,7 +1501,7 @@ class updateEnterpriseRepositoryProjectsSetting(GQLMutation):
    type: UpdateEnterpriseRepositoryProjectsSettingPayload
 
 class updateEnterpriseTeamDiscussionsSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseTeamDiscussionsSettingInput ##NON NULL
 
    _args: Args
@@ -1509,7 +1510,7 @@ class updateEnterpriseTeamDiscussionsSetting(GQLMutation):
    type: UpdateEnterpriseTeamDiscussionsSettingPayload
 
 class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput ##NON NULL
 
    _args: Args
@@ -1518,7 +1519,7 @@ class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLMutation):
    type: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayload
 
 class updateEnvironment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateEnvironmentInput ##NON NULL
 
    _args: Args
@@ -1527,7 +1528,7 @@ class updateEnvironment(GQLMutation):
    type: UpdateEnvironmentPayload
 
 class updateIpAllowListEnabledSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListEnabledSettingInput ##NON NULL
 
    _args: Args
@@ -1536,7 +1537,7 @@ class updateIpAllowListEnabledSetting(GQLMutation):
    type: UpdateIpAllowListEnabledSettingPayload
 
 class updateIpAllowListEntry(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListEntryInput ##NON NULL
 
    _args: Args
@@ -1545,7 +1546,7 @@ class updateIpAllowListEntry(GQLMutation):
    type: UpdateIpAllowListEntryPayload
 
 class updateIpAllowListForInstalledAppsEnabledSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListForInstalledAppsEnabledSettingInput ##NON NULL
 
    _args: Args
@@ -1554,7 +1555,7 @@ class updateIpAllowListForInstalledAppsEnabledSetting(GQLMutation):
    type: UpdateIpAllowListForInstalledAppsEnabledSettingPayload
 
 class updateIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateIssueInput ##NON NULL
 
    _args: Args
@@ -1563,7 +1564,7 @@ class updateIssue(GQLMutation):
    type: UpdateIssuePayload
 
 class updateIssueComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateIssueCommentInput ##NON NULL
 
    _args: Args
@@ -1572,7 +1573,7 @@ class updateIssueComment(GQLMutation):
    type: UpdateIssueCommentPayload
 
 class updateNotificationRestrictionSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateNotificationRestrictionSettingInput ##NON NULL
 
    _args: Args
@@ -1581,7 +1582,7 @@ class updateNotificationRestrictionSetting(GQLMutation):
    type: UpdateNotificationRestrictionSettingPayload
 
 class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateOrganizationAllowPrivateRepositoryForkingSettingInput ##NON NULL
 
    _args: Args
@@ -1590,7 +1591,7 @@ class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLMutation):
    type: UpdateOrganizationAllowPrivateRepositoryForkingSettingPayload
 
 class updateOrganizationWebCommitSignoffSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateOrganizationWebCommitSignoffSettingInput ##NON NULL
 
    _args: Args
@@ -1599,7 +1600,7 @@ class updateOrganizationWebCommitSignoffSetting(GQLMutation):
    type: UpdateOrganizationWebCommitSignoffSettingPayload
 
 class updateProject(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectInput ##NON NULL
 
    _args: Args
@@ -1608,7 +1609,7 @@ class updateProject(GQLMutation):
    type: UpdateProjectPayload
 
 class updateProjectCard(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectCardInput ##NON NULL
 
    _args: Args
@@ -1617,7 +1618,7 @@ class updateProjectCard(GQLMutation):
    type: UpdateProjectCardPayload
 
 class updateProjectColumn(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectColumnInput ##NON NULL
 
    _args: Args
@@ -1626,7 +1627,7 @@ class updateProjectColumn(GQLMutation):
    type: UpdateProjectColumnPayload
 
 class updateProjectDraftIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectDraftIssueInput ##NON NULL
 
    _args: Args
@@ -1635,7 +1636,7 @@ class updateProjectDraftIssue(GQLMutation):
    type: UpdateProjectDraftIssuePayload
 
 class updateProjectNext(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectNextInput ##NON NULL
 
    _args: Args
@@ -1644,7 +1645,7 @@ class updateProjectNext(GQLMutation):
    type: UpdateProjectNextPayload
 
 class updateProjectNextItemField(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectNextItemFieldInput ##NON NULL
 
    _args: Args
@@ -1653,7 +1654,7 @@ class updateProjectNextItemField(GQLMutation):
    type: UpdateProjectNextItemFieldPayload
 
 class updateProjectV2(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2Input ##NON NULL
 
    _args: Args
@@ -1662,7 +1663,7 @@ class updateProjectV2(GQLMutation):
    type: UpdateProjectV2Payload
 
 class updateProjectV2DraftIssue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2DraftIssueInput ##NON NULL
 
    _args: Args
@@ -1671,7 +1672,7 @@ class updateProjectV2DraftIssue(GQLMutation):
    type: UpdateProjectV2DraftIssuePayload
 
 class updateProjectV2ItemFieldValue(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2ItemFieldValueInput ##NON NULL
 
    _args: Args
@@ -1680,7 +1681,7 @@ class updateProjectV2ItemFieldValue(GQLMutation):
    type: UpdateProjectV2ItemFieldValuePayload
 
 class updateProjectV2ItemPosition(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2ItemPositionInput ##NON NULL
 
    _args: Args
@@ -1689,7 +1690,7 @@ class updateProjectV2ItemPosition(GQLMutation):
    type: UpdateProjectV2ItemPositionPayload
 
 class updatePullRequest(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestInput ##NON NULL
 
    _args: Args
@@ -1698,7 +1699,7 @@ class updatePullRequest(GQLMutation):
    type: UpdatePullRequestPayload
 
 class updatePullRequestBranch(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestBranchInput ##NON NULL
 
    _args: Args
@@ -1707,7 +1708,7 @@ class updatePullRequestBranch(GQLMutation):
    type: UpdatePullRequestBranchPayload
 
 class updatePullRequestReview(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestReviewInput ##NON NULL
 
    _args: Args
@@ -1716,7 +1717,7 @@ class updatePullRequestReview(GQLMutation):
    type: UpdatePullRequestReviewPayload
 
 class updatePullRequestReviewComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestReviewCommentInput ##NON NULL
 
    _args: Args
@@ -1725,7 +1726,7 @@ class updatePullRequestReviewComment(GQLMutation):
    type: UpdatePullRequestReviewCommentPayload
 
 class updateRef(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateRefInput ##NON NULL
 
    _args: Args
@@ -1734,7 +1735,7 @@ class updateRef(GQLMutation):
    type: UpdateRefPayload
 
 class updateRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateRepositoryInput ##NON NULL
 
    _args: Args
@@ -1743,7 +1744,7 @@ class updateRepository(GQLMutation):
    type: UpdateRepositoryPayload
 
 class updateRepositoryWebCommitSignoffSetting(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateRepositoryWebCommitSignoffSettingInput ##NON NULL
 
    _args: Args
@@ -1752,7 +1753,7 @@ class updateRepositoryWebCommitSignoffSetting(GQLMutation):
    type: UpdateRepositoryWebCommitSignoffSettingPayload
 
 class updateSponsorshipPreferences(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateSponsorshipPreferencesInput ##NON NULL
 
    _args: Args
@@ -1761,7 +1762,7 @@ class updateSponsorshipPreferences(GQLMutation):
    type: UpdateSponsorshipPreferencesPayload
 
 class updateSubscription(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateSubscriptionInput ##NON NULL
 
    _args: Args
@@ -1770,7 +1771,7 @@ class updateSubscription(GQLMutation):
    type: UpdateSubscriptionPayload
 
 class updateTeamDiscussion(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateTeamDiscussionInput ##NON NULL
 
    _args: Args
@@ -1779,7 +1780,7 @@ class updateTeamDiscussion(GQLMutation):
    type: UpdateTeamDiscussionPayload
 
 class updateTeamDiscussionComment(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateTeamDiscussionCommentInput ##NON NULL
 
    _args: Args
@@ -1788,7 +1789,7 @@ class updateTeamDiscussionComment(GQLMutation):
    type: UpdateTeamDiscussionCommentPayload
 
 class updateTeamsRepository(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateTeamsRepositoryInput ##NON NULL
 
    _args: Args
@@ -1797,7 +1798,7 @@ class updateTeamsRepository(GQLMutation):
    type: UpdateTeamsRepositoryPayload
 
 class updateTopics(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: UpdateTopicsInput ##NON NULL
 
    _args: Args
@@ -1806,7 +1807,7 @@ class updateTopics(GQLMutation):
    type: UpdateTopicsPayload
 
 class verifyVerifiableDomain(GQLMutation):
-   class Args(GQLOperationArgs, GQLObject): 
+   class Args(GQLArgsSet, GQLObject): 
       input: VerifyVerifiableDomainInput ##NON NULL
 
    _args: Args

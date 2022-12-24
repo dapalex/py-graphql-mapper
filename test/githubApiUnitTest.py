@@ -4,8 +4,6 @@ from pprint import pprint
 import requests
 
 from consts import githubHeaders, githubUrl
-from pygqlmap.enums import OperationType
-from pygqlmap.components import GQLOperation
 from pygqlmap.network import GQLResponse
 from pygqlmap.src.utils import redirectOutputToFile, restoreOutput
 from codegen.network import fetchSchemaObject
@@ -73,6 +71,8 @@ async def RunGithubAddCommentMutation():
 
         # wrapper = redirectOutputToFile('logrecurs.log')
         mutation = Mutations.addComment.value()
+        import gc
+        gc.collect()
         # restoreOutput(wrapper)
         print('Inserting python mutation input data...')
         
@@ -81,7 +81,6 @@ async def RunGithubAddCommentMutation():
         mutation._args.input.clientMutationId = 'Me'
         print('Creating GQLOperation for mutation...')
         print(mutation.exportGqlSource)
-        
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
@@ -140,14 +139,14 @@ async def RunGithubCreateProjectMutation():
         mutation._args.input.name = "Test create project from Mutation" + datetime.now().ctime()
         mutation._args.input.repositoryIds = ["R_kgDOH7MI4g"]
         
-        mutation._customPayload = '{ project { id } }'
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateProjectMutation')
-        pprint(myMutation.exportGqlSource)
+        mutation._args._customPayload = '{ project { id } }'
+        mutation.name = 'MycreateProjectMutation'
+        
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -175,17 +174,15 @@ async def RunGithubDeleteProjectMutation():
 
         mutation = Mutations.deleteProject.value()
         print('Inserting python mutation input data...')
-        mutation.input = DeleteProjectInput()
+        mutation._args.input = DeleteProjectInput()
         
-        mutation.input.projectId = "projId"
-        
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateIssueMutation')
-        pprint(myMutation.exportGqlSource)
+        mutation._args.input.projectId = "projId"
+                
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -198,7 +195,7 @@ async def RunGithubDeleteProjectMutation():
     print("End of RunGithubDeleteProjectMutation")
     
 async def RunGithubCreateProjectV2Mutation():
-    print('\nRunning RunGithubCreateIssueMutation...')
+    print('\nRunning RunGithubCreateProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
         from output.github.mutations import Mutations
@@ -208,16 +205,14 @@ async def RunGithubCreateProjectV2Mutation():
         print('Inserting python mutation input data...')
         mutation.input = CreateProjectV2Input()
         
-        mutation.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
-        mutation.input.title = "Test create issue from Mutation" + datetime.now().ctime()
+        mutation._args.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
+        mutation._args.input.title = "Test create issue from Mutation" + datetime.now().ctime()
         
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateIssueMutation')
-        pprint(myMutation.exportGqlSource)
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -227,10 +222,10 @@ async def RunGithubCreateProjectV2Mutation():
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
-    print("End of RunGithubCreateIssueMutation")
+    print("End of RunGithubCreateProjectV2Mutation")
     
 async def RunGithubDeleteProjectV2Mutation():
-    print('\nRunning RunGithubCreateIssueMutation...')
+    print('\nRunning RunGithubDeleteProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
         from output.github.mutations import Mutations
@@ -238,18 +233,16 @@ async def RunGithubDeleteProjectV2Mutation():
 
         mutation = Mutations.deleteProjectV2Item.value()
         print('Inserting python mutation input data...')
-        mutation.input = DeleteProjectV2ItemInput()
+        mutation._args.input = DeleteProjectV2ItemInput()
         
-        mutation.input.projectId = "projId"
-        mutation.input.itemId = "itemId"
+        mutation._args.input.projectId = "projId"
+        mutation._args.input.itemId = "itemId"
         
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateIssueMutation')
-        pprint(myMutation.exportGqlSource)
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
@@ -259,7 +252,7 @@ async def RunGithubDeleteProjectV2Mutation():
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
-    print("End of RunGithubCreateIssueMutation")
+    print("End of RunGithubDeleteProjectV2Mutation")
     
 async def RunGithubCreateIssueMutation():
     print('\nRunning RunGithubCreateIssueMutation...')
@@ -272,19 +265,17 @@ async def RunGithubCreateIssueMutation():
         print('Inserting python mutation input data...')
         mutation.input = CreateIssueInput()
         
-        mutation.input.repositoryId = "R_kgDOH7MI4g"
-        mutation.input.title = "Test create issue from Mutation" + datetime.now().ctime()
-        mutation.input.assigneeIds = ["MDQ6VXNlcjkxMzk2ODM3"]
-        mutation.input.labelIds = ['LA_kwDOIOMoaM8AAAABFmBXvg', 'LA_kwDOIOMoaM8AAAABFmBXvQ']
-        mutation.input.projectIds = ['PRO_kwHOBXKa5c4A32ah']
+        mutation._args.input.repositoryId = "R_kgDOH7MI4g"
+        mutation._args.input.title = "Test create issue from Mutation" + datetime.now().ctime()
+        mutation._args.input.assigneeIds = ["MDQ6VXNlcjkxMzk2ODM3"]
+        mutation._args.input.labelIds = ['LA_kwDOIOMoaM8AAAABFmBXvg', 'LA_kwDOIOMoaM8AAAABFmBXvQ']
+        mutation._args.input.projectIds = ['PRO_kwHOBXKa5c4A32ah']
         
-        print('Creating GQLOperation for mutation...')
-        myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateIssueMutation')
-        pprint(myMutation.exportGqlSource)
+        pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
-                                    json= { "query": myMutation.exportGqlSource }, 
+                                    json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)

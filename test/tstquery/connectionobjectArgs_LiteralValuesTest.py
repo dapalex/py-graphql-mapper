@@ -43,7 +43,7 @@
 
 import requests
 from consts import gdbcUrl, gdbcHeaders
-from pgqlmCoreTest.tstquery.connectionObjectTest import currencies
+from tstquery.connectionObjectTest import currencies
 from utils import ManageException
 
 async def testConnectionObjectArgs_LiteralValues(): 
@@ -84,7 +84,7 @@ async def testConnectionObjectArgs_LiteralValues():
         gqlResponse.printMessageOutput()
         
 ##STEP 5
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
         print('resultObject: ' + str(gqlResponse.resultObject))

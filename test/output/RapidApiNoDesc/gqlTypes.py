@@ -1162,6 +1162,7 @@ class EnvConfigTerm(GQLObject):
    key: str
    brand: Brand
    categoryId: int
+   hideInAdvancedSettingsUI: bool
 
 class GatewayTemplateParamsWhereInput(GQLObject):
    status: str
