@@ -1,5 +1,6 @@
 # py-graphql-mapper
 
+THE DEVELOPMENT IS IN PROGRESS, THE MOST UPDATED VERSION IS AVAILABLE IN 'code-generator-draft' BRANCH
 ## Introduction
 
 This library acts as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when fetching data against a GraphQL server.
