@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+
+from pygqlmap.helper import ManageException
 from .src.gqlInit import subClassInit
 from .src.components import FSTree
 from .src.base import FieldsShow, GQLExporter, GQLBaseArgsSet
@@ -37,7 +39,7 @@ class GQLOperationArgs(GQLBaseArgsSet):
                 
             output.removesuffix(commaConcat)
         except:
-            raise Exception('Issue with items exporting variable')
+            raise ManageException(None, 'Issue with items exporting variable')
 
         output += ' }'
         return output
@@ -112,7 +114,7 @@ class GQLOperation(GQLExporter):
             for key in keys:
                 self.fieldsShowTree.setFieldShow(key, isVisible)
         else:
-            raise Exception('setShow accepts only ''str'' or ''list'' types') ##why not throwing?
+            raise ManageException(None, 'setShow accepts only ''str'' or ''list'' types') ##why not throwing?
 
     @property
     def exportGqlSource(self):
@@ -139,9 +141,9 @@ class GQLOperation(GQLExporter):
                 if hasattr(self, argsDeclaration):
                     prefix += '(' + self._args.exportGQLArgKeys + ')'
                     
-            return prefix + ' { ' + rootName + self.type.exportGqlSource[0] + ' } '
+            return prefix + ' { ' + rootName + self.type.exportGqlSource + ' } '
         except Exception as ex:
-            raise Exception('Issue during export of ' + self.name + ' - ' + ex.args[0])
+            raise ManageException(ex, 'Issue during export of ' + self.name)
 
     @property
     def exportGQLVariables(self):
@@ -172,7 +174,7 @@ class GQLOperation(GQLExporter):
         
             return True
         except Exception as ex:
-            raise Exception('Error during args type propagation - ' + ex.args[0])
+            raise ManageException(ex, 'Error during args type propagation - ')
 
     def propagateArgsType(self, currentObj):
         try:
@@ -187,7 +189,7 @@ class GQLOperation(GQLExporter):
                 if subObj == argsDeclaration:  continue
                 self.propagateArgsType(getattr(currentObj, subObj))
         except Exception as ex:
-            raise Exception('Error during args type propagation - ' + ex.args[0])
+            raise ManageException(ex, 'Error during args type propagation - ')
 
     # def setArgsLocations(self, currentObj, parentName, fieldName, currentLocation):
     #     try:

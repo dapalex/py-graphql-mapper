@@ -5,11 +5,10 @@ import requests
 
 from consts import githubHeaders, githubUrl
 from pygqlmap.network import GQLResponse
-from pygqlmap.src.utils import redirectOutputToFile, restoreOutput
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from utils import ManageException
+from utils import ManageException, redirectOutputToFile, restoreOutput
 
 async def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
@@ -69,10 +68,7 @@ async def RunGithubAddCommentMutation():
         print('Creating mutation python object...')
         from output.github.mutations import Mutations
 
-        # wrapper = redirectOutputToFile('logrecurs.log')
         mutation = Mutations.addComment.value()
-        import gc
-        gc.collect()
         # restoreOutput(wrapper)
         print('Inserting python mutation input data...')
         
@@ -80,7 +76,11 @@ async def RunGithubAddCommentMutation():
         mutation._args.input.body = 'This is the body'
         mutation._args.input.clientMutationId = 'Me'
         print('Creating GQLOperation for mutation...')
+        
+        # wrapper = redirectOutputToFile('mutationCreated.log')
         print(mutation.exportGqlSource)
+        # restoreOutput(wrapper)
+        
         print('Calling GraphQL Server......')
         response = requests.request('POST', url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 

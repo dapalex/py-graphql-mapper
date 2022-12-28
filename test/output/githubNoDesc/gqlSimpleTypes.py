@@ -6,126 +6,126 @@ from .enums import *
 from .scalars import *
 
 class organizationVerifiedDomainEmailsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
-   _args: Args
+   _args: strArgs
 
 
 
 class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
-   _args: Args
+   _args: boolArgs
 
 
 
 class anyPinnableItemsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
-   _args: Args
+   _args: boolArgs
 
 
 
 class isSponsoredByField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       accountLogin: str ##NON NULL
 
-   _args: Args
+   _args: boolArgs
 
 
 
 class textField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       truncate: int
 
-   _args: Args
+   _args: strArgs
 
 
 
 class totalRepositoryContributionsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
 class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
 class totalRepositoriesWithContributedIssuesField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
 class totalPullRequestContributionsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
 class totalIssueContributionsField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
 class viewerMergeHeadlineTextField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
-   _args: Args
+   _args: strArgs
 
 
 
 class viewerMergeBodyTextField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
-   _args: Args
+   _args: strArgs
 
 
 
 class trackedIssuesCountField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       states: list[TrackedIssueStates]
 
-   _args: Args
+   _args: intArgs
 
 
 
 class HTMLField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
-   _args: Args
+   _args: HTMLArgs
 
 
 
 class URIField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
-   _args: Args
+   _args: URIArgs
 
 
 
@@ -434,11 +434,11 @@ class RerequestCheckSuiteInput(GQLObject):
    clientMutationId: str
 
 class isRequiredField(ArguedStr):
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
 
-   _args: Args
+   _args: boolArgs
 
 
 

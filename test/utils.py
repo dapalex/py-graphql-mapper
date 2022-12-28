@@ -1,7 +1,9 @@
 
 from enum import Enum
+from io import TextIOWrapper
 import os
 import pathlib
+import sys
 
 from pygqlmap.src.logger import Logger
 
@@ -34,3 +36,19 @@ def waitForInput(isToWait: str):
 def ManageException(message: str):
     Logger.logCriticalMessage(message)
     input()
+    
+
+def redirectOutputToFile(fileName, append: bool = True):
+    try:
+        wrapper = open(fileName, 'a' if append else 'w')
+        sys.stdout = wrapper
+        return wrapper
+    except Exception as ex:
+        Logger.logErrorMessage('Error during output redirect - ' + ex.args[0])
+
+def restoreOutput(ioWrapper: TextIOWrapper):
+    try:
+        ioWrapper.close()
+        sys.stdout = sys.stdout
+    except Exception as ex:
+        Logger.logErrorMessage('Error during output restore - ' + ex.args[0])

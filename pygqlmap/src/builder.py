@@ -22,7 +22,7 @@ class QueryBuilder(Builder, Logger):
         
         super().__init__()
         
-    def build(self, input, pyObject: any):
+    def build(self, input: dict, pyObject: any):
         """  for internal use only    """
         
         try:
@@ -53,7 +53,15 @@ class QueryBuilder(Builder, Logger):
                         if attribute == None:
                             attribute = type(customObject)()
                         if input[el]:
-                            setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
+                            if type(input[el]) == list:
+                                setattr(opObject, el, [])
+                                listObjectElement = getattr(opObject, el)
+                                for subEl in input[el]:
+                                    subElObject = attrType()
+                                    self.setPyFields(subEl, subElObject)
+                                    listObjectElement.append(subElObject)
+                            else:
+                                setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
                         else:
                             self.setFieldValue(opObject, el, input[el])
                 else: 

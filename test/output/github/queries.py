@@ -10,14 +10,14 @@ class codeOfConduct(GQLQuery):
    codeOfConduct - Look up a code of conduct by its key
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CodeOfConductArgs(GQLArgsSet, GQLObject): 
       """
       key - The code of conduct's key
 
       """
       key: str ##NON NULL
 
-   _args: Args
+   _args: CodeOfConductArgs
 
 
    type: CodeOfConduct
@@ -34,7 +34,7 @@ class enterprise(GQLQuery):
    enterprise - Look up an enterprise by URL slug.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseArgs(GQLArgsSet, GQLObject): 
       """
       slug - The enterprise URL slug.
 
@@ -44,7 +44,7 @@ class enterprise(GQLQuery):
       slug: str ##NON NULL
       invitationToken: str
 
-   _args: Args
+   _args: EnterpriseArgs
 
 
    type: Enterprise
@@ -54,7 +54,7 @@ class enterpriseAdministratorInvitation(GQLQuery):
    enterpriseAdministratorInvitation - Look up a pending enterprise administrator invitation by invitee, enterprise and role.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorInvitationArgs(GQLArgsSet, GQLObject): 
       """
       userLogin - The login of the user invited to join the business.
 
@@ -67,7 +67,7 @@ class enterpriseAdministratorInvitation(GQLQuery):
       enterpriseSlug: str ##NON NULL
       role: EnterpriseAdministratorRole ##NON NULL
 
-   _args: Args
+   _args: EnterpriseAdministratorInvitationArgs
 
 
    type: EnterpriseAdministratorInvitation
@@ -77,14 +77,14 @@ class enterpriseAdministratorInvitationByToken(GQLQuery):
    enterpriseAdministratorInvitationByToken - Look up a pending enterprise administrator invitation by invitation token.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorInvitationArgs(GQLArgsSet, GQLObject): 
       """
       invitationToken - The invitation token sent with the invitation email.
 
       """
       invitationToken: str ##NON NULL
 
-   _args: Args
+   _args: EnterpriseAdministratorInvitationArgs
 
 
    type: EnterpriseAdministratorInvitation
@@ -94,14 +94,14 @@ class license(GQLQuery):
    license - Look up an open source license by its key
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LicenseArgs(GQLArgsSet, GQLObject): 
       """
       key - The license's downcased SPDX ID
 
       """
       key: str ##NON NULL
 
-   _args: Args
+   _args: LicenseArgs
 
 
    type: License
@@ -118,7 +118,7 @@ class marketplaceCategories(GQLQuery):
    marketplaceCategories - Get alphabetically sorted list of Marketplace categories
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MarketplaceCategoryArgs(GQLArgsSet, GQLObject): 
       """
       includeCategories - Return only the specified categories.
 
@@ -131,7 +131,7 @@ class marketplaceCategories(GQLQuery):
       excludeEmpty: bool
       excludeSubcategories: bool
 
-   _args: Args
+   _args: MarketplaceCategoryArgs
 
 
    type: MarketplaceCategory ##NON NULL
@@ -141,7 +141,7 @@ class marketplaceCategory(GQLQuery):
    marketplaceCategory - Look up a Marketplace category by its slug.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MarketplaceCategoryArgs(GQLArgsSet, GQLObject): 
       """
       slug - The URL slug of the category.
 
@@ -151,7 +151,7 @@ class marketplaceCategory(GQLQuery):
       slug: str ##NON NULL
       useTopicAliases: bool
 
-   _args: Args
+   _args: MarketplaceCategoryArgs
 
 
    type: MarketplaceCategory
@@ -161,14 +161,14 @@ class marketplaceListing(GQLQuery):
    marketplaceListing - Look up a single Marketplace listing
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MarketplaceListingArgs(GQLArgsSet, GQLObject): 
       """
       slug - Select the listing that matches this slug. It's the short name of the listing used in its URL.
 
       """
       slug: str ##NON NULL
 
-   _args: Args
+   _args: MarketplaceListingArgs
 
 
    type: MarketplaceListing
@@ -178,7 +178,7 @@ class marketplaceListings(GQLQuery):
    marketplaceListings - Look up Marketplace listings
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MarketplaceListingConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -225,7 +225,7 @@ false, only approved listings will be returned.
       primaryCategoryOnly: bool
       withFreeTrialsOnly: bool
 
-   _args: Args
+   _args: MarketplaceListingConnectionArgs
 
 
    type: MarketplaceListingConnection ##NON NULL
@@ -242,14 +242,14 @@ class node(GQLQuery):
    node - Fetches an object given its ID.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class NodeArgs(GQLArgsSet, GQLObject): 
       """
       id - ID of the object.
 
       """
       id: ID ##NON NULL
 
-   _args: Args
+   _args: NodeArgs
 
 
    type: Node
@@ -259,14 +259,14 @@ class nodes(GQLQuery):
    nodes - Lookup nodes by a list of IDs.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class NodeArgs(GQLArgsSet, GQLObject): 
       """
       ids - The list of node IDs.
 
       """
       ids: list[ID] ##NON NULL
 
-   _args: Args
+   _args: NodeArgs
 
 
    type: Node ##NON NULL
@@ -276,14 +276,14 @@ class organization(GQLQuery):
    organization - Lookup a organization by login.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationArgs(GQLArgsSet, GQLObject): 
       """
       login - The organization's login.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: OrganizationArgs
 
 
    type: Organization
@@ -293,14 +293,14 @@ class rateLimit(GQLQuery):
    rateLimit - The client's rate limit information.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RateLimitArgs(GQLArgsSet, GQLObject): 
       """
       dryRun - If true, calculate the cost for the query without evaluating it
 
       """
       dryRun: bool
 
-   _args: Args
+   _args: RateLimitArgs
 
 
    type: RateLimit
@@ -317,7 +317,7 @@ class repository(GQLQuery):
    repository - Lookup a given repository by the owner and repository name.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryArgs(GQLArgsSet, GQLObject): 
       """
       owner - The login field of a user or organization
 
@@ -330,7 +330,7 @@ class repository(GQLQuery):
       name: str ##NON NULL
       followRenames: bool
 
-   _args: Args
+   _args: RepositoryArgs
 
 
    type: Repository
@@ -340,14 +340,14 @@ class repositoryOwner(GQLQuery):
    repositoryOwner - Lookup a repository owner (ie. either a User or an Organization) by login.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryOwnerArgs(GQLArgsSet, GQLObject): 
       """
       login - The username to lookup the owner by.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: RepositoryOwnerArgs
 
 
    type: RepositoryOwner
@@ -357,14 +357,14 @@ class resource(GQLQuery):
    resource - Lookup resource by a URL.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class UniformResourceLocatableArgs(GQLArgsSet, GQLObject): 
       """
       url - The URL.
 
       """
       url: URI ##NON NULL
 
-   _args: Args
+   _args: UniformResourceLocatableArgs
 
 
    type: UniformResourceLocatable
@@ -374,7 +374,7 @@ class search(GQLQuery):
    search - Perform a search across resources, returning a maximum of 1,000 results.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SearchResultItemConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -396,7 +396,7 @@ class search(GQLQuery):
       query: str ##NON NULL
       type: SearchType ##NON NULL
 
-   _args: Args
+   _args: SearchResultItemConnectionArgs
 
 
    type: SearchResultItemConnection ##NON NULL
@@ -406,7 +406,7 @@ class securityAdvisories(GQLQuery):
    securityAdvisories - GitHub Security Advisories
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SecurityAdvisoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for the returned topics.
 
@@ -437,7 +437,7 @@ class securityAdvisories(GQLQuery):
       first: int
       last: int
 
-   _args: Args
+   _args: SecurityAdvisoryConnectionArgs
 
 
    type: SecurityAdvisoryConnection ##NON NULL
@@ -447,14 +447,14 @@ class securityAdvisory(GQLQuery):
    securityAdvisory - Fetch a Security Advisory by its GHSA ID
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SecurityAdvisoryArgs(GQLArgsSet, GQLObject): 
       """
       ghsaId - GitHub Security Advisory ID.
 
       """
       ghsaId: str ##NON NULL
 
-   _args: Args
+   _args: SecurityAdvisoryArgs
 
 
    type: SecurityAdvisory
@@ -464,7 +464,7 @@ class securityVulnerabilities(GQLQuery):
    securityVulnerabilities - Software Vulnerabilities documented by GitHub Security Advisories
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SecurityVulnerabilityConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for the returned topics.
 
@@ -495,7 +495,7 @@ class securityVulnerabilities(GQLQuery):
       first: int
       last: int
 
-   _args: Args
+   _args: SecurityVulnerabilityConnectionArgs
 
 
    type: SecurityVulnerabilityConnection ##NON NULL
@@ -505,7 +505,7 @@ class sponsorables(GQLQuery):
    sponsorables - Users and organizations who can be sponsored via GitHub Sponsors.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorableItemConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -541,7 +541,7 @@ class sponsorables(GQLQuery):
       dependencyEcosystem: SecurityAdvisoryEcosystem
       ecosystem: DependencyGraphEcosystem
 
-   _args: Args
+   _args: SponsorableItemConnectionArgs
 
 
    type: SponsorableItemConnection ##NON NULL
@@ -551,14 +551,14 @@ class topic(GQLQuery):
    topic - Look up a topic by name.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TopicArgs(GQLArgsSet, GQLObject): 
       """
       name - The topic's name.
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: TopicArgs
 
 
    type: Topic
@@ -568,14 +568,14 @@ class user(GQLQuery):
    user - Lookup a user by login.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class UserArgs(GQLArgsSet, GQLObject): 
       """
       login - The user's login.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: UserArgs
 
 
    type: User

@@ -4,7 +4,6 @@ import os
 import pathlib
 
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
-# sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).parent.absolute()) + '\\PyGraphQLHelper')
 
 import asyncio
 from utils import OutputType, waitForInput, cleanOutput
@@ -21,9 +20,7 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 # waitForInput(lockOutput)
 # asyncio.run(fetchGeoDBCitiesSchemaNoDesc())
 # waitForInput(lockOutput)
-# wrapper = redirectOutputToFile('logrecurs.log')
 # asyncio.run(fetchGithubMutationTypesFromSchemaNoDesc())
-# restoreOutput(wrapper)
 # waitForInput(lockOutput)
 # asyncio.run(fetchGithubMutationTypes())
 # waitForInput(lockOutput)
@@ -31,30 +28,6 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 # waitForInput(lockOutput)
 # asyncio.run(fetchRapidApiTestSchemaAndTypes())
 # waitForInput(lockOutput)
-
-# #GITHUB API - START
-# asyncio.run(RunGithubAddCommentMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunGithubUpdateRepositoryMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunGithubDeleteProjectMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunGithubDeleteProjectV2Mutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunGithubCreateIssueMutation())
-# waitForInput(lockOutput)
-# asyncio.run(RunGithubCreateProjectMutation())
-# waitForInput(lockOutput)
-#GITHUB - END
-
-#RapidAPI - START
-asyncio.run(RunRapidApiCreateTransformationsMutation())
-waitForInput(lockOutput)
-asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
-waitForInput(lockOutput)
-asyncio.run(RunRapidApiEditUserAlertMutation())
-waitForInput(lockOutput)
-#RapidAPI - END
 
 #GeoDBCities API - START
 #GeoDBCities API - END
@@ -134,24 +107,48 @@ from unitTest import *
 # waitForInput(lockOutput)
 asyncio.run(testNestedObjectWithLiteralValueArgs())
 waitForInput(lockOutput)
-asyncio.run(testNestedObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
 asyncio.run(testNestedObjectShowChange())
 waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithLiteralValueArgs())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectWithArgsAndVariables()) 
 waitForInput(lockOutput)
 asyncio.run(testComplexObjectShowChange())
 waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithLiteralValueArgs2())
 waitForInput(lockOutput)
-asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
-waitForInput(lockOutput)
-asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
-waitForInput(lockOutput)
 asyncio.run(testObjectWithComposedArgs()) 
 waitForInput(lockOutput)
+# asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
+# waitForInput(lockOutput)
+# asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
+# waitForInput(lockOutput)
+# asyncio.run(testNestedObjectWithArgsAndVariables()) 
+# waitForInput(lockOutput)
+# asyncio.run(testComplexObjectWithArgsAndVariables()) 
+# waitForInput(lockOutput)
 ##Geo DB Cities - END
+
+#GITHUB API - START
+asyncio.run(RunGithubAddCommentMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubUpdateRepositoryMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubDeleteProjectMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubDeleteProjectV2Mutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubCreateIssueMutation())
+waitForInput(lockOutput)
+asyncio.run(RunGithubCreateProjectMutation())
+waitForInput(lockOutput)
+#GITHUB - END
+
+#RapidAPI - START
+asyncio.run(RunRapidApiCreateTransformationsMutation())
+waitForInput(lockOutput)
+asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
+waitForInput(lockOutput)
+asyncio.run(RunRapidApiEditUserAlertMutation())
+waitForInput(lockOutput)
+#RapidAPI - END
 
 #CORE - END

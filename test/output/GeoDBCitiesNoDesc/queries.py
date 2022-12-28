@@ -6,17 +6,17 @@ from .enums import *
 from .scalars import *
 
 class country(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryArgs(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: CountryArgs
 
 
    type: Country
 
 class countries(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class CountriesConnectionArgs(GQLArgsSet, GQLObject): 
       currencyCode: str
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -26,59 +26,59 @@ class countries(GQLQuery):
       before: str
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: CountriesConnectionArgs
 
 
    type: CountriesConnection
 
 class currencies(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject): 
       countryId: ID
       first: int
       after: str
       last: int
       before: str
 
-   _args: Args
+   _args: CurrenciesConnectionArgs
 
 
    type: CurrenciesConnection
 
 class distanceBetween(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject): 
       fromPlaceId: ID ##NON NULL
       toPlaceId: ID ##NON NULL
       distanceUnit: DistanceUnit
 
-   _args: Args
+   _args: floatArgs
 
 
    type: float
 
 class locales(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class LocalesConnectionArgs(GQLArgsSet, GQLObject): 
       first: int
       after: str
       last: int
       before: str
 
-   _args: Args
+   _args: LocalesConnectionArgs
 
 
    type: LocalesConnection
 
 class populatedPlace(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class PopulatedPlaceArgs(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: PopulatedPlaceArgs
 
 
    type: PopulatedPlace
 
 class populatedPlaces(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       location: Location
       radius: float
       distanceUnit: DistanceUnit
@@ -98,28 +98,28 @@ class populatedPlaces(GQLQuery):
       displayOptions: DisplayOptions
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: PopulatedPlacesConnectionArgs
 
 
    type: PopulatedPlacesConnection
 
 class timeZone(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class TimeZoneArgs(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
-   _args: Args
+   _args: TimeZoneArgs
 
 
    type: TimeZone
 
 class timeZones(GQLQuery):
-   class Args(GQLArgsSet, GQLObject): 
+   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject): 
       first: int
       after: str
       last: int
       before: str
 
-   _args: Args
+   _args: TimeZonesConnectionArgs
 
 
    type: TimeZonesConnection

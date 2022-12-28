@@ -1,3 +1,4 @@
+from pygqlmap.components import GQLArgsSet, GQLOperationArgs
 from pygqlmap.src.consts import primitivesStringified, arguedSignatureSuffix
 from pygqlmap.enums import OperationType
 from pygqlmap.src.logger import Logger
@@ -227,7 +228,7 @@ class Extractor():
                     
                     if TypeKind.LIST.name in priorElement.schemaType.typeDefs: isList = True
                     
-                    claimedType, actualType = priorElement.schemaType.composePythonType()
+                    inlineCodeType, actualType = priorElement.schemaType.composePythonType()
 
                     if actualType in primitivesStringified or actualType in self.extractionResults.scalarDefinitions.keys():
                         for objNameList in self.extractUsedTypes(priorElement.schemaType).values():
@@ -472,7 +473,7 @@ class Extractor():
             
             if TypeKind.LIST.name in scType.typeDefs: isList = True
             
-            claimedType, actualType = scType.composePythonType()
+            inlineCodeType, actualType = scType.composePythonType()
             arguedPrimitive = actualType in primitivesStringified
             
             fieldsCodeList = []
@@ -495,9 +496,9 @@ class Extractor():
             if not arguedName:
                     if hasattr(scType, 'type') and scType.type:
                         # if objType == OperationType.genericType:
-                            classCodeLst.append(self.indent + "type: " + claimedType) 
+                            classCodeLst.append(self.indent + "type: " + inlineCodeType) 
                         # elif objType == OperationType.query or objType == OperationType.mutation: ##field type consists in the content of the query/mutation
-                        #     typeContent = self.getExtractedContent(claimedType)
+                        #     typeContent = self.getExtractedContent(inlineCodeType)
                         #     for typeContentLine in typeContent[1,]:
                         #         codeLst.append(typeContentLine) 
                         #     pass
@@ -533,8 +534,11 @@ class Extractor():
         codeLst = []
         
         if hasattr(scType, 'args') and scType.args:
-            parentClass = "GQLArgsSet"# if objType == OperationType.genericType else "GQLOperationArgs"
-            codeLst.append(self.indent + "class Args(" + parentClass + ", GQLObject): ")
+            scType.typeDefs = scType.getObjectTypeDefs()
+            inlineCodeType, actualType = scType.composePythonType()
+            arguedClassName = actualType + "Args"
+            parentClass = GQLArgsSet.__name__ #if objType == OperationType.genericType else GQLOperationArgs.__name__
+            codeLst.append(self.indent + "class " + arguedClassName + "(" + parentClass + ", GQLObject): ") 
             
             queryArgDocLst = []
             queryArgCodeLst = []
@@ -553,7 +557,7 @@ class Extractor():
                 codeLst.extend(list(map(lambda el: self.indent + el, queryArgDocLst)))
                 codeLst.append(self.indent + self.indent + '"""')
             codeLst.extend(list(map(lambda el: self.indent + el, queryArgCodeLst)))
-            codeLst.append('\n' + self.indent + '_args: Args')
+            codeLst.append('\n' + self.indent + '_args: ' + arguedClassName)
             codeLst.append('\n')
         
         return codeLst

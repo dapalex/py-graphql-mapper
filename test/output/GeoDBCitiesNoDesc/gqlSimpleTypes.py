@@ -6,11 +6,11 @@ from .enums import *
 from .scalars import *
 
 class distanceField(ArguedFloat):
-   class Args(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject): 
       toPlaceId: ID
       distanceUnit: DistanceUnit
 
-   _args: Args
+   _args: floatArgs
 
 
 

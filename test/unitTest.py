@@ -2,9 +2,10 @@ import requests
 from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
 from pygqlmap.gqlTypes import ID
+from pygqlmap.helper import mapConfig
 from consts import gdbcHeaders, gdbcUrl
 from output.GeoDBCities.queries import country, currencies, countries
-from utils import ManageException
+from utils import ManageException, redirectOutputToFile, restoreOutput
 
 async def testNestedObject(): 
     print('\n\nRunning testNestedObject...')
@@ -145,13 +146,17 @@ async def testNestedObjectWithLiteralValueArgs():
           
 async def testComplexObjectWithLiteralValueArgs(): 
     print('\n\nRunning testComplexObjectWithLiteralValueArgs...')
+    from output.GeoDBCities.enums import IncludeDeletedFilterType
     query = countries() 
     query._args.currencyCode = 'CNY'
     query.type.edges.node.region._args.code = "CH"
-    query.type.edges.node.region.populatedPlaces._args.includeDeleted = False
-    query.type.edges.node.region.populatedPlaces._args.namePrefix = "gua"
-    query.type.edges.node.regions._args.namePrefix = 'gua'
-
+    if int(mapConfig["recursionDepth"]) > 0:
+        query.type.edges.node.region.populatedPlaces._args.includeDeleted = IncludeDeletedFilterType.SINCE_LAST_WEEK
+        query.type.edges.node.region.populatedPlaces._args.namePrefix = "gua"
+    query.type.edges.node.regions._args.namePrefix = 'gua' 
+    query.type.edges.node.regions.edges.node.country
+    
+        
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
@@ -276,8 +281,9 @@ async def testObjectWithComposedArgs():
         query = country()
         query.logProgress=True
         query._args.id = ID('CH')
-        from .output.GeoDBCities.enums import Language
+        from output.GeoDBCities.enums import Language
         query._args.displayOptions = {"asciiMode": True, "language": Language.EN }
+        query.type.region._args.code = 'Q12094'
 
         print('gqlSource GQL version: ' + query.exportGqlSource)
         

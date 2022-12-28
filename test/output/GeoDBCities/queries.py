@@ -10,7 +10,7 @@ class country(GQLQuery):
    country - Look up a country
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryArgs(GQLArgsSet, GQLObject): 
       """
       id - An ISO-3166 country code or WikiData id
 
@@ -20,7 +20,7 @@ class country(GQLQuery):
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: CountryArgs
 
 
    type: Country
@@ -30,7 +30,7 @@ class countries(GQLQuery):
    countries - Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CountriesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       currencyCode - Only countries supporting this currency
 
@@ -58,7 +58,7 @@ class countries(GQLQuery):
       before: str
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: CountriesConnectionArgs
 
 
    type: CountriesConnection
@@ -68,7 +68,7 @@ class currencies(GQLQuery):
    currencies - Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       countryId - Currencies for this country id
 
@@ -87,7 +87,7 @@ class currencies(GQLQuery):
       last: int
       before: str
 
-   _args: Args
+   _args: CurrenciesConnectionArgs
 
 
    type: CurrenciesConnection
@@ -97,7 +97,7 @@ class distanceBetween(GQLQuery):
    distanceBetween - Get the distance between any two places
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject): 
       """
       fromPlaceId - From some place
 
@@ -110,7 +110,7 @@ class distanceBetween(GQLQuery):
       toPlaceId: ID ##NON NULL
       distanceUnit: DistanceUnit
 
-   _args: Args
+   _args: floatArgs
 
 
    type: float
@@ -120,7 +120,7 @@ class locales(GQLQuery):
    locales - Get all known locales
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LocalesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -136,7 +136,7 @@ class locales(GQLQuery):
       last: int
       before: str
 
-   _args: Args
+   _args: LocalesConnectionArgs
 
 
    type: LocalesConnection
@@ -146,7 +146,7 @@ class populatedPlace(GQLQuery):
    populatedPlace - Look up a populated place
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PopulatedPlaceArgs(GQLArgsSet, GQLObject): 
       """
       id -  A place id (either native id or Wikidata ID)
 
@@ -156,7 +156,7 @@ class populatedPlace(GQLQuery):
       id: ID ##NON NULL
       displayOptions: DisplayOptions
 
-   _args: Args
+   _args: PopulatedPlaceArgs
 
 
    type: PopulatedPlace
@@ -166,7 +166,7 @@ class populatedPlaces(GQLQuery):
    populatedPlaces - Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       location - Only places near this location
 
@@ -226,7 +226,7 @@ where SORT_FIELD = countryCode | elevation | name | population
       displayOptions: DisplayOptions
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: PopulatedPlacesConnectionArgs
 
 
    type: PopulatedPlacesConnection
@@ -236,10 +236,10 @@ class timeZone(GQLQuery):
    timeZone - Look up a time-zone
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TimeZoneArgs(GQLArgsSet, GQLObject): 
       id: ID ##NON NULL
 
-   _args: Args
+   _args: TimeZoneArgs
 
 
    type: TimeZone
@@ -249,7 +249,7 @@ class timeZones(GQLQuery):
    timeZones - Get all known time-zones
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -265,7 +265,7 @@ class timeZones(GQLQuery):
       last: int
       before: str
 
-   _args: Args
+   _args: TimeZonesConnectionArgs
 
 
    type: TimeZonesConnection

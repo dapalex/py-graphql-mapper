@@ -10,14 +10,14 @@ class organizationVerifiedDomainEmailsField(ArguedStr):
    organizationVerifiedDomainEmailsField - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       """
       login - The login of the organization to match verified domains from.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: strArgs
 
 
 
@@ -26,14 +26,14 @@ class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
    canReceiveOrganizationEmailsWhenNotificationsRestrictedField - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       """
       login - The login of the organization to check.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: boolArgs
 
 
 
@@ -42,14 +42,14 @@ class anyPinnableItemsField(ArguedStr):
    anyPinnableItemsField - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       """
       type - Filter to only a particular kind of pinnable item.
 
       """
       type: PinnableItemType
 
-   _args: Args
+   _args: boolArgs
 
 
 
@@ -58,14 +58,14 @@ class isSponsoredByField(ArguedStr):
    isSponsoredByField - Check if the given account is sponsoring this user/organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       """
       accountLogin - The target account's login.
 
       """
       accountLogin: str ##NON NULL
 
-   _args: Args
+   _args: boolArgs
 
 
 
@@ -74,14 +74,14 @@ class textField(ArguedStr):
    textField - UTF8 text data or null if the file is binary
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       """
       truncate - Optionally truncate the returned file to this length.
 
       """
       truncate: int
 
-   _args: Args
+   _args: strArgs
 
 
 
@@ -90,14 +90,14 @@ class totalRepositoryContributionsField(ArguedStr):
    totalRepositoryContributionsField - How many repositories the user created.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first repository ever be excluded from this count.
 
       """
       excludeFirst: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -106,7 +106,7 @@ class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
    totalRepositoriesWithContributedPullRequestsField - How many different repositories the user opened pull requests in.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first pull request ever be excluded from this count.
 
@@ -116,7 +116,7 @@ class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -125,7 +125,7 @@ class totalRepositoriesWithContributedIssuesField(ArguedStr):
    totalRepositoriesWithContributedIssuesField - How many different repositories the user opened issues in.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first issue ever be excluded from this count.
 
@@ -135,7 +135,7 @@ class totalRepositoriesWithContributedIssuesField(ArguedStr):
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -144,7 +144,7 @@ class totalPullRequestContributionsField(ArguedStr):
    totalPullRequestContributionsField - How many pull requests the user opened.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first pull request ever be excluded from this count.
 
@@ -154,7 +154,7 @@ class totalPullRequestContributionsField(ArguedStr):
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -163,7 +163,7 @@ class totalIssueContributionsField(ArguedStr):
    totalIssueContributionsField - How many issues the user opened.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       excludeFirst - Should the user's first issue ever be excluded from this count.
 
@@ -173,7 +173,7 @@ class totalIssueContributionsField(ArguedStr):
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -182,14 +182,14 @@ class viewerMergeHeadlineTextField(ArguedStr):
    viewerMergeHeadlineTextField - The merge headline text for the viewer and method.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       """
       mergeType - The merge method for the message.
 
       """
       mergeType: PullRequestMergeMethod
 
-   _args: Args
+   _args: strArgs
 
 
 
@@ -198,14 +198,14 @@ class viewerMergeBodyTextField(ArguedStr):
    viewerMergeBodyTextField - The merge body text for the viewer and method.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject): 
       """
       mergeType - The merge method for the message.
 
       """
       mergeType: PullRequestMergeMethod
 
-   _args: Args
+   _args: strArgs
 
 
 
@@ -214,14 +214,14 @@ class trackedIssuesCountField(ArguedStr):
    trackedIssuesCountField - The number of tracked issues for this issue
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class intArgs(GQLArgsSet, GQLObject): 
       """
       states - Limit the count to tracked issues with the specified states.
 
       """
       states: list[TrackedIssueStates]
 
-   _args: Args
+   _args: intArgs
 
 
 
@@ -230,14 +230,14 @@ class HTMLField(ArguedStr):
    HTMLField - A description of the release, rendered to HTML without any links in it.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class HTMLArgs(GQLArgsSet, GQLObject): 
       """
       limit - How many characters to return.
 
       """
       limit: int
 
-   _args: Args
+   _args: HTMLArgs
 
 
 
@@ -246,14 +246,14 @@ class URIField(ArguedStr):
    URIField - A URL pointing to the GitHub App's public avatar.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class URIArgs(GQLArgsSet, GQLObject): 
       """
       size - The size of the resulting square image.
 
       """
       size: int
 
-   _args: Args
+   _args: URIArgs
 
 
 
@@ -1191,7 +1191,7 @@ class isRequiredField(ArguedStr):
    isRequiredField - Whether this is required to pass before merging for a specific pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject): 
       """
       pullRequestId - The id of the pull request this is required for
 
@@ -1201,7 +1201,7 @@ class isRequiredField(ArguedStr):
       pullRequestId: ID
       pullRequestNumber: int
 
-   _args: Args
+   _args: boolArgs
 
 
 

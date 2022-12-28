@@ -7,1810 +7,1810 @@ from .scalars import *
 
 
 class abortQueuedMigrations(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AbortQueuedMigrationsPayloadArgs(GQLArgsSet, GQLObject): 
       input: AbortQueuedMigrationsInput ##NON NULL
 
-   _args: Args
+   _args: AbortQueuedMigrationsPayloadArgs
 
 
    type: AbortQueuedMigrationsPayload
 
 class acceptEnterpriseAdministratorInvitation(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AcceptEnterpriseAdministratorInvitationPayloadArgs(GQLArgsSet, GQLObject): 
       input: AcceptEnterpriseAdministratorInvitationInput ##NON NULL
 
-   _args: Args
+   _args: AcceptEnterpriseAdministratorInvitationPayloadArgs
 
 
    type: AcceptEnterpriseAdministratorInvitationPayload
 
 class acceptTopicSuggestion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AcceptTopicSuggestionPayloadArgs(GQLArgsSet, GQLObject): 
       input: AcceptTopicSuggestionInput ##NON NULL
 
-   _args: Args
+   _args: AcceptTopicSuggestionPayloadArgs
 
 
    type: AcceptTopicSuggestionPayload
 
 class addAssigneesToAssignable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddAssigneesToAssignablePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddAssigneesToAssignableInput ##NON NULL
 
-   _args: Args
+   _args: AddAssigneesToAssignablePayloadArgs
 
 
    type: AddAssigneesToAssignablePayload
 
 class addComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddCommentInput ##NON NULL
 
-   _args: Args
+   _args: AddCommentPayloadArgs
 
 
    type: AddCommentPayload
 
 class addDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: AddDiscussionCommentPayloadArgs
 
 
    type: AddDiscussionCommentPayload
 
 class addDiscussionPollVote(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddDiscussionPollVotePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddDiscussionPollVoteInput ##NON NULL
 
-   _args: Args
+   _args: AddDiscussionPollVotePayloadArgs
 
 
    type: AddDiscussionPollVotePayload
 
 class addEnterpriseOrganizationMember(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddEnterpriseOrganizationMemberPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddEnterpriseOrganizationMemberInput ##NON NULL
 
-   _args: Args
+   _args: AddEnterpriseOrganizationMemberPayloadArgs
 
 
    type: AddEnterpriseOrganizationMemberPayload
 
 class addEnterpriseSupportEntitlement(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddEnterpriseSupportEntitlementPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddEnterpriseSupportEntitlementInput ##NON NULL
 
-   _args: Args
+   _args: AddEnterpriseSupportEntitlementPayloadArgs
 
 
    type: AddEnterpriseSupportEntitlementPayload
 
 class addLabelsToLabelable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddLabelsToLabelablePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddLabelsToLabelableInput ##NON NULL
 
-   _args: Args
+   _args: AddLabelsToLabelablePayloadArgs
 
 
    type: AddLabelsToLabelablePayload
 
 class addProjectCard(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectCardPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectCardInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectCardPayloadArgs
 
 
    type: AddProjectCardPayload
 
 class addProjectColumn(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectColumnPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectColumnInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectColumnPayloadArgs
 
 
    type: AddProjectColumnPayload
 
 class addProjectDraftIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectDraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectDraftIssueInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectDraftIssuePayloadArgs
 
 
    type: AddProjectDraftIssuePayload
 
 class addProjectNextItem(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectNextItemPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectNextItemInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectNextItemPayloadArgs
 
 
    type: AddProjectNextItemPayload
 
 class addProjectV2DraftIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectV2DraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectV2DraftIssueInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectV2DraftIssuePayloadArgs
 
 
    type: AddProjectV2DraftIssuePayload
 
 class addProjectV2ItemById(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddProjectV2ItemByIdPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddProjectV2ItemByIdInput ##NON NULL
 
-   _args: Args
+   _args: AddProjectV2ItemByIdPayloadArgs
 
 
    type: AddProjectV2ItemByIdPayload
 
 class addPullRequestReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddPullRequestReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewInput ##NON NULL
 
-   _args: Args
+   _args: AddPullRequestReviewPayloadArgs
 
 
    type: AddPullRequestReviewPayload
 
 class addPullRequestReviewComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddPullRequestReviewCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewCommentInput ##NON NULL
 
-   _args: Args
+   _args: AddPullRequestReviewCommentPayloadArgs
 
 
    type: AddPullRequestReviewCommentPayload
 
 class addPullRequestReviewThread(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddPullRequestReviewThreadPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddPullRequestReviewThreadInput ##NON NULL
 
-   _args: Args
+   _args: AddPullRequestReviewThreadPayloadArgs
 
 
    type: AddPullRequestReviewThreadPayload
 
 class addReaction(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddReactionPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddReactionInput ##NON NULL
 
-   _args: Args
+   _args: AddReactionPayloadArgs
 
 
    type: AddReactionPayload
 
 class addStar(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddStarPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddStarInput ##NON NULL
 
-   _args: Args
+   _args: AddStarPayloadArgs
 
 
    type: AddStarPayload
 
 class addUpvote(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddUpvotePayloadArgs(GQLArgsSet, GQLObject): 
       input: AddUpvoteInput ##NON NULL
 
-   _args: Args
+   _args: AddUpvotePayloadArgs
 
 
    type: AddUpvotePayload
 
 class addVerifiableDomain(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class AddVerifiableDomainPayloadArgs(GQLArgsSet, GQLObject): 
       input: AddVerifiableDomainInput ##NON NULL
 
-   _args: Args
+   _args: AddVerifiableDomainPayloadArgs
 
 
    type: AddVerifiableDomainPayload
 
 class approveDeployments(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ApproveDeploymentsPayloadArgs(GQLArgsSet, GQLObject): 
       input: ApproveDeploymentsInput ##NON NULL
 
-   _args: Args
+   _args: ApproveDeploymentsPayloadArgs
 
 
    type: ApproveDeploymentsPayload
 
 class approveVerifiableDomain(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ApproveVerifiableDomainPayloadArgs(GQLArgsSet, GQLObject): 
       input: ApproveVerifiableDomainInput ##NON NULL
 
-   _args: Args
+   _args: ApproveVerifiableDomainPayloadArgs
 
 
    type: ApproveVerifiableDomainPayload
 
 class archiveProjectV2Item(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ArchiveProjectV2ItemPayloadArgs(GQLArgsSet, GQLObject): 
       input: ArchiveProjectV2ItemInput ##NON NULL
 
-   _args: Args
+   _args: ArchiveProjectV2ItemPayloadArgs
 
 
    type: ArchiveProjectV2ItemPayload
 
 class archiveRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ArchiveRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: ArchiveRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: ArchiveRepositoryPayloadArgs
 
 
    type: ArchiveRepositoryPayload
 
 class cancelEnterpriseAdminInvitation(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CancelEnterpriseAdminInvitationPayloadArgs(GQLArgsSet, GQLObject): 
       input: CancelEnterpriseAdminInvitationInput ##NON NULL
 
-   _args: Args
+   _args: CancelEnterpriseAdminInvitationPayloadArgs
 
 
    type: CancelEnterpriseAdminInvitationPayload
 
 class cancelSponsorship(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CancelSponsorshipPayloadArgs(GQLArgsSet, GQLObject): 
       input: CancelSponsorshipInput ##NON NULL
 
-   _args: Args
+   _args: CancelSponsorshipPayloadArgs
 
 
    type: CancelSponsorshipPayload
 
 class changeUserStatus(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ChangeUserStatusPayloadArgs(GQLArgsSet, GQLObject): 
       input: ChangeUserStatusInput ##NON NULL
 
-   _args: Args
+   _args: ChangeUserStatusPayloadArgs
 
 
    type: ChangeUserStatusPayload
 
 class clearLabelsFromLabelable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ClearLabelsFromLabelablePayloadArgs(GQLArgsSet, GQLObject): 
       input: ClearLabelsFromLabelableInput ##NON NULL
 
-   _args: Args
+   _args: ClearLabelsFromLabelablePayloadArgs
 
 
    type: ClearLabelsFromLabelablePayload
 
 class clearProjectV2ItemFieldValue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ClearProjectV2ItemFieldValuePayloadArgs(GQLArgsSet, GQLObject): 
       input: ClearProjectV2ItemFieldValueInput ##NON NULL
 
-   _args: Args
+   _args: ClearProjectV2ItemFieldValuePayloadArgs
 
 
    type: ClearProjectV2ItemFieldValuePayload
 
 class cloneProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CloneProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: CloneProjectInput ##NON NULL
 
-   _args: Args
+   _args: CloneProjectPayloadArgs
 
 
    type: CloneProjectPayload
 
 class cloneTemplateRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CloneTemplateRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: CloneTemplateRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: CloneTemplateRepositoryPayloadArgs
 
 
    type: CloneTemplateRepositoryPayload
 
 class closeIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CloseIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: CloseIssueInput ##NON NULL
 
-   _args: Args
+   _args: CloseIssuePayloadArgs
 
 
    type: CloseIssuePayload
 
 class closePullRequest(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ClosePullRequestPayloadArgs(GQLArgsSet, GQLObject): 
       input: ClosePullRequestInput ##NON NULL
 
-   _args: Args
+   _args: ClosePullRequestPayloadArgs
 
 
    type: ClosePullRequestPayload
 
 class convertProjectCardNoteToIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ConvertProjectCardNoteToIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: ConvertProjectCardNoteToIssueInput ##NON NULL
 
-   _args: Args
+   _args: ConvertProjectCardNoteToIssuePayloadArgs
 
 
    type: ConvertProjectCardNoteToIssuePayload
 
 class convertPullRequestToDraft(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ConvertPullRequestToDraftPayloadArgs(GQLArgsSet, GQLObject): 
       input: ConvertPullRequestToDraftInput ##NON NULL
 
-   _args: Args
+   _args: ConvertPullRequestToDraftPayloadArgs
 
 
    type: ConvertPullRequestToDraftPayload
 
 class createAttributionInvitation(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateAttributionInvitationPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateAttributionInvitationInput ##NON NULL
 
-   _args: Args
+   _args: CreateAttributionInvitationPayloadArgs
 
 
    type: CreateAttributionInvitationPayload
 
 class createBranchProtectionRule(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateBranchProtectionRulePayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateBranchProtectionRuleInput ##NON NULL
 
-   _args: Args
+   _args: CreateBranchProtectionRulePayloadArgs
 
 
    type: CreateBranchProtectionRulePayload
 
 class createCheckRun(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateCheckRunPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateCheckRunInput ##NON NULL
 
-   _args: Args
+   _args: CreateCheckRunPayloadArgs
 
 
    type: CreateCheckRunPayload
 
 class createCheckSuite(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateCheckSuitePayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateCheckSuiteInput ##NON NULL
 
-   _args: Args
+   _args: CreateCheckSuitePayloadArgs
 
 
    type: CreateCheckSuitePayload
 
 class createCommitOnBranch(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateCommitOnBranchPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateCommitOnBranchInput ##NON NULL
 
-   _args: Args
+   _args: CreateCommitOnBranchPayloadArgs
 
 
    type: CreateCommitOnBranchPayload
 
 class createDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: CreateDiscussionPayloadArgs
 
 
    type: CreateDiscussionPayload
 
 class createEnterpriseOrganization(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateEnterpriseOrganizationPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateEnterpriseOrganizationInput ##NON NULL
 
-   _args: Args
+   _args: CreateEnterpriseOrganizationPayloadArgs
 
 
    type: CreateEnterpriseOrganizationPayload
 
 class createEnvironment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateEnvironmentPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateEnvironmentInput ##NON NULL
 
-   _args: Args
+   _args: CreateEnvironmentPayloadArgs
 
 
    type: CreateEnvironmentPayload
 
 class createIpAllowListEntry(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateIpAllowListEntryPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateIpAllowListEntryInput ##NON NULL
 
-   _args: Args
+   _args: CreateIpAllowListEntryPayloadArgs
 
 
    type: CreateIpAllowListEntryPayload
 
 class createIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateIssueInput ##NON NULL
 
-   _args: Args
+   _args: CreateIssuePayloadArgs
 
 
    type: CreateIssuePayload
 
 class createLinkedBranch(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateLinkedBranchPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateLinkedBranchInput ##NON NULL
 
-   _args: Args
+   _args: CreateLinkedBranchPayloadArgs
 
 
    type: CreateLinkedBranchPayload
 
 class createMigrationSource(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateMigrationSourcePayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateMigrationSourceInput ##NON NULL
 
-   _args: Args
+   _args: CreateMigrationSourcePayloadArgs
 
 
    type: CreateMigrationSourcePayload
 
 class createProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateProjectInput ##NON NULL
 
-   _args: Args
+   _args: CreateProjectPayloadArgs
 
 
    type: CreateProjectPayload
 
 class createProjectV2(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateProjectV2PayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateProjectV2Input ##NON NULL
 
-   _args: Args
+   _args: CreateProjectV2PayloadArgs
 
 
    type: CreateProjectV2Payload
 
 class createPullRequest(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatePullRequestPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreatePullRequestInput ##NON NULL
 
-   _args: Args
+   _args: CreatePullRequestPayloadArgs
 
 
    type: CreatePullRequestPayload
 
 class createRef(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateRefPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateRefInput ##NON NULL
 
-   _args: Args
+   _args: CreateRefPayloadArgs
 
 
    type: CreateRefPayload
 
 class createRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: CreateRepositoryPayloadArgs
 
 
    type: CreateRepositoryPayload
 
 class createSponsorsListing(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateSponsorsListingPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateSponsorsListingInput ##NON NULL
 
-   _args: Args
+   _args: CreateSponsorsListingPayloadArgs
 
 
    type: CreateSponsorsListingPayload
 
 class createSponsorsTier(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateSponsorsTierPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateSponsorsTierInput ##NON NULL
 
-   _args: Args
+   _args: CreateSponsorsTierPayloadArgs
 
 
    type: CreateSponsorsTierPayload
 
 class createSponsorship(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateSponsorshipPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateSponsorshipInput ##NON NULL
 
-   _args: Args
+   _args: CreateSponsorshipPayloadArgs
 
 
    type: CreateSponsorshipPayload
 
 class createTeamDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateTeamDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateTeamDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: CreateTeamDiscussionPayloadArgs
 
 
    type: CreateTeamDiscussionPayload
 
 class createTeamDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreateTeamDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: CreateTeamDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: CreateTeamDiscussionCommentPayloadArgs
 
 
    type: CreateTeamDiscussionCommentPayload
 
 class declineTopicSuggestion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeclineTopicSuggestionPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeclineTopicSuggestionInput ##NON NULL
 
-   _args: Args
+   _args: DeclineTopicSuggestionPayloadArgs
 
 
    type: DeclineTopicSuggestionPayload
 
 class deleteBranchProtectionRule(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteBranchProtectionRulePayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteBranchProtectionRuleInput ##NON NULL
 
-   _args: Args
+   _args: DeleteBranchProtectionRulePayloadArgs
 
 
    type: DeleteBranchProtectionRulePayload
 
 class deleteDeployment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteDeploymentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteDeploymentInput ##NON NULL
 
-   _args: Args
+   _args: DeleteDeploymentPayloadArgs
 
 
    type: DeleteDeploymentPayload
 
 class deleteDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: DeleteDiscussionPayloadArgs
 
 
    type: DeleteDiscussionPayload
 
 class deleteDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: DeleteDiscussionCommentPayloadArgs
 
 
    type: DeleteDiscussionCommentPayload
 
 class deleteEnvironment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteEnvironmentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteEnvironmentInput ##NON NULL
 
-   _args: Args
+   _args: DeleteEnvironmentPayloadArgs
 
 
    type: DeleteEnvironmentPayload
 
 class deleteIpAllowListEntry(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteIpAllowListEntryPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteIpAllowListEntryInput ##NON NULL
 
-   _args: Args
+   _args: DeleteIpAllowListEntryPayloadArgs
 
 
    type: DeleteIpAllowListEntryPayload
 
 class deleteIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteIssueInput ##NON NULL
 
-   _args: Args
+   _args: DeleteIssuePayloadArgs
 
 
    type: DeleteIssuePayload
 
 class deleteIssueComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteIssueCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteIssueCommentInput ##NON NULL
 
-   _args: Args
+   _args: DeleteIssueCommentPayloadArgs
 
 
    type: DeleteIssueCommentPayload
 
 class deleteLinkedBranch(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteLinkedBranchPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteLinkedBranchInput ##NON NULL
 
-   _args: Args
+   _args: DeleteLinkedBranchPayloadArgs
 
 
    type: DeleteLinkedBranchPayload
 
 class deleteProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteProjectInput ##NON NULL
 
-   _args: Args
+   _args: DeleteProjectPayloadArgs
 
 
    type: DeleteProjectPayload
 
 class deleteProjectCard(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteProjectCardPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteProjectCardInput ##NON NULL
 
-   _args: Args
+   _args: DeleteProjectCardPayloadArgs
 
 
    type: DeleteProjectCardPayload
 
 class deleteProjectColumn(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteProjectColumnPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteProjectColumnInput ##NON NULL
 
-   _args: Args
+   _args: DeleteProjectColumnPayloadArgs
 
 
    type: DeleteProjectColumnPayload
 
 class deleteProjectNextItem(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteProjectNextItemPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteProjectNextItemInput ##NON NULL
 
-   _args: Args
+   _args: DeleteProjectNextItemPayloadArgs
 
 
    type: DeleteProjectNextItemPayload
 
 class deleteProjectV2Item(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteProjectV2ItemPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteProjectV2ItemInput ##NON NULL
 
-   _args: Args
+   _args: DeleteProjectV2ItemPayloadArgs
 
 
    type: DeleteProjectV2ItemPayload
 
 class deletePullRequestReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeletePullRequestReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeletePullRequestReviewInput ##NON NULL
 
-   _args: Args
+   _args: DeletePullRequestReviewPayloadArgs
 
 
    type: DeletePullRequestReviewPayload
 
 class deletePullRequestReviewComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeletePullRequestReviewCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeletePullRequestReviewCommentInput ##NON NULL
 
-   _args: Args
+   _args: DeletePullRequestReviewCommentPayloadArgs
 
 
    type: DeletePullRequestReviewCommentPayload
 
 class deleteRef(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteRefPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteRefInput ##NON NULL
 
-   _args: Args
+   _args: DeleteRefPayloadArgs
 
 
    type: DeleteRefPayload
 
 class deleteTeamDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteTeamDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteTeamDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: DeleteTeamDiscussionPayloadArgs
 
 
    type: DeleteTeamDiscussionPayload
 
 class deleteTeamDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteTeamDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteTeamDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: DeleteTeamDiscussionCommentPayloadArgs
 
 
    type: DeleteTeamDiscussionCommentPayload
 
 class deleteVerifiableDomain(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeleteVerifiableDomainPayloadArgs(GQLArgsSet, GQLObject): 
       input: DeleteVerifiableDomainInput ##NON NULL
 
-   _args: Args
+   _args: DeleteVerifiableDomainPayloadArgs
 
 
    type: DeleteVerifiableDomainPayload
 
 class disablePullRequestAutoMerge(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DisablePullRequestAutoMergePayloadArgs(GQLArgsSet, GQLObject): 
       input: DisablePullRequestAutoMergeInput ##NON NULL
 
-   _args: Args
+   _args: DisablePullRequestAutoMergePayloadArgs
 
 
    type: DisablePullRequestAutoMergePayload
 
 class dismissPullRequestReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DismissPullRequestReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: DismissPullRequestReviewInput ##NON NULL
 
-   _args: Args
+   _args: DismissPullRequestReviewPayloadArgs
 
 
    type: DismissPullRequestReviewPayload
 
 class dismissRepositoryVulnerabilityAlert(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class DismissRepositoryVulnerabilityAlertPayloadArgs(GQLArgsSet, GQLObject): 
       input: DismissRepositoryVulnerabilityAlertInput ##NON NULL
 
-   _args: Args
+   _args: DismissRepositoryVulnerabilityAlertPayloadArgs
 
 
    type: DismissRepositoryVulnerabilityAlertPayload
 
 class enablePullRequestAutoMerge(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnablePullRequestAutoMergePayloadArgs(GQLArgsSet, GQLObject): 
       input: EnablePullRequestAutoMergeInput ##NON NULL
 
-   _args: Args
+   _args: EnablePullRequestAutoMergePayloadArgs
 
 
    type: EnablePullRequestAutoMergePayload
 
 class followOrganization(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowOrganizationPayloadArgs(GQLArgsSet, GQLObject): 
       input: FollowOrganizationInput ##NON NULL
 
-   _args: Args
+   _args: FollowOrganizationPayloadArgs
 
 
    type: FollowOrganizationPayload
 
 class followUser(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowUserPayloadArgs(GQLArgsSet, GQLObject): 
       input: FollowUserInput ##NON NULL
 
-   _args: Args
+   _args: FollowUserPayloadArgs
 
 
    type: FollowUserPayload
 
 class grantEnterpriseOrganizationsMigratorRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class GrantEnterpriseOrganizationsMigratorRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: GrantEnterpriseOrganizationsMigratorRoleInput ##NON NULL
 
-   _args: Args
+   _args: GrantEnterpriseOrganizationsMigratorRolePayloadArgs
 
 
    type: GrantEnterpriseOrganizationsMigratorRolePayload
 
 class grantMigratorRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class GrantMigratorRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: GrantMigratorRoleInput ##NON NULL
 
-   _args: Args
+   _args: GrantMigratorRolePayloadArgs
 
 
    type: GrantMigratorRolePayload
 
 class inviteEnterpriseAdmin(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class InviteEnterpriseAdminPayloadArgs(GQLArgsSet, GQLObject): 
       input: InviteEnterpriseAdminInput ##NON NULL
 
-   _args: Args
+   _args: InviteEnterpriseAdminPayloadArgs
 
 
    type: InviteEnterpriseAdminPayload
 
 class linkProjectV2ToRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class LinkProjectV2ToRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: LinkProjectV2ToRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: LinkProjectV2ToRepositoryPayloadArgs
 
 
    type: LinkProjectV2ToRepositoryPayload
 
 class linkProjectV2ToTeam(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class LinkProjectV2ToTeamPayloadArgs(GQLArgsSet, GQLObject): 
       input: LinkProjectV2ToTeamInput ##NON NULL
 
-   _args: Args
+   _args: LinkProjectV2ToTeamPayloadArgs
 
 
    type: LinkProjectV2ToTeamPayload
 
 class linkRepositoryToProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class LinkRepositoryToProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: LinkRepositoryToProjectInput ##NON NULL
 
-   _args: Args
+   _args: LinkRepositoryToProjectPayloadArgs
 
 
    type: LinkRepositoryToProjectPayload
 
 class lockLockable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class LockLockablePayloadArgs(GQLArgsSet, GQLObject): 
       input: LockLockableInput ##NON NULL
 
-   _args: Args
+   _args: LockLockablePayloadArgs
 
 
    type: LockLockablePayload
 
 class markDiscussionCommentAsAnswer(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MarkDiscussionCommentAsAnswerPayloadArgs(GQLArgsSet, GQLObject): 
       input: MarkDiscussionCommentAsAnswerInput ##NON NULL
 
-   _args: Args
+   _args: MarkDiscussionCommentAsAnswerPayloadArgs
 
 
    type: MarkDiscussionCommentAsAnswerPayload
 
 class markFileAsViewed(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MarkFileAsViewedPayloadArgs(GQLArgsSet, GQLObject): 
       input: MarkFileAsViewedInput ##NON NULL
 
-   _args: Args
+   _args: MarkFileAsViewedPayloadArgs
 
 
    type: MarkFileAsViewedPayload
 
 class markPullRequestReadyForReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MarkPullRequestReadyForReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: MarkPullRequestReadyForReviewInput ##NON NULL
 
-   _args: Args
+   _args: MarkPullRequestReadyForReviewPayloadArgs
 
 
    type: MarkPullRequestReadyForReviewPayload
 
 class mergeBranch(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MergeBranchPayloadArgs(GQLArgsSet, GQLObject): 
       input: MergeBranchInput ##NON NULL
 
-   _args: Args
+   _args: MergeBranchPayloadArgs
 
 
    type: MergeBranchPayload
 
 class mergePullRequest(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MergePullRequestPayloadArgs(GQLArgsSet, GQLObject): 
       input: MergePullRequestInput ##NON NULL
 
-   _args: Args
+   _args: MergePullRequestPayloadArgs
 
 
    type: MergePullRequestPayload
 
 class minimizeComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MinimizeCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: MinimizeCommentInput ##NON NULL
 
-   _args: Args
+   _args: MinimizeCommentPayloadArgs
 
 
    type: MinimizeCommentPayload
 
 class moveProjectCard(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MoveProjectCardPayloadArgs(GQLArgsSet, GQLObject): 
       input: MoveProjectCardInput ##NON NULL
 
-   _args: Args
+   _args: MoveProjectCardPayloadArgs
 
 
    type: MoveProjectCardPayload
 
 class moveProjectColumn(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class MoveProjectColumnPayloadArgs(GQLArgsSet, GQLObject): 
       input: MoveProjectColumnInput ##NON NULL
 
-   _args: Args
+   _args: MoveProjectColumnPayloadArgs
 
 
    type: MoveProjectColumnPayload
 
 class pinIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class PinIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: PinIssueInput ##NON NULL
 
-   _args: Args
+   _args: PinIssuePayloadArgs
 
 
    type: PinIssuePayload
 
 class publishSponsorsTier(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class PublishSponsorsTierPayloadArgs(GQLArgsSet, GQLObject): 
       input: PublishSponsorsTierInput ##NON NULL
 
-   _args: Args
+   _args: PublishSponsorsTierPayloadArgs
 
 
    type: PublishSponsorsTierPayload
 
 class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RegenerateEnterpriseIdentityProviderRecoveryCodesPayloadArgs(GQLArgsSet, GQLObject): 
       input: RegenerateEnterpriseIdentityProviderRecoveryCodesInput ##NON NULL
 
-   _args: Args
+   _args: RegenerateEnterpriseIdentityProviderRecoveryCodesPayloadArgs
 
 
    type: RegenerateEnterpriseIdentityProviderRecoveryCodesPayload
 
 class regenerateVerifiableDomainToken(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RegenerateVerifiableDomainTokenPayloadArgs(GQLArgsSet, GQLObject): 
       input: RegenerateVerifiableDomainTokenInput ##NON NULL
 
-   _args: Args
+   _args: RegenerateVerifiableDomainTokenPayloadArgs
 
 
    type: RegenerateVerifiableDomainTokenPayload
 
 class rejectDeployments(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RejectDeploymentsPayloadArgs(GQLArgsSet, GQLObject): 
       input: RejectDeploymentsInput ##NON NULL
 
-   _args: Args
+   _args: RejectDeploymentsPayloadArgs
 
 
    type: RejectDeploymentsPayload
 
 class removeAssigneesFromAssignable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveAssigneesFromAssignablePayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveAssigneesFromAssignableInput ##NON NULL
 
-   _args: Args
+   _args: RemoveAssigneesFromAssignablePayloadArgs
 
 
    type: RemoveAssigneesFromAssignablePayload
 
 class removeEnterpriseAdmin(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveEnterpriseAdminPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseAdminInput ##NON NULL
 
-   _args: Args
+   _args: RemoveEnterpriseAdminPayloadArgs
 
 
    type: RemoveEnterpriseAdminPayload
 
 class removeEnterpriseIdentityProvider(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveEnterpriseIdentityProviderPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseIdentityProviderInput ##NON NULL
 
-   _args: Args
+   _args: RemoveEnterpriseIdentityProviderPayloadArgs
 
 
    type: RemoveEnterpriseIdentityProviderPayload
 
 class removeEnterpriseOrganization(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveEnterpriseOrganizationPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseOrganizationInput ##NON NULL
 
-   _args: Args
+   _args: RemoveEnterpriseOrganizationPayloadArgs
 
 
    type: RemoveEnterpriseOrganizationPayload
 
 class removeEnterpriseSupportEntitlement(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveEnterpriseSupportEntitlementPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveEnterpriseSupportEntitlementInput ##NON NULL
 
-   _args: Args
+   _args: RemoveEnterpriseSupportEntitlementPayloadArgs
 
 
    type: RemoveEnterpriseSupportEntitlementPayload
 
 class removeLabelsFromLabelable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveLabelsFromLabelablePayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveLabelsFromLabelableInput ##NON NULL
 
-   _args: Args
+   _args: RemoveLabelsFromLabelablePayloadArgs
 
 
    type: RemoveLabelsFromLabelablePayload
 
 class removeOutsideCollaborator(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveOutsideCollaboratorPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveOutsideCollaboratorInput ##NON NULL
 
-   _args: Args
+   _args: RemoveOutsideCollaboratorPayloadArgs
 
 
    type: RemoveOutsideCollaboratorPayload
 
 class removeReaction(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveReactionPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveReactionInput ##NON NULL
 
-   _args: Args
+   _args: RemoveReactionPayloadArgs
 
 
    type: RemoveReactionPayload
 
 class removeStar(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveStarPayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveStarInput ##NON NULL
 
-   _args: Args
+   _args: RemoveStarPayloadArgs
 
 
    type: RemoveStarPayload
 
 class removeUpvote(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RemoveUpvotePayloadArgs(GQLArgsSet, GQLObject): 
       input: RemoveUpvoteInput ##NON NULL
 
-   _args: Args
+   _args: RemoveUpvotePayloadArgs
 
 
    type: RemoveUpvotePayload
 
 class reopenIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReopenIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: ReopenIssueInput ##NON NULL
 
-   _args: Args
+   _args: ReopenIssuePayloadArgs
 
 
    type: ReopenIssuePayload
 
 class reopenPullRequest(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReopenPullRequestPayloadArgs(GQLArgsSet, GQLObject): 
       input: ReopenPullRequestInput ##NON NULL
 
-   _args: Args
+   _args: ReopenPullRequestPayloadArgs
 
 
    type: ReopenPullRequestPayload
 
 class requestReviews(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RequestReviewsPayloadArgs(GQLArgsSet, GQLObject): 
       input: RequestReviewsInput ##NON NULL
 
-   _args: Args
+   _args: RequestReviewsPayloadArgs
 
 
    type: RequestReviewsPayload
 
 class rerequestCheckSuite(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RerequestCheckSuitePayloadArgs(GQLArgsSet, GQLObject): 
       input: RerequestCheckSuiteInput ##NON NULL
 
-   _args: Args
+   _args: RerequestCheckSuitePayloadArgs
 
 
    type: RerequestCheckSuitePayload
 
 class resolveReviewThread(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class ResolveReviewThreadPayloadArgs(GQLArgsSet, GQLObject): 
       input: ResolveReviewThreadInput ##NON NULL
 
-   _args: Args
+   _args: ResolveReviewThreadPayloadArgs
 
 
    type: ResolveReviewThreadPayload
 
 class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RevokeEnterpriseOrganizationsMigratorRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: RevokeEnterpriseOrganizationsMigratorRoleInput ##NON NULL
 
-   _args: Args
+   _args: RevokeEnterpriseOrganizationsMigratorRolePayloadArgs
 
 
    type: RevokeEnterpriseOrganizationsMigratorRolePayload
 
 class revokeMigratorRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class RevokeMigratorRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: RevokeMigratorRoleInput ##NON NULL
 
-   _args: Args
+   _args: RevokeMigratorRolePayloadArgs
 
 
    type: RevokeMigratorRolePayload
 
 class setEnterpriseIdentityProvider(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class SetEnterpriseIdentityProviderPayloadArgs(GQLArgsSet, GQLObject): 
       input: SetEnterpriseIdentityProviderInput ##NON NULL
 
-   _args: Args
+   _args: SetEnterpriseIdentityProviderPayloadArgs
 
 
    type: SetEnterpriseIdentityProviderPayload
 
 class setOrganizationInteractionLimit(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class SetOrganizationInteractionLimitPayloadArgs(GQLArgsSet, GQLObject): 
       input: SetOrganizationInteractionLimitInput ##NON NULL
 
-   _args: Args
+   _args: SetOrganizationInteractionLimitPayloadArgs
 
 
    type: SetOrganizationInteractionLimitPayload
 
 class setRepositoryInteractionLimit(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class SetRepositoryInteractionLimitPayloadArgs(GQLArgsSet, GQLObject): 
       input: SetRepositoryInteractionLimitInput ##NON NULL
 
-   _args: Args
+   _args: SetRepositoryInteractionLimitPayloadArgs
 
 
    type: SetRepositoryInteractionLimitPayload
 
 class setUserInteractionLimit(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class SetUserInteractionLimitPayloadArgs(GQLArgsSet, GQLObject): 
       input: SetUserInteractionLimitInput ##NON NULL
 
-   _args: Args
+   _args: SetUserInteractionLimitPayloadArgs
 
 
    type: SetUserInteractionLimitPayload
 
 class startRepositoryMigration(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class StartRepositoryMigrationPayloadArgs(GQLArgsSet, GQLObject): 
       input: StartRepositoryMigrationInput ##NON NULL
 
-   _args: Args
+   _args: StartRepositoryMigrationPayloadArgs
 
 
    type: StartRepositoryMigrationPayload
 
 class submitPullRequestReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class SubmitPullRequestReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: SubmitPullRequestReviewInput ##NON NULL
 
-   _args: Args
+   _args: SubmitPullRequestReviewPayloadArgs
 
 
    type: SubmitPullRequestReviewPayload
 
 class transferEnterpriseOrganization(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class TransferEnterpriseOrganizationPayloadArgs(GQLArgsSet, GQLObject): 
       input: TransferEnterpriseOrganizationInput ##NON NULL
 
-   _args: Args
+   _args: TransferEnterpriseOrganizationPayloadArgs
 
 
    type: TransferEnterpriseOrganizationPayload
 
 class transferIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class TransferIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: TransferIssueInput ##NON NULL
 
-   _args: Args
+   _args: TransferIssuePayloadArgs
 
 
    type: TransferIssuePayload
 
 class unarchiveProjectV2Item(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnarchiveProjectV2ItemPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnarchiveProjectV2ItemInput ##NON NULL
 
-   _args: Args
+   _args: UnarchiveProjectV2ItemPayloadArgs
 
 
    type: UnarchiveProjectV2ItemPayload
 
 class unarchiveRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnarchiveRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnarchiveRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: UnarchiveRepositoryPayloadArgs
 
 
    type: UnarchiveRepositoryPayload
 
 class unfollowOrganization(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnfollowOrganizationPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnfollowOrganizationInput ##NON NULL
 
-   _args: Args
+   _args: UnfollowOrganizationPayloadArgs
 
 
    type: UnfollowOrganizationPayload
 
 class unfollowUser(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnfollowUserPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnfollowUserInput ##NON NULL
 
-   _args: Args
+   _args: UnfollowUserPayloadArgs
 
 
    type: UnfollowUserPayload
 
 class unlinkProjectV2FromRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnlinkProjectV2FromRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnlinkProjectV2FromRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: UnlinkProjectV2FromRepositoryPayloadArgs
 
 
    type: UnlinkProjectV2FromRepositoryPayload
 
 class unlinkProjectV2FromTeam(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnlinkProjectV2FromTeamPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnlinkProjectV2FromTeamInput ##NON NULL
 
-   _args: Args
+   _args: UnlinkProjectV2FromTeamPayloadArgs
 
 
    type: UnlinkProjectV2FromTeamPayload
 
 class unlinkRepositoryFromProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnlinkRepositoryFromProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnlinkRepositoryFromProjectInput ##NON NULL
 
-   _args: Args
+   _args: UnlinkRepositoryFromProjectPayloadArgs
 
 
    type: UnlinkRepositoryFromProjectPayload
 
 class unlockLockable(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnlockLockablePayloadArgs(GQLArgsSet, GQLObject): 
       input: UnlockLockableInput ##NON NULL
 
-   _args: Args
+   _args: UnlockLockablePayloadArgs
 
 
    type: UnlockLockablePayload
 
 class unmarkDiscussionCommentAsAnswer(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnmarkDiscussionCommentAsAnswerPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnmarkDiscussionCommentAsAnswerInput ##NON NULL
 
-   _args: Args
+   _args: UnmarkDiscussionCommentAsAnswerPayloadArgs
 
 
    type: UnmarkDiscussionCommentAsAnswerPayload
 
 class unmarkFileAsViewed(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnmarkFileAsViewedPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnmarkFileAsViewedInput ##NON NULL
 
-   _args: Args
+   _args: UnmarkFileAsViewedPayloadArgs
 
 
    type: UnmarkFileAsViewedPayload
 
 class unmarkIssueAsDuplicate(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnmarkIssueAsDuplicatePayloadArgs(GQLArgsSet, GQLObject): 
       input: UnmarkIssueAsDuplicateInput ##NON NULL
 
-   _args: Args
+   _args: UnmarkIssueAsDuplicatePayloadArgs
 
 
    type: UnmarkIssueAsDuplicatePayload
 
 class unminimizeComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnminimizeCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnminimizeCommentInput ##NON NULL
 
-   _args: Args
+   _args: UnminimizeCommentPayloadArgs
 
 
    type: UnminimizeCommentPayload
 
 class unpinIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnpinIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: UnpinIssueInput ##NON NULL
 
-   _args: Args
+   _args: UnpinIssuePayloadArgs
 
 
    type: UnpinIssuePayload
 
 class unresolveReviewThread(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UnresolveReviewThreadPayloadArgs(GQLArgsSet, GQLObject): 
       input: UnresolveReviewThreadInput ##NON NULL
 
-   _args: Args
+   _args: UnresolveReviewThreadPayloadArgs
 
 
    type: UnresolveReviewThreadPayload
 
 class updateBranchProtectionRule(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateBranchProtectionRulePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateBranchProtectionRuleInput ##NON NULL
 
-   _args: Args
+   _args: UpdateBranchProtectionRulePayloadArgs
 
 
    type: UpdateBranchProtectionRulePayload
 
 class updateCheckRun(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateCheckRunPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateCheckRunInput ##NON NULL
 
-   _args: Args
+   _args: UpdateCheckRunPayloadArgs
 
 
    type: UpdateCheckRunPayload
 
 class updateCheckSuitePreferences(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateCheckSuitePreferencesPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateCheckSuitePreferencesInput ##NON NULL
 
-   _args: Args
+   _args: UpdateCheckSuitePreferencesPayloadArgs
 
 
    type: UpdateCheckSuitePreferencesPayload
 
 class updateDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: UpdateDiscussionPayloadArgs
 
 
    type: UpdateDiscussionPayload
 
 class updateDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: UpdateDiscussionCommentPayloadArgs
 
 
    type: UpdateDiscussionCommentPayload
 
 class updateEnterpriseAdministratorRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseAdministratorRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseAdministratorRoleInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseAdministratorRolePayloadArgs
 
 
    type: UpdateEnterpriseAdministratorRolePayload
 
 class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayloadArgs
 
 
    type: UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayload
 
 class updateEnterpriseDefaultRepositoryPermissionSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseDefaultRepositoryPermissionSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseDefaultRepositoryPermissionSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseDefaultRepositoryPermissionSettingPayloadArgs
 
 
    type: UpdateEnterpriseDefaultRepositoryPermissionSettingPayload
 
 class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayload
 
 class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanCreateRepositoriesSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanCreateRepositoriesSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanCreateRepositoriesSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanCreateRepositoriesSettingPayload
 
 class updateEnterpriseMembersCanDeleteIssuesSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanDeleteIssuesSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanDeleteIssuesSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanDeleteIssuesSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanDeleteIssuesSettingPayload
 
 class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayload
 
 class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayload
 
 class updateEnterpriseMembersCanMakePurchasesSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanMakePurchasesSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanMakePurchasesSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanMakePurchasesSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanMakePurchasesSettingPayload
 
 class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayload
 
 class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayloadArgs
 
 
    type: UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayload
 
 class updateEnterpriseOrganizationProjectsSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseOrganizationProjectsSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseOrganizationProjectsSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseOrganizationProjectsSettingPayloadArgs
 
 
    type: UpdateEnterpriseOrganizationProjectsSettingPayload
 
 class updateEnterpriseOwnerOrganizationRole(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseOwnerOrganizationRolePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseOwnerOrganizationRoleInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseOwnerOrganizationRolePayloadArgs
 
 
    type: UpdateEnterpriseOwnerOrganizationRolePayload
 
 class updateEnterpriseProfile(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseProfilePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseProfileInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseProfilePayloadArgs
 
 
    type: UpdateEnterpriseProfilePayload
 
 class updateEnterpriseRepositoryProjectsSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseRepositoryProjectsSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseRepositoryProjectsSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseRepositoryProjectsSettingPayloadArgs
 
 
    type: UpdateEnterpriseRepositoryProjectsSettingPayload
 
 class updateEnterpriseTeamDiscussionsSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseTeamDiscussionsSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseTeamDiscussionsSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseTeamDiscussionsSettingPayloadArgs
 
 
    type: UpdateEnterpriseTeamDiscussionsSettingPayload
 
 class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayloadArgs
 
 
    type: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayload
 
 class updateEnvironment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateEnvironmentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateEnvironmentInput ##NON NULL
 
-   _args: Args
+   _args: UpdateEnvironmentPayloadArgs
 
 
    type: UpdateEnvironmentPayload
 
 class updateIpAllowListEnabledSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateIpAllowListEnabledSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListEnabledSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateIpAllowListEnabledSettingPayloadArgs
 
 
    type: UpdateIpAllowListEnabledSettingPayload
 
 class updateIpAllowListEntry(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateIpAllowListEntryPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListEntryInput ##NON NULL
 
-   _args: Args
+   _args: UpdateIpAllowListEntryPayloadArgs
 
 
    type: UpdateIpAllowListEntryPayload
 
 class updateIpAllowListForInstalledAppsEnabledSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateIpAllowListForInstalledAppsEnabledSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateIpAllowListForInstalledAppsEnabledSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateIpAllowListForInstalledAppsEnabledSettingPayloadArgs
 
 
    type: UpdateIpAllowListForInstalledAppsEnabledSettingPayload
 
 class updateIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateIssueInput ##NON NULL
 
-   _args: Args
+   _args: UpdateIssuePayloadArgs
 
 
    type: UpdateIssuePayload
 
 class updateIssueComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateIssueCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateIssueCommentInput ##NON NULL
 
-   _args: Args
+   _args: UpdateIssueCommentPayloadArgs
 
 
    type: UpdateIssueCommentPayload
 
 class updateNotificationRestrictionSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateNotificationRestrictionSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateNotificationRestrictionSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateNotificationRestrictionSettingPayloadArgs
 
 
    type: UpdateNotificationRestrictionSettingPayload
 
 class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateOrganizationAllowPrivateRepositoryForkingSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateOrganizationAllowPrivateRepositoryForkingSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateOrganizationAllowPrivateRepositoryForkingSettingPayloadArgs
 
 
    type: UpdateOrganizationAllowPrivateRepositoryForkingSettingPayload
 
 class updateOrganizationWebCommitSignoffSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateOrganizationWebCommitSignoffSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateOrganizationWebCommitSignoffSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateOrganizationWebCommitSignoffSettingPayloadArgs
 
 
    type: UpdateOrganizationWebCommitSignoffSettingPayload
 
 class updateProject(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectPayloadArgs
 
 
    type: UpdateProjectPayload
 
 class updateProjectCard(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectCardPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectCardInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectCardPayloadArgs
 
 
    type: UpdateProjectCardPayload
 
 class updateProjectColumn(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectColumnPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectColumnInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectColumnPayloadArgs
 
 
    type: UpdateProjectColumnPayload
 
 class updateProjectDraftIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectDraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectDraftIssueInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectDraftIssuePayloadArgs
 
 
    type: UpdateProjectDraftIssuePayload
 
 class updateProjectNext(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectNextPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectNextInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectNextPayloadArgs
 
 
    type: UpdateProjectNextPayload
 
 class updateProjectNextItemField(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectNextItemFieldPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectNextItemFieldInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectNextItemFieldPayloadArgs
 
 
    type: UpdateProjectNextItemFieldPayload
 
 class updateProjectV2(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectV2PayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2Input ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectV2PayloadArgs
 
 
    type: UpdateProjectV2Payload
 
 class updateProjectV2DraftIssue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectV2DraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2DraftIssueInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectV2DraftIssuePayloadArgs
 
 
    type: UpdateProjectV2DraftIssuePayload
 
 class updateProjectV2ItemFieldValue(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectV2ItemFieldValuePayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2ItemFieldValueInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectV2ItemFieldValuePayloadArgs
 
 
    type: UpdateProjectV2ItemFieldValuePayload
 
 class updateProjectV2ItemPosition(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateProjectV2ItemPositionPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateProjectV2ItemPositionInput ##NON NULL
 
-   _args: Args
+   _args: UpdateProjectV2ItemPositionPayloadArgs
 
 
    type: UpdateProjectV2ItemPositionPayload
 
 class updatePullRequest(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdatePullRequestPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestInput ##NON NULL
 
-   _args: Args
+   _args: UpdatePullRequestPayloadArgs
 
 
    type: UpdatePullRequestPayload
 
 class updatePullRequestBranch(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdatePullRequestBranchPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestBranchInput ##NON NULL
 
-   _args: Args
+   _args: UpdatePullRequestBranchPayloadArgs
 
 
    type: UpdatePullRequestBranchPayload
 
 class updatePullRequestReview(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdatePullRequestReviewPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestReviewInput ##NON NULL
 
-   _args: Args
+   _args: UpdatePullRequestReviewPayloadArgs
 
 
    type: UpdatePullRequestReviewPayload
 
 class updatePullRequestReviewComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdatePullRequestReviewCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdatePullRequestReviewCommentInput ##NON NULL
 
-   _args: Args
+   _args: UpdatePullRequestReviewCommentPayloadArgs
 
 
    type: UpdatePullRequestReviewCommentPayload
 
 class updateRef(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateRefPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateRefInput ##NON NULL
 
-   _args: Args
+   _args: UpdateRefPayloadArgs
 
 
    type: UpdateRefPayload
 
 class updateRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: UpdateRepositoryPayloadArgs
 
 
    type: UpdateRepositoryPayload
 
 class updateRepositoryWebCommitSignoffSetting(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateRepositoryWebCommitSignoffSettingPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateRepositoryWebCommitSignoffSettingInput ##NON NULL
 
-   _args: Args
+   _args: UpdateRepositoryWebCommitSignoffSettingPayloadArgs
 
 
    type: UpdateRepositoryWebCommitSignoffSettingPayload
 
 class updateSponsorshipPreferences(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateSponsorshipPreferencesPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateSponsorshipPreferencesInput ##NON NULL
 
-   _args: Args
+   _args: UpdateSponsorshipPreferencesPayloadArgs
 
 
    type: UpdateSponsorshipPreferencesPayload
 
 class updateSubscription(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateSubscriptionPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateSubscriptionInput ##NON NULL
 
-   _args: Args
+   _args: UpdateSubscriptionPayloadArgs
 
 
    type: UpdateSubscriptionPayload
 
 class updateTeamDiscussion(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateTeamDiscussionPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateTeamDiscussionInput ##NON NULL
 
-   _args: Args
+   _args: UpdateTeamDiscussionPayloadArgs
 
 
    type: UpdateTeamDiscussionPayload
 
 class updateTeamDiscussionComment(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateTeamDiscussionCommentPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateTeamDiscussionCommentInput ##NON NULL
 
-   _args: Args
+   _args: UpdateTeamDiscussionCommentPayloadArgs
 
 
    type: UpdateTeamDiscussionCommentPayload
 
 class updateTeamsRepository(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateTeamsRepositoryPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateTeamsRepositoryInput ##NON NULL
 
-   _args: Args
+   _args: UpdateTeamsRepositoryPayloadArgs
 
 
    type: UpdateTeamsRepositoryPayload
 
 class updateTopics(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class UpdateTopicsPayloadArgs(GQLArgsSet, GQLObject): 
       input: UpdateTopicsInput ##NON NULL
 
-   _args: Args
+   _args: UpdateTopicsPayloadArgs
 
 
    type: UpdateTopicsPayload
 
 class verifyVerifiableDomain(GQLMutation):
-   class Args(GQLArgsSet, GQLObject): 
+   class VerifyVerifiableDomainPayloadArgs(GQLArgsSet, GQLObject): 
       input: VerifyVerifiableDomainInput ##NON NULL
 
-   _args: Args
+   _args: VerifyVerifiableDomainPayloadArgs
 
 
    type: VerifyVerifiableDomainPayload

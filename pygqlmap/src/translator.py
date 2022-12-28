@@ -2,7 +2,8 @@
 import inspect
 import keyword
 from enum import Enum
-from .logger import Logger
+
+from pygqlmap.helper import ManageException
 from .utils import executeRegex, isEmptyField
 from pygqlmap.gqlTypes import ID
 from .consts import commaConcat
@@ -22,13 +23,13 @@ class Translate():
         try:
             return pyVariableName if not pyVariableName.endswith('_') and pyVariableName.removesuffix('_') not in keyword.kwlist else  pyVariableName.removesuffix('_') 
         except Exception as ex:
-            raise Exception('Error during formatting of graphql field name for ' + pyVariableName + ' - ' + ex.args[0])
+            raise ManageException(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
     
     def toPythonVariableName(gqlFieldName):
         try:
             return gqlFieldName if gqlFieldName not in keyword.kwlist else gqlFieldName + '_'
         except Exception as ex:
-            raise Exception('Error during formatting of python variable name for ' + gqlFieldName + ' - ' + ex.args[0])   
+            raise ManageException(ex, 'Error during formatting of python variable name for ' + gqlFieldName)   
      
     def toGraphQLValue(pyVariable):
         try:     
@@ -53,7 +54,7 @@ class Translate():
             else:
                 print('to manage')
         except Exception as ex:
-            raise Exception('Error during formatting of graphql value for ' + pyVariable + ' - ' + ex.args[0])
+            raise ManageException(ex, 'Error during formatting of graphql value for ' + pyVariable)
         
     def toGraphQLType(pyVariable):
         if type(pyVariable) == str:
@@ -61,7 +62,7 @@ class Translate():
         elif type(pyVariable) == int:
             return 'Int'
         elif Enum in inspect.getmro(type(pyVariable)): 
-            return pyVariable
+            return not pyVariable
         elif type(pyVariable) == ID:
             return 'ID'
         elif type(pyVariable) == type: #should never get in
@@ -78,27 +79,65 @@ class Translate():
             output += ' } '
             return output
         else:
-            Logger.logErrorMessage('type not managed!')
+            raise ManageException(None, 'type not managed!')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
 
     # def graphQLize(inputSchema: str, argsToIgnore: tuple = ()): 
-    def graphQLize(inputSchema: str, argsToIgnore: list = []):
-        output= ''
-        wentThrough = False
-        if argsToIgnore:
-            for args in argsToIgnore:
-                if inputSchema.__contains__(args):
-                    ##argument already graphQLized and to avoid further processing  
-                    ##got to be just injected
-                    inputList = inputSchema.split(args)
-                    output = args.join(Translate.graphQLize(x, argsToIgnore) for x in inputList) # Translate.graphQLize(inputList[0], argsToIgnore) + ' ' + args[0] + ' ' + Translate.graphQLize(inputList[1], argsToIgnore)
-                    wentThrough = True
-            
-            return output if wentThrough else executeRegex(inputSchema)
+    def graphQLize(inputSourceDict, argsToIgnore = None):
+        try:
+            output= ''
+            # wentThrough = False
+            for inputSourceKey, inputSourceValue in inputSourceDict.items():
+                if type(inputSourceValue) == dict:
+                    print('Getting into ' + inputSourceKey)
+                    output += inputSourceKey + (argsToIgnore if argsToIgnore else '') + ' { ' + Translate.graphQLize(inputSourceValue) + ' } '
+                elif type(inputSourceValue) == tuple:
+                    if type(inputSourceValue[1]) == dict:
+                        output += inputSourceKey + inputSourceValue[0] + ' { ' + Translate.graphQLize(inputSourceValue[1]) + ' } '
+                else:
+                    # output += executeRegex(inputSourceKey + ":" + str(inputSourceValue))
+                    output += executeRegex(" " + inputSourceKey + " ")
+        except Exception as ex:
+            raise ManageException(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
         
-        return executeRegex(inputSchema)
+        return output
+    
+    ##works on the last dict
+    def excludeArgs(inputSourceDict: dict, argsToIgnore: list = []) -> str:
+        stringifiedInputDict = str(inputSourceDict)
+        output: str = ''
+        wentThrough = False
+        
+        print('working on ' + stringifiedInputDict)
+        try:
+            if argsToIgnore:
+                for args in argsToIgnore:
+                    try:
+                        if stringifiedInputDict.__contains__(args):
+                            inputList = stringifiedInputDict.split(args)
+                            output += args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
+                            wentThrough = True    
+                    except Exception as ex: 
+                        raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+                   
+        except Exception as ex: 
+            raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+        
+        return executeRegex(stringifiedInputDict) if not wentThrough else output
+
+    def excludeArgsSubstring(input: str, argsToIgnore: list):
+        for args in argsToIgnore:
+            try:
+                if str(input).__contains__(args):
+                    print('splitting ' + input)
+                    inputList = input.split(args)
+                    return args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
+            except Exception as ex: 
+                raise ManageException(ex, 'Exception during args exclusion from graphqlize for substring ' + input)
+        
+        return executeRegex(input)
 
     def toGraphQLArgsSetDefinition(pyObject):
         output = ''
@@ -124,13 +163,13 @@ class Translate():
                     else:  
                         if hasattr(pyObject, field) and not objectField == None:
                             output += Translate.toGraphQLArgDefinition(field, objectField)
-                except:
-                    raise Exception('Issue during export of name and value for: ' + objectField + " - " + ex.args[0])
+                except Exception as ex:
+                    raise ManageException(ex, 'Issue during export of name and value for: ' + objectField)
 
             output = output.removesuffix(commaConcat)
 
         except Exception as ex:
-            raise ex
+            raise ManageException(ex, 'Error during translation of argument set definition')
         return output
     
     def toGraphQLArgDefinition(fieldName, field):

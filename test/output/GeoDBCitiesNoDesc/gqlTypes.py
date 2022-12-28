@@ -32,7 +32,7 @@ class TimeZonesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
@@ -46,7 +46,7 @@ class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnecti
       before: str
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: RegionPopulatedPlacesConnectionArgs
 
 
 
@@ -70,15 +70,15 @@ class CountryRegionsConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class CountryRegionField(CountryRegion):
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryRegionArgs(GQLArgsSet, GQLObject): 
       code: ID
 
-   _args: Args
+   _args: CountryRegionArgs
 
 
 
 class CountryRegionsConnectionField(CountryRegionsConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       first: int
@@ -86,7 +86,7 @@ class CountryRegionsConnectionField(CountryRegionsConnection):
       last: int
       before: str
 
-   _args: Args
+   _args: CountryRegionsConnectionArgs
 
 
 
@@ -108,7 +108,7 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       radius: float
       distanceUnit: DistanceUnit
       countryIds: list[ID]
@@ -126,7 +126,7 @@ class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
       before: str
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: NearbyPopulatedPlacesConnectionArgs
 
 
 

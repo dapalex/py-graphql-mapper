@@ -82,7 +82,7 @@ class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnecti
    RegionPopulatedPlacesConnectionField - Find populated places in this region
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       namePrefix - Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -124,7 +124,7 @@ where SORT_FIELD = elevation | name | population
       before: str
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: RegionPopulatedPlacesConnectionArgs
 
 
 
@@ -190,14 +190,14 @@ class CountryRegionField(CountryRegion):
    CountryRegionField - Look up a region in this country
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryRegionArgs(GQLArgsSet, GQLObject): 
       """
       code - An ISO-3166 or FIPS region code
 
       """
       code: ID
 
-   _args: Args
+   _args: CountryRegionArgs
 
 
 
@@ -206,7 +206,7 @@ class CountryRegionsConnectionField(CountryRegionsConnection):
    CountryRegionsConnectionField - Find regions in this country
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
       """
       namePrefix - Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -228,7 +228,7 @@ class CountryRegionsConnectionField(CountryRegionsConnection):
       last: int
       before: str
 
-   _args: Args
+   _args: CountryRegionsConnectionArgs
 
 
 
@@ -288,7 +288,7 @@ class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
    NearbyPopulatedPlacesConnectionField - Find nearby populated places
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       """
       radius - The location radius within which to find places
 
@@ -342,7 +342,7 @@ where SORT_FIELD = countryCode | elevation | name | population
       before: str
       includeDeleted: IncludeDeletedFilterType
 
-   _args: Args
+   _args: NearbyPopulatedPlacesConnectionArgs
 
 
 

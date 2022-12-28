@@ -102,17 +102,3 @@ def executeRegex(input):
     ret = ret.replace('[', ' ').replace(']', ' ')
     return ret
     
-def redirectOutputToFile(fileName, append: bool = True):
-    try:
-        wrapper = open(fileName, 'a' if append else 'w')
-        sys.stdout = wrapper
-        return wrapper
-    except Exception as ex:
-        Logger.logErrorMessage('Error during output redirect - ' + ex.args[0])
-
-def restoreOutput(ioWrapper: TextIOWrapper):
-    try:
-        ioWrapper.close()
-        sys.stdout = stdOut
-    except Exception as ex:
-        Logger.logErrorMessage('Error during output restore - ' + ex.args[0])

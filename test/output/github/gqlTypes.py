@@ -3130,7 +3130,7 @@ class ReactionConnectionField(ReactionConnection):
    ReactionConnectionField - A list of Reactions left on the Issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReactionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -3152,7 +3152,7 @@ class ReactionConnectionField(ReactionConnection):
       content: ReactionContent
       orderBy: ReactionOrder
 
-   _args: Args
+   _args: ReactionConnectionArgs
 
 
 
@@ -3211,7 +3211,7 @@ class ReactorConnectionField(ReactorConnection):
    ReactorConnectionField - Reactors to the reaction subject with the emotion represented by this reaction group.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReactorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -3227,7 +3227,7 @@ class ReactorConnectionField(ReactorConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ReactorConnectionArgs
 
 
 
@@ -3315,7 +3315,7 @@ class UserContentEditConnectionField(UserContentEditConnection):
    UserContentEditConnectionField - A list of edits to this content.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class UserContentEditConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -3331,7 +3331,7 @@ class UserContentEditConnectionField(UserContentEditConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: UserContentEditConnectionArgs
 
 
 
@@ -3455,7 +3455,7 @@ class TeamDiscussionCommentConnectionField(TeamDiscussionCommentConnection):
    TeamDiscussionCommentConnectionField - A list of comments on this discussion.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -3477,7 +3477,7 @@ class TeamDiscussionCommentConnectionField(TeamDiscussionCommentConnection):
       orderBy: TeamDiscussionCommentOrder
       fromComment: int
 
-   _args: Args
+   _args: TeamDiscussionCommentConnectionArgs
 
 
 
@@ -4138,7 +4138,7 @@ class DeploymentStatusConnectionField(DeploymentStatusConnection):
    DeploymentStatusConnectionField - A list of statuses associated with the deployment.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentStatusConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -4154,7 +4154,7 @@ class DeploymentStatusConnectionField(DeploymentStatusConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentStatusConnectionArgs
 
 
 
@@ -4281,7 +4281,7 @@ class DiscussionCommentConnectionField(DiscussionCommentConnection):
    DiscussionCommentConnectionField - The threaded replies to this comment.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -4297,7 +4297,7 @@ class DiscussionCommentConnectionField(DiscussionCommentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DiscussionCommentConnectionArgs
 
 
 
@@ -4485,7 +4485,7 @@ class IssueConnectionField(IssueConnection):
    IssueConnectionField - A list of issues associated with this label.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for issues returned from the connection.
 
@@ -4513,7 +4513,7 @@ class IssueConnectionField(IssueConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: IssueConnectionArgs
 
 
 
@@ -4522,7 +4522,7 @@ class PullRequestConnectionField(Generic[PullRequestConnection]):
    PullRequestConnectionField - A list of pull requests associated with this label.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestConnectionArgs(GQLArgsSet, GQLObject): 
       """
       states - A list of states to filter the pull requests by.
 
@@ -4553,7 +4553,7 @@ class PullRequestConnectionField(Generic[PullRequestConnection]):
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestConnectionArgs
 
 
 
@@ -4681,7 +4681,7 @@ class DiscussionPollOptionConnectionField(DiscussionPollOptionConnection):
    DiscussionPollOptionConnectionField - The options for this poll.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionPollOptionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -4700,7 +4700,7 @@ class DiscussionPollOptionConnectionField(DiscussionPollOptionConnection):
       last: int
       orderBy: DiscussionPollOptionOrder
 
-   _args: Args
+   _args: DiscussionPollOptionConnectionArgs
 
 
 
@@ -4734,7 +4734,7 @@ class LabelConnectionField(LabelConnection):
    LabelConnectionField - A list of labels associated with the object.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LabelConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for labels returned from the connection.
 
@@ -4753,7 +4753,7 @@ class LabelConnectionField(LabelConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: LabelConnectionArgs
 
 
 
@@ -4979,7 +4979,7 @@ class DeploymentReviewerConnectionField(DeploymentReviewerConnection):
    DeploymentReviewerConnectionField - The teams or users that can review the deployment
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentReviewerConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -4995,7 +4995,7 @@ class DeploymentReviewerConnectionField(DeploymentReviewerConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentReviewerConnectionArgs
 
 
 
@@ -5052,7 +5052,7 @@ class DeploymentProtectionRuleConnectionField(DeploymentProtectionRuleConnection
    DeploymentProtectionRuleConnectionField - The protection rules defined for this environment
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentProtectionRuleConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -5068,7 +5068,7 @@ class DeploymentProtectionRuleConnectionField(DeploymentProtectionRuleConnection
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentProtectionRuleConnectionArgs
 
 
 
@@ -5258,7 +5258,7 @@ class UserConnectionField(UserConnection):
    UserConnectionField - A list of users mentioned in the release description
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class UserConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -5274,7 +5274,7 @@ class UserConnectionField(UserConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: UserConnectionArgs
 
 
 
@@ -5283,7 +5283,7 @@ class ReleaseAssetConnectionField(ReleaseAssetConnection):
    ReleaseAssetConnectionField - List of releases assets which are dependent on this release.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseAssetConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -5302,7 +5302,7 @@ class ReleaseAssetConnectionField(ReleaseAssetConnection):
       last: int
       name: str
 
-   _args: Args
+   _args: ReleaseAssetConnectionArgs
 
 
 
@@ -5543,7 +5543,7 @@ class RepositoryConnectionField(RepositoryConnection):
    RepositoryConnectionField - A list of repositories that the user owns.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       privacy - If non-null, filters repositories according to privacy
 
@@ -5577,7 +5577,7 @@ class RepositoryConnectionField(RepositoryConnection):
       last: int
       isFork: bool
 
-   _args: Args
+   _args: RepositoryConnectionArgs
 
 
 
@@ -5586,7 +5586,7 @@ class RepositoryField(Generic[Repository]):
    RepositoryField - Find Repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryArgs(GQLArgsSet, GQLObject): 
       """
       name - Name of Repository to find.
 
@@ -5596,7 +5596,7 @@ class RepositoryField(Generic[Repository]):
       name: str ##NON NULL
       followRenames: bool
 
-   _args: Args
+   _args: RepositoryArgs
 
 
 
@@ -5691,7 +5691,7 @@ class PackageFileConnectionField(PackageFileConnection):
    PackageFileConnectionField - List of files associated with this package version
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageFileConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering of the returned package files.
 
@@ -5710,7 +5710,7 @@ class PackageFileConnectionField(PackageFileConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PackageFileConnectionArgs
 
 
 
@@ -5783,14 +5783,14 @@ class PackageVersionField(PackageVersion):
    PackageVersionField - Find package version by version string.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageVersionArgs(GQLArgsSet, GQLObject): 
       """
       version - The package version.
 
       """
       version: str ##NON NULL
 
-   _args: Args
+   _args: PackageVersionArgs
 
 
 
@@ -5799,7 +5799,7 @@ class PackageVersionConnectionField(PackageVersionConnection):
    PackageVersionConnectionField - list of versions for this package
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageVersionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering of the returned packages.
 
@@ -5818,7 +5818,7 @@ class PackageVersionConnectionField(PackageVersionConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PackageVersionConnectionArgs
 
 
 
@@ -6078,7 +6078,7 @@ class ProjectCardConnectionField(ProjectCardConnection):
    ProjectCardConnectionField - List of cards in the column
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectCardConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -6097,7 +6097,7 @@ class ProjectCardConnectionField(ProjectCardConnection):
       last: int
       archivedStates: list[ProjectCardArchivedState]
 
-   _args: Args
+   _args: ProjectCardConnectionArgs
 
 
 
@@ -6200,14 +6200,14 @@ class ProjectField(Generic[Project]):
    ProjectField - Find project by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject): 
       """
       number - The project number to find.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: ProjectArgs
 
 
 
@@ -6216,7 +6216,7 @@ class ProjectConnectionField(ProjectConnection):
    ProjectConnectionField - A list of projects under the owner.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for projects returned from the connection
 
@@ -6241,7 +6241,7 @@ class ProjectConnectionField(ProjectConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectConnectionArgs
 
 
 
@@ -6272,7 +6272,7 @@ class ProjectColumnConnectionField(ProjectColumnConnection):
    ProjectColumnConnectionField - List of columns in the project
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectColumnConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -6288,7 +6288,7 @@ class ProjectColumnConnectionField(ProjectColumnConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectColumnConnectionArgs
 
 
 
@@ -6526,14 +6526,14 @@ first. Returns up to 10 Topics.
 
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TopicArgs(GQLArgsSet, GQLObject): 
       """
       first - How many topics to return.
 
       """
       first: int
 
-   _args: Args
+   _args: TopicArgs
 
 
 
@@ -6542,7 +6542,7 @@ class StargazerConnectionField(StargazerConnection):
    StargazerConnectionField - A list of users who have starred this starrable.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class StargazerConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -6561,7 +6561,7 @@ class StargazerConnectionField(StargazerConnection):
       last: int
       orderBy: StarOrder
 
-   _args: Args
+   _args: StargazerConnectionArgs
 
 
 
@@ -6780,7 +6780,7 @@ class CWEConnectionField(CWEConnection):
    CWEConnectionField - CWEs associated with this Advisory
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CWEConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -6796,7 +6796,7 @@ class CWEConnectionField(CWEConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: CWEConnectionArgs
 
 
 
@@ -6805,7 +6805,7 @@ class SecurityVulnerabilityConnectionField(SecurityVulnerabilityConnection):
    SecurityVulnerabilityConnectionField - Vulnerabilities associated with this Advisory
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SecurityVulnerabilityConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for the returned topics.
 
@@ -6836,7 +6836,7 @@ class SecurityVulnerabilityConnectionField(SecurityVulnerabilityConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: SecurityVulnerabilityConnectionArgs
 
 
 
@@ -6988,7 +6988,7 @@ class BranchProtectionRuleConnectionField(BranchProtectionRuleConnection):
    BranchProtectionRuleConnectionField - A list of branch protection rules for this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class BranchProtectionRuleConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7004,7 +7004,7 @@ class BranchProtectionRuleConnectionField(BranchProtectionRuleConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: BranchProtectionRuleConnectionArgs
 
 
 
@@ -7013,14 +7013,14 @@ class RepositoryCodeownersField(RepositoryCodeowners):
    RepositoryCodeownersField - Information extracted from the repository's `CODEOWNERS` file.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryCodeownersArgs(GQLArgsSet, GQLObject): 
       """
       refName - The ref name used to return the associated `CODEOWNERS` file.
 
       """
       refName: str
 
-   _args: Args
+   _args: RepositoryCodeownersArgs
 
 
 
@@ -7029,7 +7029,7 @@ class RepositoryCollaboratorConnectionField(RepositoryCollaboratorConnection):
    RepositoryCollaboratorConnectionField - A list of collaborators associated with the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryCollaboratorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       affiliation - Collaborators affiliation level with a repository.
 
@@ -7051,7 +7051,7 @@ class RepositoryCollaboratorConnectionField(RepositoryCollaboratorConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryCollaboratorConnectionArgs
 
 
 
@@ -7060,7 +7060,7 @@ class CommitCommentConnectionField(Generic[CommitCommentConnection]):
    CommitCommentConnectionField - A list of commit comments associated with the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7076,7 +7076,7 @@ class CommitCommentConnectionField(Generic[CommitCommentConnection]):
       first: int
       last: int
 
-   _args: Args
+   _args: CommitCommentConnectionArgs
 
 
 
@@ -7085,7 +7085,7 @@ class DeployKeyConnectionField(DeployKeyConnection):
    DeployKeyConnectionField - A list of deploy keys that are on this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeployKeyConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7101,7 +7101,7 @@ class DeployKeyConnectionField(DeployKeyConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeployKeyConnectionArgs
 
 
 
@@ -7110,7 +7110,7 @@ class DeploymentConnectionField(DeploymentConnection):
    DeploymentConnectionField - Deployments associated with the repository
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       environments - Environments to list deployments for
 
@@ -7132,7 +7132,7 @@ class DeploymentConnectionField(DeploymentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentConnectionArgs
 
 
 
@@ -7141,14 +7141,14 @@ class DiscussionField(Discussion):
    DiscussionField - Returns a single discussion from the current repository by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionArgs(GQLArgsSet, GQLObject): 
       """
       number - The number for the discussion to be returned.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: DiscussionArgs
 
 
 
@@ -7157,7 +7157,7 @@ class DiscussionCategoryConnectionField(DiscussionCategoryConnection):
    DiscussionCategoryConnectionField - A list of discussion categories that are available in the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCategoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7176,7 +7176,7 @@ class DiscussionCategoryConnectionField(DiscussionCategoryConnection):
       last: int
       filterByAssignable: bool
 
-   _args: Args
+   _args: DiscussionCategoryConnectionArgs
 
 
 
@@ -7185,14 +7185,14 @@ class DiscussionCategoryField(DiscussionCategory):
    DiscussionCategoryField - A discussion category by slug.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCategoryArgs(GQLArgsSet, GQLObject): 
       """
       slug - The slug of the discussion category to be returned.
 
       """
       slug: str ##NON NULL
 
-   _args: Args
+   _args: DiscussionCategoryArgs
 
 
 
@@ -7201,7 +7201,7 @@ class DiscussionConnectionField(DiscussionConnection):
    DiscussionConnectionField - A list of discussions that have been opened in the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7223,7 +7223,7 @@ class DiscussionConnectionField(DiscussionConnection):
       categoryId: ID
       orderBy: DiscussionOrder
 
-   _args: Args
+   _args: DiscussionConnectionArgs
 
 
 
@@ -7232,14 +7232,14 @@ class EnvironmentField(Environment):
    EnvironmentField - Returns a single active environment from the current repository by name.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnvironmentArgs(GQLArgsSet, GQLObject): 
       """
       name - The name of the environment to be returned.
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: EnvironmentArgs
 
 
 
@@ -7248,7 +7248,7 @@ class EnvironmentConnectionField(EnvironmentConnection):
    EnvironmentConnectionField - A list of environments that are in this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnvironmentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7264,7 +7264,7 @@ class EnvironmentConnectionField(EnvironmentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: EnvironmentConnectionArgs
 
 
 
@@ -7273,14 +7273,14 @@ class IssueField(Generic[Issue]):
    IssueField - Returns a single issue from the current repository by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueArgs(GQLArgsSet, GQLObject): 
       """
       number - The number for the issue to be returned.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: IssueArgs
 
 
 
@@ -7289,14 +7289,14 @@ class IssueOrPullRequestField(IssueOrPullRequest):
    IssueOrPullRequestField - Returns a single issue-like object from the current repository by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueOrPullRequestArgs(GQLArgsSet, GQLObject): 
       """
       number - The number for the issue to be returned.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: IssueOrPullRequestArgs
 
 
 
@@ -7305,14 +7305,14 @@ class LabelField(Label):
    LabelField - Returns a single label by name
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LabelArgs(GQLArgsSet, GQLObject): 
       """
       name - Label name
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: LabelArgs
 
 
 
@@ -7321,7 +7321,7 @@ class LanguageConnectionField(LanguageConnection):
    LanguageConnectionField - A list containing a breakdown of the language composition of the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LanguageConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7340,7 +7340,7 @@ class LanguageConnectionField(LanguageConnection):
       last: int
       orderBy: LanguageOrder
 
-   _args: Args
+   _args: LanguageConnectionArgs
 
 
 
@@ -7349,14 +7349,14 @@ class MilestoneField(Milestone):
    MilestoneField - Returns a single milestone from the current repository by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MilestoneArgs(GQLArgsSet, GQLObject): 
       """
       number - The number for the milestone to be returned.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: MilestoneArgs
 
 
 
@@ -7365,7 +7365,7 @@ class MilestoneConnectionField(MilestoneConnection):
    MilestoneConnectionField - A list of milestones associated with the repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MilestoneConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7390,7 +7390,7 @@ class MilestoneConnectionField(MilestoneConnection):
       orderBy: MilestoneOrder
       query: str
 
-   _args: Args
+   _args: MilestoneConnectionArgs
 
 
 
@@ -7399,7 +7399,7 @@ class GitObjectField(GitObject):
    GitObjectField - A Git object in the repository
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GitObjectArgs(GQLArgsSet, GQLObject): 
       """
       oid - The Git object ID
 
@@ -7409,7 +7409,7 @@ class GitObjectField(GitObject):
       oid: GitObjectID
       expression: str
 
-   _args: Args
+   _args: GitObjectArgs
 
 
 
@@ -7418,7 +7418,7 @@ class PackageConnectionField(PackageConnection):
    PackageConnectionField - A list of packages under the owner.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7446,7 +7446,7 @@ class PackageConnectionField(PackageConnection):
       packageType: PackageType
       orderBy: PackageOrder
 
-   _args: Args
+   _args: PackageConnectionArgs
 
 
 
@@ -7455,7 +7455,7 @@ class PinnedDiscussionConnectionField(PinnedDiscussionConnection):
    PinnedDiscussionConnectionField - A list of discussions that have been pinned in this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnedDiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7471,7 +7471,7 @@ class PinnedDiscussionConnectionField(PinnedDiscussionConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PinnedDiscussionConnectionArgs
 
 
 
@@ -7480,7 +7480,7 @@ class PinnedIssueConnectionField(PinnedIssueConnection):
    PinnedIssueConnectionField - A list of pinned issues for this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnedIssueConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7496,7 +7496,7 @@ class PinnedIssueConnectionField(PinnedIssueConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PinnedIssueConnectionArgs
 
 
 
@@ -7505,7 +7505,7 @@ class ProjectV2ConnectionField(ProjectV2Connection):
    ProjectV2ConnectionField - List of projects linked to this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7527,7 +7527,7 @@ class ProjectV2ConnectionField(ProjectV2Connection):
       query: str
       orderBy: ProjectV2Order
 
-   _args: Args
+   _args: ProjectV2ConnectionArgs
 
 
 
@@ -7536,14 +7536,14 @@ class PullRequestField(Generic[PullRequest]):
    PullRequestField - Returns a single pull request from the current repository by number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestArgs(GQLArgsSet, GQLObject): 
       """
       number - The number for the pull request to be returned.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: PullRequestArgs
 
 
 
@@ -7552,14 +7552,14 @@ class RefField(Generic[Ref]):
    RefField - Fetch a given ref from the repository
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RefArgs(GQLArgsSet, GQLObject): 
       """
       qualifiedName - The ref to retrieve. Fully qualified matches are checked in order (`refs/heads/master`) before falling back onto checks for short name matches (`master`).
 
       """
       qualifiedName: str ##NON NULL
 
-   _args: Args
+   _args: RefArgs
 
 
 
@@ -7568,7 +7568,7 @@ class RefConnectionField(RefConnection):
    RefConnectionField - Fetch a list of refs from the repository
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RefConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - Filters refs with query on name
 
@@ -7596,7 +7596,7 @@ class RefConnectionField(RefConnection):
       direction: OrderDirection
       orderBy: RefOrder
 
-   _args: Args
+   _args: RefConnectionArgs
 
 
 
@@ -7605,14 +7605,14 @@ class ReleaseField(Release):
    ReleaseField - Lookup a single release given various criteria.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseArgs(GQLArgsSet, GQLObject): 
       """
       tagName - The name of the Tag the Release was created from
 
       """
       tagName: str ##NON NULL
 
-   _args: Args
+   _args: ReleaseArgs
 
 
 
@@ -7621,7 +7621,7 @@ class ReleaseConnectionField(ReleaseConnection):
    ReleaseConnectionField - List of releases which are dependent on this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7640,7 +7640,7 @@ class ReleaseConnectionField(ReleaseConnection):
       last: int
       orderBy: ReleaseOrder
 
-   _args: Args
+   _args: ReleaseConnectionArgs
 
 
 
@@ -7649,7 +7649,7 @@ class RepositoryTopicConnectionField(RepositoryTopicConnection):
    RepositoryTopicConnectionField - A list of applied repository-topic associations for this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryTopicConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7665,7 +7665,7 @@ class RepositoryTopicConnectionField(RepositoryTopicConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryTopicConnectionArgs
 
 
 
@@ -7674,7 +7674,7 @@ class SubmoduleConnectionField(SubmoduleConnection):
    SubmoduleConnectionField - Returns a list of all submodules in this repository parsed from the .gitmodules file as of the default branch's HEAD commit.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SubmoduleConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7690,7 +7690,7 @@ class SubmoduleConnectionField(SubmoduleConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: SubmoduleConnectionArgs
 
 
 
@@ -7699,7 +7699,7 @@ class RepositoryVulnerabilityAlertConnectionField(RepositoryVulnerabilityAlertCo
    RepositoryVulnerabilityAlertConnectionField - A list of vulnerability alerts that are on this repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryVulnerabilityAlertConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -7721,7 +7721,7 @@ class RepositoryVulnerabilityAlertConnectionField(RepositoryVulnerabilityAlertCo
       states: list[RepositoryVulnerabilityAlertState] ##NON NULL
       dependencyScopes: list[RepositoryVulnerabilityAlertDependencyScope] ##NON NULL
 
-   _args: Args
+   _args: RepositoryVulnerabilityAlertConnectionArgs
 
 
 
@@ -8966,7 +8966,7 @@ class IssueCommentConnectionField(IssueCommentConnection):
    IssueCommentConnectionField - A list of comments associated with the Issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for issue comments returned from the connection.
 
@@ -8985,7 +8985,7 @@ class IssueCommentConnectionField(IssueCommentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: IssueCommentConnectionArgs
 
 
 
@@ -8994,14 +8994,14 @@ class HovercardField(Hovercard):
    HovercardField - The hovercard information for this issue
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class HovercardArgs(GQLArgsSet, GQLObject): 
       """
       includeNotificationContexts - Whether or not to include notification contexts
 
       """
       includeNotificationContexts: bool
 
-   _args: Args
+   _args: HovercardArgs
 
 
 
@@ -9010,7 +9010,7 @@ class LinkedBranchConnectionField(LinkedBranchConnection):
    LinkedBranchConnectionField - Branches linked to this issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class LinkedBranchConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -9026,7 +9026,7 @@ class LinkedBranchConnectionField(LinkedBranchConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: LinkedBranchConnectionArgs
 
 
 
@@ -9035,7 +9035,7 @@ class ProjectV2ItemConnectionField(Generic[ProjectV2ItemConnection]):
    ProjectV2ItemConnectionField - List of project items associated with this issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject): 
       """
       includeArchived - Include archived items.
 
@@ -9054,7 +9054,7 @@ class ProjectV2ItemConnectionField(Generic[ProjectV2ItemConnection]):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectV2ItemConnectionArgs
 
 
 
@@ -9063,7 +9063,7 @@ class ProjectNextItemConnectionField(Generic[ProjectNextItemConnection]):
    ProjectNextItemConnectionField - List of project (beta) items associated with this issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectNextItemConnectionArgs(GQLArgsSet, GQLObject): 
       """
       includeArchived - Include archived items.
 
@@ -9082,7 +9082,7 @@ class ProjectNextItemConnectionField(Generic[ProjectNextItemConnection]):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectNextItemConnectionArgs
 
 
 
@@ -9091,7 +9091,7 @@ class IssueTimelineItemsConnectionField(IssueTimelineItemsConnection):
    IssueTimelineItemsConnectionField - A list of events, comments, commits, etc. associated with the issue.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueTimelineItemsConnectionArgs(GQLArgsSet, GQLObject): 
       """
       since - Filter timeline items by a `since` timestamp.
 
@@ -9116,7 +9116,7 @@ class IssueTimelineItemsConnectionField(IssueTimelineItemsConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: IssueTimelineItemsConnectionArgs
 
 
 
@@ -9651,7 +9651,7 @@ class RequestedReviewerConnectionField(RequestedReviewerConnection):
    RequestedReviewerConnectionField - The reviewers for this field.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RequestedReviewerConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -9667,7 +9667,7 @@ class RequestedReviewerConnectionField(RequestedReviewerConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RequestedReviewerConnectionArgs
 
 
 
@@ -9795,14 +9795,14 @@ class ProjectV2ItemFieldValueField(ProjectV2ItemFieldValue):
    ProjectV2ItemFieldValueField - A specific field value given a field name
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemFieldValueArgs(GQLArgsSet, GQLObject): 
       """
       name - The name of the field to return the field value of
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: ProjectV2ItemFieldValueArgs
 
 
 
@@ -9811,7 +9811,7 @@ class ProjectV2ItemFieldValueConnectionField(ProjectV2ItemFieldValueConnection):
    ProjectV2ItemFieldValueConnectionField - List of field values
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemFieldValueConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -9830,7 +9830,7 @@ class ProjectV2ItemFieldValueConnectionField(ProjectV2ItemFieldValueConnection):
       last: int
       orderBy: ProjectV2ItemFieldValueOrder
 
-   _args: Args
+   _args: ProjectV2ItemFieldValueConnectionArgs
 
 
 
@@ -10033,7 +10033,7 @@ class ProjectV2FieldConfigurationConnectionField(ProjectV2FieldConfigurationConn
    ProjectV2FieldConfigurationConnectionField - The view's visible fields.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10052,7 +10052,7 @@ class ProjectV2FieldConfigurationConnectionField(ProjectV2FieldConfigurationConn
       last: int
       orderBy: ProjectV2FieldOrder
 
-   _args: Args
+   _args: ProjectV2FieldConfigurationConnectionArgs
 
 
 
@@ -10061,7 +10061,7 @@ class ProjectV2SortByFieldConnectionField(ProjectV2SortByFieldConnection):
    ProjectV2SortByFieldConnectionField - The view's sort-by config.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2SortByFieldConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10077,7 +10077,7 @@ class ProjectV2SortByFieldConnectionField(ProjectV2SortByFieldConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectV2SortByFieldConnectionArgs
 
 
 
@@ -10159,14 +10159,14 @@ class ProjectV2FieldConfigurationField(ProjectV2FieldConfiguration):
    ProjectV2FieldConfigurationField - A field of the project
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2FieldConfigurationArgs(GQLArgsSet, GQLObject): 
       """
       name - The name of the field
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: ProjectV2FieldConfigurationArgs
 
 
 
@@ -10175,7 +10175,7 @@ class TeamConnectionField(TeamConnection):
    TeamConnectionField - The teams the project is linked to.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10194,7 +10194,7 @@ class TeamConnectionField(TeamConnection):
       last: int
       orderBy: TeamOrder
 
-   _args: Args
+   _args: TeamConnectionArgs
 
 
 
@@ -10203,14 +10203,14 @@ class ProjectV2ViewField(ProjectV2View):
    ProjectV2ViewField - A view of the project
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ViewArgs(GQLArgsSet, GQLObject): 
       """
       number - The number of a view belonging to the project
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: ProjectV2ViewArgs
 
 
 
@@ -10219,7 +10219,7 @@ class ProjectV2ViewConnectionField(ProjectV2ViewConnection):
    ProjectV2ViewConnectionField - List of views in the project
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ViewConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10238,7 +10238,7 @@ class ProjectV2ViewConnectionField(ProjectV2ViewConnection):
       last: int
       orderBy: ProjectV2ViewOrder
 
-   _args: Args
+   _args: ProjectV2ViewConnectionArgs
 
 
 
@@ -10351,14 +10351,14 @@ class TeamDiscussionField(TeamDiscussion):
    TeamDiscussionField - Find a team discussion by its number.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionArgs(GQLArgsSet, GQLObject): 
       """
       number - The sequence number of the discussion to find.
 
       """
       number: int ##NON NULL
 
-   _args: Args
+   _args: TeamDiscussionArgs
 
 
 
@@ -10367,7 +10367,7 @@ class TeamDiscussionConnectionField(TeamDiscussionConnection):
    TeamDiscussionConnectionField - A list of team discussions.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10389,7 +10389,7 @@ class TeamDiscussionConnectionField(TeamDiscussionConnection):
       isPinned: bool
       orderBy: TeamDiscussionOrder
 
-   _args: Args
+   _args: TeamDiscussionConnectionArgs
 
 
 
@@ -10398,7 +10398,7 @@ class OrganizationInvitationConnectionField(OrganizationInvitationConnection):
    OrganizationInvitationConnectionField - A list of pending invitations for users to this team
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10414,7 +10414,7 @@ class OrganizationInvitationConnectionField(OrganizationInvitationConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationInvitationConnectionArgs
 
 
 
@@ -10423,7 +10423,7 @@ class UserStatusConnectionField(UserStatusConnection):
    UserStatusConnectionField - Get the status messages members of this entity have set that are either public or visible only to the organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class UserStatusConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10442,7 +10442,7 @@ class UserStatusConnectionField(UserStatusConnection):
       last: int
       orderBy: UserStatusOrder
 
-   _args: Args
+   _args: UserStatusConnectionArgs
 
 
 
@@ -10451,7 +10451,7 @@ class TeamMemberConnectionField(TeamMemberConnection):
    TeamMemberConnectionField - A list of users who are members of this team.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamMemberConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10479,7 +10479,7 @@ class TeamMemberConnectionField(TeamMemberConnection):
       role: TeamMemberRole
       orderBy: TeamMemberOrder
 
-   _args: Args
+   _args: TeamMemberConnectionArgs
 
 
 
@@ -10488,7 +10488,7 @@ class TeamRepositoryConnectionField(TeamRepositoryConnection):
    TeamRepositoryConnectionField - A list of repositories this team has access to.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamRepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10510,7 +10510,7 @@ class TeamRepositoryConnectionField(TeamRepositoryConnection):
       query: str
       orderBy: TeamRepositoryOrder
 
-   _args: Args
+   _args: TeamRepositoryConnectionArgs
 
 
 
@@ -10833,7 +10833,7 @@ class BranchProtectionRuleConflictConnectionField(BranchProtectionRuleConflictCo
    BranchProtectionRuleConflictConnectionField - A list of conflicts matching branches protection rule and other branch protection rules
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class BranchProtectionRuleConflictConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10849,7 +10849,7 @@ class BranchProtectionRuleConflictConnectionField(BranchProtectionRuleConflictCo
       first: int
       last: int
 
-   _args: Args
+   _args: BranchProtectionRuleConflictConnectionArgs
 
 
 
@@ -10858,7 +10858,7 @@ class BypassForcePushAllowanceConnectionField(BypassForcePushAllowanceConnection
    BypassForcePushAllowanceConnectionField - A list of actors able to force push for this branch protection rule.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class BypassForcePushAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10874,7 +10874,7 @@ class BypassForcePushAllowanceConnectionField(BypassForcePushAllowanceConnection
       first: int
       last: int
 
-   _args: Args
+   _args: BypassForcePushAllowanceConnectionArgs
 
 
 
@@ -10883,7 +10883,7 @@ class BypassPullRequestAllowanceConnectionField(BypassPullRequestAllowanceConnec
    BypassPullRequestAllowanceConnectionField - A list of actors able to bypass PRs for this branch protection rule.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class BypassPullRequestAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10899,7 +10899,7 @@ class BypassPullRequestAllowanceConnectionField(BypassPullRequestAllowanceConnec
       first: int
       last: int
 
-   _args: Args
+   _args: BypassPullRequestAllowanceConnectionArgs
 
 
 
@@ -10908,7 +10908,7 @@ class PushAllowanceConnectionField(PushAllowanceConnection):
    PushAllowanceConnectionField - A list push allowances for this branch protection rule.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PushAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10924,7 +10924,7 @@ class PushAllowanceConnectionField(PushAllowanceConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PushAllowanceConnectionArgs
 
 
 
@@ -10933,7 +10933,7 @@ class ReviewDismissalAllowanceConnectionField(ReviewDismissalAllowanceConnection
    ReviewDismissalAllowanceConnectionField - A list review dismissal allowances for this branch protection rule.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReviewDismissalAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -10949,7 +10949,7 @@ class ReviewDismissalAllowanceConnectionField(ReviewDismissalAllowanceConnection
       first: int
       last: int
 
-   _args: Args
+   _args: ReviewDismissalAllowanceConnectionArgs
 
 
 
@@ -11088,7 +11088,7 @@ class ComparisonCommitConnectionField(ComparisonCommitConnection):
    ComparisonCommitConnectionField - The commits which compose this comparison.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ComparisonCommitConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -11104,7 +11104,7 @@ class ComparisonCommitConnectionField(ComparisonCommitConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ComparisonCommitConnectionArgs
 
 
 
@@ -11138,14 +11138,14 @@ class ComparisonField(Comparison):
    ComparisonField - Compares the current ref as a base ref to another head ref, if the comparison can be made.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ComparisonArgs(GQLArgsSet, GQLObject): 
       """
       headRef - The head ref to compare against.
 
       """
       headRef: str ##NON NULL
 
-   _args: Args
+   _args: ComparisonArgs
 
 
 
@@ -11418,7 +11418,7 @@ class PullRequestReviewCommentConnectionField(PullRequestReviewCommentConnection
    PullRequestReviewCommentConnectionField - A list of review comments for the current pull request review.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -11434,7 +11434,7 @@ class PullRequestReviewCommentConnectionField(PullRequestReviewCommentConnection
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestReviewCommentConnectionArgs
 
 
 
@@ -12317,7 +12317,7 @@ class PullRequestCommitConnectionField(PullRequestCommitConnection):
    PullRequestCommitConnectionField - A list of commits present in this pull request's head branch not present in the base branch.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestCommitConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -12333,7 +12333,7 @@ class PullRequestCommitConnectionField(PullRequestCommitConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestCommitConnectionArgs
 
 
 
@@ -12342,7 +12342,7 @@ class PullRequestChangedFileConnectionField(PullRequestChangedFileConnection):
    PullRequestChangedFileConnectionField - Lists the files changed within this pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestChangedFileConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -12358,7 +12358,7 @@ class PullRequestChangedFileConnectionField(PullRequestChangedFileConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestChangedFileConnectionArgs
 
 
 
@@ -12367,7 +12367,7 @@ class PullRequestReviewConnectionField(PullRequestReviewConnection):
    PullRequestReviewConnectionField - A list of latest reviews per user associated with the pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -12386,7 +12386,7 @@ class PullRequestReviewConnectionField(PullRequestReviewConnection):
       last: int
       writersOnly: bool
 
-   _args: Args
+   _args: PullRequestReviewConnectionArgs
 
 
 
@@ -12395,7 +12395,7 @@ class ReviewRequestConnectionField(ReviewRequestConnection):
    ReviewRequestConnectionField - A list of review requests associated with the pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ReviewRequestConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -12411,7 +12411,7 @@ class ReviewRequestConnectionField(ReviewRequestConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ReviewRequestConnectionArgs
 
 
 
@@ -12420,7 +12420,7 @@ class PullRequestReviewThreadConnectionField(PullRequestReviewThreadConnection):
    PullRequestReviewThreadConnectionField - The list of all review threads for this pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewThreadConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -12436,7 +12436,7 @@ class PullRequestReviewThreadConnectionField(PullRequestReviewThreadConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestReviewThreadConnectionArgs
 
 
 
@@ -12445,7 +12445,7 @@ class PullRequestTimelineItemsConnectionField(PullRequestTimelineItemsConnection
    PullRequestTimelineItemsConnectionField - A list of events, comments, commits, etc. associated with the pull request.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestTimelineItemsConnectionArgs(GQLArgsSet, GQLObject): 
       """
       since - Filter timeline items by a `since` timestamp.
 
@@ -12470,7 +12470,7 @@ class PullRequestTimelineItemsConnectionField(PullRequestTimelineItemsConnection
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestTimelineItemsConnectionArgs
 
 
 
@@ -13140,7 +13140,7 @@ class CheckAnnotationConnectionField(CheckAnnotationConnection):
    CheckAnnotationConnectionField - The check run's annotations
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckAnnotationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13156,7 +13156,7 @@ class CheckAnnotationConnectionField(CheckAnnotationConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: CheckAnnotationConnectionArgs
 
 
 
@@ -13165,7 +13165,7 @@ class CheckStepConnectionField(CheckStepConnection):
    CheckStepConnectionField - The check run's steps
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckStepConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13184,7 +13184,7 @@ class CheckStepConnectionField(CheckStepConnection):
       last: int
       number: int
 
-   _args: Args
+   _args: CheckStepConnectionArgs
 
 
 
@@ -13342,7 +13342,7 @@ class StatusCheckRollupContextConnectionField(StatusCheckRollupContextConnection
    StatusCheckRollupContextConnectionField - A list of status contexts and check runs for this commit.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class StatusCheckRollupContextConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13358,7 +13358,7 @@ class StatusCheckRollupContextConnectionField(StatusCheckRollupContextConnection
       first: int
       last: int
 
-   _args: Args
+   _args: StatusCheckRollupContextConnectionArgs
 
 
 
@@ -13367,14 +13367,14 @@ class StatusContextField(StatusContext):
    StatusContextField - Looks up an individual status context by context name.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class StatusContextArgs(GQLArgsSet, GQLObject): 
       """
       name - The context name.
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: StatusContextArgs
 
 
 
@@ -13448,7 +13448,7 @@ message trailer. The git author will always be first.
 
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GitActorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13464,7 +13464,7 @@ message trailer. The git author will always be first.
       first: int
       last: int
 
-   _args: Args
+   _args: GitActorConnectionArgs
 
 
 
@@ -13473,14 +13473,14 @@ class BlameField(Blame):
    BlameField - Fetches `git blame` information.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class BlameArgs(GQLArgsSet, GQLObject): 
       """
       path - The file whose Git blame information you want.
 
       """
       path: str ##NON NULL
 
-   _args: Args
+   _args: BlameArgs
 
 
 
@@ -13489,7 +13489,7 @@ class CheckSuiteConnectionField(CheckSuiteConnection):
    CheckSuiteConnectionField - The check suites associated with a commit.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckSuiteConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13508,7 +13508,7 @@ class CheckSuiteConnectionField(CheckSuiteConnection):
       last: int
       filterBy: CheckSuiteFilter
 
-   _args: Args
+   _args: CheckSuiteConnectionArgs
 
 
 
@@ -13517,14 +13517,14 @@ class TreeEntryField(TreeEntry):
    TreeEntryField - The tree entry representing the file located at the given path.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TreeEntryArgs(GQLArgsSet, GQLObject): 
       """
       path - The path for the file
 
       """
       path: str ##NON NULL
 
-   _args: Args
+   _args: TreeEntryArgs
 
 
 
@@ -13533,7 +13533,7 @@ class CommitHistoryConnectionField(CommitHistoryConnection):
    CommitHistoryConnectionField - The linear commit history starting from (and including) this commit, in the same order as `git log`.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitHistoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13561,7 +13561,7 @@ class CommitHistoryConnectionField(CommitHistoryConnection):
       since: GitTimestamp
       until: GitTimestamp
 
-   _args: Args
+   _args: CommitHistoryConnectionArgs
 
 
 
@@ -13570,7 +13570,7 @@ class CommitConnectionField(CommitConnection):
    CommitConnectionField - The parents of a commit.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13586,7 +13586,7 @@ class CommitConnectionField(CommitConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: CommitConnectionArgs
 
 
 
@@ -13924,7 +13924,7 @@ class CreatedCommitContributionConnectionField(CreatedCommitContributionConnecti
    CreatedCommitContributionConnectionField - The commit contributions, each representing a day.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedCommitContributionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -13943,7 +13943,7 @@ class CreatedCommitContributionConnectionField(CreatedCommitContributionConnecti
       last: int
       orderBy: CommitContributionOrder
 
-   _args: Args
+   _args: CreatedCommitContributionConnectionArgs
 
 
 
@@ -14151,7 +14151,7 @@ class CreatedIssueContributionConnectionField(CreatedIssueContributionConnection
    CreatedIssueContributionConnectionField - The issue contributions.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedIssueContributionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14170,7 +14170,7 @@ class CreatedIssueContributionConnectionField(CreatedIssueContributionConnection
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedIssueContributionConnectionArgs
 
 
 
@@ -14246,7 +14246,7 @@ class CreatedPullRequestContributionConnectionField(CreatedPullRequestContributi
    CreatedPullRequestContributionConnectionField - The pull request contributions.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedPullRequestContributionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14265,7 +14265,7 @@ class CreatedPullRequestContributionConnectionField(CreatedPullRequestContributi
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedPullRequestContributionConnectionArgs
 
 
 
@@ -14350,7 +14350,7 @@ class CreatedPullRequestReviewContributionConnectionField(CreatedPullRequestRevi
    CreatedPullRequestReviewContributionConnectionField - The pull request review contributions.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedPullRequestReviewContributionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14369,7 +14369,7 @@ class CreatedPullRequestReviewContributionConnectionField(CreatedPullRequestRevi
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedPullRequestReviewContributionConnectionArgs
 
 
 
@@ -14420,14 +14420,14 @@ class CommitContributionsByRepositoryField(CommitContributionsByRepository):
    CommitContributionsByRepositoryField - Commit contributions made by the user, grouped by repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       """
       maxRepositories - How many repositories should be included.
 
       """
       maxRepositories: int
 
-   _args: Args
+   _args: CommitContributionsByRepositoryArgs
 
 
 
@@ -14436,7 +14436,7 @@ class IssueContributionsByRepositoryField(IssueContributionsByRepository):
    IssueContributionsByRepositoryField - Issue contributions made by the user, grouped by repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       """
       maxRepositories - How many repositories should be included.
 
@@ -14449,7 +14449,7 @@ class IssueContributionsByRepositoryField(IssueContributionsByRepository):
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: IssueContributionsByRepositoryArgs
 
 
 
@@ -14458,7 +14458,7 @@ class PullRequestContributionsByRepositoryField(PullRequestContributionsByReposi
    PullRequestContributionsByRepositoryField - Pull request contributions made by the user, grouped by repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       """
       maxRepositories - How many repositories should be included.
 
@@ -14471,7 +14471,7 @@ class PullRequestContributionsByRepositoryField(PullRequestContributionsByReposi
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: PullRequestContributionsByRepositoryArgs
 
 
 
@@ -14480,14 +14480,14 @@ class PullRequestReviewContributionsByRepositoryField(PullRequestReviewContribut
    PullRequestReviewContributionsByRepositoryField - Pull request review contributions made by the user, grouped by repository.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       """
       maxRepositories - How many repositories should be included.
 
       """
       maxRepositories: int
 
-   _args: Args
+   _args: PullRequestReviewContributionsByRepositoryArgs
 
 
 
@@ -14496,7 +14496,7 @@ class CreatedRepositoryContributionConnectionField(CreatedRepositoryContribution
    CreatedRepositoryContributionConnectionField - A list of repositories owned by the user that the user created in this time range.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedRepositoryContributionConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14518,7 +14518,7 @@ class CreatedRepositoryContributionConnectionField(CreatedRepositoryContribution
       excludeFirst: bool
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedRepositoryContributionConnectionArgs
 
 
 
@@ -14860,7 +14860,7 @@ class GistCommentConnectionField(GistCommentConnection):
    GistCommentConnectionField - A list of comments associated with the gist
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GistCommentConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14876,7 +14876,7 @@ class GistCommentConnectionField(GistCommentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: GistCommentConnectionArgs
 
 
 
@@ -14885,7 +14885,7 @@ class GistFileField(GistFile):
    GistFileField - The files in this gist.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GistFileArgs(GQLArgsSet, GQLObject): 
       """
       limit - The maximum number of files to return.
 
@@ -14895,7 +14895,7 @@ class GistFileField(GistFile):
       limit: int
       oid: GitObjectID
 
-   _args: Args
+   _args: GistFileArgs
 
 
 
@@ -14904,7 +14904,7 @@ class GistConnectionField(GistConnection):
    GistConnectionField - A list of forks associated with the gist
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GistConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -14923,7 +14923,7 @@ class GistConnectionField(GistConnection):
       last: int
       orderBy: GistOrder
 
-   _args: Args
+   _args: GistConnectionArgs
 
 
 
@@ -15021,7 +15021,7 @@ class PinnableItemConnectionField(PinnableItemConnection):
    PinnableItemConnectionField - The repositories and gists in the showcase. If the profile owner has any pinned items, those will be returned. Otherwise, the profile owner's popular repositories will be returned.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnableItemConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15037,7 +15037,7 @@ class PinnableItemConnectionField(PinnableItemConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PinnableItemConnectionArgs
 
 
 
@@ -15261,14 +15261,14 @@ class SponsorsListingFeaturedItemField(SponsorsListingFeaturedItem):
    SponsorsListingFeaturedItemField - The records featured on the GitHub Sponsors profile.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsListingFeaturedItemArgs(GQLArgsSet, GQLObject): 
       """
       featureableTypes - The types of featured items to return.
 
       """
       featureableTypes: list[SponsorsListingFeaturedItemFeatureableType] ##NON NULL
 
-   _args: Args
+   _args: SponsorsListingFeaturedItemArgs
 
 
 
@@ -15277,7 +15277,7 @@ class SponsorsTierConnectionField(SponsorsTierConnection):
    SponsorsTierConnectionField - The published tiers for this GitHub Sponsors listing.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsTierConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15296,7 +15296,7 @@ class SponsorsTierConnectionField(SponsorsTierConnection):
       last: int
       orderBy: SponsorsTierOrder
 
-   _args: Args
+   _args: SponsorsTierConnectionArgs
 
 
 
@@ -15427,7 +15427,7 @@ class SponsorConnectionField(SponsorConnection):
    SponsorConnectionField - List of users and organizations this entity is sponsoring.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15446,7 +15446,7 @@ class SponsorConnectionField(SponsorConnection):
       last: int
       orderBy: SponsorOrder
 
-   _args: Args
+   _args: SponsorConnectionArgs
 
 
 
@@ -15455,7 +15455,7 @@ class SponsorsActivityConnectionField(Generic[SponsorsActivityConnection]):
    SponsorsActivityConnectionField - Events involving this sponsorable, such as new sponsorships.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsActivityConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15489,7 +15489,7 @@ class SponsorsActivityConnectionField(Generic[SponsorsActivityConnection]):
       actions: list[SponsorsActivityAction] ##NON NULL
       includeAsSponsor: bool
 
-   _args: Args
+   _args: SponsorsActivityConnectionArgs
 
 
 
@@ -15498,7 +15498,7 @@ class SponsorshipNewsletterConnectionField(SponsorshipNewsletterConnection):
    SponsorshipNewsletterConnectionField - List of sponsorship updates sent from this sponsorable to sponsors.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorshipNewsletterConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15517,7 +15517,7 @@ class SponsorshipNewsletterConnectionField(SponsorshipNewsletterConnection):
       last: int
       orderBy: SponsorshipNewsletterOrder
 
-   _args: Args
+   _args: SponsorshipNewsletterConnectionArgs
 
 
 
@@ -15526,7 +15526,7 @@ class SponsorshipConnectionField(Generic[SponsorshipConnection]):
    SponsorshipConnectionField - This object's sponsorships as the maintainer.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorshipConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15548,7 +15548,7 @@ class SponsorshipConnectionField(Generic[SponsorshipConnection]):
       includePrivate: bool
       orderBy: SponsorshipOrder
 
-   _args: Args
+   _args: SponsorshipConnectionArgs
 
 
 
@@ -15828,7 +15828,7 @@ class ContributionsCollectionField(ContributionsCollection):
    ContributionsCollectionField - The collection of contributions this user has made to different repositories.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ContributionsCollectionArgs(GQLArgsSet, GQLObject): 
       """
       organizationID - The ID of the organization used to filter contributions.
 
@@ -15841,7 +15841,7 @@ class ContributionsCollectionField(ContributionsCollection):
       from_: DateTime
       to: DateTime
 
-   _args: Args
+   _args: ContributionsCollectionArgs
 
 
 
@@ -15850,7 +15850,7 @@ class FollowerConnectionField(FollowerConnection):
    FollowerConnectionField - A list of users the given user is followed by.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowerConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15866,7 +15866,7 @@ class FollowerConnectionField(FollowerConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: FollowerConnectionArgs
 
 
 
@@ -15875,7 +15875,7 @@ class FollowingConnectionField(FollowingConnection):
    FollowingConnectionField - A list of users the given user is following.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowingConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15891,7 +15891,7 @@ class FollowingConnectionField(FollowingConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: FollowingConnectionArgs
 
 
 
@@ -15900,14 +15900,14 @@ class GistField(Gist):
    GistField - Find gist by repo name.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class GistArgs(GQLArgsSet, GQLObject): 
       """
       name - The gist name to find.
 
       """
       name: str ##NON NULL
 
-   _args: Args
+   _args: GistArgs
 
 
 
@@ -15916,14 +15916,14 @@ class OrganizationField(Generic[Organization]):
    OrganizationField - Find an organization by its login that the user belongs to.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationArgs(GQLArgsSet, GQLObject): 
       """
       login - The login of the organization to find.
 
       """
       login: str ##NON NULL
 
-   _args: Args
+   _args: OrganizationArgs
 
 
 
@@ -15932,7 +15932,7 @@ class OrganizationConnectionField(OrganizationConnection):
    OrganizationConnectionField - A list of organizations the user belongs to.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15948,7 +15948,7 @@ class OrganizationConnectionField(OrganizationConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationConnectionArgs
 
 
 
@@ -15957,7 +15957,7 @@ class PublicKeyConnectionField(PublicKeyConnection):
    PublicKeyConnectionField - A list of public keys associated with this user.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class PublicKeyConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -15973,7 +15973,7 @@ class PublicKeyConnectionField(PublicKeyConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: PublicKeyConnectionArgs
 
 
 
@@ -15982,7 +15982,7 @@ class SavedReplyConnectionField(SavedReplyConnection):
    SavedReplyConnectionField - Replies this user has saved
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class SavedReplyConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -16001,7 +16001,7 @@ class SavedReplyConnectionField(SavedReplyConnection):
       last: int
       orderBy: SavedReplyOrder
 
-   _args: Args
+   _args: SavedReplyConnectionArgs
 
 
 
@@ -16010,7 +16010,7 @@ class StarredRepositoryConnectionField(StarredRepositoryConnection):
    StarredRepositoryConnectionField - Repositories the user has starred.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class StarredRepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -16032,7 +16032,7 @@ class StarredRepositoryConnectionField(StarredRepositoryConnection):
       ownedByViewer: bool
       orderBy: StarOrder
 
-   _args: Args
+   _args: StarredRepositoryConnectionArgs
 
 
 
@@ -20763,7 +20763,7 @@ class ExternalIdentityConnectionField(ExternalIdentityConnection):
    ExternalIdentityConnectionField - External Identities provisioned by this Identity Provider
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class ExternalIdentityConnectionArgs(GQLArgsSet, GQLObject): 
       """
       membersOnly - Filter to external identities with valid org membership only
 
@@ -20788,7 +20788,7 @@ class ExternalIdentityConnectionField(ExternalIdentityConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ExternalIdentityConnectionArgs
 
 
 
@@ -20825,7 +20825,7 @@ class OrganizationAuditEntryConnectionField(OrganizationAuditEntryConnection):
    OrganizationAuditEntryConnectionField - Audit log entries of the organization
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationAuditEntryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -20847,7 +20847,7 @@ class OrganizationAuditEntryConnectionField(OrganizationAuditEntryConnection):
       query: str
       orderBy: AuditLogOrder
 
-   _args: Args
+   _args: OrganizationAuditEntryConnectionArgs
 
 
 
@@ -20856,7 +20856,7 @@ class VerifiableDomainConnectionField(VerifiableDomainConnection):
    VerifiableDomainConnectionField - A list of domains owned by the organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class VerifiableDomainConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -20881,7 +20881,7 @@ class VerifiableDomainConnectionField(VerifiableDomainConnection):
       isApproved: bool
       orderBy: VerifiableDomainOrder
 
-   _args: Args
+   _args: VerifiableDomainConnectionArgs
 
 
 
@@ -20890,7 +20890,7 @@ class OrganizationEnterpriseOwnerConnectionField(OrganizationEnterpriseOwnerConn
    OrganizationEnterpriseOwnerConnectionField - A list of owners of the organization's enterprise account.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationEnterpriseOwnerConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - The search string to look for.
 
@@ -20915,7 +20915,7 @@ class OrganizationEnterpriseOwnerConnectionField(OrganizationEnterpriseOwnerConn
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationEnterpriseOwnerConnectionArgs
 
 
 
@@ -20924,7 +20924,7 @@ class IpAllowListEntryConnectionField(Generic[IpAllowListEntryConnection]):
    IpAllowListEntryConnectionField - The IP addresses that are allowed to access resources owned by the organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class IpAllowListEntryConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -20943,7 +20943,7 @@ class IpAllowListEntryConnectionField(Generic[IpAllowListEntryConnection]):
       last: int
       orderBy: IpAllowListEntryOrder
 
-   _args: Args
+   _args: IpAllowListEntryConnectionArgs
 
 
 
@@ -20952,7 +20952,7 @@ class MannequinConnectionField(MannequinConnection):
    MannequinConnectionField - A list of all mannequins for this organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class MannequinConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -20971,7 +20971,7 @@ class MannequinConnectionField(MannequinConnection):
       last: int
       orderBy: MannequinOrder
 
-   _args: Args
+   _args: MannequinConnectionArgs
 
 
 
@@ -20980,7 +20980,7 @@ class OrganizationMemberConnectionField(OrganizationMemberConnection):
    OrganizationMemberConnectionField - A list of users who are members of this organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationMemberConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -20996,7 +20996,7 @@ class OrganizationMemberConnectionField(OrganizationMemberConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationMemberConnectionArgs
 
 
 
@@ -21005,7 +21005,7 @@ class RepositoryMigrationConnectionField(RepositoryMigrationConnection):
    RepositoryMigrationConnectionField - A list of all repository migrations for this organization.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryMigrationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -21030,7 +21030,7 @@ class RepositoryMigrationConnectionField(RepositoryMigrationConnection):
       repositoryName: str
       orderBy: RepositoryMigrationOrder
 
-   _args: Args
+   _args: RepositoryMigrationConnectionArgs
 
 
 
@@ -21039,14 +21039,14 @@ class TeamField(Team):
    TeamField - Find an organization's team by its slug.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamArgs(GQLArgsSet, GQLObject): 
       """
       slug - The name or slug of the team to find.
 
       """
       slug: str ##NON NULL
 
-   _args: Args
+   _args: TeamArgs
 
 
 
@@ -21332,7 +21332,7 @@ class EnterpriseOrganizationMembershipConnectionField(EnterpriseOrganizationMemb
    EnterpriseOrganizationMembershipConnectionField - A list of enterprise organizations this user is a member of.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseOrganizationMembershipConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - The search string to look for.
 
@@ -21357,7 +21357,7 @@ class EnterpriseOrganizationMembershipConnectionField(EnterpriseOrganizationMemb
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseOrganizationMembershipConnectionArgs
 
 
 
@@ -21521,7 +21521,7 @@ class EnterpriseServerUserAccountEmailConnectionField(EnterpriseServerUserAccoun
    EnterpriseServerUserAccountEmailConnectionField - User emails belonging to this user account.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountEmailConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for Enterprise Server user account emails returned from the connection.
 
@@ -21540,7 +21540,7 @@ class EnterpriseServerUserAccountEmailConnectionField(EnterpriseServerUserAccoun
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountEmailConnectionArgs
 
 
 
@@ -21668,7 +21668,7 @@ class EnterpriseServerUserAccountConnectionField(EnterpriseServerUserAccountConn
    EnterpriseServerUserAccountConnectionField - User accounts on this Enterprise Server installation.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for Enterprise Server user accounts returned from the connection.
 
@@ -21687,7 +21687,7 @@ class EnterpriseServerUserAccountConnectionField(EnterpriseServerUserAccountConn
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountConnectionArgs
 
 
 
@@ -21696,7 +21696,7 @@ class EnterpriseServerUserAccountsUploadConnectionField(EnterpriseServerUserAcco
    EnterpriseServerUserAccountsUploadConnectionField - User accounts uploads for the Enterprise Server installation.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountsUploadConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for Enterprise Server user accounts uploads returned from the connection.
 
@@ -21715,7 +21715,7 @@ class EnterpriseServerUserAccountsUploadConnectionField(EnterpriseServerUserAcco
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountsUploadConnectionArgs
 
 
 
@@ -21831,7 +21831,7 @@ class EnterpriseRepositoryInfoConnectionField(EnterpriseRepositoryInfoConnection
    EnterpriseRepositoryInfoConnectionField - The enterprise organization repositories this user is a member of.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseRepositoryInfoConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -21850,7 +21850,7 @@ class EnterpriseRepositoryInfoConnectionField(EnterpriseRepositoryInfoConnection
       last: int
       orderBy: RepositoryOrder
 
-   _args: Args
+   _args: EnterpriseRepositoryInfoConnectionArgs
 
 
 
@@ -22162,7 +22162,7 @@ class EnterpriseAdministratorConnectionField(EnterpriseAdministratorConnection):
    EnterpriseAdministratorConnectionField - A list of all of the administrators for this enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       organizationLogins - Only return members within the organizations with these logins
 
@@ -22193,7 +22193,7 @@ class EnterpriseAdministratorConnectionField(EnterpriseAdministratorConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseAdministratorConnectionArgs
 
 
 
@@ -22202,7 +22202,7 @@ class EnterpriseServerInstallationConnectionField(EnterpriseServerInstallationCo
    EnterpriseServerInstallationConnectionField - Enterprise Server installations owned by the enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerInstallationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -22224,7 +22224,7 @@ class EnterpriseServerInstallationConnectionField(EnterpriseServerInstallationCo
       connectedOnly: bool
       orderBy: EnterpriseServerInstallationOrder
 
-   _args: Args
+   _args: EnterpriseServerInstallationConnectionArgs
 
 
 
@@ -22233,7 +22233,7 @@ class EnterpriseOutsideCollaboratorConnectionField(EnterpriseOutsideCollaborator
    EnterpriseOutsideCollaboratorConnectionField - A list of outside collaborators across the repositories in the enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseOutsideCollaboratorConnectionArgs(GQLArgsSet, GQLObject): 
       """
       login - The login of one specific outside collaborator.
 
@@ -22267,7 +22267,7 @@ class EnterpriseOutsideCollaboratorConnectionField(EnterpriseOutsideCollaborator
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseOutsideCollaboratorConnectionArgs
 
 
 
@@ -22276,7 +22276,7 @@ class EnterpriseAdministratorInvitationConnectionField(EnterpriseAdministratorIn
    EnterpriseAdministratorInvitationConnectionField - A list of pending administrator invitations for the enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - The search string to look for.
 
@@ -22301,7 +22301,7 @@ class EnterpriseAdministratorInvitationConnectionField(EnterpriseAdministratorIn
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseAdministratorInvitationConnectionArgs
 
 
 
@@ -22310,7 +22310,7 @@ class RepositoryInvitationConnectionField(RepositoryInvitationConnection):
    RepositoryInvitationConnectionField - A list of pending collaborator invitations across the repositories in the enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - The search string to look for.
 
@@ -22332,7 +22332,7 @@ class RepositoryInvitationConnectionField(RepositoryInvitationConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryInvitationConnectionArgs
 
 
 
@@ -22341,7 +22341,7 @@ class EnterprisePendingMemberInvitationConnectionField(EnterprisePendingMemberIn
    EnterprisePendingMemberInvitationConnectionField - A list of pending member invitations for organizations in the enterprise.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterprisePendingMemberInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       """
       query - The search string to look for.
 
@@ -22363,7 +22363,7 @@ class EnterprisePendingMemberInvitationConnectionField(EnterprisePendingMemberIn
       first: int
       last: int
 
-   _args: Args
+   _args: EnterprisePendingMemberInvitationConnectionArgs
 
 
 
@@ -22372,7 +22372,7 @@ class EnterpriseMemberConnectionField(EnterpriseMemberConnection):
    EnterpriseMemberConnectionField - A list of members with a support entitlement.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseMemberConnectionArgs(GQLArgsSet, GQLObject): 
       """
       orderBy - Ordering options for support entitlement users returned from the connection.
 
@@ -22391,7 +22391,7 @@ class EnterpriseMemberConnectionField(EnterpriseMemberConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseMemberConnectionArgs
 
 
 
@@ -22758,7 +22758,7 @@ class CheckRunConnectionField(CheckRunConnection):
    CheckRunConnectionField - The check runs associated with a check suite.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckRunConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -22777,7 +22777,7 @@ class CheckRunConnectionField(CheckRunConnection):
       last: int
       filterBy: CheckRunFilter
 
-   _args: Args
+   _args: CheckRunConnectionArgs
 
 
 
@@ -22923,7 +22923,7 @@ class WorkflowRunConnectionField(Generic[WorkflowRunConnection]):
    WorkflowRunConnectionField - The runs of the workflow.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class WorkflowRunConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -22942,7 +22942,7 @@ class WorkflowRunConnectionField(Generic[WorkflowRunConnection]):
       last: int
       orderBy: WorkflowRunOrder
 
-   _args: Args
+   _args: WorkflowRunConnectionArgs
 
 
 
@@ -22973,7 +22973,7 @@ class DeploymentReviewConnectionField(DeploymentReviewConnection):
    DeploymentReviewConnectionField - The log of deployment reviews
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentReviewConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -22989,7 +22989,7 @@ class DeploymentReviewConnectionField(DeploymentReviewConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentReviewConnectionArgs
 
 
 
@@ -22998,7 +22998,7 @@ class DeploymentRequestConnectionField(DeploymentRequestConnection):
    DeploymentRequestConnectionField - The pending deployment requests of all check runs in this workflow run
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentRequestConnectionArgs(GQLArgsSet, GQLObject): 
       """
       after - Returns the elements in the list that come after the specified cursor.
 
@@ -23014,7 +23014,7 @@ class DeploymentRequestConnectionField(DeploymentRequestConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentRequestConnectionArgs
 
 
 
@@ -23620,11 +23620,14 @@ class RemoveReactionPayload(GQLObject):
 
    reaction - The reaction object.
 
+   reactionGroups - The reaction groups for the subject.
+
    subject - The reactable subject.
 
    """
    clientMutationId: str
    reaction: Reaction
+   reactionGroups: list[ReactionGroup]
    subject: Reactable
 
 class RemoveEnterpriseOrganizationPayload(GQLObject):
@@ -24244,11 +24247,14 @@ class AddReactionPayload(GQLObject):
 
    reaction - The reaction object.
 
+   reactionGroups - The reaction groups for the subject.
+
    subject - The reactable subject.
 
    """
    clientMutationId: str
    reaction: Reaction
+   reactionGroups: list[ReactionGroup]
    subject: Reactable
 
 class AddPullRequestReviewPayload(GQLObject):

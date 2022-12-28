@@ -1030,7 +1030,7 @@ class ReactionConnection(GQLObject):
    viewerHasReacted: bool ##NON NULL
 
 class ReactionConnectionField(ReactionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReactionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -1038,7 +1038,7 @@ class ReactionConnectionField(ReactionConnection):
       content: ReactionContent
       orderBy: ReactionOrder
 
-   _args: Args
+   _args: ReactionConnectionArgs
 
 
 
@@ -1061,13 +1061,13 @@ class ReactingUserConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ReactorConnectionField(ReactorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReactorConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ReactorConnectionArgs
 
 
 
@@ -1099,13 +1099,13 @@ class UserContentEditConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class UserContentEditConnectionField(UserContentEditConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class UserContentEditConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: UserContentEditConnectionArgs
 
 
 
@@ -1149,7 +1149,7 @@ class TeamDiscussionCommentConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class TeamDiscussionCommentConnectionField(TeamDiscussionCommentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionCommentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -1157,7 +1157,7 @@ class TeamDiscussionCommentConnectionField(TeamDiscussionCommentConnection):
       orderBy: TeamDiscussionCommentOrder
       fromComment: int
 
-   _args: Args
+   _args: TeamDiscussionCommentConnectionArgs
 
 
 
@@ -1390,13 +1390,13 @@ class DeploymentStatusConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class DeploymentStatusConnectionField(DeploymentStatusConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentStatusConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentStatusConnectionArgs
 
 
 
@@ -1441,13 +1441,13 @@ class DiscussionCommentConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class DiscussionCommentConnectionField(DiscussionCommentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DiscussionCommentConnectionArgs
 
 
 
@@ -1513,7 +1513,7 @@ class IssueConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class IssueConnectionField(IssueConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: IssueOrder
       labels: list[str] ##NON NULL
       states: list[IssueState] ##NON NULL
@@ -1523,12 +1523,12 @@ class IssueConnectionField(IssueConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: IssueConnectionArgs
 
 
 
 class PullRequestConnectionField(Generic[PullRequestConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestConnectionArgs(GQLArgsSet, GQLObject): 
       states: list[PullRequestState] ##NON NULL
       labels: list[str] ##NON NULL
       headRefName: str
@@ -1539,7 +1539,7 @@ class PullRequestConnectionField(Generic[PullRequestConnection]):
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestConnectionArgs
 
 
 
@@ -1585,14 +1585,14 @@ class DiscussionPollOptionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class DiscussionPollOptionConnectionField(DiscussionPollOptionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionPollOptionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: DiscussionPollOptionOrder
 
-   _args: Args
+   _args: DiscussionPollOptionConnectionArgs
 
 
 
@@ -1606,14 +1606,14 @@ class DiscussionPoll(GQLObject):
    viewerHasVoted: bool ##NON NULL
 
 class LabelConnectionField(LabelConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class LabelConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: LabelOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: LabelConnectionArgs
 
 
 
@@ -1693,13 +1693,13 @@ class DeploymentReviewerConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class DeploymentReviewerConnectionField(DeploymentReviewerConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentReviewerConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentReviewerConnectionArgs
 
 
 
@@ -1720,13 +1720,13 @@ class DeploymentProtectionRuleConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class DeploymentProtectionRuleConnectionField(DeploymentProtectionRuleConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentProtectionRuleConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentProtectionRuleConnectionArgs
 
 
 
@@ -1796,25 +1796,25 @@ class ReleaseAssetConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class UserConnectionField(UserConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class UserConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: UserConnectionArgs
 
 
 
 class ReleaseAssetConnectionField(ReleaseAssetConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseAssetConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       name: str
 
-   _args: Args
+   _args: ReleaseAssetConnectionArgs
 
 
 
@@ -1899,7 +1899,7 @@ class GitObject(GQLObject):
    repository: NewType('Repository', GQLObject) ##NON NULL ## Circular Reference for Repository
 
 class RepositoryConnectionField(RepositoryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
       affiliations: list[RepositoryAffiliation]
@@ -1911,16 +1911,16 @@ class RepositoryConnectionField(RepositoryConnection):
       last: int
       isFork: bool
 
-   _args: Args
+   _args: RepositoryConnectionArgs
 
 
 
 class RepositoryField(Generic[Repository]):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
       followRenames: bool
 
-   _args: Args
+   _args: RepositoryArgs
 
 
 
@@ -1955,14 +1955,14 @@ class PackageFileConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class PackageFileConnectionField(PackageFileConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageFileConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: PackageFileOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PackageFileConnectionArgs
 
 
 
@@ -1989,22 +1989,22 @@ class PackageVersionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class PackageVersionField(PackageVersion):
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageVersionArgs(GQLArgsSet, GQLObject): 
       version: str ##NON NULL
 
-   _args: Args
+   _args: PackageVersionArgs
 
 
 
 class PackageVersionConnectionField(PackageVersionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageVersionConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: PackageVersionOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PackageVersionConnectionArgs
 
 
 
@@ -2096,14 +2096,14 @@ class ProjectCardConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ProjectCardConnectionField(ProjectCardConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectCardConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       archivedStates: list[ProjectCardArchivedState]
 
-   _args: Args
+   _args: ProjectCardConnectionArgs
 
 
 
@@ -2140,15 +2140,15 @@ class ProjectConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ProjectField(Generic[Project]):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: ProjectArgs
 
 
 
 class ProjectConnectionField(ProjectConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: ProjectOrder
       search: str
       states: list[ProjectState] ##NON NULL
@@ -2157,7 +2157,7 @@ class ProjectConnectionField(ProjectConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectConnectionArgs
 
 
 
@@ -2170,13 +2170,13 @@ class ProjectOwner(GQLObject):
    viewerCanCreateProjects: bool ##NON NULL
 
 class ProjectColumnConnectionField(ProjectColumnConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectColumnConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectColumnConnectionArgs
 
 
 
@@ -2258,22 +2258,22 @@ class StargazerConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class TopicField(Generic[Topic]):
-   class Args(GQLArgsSet, GQLObject): 
+   class TopicArgs(GQLArgsSet, GQLObject): 
       first: int
 
-   _args: Args
+   _args: TopicArgs
 
 
 
 class StargazerConnectionField(StargazerConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class StargazerConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: StarOrder
 
-   _args: Args
+   _args: StargazerConnectionArgs
 
 
 
@@ -2346,18 +2346,18 @@ class SecurityVulnerabilityConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CWEConnectionField(CWEConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CWEConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: CWEConnectionArgs
 
 
 
 class SecurityVulnerabilityConnectionField(SecurityVulnerabilityConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SecurityVulnerabilityConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
@@ -2368,7 +2368,7 @@ class SecurityVulnerabilityConnectionField(SecurityVulnerabilityConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: SecurityVulnerabilityConnectionArgs
 
 
 
@@ -2422,26 +2422,26 @@ class RepositoryVulnerabilityAlertConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class BranchProtectionRuleConnectionField(BranchProtectionRuleConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class BranchProtectionRuleConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: BranchProtectionRuleConnectionArgs
 
 
 
 class RepositoryCodeownersField(RepositoryCodeowners):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryCodeownersArgs(GQLArgsSet, GQLObject): 
       refName: str
 
-   _args: Args
+   _args: RepositoryCodeownersArgs
 
 
 
 class RepositoryCollaboratorConnectionField(RepositoryCollaboratorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryCollaboratorConnectionArgs(GQLArgsSet, GQLObject): 
       affiliation: CollaboratorAffiliation
       query: str
       after: str
@@ -2449,34 +2449,34 @@ class RepositoryCollaboratorConnectionField(RepositoryCollaboratorConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryCollaboratorConnectionArgs
 
 
 
 class CommitCommentConnectionField(Generic[CommitCommentConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitCommentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: CommitCommentConnectionArgs
 
 
 
 class DeployKeyConnectionField(DeployKeyConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeployKeyConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeployKeyConnectionArgs
 
 
 
 class DeploymentConnectionField(DeploymentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentConnectionArgs(GQLArgsSet, GQLObject): 
       environments: list[str] ##NON NULL
       orderBy: DeploymentOrder
       after: str
@@ -2484,40 +2484,40 @@ class DeploymentConnectionField(DeploymentConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentConnectionArgs
 
 
 
 class DiscussionField(Discussion):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: DiscussionArgs
 
 
 
 class DiscussionCategoryConnectionField(DiscussionCategoryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCategoryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       filterByAssignable: bool
 
-   _args: Args
+   _args: DiscussionCategoryConnectionArgs
 
 
 
 class DiscussionCategoryField(DiscussionCategory):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionCategoryArgs(GQLArgsSet, GQLObject): 
       slug: str ##NON NULL
 
-   _args: Args
+   _args: DiscussionCategoryArgs
 
 
 
 class DiscussionConnectionField(DiscussionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -2525,75 +2525,75 @@ class DiscussionConnectionField(DiscussionConnection):
       categoryId: ID
       orderBy: DiscussionOrder
 
-   _args: Args
+   _args: DiscussionConnectionArgs
 
 
 
 class EnvironmentField(Environment):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnvironmentArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: EnvironmentArgs
 
 
 
 class EnvironmentConnectionField(EnvironmentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnvironmentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: EnvironmentConnectionArgs
 
 
 
 class IssueField(Generic[Issue]):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: IssueArgs
 
 
 
 class IssueOrPullRequestField(IssueOrPullRequest):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueOrPullRequestArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: IssueOrPullRequestArgs
 
 
 
 class LabelField(Label):
-   class Args(GQLArgsSet, GQLObject): 
+   class LabelArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: LabelArgs
 
 
 
 class LanguageConnectionField(LanguageConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class LanguageConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: LanguageOrder
 
-   _args: Args
+   _args: LanguageConnectionArgs
 
 
 
 class MilestoneField(Milestone):
-   class Args(GQLArgsSet, GQLObject): 
+   class MilestoneArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: MilestoneArgs
 
 
 
 class MilestoneConnectionField(MilestoneConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class MilestoneConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -2602,21 +2602,21 @@ class MilestoneConnectionField(MilestoneConnection):
       orderBy: MilestoneOrder
       query: str
 
-   _args: Args
+   _args: MilestoneConnectionArgs
 
 
 
 class GitObjectField(GitObject):
-   class Args(GQLArgsSet, GQLObject): 
+   class GitObjectArgs(GQLArgsSet, GQLObject): 
       oid: GitObjectID
       expression: str
 
-   _args: Args
+   _args: GitObjectArgs
 
 
 
 class PackageConnectionField(PackageConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PackageConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -2626,34 +2626,34 @@ class PackageConnectionField(PackageConnection):
       packageType: PackageType
       orderBy: PackageOrder
 
-   _args: Args
+   _args: PackageConnectionArgs
 
 
 
 class PinnedDiscussionConnectionField(PinnedDiscussionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnedDiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PinnedDiscussionConnectionArgs
 
 
 
 class PinnedIssueConnectionField(PinnedIssueConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnedIssueConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PinnedIssueConnectionArgs
 
 
 
 class ProjectV2ConnectionField(ProjectV2Connection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -2661,28 +2661,28 @@ class ProjectV2ConnectionField(ProjectV2Connection):
       query: str
       orderBy: ProjectV2Order
 
-   _args: Args
+   _args: ProjectV2ConnectionArgs
 
 
 
 class PullRequestField(Generic[PullRequest]):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: PullRequestArgs
 
 
 
 class RefField(Generic[Ref]):
-   class Args(GQLArgsSet, GQLObject): 
+   class RefArgs(GQLArgsSet, GQLObject): 
       qualifiedName: str ##NON NULL
 
-   _args: Args
+   _args: RefArgs
 
 
 
 class RefConnectionField(RefConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RefConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       after: str
       before: str
@@ -2692,54 +2692,54 @@ class RefConnectionField(RefConnection):
       direction: OrderDirection
       orderBy: RefOrder
 
-   _args: Args
+   _args: RefConnectionArgs
 
 
 
 class ReleaseField(Release):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseArgs(GQLArgsSet, GQLObject): 
       tagName: str ##NON NULL
 
-   _args: Args
+   _args: ReleaseArgs
 
 
 
 class ReleaseConnectionField(ReleaseConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReleaseConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ReleaseOrder
 
-   _args: Args
+   _args: ReleaseConnectionArgs
 
 
 
 class RepositoryTopicConnectionField(RepositoryTopicConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryTopicConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryTopicConnectionArgs
 
 
 
 class SubmoduleConnectionField(SubmoduleConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SubmoduleConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: SubmoduleConnectionArgs
 
 
 
 class RepositoryVulnerabilityAlertConnectionField(RepositoryVulnerabilityAlertConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryVulnerabilityAlertConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -2747,7 +2747,7 @@ class RepositoryVulnerabilityAlertConnectionField(RepositoryVulnerabilityAlertCo
       states: list[RepositoryVulnerabilityAlertState] ##NON NULL
       dependencyScopes: list[RepositoryVulnerabilityAlertDependencyScope] ##NON NULL
 
-   _args: Args
+   _args: RepositoryVulnerabilityAlertConnectionArgs
 
 
 
@@ -3199,62 +3199,62 @@ class IssueTimelineItemsConnection(GQLObject):
    updatedAt: DateTime ##NON NULL
 
 class IssueCommentConnectionField(IssueCommentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueCommentConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: IssueCommentOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: IssueCommentConnectionArgs
 
 
 
 class HovercardField(Hovercard):
-   class Args(GQLArgsSet, GQLObject): 
+   class HovercardArgs(GQLArgsSet, GQLObject): 
       includeNotificationContexts: bool
 
-   _args: Args
+   _args: HovercardArgs
 
 
 
 class LinkedBranchConnectionField(LinkedBranchConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class LinkedBranchConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: LinkedBranchConnectionArgs
 
 
 
 class ProjectV2ItemConnectionField(Generic[ProjectV2ItemConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject): 
       includeArchived: bool
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectV2ItemConnectionArgs
 
 
 
 class ProjectNextItemConnectionField(Generic[ProjectNextItemConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectNextItemConnectionArgs(GQLArgsSet, GQLObject): 
       includeArchived: bool
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectNextItemConnectionArgs
 
 
 
 class IssueTimelineItemsConnectionField(IssueTimelineItemsConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueTimelineItemsConnectionArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       skip: int
       itemTypes: list[IssueTimelineItemsItemType] ##NON NULL
@@ -3263,7 +3263,7 @@ class IssueTimelineItemsConnectionField(IssueTimelineItemsConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: IssueTimelineItemsConnectionArgs
 
 
 
@@ -3456,13 +3456,13 @@ class RequestedReviewerConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class RequestedReviewerConnectionField(RequestedReviewerConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RequestedReviewerConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: RequestedReviewerConnectionArgs
 
 
 
@@ -3510,22 +3510,22 @@ class ProjectV2ItemFieldValueConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ProjectV2ItemFieldValueField(ProjectV2ItemFieldValue):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemFieldValueArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: ProjectV2ItemFieldValueArgs
 
 
 
 class ProjectV2ItemFieldValueConnectionField(ProjectV2ItemFieldValueConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ItemFieldValueConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ProjectV2ItemFieldValueOrder
 
-   _args: Args
+   _args: ProjectV2ItemFieldValueConnectionArgs
 
 
 
@@ -3596,25 +3596,25 @@ class ProjectV2SortByFieldConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ProjectV2FieldConfigurationConnectionField(ProjectV2FieldConfigurationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ProjectV2FieldOrder
 
-   _args: Args
+   _args: ProjectV2FieldConfigurationConnectionArgs
 
 
 
 class ProjectV2SortByFieldConnectionField(ProjectV2SortByFieldConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2SortByFieldConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ProjectV2SortByFieldConnectionArgs
 
 
 
@@ -3644,42 +3644,42 @@ class ProjectV2ViewConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ProjectV2FieldConfigurationField(ProjectV2FieldConfiguration):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2FieldConfigurationArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: ProjectV2FieldConfigurationArgs
 
 
 
 class TeamConnectionField(TeamConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: TeamOrder
 
-   _args: Args
+   _args: TeamConnectionArgs
 
 
 
 class ProjectV2ViewField(ProjectV2View):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ViewArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: ProjectV2ViewArgs
 
 
 
 class ProjectV2ViewConnectionField(ProjectV2ViewConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ProjectV2ViewConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ProjectV2ViewOrder
 
-   _args: Args
+   _args: ProjectV2ViewConnectionArgs
 
 
 
@@ -3720,15 +3720,15 @@ class TeamRepositoryConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class TeamDiscussionField(TeamDiscussion):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionArgs(GQLArgsSet, GQLObject): 
       number: int ##NON NULL
 
-   _args: Args
+   _args: TeamDiscussionArgs
 
 
 
 class TeamDiscussionConnectionField(TeamDiscussionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamDiscussionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -3736,35 +3736,35 @@ class TeamDiscussionConnectionField(TeamDiscussionConnection):
       isPinned: bool
       orderBy: TeamDiscussionOrder
 
-   _args: Args
+   _args: TeamDiscussionConnectionArgs
 
 
 
 class OrganizationInvitationConnectionField(OrganizationInvitationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationInvitationConnectionArgs
 
 
 
 class UserStatusConnectionField(UserStatusConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class UserStatusConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: UserStatusOrder
 
-   _args: Args
+   _args: UserStatusConnectionArgs
 
 
 
 class TeamMemberConnectionField(TeamMemberConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamMemberConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -3774,12 +3774,12 @@ class TeamMemberConnectionField(TeamMemberConnection):
       role: TeamMemberRole
       orderBy: TeamMemberOrder
 
-   _args: Args
+   _args: TeamMemberConnectionArgs
 
 
 
 class TeamRepositoryConnectionField(TeamRepositoryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamRepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -3787,7 +3787,7 @@ class TeamRepositoryConnectionField(TeamRepositoryConnection):
       query: str
       orderBy: TeamRepositoryOrder
 
-   _args: Args
+   _args: TeamRepositoryConnectionArgs
 
 
 
@@ -3906,57 +3906,57 @@ class ReviewDismissalAllowanceConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class BranchProtectionRuleConflictConnectionField(BranchProtectionRuleConflictConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class BranchProtectionRuleConflictConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: BranchProtectionRuleConflictConnectionArgs
 
 
 
 class BypassForcePushAllowanceConnectionField(BypassForcePushAllowanceConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class BypassForcePushAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: BypassForcePushAllowanceConnectionArgs
 
 
 
 class BypassPullRequestAllowanceConnectionField(BypassPullRequestAllowanceConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class BypassPullRequestAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: BypassPullRequestAllowanceConnectionArgs
 
 
 
 class PushAllowanceConnectionField(PushAllowanceConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PushAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PushAllowanceConnectionArgs
 
 
 
 class ReviewDismissalAllowanceConnectionField(ReviewDismissalAllowanceConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReviewDismissalAllowanceConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ReviewDismissalAllowanceConnectionArgs
 
 
 
@@ -4005,13 +4005,13 @@ class ComparisonCommitConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ComparisonCommitConnectionField(ComparisonCommitConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ComparisonCommitConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ComparisonCommitConnectionArgs
 
 
 
@@ -4025,10 +4025,10 @@ class Comparison(GQLObject):
    status: ComparisonStatus ##NON NULL
 
 class ComparisonField(Comparison):
-   class Args(GQLArgsSet, GQLObject): 
+   class ComparisonArgs(GQLArgsSet, GQLObject): 
       headRef: str ##NON NULL
 
-   _args: Args
+   _args: ComparisonArgs
 
 
 
@@ -4123,13 +4123,13 @@ class PullRequestReviewCommentConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class PullRequestReviewCommentConnectionField(PullRequestReviewCommentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewCommentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestReviewCommentConnectionArgs
 
 
 
@@ -4446,63 +4446,63 @@ class PullRequestTimelineItemsConnection(GQLObject):
    updatedAt: DateTime ##NON NULL
 
 class PullRequestCommitConnectionField(PullRequestCommitConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestCommitConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestCommitConnectionArgs
 
 
 
 class PullRequestChangedFileConnectionField(PullRequestChangedFileConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestChangedFileConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestChangedFileConnectionArgs
 
 
 
 class PullRequestReviewConnectionField(PullRequestReviewConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       writersOnly: bool
 
-   _args: Args
+   _args: PullRequestReviewConnectionArgs
 
 
 
 class ReviewRequestConnectionField(ReviewRequestConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ReviewRequestConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: ReviewRequestConnectionArgs
 
 
 
 class PullRequestReviewThreadConnectionField(PullRequestReviewThreadConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewThreadConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestReviewThreadConnectionArgs
 
 
 
 class PullRequestTimelineItemsConnectionField(PullRequestTimelineItemsConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestTimelineItemsConnectionArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       skip: int
       itemTypes: list[PullRequestTimelineItemsItemType] ##NON NULL
@@ -4511,7 +4511,7 @@ class PullRequestTimelineItemsConnectionField(PullRequestTimelineItemsConnection
       first: int
       last: int
 
-   _args: Args
+   _args: PullRequestTimelineItemsConnectionArgs
 
 
 
@@ -4737,25 +4737,25 @@ class CheckStepConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CheckAnnotationConnectionField(CheckAnnotationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckAnnotationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: CheckAnnotationConnectionArgs
 
 
 
 class CheckStepConnectionField(CheckStepConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckStepConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       number: int
 
-   _args: Args
+   _args: CheckStepConnectionArgs
 
 
 
@@ -4813,21 +4813,21 @@ class StatusCheckRollupContextConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class StatusCheckRollupContextConnectionField(StatusCheckRollupContextConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class StatusCheckRollupContextConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: StatusCheckRollupContextConnectionArgs
 
 
 
 class StatusContextField(StatusContext):
-   class Args(GQLArgsSet, GQLObject): 
+   class StatusContextArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: StatusContextArgs
 
 
 
@@ -4855,46 +4855,46 @@ class Tree(GQLObject):
    repository: Repository ##NON NULL
 
 class GitActorConnectionField(GitActorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class GitActorConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: GitActorConnectionArgs
 
 
 
 class BlameField(Blame):
-   class Args(GQLArgsSet, GQLObject): 
+   class BlameArgs(GQLArgsSet, GQLObject): 
       path: str ##NON NULL
 
-   _args: Args
+   _args: BlameArgs
 
 
 
 class CheckSuiteConnectionField(CheckSuiteConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckSuiteConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       filterBy: CheckSuiteFilter
 
-   _args: Args
+   _args: CheckSuiteConnectionArgs
 
 
 
 class TreeEntryField(TreeEntry):
-   class Args(GQLArgsSet, GQLObject): 
+   class TreeEntryArgs(GQLArgsSet, GQLObject): 
       path: str ##NON NULL
 
-   _args: Args
+   _args: TreeEntryArgs
 
 
 
 class CommitHistoryConnectionField(CommitHistoryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitHistoryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -4904,18 +4904,18 @@ class CommitHistoryConnectionField(CommitHistoryConnection):
       since: GitTimestamp
       until: GitTimestamp
 
-   _args: Args
+   _args: CommitHistoryConnectionArgs
 
 
 
 class CommitConnectionField(CommitConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: CommitConnectionArgs
 
 
 
@@ -5028,14 +5028,14 @@ class CreatedCommitContributionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CreatedCommitContributionConnectionField(CreatedCommitContributionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedCommitContributionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: CommitContributionOrder
 
-   _args: Args
+   _args: CreatedCommitContributionConnectionArgs
 
 
 
@@ -5107,14 +5107,14 @@ class CreatedIssueContributionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CreatedIssueContributionConnectionField(CreatedIssueContributionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedIssueContributionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedIssueContributionConnectionArgs
 
 
 
@@ -5140,14 +5140,14 @@ class CreatedPullRequestContributionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CreatedPullRequestContributionConnectionField(CreatedPullRequestContributionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedPullRequestContributionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedPullRequestContributionConnectionArgs
 
 
 
@@ -5176,14 +5176,14 @@ class CreatedPullRequestReviewContributionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CreatedPullRequestReviewContributionConnectionField(CreatedPullRequestReviewContributionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedPullRequestReviewContributionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedPullRequestReviewContributionConnectionArgs
 
 
 
@@ -5202,43 +5202,43 @@ class CreatedRepositoryContributionConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class CommitContributionsByRepositoryField(CommitContributionsByRepository):
-   class Args(GQLArgsSet, GQLObject): 
+   class CommitContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       maxRepositories: int
 
-   _args: Args
+   _args: CommitContributionsByRepositoryArgs
 
 
 
 class IssueContributionsByRepositoryField(IssueContributionsByRepository):
-   class Args(GQLArgsSet, GQLObject): 
+   class IssueContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       maxRepositories: int
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: IssueContributionsByRepositoryArgs
 
 
 
 class PullRequestContributionsByRepositoryField(PullRequestContributionsByRepository):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       maxRepositories: int
       excludeFirst: bool
       excludePopular: bool
 
-   _args: Args
+   _args: PullRequestContributionsByRepositoryArgs
 
 
 
 class PullRequestReviewContributionsByRepositoryField(PullRequestReviewContributionsByRepository):
-   class Args(GQLArgsSet, GQLObject): 
+   class PullRequestReviewContributionsByRepositoryArgs(GQLArgsSet, GQLObject): 
       maxRepositories: int
 
-   _args: Args
+   _args: PullRequestReviewContributionsByRepositoryArgs
 
 
 
 class CreatedRepositoryContributionConnectionField(CreatedRepositoryContributionConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CreatedRepositoryContributionConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -5246,7 +5246,7 @@ class CreatedRepositoryContributionConnectionField(CreatedRepositoryContribution
       excludeFirst: bool
       orderBy: ContributionOrder
 
-   _args: Args
+   _args: CreatedRepositoryContributionConnectionArgs
 
 
 
@@ -5359,34 +5359,34 @@ class GistConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class GistCommentConnectionField(GistCommentConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class GistCommentConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: GistCommentConnectionArgs
 
 
 
 class GistFileField(GistFile):
-   class Args(GQLArgsSet, GQLObject): 
+   class GistFileArgs(GQLArgsSet, GQLObject): 
       limit: int
       oid: GitObjectID
 
-   _args: Args
+   _args: GistFileArgs
 
 
 
 class GistConnectionField(GistConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class GistConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: GistOrder
 
-   _args: Args
+   _args: GistConnectionArgs
 
 
 
@@ -5423,13 +5423,13 @@ class PinnableItemConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class PinnableItemConnectionField(PinnableItemConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PinnableItemConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PinnableItemConnectionArgs
 
 
 
@@ -5511,22 +5511,22 @@ class SponsorsTierConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class SponsorsListingFeaturedItemField(SponsorsListingFeaturedItem):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsListingFeaturedItemArgs(GQLArgsSet, GQLObject): 
       featureableTypes: list[SponsorsListingFeaturedItemFeatureableType] ##NON NULL
 
-   _args: Args
+   _args: SponsorsListingFeaturedItemArgs
 
 
 
 class SponsorsTierConnectionField(SponsorsTierConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsTierConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: SponsorsTierOrder
 
-   _args: Args
+   _args: SponsorsTierConnectionArgs
 
 
 
@@ -5573,19 +5573,19 @@ class SponsorshipNewsletterConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class SponsorConnectionField(SponsorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: SponsorOrder
 
-   _args: Args
+   _args: SponsorConnectionArgs
 
 
 
 class SponsorsActivityConnectionField(Generic[SponsorsActivityConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorsActivityConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -5597,24 +5597,24 @@ class SponsorsActivityConnectionField(Generic[SponsorsActivityConnection]):
       actions: list[SponsorsActivityAction] ##NON NULL
       includeAsSponsor: bool
 
-   _args: Args
+   _args: SponsorsActivityConnectionArgs
 
 
 
 class SponsorshipNewsletterConnectionField(SponsorshipNewsletterConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorshipNewsletterConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: SponsorshipNewsletterOrder
 
-   _args: Args
+   _args: SponsorshipNewsletterConnectionArgs
 
 
 
 class SponsorshipConnectionField(Generic[SponsorshipConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class SponsorshipConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -5622,7 +5622,7 @@ class SponsorshipConnectionField(Generic[SponsorshipConnection]):
       includePrivate: bool
       orderBy: SponsorshipOrder
 
-   _args: Args
+   _args: SponsorshipConnectionArgs
 
 
 
@@ -5720,89 +5720,89 @@ class StarredRepositoryConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ContributionsCollectionField(ContributionsCollection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ContributionsCollectionArgs(GQLArgsSet, GQLObject): 
       organizationID: ID
       from_: DateTime
       to: DateTime
 
-   _args: Args
+   _args: ContributionsCollectionArgs
 
 
 
 class FollowerConnectionField(FollowerConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowerConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: FollowerConnectionArgs
 
 
 
 class FollowingConnectionField(FollowingConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class FollowingConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: FollowingConnectionArgs
 
 
 
 class GistField(Gist):
-   class Args(GQLArgsSet, GQLObject): 
+   class GistArgs(GQLArgsSet, GQLObject): 
       name: str ##NON NULL
 
-   _args: Args
+   _args: GistArgs
 
 
 
 class OrganizationField(Generic[Organization]):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationArgs(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
-   _args: Args
+   _args: OrganizationArgs
 
 
 
 class OrganizationConnectionField(OrganizationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationConnectionArgs
 
 
 
 class PublicKeyConnectionField(PublicKeyConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class PublicKeyConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: PublicKeyConnectionArgs
 
 
 
 class SavedReplyConnectionField(SavedReplyConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class SavedReplyConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: SavedReplyOrder
 
-   _args: Args
+   _args: SavedReplyConnectionArgs
 
 
 
 class StarredRepositoryConnectionField(StarredRepositoryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class StarredRepositoryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -5810,7 +5810,7 @@ class StarredRepositoryConnectionField(StarredRepositoryConnection):
       ownedByViewer: bool
       orderBy: StarOrder
 
-   _args: Args
+   _args: StarredRepositoryConnectionArgs
 
 
 
@@ -7438,7 +7438,7 @@ class ExternalIdentityConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class ExternalIdentityConnectionField(ExternalIdentityConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class ExternalIdentityConnectionArgs(GQLArgsSet, GQLObject): 
       membersOnly: bool
       login: str
       userName: str
@@ -7447,7 +7447,7 @@ class ExternalIdentityConnectionField(ExternalIdentityConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: ExternalIdentityConnectionArgs
 
 
 
@@ -7462,7 +7462,7 @@ class OrganizationIdentityProvider(GQLObject):
    ssoUrl: URI
 
 class OrganizationAuditEntryConnectionField(OrganizationAuditEntryConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationAuditEntryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -7470,12 +7470,12 @@ class OrganizationAuditEntryConnectionField(OrganizationAuditEntryConnection):
       query: str
       orderBy: AuditLogOrder
 
-   _args: Args
+   _args: OrganizationAuditEntryConnectionArgs
 
 
 
 class VerifiableDomainConnectionField(VerifiableDomainConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class VerifiableDomainConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -7484,12 +7484,12 @@ class VerifiableDomainConnectionField(VerifiableDomainConnection):
       isApproved: bool
       orderBy: VerifiableDomainOrder
 
-   _args: Args
+   _args: VerifiableDomainConnectionArgs
 
 
 
 class OrganizationEnterpriseOwnerConnectionField(OrganizationEnterpriseOwnerConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationEnterpriseOwnerConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       organizationRole: RoleInOrganization
       orderBy: OrgEnterpriseOwnerOrder
@@ -7498,47 +7498,47 @@ class OrganizationEnterpriseOwnerConnectionField(OrganizationEnterpriseOwnerConn
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationEnterpriseOwnerConnectionArgs
 
 
 
 class IpAllowListEntryConnectionField(Generic[IpAllowListEntryConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class IpAllowListEntryConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: IpAllowListEntryOrder
 
-   _args: Args
+   _args: IpAllowListEntryConnectionArgs
 
 
 
 class MannequinConnectionField(MannequinConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class MannequinConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: MannequinOrder
 
-   _args: Args
+   _args: MannequinConnectionArgs
 
 
 
 class OrganizationMemberConnectionField(OrganizationMemberConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class OrganizationMemberConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: OrganizationMemberConnectionArgs
 
 
 
 class RepositoryMigrationConnectionField(RepositoryMigrationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryMigrationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -7547,15 +7547,15 @@ class RepositoryMigrationConnectionField(RepositoryMigrationConnection):
       repositoryName: str
       orderBy: RepositoryMigrationOrder
 
-   _args: Args
+   _args: RepositoryMigrationConnectionArgs
 
 
 
 class TeamField(Team):
-   class Args(GQLArgsSet, GQLObject): 
+   class TeamArgs(GQLArgsSet, GQLObject): 
       slug: str ##NON NULL
 
-   _args: Args
+   _args: TeamArgs
 
 
 
@@ -7653,7 +7653,7 @@ class EnterpriseOrganizationMembershipConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class EnterpriseOrganizationMembershipConnectionField(EnterpriseOrganizationMembershipConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseOrganizationMembershipConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       orderBy: OrganizationOrder
       role: EnterpriseUserAccountMembershipRole
@@ -7662,7 +7662,7 @@ class EnterpriseOrganizationMembershipConnectionField(EnterpriseOrganizationMemb
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseOrganizationMembershipConnectionArgs
 
 
 
@@ -7722,14 +7722,14 @@ class EnterpriseServerUserAccountEmailConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class EnterpriseServerUserAccountEmailConnectionField(EnterpriseServerUserAccountEmailConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountEmailConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: EnterpriseServerUserAccountEmailOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountEmailConnectionArgs
 
 
 
@@ -7775,26 +7775,26 @@ class EnterpriseServerUserAccountsUploadConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class EnterpriseServerUserAccountConnectionField(EnterpriseServerUserAccountConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: EnterpriseServerUserAccountOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountConnectionArgs
 
 
 
 class EnterpriseServerUserAccountsUploadConnectionField(EnterpriseServerUserAccountsUploadConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerUserAccountsUploadConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: EnterpriseServerUserAccountsUploadOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseServerUserAccountsUploadConnectionArgs
 
 
 
@@ -7836,14 +7836,14 @@ class EnterpriseRepositoryInfoConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class EnterpriseRepositoryInfoConnectionField(EnterpriseRepositoryInfoConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseRepositoryInfoConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: RepositoryOrder
 
-   _args: Args
+   _args: EnterpriseRepositoryInfoConnectionArgs
 
 
 
@@ -7951,7 +7951,7 @@ class EnterpriseIdentityProvider(GQLObject):
    ssoUrl: URI
 
 class EnterpriseAdministratorConnectionField(EnterpriseAdministratorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorConnectionArgs(GQLArgsSet, GQLObject): 
       organizationLogins: list[str] ##NON NULL
       query: str
       role: EnterpriseAdministratorRole
@@ -7962,12 +7962,12 @@ class EnterpriseAdministratorConnectionField(EnterpriseAdministratorConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseAdministratorConnectionArgs
 
 
 
 class EnterpriseServerInstallationConnectionField(EnterpriseServerInstallationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseServerInstallationConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
@@ -7975,12 +7975,12 @@ class EnterpriseServerInstallationConnectionField(EnterpriseServerInstallationCo
       connectedOnly: bool
       orderBy: EnterpriseServerInstallationOrder
 
-   _args: Args
+   _args: EnterpriseServerInstallationConnectionArgs
 
 
 
 class EnterpriseOutsideCollaboratorConnectionField(EnterpriseOutsideCollaboratorConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseOutsideCollaboratorConnectionArgs(GQLArgsSet, GQLObject): 
       login: str
       query: str
       orderBy: EnterpriseMemberOrder
@@ -7992,12 +7992,12 @@ class EnterpriseOutsideCollaboratorConnectionField(EnterpriseOutsideCollaborator
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseOutsideCollaboratorConnectionArgs
 
 
 
 class EnterpriseAdministratorInvitationConnectionField(EnterpriseAdministratorInvitationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseAdministratorInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       orderBy: EnterpriseAdministratorInvitationOrder
       role: EnterpriseAdministratorRole
@@ -8006,12 +8006,12 @@ class EnterpriseAdministratorInvitationConnectionField(EnterpriseAdministratorIn
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseAdministratorInvitationConnectionArgs
 
 
 
 class RepositoryInvitationConnectionField(RepositoryInvitationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class RepositoryInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       orderBy: RepositoryInvitationOrder
       after: str
@@ -8019,12 +8019,12 @@ class RepositoryInvitationConnectionField(RepositoryInvitationConnection):
       first: int
       last: int
 
-   _args: Args
+   _args: RepositoryInvitationConnectionArgs
 
 
 
 class EnterprisePendingMemberInvitationConnectionField(EnterprisePendingMemberInvitationConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterprisePendingMemberInvitationConnectionArgs(GQLArgsSet, GQLObject): 
       query: str
       organizationLogins: list[str] ##NON NULL
       after: str
@@ -8032,19 +8032,19 @@ class EnterprisePendingMemberInvitationConnectionField(EnterprisePendingMemberIn
       first: int
       last: int
 
-   _args: Args
+   _args: EnterprisePendingMemberInvitationConnectionArgs
 
 
 
 class EnterpriseMemberConnectionField(EnterpriseMemberConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class EnterpriseMemberConnectionArgs(GQLArgsSet, GQLObject): 
       orderBy: EnterpriseMemberOrder
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: EnterpriseMemberConnectionArgs
 
 
 
@@ -8173,14 +8173,14 @@ class Push(GQLObject):
    repository: Repository ##NON NULL
 
 class CheckRunConnectionField(CheckRunConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class CheckRunConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       filterBy: CheckRunFilter
 
-   _args: Args
+   _args: CheckRunConnectionArgs
 
 
 
@@ -8232,14 +8232,14 @@ class DeploymentRequestConnection(GQLObject):
    totalCount: int ##NON NULL
 
 class WorkflowRunConnectionField(Generic[WorkflowRunConnection]):
-   class Args(GQLArgsSet, GQLObject): 
+   class WorkflowRunConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
       orderBy: WorkflowRunOrder
 
-   _args: Args
+   _args: WorkflowRunConnectionArgs
 
 
 
@@ -8252,24 +8252,24 @@ class Workflow(GQLObject):
    updatedAt: DateTime ##NON NULL
 
 class DeploymentReviewConnectionField(DeploymentReviewConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentReviewConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentReviewConnectionArgs
 
 
 
 class DeploymentRequestConnectionField(DeploymentRequestConnection):
-   class Args(GQLArgsSet, GQLObject): 
+   class DeploymentRequestConnectionArgs(GQLArgsSet, GQLObject): 
       after: str
       before: str
       first: int
       last: int
 
-   _args: Args
+   _args: DeploymentRequestConnectionArgs
 
 
 
@@ -8476,6 +8476,7 @@ class RequestReviewsPayload(GQLObject):
 class RemoveReactionPayload(GQLObject):
    clientMutationId: str
    reaction: Reaction
+   reactionGroups: list[ReactionGroup]
    subject: Reactable
 
 class RemoveEnterpriseOrganizationPayload(GQLObject):
@@ -8653,6 +8654,7 @@ class AuditEntry(GQLObject):
 class AddReactionPayload(GQLObject):
    clientMutationId: str
    reaction: Reaction
+   reactionGroups: list[ReactionGroup]
    subject: Reactable
 
 class AddPullRequestReviewPayload(GQLObject):

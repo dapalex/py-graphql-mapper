@@ -13,7 +13,7 @@ This field has two forms:
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.
 
    """
-   class Args(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject): 
       """
       toPlaceId - The distance to this place
 
@@ -23,7 +23,7 @@ This field has two forms:
       toPlaceId: ID
       distanceUnit: DistanceUnit
 
-   _args: Args
+   _args: floatArgs
 
 
 

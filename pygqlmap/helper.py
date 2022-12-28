@@ -1,6 +1,9 @@
+import inspect
 import pathlib
 import os
 from configparser import ConfigParser
+
+from pygqlmap.src.logger import Logger
 
 #Read config.ini file
 config_object = ConfigParser()
@@ -11,3 +14,15 @@ mapConfig = config_object["MAPCONFIG"]
 
 
 
+class CustomException(Exception):
+    """ Custom exception class """
+
+def ManageException(ex, message: str = None):
+    try:
+        if ex and CustomException in inspect.getmro(type(ex)):
+            return ex
+        else:
+            Logger.logErrorMessage(ex.args[0])
+            return CustomException(message + ' - ' + ex.args[0])
+    except:
+        pass
