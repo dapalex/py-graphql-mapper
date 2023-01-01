@@ -63,28 +63,27 @@
 import requests
 from consts import githubUrl, githubHeaders
 from output.github.mutations import updateRepository
-from test.utils import ManageException
+from output.github.gqlTypes import UpdateRepositoryInput
+from utils import ManageException
 
 async def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')
 ##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    mutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualUpdateRepository')
+    mutation = updateRepository()
+    mutation.name = 'myManualUpdateRepository'
 ##
     
 ##STEP 3
     from pygqlmap.components import GQLArgsSet
     from pygqlmap.enums import ArgType
 
-    argsMutation = GQLArgsSet()
-    argsMutation.addArg("input", { 'repositoryId': "R_kgDOH7MI4g", 'hasIssuesEnabled': False })
+    mutationInput = UpdateRepositoryInput()
+    mutationInput.repositoryId = "R_kgDOH7MI4g"
+    mutationInput.hasIssuesEnabled = False
+    mutation._args.input = mutationInput
     
-    argsSetAssUsers = GQLArgsSet("repository.assignableUsers")
-    argsSetAssUsers.addArg('first', 1)
+    mutation.type.repository.assignableUsers._args.first = 1
     
-    mutation.setArgs([argsMutation, argsSetAssUsers], ArgType.LiteralValues)
     try:
         print('Query GQL syntax: ' + mutation.exportGqlSource)
 ##

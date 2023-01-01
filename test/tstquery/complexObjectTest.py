@@ -64,105 +64,12 @@
     }
 
 
-    STEP 1: Define the python classes corresponding to the GraphQL type within the query 
-"""
-##STEP 1
-from pygqlmap.components import GQLConnection, GQLEdges
-from pygqlmap.components import GQLObject
-from pygqlmap.gqlTypes import ID
-from utils import ManageException
-
-class countries(GQLConnection):
-    
-    def __init__(self):
-        super().__init__(GQLEdges(countryNode())) 
-    
-class countryRegions(GQLConnection):
-    
-    def __init__(self):
-        super().__init__(GQLEdges()) 
-    
-class Country(GQLObject):
-    code: ID ##ID non-null
-    callingCode: str ##non-null
-    wikiDataId: ID ##ID non-null
-    capital: str
-    name: str ##non-null
-    currencyCodes: list ##of str
-    flagImageUri: str ##non-null
-    numRegions: int ##non-null
-    
-    # def __init__(self):
-    #     self.code = ''
-    #     self.callingCode = ''
-    #     self.wikiDataId = ''
-    #     self.name = ''
-    #     self.currencyCodes = []
-    #     self.flagImageUri = ''
-    #     self.numRegions = -1
-    #     self.capital = ''
-    #     super().__init__()
-    
-class PopulatedPlaces(GQLObject):
-    totalCount: int
-    
-    # def __init__(self):
-    #     self.totalCount = 0
-    #     super().__init__()  
-         
-class countryRegion(GQLObject):
-    fipsCode: str
-    isoCode: str
-    wikiDataId: str
-    name: str
-    capital: str
-    country: Country
-    populatedPlaces: PopulatedPlaces
-    
-    # def __init__(self):
-    #     self.fipsCode = ''
-    #     self.isoCode = ''
-    #     self.wikiDataId = ''
-    #     self.name = ''
-    #     self.capital = ''
-    #     self.country = Country()
-    #     self.populatedPlaces = PopulatedPlaces()
-    #     super().__init__()  
-       
-class countryNode(GQLObject):
-    code: ID ##ID non-null
-    callingCode: str ##non-null
-    wikiDataId: ID ##ID non-null
-    capital: str
-    name: str ##non-null
-    currencyCodes: list ##of str
-    flagImageUri: str ##non-null
-    numRegions: int ##non-null
-    region: countryRegion
-    regions: countryRegions
-     
-    # def __init__(self):
-    #     self.code = ''
-    #     self.callingCode = ''
-    #     self.wikiDataId = ''
-    #     self.name = ''
-    #     self.currencyCodes = []
-    #     self.flagImageUri = ''
-    #     self.numRegions = -1
-    #     self.capital = ''
-    #     self.region = countryRegion()
-    #     self.regions = countryRegions()
-    #     super().__init__() 
-
-##
-
-"""
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
-    STEP 3: Instantiate GQLArgs object structure with argument type as LiteralValues
-    STEP 2: Call setShow function of GQLOperation class to set the visibility of chosen fields (path to declare with dot notation)
-    STEP 5: Query the GraphQL server
-    STEP 6: Pass the response received to the GQLResponse constructor
-    STEP 7: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 1: Instantiate the class representing the GraphQL query 
+    STEP 2: Set the arguments
+    STEP 3: Call setShow function of GQLOperation class to set the visibility of chosen fields (path to declare with dot notation)
+    STEP 4: Query the GraphQL server
+    STEP 5: Pass the response received to the GQLResponse constructor
+    STEP 6: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: 
         a) The request toward the GraphQL server will not have the hidden fields
@@ -172,29 +79,24 @@ class countryNode(GQLObject):
 
 import requests
 from consts import gdbcHeaders, gdbcUrl
-from pygqlmap.components import GQLArgsSet
-from pygqlmap.enums import ArgType
+from output.GeoDBCities.queries import countries
+from utils import ManageException
 
 async def testComplexObject(): 
     print('\n\nRunning testComplexObject...')
-##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, countries, operationName='myCountriesQuery') 
+##STEP 1
+    query = countries()
+    query.name = 'myCountriesQuery'
 ##
     
-##STEP 3
-    argsCntrs = GQLArgsSet(location='countries')
-    argsCntrs.addArg('currencyCode', 'USD')
-    argsRegion = GQLArgsSet('countries.edges.node.region')
-    argsRegion.addArg('code', "AK")
-    query.setArgs([argsCntrs, argsRegion], ArgType.LiteralValues)
+##STEP 2
+    query._args.currencyCode = 'USD'
+    query.type.edges.node.region._args.code = "AK"
 ##
 
-##STEP 4
-    query.setShow('countries.edges.node.region.country.callingCode', False)
-    query.setShow('countries.edges.node.region.country.currencyCodes', False)
+##STEP 3
+    query.setShow('countries.edges.node.callingCode', False)
+    query.setShow('countries.edges.node.currencyCodes', False)
     query.setShow('countries.edges.node.regions.pageInfo.hasNextPage', False)
     query.setShow('currencies.pageInfo.hasNextPage', False)
 ##
@@ -203,14 +105,14 @@ async def testComplexObject():
     print('Query GQL syntax: ' + query.exportGqlSource)
 ##
 
-##STEP 3
+##STEP 4
     try:
         response = requests.request('POST', url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=gdbcHeaders)
 ##
         
-##STEP 4
+##STEP 5
         from pygqlmap.network import GQLResponse
         
         gqlResponse = GQLResponse(response)
@@ -218,7 +120,7 @@ async def testComplexObject():
         
         gqlResponse.printMessageOutput()
         
-##STEP 5
+##STEP 6
         gqlResponse.mapGQLDataToObj(query.type)
 ##
         

@@ -202,13 +202,13 @@ async def RunRapidApiEditUserAlertMutation():
     print("End of RunRapidApiEditUserAlertMutation")
     
 
-async def adminAuditLogsMutation():
-    print('\nRunning adminAuditLogsMutation...')
+async def testAdminAuditLogs():
+    print('\nRunning testAdminAuditLogs...')
     try:
         # from output.github.gqlTypes import UpdateRepositoryInput
         from output.RapidApi.queries import Queries
         from output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField  
-        from output.RapidApi.enums import Order         
+        from output.RapidApi.enums import Order, AdminAuditLogSortables 
         
         print('Creating mutation python object...')
         query = Queries.adminAuditLogs.value()
@@ -216,10 +216,10 @@ async def adminAuditLogsMutation():
         
         query._args.orderBy = AdminAuditLogSortablesInput()
         field1 = AdminAuditLogSortablesSortingField()
-        field1.fieldName = 'MyField'
+        field1.fieldName = AdminAuditLogSortables.CREATED_AT
         field1.order = Order.ASC
         field2 = AdminAuditLogSortablesSortingField()
-        field2.fieldName = 'MyOtherField'
+        field2.fieldName = AdminAuditLogSortables.CREATED_AT
         field2.order = Order.DESC
         query._args.orderBy.sortingFields = [field1, field2]
         
@@ -237,4 +237,4 @@ async def adminAuditLogsMutation():
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
-    print("End of adminAuditLogsMutation")
+    print("End of testAdminAuditLogs")

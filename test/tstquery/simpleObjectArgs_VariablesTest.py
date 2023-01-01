@@ -19,70 +19,41 @@
         }
     }
 
-
-    STEP 1: Define the python class corresponding to the GraphQL type within the query 
-"""
-
-##STEP 1
-from pygqlmap.components import GQLObject
-from utils import ManageException
-
-class rateLimit(GQLObject):
-   cost: int
-   limit: int 
-   nodeCount: int
-   remaining: int
-   resetAt: str
-   used: int
-   
-   def __init__(self):
-       self.cost = -1
-       self.limit = -1
-       self.nodeCount = -1
-       self.remaining = -1
-       self.resetAt = -1
-       self.used = -1
-       super().__init__()
-##   
-   
-"""
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
-    STEP 3: Instantiate GQLArgs object structure with argument type as Variables
-    STEP 4: Query the GraphQL server
-    STEP 5: Pass the response received to the GQLResponse constructor
-    STEP 6: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 1: Instantiate class representing the GraphQL query 
+    STEP 2: Define arguments following object structure with argument type as Variables
+    STEP 3: Query the GraphQL server
+    STEP 4: Pass the response received to the GQLResponse constructor
+    STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: The object currency within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
 import requests
 from consts import githubHeaders, githubUrl
+from output.github.queries import rateLimit
+from utils import ManageException
 
 async def testSimpleObjectArgs_Variables(): 
     print('\n\nRunning testSimpleObjectArgs_Variables...')
-##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, rateLimit, operationName='mySimpleQueryArgsVars')
-##
-
-##STEP 2
-    from pygqlmap.components import GQLArgsSet
-    from pygqlmap.enums import ArgType
-    
-    argsSet = GQLArgsSet()
-    argsSet.addArg('dryRun', False)
-    query.setArgs(argsSet, ArgType.Variables)
-##
-
-##RESULT
-    print('Query GQL syntax: ' + query.exportGqlSource)
-    print('Variables: ' + query.exportGQLVariables)
-##
-      
     try:
-          
+            
+    ##STEP 2
+        query = rateLimit()
+        query.name = 'mySimpleQueryArgsVars'
+    ##
+
+    ##STEP 2
+        from pygqlmap.enums import ArgType
+        
+        query._args.dryRun = False
+        query._argsType = ArgType.Variables
+    ##
+
+    ##RESULT
+        print('Query GQL syntax: ' + query.exportGqlSource)
+        print('Variables: ' + query.exportGQLVariables)
+    ##
+        
 ##STEP 4
         response = requests.request('POST', url=githubUrl, 
                                     json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables }, 
@@ -98,7 +69,7 @@ async def testSimpleObjectArgs_Variables():
         gqlResponse.printMessageOutput()
         
 ##STEP 6
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT

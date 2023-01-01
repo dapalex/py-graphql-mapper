@@ -69,8 +69,9 @@
 ##STEP 1
 from enum import Enum
 from typing import NewType
+from pygqlmap.gqlOperations import GQLQuery
 from pygqlmap.gqlTypes import ID
-from pygqlmap.components import GQLObject
+from pygqlmap.components import GQLObject, GQLArgsSet
 from utils import ManageException
 
 class PopulatedPlaceType(Enum):
@@ -108,7 +109,12 @@ class Country(GQLObject):
    flagImageUri: str ##NON NULL
    numRegions: int ##NON NULL
    
+class RegionArguments(GQLArgsSet, GQLObject):
+    code: ID
+    
 class CountryRegion(GQLObject):
+   _args: RegionArguments
+   
    fipsCode: ID
    isoCode: ID ##NON NULL
    wikiDataId: ID
@@ -159,17 +165,6 @@ class PopulatedPlace(GQLObject):
    deleted: bool ##NON NULL
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
 
-class countries(GQLObject):
-   type: CountriesConnection
-   currencyCode: str
-   namePrefix: str
-   namePrefixDefaultLangResults: bool
-   first: int
-   after: str
-   last: int
-   before: str
-   displayOptions: DisplayOptions
-
 class PopulatedPlaceEdge(GQLObject):
    cursor: str ##NON NULL
    node: PopulatedPlace ##NON NULL
@@ -187,6 +182,20 @@ class RegionPopulatedPlacesConnection(GQLObject):
    totalCount: int ##NON NULL
    edges: PopulatedPlaceEdge ##NON NULL
    pageInfo: ConnectionPageInfo ##NON NULL
+
+class CountriesArguments(GQLArgsSet, GQLObject):
+    currencyCode: str
+    namePrefix: str
+    namePrefixDefaultLangResults: bool
+    first: int
+    after: str
+    last: int
+    before: str
+    displayOptions: DisplayOptions
+    
+class countries(GQLQuery):
+   _args: CountriesArguments
+   type: CountriesConnection
 
 ##
 
@@ -206,24 +215,18 @@ class RegionPopulatedPlacesConnection(GQLObject):
 
 import requests
 from consts import gdbcHeaders, gdbcUrl
-from pygqlmap.components import GQLArgsSet
-from pygqlmap.enums import ArgType
+from utils import ManageException
 
 async def testGeneratedDataAsGQLObject(): 
     print('\n\nRunning testGeneratedDataAsGQLObject...')
 ##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, CountriesConnection, operationName='myCountriesQuery', rootName='countries') 
+    query = countries()
+    query.name ='myCountriesQuery' #, rootName='countries') 
 ##
     
 ##STEP 3
-    argsCntrs = GQLArgsSet(location='countries')
-    argsCntrs.addArg('currencyCode', 'USD')
-    argsRegion = GQLArgsSet('countries.edges.node.region')
-    argsRegion.addArg('code', "AZ")
-    query.setArgs([argsCntrs, argsRegion], ArgType.LiteralValues)
+    query._args.currencyCode = 'USD'
+    query.type.edges.node.region._args.code = ID('AZ')
 ##
 
 ##STEP 4

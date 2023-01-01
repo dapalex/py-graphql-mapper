@@ -18,51 +18,24 @@
         }
     }
 
-
-    STEP 1: Define the python class corresponding to the GraphQL type within the query 
-"""
-
-##STEP 1
-from pygqlmap.components import GQLObject
-from utils import ManageException
-
-class rateLimit(GQLObject):
-   cost: int
-   limit: int 
-   nodeCount: int
-   remaining: int
-   resetAt: str
-   used: int
-   
-   def __init__(self):
-       self.cost = -1
-       self.limit = -1
-       self.nodeCount = -1
-       self.remaining = -1
-       self.resetAt = -1
-       self.used = -1
-       super().__init__()
-##   
-   
-"""
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
-    STEP 3: Query the GraphQL server
-    STEP 4: Pass the response received to the GQLResponse constructor
-    STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 1: Instantiate class representing the GraphQL query 
+    STEP 2: Query the GraphQL server
+    STEP 3: Pass the response received to the GQLResponse constructor
+    STEP 4: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: The object currency within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
 import requests
 from consts import githubHeaders, githubUrl
+from output.github.queries import rateLimit
+from utils import ManageException
 
 async def testSimpleObject(): 
     print('\n\nRunning testSimpleObject...')
 ##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, rateLimit, operationName='mySimpleQuery')
+    query = rateLimit()
+    query.name = 'mySimpleQuery'
 ##
     
     try:
@@ -81,7 +54,7 @@ async def testSimpleObject():
         gqlResponse.printMessageOutput()
         
 ##STEP 5
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT

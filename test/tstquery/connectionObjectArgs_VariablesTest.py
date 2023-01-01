@@ -32,7 +32,7 @@
 
     OBJECTIVE: Creating a query passing arguments and values
 
-    STEP 1: Instantiate GQLOperation class representing the GraphQL query 
+    STEP 1: Instantiate class representing the GraphQL query 
     STEP 2: Instantiate GQLArgs object structure with argument type as Variables
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
@@ -43,25 +43,22 @@
 
 import requests
 from consts import gdbcUrl, gdbcHeaders
-from tstquery.connectionObjectTest import currencies
+from output.GeoDBCities.queries import currencies
 from utils import ManageException
 
 async def testConnectionObjectArgs_Variables(): 
     print('\n\nRunning testConnectionObjectArgs_Variables...')
 ##STEP 1
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, currencies, operationName='myCurrenciesQuery')
+    query = currencies()
+    query.name = 'myCurrenciesQuery'
 ##
     
 ##STEP 2
-    from pygqlmap.components import GQLArgsSet
     from pygqlmap.enums import ArgType
     
-    argsSet = GQLArgsSet()
-    argsSet.addArgs({ 'first' : 3, 'after': 'MTE=' })
-    query.setArgs(argsSet, ArgType.Variables)
+    query._args.first = 3
+    query._args.after = 'MTE='
+    query._argsType = ArgType.Variables
 ##
     try:
 ##RESULT

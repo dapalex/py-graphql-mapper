@@ -26,33 +26,7 @@
     }
 
 
-    STEP 1: Define the python class corresponding to the GraphQL connection type and 'currency' corresponding the the connection node within the query 
-"""
-##STEP 1
-from pygqlmap.components import GQLConnection, GQLEdges, GQLObject
-from utils import ManageException
-
-
-class currency(GQLObject): 
-    countryCodes: list
-    code: str
-    symbol: str
-    
-    def __init__(self):
-        self.countryCodes = []
-        self.code = ''
-        self.symbol = ''
-        super().__init__()
-
-class currencies(GQLConnection): 
-    
-    def __init__(self):
-        super().__init__(GQLEdges(currency())) 
-    
-##
-
-"""
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
+    STEP 1: Instantiate class representing the GraphQL query 
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
     STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
@@ -62,14 +36,15 @@ class currencies(GQLConnection):
 
 import requests
 from consts import gdbcUrl, gdbcHeaders
+from output.GeoDBCities.queries import currencies
+from utils import ManageException
 
 async def testConnectionObject(): 
     print('\n\nRunning testConnectionObject...')
 ##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
     
-    query = GQLOperation(OperationType.query, currencies, operationName='myCurrenciesQuery')
+    query = currencies()
+    query.name = 'myCurrenciesQuery'
 ##
     
     try:

@@ -2,7 +2,7 @@ import os
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from consts import *
+from consts import gdbcHeaders, gdbcUrl
 from utils import ManageException
 
 async def runDownloadCommandgdbcApiBySchemaFileRelPath():

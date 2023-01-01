@@ -66,7 +66,7 @@ async def RunGithubAddCommentMutation():
     print('\nRunning RunGithubAddCommentMutation... - stack limit for recursion depth')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
+        from output.github.mutations import Mutations #, ProjectV2Order, ProjectV2OrderField
 
         mutation = Mutations.addComment.value()
         # restoreOutput(wrapper)
@@ -75,7 +75,20 @@ async def RunGithubAddCommentMutation():
         mutation._args.input.subjectId = 'something'
         mutation._args.input.body = 'This is the body'
         mutation._args.input.clientMutationId = 'Me'
-        print('Creating GQLOperation for mutation...')
+        mutation.type.commentEdge.node.repository.discussion._args.number = 3
+        mutation.type.commentEdge.node.repository.discussionCategory._args.slug = 'slug'
+        mutation.type.commentEdge.node.repository.environment._args.name = 'envName'
+        mutation.type.commentEdge.node.repository.refs._args.refPrefix = 'pref'
+        mutation.type.commentEdge.node.repository.release._args.tagName = 'aTag'
+        # mutation.type.commentEdge.node.repository.forks._a = True
+        mutation.type.commentEdge.node.repository.label._args.name = 'aName'
+        mutation.type.commentEdge.node.repository.milestone._args.number = 0
+        mutation.type.commentEdge.node.repository.packages._args.repositoryId = 'ghjk'
+        mutation.type.commentEdge.node.repository.packages.nodes.version._args.version = '2'
+        mutation.type.commentEdge.node.repository.packages.edges.node.version._args.version = '2.6'
+        # mutation.type.commentEdge.node.repository.repositoryTopics.nodes.topic.repositories._args.isFork = False
+        # mutation.type.commentEdge.node.repository.recentProjects._args.orderBy = ProjectV2Order()
+        # mutation.type.commentEdge.node.repository.recentProjects._args.orderBy.field = ProjectV2OrderField.CREATED_AT
         
         # wrapper = redirectOutputToFile('mutationCreated.log')
         print(mutation.exportGqlSource)

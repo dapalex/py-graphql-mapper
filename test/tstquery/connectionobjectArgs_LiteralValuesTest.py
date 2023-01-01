@@ -43,26 +43,22 @@
 
 import requests
 from consts import gdbcUrl, gdbcHeaders
-from tstquery.connectionObjectTest import currencies
+from output.GeoDBCities.queries import currencies
 from utils import ManageException
 
 async def testConnectionObjectArgs_LiteralValues(): 
     print('\n\nRunning testConnectionObjectArgs_LiteralValues...')
 ##STEP 1
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, currencies, operationName='myCurrenciesQuery')
+    query = currencies()
+    query.name='myCurrenciesQuery'
 ##
     
 ##STEP 2
-    from pygqlmap.components import GQLArgsSet
     from pygqlmap.enums import ArgType
     
-    argsSet = GQLArgsSet()
-    argsSet.addArg('last', 7)
-    argsSet.addArg('before', 'MTE=')
-    query.setArgs(argsSet, ArgType.LiteralValues)
+    query._argsType = ArgType.LiteralValues
+    query._args.last = 7
+    query._args.before = 'MTE='
 ##
     try:
 ##RESULT

@@ -64,7 +64,7 @@
 
 import requests
 from consts import gdbcUrl, gdbcHeaders
-from pgqlmCoreTest.tstquery.connectionObjectTest import currencies
+from output.GeoDBCities.queries import currencies
 from utils import ManageException
 
 async def testConnectionObjectVisibility(): 
@@ -73,7 +73,8 @@ async def testConnectionObjectVisibility():
     from pygqlmap.enums import OperationType
     from pygqlmap.components import GQLOperation
     
-    query = GQLOperation(OperationType.query, currencies, operationName='myCurrenciesQueryVisibility')
+    query = currencies()
+    query.name = 'myCurrenciesQueryVisibility'
 ##
     
 ##STEP 2
@@ -102,7 +103,7 @@ async def testConnectionObjectVisibility():
         gqlResponse.printMessageOutput()
         
 ##STEP 5
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT b)

@@ -20,37 +20,11 @@
 
     OBJECTIVE: Hiding fields from the original python mapped class (above with (*))
     
-    STEP 1: Define the python class corresponding to the GraphQL type
-"""
-##STEP 1
-from pygqlmap.components import GQLObject
-from utils import ManageException
-
-class rateLimit(GQLObject):
-   cost: int
-   limit: int 
-   nodeCount: int
-   remaining: int
-   resetAt: str
-   used: int
-   
-   def __init__(self):
-       self.cost = -1
-       self.limit = -1
-       self.nodeCount = -1
-       self.remaining = -1
-       self.resetAt = -1
-       self.used = -1
-       super().__init__()
-##   
-   
-
-"""
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
-    STEP 3: Call setShow function of GQLOperation class to set the visibility of fields (path to declare with dot notation)
-    STEP 4: Query the GraphQL server
-    STEP 5: Pass the response received to the GQLResponse constructor
-    STEP 6: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 1: Instantiate GQLOperation class representing the GraphQL query 
+    STEP 2: Call setShow function of GQLOperation class to set the visibility of fields (path to declare with dot notation)
+    STEP 3: Query the GraphQL server
+    STEP 4: Pass the response received to the GQLResponse constructor
+    STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: 
         a) The request toward the GraphQL server will not have the hidden fields
@@ -59,14 +33,14 @@ class rateLimit(GQLObject):
 
 import requests
 from consts import githubHeaders, githubUrl
+from output.github.queries import rateLimit
+from utils import ManageException
 
 async def testSimpleObjectVisibility(): 
     print('\n\nRunning testSimpleObjectVisibility...')
-##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    query = GQLOperation(OperationType.query, rateLimit, operationName='mySimpleQueryVisibility')
+##STEP 2    
+    query = rateLimit()
+    query.name = 'mySimpleQueryVisibility'
 ##
     
 ##STEP 3
@@ -95,7 +69,7 @@ async def testSimpleObjectVisibility():
         gqlResponse.printMessageOutput()
         
 ##STEP 6
-        gqlResponse.mapGQLDataToObj(query.obj)
+        gqlResponse.mapGQLDataToObj(query.type)
 ##
         
 ##RESULT b)

@@ -45,7 +45,8 @@
     STEP 1: Define the python class corresponding to the GraphQL connection type and 'currency' corresponding the the connection node within the query 
 """
 ##STEP 1
-from pygqlmap.components import GQLObject
+from pygqlmap.components import GQLArgsSet, GQLObject
+from pygqlmap.gqlOperations import GQLMutation
 from pygqlmap.gqlTypes import ID
 from utils import ManageException
 
@@ -53,11 +54,6 @@ class Repository(GQLObject):
     allowUpdateBranch: bool
     autoMergeAllowed: bool ##NON NULL
     
-    def __init__(self):
-        self.allowUpdateBranch = False
-        self.autoMergeAllowed = False
-        super().__init__()
-
 class Discussion(GQLObject):
     answerChosenAt: str
     body: str ##NON NULL
@@ -85,51 +81,25 @@ class Discussion(GQLObject):
     viewerCanUpvote: bool ##NON NULL
     viewerDidAuthor: bool ##NON NULL
     viewerHasUpvoted: bool ##NON NULL
-   
-    def __init__(self):
-        self.body = ''
-        self.bodyHTML = ''
-        self.bodyText = ''  
-        self.answerChosenAt = ''
-        self.createdAt = ''
-        self.id = ID()
-        self.locked = False
-        self.createdViaEmail = False
-        self.databaseId = -1
-        self.includesCreatedEdit = False
-        self.lastEditedAt = ''
-        self.number = -1
-        self.publishedAt = ''
-        self.resourcePath = '' 
-        self.title = ''
-        self.updatedAt = '' 
-        self.url = ''
-        self.upvoteCount = -1
-        self.viewerCanDelete = False
-        self.viewerCanUpvote = False
-        self.viewerCanReact = False
-        self.viewerCanSubscribe = False
-        self.viewerCanUpdate = False
-        self.viewerDidAuthor = False
-        self.viewerHasUpvoted = False
-        self.repository = Repository()
-        super().__init__()
         
-class CreateTeamDiscussionInput(GQLObject):
-    teamId: ID ##NON NULL
-    title: str ##NON NULL
-    body: str ##NON NULL
-    private: bool
-    clientMutationId: str
+class CreateDiscussionInput(GQLObject):
+   repositoryId: ID ##NON NULL
+   title: str ##NON NULL
+   body: str ##NON NULL
+   categoryId: ID ##NON NULL
+   clientMutationId: str
 
-class createDiscussion(GQLObject):
+class CreateDiscussionContent(GQLObject):
     clientMutationId: str
     discussion: Discussion
 
-    def __init__(self):
-        self.clientMutationId = ''
-        self.discussion = Discussion() 
-        super().__init__()  
+class createDiscussion(GQLMutation):
+   class CreateDiscussionArguments(GQLArgsSet, GQLObject): 
+      input: CreateDiscussionInput ##NON NULL
+
+   _args: CreateDiscussionArguments
+
+   type: CreateDiscussionContent
 ##
 
 """
@@ -148,20 +118,22 @@ from consts import githubUrl, githubHeaders
 async def testMutationInsertLiteralValues(): 
     print('\n\nRunning testMutationInsertLiteralValues...')
 ##STEP 2
-    from pygqlmap.enums import OperationType
-    from pygqlmap.components import GQLOperation
-    
-    mutation = GQLOperation(OperationType.mutation, createDiscussion, operationName='myCreateDiscussion')
+    mutation = createDiscussion()
+    mutation.name = 'myCreateDiscussion'
 ##
     
 ##STEP 3
     from pygqlmap.components import GQLArgsSet
     from pygqlmap.enums import ArgType
 
-    argsMutation = GQLArgsSet()
-    argsMutation.addArg("input", { "repositoryId": 'R_kgDOIOMoaA', "title": 'My Title', 'body': 'Some text to give info', 'categoryId': 'DIC_kwDOIOMoaM4CR_eD', 'clientMutationId': 'Client1' })
+    mutation._argsType = ArgType.LiteralValues
+    mutation._args.input = CreateDiscussionInput()
+    mutation._args.input.repositoryId = 'R_kgDOIOMoaA'
+    mutation._args.input.title = 'My Title'
+    mutation._args.input.body = 'Some text to give info'
+    mutation._args.input.categoryId = 'DIC_kwDOIOMoaM4CR_eD'
+    mutation._args.input.clientMutationId = 'Client1'
     
-    mutation.setArgs([argsMutation], ArgType.LiteralValues)
     try:
         print('Query GQL syntax: ' + mutation.exportGqlSource)
 ##
