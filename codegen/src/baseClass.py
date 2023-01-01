@@ -21,19 +21,16 @@ class TypeManager():
                     isNonNull = True
                     continue
                 elif currentType == TypeKind.LIST.name: 
-                    typeOutput += 'list['
                     isList = True
                     continue
                 
                 typeOutput += currentType
                 
-                if isList: 
-                    typeOutput += ']'
-                    isList = False
             except Exception as ex:
                 raise Exception('Error during composition of type ' + typeDef + ' for ' + self.name + ' - ' + ex.args[0])
             
         if isNonNull: typeOutput += ' ##NON NULL' 
+        if isList: typeOutput += ' ##LIST' 
         if isCustomScalar: typeOutput += ' ##'+ typeDef + '##' 
         
         self.typeDefs.clear()

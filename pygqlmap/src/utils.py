@@ -40,7 +40,7 @@ def isEmptyField(field):
     elif type(field) == list: 
         return not field
     elif Enum in inspect.getmro(type(field)): 
-        return not field
+        return field.value == None
     elif inspect.isclass(type(field)):
         out = True
         for innerField in field.__dataclass_fields__:

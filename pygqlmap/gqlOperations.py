@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from pygqlmap.components import GQLOperation
 from pygqlmap.enums import ArgType, OperationType
-from pygqlmap.src.gqlInit import operationInit
+from pygqlmap.src.gqlInit import queryInit, mutationInit
 
 class GQLQuery(GQLOperation):
     
     def __init_subclass__(cls):
         cls = dataclass(cls)
-        cls.__init__ = operationInit
+        cls.__init__ = queryInit
 
     def __init__(self):
         if hasattr(self, 'args'):
@@ -18,7 +18,7 @@ class GQLMutation(GQLOperation):
     
     def __init_subclass__(cls):
         cls = dataclass(cls)
-        cls.__init__ = operationInit
+        cls.__init__ = mutationInit
         
     def __init__(self):
         if hasattr(self, 'args'):

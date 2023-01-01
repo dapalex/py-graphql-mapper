@@ -15,7 +15,7 @@ class codeOfConduct(GQLQuery):
    type: CodeOfConduct
 
 class codesOfConduct(GQLQuery):
-   type: list[CodeOfConduct]
+   type: CodeOfConduct ##LIST
 
 class enterprise(GQLQuery):
    class EnterpriseArgs(GQLArgsSet, GQLObject): 
@@ -61,7 +61,7 @@ class licenses(GQLQuery):
 
 class marketplaceCategories(GQLQuery):
    class MarketplaceCategoryArgs(GQLArgsSet, GQLObject): 
-      includeCategories: list[str] ##NON NULL
+      includeCategories: str ##NON NULL ##LIST
       excludeEmpty: bool
       excludeSubcategories: bool
 
@@ -101,7 +101,7 @@ class marketplaceListings(GQLQuery):
       adminId: ID
       organizationId: ID
       allStates: bool
-      slugs: list[str]
+      slugs: str ##LIST
       primaryCategoryOnly: bool
       withFreeTrialsOnly: bool
 
@@ -124,7 +124,7 @@ class node(GQLQuery):
 
 class nodes(GQLQuery):
    class NodeArgs(GQLArgsSet, GQLObject): 
-      ids: list[ID] ##NON NULL
+      ids: ID ##NON NULL ##LIST
 
    _args: NodeArgs
 
@@ -201,7 +201,7 @@ class securityAdvisories(GQLQuery):
       identifier: SecurityAdvisoryIdentifierFilter
       publishedSince: DateTime
       updatedSince: DateTime
-      classifications: list[SecurityAdvisoryClassification] ##NON NULL
+      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
       after: str
       before: str
       first: int
@@ -226,8 +226,8 @@ class securityVulnerabilities(GQLQuery):
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
-      severities: list[SecurityAdvisorySeverity] ##NON NULL
-      classifications: list[SecurityAdvisoryClassification] ##NON NULL
+      severities: SecurityAdvisorySeverity ##NON NULL ##LIST
+      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
       after: str
       before: str
       first: int

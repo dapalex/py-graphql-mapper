@@ -149,25 +149,13 @@ def defineVariableType(obj, fieldName, fieldType):
     except Exception as ex:
         raise ManageException(ex, 'Error during variable type definition ' + fieldName)
     
-def operationInit(obj):
-    global currentPath, circularRefs
+def mutationInit(obj):
+    global currentPath, circularRefs, mergedClasses
     currentPath = None
     mergedClasses = {}
     circularRefs = {}
     try:
         subClassInit(obj)
-        from pygqlmap import GQLMutation, GQLQuery
-        if GQLMutation in obj.__class__.__bases__:
-            mutationInit(obj)
-        elif GQLQuery in obj.__class__.__bases__:
-            queryInit(obj)
-        else:
-            Logger.logCriticalMessage('Construction of operation inconsistent!')
-    except Exception as ex:
-        raise ManageException(ex, 'Error during Operation init execution for ' + obj.__class__.__name__)
-    
-def mutationInit(obj):
-    try:
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
@@ -177,7 +165,12 @@ def mutationInit(obj):
         ManageException(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
     
 def queryInit(obj):
+    global currentPath, circularRefs, mergedClasses
+    currentPath = None
+    mergedClasses = {}
+    circularRefs = {}
     try:
+        subClassInit(obj)
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType

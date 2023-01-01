@@ -8,4 +8,4 @@ commaConcat = ', '
 
 argsDeclaration = '_args'
 
-arguedSignatureSuffix = 'Field'
+arguedSignatureSuffix = '_Field'

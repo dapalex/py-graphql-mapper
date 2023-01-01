@@ -13,6 +13,8 @@ CommitCommentConnection = TypeVar('CommitCommentConnection', bound=GQLObject)
 
 Issue = TypeVar('Issue', bound=GQLObject)
 
+ProjectV2 = TypeVar('ProjectV2', bound=GQLObject)
+
 PullRequest = TypeVar('PullRequest', bound=GQLObject)
 
 Ref = TypeVar('Ref', bound=GQLObject)

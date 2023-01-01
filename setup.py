@@ -12,7 +12,11 @@ setup(
     packages=['pygqlmap', 'pygqlmap.src', 'codegen', 'codegen.src', 'codegen.src.templates'],
     # packages=find_packages(where=['pygqlmap', 'pygqlmap.src', 'codegen', 'codegen.src', 'codegen.src.templates'], exclude=['test.*']),
     python_requires='>=3.10.6',
-
+    entry_points ={
+            'console_scripts': [
+                'CodeGenerator = __main__:main'
+            ]
+        },
     classifiers=[
         'Development Status :: 1 - Alpha',
         'Intended Audience :: Developers',

@@ -210,14 +210,14 @@ where SORT_FIELD = countryCode | elevation | name | population
       location: Location
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: list[ID]
-      excludedCountryIds: list[ID]
+      countryIds: ID ##LIST
+      excludedCountryIds: ID ##LIST
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: list[ID]
-      types: list[str]
+      timeZoneIds: ID ##LIST
+      types: str ##LIST
       sort: str
       first: int
       after: str

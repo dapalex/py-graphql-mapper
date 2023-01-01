@@ -1,3 +1,5 @@
+import random
+import string
 from pygqlmap.components import GQLArgsSet, GQLOperationArgs
 from pygqlmap.src.consts import primitivesStringified, arguedSignatureSuffix
 from pygqlmap.enums import OperationType
@@ -151,7 +153,6 @@ class Extractor():
                 
                 if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, schemaEnum.enumValues)): continue
                 
-            # for schemaEnum in self.enums:
                 if self.logProgress: Logger.logInfoMessage('Started extraction of enum ' + schemaEnum.name)
                 enumCodeLst = []
                 enumCodeLst.append(enumSignature%schemaEnum.name + ':')
@@ -162,7 +163,10 @@ class Extractor():
                         enumCodeLst.append(self.indent + '"""')
                         enumCodeLst.append(self.indent + schemaEnum.name + ' - ' + schemaEnum.description + '\n')
                         enumCodeLst.append(self.indent + '"""')
-                    
+                
+                ##SET DEFAULT
+                enumCodeLst.append(self.indent + "DEFAULT = None")
+                
                 for enumValue in schemaEnum.enumValues:
                     
                     if isDeprecated(enumValue): continue
@@ -225,8 +229,6 @@ class Extractor():
                     realType = False
                     
                     priorElement.schemaType.typeDefs = priorElement.schemaType.getObjectTypeDefs() 
-                    
-                    if TypeKind.LIST.name in priorElement.schemaType.typeDefs: isList = True
                     
                     inlineCodeType, actualType = priorElement.schemaType.composePythonType()
 
@@ -323,7 +325,9 @@ class Extractor():
                         usedTypesDict[objName] += 1 
                     
             if arguedName: 
-                usedTypesDict.update({ arguedName.removesuffix(arguedSignatureSuffix): 1 })
+                splitArgName = arguedName.split('_')
+                usedTypesDict.update({ splitArgName[1]: 1 })
+                # usedTypesDict.update({ arguedName.removesuffix(arguedSignatureSuffix): 1 })
             
             for usedTypeNameKey, occurrences in usedTypesDict.items():
                 try:
@@ -377,19 +381,19 @@ class Extractor():
             Logger.logErrorMessage('Error during extraction of type ' + currentTypeName + ' - ' + ex.args[0])   
           
           
-    def isAlreadyExtracted(self, checkTypeName):
-        if checkTypeName in self.extractionResults.scalarDefinitions.keys(): 
+    def isAlreadyExtracted(self, typeNameCheck, includeCircularRefs: bool = True):
+        if typeNameCheck in self.extractionResults.scalarDefinitions.keys(): 
             return True
-        if checkTypeName in self.extractionResults.enumClasses.keys(): 
+        if typeNameCheck in self.extractionResults.enumClasses.keys(): 
             return True
-        elif checkTypeName in self.extractionResults.simpleTypeClasses.keys():
+        elif typeNameCheck in self.extractionResults.simpleTypeClasses.keys():
             return True
-        elif checkTypeName in self.extractionResults.circularRefs.keys():
+        elif includeCircularRefs and typeNameCheck in self.extractionResults.circularRefs.keys():
             return True
         else:
             for x in self.priorList:
-                if checkTypeName == x.name:
-                    return True #break from for
+                if typeNameCheck == x.name:
+                    return True
                 
         return False
                         
@@ -461,7 +465,6 @@ class Extractor():
         classCodeLst = []
         docsLst = []
         returnCodeList = []
-        isList = False
         possibleTypes = None
         
         try:
@@ -470,8 +473,6 @@ class Extractor():
                     docsLst.append(self.indent + scTypeName + ' - ' + scType.description + '\n')
                     
             scType.typeDefs = scType.getObjectTypeDefs() 
-            
-            if TypeKind.LIST.name in scType.typeDefs: isList = True
             
             inlineCodeType, actualType = scType.composePythonType()
             arguedPrimitive = actualType in primitivesStringified
@@ -615,29 +616,29 @@ class Extractor():
             element.typeDefs = element.getObjectTypeDefs() 
             claimedElType, actualElType = element.composePythonType()
             
-            arguedNameRef = None
+            arguedName = None
             
             if hasattr(element, 'args') and element.args: 
                 ## Goes back up to construct an object
-                arguedName = (actualElType if not actualElType in primitivesStringified else element.name) + arguedSignatureSuffix
+                ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
+                arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + element.name + '_' + (actualElType if not actualElType in primitivesStringified else element.name) + arguedSignatureSuffix
                 ##CAREFUL HERE - Pass element.name as usedTypes in extractSchemaType
                 self.extractSchemaType(element, circularRefTypes, arguedName)
-                arguedNameRef = claimedElType.replace(actualElType, (actualElType if not actualElType in primitivesStringified else element.name) + arguedSignatureSuffix) 
-            
+                
             if element.getUsedGQLObjectNames() and circularRefTypes:
                 circTypeUtilizer = self.startCheckCircularRefTypes(element, parentType, actualElType, circularRefTypes)
                     
                 if circTypeUtilizer:
                     claimedElType = claimedElType.replace(actualElType, "NewType('" + actualElType + "', GQLObject)")
                     
-                    codeLine = self.indent + Translate.toPythonVariableName(element.name) + ": " + (claimedElType if not arguedNameRef else arguedNameRef)
+                    codeLine = self.indent + Translate.toPythonVariableName(element.name) + ": " + (claimedElType if not arguedName else arguedName)
                     codeLine += ' ## Circular Reference for ' + actualElType
                     
                     self.removeFromCheckCircularTypes(actualElType, circTypeUtilizer, circularRefTypes)
                 else:
-                    codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedNameRef else arguedNameRef)
+                    codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedName else arguedName)
             else:
-                codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedNameRef else arguedNameRef)
+                codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedName else arguedName)
         
         except Exception as ex:
             Logger.logErrorMessage('Error during extraction of element ' + element.name + ' - ' + ex.args[0]) 
@@ -674,9 +675,12 @@ class Extractor():
                 
                 gqlArguedScalar = 'Argued' + scalar.capitalize()
                 return arguedClassSignature%(arguedName, gqlArguedScalar) + ':' 
-                pass
         
-            return arguedClassSignature%(arguedName, scTypeName) + ':' 
+            if scTypeName in self.extractionResults.circularRefs.keys() and \
+               not self.isAlreadyExtracted(scTypeName, includeCircularRefs=False):
+                return arguedClassSignature%(arguedName, "Generic[" + scTypeName + "]") + ':' 
+            else:
+                return arguedClassSignature%(arguedName, scTypeName) + ':' 
     
     def extractUsedTypes(self, scType: SCType):
         """For internal use

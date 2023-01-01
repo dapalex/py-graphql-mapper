@@ -93,7 +93,7 @@ class GQLOperation(GQLExporter):
 
         self.operationType = operationType
         self._argsType = argsType
-        self.fieldsShowTree = FSTree(self.type)
+        self.fieldsShowTree = FSTree(self.type, getObjectClassName(self))
         self.logProgress = False
 
     def setShow(self, keys: str or list[str], isVisible: bool):

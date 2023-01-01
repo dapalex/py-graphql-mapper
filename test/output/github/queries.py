@@ -27,7 +27,7 @@ class codesOfConduct(GQLQuery):
    codesOfConduct - Look up a code of conduct by its key
 
    """
-   type: list[CodeOfConduct]
+   type: CodeOfConduct ##LIST
 
 class enterprise(GQLQuery):
    """
@@ -127,7 +127,7 @@ class marketplaceCategories(GQLQuery):
       excludeSubcategories - Returns top level categories only, excluding any subcategories.
 
       """
-      includeCategories: list[str] ##NON NULL
+      includeCategories: str ##NON NULL ##LIST
       excludeEmpty: bool
       excludeSubcategories: bool
 
@@ -221,7 +221,7 @@ false, only approved listings will be returned.
       adminId: ID
       organizationId: ID
       allStates: bool
-      slugs: list[str]
+      slugs: str ##LIST
       primaryCategoryOnly: bool
       withFreeTrialsOnly: bool
 
@@ -264,7 +264,7 @@ class nodes(GQLQuery):
       ids - The list of node IDs.
 
       """
-      ids: list[ID] ##NON NULL
+      ids: ID ##NON NULL ##LIST
 
    _args: NodeArgs
 
@@ -310,7 +310,12 @@ class relay(GQLQuery):
    relay - Hack to workaround https://github.com/facebook/relay/issues/112 re-exposing the root query object
 
    """
-   type: Query ##NON NULL
+   #####FIX FROM GENERATION BECAUSE OF INCONSISTENCY IN SCHEMA - see comment above - START
+   # type: Query ##NON NULL 
+   from typing import Any
+   type: Any ##NON NULL 
+   #####FIX FROM GENERATION BECAUSE OF INCONSISTENCY IN SCHEMA - END
+
 
 class repository(GQLQuery):
    """
@@ -431,7 +436,7 @@ class securityAdvisories(GQLQuery):
       identifier: SecurityAdvisoryIdentifierFilter
       publishedSince: DateTime
       updatedSince: DateTime
-      classifications: list[SecurityAdvisoryClassification] ##NON NULL
+      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
       after: str
       before: str
       first: int
@@ -488,8 +493,8 @@ class securityVulnerabilities(GQLQuery):
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
-      severities: list[SecurityAdvisorySeverity] ##NON NULL
-      classifications: list[SecurityAdvisoryClassification] ##NON NULL
+      severities: SecurityAdvisorySeverity ##NON NULL ##LIST
+      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
       after: str
       before: str
       first: int

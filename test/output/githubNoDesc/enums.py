@@ -1,18 +1,22 @@
 from enum import Enum
 
 class ActorType(Enum):
+   DEFAULT = None
    USER = 'USER' ##Indicates a user actor.
    TEAM = 'TEAM' ##Indicates a team actor.
 
 class AuditLogOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order audit log entries by timestamp
 
 class CheckAnnotationLevel(Enum):
+   DEFAULT = None
    FAILURE = 'FAILURE' ##An annotation indicating an inescapable error.
    NOTICE = 'NOTICE' ##An annotation indicating some information.
    WARNING = 'WARNING' ##An annotation indicating an ignorable error.
 
 class CheckConclusionState(Enum):
+   DEFAULT = None
    ACTION_REQUIRED = 'ACTION_REQUIRED' ##The check suite or run requires action.
    TIMED_OUT = 'TIMED_OUT' ##The check suite or run has timed out.
    CANCELLED = 'CANCELLED' ##The check suite or run has been cancelled.
@@ -24,6 +28,7 @@ class CheckConclusionState(Enum):
    STALE = 'STALE' ##The check suite or run was marked stale by GitHub. Only GitHub can use this conclusion.
 
 class CheckRunState(Enum):
+   DEFAULT = None
    ACTION_REQUIRED = 'ACTION_REQUIRED' ##The check run requires action.
    CANCELLED = 'CANCELLED' ##The check run has been cancelled.
    COMPLETED = 'COMPLETED' ##The check run has been completed.
@@ -40,10 +45,12 @@ class CheckRunState(Enum):
    WAITING = 'WAITING' ##The check run is in waiting state.
 
 class CheckRunType(Enum):
+   DEFAULT = None
    ALL = 'ALL' ##Every check run available.
    LATEST = 'LATEST' ##The latest check run.
 
 class CheckStatusState(Enum):
+   DEFAULT = None
    QUEUED = 'QUEUED' ##The check suite or run has been queued.
    IN_PROGRESS = 'IN_PROGRESS' ##The check suite or run is in progress.
    COMPLETED = 'COMPLETED' ##The check suite or run has been completed.
@@ -52,11 +59,13 @@ class CheckStatusState(Enum):
    REQUESTED = 'REQUESTED' ##The check suite or run has been requested.
 
 class CollaboratorAffiliation(Enum):
+   DEFAULT = None
    OUTSIDE = 'OUTSIDE' ##All outside collaborators of an organization-owned subject.
    DIRECT = 'DIRECT' ##All collaborators with permissions to an organization-owned subject, regardless of organization membership status.
    ALL = 'ALL' ##All collaborators the authenticated user can see.
 
 class CommentAuthorAssociation(Enum):
+   DEFAULT = None
    MEMBER = 'MEMBER' ##Author is a member of the organization that owns the repository.
    OWNER = 'OWNER' ##Author is the owner of the repository.
    MANNEQUIN = 'MANNEQUIN' ##Author is a placeholder for an unclaimed user.
@@ -67,6 +76,7 @@ class CommentAuthorAssociation(Enum):
    NONE = 'NONE' ##Author has no association with the repository.
 
 class CommentCannotUpdateReason(Enum):
+   DEFAULT = None
    ARCHIVED = 'ARCHIVED' ##Unable to create comment because repository is archived.
    INSUFFICIENT_ACCESS = 'INSUFFICIENT_ACCESS' ##You must be the author or have write access to this repository to update this comment.
    LOCKED = 'LOCKED' ##Unable to create comment because issue is locked.
@@ -76,16 +86,19 @@ class CommentCannotUpdateReason(Enum):
    DENIED = 'DENIED' ##You cannot update this comment
 
 class CommitContributionOrderField(Enum):
+   DEFAULT = None
    OCCURRED_AT = 'OCCURRED_AT' ##Order commit contributions by when they were made.
    COMMIT_COUNT = 'COMMIT_COUNT' ##Order commit contributions by how many commits they represent.
 
 class ComparisonStatus(Enum):
+   DEFAULT = None
    DIVERGED = 'DIVERGED' ##The head ref is both ahead and behind of the base ref, indicating git history has diverged.
    AHEAD = 'AHEAD' ##The head ref is ahead of the base ref.
    BEHIND = 'BEHIND' ##The head ref is behind the base ref.
    IDENTICAL = 'IDENTICAL' ##The head ref and base ref are identical.
 
 class ContributionLevel(Enum):
+   DEFAULT = None
    NONE = 'NONE' ##No contributions occurred.
    FIRST_QUARTILE = 'FIRST_QUARTILE' ##Lowest 25% of days of contributions.
    SECOND_QUARTILE = 'SECOND_QUARTILE' ##Second lowest 25% of days of contributions. More contributions than the first quartile.
@@ -93,12 +106,14 @@ class ContributionLevel(Enum):
    FOURTH_QUARTILE = 'FOURTH_QUARTILE' ##Highest 25% of days of contributions. More contributions than the third quartile.
 
 class DefaultRepositoryPermissionField(Enum):
+   DEFAULT = None
    NONE = 'NONE' ##No access
    READ = 'READ' ##Can read repos by default
    WRITE = 'WRITE' ##Can read and write repos by default
    ADMIN = 'ADMIN' ##Can read, write, and administrate repos by default
 
 class DependencyGraphEcosystem(Enum):
+   DEFAULT = None
    RUBYGEMS = 'RUBYGEMS' ##Ruby gems hosted at RubyGems.org
    NPM = 'NPM' ##JavaScript packages hosted at npmjs.com
    PIP = 'PIP' ##Python packages hosted at PyPI.org
@@ -111,17 +126,21 @@ class DependencyGraphEcosystem(Enum):
    PUB = 'PUB' ##Dart packages hosted at pub.dev
 
 class DeploymentOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order collection by creation time
 
 class DeploymentProtectionRuleType(Enum):
+   DEFAULT = None
    REQUIRED_REVIEWERS = 'REQUIRED_REVIEWERS' ##Required reviewers
    WAIT_TIMER = 'WAIT_TIMER' ##Wait timer
 
 class DeploymentReviewState(Enum):
+   DEFAULT = None
    APPROVED = 'APPROVED' ##The deployment was approved.
    REJECTED = 'REJECTED' ##The deployment was rejected.
 
 class DeploymentState(Enum):
+   DEFAULT = None
    ABANDONED = 'ABANDONED' ##The pending deployment was not updated after 30 minutes.
    ACTIVE = 'ACTIVE' ##The deployment is currently active.
    DESTROYED = 'DESTROYED' ##An inactive transient deployment.
@@ -134,6 +153,7 @@ class DeploymentState(Enum):
    WAITING = 'WAITING' ##The deployment is waiting.
 
 class DeploymentStatusState(Enum):
+   DEFAULT = None
    PENDING = 'PENDING' ##The deployment is pending.
    SUCCESS = 'SUCCESS' ##The deployment was successful.
    FAILURE = 'FAILURE' ##The deployment has failed.
@@ -144,18 +164,22 @@ class DeploymentStatusState(Enum):
    WAITING = 'WAITING' ##The deployment is waiting.
 
 class DiffSide(Enum):
+   DEFAULT = None
    LEFT = 'LEFT' ##The left side of the diff.
    RIGHT = 'RIGHT' ##The right side of the diff.
 
 class DiscussionOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order discussions by creation time.
    UPDATED_AT = 'UPDATED_AT' ##Order discussions by most recent modification time.
 
 class DiscussionPollOptionOrderField(Enum):
+   DEFAULT = None
    AUTHORED_ORDER = 'AUTHORED_ORDER' ##Order poll options by the order that the poll author specified when creating the poll.
    VOTE_COUNT = 'VOTE_COUNT' ##Order poll options by the number of votes it has.
 
 class DismissReason(Enum):
+   DEFAULT = None
    FIX_STARTED = 'FIX_STARTED' ##A fix has already been started
    NO_BANDWIDTH = 'NO_BANDWIDTH' ##No bandwidth to fix this
    TOLERABLE_RISK = 'TOLERABLE_RISK' ##Risk is tolerable to this project
@@ -163,13 +187,16 @@ class DismissReason(Enum):
    NOT_USED = 'NOT_USED' ##Vulnerable code is not actually used
 
 class EnterpriseAdministratorInvitationOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order enterprise administrator member invitations by creation time
 
 class EnterpriseAdministratorRole(Enum):
+   DEFAULT = None
    OWNER = 'OWNER' ##Represents an owner of the enterprise account.
    BILLING_MANAGER = 'BILLING_MANAGER' ##Represents a billing manager of the enterprise account.
 
 class EnterpriseAllowPrivateRepositoryForkingPolicyValue(Enum):
+   DEFAULT = None
    ENTERPRISE_ORGANIZATIONS = 'ENTERPRISE_ORGANIZATIONS' ##Members can fork a repository to an organization within this enterprise.
    SAME_ORGANIZATION = 'SAME_ORGANIZATION' ##Members can fork a repository only within the same organization (intra-org).
    SAME_ORGANIZATION_USER_ACCOUNTS = 'SAME_ORGANIZATION_USER_ACCOUNTS' ##Members can fork a repository to their user account or within the same organization.
@@ -178,6 +205,7 @@ class EnterpriseAllowPrivateRepositoryForkingPolicyValue(Enum):
    EVERYWHERE = 'EVERYWHERE' ##Members can fork a repository to their user account or an organization, either inside or outside of this enterprise.
 
 class EnterpriseDefaultRepositoryPermissionSettingValue(Enum):
+   DEFAULT = None
    NO_POLICY = 'NO_POLICY' ##Organizations in the enterprise choose base repository permissions for their members.
    ADMIN = 'ADMIN' ##Organization members will be able to clone, pull, push, and add new collaborators to all organization repositories.
    WRITE = 'WRITE' ##Organization members will be able to clone, pull, and push all organization repositories.
@@ -185,19 +213,23 @@ class EnterpriseDefaultRepositoryPermissionSettingValue(Enum):
    NONE = 'NONE' ##Organization members will only be able to clone and pull public repositories.
 
 class EnterpriseEnabledDisabledSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for organizations in the enterprise.
    DISABLED = 'DISABLED' ##The setting is disabled for organizations in the enterprise.
    NO_POLICY = 'NO_POLICY' ##There is no policy set for organizations in the enterprise.
 
 class EnterpriseEnabledSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for organizations in the enterprise.
    NO_POLICY = 'NO_POLICY' ##There is no policy set for organizations in the enterprise.
 
 class EnterpriseMemberOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order enterprise members by login
    CREATED_AT = 'CREATED_AT' ##Order enterprise members by creation time
 
 class EnterpriseMembersCanCreateRepositoriesSettingValue(Enum):
+   DEFAULT = None
    NO_POLICY = 'NO_POLICY' ##Organization administrators choose whether to allow members to create repositories.
    ALL = 'ALL' ##Members will be able to create public and private repositories.
    PUBLIC = 'PUBLIC' ##Members will be able to create only public repositories.
@@ -205,44 +237,54 @@ class EnterpriseMembersCanCreateRepositoriesSettingValue(Enum):
    DISABLED = 'DISABLED' ##Members will not be able to create public or private repositories.
 
 class EnterpriseMembersCanMakePurchasesSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for organizations in the enterprise.
    DISABLED = 'DISABLED' ##The setting is disabled for organizations in the enterprise.
 
 class EnterpriseServerInstallationOrderField(Enum):
+   DEFAULT = None
    HOST_NAME = 'HOST_NAME' ##Order Enterprise Server installations by host name
    CUSTOMER_NAME = 'CUSTOMER_NAME' ##Order Enterprise Server installations by customer name
    CREATED_AT = 'CREATED_AT' ##Order Enterprise Server installations by creation time
 
 class EnterpriseServerUserAccountEmailOrderField(Enum):
+   DEFAULT = None
    EMAIL = 'EMAIL' ##Order emails by email
 
 class EnterpriseServerUserAccountOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order user accounts by login
    REMOTE_CREATED_AT = 'REMOTE_CREATED_AT' ##Order user accounts by creation time on the Enterprise Server installation
 
 class EnterpriseServerUserAccountsUploadOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order user accounts uploads by creation time
 
 class EnterpriseServerUserAccountsUploadSyncState(Enum):
+   DEFAULT = None
    PENDING = 'PENDING' ##The synchronization of the upload is pending.
    SUCCESS = 'SUCCESS' ##The synchronization of the upload succeeded.
    FAILURE = 'FAILURE' ##The synchronization of the upload failed.
 
 class EnterpriseUserAccountMembershipRole(Enum):
+   DEFAULT = None
    MEMBER = 'MEMBER' ##The user is a member of an organization in the enterprise.
    OWNER = 'OWNER' ##The user is an owner of an organization in the enterprise.
    UNAFFILIATED = 'UNAFFILIATED' ##The user is not an owner of the enterprise, and not a member or owner of any organizations in the enterprise; only for EMU-enabled enterprises.
 
 class EnterpriseUserDeployment(Enum):
+   DEFAULT = None
    CLOUD = 'CLOUD' ##The user is part of a GitHub Enterprise Cloud deployment.
    SERVER = 'SERVER' ##The user is part of a GitHub Enterprise Server deployment.
 
 class FileViewedState(Enum):
+   DEFAULT = None
    DISMISSED = 'DISMISSED' ##The file has new changes since last viewed.
    VIEWED = 'VIEWED' ##The file has been marked as viewed.
    UNVIEWED = 'UNVIEWED' ##The file has not been marked as viewed.
 
 class FundingPlatform(Enum):
+   DEFAULT = None
    GITHUB = 'GITHUB' ##GitHub funding platform.
    PATREON = 'PATREON' ##Patreon funding platform.
    OPEN_COLLECTIVE = 'OPEN_COLLECTIVE' ##Open Collective funding platform.
@@ -256,16 +298,19 @@ class FundingPlatform(Enum):
    CUSTOM = 'CUSTOM' ##Custom funding platform.
 
 class GistOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order gists by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order gists by update time
    PUSHED_AT = 'PUSHED_AT' ##Order gists by push time
 
 class GistPrivacy(Enum):
+   DEFAULT = None
    PUBLIC = 'PUBLIC' ##Public
    SECRET = 'SECRET' ##Secret
    ALL = 'ALL' ##Gists that are public and secret
 
 class GitSignatureState(Enum):
+   DEFAULT = None
    VALID = 'VALID' ##Valid signature and verified by GitHub
    INVALID = 'INVALID' ##Invalid signature
    MALFORMED_SIG = 'MALFORMED_SIG' ##Malformed signature
@@ -285,44 +330,54 @@ class GitSignatureState(Enum):
    OCSP_REVOKED = 'OCSP_REVOKED' ##One or more certificates in chain has been revoked
 
 class IdentityProviderConfigurationState(Enum):
+   DEFAULT = None
    ENFORCED = 'ENFORCED' ##Authentication with an identity provider is configured and enforced.
    CONFIGURED = 'CONFIGURED' ##Authentication with an identity provider is configured but not enforced.
    UNCONFIGURED = 'UNCONFIGURED' ##Authentication with an identity provider is not configured.
 
 class IpAllowListEnabledSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for the owner.
    DISABLED = 'DISABLED' ##The setting is disabled for the owner.
 
 class IpAllowListEntryOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order IP allow list entries by creation time.
    ALLOW_LIST_VALUE = 'ALLOW_LIST_VALUE' ##Order IP allow list entries by the allow list value.
 
 class IpAllowListForInstalledAppsEnabledSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for the owner.
    DISABLED = 'DISABLED' ##The setting is disabled for the owner.
 
 class IssueClosedStateReason(Enum):
+   DEFAULT = None
    COMPLETED = 'COMPLETED' ##An issue that has been closed as completed
    NOT_PLANNED = 'NOT_PLANNED' ##An issue that has been closed as not planned
 
 class IssueCommentOrderField(Enum):
+   DEFAULT = None
    UPDATED_AT = 'UPDATED_AT' ##Order issue comments by update time
 
 class IssueOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order issues by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order issues by update time
    COMMENTS = 'COMMENTS' ##Order issues by comment count
 
 class IssueState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##An issue that is still open
    CLOSED = 'CLOSED' ##An issue that has been closed
 
 class IssueStateReason(Enum):
+   DEFAULT = None
    REOPENED = 'REOPENED' ##An issue that has been reopened
    NOT_PLANNED = 'NOT_PLANNED' ##An issue that has been closed as not planned
    COMPLETED = 'COMPLETED' ##An issue that has been closed as completed
 
 class IssueTimelineItemsItemType(Enum):
+   DEFAULT = None
    ISSUE_COMMENT = 'ISSUE_COMMENT' ##Represents a comment on an Issue.
    CROSS_REFERENCED_EVENT = 'CROSS_REFERENCED_EVENT' ##Represents a mention made by one issue or pull request to another.
    ADDED_TO_PROJECT_EVENT = 'ADDED_TO_PROJECT_EVENT' ##Represents a 'added_to_project' event on a given issue or pull request.
@@ -356,42 +411,51 @@ class IssueTimelineItemsItemType(Enum):
    UNSUBSCRIBED_EVENT = 'UNSUBSCRIBED_EVENT' ##Represents an 'unsubscribed' event on a given `Subscribable`.
 
 class LabelOrderField(Enum):
+   DEFAULT = None
    NAME = 'NAME' ##Order labels by name 
    CREATED_AT = 'CREATED_AT' ##Order labels by creation time
 
 class LanguageOrderField(Enum):
+   DEFAULT = None
    SIZE = 'SIZE' ##Order languages by the size of all files containing the language
 
 class LockReason(Enum):
+   DEFAULT = None
    OFF_TOPIC = 'OFF_TOPIC' ##The issue or pull request was locked because the conversation was off-topic.
    TOO_HEATED = 'TOO_HEATED' ##The issue or pull request was locked because the conversation was too heated.
    RESOLVED = 'RESOLVED' ##The issue or pull request was locked because the conversation was resolved.
    SPAM = 'SPAM' ##The issue or pull request was locked because the conversation was spam.
 
 class MannequinOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order mannequins alphabetically by their source login.
    CREATED_AT = 'CREATED_AT' ##Order mannequins why when they were created.
 
 class MergeCommitMessage(Enum):
+   DEFAULT = None
    PR_TITLE = 'PR_TITLE' ##Default to the pull request's title.
    PR_BODY = 'PR_BODY' ##Default to the pull request's body.
    BLANK = 'BLANK' ##Default to a blank commit message.
 
 class MergeCommitTitle(Enum):
+   DEFAULT = None
    PR_TITLE = 'PR_TITLE' ##Default to the pull request's title.
    MERGE_MESSAGE = 'MERGE_MESSAGE' ##Default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
 
 class MergeableState(Enum):
+   DEFAULT = None
    MERGEABLE = 'MERGEABLE' ##The pull request can be merged.
    CONFLICTING = 'CONFLICTING' ##The pull request cannot be merged due to merge conflicts.
    UNKNOWN = 'UNKNOWN' ##The mergeability of the pull request is still being calculated.
 
 class MigrationSourceType(Enum):
+   DEFAULT = None
    AZURE_DEVOPS = 'AZURE_DEVOPS' ##An Azure DevOps migration source.
    BITBUCKET_SERVER = 'BITBUCKET_SERVER' ##A Bitbucket Server migration source.
    GITHUB_ARCHIVE = 'GITHUB_ARCHIVE' ##A GitHub Migration API source.
 
 class MigrationState(Enum):
+   DEFAULT = None
    NOT_STARTED = 'NOT_STARTED' ##The migration has not started.
    QUEUED = 'QUEUED' ##The migration has been queued.
    IN_PROGRESS = 'IN_PROGRESS' ##The migration is in progress.
@@ -401,28 +465,34 @@ class MigrationState(Enum):
    FAILED_VALIDATION = 'FAILED_VALIDATION' ##The migration has invalid credentials.
 
 class MilestoneOrderField(Enum):
+   DEFAULT = None
    DUE_DATE = 'DUE_DATE' ##Order milestones by when they are due.
    CREATED_AT = 'CREATED_AT' ##Order milestones by when they were created.
    UPDATED_AT = 'UPDATED_AT' ##Order milestones by when they were last updated.
    NUMBER = 'NUMBER' ##Order milestones by their number.
 
 class MilestoneState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##A milestone that is still open.
    CLOSED = 'CLOSED' ##A milestone that has been closed.
 
 class NotificationRestrictionSettingValue(Enum):
+   DEFAULT = None
    ENABLED = 'ENABLED' ##The setting is enabled for the owner.
    DISABLED = 'DISABLED' ##The setting is disabled for the owner.
 
 class OIDCProviderType(Enum):
+   DEFAULT = None
    AAD = 'AAD' ##Azure Active Directory
 
 class OauthApplicationCreateAuditEntryState(Enum):
+   DEFAULT = None
    ACTIVE = 'ACTIVE' ##The OAuth Application was active and allowed to have OAuth Accesses.
    SUSPENDED = 'SUSPENDED' ##The OAuth Application was suspended from generating OAuth Accesses due to abuse or security concerns.
    PENDING_DELETION = 'PENDING_DELETION' ##The OAuth Application was in the process of being deleted.
 
 class OperationType(Enum):
+   DEFAULT = None
    ACCESS = 'ACCESS' ##An existing resource was accessed
    AUTHENTICATION = 'AUTHENTICATION' ##A resource performed an authentication event
    CREATE = 'CREATE' ##A new resource was created
@@ -432,14 +502,17 @@ class OperationType(Enum):
    TRANSFER = 'TRANSFER' ##An existing resource was transferred between multiple resources
 
 class OrderDirection(Enum):
+   DEFAULT = None
    ASC = 'ASC' ##Specifies an ascending order for a given `orderBy` argument.
    DESC = 'DESC' ##Specifies a descending order for a given `orderBy` argument.
 
 class OrgAddMemberAuditEntryPermission(Enum):
+   DEFAULT = None
    READ = 'READ' ##Can read and clone repositories.
    ADMIN = 'ADMIN' ##Can read, clone, push, and add collaborators to repositories.
 
 class OrgCreateAuditEntryBillingPlan(Enum):
+   DEFAULT = None
    FREE = 'FREE' ##Free Plan
    BUSINESS = 'BUSINESS' ##Team Plan
    BUSINESS_PLUS = 'BUSINESS_PLUS' ##Enterprise Cloud Plan
@@ -447,14 +520,17 @@ class OrgCreateAuditEntryBillingPlan(Enum):
    TIERED_PER_SEAT = 'TIERED_PER_SEAT' ##Tiered Per Seat Plan
 
 class OrgEnterpriseOwnerOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order enterprise owners by login.
 
 class OrgRemoveBillingManagerAuditEntryReason(Enum):
+   DEFAULT = None
    TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE' ##The organization required 2FA of its billing managers and this user did not have 2FA enabled.
    SAML_EXTERNAL_IDENTITY_MISSING = 'SAML_EXTERNAL_IDENTITY_MISSING' ##SAML external identity missing
    SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY = 'SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY' ##SAML SSO enforcement requires an external identity
 
 class OrgRemoveMemberAuditEntryMembershipType(Enum):
+   DEFAULT = None
    SUSPENDED = 'SUSPENDED' ##A suspended member.
    DIRECT_MEMBER = 'DIRECT_MEMBER' ##A direct member is a user that is a member of the Organization.
    ADMIN = 'ADMIN' ##Organization administrators have full access and can change several settings, including the names of repositories that belong to the Organization and Owners team membership. In addition, organization admins can delete the organization and all of its repositories.
@@ -463,6 +539,7 @@ class OrgRemoveMemberAuditEntryMembershipType(Enum):
    OUTSIDE_COLLABORATOR = 'OUTSIDE_COLLABORATOR' ##An outside collaborator is a person who isn't explicitly a member of the Organization, but who has Read, Write, or Admin permissions to one or more repositories in the organization.
 
 class OrgRemoveMemberAuditEntryReason(Enum):
+   DEFAULT = None
    TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE' ##The organization required 2FA of its billing managers and this user did not have 2FA enabled.
    SAML_EXTERNAL_IDENTITY_MISSING = 'SAML_EXTERNAL_IDENTITY_MISSING' ##SAML external identity missing
    SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY = 'SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY' ##SAML SSO enforcement requires an external identity
@@ -470,25 +547,30 @@ class OrgRemoveMemberAuditEntryReason(Enum):
    TWO_FACTOR_ACCOUNT_RECOVERY = 'TWO_FACTOR_ACCOUNT_RECOVERY' ##User was removed from organization during account recovery
 
 class OrgRemoveOutsideCollaboratorAuditEntryMembershipType(Enum):
+   DEFAULT = None
    OUTSIDE_COLLABORATOR = 'OUTSIDE_COLLABORATOR' ##An outside collaborator is a person who isn't explicitly a member of the Organization, but who has Read, Write, or Admin permissions to one or more repositories in the organization.
    UNAFFILIATED = 'UNAFFILIATED' ##An unaffiliated collaborator is a person who is not a member of the Organization and does not have access to any repositories in the organization.
    BILLING_MANAGER = 'BILLING_MANAGER' ##A billing manager is a user who manages the billing settings for the Organization, such as updating payment information.
 
 class OrgRemoveOutsideCollaboratorAuditEntryReason(Enum):
+   DEFAULT = None
    TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE = 'TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE' ##The organization required 2FA of its billing managers and this user did not have 2FA enabled.
    SAML_EXTERNAL_IDENTITY_MISSING = 'SAML_EXTERNAL_IDENTITY_MISSING' ##SAML external identity missing
 
 class OrgUpdateDefaultRepositoryPermissionAuditEntryPermission(Enum):
+   DEFAULT = None
    READ = 'READ' ##Can read and clone repositories.
    WRITE = 'WRITE' ##Can read, clone and push to repositories.
    ADMIN = 'ADMIN' ##Can read, clone, push, and add collaborators to repositories.
    NONE = 'NONE' ##No default permission value.
 
 class OrgUpdateMemberAuditEntryPermission(Enum):
+   DEFAULT = None
    READ = 'READ' ##Can read and clone repositories.
    ADMIN = 'ADMIN' ##Can read, clone, push, and add collaborators to repositories.
 
 class OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility(Enum):
+   DEFAULT = None
    ALL = 'ALL' ##All organization members are restricted from creating any repositories.
    PUBLIC = 'PUBLIC' ##All organization members are restricted from creating public repositories.
    NONE = 'NONE' ##All organization members are allowed to create any repositories.
@@ -499,43 +581,53 @@ class OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility(Enum):
    PUBLIC_PRIVATE = 'PUBLIC_PRIVATE' ##All organization members are restricted from creating public or private repositories.
 
 class OrganizationInvitationRole(Enum):
+   DEFAULT = None
    DIRECT_MEMBER = 'DIRECT_MEMBER' ##The user is invited to be a direct member of the organization.
    ADMIN = 'ADMIN' ##The user is invited to be an admin of the organization.
    BILLING_MANAGER = 'BILLING_MANAGER' ##The user is invited to be a billing manager of the organization.
    REINSTATE = 'REINSTATE' ##The user's previous role will be reinstated.
 
 class OrganizationInvitationType(Enum):
+   DEFAULT = None
    USER = 'USER' ##The invitation was to an existing user.
    EMAIL = 'EMAIL' ##The invitation was to an email address.
 
 class OrganizationMemberRole(Enum):
+   DEFAULT = None
    MEMBER = 'MEMBER' ##The user is a member of the organization.
    ADMIN = 'ADMIN' ##The user is an administrator of the organization.
 
 class OrganizationMembersCanCreateRepositoriesSettingValue(Enum):
+   DEFAULT = None
    ALL = 'ALL' ##Members will be able to create public and private repositories.
    PRIVATE = 'PRIVATE' ##Members will be able to create only private repositories.
    INTERNAL = 'INTERNAL' ##Members will be able to create only internal repositories.
    DISABLED = 'DISABLED' ##Members will not be able to create public or private repositories.
 
 class OrganizationOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order organizations by creation time
    LOGIN = 'LOGIN' ##Order organizations by login
 
 class PackageFileOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order package files by creation time
 
 class PackageOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order packages by creation time
 
 class PackageType(Enum):
+   DEFAULT = None
    DEBIAN = 'DEBIAN' ##A debian package.
    PYPI = 'PYPI' ##A python package.
 
 class PackageVersionOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order package versions by creation time
 
 class PatchStatus(Enum):
+   DEFAULT = None
    ADDED = 'ADDED' ##The file was added. Git status 'A'.
    DELETED = 'DELETED' ##The file was deleted. Git status 'D'.
    RENAMED = 'RENAMED' ##The file was renamed. Git status 'R'.
@@ -544,6 +636,7 @@ class PatchStatus(Enum):
    CHANGED = 'CHANGED' ##The file's type was changed. Git status 'T'.
 
 class PinnableItemType(Enum):
+   DEFAULT = None
    REPOSITORY = 'REPOSITORY' ##A repository.
    GIST = 'GIST' ##A gist.
    ISSUE = 'ISSUE' ##An issue.
@@ -554,6 +647,7 @@ class PinnableItemType(Enum):
    TEAM = 'TEAM' ##A team.
 
 class PinnedDiscussionGradient(Enum):
+   DEFAULT = None
    RED_ORANGE = 'RED_ORANGE' ##A gradient of red to orange
    BLUE_MINT = 'BLUE_MINT' ##A gradient of blue to mint
    BLUE_PURPLE = 'BLUE_PURPLE' ##A gradient of blue to purple
@@ -561,6 +655,7 @@ class PinnedDiscussionGradient(Enum):
    PURPLE_CORAL = 'PURPLE_CORAL' ##A gradient of purple to coral
 
 class PinnedDiscussionPattern(Enum):
+   DEFAULT = None
    DOT_FILL = 'DOT_FILL' ##A solid dot pattern
    PLUS = 'PLUS' ##A plus sign pattern
    ZAP = 'ZAP' ##A lightning bolt pattern
@@ -569,46 +664,55 @@ class PinnedDiscussionPattern(Enum):
    HEART_FILL = 'HEART_FILL' ##A heart pattern
 
 class ProjectCardArchivedState(Enum):
+   DEFAULT = None
    ARCHIVED = 'ARCHIVED' ##A project card that is archived
    NOT_ARCHIVED = 'NOT_ARCHIVED' ##A project card that is not archived
 
 class ProjectCardState(Enum):
+   DEFAULT = None
    CONTENT_ONLY = 'CONTENT_ONLY' ##The card has content only.
    NOTE_ONLY = 'NOTE_ONLY' ##The card has a note only.
    REDACTED = 'REDACTED' ##The card is redacted.
 
 class ProjectColumnPurpose(Enum):
+   DEFAULT = None
    TODO = 'TODO' ##The column contains cards still to be worked on
    IN_PROGRESS = 'IN_PROGRESS' ##The column contains cards which are currently being worked on
    DONE = 'DONE' ##The column contains cards which are complete
 
 class ProjectItemType(Enum):
+   DEFAULT = None
    ISSUE = 'ISSUE' ##Issue
    PULL_REQUEST = 'PULL_REQUEST' ##Pull Request
    DRAFT_ISSUE = 'DRAFT_ISSUE' ##Draft Issue
    REDACTED = 'REDACTED' ##Redacted Item
 
 class ProjectOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order projects by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order projects by update time
    NAME = 'NAME' ##Order projects by name
 
 class ProjectState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##The project is open.
    CLOSED = 'CLOSED' ##The project is closed.
 
 class ProjectTemplate(Enum):
+   DEFAULT = None
    BASIC_KANBAN = 'BASIC_KANBAN' ##Create a board with columns for To do, In progress and Done.
    AUTOMATED_KANBAN_V2 = 'AUTOMATED_KANBAN_V2' ##Create a board with v2 triggers to automatically move cards across To do, In progress and Done columns.
    AUTOMATED_REVIEWS_KANBAN = 'AUTOMATED_REVIEWS_KANBAN' ##Create a board with triggers to automatically move cards across columns with review automation.
    BUG_TRIAGE = 'BUG_TRIAGE' ##Create a board to triage and prioritize bugs with To do, priority, and Done columns.
 
 class ProjectV2FieldOrderField(Enum):
+   DEFAULT = None
    POSITION = 'POSITION' ##Order project v2 fields by position
    CREATED_AT = 'CREATED_AT' ##Order project v2 fields by creation time
    NAME = 'NAME' ##Order project v2 fields by name
 
 class ProjectV2FieldType(Enum):
+   DEFAULT = None
    ASSIGNEES = 'ASSIGNEES' ##Assignees
    LINKED_PULL_REQUESTS = 'LINKED_PULL_REQUESTS' ##Linked Pull Requests
    REVIEWERS = 'REVIEWERS' ##Reviewers
@@ -625,65 +729,79 @@ class ProjectV2FieldType(Enum):
    TRACKED_BY = 'TRACKED_BY' ##Tracked by
 
 class ProjectV2ItemFieldValueOrderField(Enum):
+   DEFAULT = None
    POSITION = 'POSITION' ##Order project v2 item field values by the their position in the project
 
 class ProjectV2ItemOrderField(Enum):
+   DEFAULT = None
    POSITION = 'POSITION' ##Order project v2 items by the their position in the project
 
 class ProjectV2ItemType(Enum):
+   DEFAULT = None
    ISSUE = 'ISSUE' ##Issue
    PULL_REQUEST = 'PULL_REQUEST' ##Pull Request
    DRAFT_ISSUE = 'DRAFT_ISSUE' ##Draft Issue
    REDACTED = 'REDACTED' ##Redacted Item
 
 class ProjectV2OrderField(Enum):
+   DEFAULT = None
    TITLE = 'TITLE' ##The project's title
    NUMBER = 'NUMBER' ##The project's number
    UPDATED_AT = 'UPDATED_AT' ##The project's date and time of update
    CREATED_AT = 'CREATED_AT' ##The project's date and time of creation
 
 class ProjectV2State(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##A project v2 that is still open
    CLOSED = 'CLOSED' ##A project v2 that has been closed
 
 class ProjectV2ViewLayout(Enum):
+   DEFAULT = None
    BOARD_LAYOUT = 'BOARD_LAYOUT' ##Board layout
    TABLE_LAYOUT = 'TABLE_LAYOUT' ##Table layout
 
 class ProjectV2ViewOrderField(Enum):
+   DEFAULT = None
    POSITION = 'POSITION' ##Order project v2 views by position
    CREATED_AT = 'CREATED_AT' ##Order project v2 views by creation time
    NAME = 'NAME' ##Order project v2 views by name
 
 class ProjectViewLayout(Enum):
+   DEFAULT = None
    BOARD_LAYOUT = 'BOARD_LAYOUT' ##Board layout
    TABLE_LAYOUT = 'TABLE_LAYOUT' ##Table layout
 
 class PullRequestMergeMethod(Enum):
+   DEFAULT = None
    MERGE = 'MERGE' ##Add all commits from the head branch to the base branch with a merge commit.
    SQUASH = 'SQUASH' ##Combine all commits from the head branch into a single commit in the base branch.
    REBASE = 'REBASE' ##Add all commits from the head branch onto the base branch individually.
 
 class PullRequestOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order pull_requests by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order pull_requests by update time
 
 class PullRequestReviewCommentState(Enum):
+   DEFAULT = None
    PENDING = 'PENDING' ##A comment that is part of a pending review
    SUBMITTED = 'SUBMITTED' ##A comment that is part of a submitted review
 
 class PullRequestReviewDecision(Enum):
+   DEFAULT = None
    CHANGES_REQUESTED = 'CHANGES_REQUESTED' ##Changes have been requested on the pull request.
    APPROVED = 'APPROVED' ##The pull request has received an approving review.
    REVIEW_REQUIRED = 'REVIEW_REQUIRED' ##A review is required before the pull request can be merged.
 
 class PullRequestReviewEvent(Enum):
+   DEFAULT = None
    COMMENT = 'COMMENT' ##Submit general feedback without explicit approval.
    APPROVE = 'APPROVE' ##Submit feedback and approve merging these changes.
    REQUEST_CHANGES = 'REQUEST_CHANGES' ##Submit feedback that must be addressed before merging.
    DISMISS = 'DISMISS' ##Dismiss review so it now longer effects merging.
 
 class PullRequestReviewState(Enum):
+   DEFAULT = None
    PENDING = 'PENDING' ##A review that has not yet been submitted.
    COMMENTED = 'COMMENTED' ##An informational review.
    APPROVED = 'APPROVED' ##A review allowing the pull request to merge.
@@ -691,11 +809,13 @@ class PullRequestReviewState(Enum):
    DISMISSED = 'DISMISSED' ##A review that has been dismissed.
 
 class PullRequestState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##A pull request that is still open.
    CLOSED = 'CLOSED' ##A pull request that has been closed without being merged.
    MERGED = 'MERGED' ##A pull request that has been closed by being merged.
 
 class PullRequestTimelineItemsItemType(Enum):
+   DEFAULT = None
    PULL_REQUEST_COMMIT = 'PULL_REQUEST_COMMIT' ##Represents a Git commit part of a pull request.
    PULL_REQUEST_COMMIT_COMMENT_THREAD = 'PULL_REQUEST_COMMIT_COMMENT_THREAD' ##Represents a commit comment thread part of a pull request.
    PULL_REQUEST_REVIEW = 'PULL_REQUEST_REVIEW' ##A review object for a given pull request.
@@ -756,10 +876,12 @@ class PullRequestTimelineItemsItemType(Enum):
    UNSUBSCRIBED_EVENT = 'UNSUBSCRIBED_EVENT' ##Represents an 'unsubscribed' event on a given `Subscribable`.
 
 class PullRequestUpdateState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##A pull request that is still open.
    CLOSED = 'CLOSED' ##A pull request that has been closed without being merged.
 
 class ReactionContent(Enum):
+   DEFAULT = None
    THUMBS_UP = 'THUMBS_UP' ##Represents the `:+1:` emoji.
    THUMBS_DOWN = 'THUMBS_DOWN' ##Represents the `:-1:` emoji.
    LAUGH = 'LAUGH' ##Represents the `:laugh:` emoji.
@@ -770,52 +892,63 @@ class ReactionContent(Enum):
    EYES = 'EYES' ##Represents the `:eyes:` emoji.
 
 class ReactionOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Allows ordering a list of reactions by when they were created.
 
 class RefOrderField(Enum):
+   DEFAULT = None
    TAG_COMMIT_DATE = 'TAG_COMMIT_DATE' ##Order refs by underlying commit date if the ref prefix is refs/tags/
    ALPHABETICAL = 'ALPHABETICAL' ##Order refs by their alphanumeric name
 
 class ReleaseOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order releases by creation time
    NAME = 'NAME' ##Order releases alphabetically by name
 
 class RepoAccessAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class RepoAddMemberAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class RepoArchivedAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class RepoChangeMergeSettingAuditEntryMergeType(Enum):
+   DEFAULT = None
    MERGE = 'MERGE' ##The pull request is added to the base branch in a merge commit.
    REBASE = 'REBASE' ##Commits from the pull request are added onto the base branch individually without a merge commit.
    SQUASH = 'SQUASH' ##The pull request's commits are squashed into a single commit before they are merged to the base branch.
 
 class RepoCreateAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class RepoDestroyAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class RepoRemoveMemberAuditEntryVisibility(Enum):
+   DEFAULT = None
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
 
 class ReportedContentClassifiers(Enum):
+   DEFAULT = None
    SPAM = 'SPAM' ##A spammy piece of content
    ABUSE = 'ABUSE' ##An abusive or harassing piece of content
    OFF_TOPIC = 'OFF_TOPIC' ##An irrelevant piece of content
@@ -824,11 +957,13 @@ class ReportedContentClassifiers(Enum):
    RESOLVED = 'RESOLVED' ##The content has been resolved
 
 class RepositoryAffiliation(Enum):
+   DEFAULT = None
    OWNER = 'OWNER' ##Repositories that are owned by the authenticated user.
    COLLABORATOR = 'COLLABORATOR' ##Repositories that the user has been added to as a collaborator.
    ORGANIZATION_MEMBER = 'ORGANIZATION_MEMBER' ##Repositories that the user has access to through being a member of an organization. This includes every repository on every team that the user is on.
 
 class RepositoryContributionType(Enum):
+   DEFAULT = None
    COMMIT = 'COMMIT' ##Created a commit
    ISSUE = 'ISSUE' ##Created an issue
    PULL_REQUEST = 'PULL_REQUEST' ##Created a pull request
@@ -836,12 +971,14 @@ class RepositoryContributionType(Enum):
    PULL_REQUEST_REVIEW = 'PULL_REQUEST_REVIEW' ##Reviewed a pull request
 
 class RepositoryInteractionLimit(Enum):
+   DEFAULT = None
    EXISTING_USERS = 'EXISTING_USERS' ##Users that have recently created their account will be unable to interact with the repository.
    CONTRIBUTORS_ONLY = 'CONTRIBUTORS_ONLY' ##Users that have not previously committed to a repository’s default branch will be unable to interact with the repository.
    COLLABORATORS_ONLY = 'COLLABORATORS_ONLY' ##Users that are not collaborators will not be able to interact with the repository.
    NO_LIMIT = 'NO_LIMIT' ##No interaction limits are enabled.
 
 class RepositoryInteractionLimitExpiry(Enum):
+   DEFAULT = None
    ONE_DAY = 'ONE_DAY' ##The interaction limit will expire after 1 day.
    THREE_DAYS = 'THREE_DAYS' ##The interaction limit will expire after 3 days.
    ONE_WEEK = 'ONE_WEEK' ##The interaction limit will expire after 1 week.
@@ -849,14 +986,17 @@ class RepositoryInteractionLimitExpiry(Enum):
    SIX_MONTHS = 'SIX_MONTHS' ##The interaction limit will expire after 6 months.
 
 class RepositoryInteractionLimitOrigin(Enum):
+   DEFAULT = None
    REPOSITORY = 'REPOSITORY' ##A limit that is configured at the repository level.
    ORGANIZATION = 'ORGANIZATION' ##A limit that is configured at the organization level.
    USER = 'USER' ##A limit that is configured at the user-wide level.
 
 class RepositoryInvitationOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order repository invitations by creation time
 
 class RepositoryLockReason(Enum):
+   DEFAULT = None
    MOVING = 'MOVING' ##The repository is locked due to a move.
    BILLING = 'BILLING' ##The repository is locked due to a billing related reason.
    RENAME = 'RENAME' ##The repository is locked due to a rename.
@@ -864,13 +1004,16 @@ class RepositoryLockReason(Enum):
    TRADE_RESTRICTION = 'TRADE_RESTRICTION' ##The repository is locked due to a trade controls related reason.
 
 class RepositoryMigrationOrderDirection(Enum):
+   DEFAULT = None
    ASC = 'ASC' ##Specifies an ascending order for a given `orderBy` argument.
    DESC = 'DESC' ##Specifies a descending order for a given `orderBy` argument.
 
 class RepositoryMigrationOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order mannequins why when they were created.
 
 class RepositoryOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order repositories by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order repositories by update time
    PUSHED_AT = 'PUSHED_AT' ##Order repositories by push time
@@ -878,6 +1021,7 @@ class RepositoryOrderField(Enum):
    STARGAZERS = 'STARGAZERS' ##Order repositories by number of stargazers
 
 class RepositoryPermission(Enum):
+   DEFAULT = None
    ADMIN = 'ADMIN' ##Can read, clone, and push to this repository. Can also manage issues, pull requests, and repository settings, including adding collaborators
    MAINTAIN = 'MAINTAIN' ##Can read, clone, and push to this repository. They can also manage issues, pull requests, and some repository settings
    WRITE = 'WRITE' ##Can read, clone, and push to this repository. Can also manage issues and pull requests
@@ -885,24 +1029,29 @@ class RepositoryPermission(Enum):
    READ = 'READ' ##Can read and clone this repository. Can also open and comment on issues and pull requests
 
 class RepositoryPrivacy(Enum):
+   DEFAULT = None
    PUBLIC = 'PUBLIC' ##Public
    PRIVATE = 'PRIVATE' ##Private
 
 class RepositoryVisibility(Enum):
+   DEFAULT = None
    PRIVATE = 'PRIVATE' ##The repository is visible only to those with explicit access.
    PUBLIC = 'PUBLIC' ##The repository is visible to everyone.
    INTERNAL = 'INTERNAL' ##The repository is visible only to users in the same business.
 
 class RepositoryVulnerabilityAlertDependencyScope(Enum):
+   DEFAULT = None
    RUNTIME = 'RUNTIME' ##A dependency that is leveraged during application runtime
    DEVELOPMENT = 'DEVELOPMENT' ##A dependency that is only used in development
 
 class RepositoryVulnerabilityAlertState(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##An alert that is still open.
    FIXED = 'FIXED' ##An alert that has been resolved by a code change.
    DISMISSED = 'DISMISSED' ##An alert that has been manually closed by a user.
 
 class RequestableCheckStatusState(Enum):
+   DEFAULT = None
    QUEUED = 'QUEUED' ##The check suite or run has been queued.
    IN_PROGRESS = 'IN_PROGRESS' ##The check suite or run is in progress.
    COMPLETED = 'COMPLETED' ##The check suite or run has been completed.
@@ -910,36 +1059,43 @@ class RequestableCheckStatusState(Enum):
    PENDING = 'PENDING' ##The check suite or run is in pending state.
 
 class RoleInOrganization(Enum):
+   DEFAULT = None
    OWNER = 'OWNER' ##A user with full administrative access to the organization.
    DIRECT_MEMBER = 'DIRECT_MEMBER' ##A user who is a direct member of the organization.
    UNAFFILIATED = 'UNAFFILIATED' ##A user who is unaffiliated with the organization.
 
 class SamlDigestAlgorithm(Enum):
+   DEFAULT = None
    SHA1 = 'SHA1' ##SHA1
    SHA256 = 'SHA256' ##SHA256
    SHA384 = 'SHA384' ##SHA384
    SHA512 = 'SHA512' ##SHA512
 
 class SamlSignatureAlgorithm(Enum):
+   DEFAULT = None
    RSA_SHA1 = 'RSA_SHA1' ##RSA-SHA1
    RSA_SHA256 = 'RSA_SHA256' ##RSA-SHA256
    RSA_SHA384 = 'RSA_SHA384' ##RSA-SHA384
    RSA_SHA512 = 'RSA_SHA512' ##RSA-SHA512
 
 class SavedReplyOrderField(Enum):
+   DEFAULT = None
    UPDATED_AT = 'UPDATED_AT' ##Order saved reply by when they were updated.
 
 class SearchType(Enum):
+   DEFAULT = None
    ISSUE = 'ISSUE' ##Returns results matching issues in repositories.
    REPOSITORY = 'REPOSITORY' ##Returns results matching repositories.
    USER = 'USER' ##Returns results matching users and organizations on GitHub.
    DISCUSSION = 'DISCUSSION' ##Returns matching discussions in repositories.
 
 class SecurityAdvisoryClassification(Enum):
+   DEFAULT = None
    GENERAL = 'GENERAL' ##Classification of general advisories.
    MALWARE = 'MALWARE' ##Classification of malware advisories.
 
 class SecurityAdvisoryEcosystem(Enum):
+   DEFAULT = None
    COMPOSER = 'COMPOSER' ##PHP packages hosted at packagist.org
    ERLANG = 'ERLANG' ##Erlang/Elixir packages hosted at hex.pm
    ACTIONS = 'ACTIONS' ##GitHub Actions
@@ -953,30 +1109,37 @@ class SecurityAdvisoryEcosystem(Enum):
    RUST = 'RUST' ##Rust crates
 
 class SecurityAdvisoryIdentifierType(Enum):
+   DEFAULT = None
    CVE = 'CVE' ##Common Vulnerabilities and Exposures Identifier.
    GHSA = 'GHSA' ##GitHub Security Advisory ID.
 
 class SecurityAdvisoryOrderField(Enum):
+   DEFAULT = None
    PUBLISHED_AT = 'PUBLISHED_AT' ##Order advisories by publication time
    UPDATED_AT = 'UPDATED_AT' ##Order advisories by update time
 
 class SecurityAdvisorySeverity(Enum):
+   DEFAULT = None
    LOW = 'LOW' ##Low.
    MODERATE = 'MODERATE' ##Moderate.
    HIGH = 'HIGH' ##High.
    CRITICAL = 'CRITICAL' ##Critical.
 
 class SecurityVulnerabilityOrderField(Enum):
+   DEFAULT = None
    UPDATED_AT = 'UPDATED_AT' ##Order vulnerability by update time
 
 class SponsorOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order sponsorable entities by login (username).
    RELEVANCE = 'RELEVANCE' ##Order sponsors by their relevance to the viewer.
 
 class SponsorableOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order sponsorable entities by login (username).
 
 class SponsorsActivityAction(Enum):
+   DEFAULT = None
    NEW_SPONSORSHIP = 'NEW_SPONSORSHIP' ##The activity was starting a sponsorship.
    CANCELLED_SPONSORSHIP = 'CANCELLED_SPONSORSHIP' ##The activity was cancelling a sponsorship.
    TIER_CHANGE = 'TIER_CHANGE' ##The activity was changing the sponsorship tier, either directly by the sponsor or by a scheduled/pending change.
@@ -985,15 +1148,18 @@ class SponsorsActivityAction(Enum):
    SPONSOR_MATCH_DISABLED = 'SPONSOR_MATCH_DISABLED' ##The activity was disabling matching for a previously matched sponsorship.
 
 class SponsorsActivityOrderField(Enum):
+   DEFAULT = None
    TIMESTAMP = 'TIMESTAMP' ##Order activities by when they happened.
 
 class SponsorsActivityPeriod(Enum):
+   DEFAULT = None
    DAY = 'DAY' ##The previous calendar day.
    WEEK = 'WEEK' ##The previous seven days.
    MONTH = 'MONTH' ##The previous thirty days.
    ALL = 'ALL' ##Don't restrict the activity to any date range, include all activity.
 
 class SponsorsCountryOrRegionCode(Enum):
+   DEFAULT = None
    AF = 'AF' ##Afghanistan
    AX = 'AX' ##Åland
    AL = 'AL' ##Albania
@@ -1242,40 +1408,50 @@ class SponsorsCountryOrRegionCode(Enum):
    ZW = 'ZW' ##Zimbabwe
 
 class SponsorsGoalKind(Enum):
+   DEFAULT = None
    TOTAL_SPONSORS_COUNT = 'TOTAL_SPONSORS_COUNT' ##The goal is about reaching a certain number of sponsors.
    MONTHLY_SPONSORSHIP_AMOUNT = 'MONTHLY_SPONSORSHIP_AMOUNT' ##The goal is about getting a certain amount in USD from sponsorships each month.
 
 class SponsorsListingFeaturedItemFeatureableType(Enum):
+   DEFAULT = None
    REPOSITORY = 'REPOSITORY' ##A repository owned by the user or organization with the GitHub Sponsors profile.
    USER = 'USER' ##A user who belongs to the organization with the GitHub Sponsors profile.
 
 class SponsorsTierOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order tiers by creation time.
    MONTHLY_PRICE_IN_CENTS = 'MONTHLY_PRICE_IN_CENTS' ##Order tiers by their monthly price in cents
 
 class SponsorshipNewsletterOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order sponsorship newsletters by when they were created.
 
 class SponsorshipOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order sponsorship by creation time.
 
 class SponsorshipPrivacy(Enum):
+   DEFAULT = None
    PUBLIC = 'PUBLIC' ##Public
    PRIVATE = 'PRIVATE' ##Private
 
 class SquashMergeCommitMessage(Enum):
+   DEFAULT = None
    PR_BODY = 'PR_BODY' ##Default to the pull request's body.
    COMMIT_MESSAGES = 'COMMIT_MESSAGES' ##Default to the branch's commit messages.
    BLANK = 'BLANK' ##Default to a blank commit message.
 
 class SquashMergeCommitTitle(Enum):
+   DEFAULT = None
    PR_TITLE = 'PR_TITLE' ##Default to the pull request's title.
    COMMIT_OR_PR_TITLE = 'COMMIT_OR_PR_TITLE' ##Default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
 
 class StarOrderField(Enum):
+   DEFAULT = None
    STARRED_AT = 'STARRED_AT' ##Allows ordering a list of stars by when they were created.
 
 class StatusState(Enum):
+   DEFAULT = None
    EXPECTED = 'EXPECTED' ##Status is expected.
    ERROR = 'ERROR' ##Status is errored.
    FAILURE = 'FAILURE' ##Status is failing.
@@ -1283,37 +1459,46 @@ class StatusState(Enum):
    SUCCESS = 'SUCCESS' ##Status is successful.
 
 class SubscriptionState(Enum):
+   DEFAULT = None
    UNSUBSCRIBED = 'UNSUBSCRIBED' ##The User is only notified when participating or @mentioned.
    SUBSCRIBED = 'SUBSCRIBED' ##The User is notified of all conversations.
    IGNORED = 'IGNORED' ##The User is never notified.
 
 class TeamDiscussionCommentOrderField(Enum):
+   DEFAULT = None
    NUMBER = 'NUMBER' ##Allows sequential ordering of team discussion comments (which is equivalent to chronological ordering).
 
 class TeamDiscussionOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Allows chronological ordering of team discussions.
 
 class TeamMemberOrderField(Enum):
+   DEFAULT = None
    LOGIN = 'LOGIN' ##Order team members by login
    CREATED_AT = 'CREATED_AT' ##Order team members by creation time
 
 class TeamMemberRole(Enum):
+   DEFAULT = None
    MAINTAINER = 'MAINTAINER' ##A team maintainer has permission to add and remove team members.
    MEMBER = 'MEMBER' ##A team member has no administrative permissions on the team.
 
 class TeamMembershipType(Enum):
+   DEFAULT = None
    IMMEDIATE = 'IMMEDIATE' ##Includes only immediate members of the team.
    CHILD_TEAM = 'CHILD_TEAM' ##Includes only child team members for the team.
    ALL = 'ALL' ##Includes immediate and child team members for the team.
 
 class TeamOrderField(Enum):
+   DEFAULT = None
    NAME = 'NAME' ##Allows ordering a list of teams by name.
 
 class TeamPrivacy(Enum):
+   DEFAULT = None
    SECRET = 'SECRET' ##A secret team can only be seen by its members.
    VISIBLE = 'VISIBLE' ##A visible team can be seen and @mentioned by every member of the organization.
 
 class TeamRepositoryOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order repositories by creation time
    UPDATED_AT = 'UPDATED_AT' ##Order repositories by update time
    PUSHED_AT = 'PUSHED_AT' ##Order repositories by push time
@@ -1322,20 +1507,24 @@ class TeamRepositoryOrderField(Enum):
    STARGAZERS = 'STARGAZERS' ##Order repositories by number of stargazers
 
 class TeamRole(Enum):
+   DEFAULT = None
    ADMIN = 'ADMIN' ##User has admin rights on the team.
    MEMBER = 'MEMBER' ##User is a member of the team.
 
 class TopicSuggestionDeclineReason(Enum):
+   DEFAULT = None
    NOT_RELEVANT = 'NOT_RELEVANT' ##The suggested topic is not relevant to the repository.
    TOO_SPECIFIC = 'TOO_SPECIFIC' ##The suggested topic is too specific for the repository (e.g. #ruby-on-rails-version-4-2-1).
    PERSONAL_PREFERENCE = 'PERSONAL_PREFERENCE' ##The viewer does not like the suggested topic.
    TOO_GENERAL = 'TOO_GENERAL' ##The suggested topic is too general for the repository.
 
 class TrackedIssueStates(Enum):
+   DEFAULT = None
    OPEN = 'OPEN' ##The tracked issue is open
    CLOSED = 'CLOSED' ##The tracked issue is closed
 
 class UserBlockDuration(Enum):
+   DEFAULT = None
    ONE_DAY = 'ONE_DAY' ##The user was blocked for 1 day
    THREE_DAYS = 'THREE_DAYS' ##The user was blocked for 3 days
    ONE_WEEK = 'ONE_WEEK' ##The user was blocked for 7 days
@@ -1343,12 +1532,15 @@ class UserBlockDuration(Enum):
    PERMANENT = 'PERMANENT' ##The user was blocked permanently
 
 class UserStatusOrderField(Enum):
+   DEFAULT = None
    UPDATED_AT = 'UPDATED_AT' ##Order user statuses by when they were updated.
 
 class VerifiableDomainOrderField(Enum):
+   DEFAULT = None
    DOMAIN = 'DOMAIN' ##Order verifiable domains by the domain name.
    CREATED_AT = 'CREATED_AT' ##Order verifiable domains by their creation date.
 
 class WorkflowRunOrderField(Enum):
+   DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order workflow runs by most recently created
 

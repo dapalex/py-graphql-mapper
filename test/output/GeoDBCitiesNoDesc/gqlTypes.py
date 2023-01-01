@@ -31,14 +31,14 @@ class TimeZonesConnection(GQLObject):
    edges: TimeZoneEdge ##NON NULL
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class RegionPopulatedPlacesConnectionField(Generic[RegionPopulatedPlacesConnection]):
+class WSZCWpopulatedPlaces_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: list[ID]
-      types: list[str]
+      timeZoneIds: ID ##LIST
+      types: str ##LIST
       sort: str
       first: int
       after: str
@@ -58,7 +58,7 @@ class CountryRegion(GQLObject):
    capital: str
    country: NewType('Country', GQLObject) ##NON NULL ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: RegionPopulatedPlacesConnectionField ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: WSZCWpopulatedPlaces_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    cursor: str ##NON NULL
@@ -69,7 +69,7 @@ class CountryRegionsConnection(GQLObject):
    edges: CountryRegionEdge ##NON NULL
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class CountryRegionField(CountryRegion):
+class UEFXDregion_CountryRegion_Field(CountryRegion):
    class CountryRegionArgs(GQLArgsSet, GQLObject): 
       code: ID
 
@@ -77,7 +77,7 @@ class CountryRegionField(CountryRegion):
 
 
 
-class CountryRegionsConnectionField(CountryRegionsConnection):
+class FGKUEregions_CountryRegionsConnection_Field(CountryRegionsConnection):
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -99,26 +99,26 @@ class Country(GQLObject):
    currencyCodes: str ##NON NULL
    flagImageUri: str ##NON NULL
    numRegions: int ##NON NULL
-   region: CountryRegionField
-   regions: CountryRegionsConnectionField
+   region: UEFXDregion_CountryRegion_Field
+   regions: FGKUEregions_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    totalCount: int ##NON NULL
    edges: NewType('PopulatedPlaceEdge', GQLObject) ##NON NULL ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class NearbyPopulatedPlacesConnectionField(NearbyPopulatedPlacesConnection):
+class IQILInearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: list[ID]
-      excludedCountryIds: list[ID]
+      countryIds: ID ##LIST
+      excludedCountryIds: ID ##LIST
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: list[ID]
-      types: list[str]
+      timeZoneIds: ID ##LIST
+      types: str ##LIST
       sort: str
       first: int
       after: str
@@ -142,9 +142,9 @@ class PopulatedPlace(GQLObject):
    timezone: str ##NON NULL
    country: Country ##NON NULL
    region: CountryRegion
-   distance: distanceField
+   distance: MSQFVdistance_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: NearbyPopulatedPlacesConnectionField
+   nearbyPopulatedPlaces: IQILInearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field
    deleted: bool ##NON NULL
 
 class PopulatedPlaceEdge(GQLObject):

@@ -5,23 +5,7 @@ from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
-class organizationVerifiedDomainEmailsField(ArguedStr):
-   class strArgs(GQLArgsSet, GQLObject): 
-      login: str ##NON NULL
-
-   _args: strArgs
-
-
-
-class canReceiveOrganizationEmailsWhenNotificationsRestrictedField(ArguedStr):
-   class boolArgs(GQLArgsSet, GQLObject): 
-      login: str ##NON NULL
-
-   _args: boolArgs
-
-
-
-class anyPinnableItemsField(ArguedStr):
+class FGHZRanyPinnableItems_anyPinnableItems_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -29,91 +13,31 @@ class anyPinnableItemsField(ArguedStr):
 
 
 
-class isSponsoredByField(ArguedStr):
-   class boolArgs(GQLArgsSet, GQLObject): 
-      accountLogin: str ##NON NULL
+class TQXXMlogoUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
 
-   _args: boolArgs
-
-
-
-class textField(ArguedStr):
-   class strArgs(GQLArgsSet, GQLObject): 
-      truncate: int
-
-   _args: strArgs
+   _args: URIArgs
 
 
 
-class totalRepositoryContributionsField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
+class HKJJHlogoUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
 
-   _args: intArgs
-
-
-
-class totalRepositoriesWithContributedPullRequestsField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
+   _args: URIArgs
 
 
 
-class totalRepositoriesWithContributedIssuesField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
+class QJWMQavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
 
-   _args: intArgs
-
-
-
-class totalPullRequestContributionsField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
+   _args: URIArgs
 
 
 
-class totalIssueContributionsField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class viewerMergeHeadlineTextField(ArguedStr):
-   class strArgs(GQLArgsSet, GQLObject): 
-      mergeType: PullRequestMergeMethod
-
-   _args: strArgs
-
-
-
-class viewerMergeBodyTextField(ArguedStr):
-   class strArgs(GQLArgsSet, GQLObject): 
-      mergeType: PullRequestMergeMethod
-
-   _args: strArgs
-
-
-
-class trackedIssuesCountField(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      states: list[TrackedIssueStates]
-
-   _args: intArgs
-
-
-
-class HTMLField(ArguedStr):
+class DNUPPshortDescriptionHTML_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -121,7 +45,245 @@ class HTMLField(ArguedStr):
 
 
 
-class URIField(ArguedStr):
+class NLRXVavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class SQQASisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      accountLogin: str ##NON NULL
+
+   _args: boolArgs
+
+
+
+class QKIOIavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class NFATBanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      type: PinnableItemType
+
+   _args: boolArgs
+
+
+
+class YRBADorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Field(ArguedStr):
+   class strArgs(GQLArgsSet, GQLObject): 
+      login: str ##NON NULL
+
+   _args: strArgs
+
+
+
+class TYUVPisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      accountLogin: str ##NON NULL
+
+   _args: boolArgs
+
+
+
+class OHADDcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      login: str ##NON NULL
+
+   _args: boolArgs
+
+
+
+class PBEOMavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class ZENZGanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      type: PinnableItemType
+
+   _args: boolArgs
+
+
+
+class AURXIisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      accountLogin: str ##NON NULL
+
+   _args: boolArgs
+
+
+
+class IRETUtext_text_Field(ArguedStr):
+   class strArgs(GQLArgsSet, GQLObject): 
+      truncate: int
+
+   _args: strArgs
+
+
+
+class YZKMRtotalRepositoryContributions_totalRepositoryContributions_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+
+   _args: intArgs
+
+
+
+class GJQECtotalRepositoriesWithContributedPullRequests_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class NQBDBtotalRepositoriesWithContributedIssues_totalRepositoriesWithContributedIssues_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class WTCKPtotalPullRequestContributions_totalPullRequestContributions_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class WYQXRtotalIssueContributions_totalIssueContributions_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class CKILMisRequired_isRequired_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      pullRequestId: ID
+      pullRequestNumber: int
+
+   _args: boolArgs
+
+
+
+class APMIUavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class GCYIQisRequired_isRequired_Field(ArguedStr):
+   class boolArgs(GQLArgsSet, GQLObject): 
+      pullRequestId: ID
+      pullRequestNumber: int
+
+   _args: boolArgs
+
+
+
+class RMTYBavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class BJQEFviewerMergeHeadlineText_viewerMergeHeadlineText_Field(ArguedStr):
+   class strArgs(GQLArgsSet, GQLObject): 
+      mergeType: PullRequestMergeMethod
+
+   _args: strArgs
+
+
+
+class SNZMLviewerMergeBodyText_viewerMergeBodyText_Field(ArguedStr):
+   class strArgs(GQLArgsSet, GQLObject): 
+      mergeType: PullRequestMergeMethod
+
+   _args: strArgs
+
+
+
+class TQXNNavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class KGMMNtrackedIssuesCount_trackedIssuesCount_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      states: TrackedIssueStates ##LIST
+
+   _args: intArgs
+
+
+
+class ASOLOshortDescriptionHTML_HTML_Field(ArguedStr):
+   class HTMLArgs(GQLArgsSet, GQLObject): 
+      limit: int
+
+   _args: HTMLArgs
+
+
+
+class SNCDXavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class JVCZDshortDescriptionHTML_HTML_Field(ArguedStr):
+   class HTMLArgs(GQLArgsSet, GQLObject): 
+      limit: int
+
+   _args: HTMLArgs
+
+
+
+class MIVBDavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class KDKPRavatarUrl_URI_Field(ArguedStr):
+   class URIArgs(GQLArgsSet, GQLObject): 
+      size: int
+
+   _args: URIArgs
+
+
+
+class XVGUIavatarUrl_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -143,7 +305,7 @@ class UserStatusOrder(GQLObject):
 
 class UpdateTopicsInput(GQLObject):
    repositoryId: ID ##NON NULL
-   topicNames: list[str] ##NON NULL
+   topicNames: str ##NON NULL ##LIST
    clientMutationId: str
 
 class UpdateTeamDiscussionInput(GQLObject):
@@ -234,7 +396,7 @@ class UpdateIpAllowListEntryInput(GQLObject):
 class UpdateEnvironmentInput(GQLObject):
    environmentId: ID ##NON NULL
    waitTimer: int
-   reviewers: list[ID] ##NON NULL
+   reviewers: ID ##NON NULL ##LIST
    clientMutationId: str
 
 class UpdateEnterpriseTeamDiscussionsSettingInput(GQLObject):
@@ -433,7 +595,7 @@ class RerequestCheckSuiteInput(GQLObject):
    checkSuiteId: ID ##NON NULL
    clientMutationId: str
 
-class isRequiredField(ArguedStr):
+class NGLPZisRequired_isRequired_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -444,8 +606,8 @@ class isRequiredField(ArguedStr):
 
 class RequestReviewsInput(GQLObject):
    pullRequestId: ID ##NON NULL
-   userIds: list[ID] ##NON NULL
-   teamIds: list[ID] ##NON NULL
+   userIds: ID ##NON NULL ##LIST
+   teamIds: ID ##NON NULL ##LIST
    union: bool
    clientMutationId: str
 
@@ -854,7 +1016,7 @@ class CreateProjectInput(GQLObject):
    name: str ##NON NULL
    body: str
    template: ProjectTemplate
-   repositoryIds: list[ID] ##NON NULL
+   repositoryIds: ID ##NON NULL ##LIST
    clientMutationId: str
 
 class CreateLinkedBranchInput(GQLObject):
@@ -876,7 +1038,7 @@ class CreateEnterpriseOrganizationInput(GQLObject):
    login: str ##NON NULL
    profileName: str ##NON NULL
    billingEmail: str ##NON NULL
-   adminLogins: list[str] ##NON NULL
+   adminLogins: str ##NON NULL ##LIST
    clientMutationId: str
 
 class CreateCheckSuiteInput(GQLObject):
@@ -904,7 +1066,7 @@ class CommitMessage(GQLObject):
 
 class CommitAuthor(GQLObject):
    id: ID
-   emails: list[str] ##NON NULL
+   emails: str ##NON NULL ##LIST
 
 class ClosePullRequestInput(GQLObject):
    pullRequestId: ID ##NON NULL
@@ -940,8 +1102,8 @@ class CheckRunFilter(GQLObject):
    appId: int
    checkName: str
    status: CheckStatusState
-   statuses: list[CheckStatusState] ##NON NULL
-   conclusions: list[CheckConclusionState] ##NON NULL
+   statuses: CheckStatusState ##NON NULL ##LIST
+   conclusions: CheckConclusionState ##NON NULL ##LIST
 
 class CheckAnnotationRange(GQLObject):
    startLine: int ##NON NULL
@@ -966,7 +1128,7 @@ class CVSS(GQLObject):
    vectorString: str
 
 class Bot(GQLObject):
-   avatarUrl: URIField ##NON NULL
+   avatarUrl: XVGUIavatarUrl_URI_Field
    createdAt: DateTime ##NON NULL
    databaseId: int
    id: ID ##NON NULL
@@ -1020,7 +1182,7 @@ class AddProjectColumnInput(GQLObject):
 
 class AddLabelsToLabelableInput(GQLObject):
    labelableId: ID ##NON NULL
-   labelIds: list[ID] ##NON NULL
+   labelIds: ID ##NON NULL ##LIST
    clientMutationId: str
 
 class AddEnterpriseSupportEntitlementInput(GQLObject):
@@ -1044,11 +1206,16 @@ class ActorLocation(GQLObject):
    region: str
    regionCode: str
 
-class AcceptTopicSuggestionInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   name: str ##NON NULL
+class Actor(GQLObject):
+   avatarUrl: KDKPRavatarUrl_URI_Field
+   login: str ##NON NULL
+   resourcePath: URI ##NON NULL
+   url: URI ##NON NULL
+
+class AcceptEnterpriseAdministratorInvitationInput(GQLObject):
+   invitationId: ID ##NON NULL
    clientMutationId: str
 
-class AbortQueuedMigrationsPayload(GQLObject):
+class AbortQueuedMigrationsInput(GQLObject):
+   ownerId: ID ##NON NULL
    clientMutationId: str
-   success: bool
