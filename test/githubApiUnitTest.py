@@ -99,6 +99,9 @@ async def RunGithubAddCommentMutation():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
+        
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -139,6 +142,8 @@ async def RunGithubUpdateRepositoryMutation():
         
         gqlResponse.printMessageOutput()
         
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -180,6 +185,8 @@ async def RunGithubCreateProjectMutation():
             with open('projectsCreated.log', 'a') as logProjCreated:
                 logProjCreated.write(gqlResponse.data['createProject']['project']['id'] + '\n')
                 
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -210,6 +217,8 @@ async def RunGithubDeleteProjectMutation():
         
         gqlResponse.printMessageOutput()
     
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -240,6 +249,8 @@ async def RunGithubCreateProjectV2Mutation():
         
         gqlResponse.printMessageOutput()
         
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -270,6 +281,8 @@ async def RunGithubDeleteProjectV2Mutation():
         
         gqlResponse.printMessageOutput()
         
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -338,6 +351,8 @@ async def RunGithubCreateIssueMutation():
         
         gqlResponse.printMessageOutput()
     
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         

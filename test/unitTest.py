@@ -63,7 +63,7 @@ async def testNestedObjectShowChange():
 async def testComplexObjectShowChange(): 
     print('\n\nRunning testComplexObjectShowChange...')
     query = countries() 
-    query.type.edges.node.region._args.code = "CH"
+    query.type.edges.node.region._args.code = ID("CH")
     query._argsType = ArgType.Variables
     
     query.setShow('countries.edges.cursor', False)
@@ -224,7 +224,7 @@ async def testComplexObjectWithArgsAndVariables():
 async def testNestedObjectShowChangeWithArgsAndVariables(): 
     print('\n\nRunning testNestedObjectShowChangeWithArgsAndVariables...')
     query = currencies()
-    query._args.countryId = 'CH'
+    query._args.countryId = ID('CH')
     query._argsType = ArgType.Variables
 
     try:

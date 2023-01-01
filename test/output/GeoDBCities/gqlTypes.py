@@ -77,9 +77,9 @@ class TimeZonesConnection(GQLObject):
    edges: TimeZoneEdge ##NON NULL
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class GNBZCpopulatedPlaces_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class JUQTJpopulatedPlaces_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    """
-   GNBZCpopulatedPlaces_RegionPopulatedPlacesConnection_Field - Find populated places in this region
+   JUQTJpopulatedPlaces_RegionPopulatedPlacesConnection_Field - Find populated places in this region
 
    """
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
@@ -156,7 +156,7 @@ class CountryRegion(GQLObject):
    capital: str
    country: NewType('Country', GQLObject) ##NON NULL ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: GNBZCpopulatedPlaces_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: JUQTJpopulatedPlaces_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    """
@@ -185,9 +185,9 @@ class CountryRegionsConnection(GQLObject):
    edges: CountryRegionEdge ##NON NULL
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class TSOXOregion_CountryRegion_Field(CountryRegion):
+class NKKSKregion_CountryRegion_Field(CountryRegion):
    """
-   TSOXOregion_CountryRegion_Field - Look up a region in this country
+   NKKSKregion_CountryRegion_Field - Look up a region in this country
 
    """
    class CountryRegionArgs(GQLArgsSet, GQLObject): 
@@ -201,9 +201,9 @@ class TSOXOregion_CountryRegion_Field(CountryRegion):
 
 
 
-class GLKBGregions_CountryRegionsConnection_Field(CountryRegionsConnection):
+class PWIBUregions_CountryRegionsConnection_Field(CountryRegionsConnection):
    """
-   GLKBGregions_CountryRegionsConnection_Field - Find regions in this country
+   PWIBUregions_CountryRegionsConnection_Field - Find regions in this country
 
    """
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
@@ -265,8 +265,8 @@ class Country(GQLObject):
    currencyCodes: str ##NON NULL
    flagImageUri: str ##NON NULL
    numRegions: int ##NON NULL
-   region: TSOXOregion_CountryRegion_Field
-   regions: GLKBGregions_CountryRegionsConnection_Field
+   region: NKKSKregion_CountryRegion_Field
+   regions: PWIBUregions_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    """
@@ -283,9 +283,9 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    edges: NewType('PopulatedPlaceEdge', GQLObject) ##NON NULL ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo ##NON NULL
 
-class UGUOFnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class OLHZMnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    """
-   UGUOFnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
+   OLHZMnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
 
    """
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
@@ -395,9 +395,9 @@ This field has two forms:
    timezone: str ##NON NULL
    country: Country ##NON NULL
    region: CountryRegion
-   distance: TZXCHdistance_distance_Field
+   distance: PKADRdistance_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: UGUOFnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: OLHZMnearbyPopulatedPlaces_NearbyPopulatedPlacesConnection_Field
    deleted: bool ##NON NULL
 
 class PopulatedPlaceEdge(GQLObject):

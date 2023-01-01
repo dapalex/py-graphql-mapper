@@ -5,7 +5,7 @@ from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
-class HERGMname_name_Field(ArguedStr):
+class AYNCSname_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       showDeleted: bool
 

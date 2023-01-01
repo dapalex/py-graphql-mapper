@@ -5,9 +5,9 @@ from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
-class TZXCHdistance_distance_Field(ArguedFloat):
+class PKADRdistance_distance_Field(ArguedFloat):
    """
-   TZXCHdistance_distance_Field - The distance result from some location-based query
+   PKADRdistance_distance_Field - The distance result from some location-based query
 This field has two forms:
 - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.

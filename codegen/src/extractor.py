@@ -1,6 +1,6 @@
 import random
 import string
-from pygqlmap.components import GQLArgsSet, GQLOperationArgs
+from pygqlmap.components import GQLArgsSet
 from pygqlmap.src.consts import primitivesStringified, arguedSignatureSuffix
 from pygqlmap.enums import OperationType
 from pygqlmap.src.logger import Logger
@@ -538,7 +538,7 @@ class Extractor():
             scType.typeDefs = scType.getObjectTypeDefs()
             inlineCodeType, actualType = scType.composePythonType()
             arguedClassName = actualType + "Args"
-            parentClass = GQLArgsSet.__name__ #if objType == OperationType.genericType else GQLOperationArgs.__name__
+            parentClass = GQLArgsSet.__name__ 
             codeLst.append(self.indent + "class " + arguedClassName + "(" + parentClass + ", GQLObject): ") 
             
             queryArgDocLst = []

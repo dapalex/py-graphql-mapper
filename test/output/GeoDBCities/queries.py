@@ -1,5 +1,4 @@
 from pygqlmap import GQLQuery
-from pygqlmap.components import GQLOperationArgs
 from .gqlTypes import *
 from .gqlSimpleTypes import *
 from .enums import *

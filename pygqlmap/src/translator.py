@@ -56,19 +56,41 @@ class Translate():
         except Exception as ex:
             raise ManageException(ex, 'Error during formatting of graphql value for ' + pyVariable)
         
+    def toJsonValue(pyVariable):
+        try:     
+            if type(pyVariable) == ID or type(pyVariable) == str:
+                return '\"' + pyVariable + '\"'
+            elif type(pyVariable) == int or type(pyVariable) == float or type(pyVariable) == list:
+                return str(pyVariable).replace('\'', '\"')
+            elif type(pyVariable) == type:
+                return '\"' + str(pyVariable).replace('\'', '\"') + '\"'
+            elif type(pyVariable) == bool:
+                return str(pyVariable).lower()
+            elif Enum in inspect.getmro(type(pyVariable)):
+                return'\"' +  pyVariable.value + '\"'
+            elif type(pyVariable) == dict:
+                output = ' { '
+                for varKey, varValue in pyVariable.items():
+                    output += Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLValue(varValue) + commaConcat
+                    
+                output = output.removesuffix(commaConcat)
+                output += ' } '
+                return output
+            else:
+                print('to manage')
+        except Exception as ex:
+            raise ManageException(ex, 'Error during formatting of graphql value for ' + pyVariable)
+        
     def toGraphQLType(pyVariable):
         if type(pyVariable) == str:
             return 'String'
         elif type(pyVariable) == int:
             return 'Int'
-        elif Enum in inspect.getmro(type(pyVariable)): 
-            return not pyVariable
         elif type(pyVariable) == ID:
             return 'ID'
         elif type(pyVariable) == type: #should never get in
             return 'Type'  
         elif type(pyVariable) == bool:  
-            # return str(pyVariable).lower()
             return 'Boolean'
         elif type(pyVariable) == dict:  
             output = ' { '
@@ -78,17 +100,40 @@ class Translate():
             output = output.removesuffix(commaConcat)
             output += ' } '
             return output
+        elif Enum in inspect.getmro(type(pyVariable)) or inspect.isclass(type(pyVariable)): 
+            return type(pyVariable).__name__
         else:
             raise ManageException(None, 'type not managed!')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
 
-    # def graphQLize(inputSchema: str, argsToIgnore: tuple = ()): 
+    def toGraphQLJsonVariables(fields: dict):
+        output = ''
+        try:
+            for fieldName, fieldValue in fields.items():
+                if isEmptyField(fieldValue): continue
+                try:
+                    from pygqlmap.components import GQLObject
+                    output += ', ' if output.startswith('{') else '{ '
+                    output += '\"' + Translate.toGraphQLFieldName(fieldName) +  '\" :'
+                    if GQLObject in inspect.getmro(type(fieldValue)):
+                        output += Translate.toGraphQLJsonVariables(fieldValue.__dict__)
+                    else:
+                        output += Translate.toJsonValue(fieldValue)
+                except:
+                    raise Exception('Issue exporting variable for: ' + fieldName)
+            
+            output.removesuffix(commaConcat)
+        except:
+            raise ManageException(None, 'Issue with items exporting variable')   
+        
+        output += ' }'
+        return output
+
     def graphQLize(inputSourceDict, argsToIgnore = None):
         try:
             output= ''
-            # wentThrough = False
             for inputSourceKey, inputSourceValue in inputSourceDict.items():
                 if type(inputSourceValue) == dict:
                     print('Getting into ' + inputSourceKey)
@@ -97,35 +142,34 @@ class Translate():
                     if type(inputSourceValue[1]) == dict:
                         output += inputSourceKey + inputSourceValue[0] + ' { ' + Translate.graphQLize(inputSourceValue[1]) + ' } '
                 else:
-                    # output += executeRegex(inputSourceKey + ":" + str(inputSourceValue))
                     output += executeRegex(" " + inputSourceKey + " ")
         except Exception as ex:
             raise ManageException(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
         
         return output
     
-    ##works on the last dict
-    def excludeArgs(inputSourceDict: dict, argsToIgnore: list = []) -> str:
-        stringifiedInputDict = str(inputSourceDict)
-        output: str = ''
-        wentThrough = False
+    # ##works on the last dict
+    # def excludeArgs(inputSourceDict: dict, argsToIgnore: list = []) -> str:
+    #     stringifiedInputDict = str(inputSourceDict)
+    #     output: str = ''
+    #     wentThrough = False
         
-        print('working on ' + stringifiedInputDict)
-        try:
-            if argsToIgnore:
-                for args in argsToIgnore:
-                    try:
-                        if stringifiedInputDict.__contains__(args):
-                            inputList = stringifiedInputDict.split(args)
-                            output += args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
-                            wentThrough = True    
-                    except Exception as ex: 
-                        raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+    #     print('working on ' + stringifiedInputDict)
+    #     try:
+    #         if argsToIgnore:
+    #             for args in argsToIgnore:
+    #                 try:
+    #                     if stringifiedInputDict.__contains__(args):
+    #                         inputList = stringifiedInputDict.split(args)
+    #                         output += args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
+    #                         wentThrough = True    
+    #                 except Exception as ex: 
+    #                     raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
                    
-        except Exception as ex: 
-            raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+    #     except Exception as ex: 
+    #         raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
         
-        return executeRegex(stringifiedInputDict) if not wentThrough else output
+    #     return executeRegex(stringifiedInputDict) if not wentThrough else output
 
     def excludeArgsSubstring(input: str, argsToIgnore: list):
         for args in argsToIgnore:
@@ -138,7 +182,7 @@ class Translate():
                 raise ManageException(ex, 'Exception during args exclusion from graphqlize for substring ' + input)
         
         return executeRegex(input)
-
+    
     def toGraphQLArgsSetDefinition(pyObject):
         output = ''
         

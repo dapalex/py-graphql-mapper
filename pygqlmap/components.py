@@ -8,41 +8,6 @@ from .src.utils import getObjectClassName, primitives, isEmptyField
 from .enums import ArgType, OperationType
 from .src.translator import Translate
 
-class GQLOperationArgs(GQLBaseArgsSet):
-    
-    def __init_subclass__(cls):
-        cls = dataclass(cls)
-        cls.__init__ = subClassInit
-
-    def exportArgKey(self, fieldName, fieldValue):
-        return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
-
-    @property
-    def exportGQLVariables(self):
-        """Return the json variables to send to a server
-
-        Returns:
-            str: json variables exported
-        """
-        output = ''
-        try:
-            for field in self.__dataclass_fields__:
-                if isEmptyField(getattr(self, field)): continue
-                try:
-                    output += ', ' if output.startswith('{') else '{ '
-                    output += '\"' + Translate.toGraphQLFieldName(field) +  '\"'
-
-                    if not getattr(self, field) is None:  output += ': ' + Translate.toGraphQLValue(getattr(self, field))
-                except:
-                    raise Exception('Issue exporting variable for: ' + field)
-                
-            output.removesuffix(commaConcat)
-        except:
-            raise ManageException(None, 'Issue with items exporting variable')
-
-        output += ' }'
-        return output
-
 class GQLArgsSet(GQLBaseArgsSet):
 
     def __init_subclass__(cls):
@@ -128,31 +93,61 @@ class GQLOperation(GQLExporter):
                 setattr(self.type, argsDeclaration, getattr(self, argsDeclaration))
             
             #Update all objects args with the argument type requested
-            self.propagateArgsType(self.type)
+            self.manageArgs(self.type)
             rootName = getObjectClassName(self)
             # self.setArgsLocations(self.type, None, rootName, '')
 
             if self._argsType == ArgType.Variables:
                 self.argumentsRetrieved = self.retrieveArgs(self.type)
-                if hasattr(self, argsDeclaration):
-                    prefix += '(' + self._args.exportGQLArgKeys + ')'
+                if hasattr(self, argsDeclaration) and self.arguments:
+                    prefix += '(' + self.exportGQLArgKeys + ')'
                     
             return prefix + ' { ' + rootName + self.type.exportGqlSource + ' } '
         except Exception as ex:
             raise ManageException(ex, 'Issue during export of ' + self.name)
 
     @property
+    def exportGQLArgKeys(self):
+       
+        """ For internal use only """
+        output = ''
+        try: 
+            for fieldName, fieldValue in self.arguments.items():
+                if isEmptyField(fieldValue): continue
+                try:  
+                    output += '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue) + commaConcat
+                except Exception as ex:
+                    raise ManageException(ex, 'Issue exporting arg key for: ' + fieldName)
+        
+            output = output.removesuffix(commaConcat)
+        except Exception as ex:
+            raise ManageException(ex, 'Issue exporting arg keys')
+
+        return output
+    
+    # @property
+    # def exportGQLVariables(self):
+    #     """Return the json variables to send to a server
+
+    #     Returns:
+    #         str: json variables exported 
+    #     """
+    #     if self._argsType == ArgType.Variables and self._args:
+    #         return  self._args.exportGQLVariables
+    #     else:
+    #         raise Exception('No variables to export')
+    @property
     def exportGQLVariables(self):
         """Return the json variables to send to a server
 
         Returns:
-            str: json variables exported 
+            str: json variables exported
         """
-        if self._args:
-            return  self._args.exportGQLVariables
-        else:
-            raise Exception('No variables to export')
-
+        if self._argsType == ArgType.Variables and self.arguments:
+            return Translate.toGraphQLJsonVariables(self.arguments)
+        else: 
+            raise ManageException(None, 'Arguments type is ' + self._argsType.value)
+        
     def retrieveArgs(self, currentObj) -> bool:
         try:
             #if obj contains field with arg name, add arg
@@ -172,7 +167,10 @@ class GQLOperation(GQLExporter):
         except Exception as ex:
             raise ManageException(ex, 'Error during args type propagation - ')
 
-    def propagateArgsType(self, currentObj):
+    arguments: dict = None
+
+    def manageArgs(self, currentObj):
+        if not self.arguments: self.arguments = {}
         try:
             #if obj contains field with arg name, add arg
             if type(currentObj) in primitives or not hasattr(currentObj, '__dataclass_fields__'):
@@ -180,25 +178,13 @@ class GQLOperation(GQLExporter):
 
             if hasattr(currentObj, argsDeclaration):
                 currentObj._args._argsType = self._argsType
-
+                for arg in currentObj._args.__dataclass_fields__:
+                    argValue = getattr(currentObj._args, arg)
+                    if isEmptyField(argValue): continue
+                    self.arguments.update({arg: argValue})
+                    
             for subObj in currentObj.__dataclass_fields__:
                 if subObj == argsDeclaration:  continue
-                self.propagateArgsType(getattr(currentObj, subObj))
+                self.manageArgs(getattr(currentObj, subObj))
         except Exception as ex:
             raise ManageException(ex, 'Error during args type propagation - ')
-
-    # def setArgsLocations(self, currentObj, parentName, fieldName, currentLocation):
-    #     try:
-    #         #if obj contains field with arg name, add arg
-    #         if type(currentObj) in primitives: return
-
-            
-    #         currentLocation += '.' + fieldName
-    #         if hasattr(currentObj, argsDeclaration):
-    #             currentObj._args.location = currentLocation
-
-    #         if GQLObject in inspect.getmro(type(currentObj)):
-    #             for subObj in currentObj.__dataclass_fields__:
-    #                     self.setArgsLocations(getattr(currentObj, subObj), fieldName, subObj, currentLocation)
-    #     except Exception as ex:
-    #         raise Exception('Error during args type propagation - ' + ex.args[0])

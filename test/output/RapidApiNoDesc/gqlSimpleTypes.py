@@ -5,7 +5,7 @@ from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
-class WDGXDname_name_Field(ArguedStr):
+class IXPHEname_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       showDeleted: bool
 
@@ -23,6 +23,7 @@ class UpdateWorkflowsInput(GQLObject):
    additionalData: Any
    componentId: str
    subComponentId: str
+   topic: str
 
 class CreateWorkflowInput(GQLObject):
    componentId: str ##NON NULL
@@ -1004,10 +1005,8 @@ class ApiVersionWhereInput(GQLObject):
 
 class APITag(GQLObject):
    id: str
-   apiversion: str
    status: str
    tagdefinition: str
-   type: str
    value: str
    createdAt: DateTime
 

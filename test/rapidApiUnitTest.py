@@ -109,6 +109,9 @@ async def RunRapidApiCreateTransformationsMutation():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
+        
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -152,6 +155,9 @@ async def RunRapidApiCreateGatewayInstanceMutation():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
+        
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -196,6 +202,9 @@ async def RunRapidApiEditUserAlertMutation():
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
+        
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
@@ -234,6 +243,8 @@ async def testAdminAuditLogs():
         
         gqlResponse.printMessageOutput()
         
+        gqlResponse.mapGQLDataToObj(mutation.type)
+        print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
         

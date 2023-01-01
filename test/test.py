@@ -25,7 +25,8 @@ from rapidApiUnitTest import fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestS
 
 lockOutput = input('Do you want to pause at each test? (Y/N) ')
 
-#GENERATOR - START
+###################### CODE GENERATION - START ##############################
+
 # cleanOutput(OutputType.SCHEMAS)
 # asyncio.run(fetchGeoDBCitiesSchema())
 # waitForInput(lockOutput)
@@ -43,7 +44,7 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 #GeoDBCities API - START
 #GeoDBCities API - END
 
-#COMMANDS - START
+###################### COMMAND LINE INTERFACE - START ##############################
 # cleanOutput(OutputType.COMMANDS)
 
 # asyncio.run(runGeneratorCommandHelp())
@@ -64,10 +65,11 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 # waitForInput(lockOutput)
 # asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
 # waitForInput(lockOutput)
-#COMMANDS - END
+###################### COMMAND LINE INTERFACE - END ##############################
 
-#GENERATOR - END
+###################### CODE GENERATION - END ##############################
 
+###################### QUERIES EXECUTION - START ##############################
 from unitTest import (testComplexObjectShowChange, testComplexObjectShowChangeWithArgsAndVariables, 
                         testComplexObjectWithArgsAndVariables, testComplexObjectWithLiteralValueArgs, 
                         testComplexObjectWithLiteralValueArgs2, testNestedObject, testNestedObjectShowChange, 
@@ -86,7 +88,6 @@ from tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
 from tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
 from tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
-#SAMPLE TESTS - START
 asyncio.run(testGeneratedDataAsGQLObject())
 waitForInput(lockOutput)
 asyncio.run(testSimpleObject())
@@ -110,13 +111,7 @@ waitForInput(lockOutput)
 asyncio.run(testComplexObject())
 waitForInput(lockOutput)
 
-asyncio.run(testMutationUpdateLiteralValues()) 
-waitForInput(lockOutput)
-asyncio.run(testMutationInsertLiteralValues()) 
-waitForInput(lockOutput)
-# ##SAMPLE TESTS - END
-
-# #FURTHER TESTS
+# # #FURTHER TESTS
 asyncio.run(testNestedObjectWithLiteralValueArgs())
 waitForInput(lockOutput)
 asyncio.run(testNestedObjectShowChange())
@@ -138,6 +133,15 @@ waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithArgsAndVariables()) 
 waitForInput(lockOutput)
 #Geo DB Cities - END
+
+###################### QUERIES EXECUTION - END ##############################
+
+###################### MUTATIONS EXECUTION - START ##############################
+
+asyncio.run(testMutationUpdateLiteralValues()) 
+waitForInput(lockOutput)
+asyncio.run(testMutationInsertLiteralValues()) 
+waitForInput(lockOutput)
 
 #GITHUB API - START
 asyncio.run(RunGithubAddCommentMutation())
@@ -165,4 +169,4 @@ asyncio.run(RunRapidApiEditUserAlertMutation())
 waitForInput(lockOutput)
 #RapidAPI - END
 
-#CORE - END
+###################### MUTATIONS EXECUTION - END ##############################

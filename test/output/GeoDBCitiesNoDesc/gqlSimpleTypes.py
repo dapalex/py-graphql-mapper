@@ -5,7 +5,7 @@ from pygqlmap.src.gqlArgBuiltin import *
 from .enums import *
 from .scalars import *
 
-class MSQFVdistance_distance_Field(ArguedFloat):
+class YUFHCdistance_distance_Field(ArguedFloat):
    class floatArgs(GQLArgsSet, GQLObject): 
       toPlaceId: ID
       distanceUnit: DistanceUnit
