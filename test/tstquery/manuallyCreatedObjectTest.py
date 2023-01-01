@@ -230,8 +230,8 @@ async def testGeneratedDataAsGQLObject():
 ##
 
 ##STEP 4
-    query.setShow('countries.edges.node.region.country.callingCode', False)
-    query.setShow('countries.edges.node.region.country.currencyCodes', False)
+    query.setShow('countries.edges.node.callingCode', False)
+    query.setShow('countries.edges.node.currencyCodes', False)
     query.setShow('countries.edges.node.regions.pageInfo.hasNextPage', False)
     query.setShow('currencies.pageInfo.hasNextPage', False)
 ##

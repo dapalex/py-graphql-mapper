@@ -80,15 +80,12 @@ async def RunGithubAddCommentMutation():
         mutation.type.commentEdge.node.repository.environment._args.name = 'envName'
         mutation.type.commentEdge.node.repository.refs._args.refPrefix = 'pref'
         mutation.type.commentEdge.node.repository.release._args.tagName = 'aTag'
-        # mutation.type.commentEdge.node.repository.forks._a = True
         mutation.type.commentEdge.node.repository.label._args.name = 'aName'
         mutation.type.commentEdge.node.repository.milestone._args.number = 0
         mutation.type.commentEdge.node.repository.packages._args.repositoryId = 'ghjk'
         mutation.type.commentEdge.node.repository.packages.nodes.version._args.version = '2'
         mutation.type.commentEdge.node.repository.packages.edges.node.version._args.version = '2.6'
-        # mutation.type.commentEdge.node.repository.repositoryTopics.nodes.topic.repositories._args.isFork = False
-        # mutation.type.commentEdge.node.repository.recentProjects._args.orderBy = ProjectV2Order()
-        # mutation.type.commentEdge.node.repository.recentProjects._args.orderBy.field = ProjectV2OrderField.CREATED_AT
+        mutation.type.commentEdge.node.repository.project._args.number = 1
         
         # wrapper = redirectOutputToFile('mutationCreated.log')
         print(mutation.exportGqlSource)
@@ -120,9 +117,19 @@ async def RunGithubUpdateRepositoryMutation():
         mutation._args.input.repositoryId = "R_kgDOH7MI4g"
         mutation._args.input.hasIssuesEnabled = True
         mutation._args.input.hasWikiEnabled = True
+        'mutation', 'updateRepository', 'repository', 'discussion'
+        mutation.type.repository.discussion._args.number = 1
+        mutation.type.repository.discussionCategory._args.slug = "1"
+        mutation.type.repository.environment._args.name = "nm"
+        mutation.type.repository.label._args.name = "nmLbl"
+        mutation.type.repository.milestone._args.number = 2
+        mutation.type.repository.packages.edges.node.version._args.version = "v3"
+        mutation.type.repository.packages.nodes.version._args.version = "v13"
+        mutation.type.repository.project._args.number = 4
+        mutation.type.repository.refs._args.refPrefix = 'pref'
+        mutation.type.repository.release._args.tagName = 'tagE'
         
         print('Creating GQLOperation for mutation...')
-        # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
         pprint(mutation.exportGqlSource)
             
         response = requests.request('POST', url=githubUrl, 
@@ -152,8 +159,12 @@ async def RunGithubCreateProjectMutation():
         mutation._args.input.name = "Test create project from Mutation" + datetime.now().ctime()
         mutation._args.input.repositoryIds = ["R_kgDOH7MI4g"]
         
-        mutation._args._customPayload = '{ project { id } }'
         mutation.name = 'MycreateProjectMutation'
+        
+        mutation.type.project.columns._args.first = 1
+        mutation.type.project.columns._args.after = ''
+        mutation.type.project.owner.projects._args.first = 1
+        mutation.type.project.owner.projects._args.after = ''
         
         pprint(mutation.exportGqlSource)
         
@@ -178,9 +189,6 @@ async def RunGithubDeleteProjectMutation():
     print('\nRunning RunGithubDeleteProjectMutation...')
     try:
         
-        # with open('projectsCreated.log', 'a') as logProjCreated:
-        #     logProjCreated.write(gqlResponse.data['createProject']['project']['id'] + '\n')
-            
         print('Creating mutation python object...')
         from output.github.mutations import Mutations
         from output.github.gqlTypes import DeleteProjectInput
@@ -284,6 +292,41 @@ async def RunGithubCreateIssueMutation():
         mutation._args.input.labelIds = ['LA_kwDOIOMoaM8AAAABFmBXvg', 'LA_kwDOIOMoaM8AAAABFmBXvQ']
         mutation._args.input.projectIds = ['PRO_kwHOBXKa5c4A32ah']
         
+        mutation.type.issue.repository.discussion._args.number = 1
+        mutation.type.issue.repository.discussionCategory._args.slug = "1"
+        mutation.type.issue.repository.environment._args.name = "nm"
+        mutation.type.issue.repository.label._args.name = "nmLbl"
+        mutation.type.issue.repository.milestone._args.number = 2
+        mutation.type.issue.repository.packages.edges.node.version._args.version = "v3"
+        mutation.type.issue.repository.packages.nodes.version._args.version = "v13"
+        mutation.type.issue.repository.project._args.number = 4
+        mutation.type.issue.repository.refs._args.refPrefix = 'pref'
+        mutation.type.issue.repository.release._args.tagName = 'tagE'
+        
+        
+        mutation.type.issue.comments.edges.node.repository.discussion._args.number = 3
+        mutation.type.issue.comments.edges.node.repository.discussionCategory._args.slug = 'slug'
+        mutation.type.issue.comments.edges.node.repository.environment._args.name = 'envName'
+        mutation.type.issue.comments.edges.node.repository.refs._args.refPrefix = 'pref'
+        mutation.type.issue.comments.edges.node.repository.release._args.tagName = 'aTag'
+        mutation.type.issue.comments.edges.node.repository.label._args.name = 'aName'
+        mutation.type.issue.comments.edges.node.repository.milestone._args.number = 0
+        mutation.type.issue.comments.edges.node.repository.packages._args.repositoryId = 'ghjk'
+        mutation.type.issue.comments.edges.node.repository.packages.nodes.version._args.version = '2'
+        mutation.type.issue.comments.edges.node.repository.packages.edges.node.version._args.version = '2.6'
+        mutation.type.issue.comments.edges.node.repository.project._args.number = 1
+        
+        mutation.type.issue.comments.nodes.repository.discussion._args.number = 3
+        mutation.type.issue.comments.nodes.repository.discussionCategory._args.slug = 'slug'
+        mutation.type.issue.comments.nodes.repository.environment._args.name = 'envName'
+        mutation.type.issue.comments.nodes.repository.refs._args.refPrefix = 'pref'
+        mutation.type.issue.comments.nodes.repository.release._args.tagName = 'aTag'
+        mutation.type.issue.comments.nodes.repository.label._args.name = 'aName'
+        mutation.type.issue.comments.nodes.repository.milestone._args.number = 0
+        mutation.type.issue.comments.nodes.repository.packages._args.repositoryId = 'ghjk'
+        mutation.type.issue.comments.nodes.repository.packages.nodes.version._args.version = '2'
+        mutation.type.issue.comments.nodes.repository.packages.edges.node.version._args.version = '2.6'
+        mutation.type.issue.comments.nodes.repository.project._args.number = 1
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')

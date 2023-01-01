@@ -75,6 +75,10 @@ docs/_build/
 .pybuilder/
 target/
 
+# Keys
+test/consts.py
+
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -161,5 +165,3 @@ test/core/GraphQLClients/GithubApi/downloaderArgs.json
 test/core/GraphQLClients/GdbcApi/generatorArgs.json
 test/core/GraphQLClients/GdbcApi/downloaderArgs.json
 .vscode/settings__.json
-test/consts.py
-test/core/consts.py

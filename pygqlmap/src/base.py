@@ -33,8 +33,6 @@ class FieldsShow(ABC):
         
 class GQLExporter(Logger):                
 
-    # gqlExportedTuple = () #base class
-    # gqlExportedArgs = set() #base class
     logProgress: bool
     
     @property
@@ -85,10 +83,7 @@ class GQLExporter(Logger):
             except Exception as ex:
                 raise ManageException(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))
             
-            # if len(gqlArgs) > 0: self.gqlExportedArgsTuple = addTupleUniqueArgument(self.gqlExportedArgsTuple, gqlArgs, self._args.location)
-            # if len(gqlArgs) > 0: self.gqlExportedArgs.add(gqlArgs)
-                        
-        #Arguments management START
+        #Arguments management END
             
         if len(gqlArgs) == 0 and len(outputGqlDict) == 0: 
             return None, None

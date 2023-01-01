@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-
 from pygqlmap.helper import ManageException
 from .src.gqlInit import subClassInit
 from .src.components import FSTree
@@ -81,17 +80,14 @@ class GQLOperation(GQLExporter):
 
         Args:
             operationType (OperationType): _description_
-            dataType (_type_): _description_
             hasArgsAsInput (bool, optional): _description_. Defaults to True.
             name (str, optional): _description_. Defaults to 'myQuery'.
             logProgress (bool, optional): _description_. Defaults to False.
-
-        Raises:
-            Exception: _description_
         """
         self.name = operationName if operationName else ''
 
         self.operationType = operationType
+        self.type = dataType
         self._argsType = argsType
         self.fieldsShowTree = FSTree(self.type, getObjectClassName(self))
         self.logProgress = False
@@ -104,7 +100,7 @@ class GQLOperation(GQLExporter):
             isVisible (bool): set visibility (default at true)
 
         Raises:
-            Exception: _description_
+            Exception: keys not string or list of strings
         """
         kType = type(keys)
         if kType == str:

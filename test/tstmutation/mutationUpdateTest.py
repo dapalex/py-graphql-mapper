@@ -84,6 +84,19 @@ async def testMutationUpdateLiteralValues():
     
     mutation.type.repository.assignableUsers._args.first = 1
     
+    mutation.type.repository.discussion._args.number = 1
+    mutation.type.repository.discussionCategory._args.slug = 'slug'
+    mutation.type.repository.environment._args.name = 'envName'
+    mutation.type.repository.label._args.name = 'lblName'
+    mutation.type.repository.milestone._args.number = 2
+    mutation.type.repository.packages.edges.node.version._args.version = '1.2.1'
+    mutation.type.repository.packages.nodes.version._args.version = '1.1.1'
+    mutation.type.repository.project._args.number = 1
+    mutation.type.repository.refs._args.refPrefix = 'ref'
+    mutation.type.repository.release._args.tagName = 'tagX'
+    
+    
+    
     try:
         print('Query GQL syntax: ' + mutation.exportGqlSource)
 ##
