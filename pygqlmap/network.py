@@ -26,7 +26,7 @@ class GQLResponse():
 
         Args:
             mappedPyObject (_type_, optional): python object mapped from a GraphQL type 
-                                               A reference can be found in the GQLOperation object created as <queryObject>.obj
+                                               A reference can be found in the GQLOperation object created as <queryObject>.type
             buildType (BuildingType, optional): Options not yet implemented. Defaults to BuildingType.Standard.
         """
         if hasattr(self, 'data') and self.data:

@@ -75,6 +75,10 @@ docs/_build/
 .pybuilder/
 target/
 
+# Keys
+test/consts.py
+
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -150,4 +154,14 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+.vs/*
 .vscode/launch.json
+codegen/codegenlaunch.json
+test/core/output_compare/*
+test/core/GraphQLClients/RapidApi/downloaderArgs.json
+test/core/GraphQLClients/GithubApi/generatorArgs.json
+test/core/GraphQLClients/RapidApi/generatorArgs.json
+test/core/GraphQLClients/GithubApi/downloaderArgs.json
+test/core/GraphQLClients/GdbcApi/generatorArgs.json
+test/core/GraphQLClients/GdbcApi/downloaderArgs.json
+.vscode/settings__.json

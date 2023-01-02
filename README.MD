@@ -3,30 +3,26 @@
 THE DEVELOPMENT IS IN PROGRESS, THE MOST UPDATED VERSION IS AVAILABLE IN 'code-generator-draft' BRANCH
 ## Introduction
 
-This library acts as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when fetching data against a GraphQL server.
-The objective is to integrate GraphQL entities into python language in order to simplify as much as possible the creation of GraphQL operations and retrieval of GraphQL responses avoiding massive "copy&paste" work.
+This library act as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when fetching data against a GraphQL server.
+The objective is to translate GraphQL entities into python objects and viceversa in order to simplify as much as possible the creation of GraphQL operations and retrieval of GraphQL responses avoiding massive "copy&paste" work.
 
 The package does not use any third-party libraries, it relies only on python 3 standard libraries. 
-
-This document gives an overview of the functionalities available in this packages, it is strongly advised to read the other documents in order to have a more thorough understanding.
 
 
 ## Table of Contents
 
 1. [Usage in a nutshell](#usage-in-a-nutshell)
-    1. [From GraphQL object type to python class](#from-graphql-object-type-to-mapped-python-class)
-    2. [From mapped python class to generation of a query](#from-mapped-python-class-to-generation-of-a-query)
-    2. [From mapped python class to generation of a mutation](#from-mapped-python-class-to-generation-of-a-mutation)
+    1. [From GraphQL object type to python class](#from-graphql-object-type-to-python-class)
+    2. [Usage of python class for Query generation](#usage-of-python-class-for-query-generation)
     3. [Retrieval of a response](#retrieval-of-a-response)
     4. [Execution of a mutation](#execution-of-a-mutation)
 2. [Installation](#installation)
 3. [Final words](#final-words)
-    1. [Potential further implementations](#potential-further-implementations)
 
 
 ## Usage in a nutshell
 
-### From GraphQL object type to mapped python class
+### From GraphQL object type to python class
 
 Given a GraphQL object type
 
@@ -38,26 +34,20 @@ myCustomObject {
 }
 ```
 
-The following class definition will be able to reproduce the GraphQL syntax for the object above
+The following class definition will be able to reproduce object
 
 ```python
-from pygqlmap import GQLObject
+from pygqlmap.components import GQLObject
 
 class myCustomObject(GQLObject): 
     myString: str
     myCode: int
     myList: list
-    
-    def __init__():
-        self.myString = ''
-        self.myCode = 0
-        self.myList = []
-        super().__init__()
 ```
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#creation-of-a-mappable-python-object)
+More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#creation-of-a-mappable-python-object)
 
-### From mapped python class to generation of a query
+### Usage of python class for Query generation
 
 Given a GraphQL query
 
@@ -74,7 +64,7 @@ query myQuery {
 The following GQLOperation instantiation will be able to reproduce the query
 
 ```python
-from pygqlmap import GQLOperation, GQLArgsSet
+from pygqlmap.components import GQLOperation, GQLArgsSet
 from pygqlmap.enums import OperationType, ArgType
 from pygqlmap.gqlTypes import ID
 
@@ -87,7 +77,7 @@ query.setArgs(argsCntrs, ArgType.LiteralValues)
 print(query.exportGqlSource)
 ```
 
-The property _exportGqlSource_ in this case will generate the above GraphQL syntax
+The property _exportGqlSource_ will generate the above GraphQL query
 
 Example of querying using *requests* library:
 
@@ -95,64 +85,9 @@ Example of querying using *requests* library:
 response = request("POST", "<graphQLServerUrl>", json={ "query": query.exportGqlSource }, headers=<headers>)
 ```
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#gqloperation)
+More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#gqloperation)
 
-A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD#L23)
-
-
-### From mapped python class to generation of a mutation
-
-Given a GraphQL mutation
-
-```
-mutation myManualMutationUpdateRepository  { 
-    updateRepository ( input: { repositoryId: "someID", hasIssuesEnabled: false }  ) 
-    { 
-        clientMutationId     
-        repository   {
-            allowUpdateBranch       
-            autoMergeAllowed     
-            codeowners   { 
-                errors   
-                { 
-                    column     
-                    kind     
-                    line     
-                    message     
-                    path     
-                    source     
-                    suggestion  
-                } 
-            } 
-}
-```
-
-The following GQLOperation instantiation will be able to reproduce the mutation
-
-```python
-from pygqlmap import GQLOperation, GQLArgsSet
-from pygqlmap.enums import OperationType, ArgType
-
-mutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualMutationUpdateRepository', logProgress=True)
-
-argsUpdateRepository = GQLArgsSet()
-argsUpdateRepository.addArgs({ 'repositoryId': "someID", 'hasIssuesEnabled': False })
-
-mutation.setArgs([argsUpdateRepository], ArgType.LiteralValues)
-
-print(query.exportGqlSource)
-```
-
-The property _exportGqlSource_ in this case will generate the above GraphQL syntax
-
-Example of querying using *requests* library:
-
-```python
-response = request("POST", "<graphQLServerUrl>", json={ "query": query.exportGqlSource }, headers=<headers>)
-```
-
-Some use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD#L48)
-
+A suite of use cases [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/README.MD#L11)
 
 ### Retrieval of a response
 
@@ -163,15 +98,36 @@ from pgqlmCore.network import GQLResponse
 
 gqlResponse = GQLResponse(response)
 
-gqlResponse.mapGQLDataToObj(query.obj)
+gqlResponse.mapGQLDataToObj(query.type)
 
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```
 
-The response from the GraphQL server will be mapped in _gqlResponse_ object, _gqlResponse.resultObject_ will contain the mapped python object _myCustomObject_ previously defined
+The response from the GraphQL server will be mapped in _gqlResponse_ object: _gqlResponse.resultObject_ will contain the object _myCustomObject_ defined
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
+More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
 
+
+### Execution of a mutation
+
+Mutations can be executed in two ways:
+
+```python
+from pygqlmap.enums import OperationType, ArgType
+from pygqlmap.components import GQLOperation, GQLArgsSet
+
+coreMutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualMutationUpdateRepository', logProgress=True)
+
+argsUpdateRepository = GQLArgsSet()
+argsUpdateRepository.addArgs({ 'repositoryId': "R_kgDOHasdI4g", 'hasIssuesEnabled': False })
+
+coreMutation.setArgs([argsUpdateRepository], ArgType.LiteralValues)
+
+query = GQLOperation(OperationType.mutation, myCustomObject, 'myMutation')
+response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
+```
+
+A suite of use cases [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/README.MD#L110)
 
 ## Installation
 
@@ -181,31 +137,5 @@ The functionalities described above require the installation of pygqlmap package
 python setupPyGqlMap install
 ```
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#installation)
+More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#installation)
 
-
-
-## Final words
-
-The development is in progress, so far the library allows the creation of basic queries and mutations (python language -> GraphQL language) and parsing of responses from a GraphQL server (GraphQL language -> python language)
-
-If you find this library useful and/or want the developments to proceed please [donate](https://github.com/sponsors/dapalex)
-
-
-### Potential further implementations
-
-* CLI allowing to automatic generate from a schema python files containing mapped python classes \*_already in progress_\* (<u>mapping from a GraphQL object type to a python class WILL NOT BE NECESSARY ANYMORE<u>)
-
-* Friendlier usage of library \*_already in progress_\* (e.g.: avoiding the necessity of implementing the init function for GQLObjects)
-
-* Extending the mapping for more articulated 'scalar' types (e.g.: date, datetime, ...)
-
-* Advanced management of arguments/input fields (non null, default, objects, ...)
-
-* Usage of Aliases
-
-* Usage of Fragments
-
-* Usage of Directives
-
-* more...

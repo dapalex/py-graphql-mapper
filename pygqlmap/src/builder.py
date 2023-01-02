@@ -1,7 +1,6 @@
 from abc import abstractmethod
-from .base import GQLList
 from .enums import BuildingType
-from ..components import GQLEdges
+# from ..components import GQLEdges
 from ..gqlTypes import ID
 from .logger import Logger
 from .utils import getClassName, popListElementByRef #uhm
@@ -23,31 +22,13 @@ class QueryBuilder(Builder, Logger):
         
         super().__init__()
         
-    def build(self, input, pyObject: any):
+    def build(self, input: dict, pyObject: any):
         """  for internal use only    """
         
         try:
             if self.logProgress: Logger.logInfoMessage('Started building of python object: ' + getClassName(pyObject))
-            
-            if type(pyObject) == GQLList:
-                print('management of list')
-            if type(pyObject) == GQLEdges:
-                item = input.popitem()
-                
-                ##building response using query object, query object has to be cleaned
-                popListElementByRef(pyObject, pyObject.sampleElement)
-                
-                for inputElement in item[1]:
-                    newObjElement = type(pyObject.sampleElement)()
-                    newObjElement.copyFieldsShow(pyObject.sampleElement.fieldsShow)
-                    if hasattr(pyObject.sampleElement, 'sampleNode'):
-                        self.setPyFields(inputElement, newObjElement, pyObject.sampleElement.sampleNode)
-                    else:
-                        self.setPyFields(inputElement, newObjElement)
-                    pyObject.append(newObjElement)
-            else: 
-                item = input.popitem() ##extract the KV pair containing object name and content
-                self.setPyFields(item[1], pyObject)
+            item = input.popitem() ##extract the KV pair containing object name and content
+            self.setPyFields(item[1], pyObject)
             
         except Exception as ex:
             Logger.logErrorMessage('Building of python object failed - ' + ex.args[0]) 
@@ -72,7 +53,15 @@ class QueryBuilder(Builder, Logger):
                         if attribute == None:
                             attribute = type(customObject)()
                         if input[el]:
-                            setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
+                            if type(input[el]) == list:
+                                setattr(opObject, el, [])
+                                listObjectElement = getattr(opObject, el)
+                                for subEl in input[el]:
+                                    subElObject = attrType()
+                                    self.setPyFields(subEl, subElObject)
+                                    listObjectElement.append(subElObject)
+                            else:
+                                setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
                         else:
                             self.setFieldValue(opObject, el, input[el])
                 else: 
