@@ -97,7 +97,7 @@ from pgqlmCore.network import GQLResponse
 
 gqlResponse = GQLResponse(response)
 
-gqlResponse.mapGQLDataToObj(query.obj)
+gqlResponse.mapGQLDataToObj(query.type)
 
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```

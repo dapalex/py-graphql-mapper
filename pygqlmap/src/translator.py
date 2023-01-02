@@ -108,7 +108,7 @@ class Translate():
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
 
-    def toGraphQLJsonVariables(fields: dict):
+    def toJsonVariables(fields: dict):
         output = ''
         try:
             for fieldName, fieldValue in fields.items():
@@ -118,7 +118,7 @@ class Translate():
                     output += ', ' if output.startswith('{') else '{ '
                     output += '\"' + Translate.toGraphQLFieldName(fieldName) +  '\" :'
                     if GQLObject in inspect.getmro(type(fieldValue)):
-                        output += Translate.toGraphQLJsonVariables(fieldValue.__dict__)
+                        output += Translate.toJsonVariables(fieldValue.__dict__)
                     else:
                         output += Translate.toJsonValue(fieldValue)
                 except:

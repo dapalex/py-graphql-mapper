@@ -179,7 +179,7 @@ Optional parameters are:
 * operationName: string used to give a name to the operation
 * logProgress: boolean activating basic logs of the GQL generation progress
 
-The _MyConnection_ object will be available in the field _obj_ (_query.obj_)
+The _MyConnection_ object will be available in the field _obj_ (_query.type_)
 
 The function *exportGqlSource* will generate the following GraphQL syntax:
 
@@ -514,7 +514,7 @@ Responses received from a GraphQL server can be automatically converted into a p
     response = request("POST", graphQLServerUrl, json=json={ "query": query.exportGqlSource }, headers=headers)
 
     gqlResponse = GQLResponse(response)
-    gqlResponse.mapGQLDataToObj(query.obj)
+    gqlResponse.mapGQLDataToObj(query.type)
 
     gqlResponse.printMessageOutput()
     print('resultObject: ' + str(gqlResponse.resultObject))

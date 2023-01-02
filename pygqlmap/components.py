@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from pygqlmap.helper import ManageException
+from .helper import ManageException
 from .src.gqlInit import subClassInit
 from .src.components import FSTree
 from .src.base import FieldsShow, GQLExporter, GQLBaseArgsSet
@@ -7,6 +7,45 @@ from .src.consts import commaConcat, argsDeclaration
 from .src.utils import getObjectClassName, primitives, isEmptyField
 from .enums import ArgType, OperationType
 from .src.translator import Translate
+
+class GQLOperationArgs(GQLBaseArgsSet):
+    
+    @property
+    def exportGQLArgKeys(self):
+       
+        """ For internal use only """
+        output = ''
+        try: 
+            for fieldName, fieldValue in self.arguments.items():
+                if isEmptyField(fieldValue): continue
+                try:  
+                    output += self.exportArgKey(fieldName, fieldValue) + commaConcat
+                except Exception as ex:
+                    raise ManageException(ex, 'Issue exporting arg key for: ' + fieldName)
+        
+            output = output.removesuffix(commaConcat)
+        except Exception as ex:
+            raise ManageException(ex, 'Issue exporting arg keys')
+
+        return output
+    
+    @property
+    def exportGQLVariables(self):
+        """Return the json variables to send to a server
+
+        Returns:
+            str: json variables exported
+        """
+        if self._argsType == ArgType.Variables:
+            if self.arguments:
+                return Translate.toJsonVariables(self.arguments)
+            else:
+                raise ManageException(None, 'No variables to export')
+        else: 
+            raise ManageException(None, 'Cannot export Variables, arguments type is ' + self._argsType.name)
+        
+    def exportArgKey(self, fieldName, fieldValue):
+        return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
 
 class GQLArgsSet(GQLBaseArgsSet):
 
@@ -34,11 +73,11 @@ class GQLObject(FieldsShow, GQLExporter):
         self.initFieldsShow() ##still working???
         self.logProgress = logProgress
 
-class GQLOperation(GQLExporter):
+class GQLOperation(GQLExporter, GQLOperationArgs):
     name: str
     operationType: OperationType
     fieldShowTree: FSTree
-    argumentsRetrieved: False
+    # argumentsRetrieved: False
 
     def __init__(self, operationType: OperationType, dataType, operationName: str = None, argsType: ArgType = ArgType.LiteralValues): #, rootName: str = None, inputFieldName: str = None
         """_summary_
@@ -98,74 +137,13 @@ class GQLOperation(GQLExporter):
             # self.setArgsLocations(self.type, None, rootName, '')
 
             if self._argsType == ArgType.Variables:
-                self.argumentsRetrieved = self.retrieveArgs(self.type)
+                # self.argumentsRetrieved = self.retrieveArgs(self.type)
                 if hasattr(self, argsDeclaration) and self.arguments:
                     prefix += '(' + self.exportGQLArgKeys + ')'
                     
             return prefix + ' { ' + rootName + self.type.exportGqlSource + ' } '
         except Exception as ex:
             raise ManageException(ex, 'Issue during export of ' + self.name)
-
-    @property
-    def exportGQLArgKeys(self):
-       
-        """ For internal use only """
-        output = ''
-        try: 
-            for fieldName, fieldValue in self.arguments.items():
-                if isEmptyField(fieldValue): continue
-                try:  
-                    output += '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue) + commaConcat
-                except Exception as ex:
-                    raise ManageException(ex, 'Issue exporting arg key for: ' + fieldName)
-        
-            output = output.removesuffix(commaConcat)
-        except Exception as ex:
-            raise ManageException(ex, 'Issue exporting arg keys')
-
-        return output
-    
-    # @property
-    # def exportGQLVariables(self):
-    #     """Return the json variables to send to a server
-
-    #     Returns:
-    #         str: json variables exported 
-    #     """
-    #     if self._argsType == ArgType.Variables and self._args:
-    #         return  self._args.exportGQLVariables
-    #     else:
-    #         raise Exception('No variables to export')
-    @property
-    def exportGQLVariables(self):
-        """Return the json variables to send to a server
-
-        Returns:
-            str: json variables exported
-        """
-        if self._argsType == ArgType.Variables and self.arguments:
-            return Translate.toGraphQLJsonVariables(self.arguments)
-        else: 
-            raise ManageException(None, 'Arguments type is ' + self._argsType.value)
-        
-    def retrieveArgs(self, currentObj) -> bool:
-        try:
-            #if obj contains field with arg name, add arg
-            if type(currentObj) in primitives or not hasattr(currentObj, '__dataclass_fields__'):
-                return
-
-            if hasattr(currentObj, argsDeclaration):
-                currentObjArgs = getattr(currentObj, argsDeclaration)
-                for argument in currentObjArgs.__dataclass_fields__:
-                    setattr(self, argument, getattr(currentObjArgs, argument))
-
-            for subObj in currentObj.__dataclass_fields__:
-                if subObj == argsDeclaration: continue
-                self.retrieveArgs(getattr(currentObj, subObj))
-        
-            return True
-        except Exception as ex:
-            raise ManageException(ex, 'Error during args type propagation - ')
 
     arguments: dict = None
 
