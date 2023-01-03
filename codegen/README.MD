@@ -7,7 +7,7 @@ THIS DOCUMENT IS UNDER REVIEW
 This module generates python classes corresponding to GraphQL objects present in a schema, secondarily can save a GraphQL schema in a json format.
 The generator can be launched through [command line](#usage-via-command-line) or [programmatically](#usage-programmatically).
 
-It depends on [pygqlmap](#https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore) module and uses requests for communications with GraphQL servers.
+It depends on [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap) module and uses requests for communications with GraphQL servers.
 
 
 ## Table of Contents
@@ -66,7 +66,7 @@ Required parameters:
 
 Optional parameters:
 
-* customTypes: dictionary containing the mapping of GraphQL scalar types with declaration different from the [standard GraphQL scalar types](https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore/README.MD#scalar-types-mapping)) (an example can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/GraphQLClients/GithubApi/generatorArgs.json))
+* customTypes: dictionary containing the mapping of GraphQL scalar types with declaration different from the [standard GraphQL scalar types](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#scalar-types-mapping)) (an example can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/cli_args.json))
 * logProgress: makes the generation verbose
 * addDescription: boolean telling if descriptions have to be added to the generated classes (strongly advised to be True)
 
@@ -105,7 +105,7 @@ CodeGenerator download ./commandsOutput/Github/schema.json -apiArgs ./downloader
 This command will create the file in _./commandsOutput/Github/schema.json_ containing the schema in json version using the [information](#json-args-file) given in _./downloaderArgs.json_.
 
 
-A few examples can be seen [here](#https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmGeneratorTest/geoDBCitiesApiUnitTest.py#L9) and [here](#https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmGeneratorTest/githubApiUnitTest.py#L13)
+A few examples can be seen [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/test/geoDBCitiesApiUnitTest.py#L9) and [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/test/githubApiUnitTest.py#L13)
 
 
 #### JSON args file
@@ -160,7 +160,7 @@ class createProject(GQLMutation):
 having as input the following generated class
 
 ```python
-from pgqlmCore.gqlTypes import ID
+from pygqlmap.gqlTypes import ID
 
 class CreateProjectInput():
    """
@@ -218,7 +218,7 @@ mutation MycreateProjectMutation  {
 Then executed using [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD)
 
 ```python
-from pgqlmCore.network import GQLResponse
+from pygqlmap.network import GQLResponse
 
 myMutation = MycreateProjectMutation()
 myMutation.name = 'MycreateProjectMutation'
