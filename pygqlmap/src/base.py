@@ -110,7 +110,7 @@ class GQLBaseArgsSet():
                         if len(arguments) > 0:
                             return '(' + arguments + ')'
             else:
-                raise HandleRecursiveEx(ex, 'No valid argType for ')
+                raise HandleRecursiveEx(None, 'No valid argType for ')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Issue during export arguments for ' + self.__class__.__name__)
         
@@ -126,7 +126,7 @@ class GQLBaseArgsSet():
                 try:  
                     output += self.exportArgKey(field, getattr(self, field)) + commaConcat
                 except:
-                    raise HandleRecursiveEx(ex, 'Issue exporting arg key for: ' + field)
+                    raise HandleRecursiveEx(None, 'Issue exporting arg key for: ' + field)
         
             output = output.removesuffix(commaConcat)
         except Exception as ex:

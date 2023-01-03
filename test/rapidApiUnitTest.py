@@ -243,7 +243,7 @@ async def testAdminAuditLogs():
         
         gqlResponse.printMessageOutput()
         
-        gqlResponse.mapGQLDataToObj(mutation.type)
+        gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         ManageException('executeQuery FAILED!! - ' + ex.args[0])
