@@ -63,7 +63,6 @@ More command options available [here](https://github.com/dapalex/py-graphql-mapp
 Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
 ```python
-import requests
 from output.GeoDBCities.queries import currencies
 
 myCurrenciesQuery = currencies()
@@ -77,6 +76,8 @@ myCurrenciesQuery._args.before = 'MTE='
 Call _exportGqlSource_ property to pass the payload to the HTTP request:
 
 ```python
+import requests
+
 response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
                             json= { "query": myCurrenciesQuery.exportGqlSource }, 
                             headers={
@@ -110,4 +111,4 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 
 
-A suite of use cases [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/README.MD#L110)
+A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD#L110)
