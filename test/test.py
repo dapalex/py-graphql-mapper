@@ -8,14 +8,13 @@ sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
 import asyncio
-from utils import OutputType, waitForInput, cleanOutput
-from geoDBCitiesApiUnitTest import runDownloadCommandgdbcApiBySchemaFileRelPath
-from githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, 
+from geoDBCitiesApiUnitTest import runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, runGenerateCommandGeoDBCitiesByApiRelPath
+from githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
                                RunGithubCreateIssueMutation, RunGithubCreateProjectMutation, RunGithubDeleteProjectMutation, 
                                RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation)
 from helpUnitTest import runGeneratorCommandHelp
 from rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
-                              RunRapidApiCreateTransformationsMutation, RunRapidApiEditUserAlertMutation, 
+                              RunRapidApiCreateTransformationsMutation, RunRapidApiEditUserAlertMutation, runGenerateCommandRapidApiByApiAbsPath,
                               testAdminAuditLogs)
 
 from geoDBCitiesApiUnitTest import fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc
@@ -23,23 +22,15 @@ from githubApiUnitTest import fetchGithubMutationTypes, fetchGithubMutationTypes
 from rapidApiUnitTest import fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc
 
 
-lockOutput = input('Do you want to pause at each test? (Y/N) ')
-
 ###################### CODE GENERATION - START ##############################
 
 # cleanOutput(OutputType.SCHEMAS)
-# asyncio.run(fetchGeoDBCitiesSchema())
-# waitForInput(lockOutput)
-# asyncio.run(fetchGeoDBCitiesSchemaNoDesc())
-# waitForInput(lockOutput)
-# asyncio.run(fetchGithubMutationTypesFromSchemaNoDesc())
-# waitForInput(lockOutput)
-# asyncio.run(fetchGithubMutationTypes())
-# waitForInput(lockOutput)
-# asyncio.run(fetchRapidApiTestSchemaAndTypesNoDesc())
-# waitForInput(lockOutput)
-# asyncio.run(fetchRapidApiTestSchemaAndTypes())
-# waitForInput(lockOutput)
+asyncio.run(fetchGeoDBCitiesSchema())
+asyncio.run(fetchGeoDBCitiesSchemaNoDesc())
+asyncio.run(fetchGithubMutationTypesFromSchemaNoDesc())
+asyncio.run(fetchGithubMutationTypes())
+asyncio.run(fetchRapidApiTestSchemaAndTypesNoDesc())
+asyncio.run(fetchRapidApiTestSchemaAndTypes())
 
 #GeoDBCities API - START
 #GeoDBCities API - END
@@ -47,24 +38,15 @@ lockOutput = input('Do you want to pause at each test? (Y/N) ')
 ###################### COMMAND LINE INTERFACE - START ##############################
 # cleanOutput(OutputType.COMMANDS)
 
-# asyncio.run(runGeneratorCommandHelp())
-# waitForInput(lockOutput)
-# asyncio.run(runDownloadCommandgdbcApiBySchemaFileRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runDownloadCommandGeoDBCitiesBySchemaFileRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runDownloadCommandGithubBySchemaFileRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runGenerateCommandGithubByApiAbsPath())
-# waitForInput(lockOutput)
-# asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runDownloadCommandRapidApiBySchemaFileRelPath())
-# waitForInput(lockOutput)
-# asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
-# waitForInput(lockOutput)
+asyncio.run(runGeneratorCommandHelp())
+asyncio.run(runDownloadCommandgdbcApiBySchemaFileRelPath())
+asyncio.run(runDownloadCommandGeoDBCitiesBySchemaFileRelPath())
+asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
+asyncio.run(runDownloadCommandGithubBySchemaFileRelPath())
+asyncio.run(runGenerateCommandGithubByApiAbsPath())
+asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
+asyncio.run(runDownloadCommandRapidApiBySchemaFileRelPath())
+asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
 ###################### COMMAND LINE INTERFACE - END ##############################
 
 ###################### CODE GENERATION - END ##############################
@@ -89,49 +71,29 @@ from tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLite
 from tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
 asyncio.run(testGeneratedDataAsGQLObject())
-waitForInput(lockOutput)
 asyncio.run(testSimpleObject())
-waitForInput(lockOutput)
 asyncio.run(testSimpleObjectArgs_LiteralValues())
-waitForInput(lockOutput)
 asyncio.run(testSimpleObjectArgs_Variables())
-waitForInput(lockOutput)
 asyncio.run(testSimpleObjectVisibility())
-waitForInput(lockOutput)
 
 asyncio.run(testConnectionObject())
-waitForInput(lockOutput)
 asyncio.run(testConnectionObjectVisibility())
-waitForInput(lockOutput)
 asyncio.run(testConnectionObjectArgs_Variables())
-waitForInput(lockOutput)
 asyncio.run(testConnectionObjectArgs_LiteralValues())
-waitForInput(lockOutput)
 
 asyncio.run(testComplexObject())
-waitForInput(lockOutput)
 
 # # #FURTHER TESTS
 asyncio.run(testNestedObjectWithLiteralValueArgs())
-waitForInput(lockOutput)
 asyncio.run(testNestedObjectShowChange())
-waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithLiteralValueArgs())
-waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithLiteralValueArgs2())
-waitForInput(lockOutput)
 asyncio.run(testObjectWithComposedArgs()) 
-waitForInput(lockOutput)
 asyncio.run(testComplexObjectShowChange())
-waitForInput(lockOutput)
 asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
-waitForInput(lockOutput)
 asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
-waitForInput(lockOutput)
 asyncio.run(testNestedObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
 asyncio.run(testComplexObjectWithArgsAndVariables()) 
-waitForInput(lockOutput)
 #Geo DB Cities - END
 
 ###################### QUERIES EXECUTION - END ##############################
@@ -139,34 +101,22 @@ waitForInput(lockOutput)
 ###################### MUTATIONS EXECUTION - START ##############################
 
 asyncio.run(testMutationUpdateLiteralValues()) 
-waitForInput(lockOutput)
 asyncio.run(testMutationInsertLiteralValues()) 
-waitForInput(lockOutput)
 
 #GITHUB API - START
 asyncio.run(RunGithubAddCommentMutation())
-waitForInput(lockOutput)
 asyncio.run(RunGithubUpdateRepositoryMutation())
-waitForInput(lockOutput)
 asyncio.run(RunGithubDeleteProjectMutation())
-waitForInput(lockOutput)
 asyncio.run(RunGithubDeleteProjectV2Mutation())
-waitForInput(lockOutput)
 asyncio.run(RunGithubCreateIssueMutation())
-waitForInput(lockOutput)
 asyncio.run(RunGithubCreateProjectMutation())
-waitForInput(lockOutput)
 #GITHUB - END
 
 #RapidAPI - START
 asyncio.run(testAdminAuditLogs()) 
-waitForInput(lockOutput)
 asyncio.run(RunRapidApiCreateTransformationsMutation())
-waitForInput(lockOutput)
 asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
-waitForInput(lockOutput)
 asyncio.run(RunRapidApiEditUserAlertMutation())
-waitForInput(lockOutput)
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################
