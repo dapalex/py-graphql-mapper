@@ -1,10 +1,11 @@
 # py-graphql-mapper
 
-THE DEVELOPMENT IS IN PROGRESS, THE CURRENT README IS OBSOLETE
+A python library to call a GraphQL API without using hardcoded strings.
+
 ## Introduction
 
-This library act as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when fetching data against a GraphQL server.
-The objective is to translate GraphQL entities into python objects and viceversa in order to simplify as much as possible the creation of GraphQL operations and retrieval of GraphQL responses avoiding massive "copy&paste" work.
+This library act as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when calling a GraphQL API server.
+It translates GraphQL entities into python objects and viceversa in order to avoid working with massive "copy&paste"s.
 
 The package does not use any third-party libraries, it relies only on python 3 standard libraries. 
 
@@ -12,130 +13,105 @@ The package does not use any third-party libraries, it relies only on python 3 s
 ## Table of Contents
 
 1. [Usage in a nutshell](#usage-in-a-nutshell)
-    1. [From GraphQL object type to python class](#from-graphql-object-type-to-python-class)
-    2. [Usage of python class for Query generation](#usage-of-python-class-for-query-generation)
-    3. [Retrieval of a response](#retrieval-of-a-response)
-    4. [Execution of a mutation](#execution-of-a-mutation)
-2. [Installation](#installation)
-3. [Final words](#final-words)
+    1. [Installation](#installation)
+    2. [Generate python code from schema](#generate-python-code-from-schema)
+    3. [Execution of a query](#execution-of-a-query)
+    4. [Retrieval of a response](#retrieval-of-a-response)
 
 
 ## Usage in a nutshell
 
-### From GraphQL object type to python class
+### Installation
 
-Given a GraphQL object type
+The following command will install the library:
 
 ```
-myCustomObject {
-    myString
-    myCode
-    myList
-}
+python setup.py install
 ```
 
-The following class definition will be able to reproduce object
+
+### Generate python code from schema
+
+To generate the code execute the following command:
+
+```
+pygqlcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs.json
+```
+
+This command requires a json file containing the parameters necessary to get the GraphQL schema to parse
+
+![image](https://github.com/dapalex/py-graphql-mapper/blob/main/docs/cli_args_nutshell.png)
+
+
+In the output folder there will be the following python files:
+
+* enums.py
+* scalars.py
+* gqlSimpleTypes.py
+* gqlTypes.py
+* circularRefs.py
+* queries.py
+* mutations.py
+
+Some generated code obtained from [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/RapidApi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/GeoDBCities)
+
+More command options available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
+
+
+### Execution of a query
+
+Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
 ```python
-from pygqlmap.components import GQLObject
+import requests
+from output.GeoDBCities.queries import currencies
 
-class myCustomObject(GQLObject): 
-    myString: str
-    myCode: int
-    myList: list
+async def testConnectionObjectArgs_LiteralValues(): 
+    print('\n\nRunning testConnectionObjectArgs_LiteralValues...')
+##STEP 1
+    myCurrenciesQuery = currencies()
 ```
-
-More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#creation-of-a-mappable-python-object)
-
-### Usage of python class for Query generation
-
-Given a GraphQL query
-
-```
-query myQuery {
-    myCustomObject(myString: "CNY") {
-        myString
-        myCode
-        myList
-    }
-}
-```
-
-The following GQLOperation instantiation will be able to reproduce the query
+populate the necessary information to execute the query:
 
 ```python
-from pygqlmap.components import GQLOperation, GQLArgsSet
-from pygqlmap.enums import OperationType, ArgType
-from pygqlmap.gqlTypes import ID
-
-query = GQLOperation(OperationType.query, myCustomObject, 'myQuery')
-
-argsCntrs = GQLArgsSet()
-argsCntrs.addArg('myString', ID('CNY'))
-query.setArgs(argsCntrs, ArgType.LiteralValues)
-
-print(query.exportGqlSource)
+    myCurrenciesQuery._args.last = 7
+    myCurrenciesQuery._args.before = 'MTE='
 ```
-
-The property _exportGqlSource_ will generate the above GraphQL query
-
-Example of querying using *requests* library:
+Call _exportGqlSource_ property to pass the payload to the HTTP request:
 
 ```python
-response = request("POST", "<graphQLServerUrl>", json={ "query": query.exportGqlSource }, headers=<headers>)
+    response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
+                                json= { "query": myCurrenciesQuery.exportGqlSource }, 
+                                headers={
+                                        "content-type": "application/json",
+                                            "X-RapidAPI-Key": '123402mmri02fni230iif32jr420', 
+                                            "X-RapidAPI-Host": "geodb-cities-graphql.p.rapidapi.com"
+                                        }
+                                )
+
 ```
 
-More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#gqloperation)
+More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#executing-an-operation)
 
-A suite of use cases [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/README.MD#L11)
 
 ### Retrieval of a response
 
-With the following python code
+Obtained the response from the GraphQL API the following code will map the json payload received into the python object
 
 ```python
 from pgqlmCore.network import GQLResponse
 
 gqlResponse = GQLResponse(response)
 
-gqlResponse.mapGQLDataToObj(query.type)
+gqlResponse.mapGQLDataToObj(myCurrenciesQuery.type)
 
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```
 
-The response from the GraphQL server will be mapped in _gqlResponse_ object: _gqlResponse.resultObject_ will contain the object _myCustomObject_ defined
+The mapped response from the GraphQL server will be available within _gqlResponse_ object: _gqlResponse.resultObject_
 
-More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
+More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
 
 
-### Execution of a mutation
-
-Mutations can be executed in two ways:
-
-```python
-from pygqlmap.enums import OperationType, ArgType
-from pygqlmap.components import GQLOperation, GQLArgsSet
-
-coreMutation = GQLOperation(OperationType.mutation, updateRepository, operationName='myManualMutationUpdateRepository', logProgress=True)
-
-argsUpdateRepository = GQLArgsSet()
-argsUpdateRepository.addArgs({ 'repositoryId': "R_kgDOHasdI4g", 'hasIssuesEnabled': False })
-
-coreMutation.setArgs([argsUpdateRepository], ArgType.LiteralValues)
-
-query = GQLOperation(OperationType.mutation, myCustomObject, 'myMutation')
-response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
-```
 
 A suite of use cases [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/README.MD#L110)
-
-## Installation
-
-The functionalities described above require the installation of pygqlmap package. From the repo main folder:
-
-```
-python setupPyGqlMap install
-```
-
-More details [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/pygqlmap/README.MD#installation)
-

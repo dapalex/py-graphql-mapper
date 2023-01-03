@@ -10,10 +10,11 @@ setup(
     license='MIT',
     include_package_data=True,
     packages=['pygqlmap', 'pygqlmap.src', 'codegen', 'codegen.src', 'codegen.src.templates'],
+    data_files=[('', ['pygqlmap/config.ini'])],
     python_requires='>=3.10.6',
     entry_points ={
             'console_scripts': [
-                'CodeGenerator = __main__:main'
+                'pygqlcodegen = codegen.__main__:main'
             ]
         },
     classifiers=[

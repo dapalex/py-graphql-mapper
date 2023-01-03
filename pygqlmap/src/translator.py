@@ -3,7 +3,7 @@ import inspect
 import keyword
 from enum import Enum
 
-from pygqlmap.helper import ManageException
+from pygqlmap.helper import HandleRecursiveEx
 from .utils import executeRegex, isEmptyField
 from pygqlmap.gqlTypes import ID
 from .consts import commaConcat
@@ -23,13 +23,13 @@ class Translate():
         try:
             return pyVariableName if not pyVariableName.endswith('_') and pyVariableName.removesuffix('_') not in keyword.kwlist else  pyVariableName.removesuffix('_') 
         except Exception as ex:
-            raise ManageException(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
+            raise HandleRecursiveEx(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
     
     def toPythonVariableName(gqlFieldName):
         try:
             return gqlFieldName if gqlFieldName not in keyword.kwlist else gqlFieldName + '_'
         except Exception as ex:
-            raise ManageException(ex, 'Error during formatting of python variable name for ' + gqlFieldName)   
+            raise HandleRecursiveEx(ex, 'Error during formatting of python variable name for ' + gqlFieldName)   
      
     def toGraphQLValue(pyVariable):
         try:     
@@ -54,7 +54,7 @@ class Translate():
             else:
                 print('to manage')
         except Exception as ex:
-            raise ManageException(ex, 'Error during formatting of graphql value for ' + pyVariable)
+            raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
         
     def toJsonValue(pyVariable):
         try:     
@@ -79,7 +79,7 @@ class Translate():
             else:
                 print('to manage')
         except Exception as ex:
-            raise ManageException(ex, 'Error during formatting of graphql value for ' + pyVariable)
+            raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
         
     def toGraphQLType(pyVariable):
         if type(pyVariable) == str:
@@ -103,7 +103,7 @@ class Translate():
         elif Enum in inspect.getmro(type(pyVariable)) or inspect.isclass(type(pyVariable)): 
             return type(pyVariable).__name__
         else:
-            raise ManageException(None, 'type not managed!')
+            raise HandleRecursiveEx(None, 'type not managed!')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
@@ -126,7 +126,7 @@ class Translate():
             
             output.removesuffix(commaConcat)
         except:
-            raise ManageException(None, 'Issue with items exporting variable')   
+            raise HandleRecursiveEx(None, 'Issue with items exporting variable')   
         
         output += ' }'
         return output
@@ -144,7 +144,7 @@ class Translate():
                 else:
                     output += executeRegex(" " + inputSourceKey + " ")
         except Exception as ex:
-            raise ManageException(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
+            raise HandleRecursiveEx(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
         
         return output
     
@@ -164,10 +164,10 @@ class Translate():
     #                         output += args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
     #                         wentThrough = True    
     #                 except Exception as ex: 
-    #                     raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+    #                     raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
                    
     #     except Exception as ex: 
-    #         raise ManageException(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
+    #         raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
         
     #     return executeRegex(stringifiedInputDict) if not wentThrough else output
 
@@ -179,7 +179,7 @@ class Translate():
                     inputList = input.split(args)
                     return args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
             except Exception as ex: 
-                raise ManageException(ex, 'Exception during args exclusion from graphqlize for substring ' + input)
+                raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for substring ' + input)
         
         return executeRegex(input)
     
@@ -208,12 +208,12 @@ class Translate():
                         if hasattr(pyObject, field) and not objectField == None:
                             output += Translate.toGraphQLArgDefinition(field, objectField)
                 except Exception as ex:
-                    raise ManageException(ex, 'Issue during export of name and value for: ' + objectField)
+                    raise HandleRecursiveEx(ex, 'Issue during export of name and value for: ' + objectField)
 
             output = output.removesuffix(commaConcat)
 
         except Exception as ex:
-            raise ManageException(ex, 'Error during translation of argument set definition')
+            raise HandleRecursiveEx(ex, 'Error during translation of argument set definition')
         return output
     
     def toGraphQLArgDefinition(fieldName, field):

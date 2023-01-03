@@ -9,7 +9,7 @@ from pygqlmap.src.logger import Logger
 from .base import FieldsShow
 from .consts import arguedSignatureSuffix
 from .utils import getClassName
-from pygqlmap.helper import ManageException, mapConfig
+from pygqlmap.helper import HandleRecursiveEx, mapConfig
 from dataclasses import dataclass, field
 
 ## dictionary of
@@ -37,7 +37,7 @@ def subClassInit(obj, fields = None):
                 updateCurrentPath(obj, fieldName, fieldType)
                 initType(obj, fieldType, fieldName) 
             except Exception as ex:
-                raise ManageException(ex, 'Exception during init of ' + fieldName + ' in ' + str(obj))
+                raise HandleRecursiveEx(ex, 'Exception during init of ' + fieldName + ' in ' + str(obj))
         
         if FieldsShow in inspect.getmro(type(obj)):
             obj.initFieldsShow() 
@@ -46,7 +46,7 @@ def subClassInit(obj, fields = None):
         removeInitializedFromtPath(obj)
         
     except Exception as ex:
-        raise ManageException(ex, 'Error during subClassInit of ' + obj.__class__.__name__)
+        raise HandleRecursiveEx(ex, 'Error during subClassInit of ' + obj.__class__.__name__)
 
 def initType(obj, fieldType, fieldName):
     try:
@@ -82,7 +82,7 @@ def initType(obj, fieldType, fieldName):
             Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
             setattr(obj, fieldName, '')
     except Exception as ex:
-        raise ManageException(ex, 'Error during type initialization ' + fieldName)
+        raise HandleRecursiveEx(ex, 'Error during type initialization ' + fieldName)
 
 def initTypedListAsType(obj, fieldName, fieldType):
     try:
@@ -93,7 +93,7 @@ def initTypedListAsType(obj, fieldName, fieldType):
         else:
             setattr(obj, fieldName, None)
     except Exception as ex:
-        raise ManageException(ex, 'Error during list initialization as type ' + fieldName)
+        raise HandleRecursiveEx(ex, 'Error during list initialization as type ' + fieldName)
 
 def specializeGeneric(obj, fieldName, fieldType):
     """For internal use only"""
@@ -132,7 +132,7 @@ def specializeGeneric(obj, fieldName, fieldType):
         else:
             setattr(obj, fieldName, None)
     except Exception as ex:
-        raise ManageException(ex, 'Error during generic specialization of ' + fieldName)
+        raise HandleRecursiveEx(ex, 'Error during generic specialization of ' + fieldName)
 
 def defineVariableType(obj, fieldName, fieldType):
     """For internal use only"""
@@ -147,7 +147,7 @@ def defineVariableType(obj, fieldName, fieldType):
         else:
             Logger.logErrorMessage('something is wrong')
     except Exception as ex:
-        raise ManageException(ex, 'Error during variable type definition ' + fieldName)
+        raise HandleRecursiveEx(ex, 'Error during variable type definition ' + fieldName)
     
 def mutationInit(obj):
     global currentPath, circularRefs, mergedClasses
@@ -162,7 +162,7 @@ def mutationInit(obj):
         from pygqlmap import GQLMutation
         super(GQLMutation, obj).__init__(operationType=OperationType.mutation, dataType=obj.type, argsType=ArgType.LiteralValues)
     except Exception as ex:
-        ManageException(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
+        raise HandleRecursiveEx(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
     
 def queryInit(obj):
     global currentPath, circularRefs, mergedClasses
@@ -177,7 +177,7 @@ def queryInit(obj):
         from pygqlmap import GQLQuery
         super(GQLQuery, obj).__init__(operationType=OperationType.query, dataType=obj.type, argsType=ArgType.LiteralValues)
     except Exception as ex:
-        ManageException(ex, 'Error during Query init execution for ' + obj.__class__.__name__)
+        raise HandleRecursiveEx(ex, 'Error during Query init execution for ' + obj.__class__.__name__)
 
 def addCircularRef(fieldType):
     global circularRefs, currentPath
@@ -195,7 +195,7 @@ def addCircularRef(fieldType):
         else:
             pass
     except Exception as ex:
-        ManageException(ex, 'Error during circular refs adding for objects Init')
+       raise HandleRecursiveEx(ex, 'Error during circular refs adding for objects Init')
         
 def checkCircularRefs(fieldType):
     """
@@ -215,7 +215,7 @@ def checkCircularRefs(fieldType):
         
         return True 
     except Exception as ex:
-        ManageException(ex, 'Error during circular refs check for objects Init')
+       raise HandleRecursiveEx(ex, 'Error during circular refs check for objects Init')
     
     #####@dataclass instead of GQLObject for args
     

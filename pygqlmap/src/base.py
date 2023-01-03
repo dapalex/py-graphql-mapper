@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import asdict, dataclass
 import inspect
 
-from pygqlmap.helper import ManageException
+from pygqlmap.helper import HandleRecursiveEx
 from .consts import commaConcat, argsDeclaration
 from ..enums import ArgType
 from .logger import Logger
@@ -23,9 +23,9 @@ class FieldsShow(ABC):
                 for field in self._fieldsShow:
                     self._fieldsShow[field] = True
             except Exception as ex:
-                ManageException(ex, 'Error during fieldShow initialization for field ' + field)
+               raise HandleRecursiveEx(ex, 'Error during fieldShow initialization for field ' + field)
         except Exception as ex:
-            ManageException(ex, 'Error during fieldShow initialization')
+           raise HandleRecursiveEx(ex, 'Error during fieldShow initialization')
         
     def copyFieldsShow(self, fieldsShow):
         """ For internal use only """
@@ -69,10 +69,10 @@ class GQLExporter(Logger):
                                 outputGqlDict[Translate.toGraphQLFieldName(field)] = fieldObject
                             
                 except Exception as ex:
-                    raise ManageException(ex, 'Issue exporting field ' + self.__class__.__name__ + '.' + field)
+                    raise HandleRecursiveEx(ex, 'Issue exporting field ' + self.__class__.__name__ + '.' + field)
             
         except Exception as ex:
-            raise ManageException(ex, 'Issue during export of gql dictionary')
+            raise HandleRecursiveEx(ex, 'Issue during export of gql dictionary')
         
         gqlArgs = ''
         #Arguments management START - after check of fields requested
@@ -81,7 +81,7 @@ class GQLExporter(Logger):
                 if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of args for: ' + getObjectClassName(self))
                 gqlArgs = self._args.exportArgs
             except Exception as ex:
-                raise ManageException(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))
+                raise HandleRecursiveEx(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))
             
         #Arguments management END
             
@@ -95,7 +95,7 @@ class GQLBaseArgsSet():
     @abstractmethod
     def exportArgKey(self, fieldName, fieldValue):
         """ For internal use only """
-        raise ManageException(None, 'exportArg function not implemented')
+        raise HandleRecursiveEx(None, 'exportArg function not implemented')
     
     @property
     def exportArgs(self):
@@ -110,9 +110,9 @@ class GQLBaseArgsSet():
                         if len(arguments) > 0:
                             return '(' + arguments + ')'
             else:
-                raise ManageException(ex, 'No valid argType for ')
+                raise HandleRecursiveEx(ex, 'No valid argType for ')
         except Exception as ex:
-            raise ManageException(ex, 'Issue during export arguments for ' + self.__class__.__name__)
+            raise HandleRecursiveEx(ex, 'Issue during export arguments for ' + self.__class__.__name__)
         
         return arguments
     
@@ -126,10 +126,10 @@ class GQLBaseArgsSet():
                 try:  
                     output += self.exportArgKey(field, getattr(self, field)) + commaConcat
                 except:
-                    raise ManageException(ex, 'Issue exporting arg key for: ' + field)
+                    raise HandleRecursiveEx(ex, 'Issue exporting arg key for: ' + field)
         
             output = output.removesuffix(commaConcat)
         except Exception as ex:
-            raise ManageException(ex, 'Issue exporting arg keys for ' + str(self.__class__))
+            raise HandleRecursiveEx(ex, 'Issue exporting arg keys for ' + str(self.__class__))
 
         return output

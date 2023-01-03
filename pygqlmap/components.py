@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from .helper import ManageException
+from .helper import HandleRecursiveEx
 from .src.gqlInit import subClassInit
 from .src.components import FSTree
 from .src.base import FieldsShow, GQLExporter, GQLBaseArgsSet
@@ -21,11 +21,11 @@ class GQLOperationArgs(GQLBaseArgsSet):
                 try:  
                     output += self.exportArgKey(fieldName, fieldValue) + commaConcat
                 except Exception as ex:
-                    raise ManageException(ex, 'Issue exporting arg key for: ' + fieldName)
+                    raise HandleRecursiveEx(ex, 'Issue exporting arg key for: ' + fieldName)
         
             output = output.removesuffix(commaConcat)
         except Exception as ex:
-            raise ManageException(ex, 'Issue exporting arg keys')
+            raise HandleRecursiveEx(ex, 'Issue exporting arg keys')
 
         return output
     
@@ -40,9 +40,9 @@ class GQLOperationArgs(GQLBaseArgsSet):
             if self.arguments:
                 return Translate.toJsonVariables(self.arguments)
             else:
-                raise ManageException(None, 'No variables to export')
+                raise HandleRecursiveEx(None, 'No variables to export')
         else: 
-            raise ManageException(None, 'Cannot export Variables, arguments type is ' + self._argsType.name)
+            raise HandleRecursiveEx(None, 'Cannot export Variables, arguments type is ' + self._argsType.name)
         
     def exportArgKey(self, fieldName, fieldValue):
         return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
@@ -114,7 +114,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             for key in keys:
                 self.fieldsShowTree.setFieldShow(key, isVisible)
         else:
-            raise ManageException(None, 'setShow accepts only ''str'' or ''list'' types') ##why not throwing?
+            raise HandleRecursiveEx(None, 'setShow accepts only ''str'' or ''list'' types') ##why not throwing?
 
     @property
     def exportGqlSource(self):
@@ -143,7 +143,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
                     
             return prefix + ' { ' + rootName + self.type.exportGqlSource + ' } '
         except Exception as ex:
-            raise ManageException(ex, 'Issue during export of ' + self.name)
+            raise HandleRecursiveEx(ex, 'Issue during export of ' + self.name)
 
     arguments: dict = None
 
@@ -165,4 +165,4 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
                 if subObj == argsDeclaration:  continue
                 self.manageArgs(getattr(currentObj, subObj))
         except Exception as ex:
-            raise ManageException(ex, 'Error during args type propagation - ')
+            raise HandleRecursiveEx(ex, 'Error during args type propagation - ')

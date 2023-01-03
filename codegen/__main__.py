@@ -123,5 +123,6 @@ def extractSchemaObject(arguments, verbose):
     if verbose: print('Schema not extracted!') #, end="\r")
     return None
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    print('python-graphql mapper code generator 0.3.0')
+    main()

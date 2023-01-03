@@ -1,0 +1,11 @@
+{
+    "apiURL": "https://mygraphqlapi.com/v2",
+    "httpHeaders": {
+        "Authorization": "bearer abcdef12345678",
+        "additionalHeader-content-type": "application/json"
+    },
+    "schemaFile": "",
+    "addDescToGeneratedFiles": "True"
+}
+
+

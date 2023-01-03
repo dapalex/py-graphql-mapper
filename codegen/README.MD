@@ -1,5 +1,7 @@
 # py-graphql-mapper - Generator
 
+THIS DOCUMENT IS UNDER REVIEW
+
 ## Introduction
 
 This module generates python classes corresponding to the GraphQL objects present in a schema, secondarily can save a GraphQL schema in a json format.
@@ -10,23 +12,11 @@ This module depends on [pgqlmCore](#https://github.com/dapalex/PyGraphQLHelper/b
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Functionalities](#functionalities)
+1. [Functionalities](#functionalities)
     1. [Usage programmatically](#usage-programmatically)
     2. [Usage via command line](#usage-via-command-line)
         1. [JSON args file](#json-args-file)
-3. [Using the generated files](#using-the-generated-files)
-
-
-## Installation
-
-This module can be installed launching the following command from the main folder
-
-```
-python setupGenerator.py install
-```
-
-The command line interface _CodeGenerator_ and the relating functionalities of this package will be available under _pgqlmGenerator_ module name.
+2. [Using the generated files](#using-the-generated-files)
 
 
 ## Functionalities 
