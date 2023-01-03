@@ -214,7 +214,7 @@ class countries(GQLQuery):
 """
 
 import requests
-from consts import gdbcHeaders, gdbcUrl
+from .consts import gdbcHeaders, gdbcUrl
 from utils import ManageException
 
 async def testGeneratedDataAsGQLObject(): 

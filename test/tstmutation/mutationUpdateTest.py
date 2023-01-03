@@ -61,7 +61,7 @@
 """
 
 import requests
-from consts import githubUrl, githubHeaders
+from .consts import githubUrl, githubHeaders
 from output.github.mutations import updateRepository
 from output.github.gqlTypes import UpdateRepositoryInput
 from utils import ManageException

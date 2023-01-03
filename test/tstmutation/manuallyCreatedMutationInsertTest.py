@@ -113,7 +113,7 @@ class createDiscussion(GQLMutation):
 """
 
 import requests
-from consts import githubUrl, githubHeaders
+from .consts import githubUrl, githubHeaders
 
 async def testMutationInsertLiteralValues(): 
     print('\n\nRunning testMutationInsertLiteralValues...')

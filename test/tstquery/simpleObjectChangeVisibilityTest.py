@@ -32,7 +32,7 @@
 """
 
 import requests
-from consts import githubHeaders, githubUrl
+from .consts import githubHeaders, githubUrl
 from output.github.queries import rateLimit
 from utils import ManageException
 

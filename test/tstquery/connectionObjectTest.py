@@ -35,7 +35,7 @@
 """
 
 import requests
-from consts import gdbcUrl, gdbcHeaders
+from .consts import gdbcUrl, gdbcHeaders
 from output.GeoDBCities.queries import currencies
 from utils import ManageException
 

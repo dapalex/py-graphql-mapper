@@ -78,7 +78,7 @@
 """
 
 import requests
-from consts import gdbcHeaders, gdbcUrl
+from .consts import gdbcHeaders, gdbcUrl
 from output.GeoDBCities.queries import countries
 from utils import ManageException
 

@@ -3,7 +3,7 @@ from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
 from pygqlmap.gqlTypes import ID
 from pygqlmap.helper import mapConfig
-from consts import gdbcHeaders, gdbcUrl
+from .consts import gdbcHeaders, gdbcUrl
 from output.GeoDBCities.queries import country, currencies, countries
 from utils import ManageException, redirectOutputToFile, restoreOutput
 

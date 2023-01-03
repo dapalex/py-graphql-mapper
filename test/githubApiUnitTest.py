@@ -3,12 +3,12 @@ import os
 from pprint import pprint
 import requests
 
-from consts import githubHeaders, githubUrl
 from pygqlmap.network import GQLResponse
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from utils import ManageException, redirectOutputToFile, restoreOutput
+from .consts import githubHeaders, githubUrl
+from .utils import ManageException
 
 async def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
