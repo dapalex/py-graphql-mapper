@@ -1,3 +1,4 @@
+import pathlib
 from .utils import getValidFolder
 from .consts import templateFolder
 import os
@@ -18,13 +19,13 @@ class Printer():
             else:
                 print('Destination folder missing')
                 
-            self.saveScalarsFile(folder + '\\' + 'scalars.py')
-            self.saveEnumsFile(folder + '\\' + 'enums.py')
-            self.saveSimpleTypesFile(folder + '\\' + 'gqlSimpleTypes.py')
-            self.saveTypesFile(folder + '\\' + 'gqlTypes.py')
-            self.saveQueriesFile(folder + '\\' + 'queries.py')
-            self.saveMutationsFile(folder + '\\' + 'mutations.py')
-            self.saveCircularRefsFile(folder + '\\' + 'circularRefs.py')
+            self.saveScalarsFile(str(pathlib.Path(os.path.dirname(folder), 'scalars.py').absolute()))
+            self.saveEnumsFile(str(pathlib.Path(os.path.dirname(folder), 'enums.py').absolute()))
+            self.saveSimpleTypesFile(str(pathlib.Path(os.path.dirname(folder), 'gqlSimpleTypes.py').absolute()))
+            self.saveTypesFile(str(pathlib.Path(os.path.dirname(folder), 'gqlTypes.py').absolute()))
+            self.saveQueriesFile(str(pathlib.Path(os.path.dirname(folder), 'queries.py').absolute()))
+            self.saveMutationsFile(str(pathlib.Path(os.path.dirname(folder), 'mutations.py').absolute()))
+            self.saveCircularRefsFile(str(pathlib.Path(os.path.dirname(folder), 'circularRefs.py').absolute()))
         except Exception as ex:
             raise ex
     
