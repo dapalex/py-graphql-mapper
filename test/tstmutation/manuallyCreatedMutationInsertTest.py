@@ -115,7 +115,7 @@ class createDiscussion(GQLMutation):
 import requests
 from ..consts import githubUrl, githubHeaders
 
-def testMutationInsertLiteralValues(): 
+async def testMutationInsertLiteralValues(): 
     print('\n\nRunning testMutationInsertLiteralValues...')
 ##STEP 2
     mutation = createDiscussion()

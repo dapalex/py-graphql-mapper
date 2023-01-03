@@ -66,7 +66,7 @@ from ..output.github.mutations import updateRepository
 from ..output.github.gqlTypes import UpdateRepositoryInput
 from ..utils import ManageException
 
-def testMutationUpdateLiteralValues(): 
+async def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')
 ##STEP 2
     mutation = updateRepository()

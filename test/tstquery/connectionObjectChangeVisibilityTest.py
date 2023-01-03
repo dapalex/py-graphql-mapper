@@ -67,7 +67,7 @@ from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 from ..utils import ManageException
 
-def testConnectionObjectVisibility(): 
+async def testConnectionObjectVisibility(): 
     print('\n\nRunning testConnectionObjectVisibility...')
 ##STEP 1
     from pygqlmap.enums import OperationType

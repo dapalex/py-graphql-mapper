@@ -33,7 +33,7 @@ from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 from ..utils import ManageException
 
-def testSimpleObjectArgs_LiteralValues(): 
+async def testSimpleObjectArgs_LiteralValues(): 
     print('\n\nRunning testSimpleObjectArgs_LiteralValues...')
 ##STEP 2
     query = rateLimit()

@@ -1,7 +1,7 @@
 
 import os
 
-def runGeneratorCommandHelp():
+async def runGeneratorCommandHelp():
     print('\nRunning runGeneratorCommandHelp...')
     command = "CodeGenerator -h" #command to be executed
     print("Launching: " + command)
