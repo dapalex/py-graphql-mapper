@@ -41,15 +41,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Prepare generated code
-      run: |
-        pytest ./test/geoDBCitiesApiUnitTest.py::fetchGeoDBCitiesSchema
-        pytest ./test/githubApiUnitTest.py::fetchGithubMutationTypes
-        pytest ./test/rapidApiUnitTest.py::fetchRapidApiTestSchemaAndTypes
-      env:
-        GEODBCITIES_APIKEY: ${{ secrets.GEODBCITIES_APIKEY }} 
-        GH_APIKEY: ${{ secrets.GH_APIKEY }} 
-        RAPIDAPI_APIKEY: ${{ secrets.RAPIDAPI_APIKEY }} 
     - name: Test mapper with pytest
       run: |
         pytest ./test/mappingTest.py
