@@ -66,7 +66,7 @@ async def RunGithubAddCommentMutation():
     print('\nRunning RunGithubAddCommentMutation... - stack limit for recursion depth')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations #, ProjectV2Order, ProjectV2OrderField
+        from .output.github.mutations import Mutations #, ProjectV2Order, ProjectV2OrderField
 
         mutation = Mutations.addComment.value()
         # restoreOutput(wrapper)
@@ -110,8 +110,8 @@ async def RunGithubAddCommentMutation():
 async def RunGithubUpdateRepositoryMutation():
     print('\nRunning RunGithubUpdateRepositoryMutation...')
     try:
-        # from output.github.gqlTypes import UpdateRepositoryInput
-        from output.github.mutations import Mutations
+        # from .output.github.gqlTypes import UpdateRepositoryInput
+        from .output.github.mutations import Mutations
         
         print('Creating mutation python object...')
         mutation = Mutations.updateRepository.value()
@@ -153,8 +153,8 @@ async def RunGithubCreateProjectMutation():
     print('\nRunning RunGithubCreateProjectMutation...')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
-        from output.github.gqlTypes import CreateProjectInput
+        from .output.github.mutations import Mutations
+        from .output.github.gqlTypes import CreateProjectInput
 
         mutation = Mutations.createProject.value()
         print('Inserting python mutation input data...')
@@ -197,8 +197,8 @@ async def RunGithubDeleteProjectMutation():
     try:
         
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
-        from output.github.gqlTypes import DeleteProjectInput
+        from .output.github.mutations import Mutations
+        from .output.github.gqlTypes import DeleteProjectInput
 
         mutation = Mutations.deleteProject.value()
         print('Inserting python mutation input data...')
@@ -228,8 +228,8 @@ async def RunGithubCreateProjectV2Mutation():
     print('\nRunning RunGithubCreateProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
-        from output.github.gqlTypes import CreateProjectV2Input
+        from .output.github.mutations import Mutations
+        from .output.github.gqlTypes import CreateProjectV2Input
 
         mutation = Mutations.createProjectV2.value()
         print('Inserting python mutation input data...')
@@ -260,8 +260,8 @@ async def RunGithubDeleteProjectV2Mutation():
     print('\nRunning RunGithubDeleteProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
-        from output.github.gqlTypes import DeleteProjectV2ItemInput
+        from .output.github.mutations import Mutations
+        from .output.github.gqlTypes import DeleteProjectV2ItemInput
 
         mutation = Mutations.deleteProjectV2Item.value()
         print('Inserting python mutation input data...')
@@ -292,8 +292,8 @@ async def RunGithubCreateIssueMutation():
     print('\nRunning RunGithubCreateIssueMutation...')
     try:
         print('Creating mutation python object...')
-        from output.github.mutations import Mutations
-        from output.github.gqlTypes import CreateIssueInput
+        from .output.github.mutations import Mutations
+        from .output.github.gqlTypes import CreateIssueInput
 
         mutation = Mutations.createIssue.value()
         print('Inserting python mutation input data...')

@@ -4,8 +4,8 @@ from pygqlmap.network import GQLResponse
 from pygqlmap.gqlTypes import ID
 from pygqlmap.helper import mapConfig
 from .consts import gdbcHeaders, gdbcUrl
-from output.GeoDBCities.queries import country, currencies, countries
-from utils import ManageException, redirectOutputToFile, restoreOutput
+from .output.GeoDBCities.queries import country, currencies, countries
+from utils import ManageException
 
 async def testNestedObject(): 
     print('\n\nRunning testNestedObject...')
@@ -146,7 +146,7 @@ async def testNestedObjectWithLiteralValueArgs():
           
 async def testComplexObjectWithLiteralValueArgs(): 
     print('\n\nRunning testComplexObjectWithLiteralValueArgs...')
-    from output.GeoDBCities.enums import IncludeDeletedFilterType
+    from .output.GeoDBCities.enums import IncludeDeletedFilterType
     query = countries() 
     query._args.currencyCode = 'CNY'
     query.type.edges.node.region._args.code = "CH"
@@ -281,7 +281,7 @@ async def testObjectWithComposedArgs():
         query = country()
         query.logProgress=True
         query._args.id = ID('CH')
-        from output.GeoDBCities.enums import Language
+        from .output.GeoDBCities.enums import Language
         query._args.displayOptions = {"asciiMode": True, "language": Language.EN }
         query.type.region._args.code = 'Q12094'
 

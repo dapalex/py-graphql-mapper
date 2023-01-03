@@ -43,7 +43,7 @@
 
 import requests
 from .consts import gdbcUrl, gdbcHeaders
-from output.GeoDBCities.queries import currencies
+from .output.GeoDBCities.queries import currencies
 from utils import ManageException
 
 async def testConnectionObjectArgs_Variables(): 

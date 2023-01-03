@@ -190,8 +190,8 @@ class CreateProjectInput():
 The mutation class can be instantiated and defined
 
 ```python
-from output.github.mutations import Mutations
-from output.github.types import CreateProjectInput
+from .output.github.mutations import Mutations
+from .output.github.types import CreateProjectInput
 
 mutation = Mutations.createProject.value()
 

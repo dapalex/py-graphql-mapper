@@ -30,7 +30,7 @@
 
 import requests
 from .consts import githubHeaders, githubUrl
-from output.github.queries import rateLimit
+from .output.github.queries import rateLimit
 from utils import ManageException
 
 async def testSimpleObjectArgs_Variables(): 

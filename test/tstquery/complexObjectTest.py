@@ -79,7 +79,7 @@
 
 import requests
 from .consts import gdbcHeaders, gdbcUrl
-from output.GeoDBCities.queries import countries
+from .output.GeoDBCities.queries import countries
 from utils import ManageException
 
 async def testComplexObject(): 

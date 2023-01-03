@@ -63,7 +63,7 @@ More command options available [here](https://github.com/dapalex/py-graphql-mapp
 Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
 ```python
-from output.GeoDBCities.queries import currencies
+from .output.GeoDBCities.queries import currencies
 
 myCurrenciesQuery = currencies()
 ```

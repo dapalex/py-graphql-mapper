@@ -66,8 +66,8 @@ async def RunRapidApiCreateTransformationsMutation():
     print('\nRunning RunRapidApiCreateTransformationsMutation...')
     try:
         print('Creating mutation python object...')
-        from output.RapidApi.gqlTypes import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
-        from output.RapidApi.mutations import Mutations
+        from .output.RapidApi.gqlTypes import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
+        from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.createTransformations.value()
         
@@ -121,8 +121,8 @@ async def RunRapidApiCreateGatewayInstanceMutation():
     print('\nRunning RunRapidApicreateGatewayInstanceMutation...')
     try:
         print('Creating mutation python object...')
-        from output.RapidApi.gqlTypes import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
-        from output.RapidApi.mutations import Mutations
+        from .output.RapidApi.gqlTypes import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
+        from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.createGatewayInstance.value()
         
@@ -168,8 +168,8 @@ async def RunRapidApiEditUserAlertMutation():
     print('\nRunning RunRapidApiEditUserAlertMutation...')
     try:
         print('Creating mutation python object...')
-        from output.RapidApi.gqlTypes import editUserAlertInput, Channel, Condition, AlertStatus, time
-        from output.RapidApi.mutations import Mutations
+        from .output.RapidApi.gqlTypes import editUserAlertInput, Channel, Condition, AlertStatus, time
+        from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.editUserAlert.value()
         
@@ -214,10 +214,10 @@ async def RunRapidApiEditUserAlertMutation():
 async def testAdminAuditLogs():
     print('\nRunning testAdminAuditLogs...')
     try:
-        # from output.github.gqlTypes import UpdateRepositoryInput
-        from output.RapidApi.queries import Queries
-        from output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField  
-        from output.RapidApi.enums import Order, AdminAuditLogSortables 
+        # from .output.github.gqlTypes import UpdateRepositoryInput
+        from .output.RapidApi.queries import Queries
+        from .output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField  
+        from .output.RapidApi.enums import Order, AdminAuditLogSortables 
         
         print('Creating mutation python object...')
         query = Queries.adminAuditLogs.value()
