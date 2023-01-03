@@ -41,7 +41,7 @@ asyncio.run(testConnectionObjectVisibility())
 asyncio.run(testConnectionObjectArgs_Variables())
 asyncio.run(testConnectionObjectArgs_LiteralValues())
 
-asyncio.run(testComplexObject())
+testComplexObject()
 
 # # #FURTHER TESTS
 asyncio.run(testNestedObject())
