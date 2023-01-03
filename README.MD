@@ -66,29 +66,25 @@ Choose the query class you want to use from the generated file queries.py (or a 
 import requests
 from output.GeoDBCities.queries import currencies
 
-async def testConnectionObjectArgs_LiteralValues(): 
-    print('\n\nRunning testConnectionObjectArgs_LiteralValues...')
-##STEP 1
-    myCurrenciesQuery = currencies()
+myCurrenciesQuery = currencies()
 ```
 populate the necessary information to execute the query:
 
 ```python
-    myCurrenciesQuery._args.last = 7
-    myCurrenciesQuery._args.before = 'MTE='
+myCurrenciesQuery._args.last = 7
+myCurrenciesQuery._args.before = 'MTE='
 ```
 Call _exportGqlSource_ property to pass the payload to the HTTP request:
 
 ```python
-    response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
-                                json= { "query": myCurrenciesQuery.exportGqlSource }, 
-                                headers={
-                                        "content-type": "application/json",
-                                            "X-RapidAPI-Key": '123402mmri02fni230iif32jr420', 
-                                            "X-RapidAPI-Host": "geodb-cities-graphql.p.rapidapi.com"
-                                        }
-                                )
-
+response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
+                            json= { "query": myCurrenciesQuery.exportGqlSource }, 
+                            headers={
+                                    "content-type": "application/json",
+                                        "X-RapidAPI-Key": '123402mmri02fni230iif32jr420', 
+                                        "X-RapidAPI-Host": "geodb-cities-graphql.p.rapidapi.com"
+                                    }
+                            )
 ```
 
 More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#executing-an-operation)
