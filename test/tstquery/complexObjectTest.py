@@ -78,9 +78,9 @@
 """
 
 import requests
-from .consts import gdbcHeaders, gdbcUrl
-from .utils import ManageException
-from .output.GeoDBCities.queries import countries
+from ..consts import gdbcHeaders, gdbcUrl
+from ..utils import ManageException
+from ..output.GeoDBCities.queries import countries
 
 async def testComplexObject(): 
     print('\n\nRunning testComplexObject...')

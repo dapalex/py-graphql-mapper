@@ -72,7 +72,7 @@ from typing import NewType
 from pygqlmap.gqlOperations import GQLQuery
 from pygqlmap.gqlTypes import ID
 from pygqlmap.components import GQLObject, GQLArgsSet
-from .utils import ManageException
+from ..utils import ManageException
 
 class PopulatedPlaceType(Enum):
    ADM2 = 'ADM2' ##A level-2 administrative division (for example, a county)
@@ -214,8 +214,8 @@ class countries(GQLQuery):
 """
 
 import requests
-from .consts import gdbcHeaders, gdbcUrl
-from .utils import ManageException
+from ..consts import gdbcHeaders, gdbcUrl
+from ..utils import ManageException
 
 async def testGeneratedDataAsGQLObject(): 
     print('\n\nRunning testGeneratedDataAsGQLObject...')
