@@ -1,5 +1,4 @@
-# py-graphql-mapper
-
+# py-graphql-mapper                          [![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)
 A python library to call a GraphQL API without using hardcoded strings.
 
 ## Introduction
