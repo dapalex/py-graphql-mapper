@@ -35,7 +35,7 @@ def waitForInput(isToWait: str):
     
 def ManageException(message: str):
     Logger.logCriticalMessage(message)
-    input()
+    # input()
     
 
 def redirectOutputToFile(fileName, append: bool = True):
