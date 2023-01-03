@@ -1,5 +1,7 @@
 # py-graphql-mapper - Test
 
+THIS DOCUMENT IS UNDER REVIEW
+
 Tests have been made using:
 
 - GeoDB Cities GraphQL API
