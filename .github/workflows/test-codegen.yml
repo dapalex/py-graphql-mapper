@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Pyhon-GraphQL Mapping Test
+name: Code Generation Test
 
 on:
   push:
@@ -31,7 +31,6 @@ jobs:
         python -m pip install requests       
         python setup.py install
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - uses: actions/checkout@v3
     - name: Test mapper with pytest
       run: |
         pytest ./test/codegenTest.py
