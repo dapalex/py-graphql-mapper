@@ -54,18 +54,18 @@ from .unitTest import (testComplexObjectShowChange, testComplexObjectShowChangeW
                         testComplexObjectWithLiteralValueArgs2, testNestedObject, testNestedObjectShowChange, 
                         testNestedObjectShowChangeWithArgsAndVariables, testNestedObjectWithArgsAndVariables, 
                         testNestedObjectWithLiteralValueArgs, testObjectWithComposedArgs)
-from tstquery.complexObjectTest import testComplexObject
-from tstquery.connectionobjectArgs_LiteralValuesTest import testConnectionObjectArgs_LiteralValues
-from tstquery.connectionObjectArgs_VariablesTest import testConnectionObjectArgs_Variables
-from tstquery.connectionObjectChangeVisibilityTest import testConnectionObjectVisibility
-from tstquery.connectionObjectTest import testConnectionObject
-from tstquery.manuallyCreatedObjectTest import testGeneratedDataAsGQLObject
-from tstquery.simpleObjectTest import testSimpleObject
-from tstquery.simpleObjectArgs_LiteralValuesTest import testSimpleObjectArgs_LiteralValues
-from tstquery.simpleObjectArgs_VariablesTest import testSimpleObjectArgs_Variables
-from tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
-from tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
-from tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
+from .tstquery.complexObjectTest import testComplexObject
+from .tstquery.connectionobjectArgs_LiteralValuesTest import testConnectionObjectArgs_LiteralValues
+from .tstquery.connectionObjectArgs_VariablesTest import testConnectionObjectArgs_Variables
+from .tstquery.connectionObjectChangeVisibilityTest import testConnectionObjectVisibility
+from .tstquery.connectionObjectTest import testConnectionObject
+from .tstquery.manuallyCreatedObjectTest import testGeneratedDataAsGQLObject
+from .tstquery.simpleObjectTest import testSimpleObject
+from .tstquery.simpleObjectArgs_LiteralValuesTest import testSimpleObjectArgs_LiteralValues
+from .tstquery.simpleObjectArgs_VariablesTest import testSimpleObjectArgs_Variables
+from .tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
+from .tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
+from .tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
 asyncio.run(testGeneratedDataAsGQLObject())
 asyncio.run(testSimpleObject())
