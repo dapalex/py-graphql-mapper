@@ -49,7 +49,7 @@ asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
 ###################### CODE GENERATION - END ##############################
 
 ###################### QUERIES EXECUTION - START ##############################
-from unitTest import (testComplexObjectShowChange, testComplexObjectShowChangeWithArgsAndVariables, 
+from .unitTest import (testComplexObjectShowChange, testComplexObjectShowChangeWithArgsAndVariables, 
                         testComplexObjectWithArgsAndVariables, testComplexObjectWithLiteralValueArgs, 
                         testComplexObjectWithLiteralValueArgs2, testNestedObject, testNestedObjectShowChange, 
                         testNestedObjectShowChangeWithArgsAndVariables, testNestedObjectWithArgsAndVariables, 
