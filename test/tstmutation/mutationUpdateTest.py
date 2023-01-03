@@ -64,7 +64,7 @@ import requests
 from .consts import githubUrl, githubHeaders
 from .output.github.mutations import updateRepository
 from .output.github.gqlTypes import UpdateRepositoryInput
-from utils import ManageException
+from .utils import ManageException
 
 async def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')

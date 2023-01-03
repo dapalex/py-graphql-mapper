@@ -34,7 +34,7 @@
 import requests
 from .consts import githubHeaders, githubUrl
 from .output.github.queries import rateLimit
-from utils import ManageException
+from .utils import ManageException
 
 async def testSimpleObjectVisibility(): 
     print('\n\nRunning testSimpleObjectVisibility...')

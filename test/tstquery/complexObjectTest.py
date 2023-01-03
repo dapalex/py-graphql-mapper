@@ -80,7 +80,7 @@
 import requests
 from .consts import gdbcHeaders, gdbcUrl
 from .output.GeoDBCities.queries import countries
-from utils import ManageException
+from .utils import ManageException
 
 async def testComplexObject(): 
     print('\n\nRunning testComplexObject...')

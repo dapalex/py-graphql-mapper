@@ -5,7 +5,7 @@ from pygqlmap.gqlTypes import ID
 from pygqlmap.helper import mapConfig
 from .consts import gdbcHeaders, gdbcUrl
 from .output.GeoDBCities.queries import country, currencies, countries
-from utils import ManageException
+from .utils import ManageException
 
 async def testNestedObject(): 
     print('\n\nRunning testNestedObject...')
