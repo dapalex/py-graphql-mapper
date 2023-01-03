@@ -8,18 +8,15 @@ sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
 import asyncio
-from geoDBCitiesApiUnitTest import runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, runGenerateCommandGeoDBCitiesByApiRelPath
-from githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
+from .geoDBCitiesApiUnitTest import (runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, 
+                                     runGenerateCommandGeoDBCitiesByApiRelPath, fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
+from .githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
                                RunGithubCreateIssueMutation, RunGithubCreateProjectMutation, RunGithubDeleteProjectMutation, 
-                               RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation)
-from helpUnitTest import runGeneratorCommandHelp
-from rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
+                               RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation, fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
+from .helpUnitTest import runGeneratorCommandHelp
+from .rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
                               RunRapidApiCreateTransformationsMutation, RunRapidApiEditUserAlertMutation, runGenerateCommandRapidApiByApiAbsPath,
-                              testAdminAuditLogs)
-
-from geoDBCitiesApiUnitTest import fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc
-from githubApiUnitTest import fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc
-from rapidApiUnitTest import fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc
+                              testAdminAuditLogs, fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
 
 
 ###################### CODE GENERATION - START ##############################
