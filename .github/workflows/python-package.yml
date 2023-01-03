@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+    environment: develop
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -40,3 +40,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest ./test/test.py
+      env:
+        GEODBCITIES_APIKEY: ${{ secrets.GEODBCITIES_APIKEY }} 
+        GH_APIKEY: ${{ secrets.GH_APIKEY }} 
+        RAPIDAPI_APIKEY: ${{ secrets.RAPIDAPI_APIKEY }} 
