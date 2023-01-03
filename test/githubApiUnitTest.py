@@ -12,7 +12,7 @@ from .utils import ManageException
 
 async def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "CodeGenerator download ./commandsOutput/Github/schema.json -apiArgs ./test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./test/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -20,7 +20,7 @@ async def runDownloadCommandGithubBySchemaFileRelPath():
     
 async def runGenerateCommandGithubByApiAbsPath():
     print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "CodeGenerator generate ./commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./test/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)

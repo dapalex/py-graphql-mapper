@@ -41,7 +41,7 @@ def getValidFolder(folder):
             if input_path.parent.absolute().exists():
                 os.mkdir(input_path)
             else:
-                raise Exception('Invalid folder:' + folder)
+                raise Exception('Invalid folder:' + str(input_path))
     except Exception as ex:
         raise
     

@@ -88,7 +88,7 @@ _generateCode_ function will create the following python files containing the Gr
 Example of python classes generation command:
 
 ```
-CodeGenerator generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
+pygqlcodegen generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
 ```
 
 This command will generate python files in _./GeoDBCities/_ using the [information](#json-args-file) given in _./generatorArgs.json_.
@@ -99,7 +99,7 @@ This command will generate python files in _./GeoDBCities/_ using the [informati
 Example of schema retrieval command:
 
 ```
-CodeGenerator download ./commandsOutput/Github/schema.json -apiArgs ./downloaderArgs.json
+pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs ./downloaderArgs.json
 ```
 
 This command will create the file in _./commandsOutput/Github/schema.json_ containing the schema in json version using the [information](#json-args-file) given in _./downloaderArgs.json_.

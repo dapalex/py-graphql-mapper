@@ -10,7 +10,7 @@ from .utils import ManageException
 
 async def runDownloadCommandRapidApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "CodeGenerator download ./commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./test/commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -18,7 +18,7 @@ async def runDownloadCommandRapidApiBySchemaFileRelPath():
     
 async def runGenerateCommandRapidApiByApiAbsPath():
     print('\nRunning runGenerateCommandRapidApiByApiAbsPath...')
-    command = "CodeGenerator generate ./commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./test/commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)

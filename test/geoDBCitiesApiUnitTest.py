@@ -7,7 +7,7 @@ from .utils import ManageException
 
 async def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "CodeGenerator download ./commandsOutput/Github/schema.json -apiArgs ./test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./test/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -15,7 +15,7 @@ async def runDownloadCommandgdbcApiBySchemaFileRelPath():
     
 async def runDownloadCommandGeoDBCitiesBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGeoDBCitiesBySchemaFileRelPath...')
-    command = "CodeGenerator download ./commandsOutput/GeoDBCities/schema.json -apiArgs ./test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./test/commandsOutput/GeoDBCities/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -23,7 +23,7 @@ async def runDownloadCommandGeoDBCitiesBySchemaFileRelPath():
     
 async def runGenerateCommandGeoDBCitiesByApiRelPath():
     print('\nRunning runGenerateCommandGeoDBCitiesByApiRelPath...')
-    command = "CodeGenerator generate C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/commandsOutput/GeoDBCities -apiArgs ./test/GraphQLClients/gdbcApi/generatorArgs.json -v" #command to be executed
+    command = "pygqlcodegen generate C:/Users/compl/Desktop/Python/proj/py-graphql-mapper/test/commandsOutput/GeoDBCities -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/generatorArgs.json -v" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
