@@ -4,10 +4,10 @@ THIS DOCUMENT IS UNDER REVIEW
 
 ## Introduction
 
-This module generates python classes corresponding to the GraphQL objects present in a schema, secondarily can save a GraphQL schema in a json format.
+This module generates python classes corresponding to GraphQL objects present in a schema, secondarily can save a GraphQL schema in a json format.
 The generator can be launched through [command line](#usage-via-command-line) or [programmatically](#usage-programmatically).
 
-This module depends on [pgqlmCore](#https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore) library and uses requests for communications with GraphQL servers.
+It depends on [pygqlmap](#https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore) module and uses requests for communications with GraphQL servers.
 
 
 ## Table of Contents
@@ -21,7 +21,7 @@ This module depends on [pgqlmCore](#https://github.com/dapalex/PyGraphQLHelper/b
 
 ## Functionalities 
 
-The package has two functionalities:
+Two functionalities are available:
 
 1) Generate python classes from a schema
 2) Download a schema from a GraphQL server API
@@ -29,7 +29,7 @@ The package has two functionalities:
 
 ## Usage programmatically
 
-The class in charge of the generation is _MutationGeneration_.
+The class in charge of the generation is _CodeGenerator_.
 
 First step is obtaining the schema object, this can be done:
 
@@ -42,7 +42,7 @@ from pgqlmGenerator.queryPresets import querySchemaAndTypes
 schemaObject = fetchSchemaObject(<graphQLUrl>, <HTTPHeaders dictionary>, querySchemaAndTypes)
 ```
 
-* Passing a schema as JSON:
+* or passing a schema as JSON:
  
 ```python
 from pgqlmGenerator.generator import buildSchema
@@ -56,7 +56,7 @@ Obtained the schema the following CodeGenerator function has to be called:
 from pgqlmGenerator.generator import CodeGenerator
 from pgqlmGenerator.queryPresets import querySchemaAndTypes
 
-CodeGenerator.generateMutations(schemaObject, folder='test\\output\\github\\', customTypes=myCustomTypes, logProgress=False, addDescription=True)
+CodeGenerator.generateCode(schemaObject, folder='test\\output\\github\\', logProgress=False, addDescription=True)
 ```
 
 Required parameters:
@@ -70,15 +70,15 @@ Optional parameters:
 * logProgress: makes the generation verbose
 * addDescription: boolean telling if descriptions have to be added to the generated classes (strongly advised to be True)
 
-_generateMutations_ function will create the following python files containing the GraphQL schema objects as python classes:
+_generateCode_ function will create the following python files containing the GraphQL schema objects as python classes:
 
+* scalars.py -> GraphQL scalar types as python type aliases
 * enums.py -> GraphQL enum types as Enum classes
-* types.py -> GraphQL object types as classes
-* simpleTypes.py -> GraphQL object types as classes not using other object types
-* queries.py -> GraphQL query types as classes an Enum 'Queries' having query names as name and query classes as value
+* gqlTypes.py -> GraphQL object types as classes
+* gqlSimpleTypes.py -> GraphQL object types as classes not using other object types
+* queries.py -> GraphQL query types as classes and an Enum 'Queries' having query names as name and query classes as value
 * mutations.py -> mutation classes and an Enum 'Mutations' having mutation names as name and mutation classes as value
-
-Note: the classes in these files, with a few adaptations, can be used to create [GQLObjects](https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore/README.MD#gqlobject) as well TEST CONNECTIONS.
+* circularRefs.py -> Only in case of objects containing recursive references this file will contain references to their types
 
 
 ## Usage via command line
@@ -88,7 +88,7 @@ Note: the classes in these files, with a few adaptations, can be used to create 
 Example of python classes generation command:
 
 ```
-CodeGenerator generate ./GeoDBCities -apiArgs ./generatorArgs.json -v"
+CodeGenerator generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
 ```
 
 This command will generate python files in _./GeoDBCities/_ using the [information](#json-args-file) given in _./generatorArgs.json_.
@@ -115,7 +115,7 @@ This file is used by the generator command line interface, it contains:
 ```python
 {
     "addDescToGeneratedFiles": "True", # boolean telling if descriptions have to be added to the generated classes (strongly advised to be True)
-    "customTypes": { # dictionary containing scalar types not managed in the default core mapping
+    "customTypes": { # dictionary containing scalar types not managed in the default mapping
         "myScalarTypeNameAsInt": "int",
         "myScalarTypeNameAsString": "str"
     },
@@ -133,20 +133,27 @@ This file is used by the generator command line interface, it contains:
 
 ## Using the generated files
 
-Classes generated in _mutations.py_ can be directly used for requests toward a GraphQL server.
+Classes generated in _mutations.py_ can be directly used for calling a GraphQL API.
 
 Supposed a generated mutation
 
 ```python
 
-class createProject(Customizer):
+class createProject(GQLMutation):
    """
 
    input - Parameters for CreateProject
 
    """
+   class createProjectArgs(GQLArgsSet, GQLObject): 
+      """
+      input - Parameters for AbortQueuedMigrations
+
+      """
+      input: CreateProjectInput ##NON NULL
+
+   _args: createProjectArgs ##NON NULL
    type: CreateProjectPayload
-   input: CreateProjectInput ##NON NULL
 
 ```
 
@@ -187,7 +194,6 @@ from output.github.mutations import Mutations
 from output.github.types import CreateProjectInput
 
 mutation = Mutations.createProject.value()
-mutation.input = CreateProjectInput()
 
 mutation.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
 mutation.input.name = "Test create project from Mutation" + datetime.now().ctime()
@@ -209,14 +215,13 @@ mutation MycreateProjectMutation  {
 } 
 ```
 
-Then executed using [pgqlmCore](#https://github.com/dapalex/PyGraphQLHelper/blob/main/pgqlmCore/README.MD#gqloperation)
+Then executed using [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD)
 
 ```python
-from pgqlmCore.gqlTypes import GQLOperation
-from pgqlmCore.enums import OperationType
 from pgqlmCore.network import GQLResponse
 
-myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MycreateProjectMutation')
+myMutation = MycreateProjectMutation()
+myMutation.name = 'MycreateProjectMutation'
 
 response = request("POST", graphQLServerUrl, json=json={ "query": myMutation.exportGqlSource }, headers=headers)
 gqlResponse = GQLResponse(response)
@@ -224,5 +229,3 @@ gqlResponse.printMessageOutput()
     
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```
-
-Currently payloads are not entirely managed, only its first level gets exported, it is possible anyway to define a custom payload.

@@ -4,15 +4,13 @@ THIS DOCUMENT IS UNDER REVIEW
 
 ## Introduction
 
-This document explains in detail how the pygqlmap library works.
+This document explains in detail how the pygqlmap module works.
 
 
 ## Table of Contents
 
 1. [Creation of a mappable python object](#creation-of-a-mappable-python-object)
     1. [GQLObject](#gqlobject)
-    2. [GQLConnection](#gqlconnection)
-        1. [GQLEdges](#gqledges)
 2. [GQLOperation](#gqloperation)
     1. [Query](#query)
     2. [Mutation](#mutation)
@@ -39,25 +37,15 @@ class myCustomObject(GQLObject):
     myString: str
     myCode: int
     myList: list
-    
-    def __init__():
-        self.myString = ''
-        self.myCode = 0
-        self.myList = []
-
-        super().__init__()
 ```
 
 Requirements for the class definition:
 
 * Inheriting _GQLObject_ class
-* Fields must be:
-    * statically declared 
-* *\_\_init\_\_* function has to be implemented. Within:
-    * Primitive fields (int, float, str, ...) must be initialized with a dummy value (the value will be ignored)
-    * Fields being GQLObject or GQLConnection types must be instantiated
-    * *super().\_\_init\_\_()* must be called (at the end of the function)
-* If the class is the root GraphQL object of a query its name has to match the name expected by the GraphQL server.
+* Fields must be statically declared 
+* If arguments are needed a field '_args' has to be declared. The class representing its type has to:
+    * Inherit from _GQLArgsSet_ and _GQLObject_
+    * Fields must be statically declared 
 
 The example above will be able to generate the following GraphQL object
 
@@ -71,13 +59,10 @@ myCustomObject {
 
 A use case can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/main/test/pgqlmCoreTest/tstquery/simpleObjectTest.py) 
 
-Note: further developments should be able to avoid the implementation of *__init__* function.
 
 ## GQLQuery
 
-GQLOperation is the object in charge of composing a GraphQL query or mutation.
-
-### Query
+GQLQuery is the base class in charge of composing a GraphQL query.
 
 Example:
 
@@ -85,28 +70,40 @@ Example:
 from pygqlmap.enums import OperationType
 from pygqlmap.components import GQLOperation
 
-query = GQLOperation(OperationType.query, MyConnection, 'myQuery')
 
-print(query.exportGqlSource)
+class CountriesConnection(GQLObject):
+   totalCount: int ##NON NULL
+   edges: CountryEdge ##NON NULL
+   pageInfo: ConnectionPageInfo ##NON NULL
+
+class CountriesArguments(GQLArgsSet, GQLObject):
+    currencyCode: str
+    namePrefix: str
+    
+class countries(GQLQuery):
+   _args: CountriesArguments
+   type: CountriesConnection
+   
 ```
 
-The constructor requires the following parameters:
+The creation has the following requirements:
 
-* operationType: Enum *OperationType* (Query)
-* dataType: the [python class](#gqlobject) or the [python connection class](#gqlconnection) expected from the response
+* Inheriting _GQLQuery_ class
+* Declaring a field 'type' representing the content of the query
+* If arguments are needed a field '_args' has to be declared. The class representing its type has to:
+    * Inherit from _GQLArgsSet_ and _GQLObject_
+    * Fields must be statically declared 
 
-Optional parameters are:
+Further optional definition are:
 
-* operationName: string used to give a name to the operation
-* logProgress: boolean activating basic logs of the GQL generation progress
-
-The _MyConnection_ object will be available in the field _obj_ (_query.type_)
+* name: string used to give a name to the operation
+* _argsType: how the arguments will be exported (as literal values or with variables)
 
 The function *exportGqlSource* will generate the following GraphQL syntax:
 
 ```
-query myQuery {
-    MyConnection {
+query($currencyCode: String, $namePrefix: String){
+    countries(currencyCode: $currencyCode, namePrefix: $namePrefix) {
         totalCount
         edges {
             cursor
@@ -131,7 +128,7 @@ Use cases can be seen [here](https://github.com/dapalex/PyGraphQLHelper/blob/mai
 
 ## GQLMutation
 
-### Mutation
+As per _GQLQuery_ GQLMutation is the base class in charge of composing a GraphQL mutation.
 
 Supposed a GQLObject _updateRepository_ created for a mutation
 
@@ -140,14 +137,9 @@ Supposed a GQLObject _updateRepository_ created for a mutation
 class Repository(GQLObject):
     ....content of Repository....
 
-class updateRepository(GQLObject):
+class updateRepository(GQLMutation):
     clientMutationId: str
     repository: Repository
-    
-    def __init__(self):
-        self.clientMutationId = ''
-        self.repository = Repository()
-        super().__init__()
 ```
 
 Similarly to queries the creation of a mutation would be:
@@ -256,23 +248,10 @@ class myNestedObject(GQLObject):
     fieldA: str
     fieldB: int
 
-    def __init__():
-        self.fieldA = ''
-        self.fieldB = 0
-
-        super().__init__()
-
-class myCustomObject(GQLObject): 
+class myCustomObject(GQLQuery): 
     myString: str
     myCode: int
     myNestedfield: myNestedObject
-    
-    def __init__():
-        self.myString = ''
-        self.myCode = 0
-        self.myNestedObject = myNestedObject()
-
-        super().__init__()
 ```
 The mapped GraphQL version of a query would be
 
@@ -297,7 +276,8 @@ With the following code
 from pgqlmCore.enums import OperationType
 from pgqlmCore.gqlTypes import GQLOperation
 
-query = GQLOperation(OperationType.query, MyConnection, 'myQuery')
+query = MyConnection()
+query.name = 'myQuery'
 query.setShow('myCustomObject.myCode', False)
 query.setShow('myCustomObject.myNestedfield.fieldB', False)
 query.exportGqlSource
