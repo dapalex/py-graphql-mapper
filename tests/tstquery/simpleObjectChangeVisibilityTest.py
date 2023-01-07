@@ -55,9 +55,9 @@ def testSimpleObjectVisibility():
 ##
         
 ##STEP 4
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": query.exportGqlSource }, 
-                                    headers=githubHeaders)
+        response = httpRequest(githubUrl, 
+                                     { "query": query.exportGqlSource }, 
+                                    githubHeaders)
 ##
         
 ##STEP 5

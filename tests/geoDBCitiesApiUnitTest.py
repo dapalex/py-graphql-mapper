@@ -39,6 +39,7 @@ def fetchGeoDBCitiesSchema():
             print('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\GeoDBCities\\', logProgress=True)
             print('Python types generated')
+            
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
             

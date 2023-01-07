@@ -51,9 +51,9 @@ def testConnectionObject():
         print('Query GQL syntax: ' + query.exportGqlSource)
         
 ##STEP 3
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource }, 
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource }, 
+                                    gdbcHeaders)
 ##
                 
 ##STEP 4

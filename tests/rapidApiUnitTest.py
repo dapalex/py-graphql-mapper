@@ -93,9 +93,9 @@ def RunRapidApiCreateTransformationsMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=rapidApiUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=rapidApiHeaders) 
+        response = httpRequest(rapidApiUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -139,9 +139,9 @@ def RunRapidApiCreateGatewayInstanceMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=rapidApiUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=rapidApiHeaders) 
+        response = httpRequest(rapidApiUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -186,9 +186,9 @@ def RunRapidApiEditUserAlertMutation():
         mutation._args.input.typeId = 124
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=rapidApiUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=rapidApiHeaders) 
+        response = httpRequest(rapidApiUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    rapidApiHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -227,9 +227,9 @@ def testAdminAuditLogs():
         # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
         pprint(query.exportGqlSource)
             
-        response = httpRequest(url=rapidApiUrl, 
-                                    json= { "query": query.exportGqlSource }, 
-                                    headers=rapidApiHeaders) 
+        response = httpRequest(rapidApiUrl, 
+                                     { "query": query.exportGqlSource }, 
+                                    rapidApiHeaders) 
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()

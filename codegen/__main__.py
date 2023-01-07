@@ -3,7 +3,7 @@ import json
 import os
 import pathlib
 import sys
-from pygqlmap.src.logger import Logger
+import logging as logger
 from .queryPresets import *
 from .network import fetchSchemaResponse
 from .generator import CodeGenerator, buildSchema
@@ -36,7 +36,7 @@ def main():
             raise argparse.ArgumentTypeError('Invalid command')
 
     except Exception as ex:
-        Logger.logCriticalMessage(ex.args[0])
+        logger.critical(ex.args[0])
 
 def saveJsonSchema(args, destination):
     try:
@@ -63,7 +63,7 @@ def saveJsonSchema(args, destination):
                     schemaFile.write(json.dumps(schemaResponse.data, indent=2))
 
     except Exception as ex:
-        Logger.logCriticalMessage('args file invalid: ' + ex.args[0])
+        logger.critical('args file invalid: ' + ex.args[0])
         exit()
 
 def generatePythonCode(args, destPath):
@@ -86,7 +86,7 @@ def generatePythonCode(args, destPath):
 
                 if args.verbose: print(arguments)
             except Exception as ex:
-                Logger.logCriticalMessage('args file invalid: ' + ex.args[0])
+                logger.critical('args file invalid: ' + ex.args[0])
                 exit()
 
         customScalarTypes =arguments['customTypes'] if 'customTypes' in arguments.keys() else None

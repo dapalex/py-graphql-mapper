@@ -1,5 +1,5 @@
 import json
-from pygqlmap.src.logger import Logger
+import logging as logger
 from .src.extractor import Extractor
 from .src.printer import Printer
 from .src.spBuilder import SchemaBuilder
@@ -13,13 +13,13 @@ class CodeGenerator():
     
     def generateCode(schemaObj, folder, customTypes: dict = {}, logProgress: bool = False, addDescription: bool = True):
         try:
-            if logProgress: Logger.logInfoMessage('Initializing Extractor...')
+            if logProgress: logger.info('Initializing Extractor...')
             extractor = Extractor(schemaObj, customTypes, logProgress, addDescription)
-            if logProgress: Logger.logInfoMessage('Extracting schema...')
+            if logProgress: logger.info('Extracting schema...')
             extractedData = extractor.extractSchemaCode()
-            if logProgress: Logger.logInfoMessage('Generating python code...')
+            if logProgress: logger.info('Generating python code...')
             printer = Printer(extractedData)
-            if logProgress: Logger.logInfoMessage('Saving python files in ' + folder + '...')
+            if logProgress: logger.info('Saving python files in ' + folder + '...')
             printer.saveFiles(folder)
             
             #CLEANING

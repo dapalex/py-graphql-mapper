@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
-from dataclasses import asdict, dataclass
+from dataclasses import asdict
 import inspect
+import logging as logger
 
 from pygqlmap.helper import HandleRecursiveEx
 from .consts import commaConcat, argsDeclaration
 from ..enums import ArgType
-from .logger import Logger
+
 from .utils import getObjectClassName, isEmptyField
 from .translator import Translate
 
@@ -31,7 +32,7 @@ class FieldsShow(ABC):
         """ For internal use only """
         self._fieldsShow = fieldsShow
         
-class GQLExporter(Logger):                
+class GQLExporter():                
 
     logProgress: bool
     
@@ -47,7 +48,7 @@ class GQLExporter(Logger):
         Returns:
             str: GraphQL object exported 
         """
-        if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of python: ' + getObjectClassName(self))
+        if hasattr(self, 'logProgress') and self.logProgress: logger.info('Started GQL extraction of python: ' + getObjectClassName(self))
         
         gqlDict = asdict(self) 
         outputGqlDict = {}
@@ -78,7 +79,7 @@ class GQLExporter(Logger):
         #Arguments management START - after check of fields requested
         if hasattr(self, argsDeclaration): 
             try:
-                if hasattr(self, 'logProgress') and self.logProgress: Logger.logInfoMessage('Started GQL extraction of args for: ' + getObjectClassName(self))
+                if hasattr(self, 'logProgress') and self.logProgress: logger.info('Started GQL extraction of args for: ' + getObjectClassName(self))
                 gqlArgs = self._args.exportArgs
             except Exception as ex:
                 raise HandleRecursiveEx(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))

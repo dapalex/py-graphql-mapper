@@ -55,9 +55,9 @@ def testSimpleObjectArgs_Variables():
     ##
         
 ##STEP 4
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables }, 
-                                    headers=githubHeaders)
+        response = httpRequest(githubUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables }, 
+                                    githubHeaders)
 ##
         
 ##STEP 5

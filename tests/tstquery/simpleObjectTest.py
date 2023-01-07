@@ -42,7 +42,7 @@ def testSimpleObject():
         print('Query GQL syntax: ' + query.exportGqlSource)
         
 ##STEP 3
-        response = httpRequest(url=githubUrl, json= { "query": query.exportGqlSource }, headers=githubHeaders)
+        response = httpRequest(githubUrl,  { "query": query.exportGqlSource }, githubHeaders)
 ##
         
 ##STEP 4

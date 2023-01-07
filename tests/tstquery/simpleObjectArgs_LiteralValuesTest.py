@@ -47,7 +47,7 @@ def testSimpleObjectArgs_LiteralValues():
         print('Query GQL syntax: ' + query.exportGqlSource)
         
 ##STEP 4
-        response = httpRequest(url=githubUrl, json= { "query": query.exportGqlSource }, headers=githubHeaders)
+        response = httpRequest(githubUrl,  { "query": query.exportGqlSource }, githubHeaders)
 ##
         
 ##STEP 5

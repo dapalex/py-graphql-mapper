@@ -90,9 +90,7 @@ def RunGithubAddCommentMutation():
         # restoreOutput(wrapper)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, { "query": mutation.exportGqlSource }, githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -133,9 +131,9 @@ def RunGithubUpdateRepositoryMutation():
         print('Creating GQLOperation for mutation...')
         pprint(mutation.exportGqlSource)
             
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -172,9 +170,9 @@ def RunGithubCreateProjectMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.printMessageOutput()
@@ -207,9 +205,9 @@ def RunGithubDeleteProjectMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -239,9 +237,9 @@ def RunGithubCreateProjectV2Mutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -271,9 +269,9 @@ def RunGithubDeleteProjectV2Mutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         
@@ -341,9 +339,9 @@ def RunGithubCreateIssueMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders) 
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders) 
         print('Response Received')
         gqlResponse = GQLResponse(response)
         

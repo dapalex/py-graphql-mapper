@@ -5,11 +5,11 @@ import inspect
 import types
 from typing import Generic, NewType, TypeVar
 from pygqlmap.gqlTypes import ID
-from pygqlmap.src.logger import Logger
 from .base import FieldsShow
 from .consts import arguedSignatureSuffix
 from .utils import getClassName
 from pygqlmap.helper import HandleRecursiveEx, mapConfig
+import logging as logger
 from dataclasses import dataclass, field
 
 ## dictionary of
@@ -79,7 +79,7 @@ def initType(obj, fieldType, fieldName):
             setattr(obj, fieldName, '')
             # pass
         else:
-            Logger.logErrorMessage('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
+            logger.error('type: ' + str(fieldType) + ' for ' + fieldName + ' to manage')
             setattr(obj, fieldName, '')
     except Exception as ex:
         raise HandleRecursiveEx(ex, 'Error during type initialization ' + fieldName)
@@ -145,7 +145,7 @@ def defineVariableType(obj, fieldName, fieldType):
             else:
                 setattr(obj, fieldName, None)
         else:
-            Logger.logErrorMessage('something is wrong')
+            logger.error('something is wrong')
     except Exception as ex:
         raise HandleRecursiveEx(ex, 'Error during variable type definition ' + fieldName)
     
@@ -189,7 +189,7 @@ def addCircularRef(fieldType):
         if int(mapConfig["recursionDepth"]) > 0:
             circularRefs.update({ (fieldType.__name__, currentPath): 1 if type(fieldType) == NewType else -1 })
         else:
-            Logger.logWarningMessage(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
+            logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
         if not (fieldType.__name__, currentPath) in circularRefs.keys(): 
             circularRefs.update({ (fieldType.__name__, currentPath): 0 })
         else:
@@ -210,7 +210,7 @@ def checkCircularRefs(fieldType):
                         circularRefs[circulaRefTupKey] += 1
                         return True
                     else:
-                        # Logger.logWarningMessage(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
+                        # logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
                         return False    
         
         return True 

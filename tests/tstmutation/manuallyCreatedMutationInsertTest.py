@@ -138,9 +138,9 @@ def testMutationInsertLiteralValues():
 ##
 
 ##STEP 4
-        response = httpRequest(url=githubUrl, 
-                                    json= { "query": mutation.exportGqlSource }, 
-                                    headers=githubHeaders)
+        response = httpRequest(githubUrl, 
+                                     { "query": mutation.exportGqlSource }, 
+                                    githubHeaders)
 ##
                 
 ##STEP 5

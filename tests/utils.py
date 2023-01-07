@@ -1,11 +1,9 @@
-
 from enum import Enum
 from io import TextIOWrapper
+import logging as logger
 import os
 import pathlib
 import sys
-import urllib.request
-from pygqlmap.src.logger import Logger
 
 
 class OutputType(Enum):
@@ -34,7 +32,7 @@ def cleanOutput(outType: OutputType):
 #     if isToWait and isToWait.lower() == 'y': input('Go on..')
     
 # def ManageException(message: str):
-#     Logger.logCriticalMessage(message)
+#     logger.critical(message)
     
 
 def redirectOutputToFile(fileName, append: bool = True):
@@ -43,11 +41,11 @@ def redirectOutputToFile(fileName, append: bool = True):
         sys.stdout = wrapper
         return wrapper
     except Exception as ex:
-        Logger.logErrorMessage('Error during output redirect - ' + ex.args[0])
+        logger.error('Error during output redirect - ' + ex.args[0])
 
 def restoreOutput(ioWrapper: TextIOWrapper):
     try:
         ioWrapper.close()
         sys.stdout = sys.stdout
     except Exception as ex:
-        Logger.logErrorMessage('Error during output restore - ' + ex.args[0])
+        logger.error('Error during output restore - ' + ex.args[0])

@@ -67,9 +67,9 @@ def testConnectionObjectArgs_Variables():
 ##
         
 ##STEP 3
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
 ##
         
 ##STEP 4

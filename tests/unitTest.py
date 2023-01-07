@@ -12,9 +12,9 @@ def testNestedObject():
         query = currencies()
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -46,9 +46,9 @@ def testNestedObjectShowChange():
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -84,9 +84,9 @@ def testComplexObjectShowChange():
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -109,9 +109,9 @@ def testNestedObjectWithArgsAndVariables():
         print('gqlSource GQL version: ' + query.exportGqlSource)
         print('variables GQL version: ' + query.exportGQLVariables)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -130,9 +130,9 @@ def testNestedObjectWithLiteralValueArgs():
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -159,9 +159,9 @@ def testComplexObjectWithLiteralValueArgs():
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -180,9 +180,9 @@ def testComplexObjectWithLiteralValueArgs2():
     try:
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -207,9 +207,9 @@ def testComplexObjectWithArgsAndVariables():
         print('gqlSource GQL version: ' + query.exportGqlSource)
         print('variables GQL version: ' + query.exportGQLVariables)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -230,9 +230,9 @@ def testNestedObjectShowChangeWithArgsAndVariables():
         print('gqlSource GQL version: ' + query.exportGqlSource)
         print('variables GQL version: ' + query.exportGQLVariables)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -261,9 +261,9 @@ def testComplexObjectShowChangeWithArgsAndVariables():
         print('gqlSource GQL version: ' + query.exportGqlSource)
         print('variables GQL version: ' + query.exportGQLVariables)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response)
         
         gqlResponse.printMessageOutput()
@@ -286,9 +286,9 @@ def testObjectWithComposedArgs():
 
         print('gqlSource GQL version: ' + query.exportGqlSource)
         
-        response = httpRequest(url=gdbcUrl, 
-                                    json= { "query": query.exportGqlSource },
-                                    headers=gdbcHeaders)
+        response = httpRequest(gdbcUrl, 
+                                     { "query": query.exportGqlSource },
+                                    gdbcHeaders)
         gqlResponse = GQLResponse(response, True)
         
         gqlResponse.printMessageOutput()
