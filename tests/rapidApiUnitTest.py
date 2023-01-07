@@ -1,68 +1,59 @@
 import os
 from pprint import pprint
-from pygqlmap.network import GQLResponse
-import requests
+from pygqlmap.network import GQLResponse, httpRequest
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from .consts import rapidApiHeaders, rapidApiUrl
-from .utils import ManageException
+from consts import rapidApiHeaders, rapidApiUrl
+from utils import ManageException
 
-async def runDownloadCommandRapidApiBySchemaFileRelPath():
+def runDownloadCommandRapidApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./test/commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
     print("End of runDownloadCommandRapidApiBySchemaFileRelPath")
     
-async def runGenerateCommandRapidApiByApiAbsPath():
+def runGenerateCommandRapidApiByApiAbsPath():
     print('\nRunning runGenerateCommandRapidApiByApiAbsPath...')
-    command = "pygqlcodegen generate ./test/commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
     print("End of runGenerateCommandRapidApiByApiAbsPath")
     
-async def fetchRapidApiTestSchemaAndTypes(): 
+def fetchRapidApiTestSchemaAndTypes(): 
     print('\nRunning fetchRapidApiTestSchemaAndTypes...')
     
     try:
         gqlSchema = fetchSchemaObject(rapidApiUrl, rapidApiHeaders, querySchemaAndTypes)
         
         if gqlSchema:
-            # myCustomTypes = { 'Any': 'any',
-            #                   'Upload': 'str',
-            #                   'DateTime': 'str'}
-            
             print('Generating python types from GraphQL data...')
-            CodeGenerator.generateCode(gqlSchema, folder='test\\output\\RapidApi\\', logProgress=True)
+            CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\RapidApi\\', logProgress=True)
             print('Python types generated')
     except Exception as ex:
-        ManageException('executeQuery FAILED!!' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!!' + ex.args[0])
             
     print("End of fetchRapidApiTestSchemaAndTypes")
   
-async def fetchRapidApiTestSchemaAndTypesNoDesc(): 
+def fetchRapidApiTestSchemaAndTypesNoDesc(): 
     print('\nRunning fetchRapidApiTestSchemaAndTypesNoDesc...')
     
     try:
         gqlSchema = fetchSchemaObject(rapidApiUrl, rapidApiHeaders, querySchemaAndTypes)
         
         if gqlSchema:
-            # myCustomTypes = { 'Any': 'any',
-            #                   'Upload': 'str',
-            #                   'DateTime': 'str' }
-            
             print('Generating python types from GraphQL data...')
-            CodeGenerator.generateCode(gqlSchema, folder='test\\output\\RapidApiNoDesc\\', addDescription=False, logProgress=True)
+            CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\RapidApiNoDesc\\', addDescription=False, logProgress=True)
             print('Python types generated')
     except Exception as ex:
-        ManageException('executeQuery FAILED!!' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!!' + ex.args[0])
             
     print("End of fetchRapidApiTestSchemaAndTypesNoDesc")
 
-async def RunRapidApiCreateTransformationsMutation():
+def RunRapidApiCreateTransformationsMutation():
     print('\nRunning RunRapidApiCreateTransformationsMutation...')
     try:
         print('Creating mutation python object...')
@@ -102,7 +93,7 @@ async def RunRapidApiCreateTransformationsMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=rapidApiUrl, 
+        response = httpRequest(url=rapidApiUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
@@ -113,11 +104,11 @@ async def RunRapidApiCreateTransformationsMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunRapidApiCreateTransformationsMutation")
     
-async def RunRapidApiCreateGatewayInstanceMutation():
+def RunRapidApiCreateGatewayInstanceMutation():
     print('\nRunning RunRapidApicreateGatewayInstanceMutation...')
     try:
         print('Creating mutation python object...')
@@ -148,7 +139,7 @@ async def RunRapidApiCreateGatewayInstanceMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=rapidApiUrl, 
+        response = httpRequest(url=rapidApiUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
@@ -159,12 +150,12 @@ async def RunRapidApiCreateGatewayInstanceMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunRapidApicreateGatewayInstanceMutation")
   
   
-async def RunRapidApiEditUserAlertMutation():
+def RunRapidApiEditUserAlertMutation():
     print('\nRunning RunRapidApiEditUserAlertMutation...')
     try:
         print('Creating mutation python object...')
@@ -195,7 +186,7 @@ async def RunRapidApiEditUserAlertMutation():
         mutation._args.input.typeId = 124
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=rapidApiUrl, 
+        response = httpRequest(url=rapidApiUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         print('Response Received')
@@ -206,12 +197,12 @@ async def RunRapidApiEditUserAlertMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunRapidApiEditUserAlertMutation")
     
 
-async def testAdminAuditLogs():
+def testAdminAuditLogs():
     print('\nRunning testAdminAuditLogs...')
     try:
         # from .output.github.gqlTypes import UpdateRepositoryInput
@@ -236,7 +227,7 @@ async def testAdminAuditLogs():
         # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
         pprint(query.exportGqlSource)
             
-        response = requests.request('POST', url=rapidApiUrl, 
+        response = httpRequest(url=rapidApiUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=rapidApiHeaders) 
         gqlResponse = GQLResponse(response)
@@ -246,6 +237,6 @@ async def testAdminAuditLogs():
         gqlResponse.mapGQLDataToObj(query.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testAdminAuditLogs")

@@ -111,11 +111,10 @@ class createDiscussion(GQLMutation):
     
     RESULT: The object within gqlResponse.resultObject will contain the data from the GraphQL server
 """
-
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import githubUrl, githubHeaders
 
-async def testMutationInsertLiteralValues(): 
+def testMutationInsertLiteralValues(): 
     print('\n\nRunning testMutationInsertLiteralValues...')
 ##STEP 2
     mutation = createDiscussion()
@@ -139,7 +138,7 @@ async def testMutationInsertLiteralValues():
 ##
 
 ##STEP 4
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders)
 ##
@@ -160,6 +159,6 @@ async def testMutationInsertLiteralValues():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('executeQuery FAILED - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
         
     print("End of testMutationInsertLiteralValues")

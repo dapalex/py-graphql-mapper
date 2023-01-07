@@ -62,12 +62,12 @@
         b) The python class instance obtained from the response will not have the hidden fields
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 from ..utils import ManageException
 
-async def testConnectionObjectVisibility(): 
+def testConnectionObjectVisibility(): 
     print('\n\nRunning testConnectionObjectVisibility...')
 ##STEP 1
     from pygqlmap.enums import OperationType
@@ -89,7 +89,7 @@ async def testConnectionObjectVisibility():
 ##
         
 ##STEP 3
-        response = requests.request('POST', url=gdbcUrl, 
+        response = httpRequest(url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=gdbcHeaders)
 ##
@@ -110,6 +110,6 @@ async def testConnectionObjectVisibility():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testConnectionObjectVisibility")

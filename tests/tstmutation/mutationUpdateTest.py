@@ -60,13 +60,13 @@
     RESULT: The object within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import githubUrl, githubHeaders
 from ..output.github.mutations import updateRepository
 from ..output.github.gqlTypes import UpdateRepositoryInput
 from ..utils import ManageException
 
-async def testMutationUpdateLiteralValues(): 
+def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')
 ##STEP 2
     mutation = updateRepository()
@@ -102,7 +102,7 @@ async def testMutationUpdateLiteralValues():
 ##
 
 ##STEP 4
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders)
 ##
@@ -123,6 +123,6 @@ async def testMutationUpdateLiteralValues():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('executeQuery FAILED - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
         
     print("End of testMutationUpdateLiteralValues")

@@ -6,7 +6,6 @@ import pathlib
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
-import asyncio
 from .githubApiUnitTest import (RunGithubAddCommentMutation,
                                RunGithubCreateIssueMutation, RunGithubCreateProjectMutation, RunGithubDeleteProjectMutation, 
                                RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation)
@@ -30,54 +29,54 @@ from .tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibilit
 from .tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
 from .tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
-asyncio.run(testGeneratedDataAsGQLObject())
-asyncio.run(testSimpleObject())
-asyncio.run(testSimpleObjectArgs_LiteralValues())
-asyncio.run(testSimpleObjectArgs_Variables())
-asyncio.run(testSimpleObjectVisibility())
+testGeneratedDataAsGQLObject())
+testSimpleObject())
+testSimpleObjectArgs_LiteralValues())
+testSimpleObjectArgs_Variables())
+testSimpleObjectVisibility())
 
-asyncio.run(testConnectionObject())
-asyncio.run(testConnectionObjectVisibility())
-asyncio.run(testConnectionObjectArgs_Variables())
-asyncio.run(testConnectionObjectArgs_LiteralValues())
+testConnectionObject())
+testConnectionObjectVisibility())
+testConnectionObjectArgs_Variables())
+testConnectionObjectArgs_LiteralValues())
 
 testComplexObject()
 
 # # #FURTHER TESTS
-asyncio.run(testNestedObject())
-asyncio.run(testNestedObjectWithLiteralValueArgs())
-asyncio.run(testNestedObjectShowChange())
-asyncio.run(testComplexObjectWithLiteralValueArgs())
-asyncio.run(testComplexObjectWithLiteralValueArgs2())
-asyncio.run(testObjectWithComposedArgs()) 
-asyncio.run(testComplexObjectShowChange())
-asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
-asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
-asyncio.run(testNestedObjectWithArgsAndVariables()) 
-asyncio.run(testComplexObjectWithArgsAndVariables()) 
+testNestedObject())
+testNestedObjectWithLiteralValueArgs())
+testNestedObjectShowChange())
+testComplexObjectWithLiteralValueArgs())
+testComplexObjectWithLiteralValueArgs2())
+testObjectWithComposedArgs()) 
+testComplexObjectShowChange())
+testNestedObjectShowChangeWithArgsAndVariables())
+testComplexObjectShowChangeWithArgsAndVariables()) 
+testNestedObjectWithArgsAndVariables()) 
+testComplexObjectWithArgsAndVariables()) 
 #Geo DB Cities - END
 
 ###################### QUERIES EXECUTION - END ##############################
 
 ###################### MUTATIONS EXECUTION - START ##############################
 
-asyncio.run(testMutationUpdateLiteralValues()) 
-asyncio.run(testMutationInsertLiteralValues()) 
+testMutationUpdateLiteralValues()) 
+testMutationInsertLiteralValues()) 
 
 #GITHUB API - START
-asyncio.run(RunGithubAddCommentMutation())
-asyncio.run(RunGithubUpdateRepositoryMutation())
-asyncio.run(RunGithubDeleteProjectMutation())
-asyncio.run(RunGithubDeleteProjectV2Mutation())
-asyncio.run(RunGithubCreateIssueMutation())
-asyncio.run(RunGithubCreateProjectMutation())
+RunGithubAddCommentMutation())
+RunGithubUpdateRepositoryMutation())
+RunGithubDeleteProjectMutation())
+RunGithubDeleteProjectV2Mutation())
+RunGithubCreateIssueMutation())
+RunGithubCreateProjectMutation())
 #GITHUB - END
 
 #RapidAPI - START
-asyncio.run(testAdminAuditLogs()) 
-asyncio.run(RunRapidApiCreateTransformationsMutation())
-asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
-asyncio.run(RunRapidApiEditUserAlertMutation())
+testAdminAuditLogs()) 
+RunRapidApiCreateTransformationsMutation())
+RunRapidApiCreateGatewayInstanceMutation())
+RunRapidApiEditUserAlertMutation())
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################

@@ -41,12 +41,12 @@
     RESULT: The request toward the GraphQL server will have the query with arguments 'first' and 'after' and the variables with values first=3 and after='MTE='
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 from ..utils import ManageException
 
-async def testConnectionObjectArgs_Variables(): 
+def testConnectionObjectArgs_Variables(): 
     print('\n\nRunning testConnectionObjectArgs_Variables...')
 ##STEP 1
     query = currencies()
@@ -67,7 +67,7 @@ async def testConnectionObjectArgs_Variables():
 ##
         
 ##STEP 3
-        response = requests.request('POST', url=gdbcUrl, 
+        response = httpRequest(url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
                                     headers=gdbcHeaders)
 ##
@@ -87,6 +87,6 @@ async def testConnectionObjectArgs_Variables():
         print('resultObject: ' + str(gqlResponse.resultObject))
         
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testConnectionObjectArgs_Variables")

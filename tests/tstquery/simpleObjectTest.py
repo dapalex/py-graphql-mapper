@@ -1,8 +1,7 @@
 
 """ 
     USE CASE DESCRIPTION: 
-    This test shows how to create a GraphQL Query to fetch a simple GraphQL type using Args as Literal Values
-    and build the python class instance containing the data from the response.
+    This test shows how to create a GraphQL Query to fetch a simple GraphQL type and build the python class instance containing the data from the response
     
     Note: This is only for descriptive purposes, the GraphQL server involved does not expose such a query, for real-world cases see other tests
     
@@ -20,37 +19,33 @@
     }
 
     STEP 1: Instantiate class representing the GraphQL query 
-    STEP 2: Set arguments following the object structure with argument type as LiteralValues
-    STEP 3: Query the GraphQL server
-    STEP 4: Pass the response received to the GQLResponse constructor
-    STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
+    STEP 2: Query the GraphQL server
+    STEP 3: Pass the response received to the GQLResponse constructor
+    STEP 4: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
     
     RESULT: The object currency within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 from ..utils import ManageException
 
-async def testSimpleObjectArgs_LiteralValues(): 
-    print('\n\nRunning testSimpleObjectArgs_LiteralValues...')
+def testSimpleObject(): 
+    print('\n\nRunning testSimpleObject...')
 ##STEP 2
     query = rateLimit()
-    query.name = 'mySimpleQueryArgs'
+    query.name = 'mySimpleQuery'
 ##
-
-##STEP 3
-    query._args.dryRun = True
-##
+    
     try:
         print('Query GQL syntax: ' + query.exportGqlSource)
         
-##STEP 4
-        response = requests.request('POST', url=githubUrl, json= { "query": query.exportGqlSource }, headers=githubHeaders)
+##STEP 3
+        response = httpRequest(url=githubUrl, json= { "query": query.exportGqlSource }, headers=githubHeaders)
 ##
         
-##STEP 5
+##STEP 4
         from pygqlmap.network import GQLResponse
         
         gqlResponse = GQLResponse(response)
@@ -58,7 +53,7 @@ async def testSimpleObjectArgs_LiteralValues():
         
         gqlResponse.printMessageOutput()
         
-##STEP 6
+##STEP 5
         gqlResponse.mapGQLDataToObj(query.type)
 ##
         
@@ -66,6 +61,6 @@ async def testSimpleObjectArgs_LiteralValues():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
-    print("End of testSimpleObjectArgs_LiteralValues")
+    print("End of testSimpleObject")

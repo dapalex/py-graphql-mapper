@@ -4,7 +4,7 @@ from io import TextIOWrapper
 import os
 import pathlib
 import sys
-
+import urllib.request
 from pygqlmap.src.logger import Logger
 
 
@@ -30,12 +30,11 @@ def cleanOutput(outType: OutputType):
     
     cleanFolder(dirToClean)
         
-def waitForInput(isToWait: str):
-    if isToWait and isToWait.lower() == 'y': input('Go on..')
+# def waitForInput(isToWait: str):
+#     if isToWait and isToWait.lower() == 'y': input('Go on..')
     
-def ManageException(message: str):
-    Logger.logCriticalMessage(message)
-    # input()
+# def ManageException(message: str):
+#     Logger.logCriticalMessage(message)
     
 
 def redirectOutputToFile(fileName, append: bool = True):

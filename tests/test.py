@@ -7,14 +7,13 @@ import pathlib
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
-import asyncio
-from .geoDBCitiesApiUnitTest import (runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, 
+from geoDBCitiesApiUnitTest import (runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, 
                                     runGenerateCommandGeoDBCitiesByApiRelPath,fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
-from .githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
+from githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
                                RunGithubCreateIssueMutation, RunGithubCreateProjectMutation, RunGithubDeleteProjectMutation, 
                                RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation, fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
-from .helpUnitTest import runGeneratorCommandHelp
-from .rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
+from helpUnitTest import runGeneratorCommandHelp
+from rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
                               RunRapidApiCreateTransformationsMutation, RunRapidApiEditUserAlertMutation, runGenerateCommandRapidApiByApiAbsPath,
                               testAdminAuditLogs, fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
 
@@ -22,12 +21,13 @@ from .rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, Ru
 ###################### CODE GENERATION - START ##############################
 
 # cleanOutput(OutputType.SCHEMAS)
-asyncio.run(fetchGeoDBCitiesSchema())
-asyncio.run(fetchGeoDBCitiesSchemaNoDesc())
-asyncio.run(fetchGithubMutationTypesFromSchemaNoDesc())
-asyncio.run(fetchGithubMutationTypes())
-asyncio.run(fetchRapidApiTestSchemaAndTypesNoDesc())
-asyncio.run(fetchRapidApiTestSchemaAndTypes())
+fetchGeoDBCitiesSchema()
+fetchGeoDBCitiesSchema()
+fetchGeoDBCitiesSchemaNoDesc()
+fetchGithubMutationTypesFromSchemaNoDesc()
+fetchGithubMutationTypes()
+fetchRapidApiTestSchemaAndTypesNoDesc()
+fetchRapidApiTestSchemaAndTypes()
 
 #GeoDBCities API - START
 #GeoDBCities API - END
@@ -35,15 +35,15 @@ asyncio.run(fetchRapidApiTestSchemaAndTypes())
 ###################### COMMAND LINE INTERFACE - START ##############################
 # cleanOutput(OutputType.COMMANDS)
 
-asyncio.run(runGeneratorCommandHelp())
-asyncio.run(runDownloadCommandgdbcApiBySchemaFileRelPath())
-asyncio.run(runDownloadCommandGeoDBCitiesBySchemaFileRelPath())
-asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
-asyncio.run(runDownloadCommandGithubBySchemaFileRelPath())
-asyncio.run(runGenerateCommandGithubByApiAbsPath())
-asyncio.run(runGenerateCommandGeoDBCitiesByApiRelPath())
-asyncio.run(runDownloadCommandRapidApiBySchemaFileRelPath())
-asyncio.run(runGenerateCommandRapidApiByApiAbsPath())
+runGeneratorCommandHelp()
+runDownloadCommandgdbcApiBySchemaFileRelPath()
+runDownloadCommandGeoDBCitiesBySchemaFileRelPath()
+runGenerateCommandGeoDBCitiesByApiRelPath()
+runDownloadCommandGithubBySchemaFileRelPath()
+runGenerateCommandGithubByApiAbsPath()
+runGenerateCommandGeoDBCitiesByApiRelPath()
+runDownloadCommandRapidApiBySchemaFileRelPath()
+runGenerateCommandRapidApiByApiAbsPath()
 ###################### COMMAND LINE INTERFACE - END ##############################
 
 ###################### CODE GENERATION - END ##############################
@@ -67,53 +67,52 @@ from tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
 from tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
 from tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
-asyncio.run(testGeneratedDataAsGQLObject())
-asyncio.run(testSimpleObject())
-asyncio.run(testSimpleObjectArgs_LiteralValues())
-asyncio.run(testSimpleObjectArgs_Variables())
-asyncio.run(testSimpleObjectVisibility())
+testGeneratedDataAsGQLObject()
+testSimpleObject()
+testSimpleObjectArgs_LiteralValues()
+testSimpleObjectArgs_Variables()
+testSimpleObjectVisibility()
+testConnectionObject()
+testConnectionObjectVisibility()
+testConnectionObjectArgs_Variables()
+testConnectionObjectArgs_LiteralValues()
 
-asyncio.run(testConnectionObject())
-asyncio.run(testConnectionObjectVisibility())
-asyncio.run(testConnectionObjectArgs_Variables())
-asyncio.run(testConnectionObjectArgs_LiteralValues())
-
-asyncio.run(testComplexObject())
+testComplexObject()
 
 # # #FURTHER TESTS
-asyncio.run(testNestedObjectWithLiteralValueArgs())
-asyncio.run(testNestedObjectShowChange())
-asyncio.run(testComplexObjectWithLiteralValueArgs())
-asyncio.run(testComplexObjectWithLiteralValueArgs2())
-asyncio.run(testObjectWithComposedArgs()) 
-asyncio.run(testComplexObjectShowChange())
-asyncio.run(testNestedObjectShowChangeWithArgsAndVariables())
-asyncio.run(testComplexObjectShowChangeWithArgsAndVariables()) 
-asyncio.run(testNestedObjectWithArgsAndVariables()) 
-asyncio.run(testComplexObjectWithArgsAndVariables()) 
+testNestedObjectWithLiteralValueArgs()
+testNestedObjectShowChange()
+testComplexObjectWithLiteralValueArgs()
+testComplexObjectWithLiteralValueArgs2()
+testObjectWithComposedArgs()
+testComplexObjectShowChange()
+testNestedObjectShowChangeWithArgsAndVariables()
+testComplexObjectShowChangeWithArgsAndVariables()
+testNestedObjectWithArgsAndVariables()
+testComplexObjectWithArgsAndVariables()
 #Geo DB Cities - END
 
 ###################### QUERIES EXECUTION - END ##############################
 
 ###################### MUTATIONS EXECUTION - START ##############################
 
-asyncio.run(testMutationUpdateLiteralValues()) 
-asyncio.run(testMutationInsertLiteralValues()) 
+testMutationUpdateLiteralValues()
+testMutationInsertLiteralValues()
 
 #GITHUB API - START
-asyncio.run(RunGithubAddCommentMutation())
-asyncio.run(RunGithubUpdateRepositoryMutation())
-asyncio.run(RunGithubDeleteProjectMutation())
-asyncio.run(RunGithubDeleteProjectV2Mutation())
-asyncio.run(RunGithubCreateIssueMutation())
-asyncio.run(RunGithubCreateProjectMutation())
+RunGithubAddCommentMutation()
+RunGithubUpdateRepositoryMutation()
+RunGithubDeleteProjectMutation()
+RunGithubDeleteProjectV2Mutation()
+RunGithubCreateIssueMutation()
+RunGithubCreateProjectMutation()
 #GITHUB - END
 
 #RapidAPI - START
-asyncio.run(testAdminAuditLogs()) 
-asyncio.run(RunRapidApiCreateTransformationsMutation())
-asyncio.run(RunRapidApiCreateGatewayInstanceMutation())
-asyncio.run(RunRapidApiEditUserAlertMutation())
+testAdminAuditLogs()
+RunRapidApiCreateTransformationsMutation()
+RunRapidApiCreateGatewayInstanceMutation()
+RunRapidApiEditUserAlertMutation()
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################

@@ -77,10 +77,10 @@
         b) The python class instance obtained from the response will not have the hidden fields
 """
 
-import requests
-from ..consts import gdbcHeaders, gdbcUrl
-from ..utils import ManageException
-from ..output.GeoDBCities.queries import countries
+from pygqlmap.network import httpRequest
+from consts import gdbcHeaders, gdbcUrl
+from utils import ManageException
+from output.GeoDBCities.queries import countries
 
 def testComplexObject(): 
     print('\n\nRunning testComplexObject...')
@@ -107,7 +107,7 @@ def testComplexObject():
 
 ##STEP 4
     try:
-        response = requests.request('POST', url=gdbcUrl, 
+        response = httpRequest(url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=gdbcHeaders)
 ##
@@ -129,6 +129,6 @@ def testComplexObject():
 ##
 
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testComplexObject")

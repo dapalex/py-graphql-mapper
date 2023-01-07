@@ -28,12 +28,12 @@
     RESULT: The object currency within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 from ..utils import ManageException
 
-async def testSimpleObjectArgs_Variables(): 
+def testSimpleObjectArgs_Variables(): 
     print('\n\nRunning testSimpleObjectArgs_Variables...')
     try:
             
@@ -55,7 +55,7 @@ async def testSimpleObjectArgs_Variables():
     ##
         
 ##STEP 4
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": query.exportGqlSource, "variables": query.exportGQLVariables }, 
                                     headers=githubHeaders)
 ##
@@ -76,6 +76,6 @@ async def testSimpleObjectArgs_Variables():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testSimpleObjectArgs_Variables")

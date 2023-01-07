@@ -213,11 +213,11 @@ class countries(GQLQuery):
         b) The python class instance obtained from the response will not have the hidden fields
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import gdbcHeaders, gdbcUrl
 from ..utils import ManageException
 
-async def testGeneratedDataAsGQLObject(): 
+def testGeneratedDataAsGQLObject(): 
     print('\n\nRunning testGeneratedDataAsGQLObject...')
 ##STEP 2
     query = countries()
@@ -242,7 +242,7 @@ async def testGeneratedDataAsGQLObject():
 
 ##STEP 3
     try:
-        response = requests.request('POST', url=gdbcUrl, 
+        response = httpRequest(url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=gdbcHeaders)
 ##
@@ -264,6 +264,6 @@ async def testGeneratedDataAsGQLObject():
 ##
 
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testGeneratedDataAsGQLObject")

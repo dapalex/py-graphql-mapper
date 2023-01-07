@@ -1,13 +1,11 @@
-from requests import request
-from pygqlmap.network import GQLResponse
-
+from pygqlmap.network import GQLResponse, httpRequest
 from .src.spBuilder import SchemaBuilder, SchemaTypeBuilder
 from .src.spSchema import GQLSchema, SCType
 
-def fetchSchemaResponse(url, headers, query):
+def fetchSchemaResponse(url, httpHeaders, query):
     try:
         payload = { "query": query }
-        response = request("POST", url, json=payload, headers=headers)
+        response = httpRequest(url, payload, httpHeaders)
     except Exception as ex:
         raise ex
     
@@ -18,7 +16,6 @@ def fetchSchemaObject(url, headers, query):
     gqlResponse.mapGQLDataToObj()
     gqlResponse.printMessageOutput()
     return gqlResponse.resultObject
-
 
 class GQLSchemaResponse(GQLResponse):
     

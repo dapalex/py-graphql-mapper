@@ -31,12 +31,12 @@
         b) The python class instance obtained from the response will not have the hidden fields
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 from ..utils import ManageException
 
-async def testSimpleObjectVisibility(): 
+def testSimpleObjectVisibility(): 
     print('\n\nRunning testSimpleObjectVisibility...')
 ##STEP 2    
     query = rateLimit()
@@ -55,7 +55,7 @@ async def testSimpleObjectVisibility():
 ##
         
 ##STEP 4
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=githubHeaders)
 ##
@@ -76,6 +76,6 @@ async def testSimpleObjectVisibility():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testSimpleObjectVisibility")

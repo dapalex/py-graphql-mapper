@@ -1,32 +1,30 @@
 from datetime import datetime
 import os
 from pprint import pprint
-import requests
-
-from pygqlmap.network import GQLResponse
+from pygqlmap.network import GQLResponse, httpRequest
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from .consts import githubHeaders, githubUrl
-from .utils import ManageException
+from consts import githubHeaders, githubUrl
+from utils import ManageException
 
-async def runDownloadCommandGithubBySchemaFileRelPath():
+def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./test/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
     print("End of runDownloadCommandGithubBySchemaFileRelPath")
     
-async def runGenerateCommandGithubByApiAbsPath():
+def runGenerateCommandGithubByApiAbsPath():
     print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./test/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
     print("End of runGenerateCommandGithubByApiAbsPath")
     
-async def fetchGithubMutationTypes(): 
+def fetchGithubMutationTypes(): 
     print('\nRunning fetchGithubMutationTypes...')
     
     try:
@@ -36,15 +34,15 @@ async def fetchGithubMutationTypes():
         
         if gqlSchema:
             print('Generating python types from GraphQL data...')
-            CodeGenerator.generateCode(gqlSchema, folder='test\\output\\github\\', logProgress=True, addDescription=True)
+            CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\github\\', logProgress=True, addDescription=True)
 
             print('Python types generated')
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of fetchGithubMutationTypes")
 
-async def fetchGithubMutationTypesFromSchemaNoDesc(): 
+def fetchGithubMutationTypesFromSchemaNoDesc(): 
     print('\nRunning fetchGithubMutationTypesNoDesc...')
     
     try:
@@ -54,15 +52,15 @@ async def fetchGithubMutationTypesFromSchemaNoDesc():
         
         if gqlSchema:
             print('Generating python types from GraphQL data...')
-            CodeGenerator.generateCode(gqlSchema, folder='test\\output\\githubNoDesc\\', logProgress=True, addDescription=False)
+            CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\githubNoDesc\\', logProgress=True, addDescription=False)
 
             print('Python types generated')
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of fetchGithubMutationTypesNoDesc")
 
-async def RunGithubAddCommentMutation():
+def RunGithubAddCommentMutation():
     print('\nRunning RunGithubAddCommentMutation... - stack limit for recursion depth')
     try:
         print('Creating mutation python object...')
@@ -92,7 +90,7 @@ async def RunGithubAddCommentMutation():
         # restoreOutput(wrapper)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -103,11 +101,11 @@ async def RunGithubAddCommentMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubAddCommentMutation")
     
-async def RunGithubUpdateRepositoryMutation():
+def RunGithubUpdateRepositoryMutation():
     print('\nRunning RunGithubUpdateRepositoryMutation...')
     try:
         # from .output.github.gqlTypes import UpdateRepositoryInput
@@ -135,7 +133,7 @@ async def RunGithubUpdateRepositoryMutation():
         print('Creating GQLOperation for mutation...')
         pprint(mutation.exportGqlSource)
             
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         gqlResponse = GQLResponse(response)
@@ -145,11 +143,11 @@ async def RunGithubUpdateRepositoryMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubUpdateRepositoryMutation")
 
-async def RunGithubCreateProjectMutation():
+def RunGithubCreateProjectMutation():
     print('\nRunning RunGithubCreateProjectMutation...')
     try:
         print('Creating mutation python object...')
@@ -174,7 +172,7 @@ async def RunGithubCreateProjectMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -188,11 +186,11 @@ async def RunGithubCreateProjectMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubCreateProjectMutation")
     
-async def RunGithubDeleteProjectMutation():
+def RunGithubDeleteProjectMutation():
     print('\nRunning RunGithubDeleteProjectMutation...')
     try:
         
@@ -209,7 +207,7 @@ async def RunGithubDeleteProjectMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -220,11 +218,11 @@ async def RunGithubDeleteProjectMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubDeleteProjectMutation")
     
-async def RunGithubCreateProjectV2Mutation():
+def RunGithubCreateProjectV2Mutation():
     print('\nRunning RunGithubCreateProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
@@ -241,7 +239,7 @@ async def RunGithubCreateProjectV2Mutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -252,11 +250,11 @@ async def RunGithubCreateProjectV2Mutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubCreateProjectV2Mutation")
     
-async def RunGithubDeleteProjectV2Mutation():
+def RunGithubDeleteProjectV2Mutation():
     print('\nRunning RunGithubDeleteProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
@@ -273,7 +271,7 @@ async def RunGithubDeleteProjectV2Mutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -284,11 +282,11 @@ async def RunGithubDeleteProjectV2Mutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubDeleteProjectV2Mutation")
     
-async def RunGithubCreateIssueMutation():
+def RunGithubCreateIssueMutation():
     print('\nRunning RunGithubCreateIssueMutation...')
     try:
         print('Creating mutation python object...')
@@ -343,7 +341,7 @@ async def RunGithubCreateIssueMutation():
         pprint(mutation.exportGqlSource)
         
         print('Calling GraphQL Server......')
-        response = requests.request('POST', url=githubUrl, 
+        response = httpRequest(url=githubUrl, 
                                     json= { "query": mutation.exportGqlSource }, 
                                     headers=githubHeaders) 
         print('Response Received')
@@ -354,7 +352,7 @@ async def RunGithubCreateIssueMutation():
         gqlResponse.mapGQLDataToObj(mutation.type)
         print('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
-        ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of RunGithubCreateIssueMutation")
     

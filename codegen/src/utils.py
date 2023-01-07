@@ -43,7 +43,7 @@ def getValidFolder(folder):
             else:
                 raise Exception('Invalid folder:' + str(input_path))
     except Exception as ex:
-        raise
+        raise ex
     
     return str(input_path)
 

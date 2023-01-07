@@ -34,12 +34,12 @@
     RESULT: The object currencies within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 
-import requests
+from pygqlmap.network import httpRequest
 from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 from ..utils import ManageException
 
-async def testConnectionObject(): 
+def testConnectionObject(): 
     print('\n\nRunning testConnectionObject...')
 ##STEP 2
     
@@ -51,7 +51,7 @@ async def testConnectionObject():
         print('Query GQL syntax: ' + query.exportGqlSource)
         
 ##STEP 3
-        response = requests.request('POST', url=gdbcUrl, 
+        response = httpRequest(url=gdbcUrl, 
                                     json= { "query": query.exportGqlSource }, 
                                     headers=gdbcHeaders)
 ##
@@ -72,6 +72,6 @@ async def testConnectionObject():
         print('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
-        ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
         
     print("End of testConnectionObject")
