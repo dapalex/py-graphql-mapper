@@ -80,7 +80,7 @@
 from pygqlmap.network import httpRequest
 from ..consts import gdbcHeaders, gdbcUrl
 # from ..utils import ManageException
-from .output.GeoDBCities.queries import countries
+from ..output.GeoDBCities.queries import countries
 
 def testComplexObject(): 
     print('\n\nRunning testComplexObject...')
