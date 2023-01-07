@@ -1,5 +1,4 @@
 from datetime import datetime
-import os
 from pprint import pprint
 from pygqlmap.network import GQLResponse, httpRequest
 from codegen.network import fetchSchemaObject
@@ -8,30 +7,6 @@ from codegen.queryPresets import querySchemaAndTypes
 from .consts import githubHeaders, githubUrl
 # from .utils import ManageException
 
-def runDownloadCommandGithubBySchemaFileRelPath():
-    print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
-    print("Launching: " + command)
-        
-    res = os.system(command)
-    print("End of runDownloadCommandGithubBySchemaFileRelPath")
-    
-def runGenerateCommandGithubByApiAbsPath():
-    print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
-    print("Launching: " + command)
-    
-    res = os.system(command)
-    print("End of runGenerateCommandGithubByApiAbsPath")
-    
-def runGenerateCommandGithubBySchemaFile():
-    print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
-    print("Launching: " + command)
-    
-    res = os.system(command)
-    print("End of runGenerateCommandGithubByApiAbsPath")
-    
 def fetchGithubMutationTypes(): 
     print('\nRunning fetchGithubMutationTypes...')
     

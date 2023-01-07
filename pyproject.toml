@@ -8,7 +8,7 @@ version = "0.0.1"
 authors = [
   { name="Alex Dap", email="shlisi2017@gmail.com" },
 ]
-description = "A python library to cal GraphQL APIs without using hardcoded strings"
+description = "A python library to call GraphQL APIs without using hardcoded strings"
 readme = "README.MD"
 requires-python = ">=3.10"
 classifiers = [
