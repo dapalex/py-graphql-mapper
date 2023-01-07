@@ -5,7 +5,7 @@ name: Code Generation
 
 on:
   push:
-    branches: [ "CI-setup" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
