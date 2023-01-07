@@ -16,13 +16,11 @@ from dataclasses import dataclass, field
 ## key: tuple (type, startingPath)
 ## value: int occurrences
 circularRefs: dict[str, list] = dict()
-# currentPath: objectPath = None
 currentPath: str = None
 mergedClasses: dict = {}
 
-depthReached: str = 'Recursion depth %s reached in %s of type %s - It has to be managed manually'
-# depthReached: str = 'Recursion depth %s reached for %s.%s of type %s - It has to be managed manually'
-    
+depthReached: str = 'Recursion depth %s reached for %s of type %s'
+   
 def subClassInit(obj, fields = None):
     """For internal use only"""
     global currentPath
