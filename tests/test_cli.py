@@ -43,7 +43,7 @@ class TestCLI(unittest.TestCase):
 
 def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
