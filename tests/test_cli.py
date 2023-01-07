@@ -43,7 +43,7 @@ class TestCLI(unittest.TestCase):
 
 def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -52,7 +52,7 @@ def runDownloadCommandgdbcApiBySchemaFileRelPath():
     
 def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
     print('\nRunning runGenerateCommandGeoDBCitiesBySchemaFileRelPath...')
-    command = "pygqlcodegen generate ./commandsOutput/GeoDBCities -apiArgs tests/cliInput/GdbcApi/schema.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/GeoDBCities -apiArgs tests/cliInput/GdbcApi/schema.json -v" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -80,7 +80,7 @@ def runDownloadCommandGithubBySchemaFileRelPath():
     
 def runGenerateCommandGithubByApiAbsPath():
     print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json -v" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
@@ -98,7 +98,7 @@ def runGenerateCommandGithubBySchemaFile():
 
 def runDownloadCommandRapidApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./tests/cliInput/RapidApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./tests/cliInput/RapidApi/downloaderArgs.json -v" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
