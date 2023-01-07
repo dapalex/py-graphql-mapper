@@ -31,7 +31,7 @@ from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 # from ..utils import ManageException
 
-def testSimpleObject(): 
+def runSimpleObject(): 
     print('\n\nRunning testSimpleObject...')
 ##STEP 2
     query = rateLimit()

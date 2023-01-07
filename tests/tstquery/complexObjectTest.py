@@ -82,7 +82,7 @@ from ..consts import gdbcHeaders, gdbcUrl
 # from ..utils import ManageException
 from ..output.GeoDBCities.queries import countries
 
-def testComplexObject(): 
+def runComplexObject(): 
     print('\n\nRunning testComplexObject...')
 ##STEP 1
     query = countries()

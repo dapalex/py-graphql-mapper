@@ -33,7 +33,7 @@ from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 # from ..utils import ManageException
 
-def testSimpleObjectArgs_Variables(): 
+def runSimpleObjectArgs_Variables(): 
     print('\n\nRunning testSimpleObjectArgs_Variables...')
     try:
             

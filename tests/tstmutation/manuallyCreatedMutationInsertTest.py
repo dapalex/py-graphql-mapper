@@ -114,7 +114,7 @@ class createDiscussion(GQLMutation):
 from pygqlmap.network import httpRequest
 from ..consts import githubUrl, githubHeaders
 
-def testMutationInsertLiteralValues(): 
+def runMutationInsertLiteralValues(): 
     print('\n\nRunning testMutationInsertLiteralValues...')
 ##STEP 2
     mutation = createDiscussion()

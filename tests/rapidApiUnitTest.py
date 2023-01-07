@@ -53,7 +53,7 @@ def fetchRapidApiTestSchemaAndTypesNoDesc():
             
     print("End of fetchRapidApiTestSchemaAndTypesNoDesc")
 
-def RunRapidApiCreateTransformationsMutation():
+def runRapidApiCreateTransformationsMutation():
     print('\nRunning RunRapidApiCreateTransformationsMutation...')
     try:
         print('Creating mutation python object...')
@@ -108,7 +108,7 @@ def RunRapidApiCreateTransformationsMutation():
         
     print("End of RunRapidApiCreateTransformationsMutation")
     
-def RunRapidApiCreateGatewayInstanceMutation():
+def runRapidApiCreateGatewayInstanceMutation():
     print('\nRunning RunRapidApicreateGatewayInstanceMutation...')
     try:
         print('Creating mutation python object...')
@@ -155,7 +155,7 @@ def RunRapidApiCreateGatewayInstanceMutation():
     print("End of RunRapidApicreateGatewayInstanceMutation")
   
   
-def RunRapidApiEditUserAlertMutation():
+def runRapidApiEditUserAlertMutation():
     print('\nRunning RunRapidApiEditUserAlertMutation...')
     try:
         print('Creating mutation python object...')
@@ -202,7 +202,7 @@ def RunRapidApiEditUserAlertMutation():
     print("End of RunRapidApiEditUserAlertMutation")
     
 
-def testAdminAuditLogs():
+def runAdminAuditLogs():
     print('\nRunning testAdminAuditLogs...')
     try:
         # from .output.github.gqlTypes import UpdateRepositoryInput

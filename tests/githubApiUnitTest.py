@@ -60,7 +60,7 @@ def fetchGithubMutationTypesFromSchemaNoDesc():
         
     print("End of fetchGithubMutationTypesNoDesc")
 
-def RunGithubAddCommentMutation():
+def runGithubAddCommentMutation():
     print('\nRunning RunGithubAddCommentMutation... - stack limit for recursion depth')
     try:
         print('Creating mutation python object...')
@@ -103,7 +103,7 @@ def RunGithubAddCommentMutation():
         
     print("End of RunGithubAddCommentMutation")
     
-def RunGithubUpdateRepositoryMutation():
+def runGithubUpdateRepositoryMutation():
     print('\nRunning RunGithubUpdateRepositoryMutation...')
     try:
         from .output.github.mutations import Mutations
@@ -146,7 +146,7 @@ def RunGithubUpdateRepositoryMutation():
         
     print("End of RunGithubUpdateRepositoryMutation")
 
-def RunGithubCreateProjectMutation():
+def runGithubCreateProjectMutation():
     print('\nRunning RunGithubCreateProjectMutation...')
     try:
         print('Creating mutation python object...')
@@ -189,7 +189,7 @@ def RunGithubCreateProjectMutation():
         
     print("End of RunGithubCreateProjectMutation")
     
-def RunGithubDeleteProjectMutation():
+def runGithubDeleteProjectMutation():
     print('\nRunning RunGithubDeleteProjectMutation...')
     try:
         
@@ -221,7 +221,7 @@ def RunGithubDeleteProjectMutation():
         
     print("End of RunGithubDeleteProjectMutation")
     
-def RunGithubCreateProjectV2Mutation():
+def runGithubCreateProjectV2Mutation():
     print('\nRunning RunGithubCreateProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
@@ -253,7 +253,7 @@ def RunGithubCreateProjectV2Mutation():
         
     print("End of RunGithubCreateProjectV2Mutation")
     
-def RunGithubDeleteProjectV2Mutation():
+def runGithubDeleteProjectV2Mutation():
     print('\nRunning RunGithubDeleteProjectV2Mutation...')
     try:
         print('Creating mutation python object...')
@@ -285,7 +285,7 @@ def RunGithubDeleteProjectV2Mutation():
         
     print("End of RunGithubDeleteProjectV2Mutation")
     
-def RunGithubCreateIssueMutation():
+def runGithubCreateIssueMutation():
     print('\nRunning RunGithubCreateIssueMutation...')
     try:
         print('Creating mutation python object...')

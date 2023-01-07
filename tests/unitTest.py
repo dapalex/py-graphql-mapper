@@ -6,7 +6,7 @@ from .consts import gdbcHeaders, gdbcUrl
 from .output.GeoDBCities.queries import country, currencies, countries
 # from .utils import ManageException
 
-def testNestedObject(): 
+def runNestedObject(): 
     print('\n\nRunning testNestedObject...')
     try:
         query = currencies()
@@ -25,7 +25,7 @@ def testNestedObject():
         
     print("End of testNestedObject")
 
-def testNestedObjectShowChange(): 
+def runNestedObjectShowChange(): 
     print('\n\nRunning testNestedObjectShowChange...')
     query = currencies()
     query.name = 'MyCurrenciesQuery'
@@ -59,7 +59,7 @@ def testNestedObjectShowChange():
         
     print("End of testNestedObjectShowChange")
 
-def testComplexObjectShowChange(): 
+def runComplexObjectShowChange(): 
     print('\n\nRunning testComplexObjectShowChange...')
     query = countries() 
     query.type.edges.node.region._args.code = ID("CH")
@@ -97,7 +97,7 @@ def testComplexObjectShowChange():
         
     print("End of testComplexObjectShowChange")
 
-def testNestedObjectWithArgsAndVariables(): 
+def runNestedObjectWithArgsAndVariables(): 
     print('\n\nRunning testNestedObjectWithArgsAndVariables...')
     query = currencies() 
     query.name = 'myCurrenciesQuery'
@@ -122,7 +122,7 @@ def testNestedObjectWithArgsAndVariables():
         
     print("End of testNestedObjectWithArgsAndVariables")
 
-def testNestedObjectWithLiteralValueArgs(): 
+def runNestedObjectWithLiteralValueArgs(): 
     print('\n\nRunning testNestedObjectWithLiteralValueArgs...')
     query = currencies() 
     query._args.countryId = 'CH'
@@ -143,7 +143,7 @@ def testNestedObjectWithLiteralValueArgs():
         
     print("End of testNestedObjectWithLiteralValueArgs")
           
-def testComplexObjectWithLiteralValueArgs(): 
+def runComplexObjectWithLiteralValueArgs(): 
     print('\n\nRunning testComplexObjectWithLiteralValueArgs...')
     from .output.GeoDBCities.enums import IncludeDeletedFilterType
     query = countries() 
@@ -172,7 +172,7 @@ def testComplexObjectWithLiteralValueArgs():
         
     print("End of testComplexObjectWithLiteralValueArgs")
         
-def testComplexObjectWithLiteralValueArgs2(): 
+def runComplexObjectWithLiteralValueArgs2(): 
     print('\n\nRunning testComplexObjectWithLiteralValueArgs2...')
     query = countries() 
     query.type.edges.node.region._args.code = "CN"
@@ -193,7 +193,7 @@ def testComplexObjectWithLiteralValueArgs2():
         
     print("End of testComplexObjectWithLiteralValueArgs2")
         
-def testComplexObjectWithArgsAndVariables(): 
+def runComplexObjectWithArgsAndVariables(): 
     print('\n\nRunning testComplexObjectWithArgsAndVariables...')
     query = countries() 
     query._args.first = 3
@@ -220,7 +220,7 @@ def testComplexObjectWithArgsAndVariables():
         
     print("End of testComplexObjectWithArgsAndVariables")
 
-def testNestedObjectShowChangeWithArgsAndVariables(): 
+def runNestedObjectShowChangeWithArgsAndVariables(): 
     print('\n\nRunning testNestedObjectShowChangeWithArgsAndVariables...')
     query = currencies()
     query._args.countryId = ID('CH')
@@ -243,7 +243,7 @@ def testNestedObjectShowChangeWithArgsAndVariables():
         
     print("End of testNestedObjectShowChangeWithArgsAndVariables")
 
-def testComplexObjectShowChangeWithArgsAndVariables(): 
+def runComplexObjectShowChangeWithArgsAndVariables(): 
     print('\n\nRunning testComplexObjectShowChangeWithArgsAndVariables...')
     query = countries()
     query._args.first = 3
@@ -274,7 +274,7 @@ def testComplexObjectShowChangeWithArgsAndVariables():
         
     print("End of testComplexObjectShowChangeWithArgsAndVariables")
 
-def testObjectWithComposedArgs(): 
+def runObjectWithComposedArgs(): 
     print('\n\nRunning testObjectWithComposedArgs...')
     try:
         query = country()

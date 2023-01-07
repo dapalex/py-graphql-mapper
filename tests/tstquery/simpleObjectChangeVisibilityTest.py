@@ -36,7 +36,7 @@ from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
 # from ..utils import ManageException
 
-def testSimpleObjectVisibility(): 
+def runSimpleObjectVisibility(): 
     print('\n\nRunning testSimpleObjectVisibility...')
 ##STEP 2    
     query = rateLimit()

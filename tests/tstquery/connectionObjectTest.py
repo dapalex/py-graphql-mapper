@@ -39,7 +39,7 @@ from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 # from ..utils import ManageException
 
-def testConnectionObject(): 
+def runConnectionObject(): 
     print('\n\nRunning testConnectionObject...')
 ##STEP 2
     

@@ -46,7 +46,7 @@ from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
 # from ..utils import ManageException
 
-def testConnectionObjectArgs_LiteralValues(): 
+def runConnectionObjectArgs_LiteralValues(): 
     print('\n\nRunning testConnectionObjectArgs_LiteralValues...')
 ##STEP 1
     query = currencies()

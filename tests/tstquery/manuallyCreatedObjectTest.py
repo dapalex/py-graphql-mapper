@@ -217,7 +217,7 @@ from pygqlmap.network import httpRequest
 from ..consts import gdbcHeaders, gdbcUrl
 # from ..utils import ManageException
 
-def testGeneratedDataAsGQLObject(): 
+def runGeneratedDataAsGQLObject(): 
     print('\n\nRunning testGeneratedDataAsGQLObject...')
 ##STEP 2
     query = countries()
