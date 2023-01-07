@@ -7,9 +7,9 @@ import unittest
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
-from geoDBCitiesApiUnitTest import (fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
-from githubApiUnitTest import (fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
-from rapidApiUnitTest import (fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
+from .geoDBCitiesApiUnitTest import (fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
+from .githubApiUnitTest import (fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
+from .rapidApiUnitTest import (fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
 
 class TestCodegen(unittest.TestCase):
     
