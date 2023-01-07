@@ -65,7 +65,7 @@
 from pygqlmap.network import httpRequest
 from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
-from ..utils import ManageException
+# from ..utils import ManageException
 
 def testConnectionObjectVisibility(): 
     print('\n\nRunning testConnectionObjectVisibility...')

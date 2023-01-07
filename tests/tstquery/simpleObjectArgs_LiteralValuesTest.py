@@ -31,7 +31,7 @@
 from pygqlmap.network import httpRequest
 from ..consts import githubHeaders, githubUrl
 from ..output.github.queries import rateLimit
-from ..utils import ManageException
+# from ..utils import ManageException
 
 def testSimpleObjectArgs_LiteralValues(): 
     print('\n\nRunning testSimpleObjectArgs_LiteralValues...')

@@ -48,7 +48,7 @@
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlOperations import GQLMutation
 from pygqlmap.gqlTypes import ID
-from ..utils import ManageException
+# from ..utils import ManageException
 
 class Repository(GQLObject):
     allowUpdateBranch: bool

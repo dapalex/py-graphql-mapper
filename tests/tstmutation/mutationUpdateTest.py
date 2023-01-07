@@ -64,7 +64,7 @@ from pygqlmap.network import httpRequest
 from ..consts import githubUrl, githubHeaders
 from ..output.github.mutations import updateRepository
 from ..output.github.gqlTypes import UpdateRepositoryInput
-from ..utils import ManageException
+# from ..utils import ManageException
 
 def testMutationUpdateLiteralValues(): 
     print('\n\nRunning testMutationUpdateLiteralValues...')

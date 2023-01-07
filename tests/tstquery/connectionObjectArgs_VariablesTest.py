@@ -44,7 +44,7 @@
 from pygqlmap.network import httpRequest
 from ..consts import gdbcUrl, gdbcHeaders
 from ..output.GeoDBCities.queries import currencies
-from ..utils import ManageException
+# from ..utils import ManageException
 
 def testConnectionObjectArgs_Variables(): 
     print('\n\nRunning testConnectionObjectArgs_Variables...')

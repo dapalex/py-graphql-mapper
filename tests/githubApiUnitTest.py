@@ -6,7 +6,7 @@ from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
 from .consts import githubHeaders, githubUrl
-from .utils import ManageException
+# from .utils import ManageException
 
 def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
