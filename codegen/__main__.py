@@ -23,6 +23,7 @@ def main():
         commandParser.add_argument('-v', '--verbose', action='store_true')
         commandParser.add_argument('-apiArgs', type=str, help='path of the args file', required=False)
 
+        if args.verbose: print('command -> ' + args.command)
         if args.command == 'generate':
             commandParser.add_argument('-schemaFile', type=str, help='path of the args file', required=False)
 
