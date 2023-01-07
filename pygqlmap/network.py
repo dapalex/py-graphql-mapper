@@ -1,7 +1,25 @@
 import json
-
+from urllib import request
+from urllib.error import HTTPError
+import logging as logger
 from .src.builder import QueryBuilder
 from .src.enums import BuildingType
+
+def httpRequest(api_url, payload, httpHeaders):
+    try:
+        body = json.dumps(payload, indent=2).encode('ascii')
+        req = request.Request(api_url, data=body)
+        for httpHeaderKey, httpHeaderValue in httpHeaders.items():
+            req.add_header(httpHeaderKey, httpHeaderValue)
+        
+        with request.urlopen(req) as response:
+            response.text = response.read().decode('utf-8')
+            response.ok = response.status == 200
+            return response 
+    except HTTPError as ex:
+        raise Exception(str(ex))
+    except Exception as ex:
+        raise ex
 
 class GQLResponse():
     httpResponse = None
@@ -44,9 +62,9 @@ class GQLResponse():
             Exception: Missing errors and data in the json response
         """
         print('Network result: ' + 'OK' if self.httpResponse.ok else 'KO')
-        print('HTTP code: ' + str(self.httpResponse.status_code))
+        print('HTTP code: ' + str(self.httpResponse.status))
         
-        if self.httpResponse.status_code != 200:
+        if self.httpResponse.status != 200:
             raise Exception('HTTP Error: ' + self.httpResponse.text)
         else:
             if hasData :=(hasattr(self, 'data') and self.data):
@@ -58,7 +76,7 @@ class GQLResponse():
                 for error in self.errors:
                     errOutput += str(error) + '\n'
                 errOutput += '\n'
-                raise Exception('Response Errors: ' + errOutput)
+                logger.error('Response Errors: ' + errOutput)
 
             if not hasData and not hasErrors:
                 raise Exception('Inconsistent response: ' + self.httpResponse.text)

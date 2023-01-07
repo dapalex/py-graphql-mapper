@@ -1,5 +1,5 @@
 import copy
-from pygqlmap.src.logger import Logger
+import logging as logger
 from pygqlmap.src.translator import Translate
 from .enums import TypeKind
 from .utils import gqlTypeKinds, typesByName
@@ -13,7 +13,7 @@ class TypeManager():
         typeOutput = ''
         
         if not self.typeDefs:
-            Logger.logErrorMessage('Need to extract type definition first')
+            logger.error('Need to extract type definition first')
         for typeDef in self.typeDefs:
             try:
                 currentType = Translate.toPythonTypeOrOriginal(typeDef)

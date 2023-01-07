@@ -1,9 +1,8 @@
 from abc import abstractmethod
+import logging as logger
 from .enums import BuildingType
-# from ..components import GQLEdges
 from ..gqlTypes import ID
-from .logger import Logger
-from .utils import getClassName, popListElementByRef #uhm
+from .utils import getClassName
 from .consts import primitives
 
 class Builder():
@@ -11,7 +10,7 @@ class Builder():
     def build(self, input, pyObject):
         pass
 
-class QueryBuilder(Builder, Logger):
+class QueryBuilder(Builder):
     """  for internal use only    """
     buildType: BuildingType
     logProgress: bool
@@ -26,12 +25,12 @@ class QueryBuilder(Builder, Logger):
         """  for internal use only    """
         
         try:
-            if self.logProgress: Logger.logInfoMessage('Started building of python object: ' + getClassName(pyObject))
+            if self.logProgress: logger.info('Started building of python object: ' + getClassName(pyObject))
             item = input.popitem() ##extract the KV pair containing object name and content
             self.setPyFields(item[1], pyObject)
             
         except Exception as ex:
-            Logger.logErrorMessage('Building of python object failed - ' + ex.args[0]) 
+            logger.error('Building of python object failed - ' + ex.args[0]) 
             
         return pyObject
 
@@ -42,7 +41,7 @@ class QueryBuilder(Builder, Logger):
         
         for el in newObjDict:
             try:
-                if self.logProgress: Logger.logInfoMessage('Started building of field: ' + el)
+                if self.logProgress: logger.info('Started building of field: ' + el)
                 
                 if (hasattr(input, el) or el in input.keys()) and (el in opObject.fieldsShow.keys() and opObject.fieldsShow[el]):
                     attrType = type(getattr(opObject, el))
@@ -68,7 +67,7 @@ class QueryBuilder(Builder, Logger):
                     self.cleanValue(opObject, el, attrToDel)
                     
             except Exception as ex:
-                Logger.logErrorMessage('Setting value for element ' + el + ' failed - ' + ex.args[0]) 
+                logger.error('Setting value for element ' + el + ' failed - ' + ex.args[0]) 
                         
         for a in attrToDel:
             if a in opObject.__dict__.keys():
@@ -82,7 +81,7 @@ class QueryBuilder(Builder, Logger):
 
     def setFieldValue(self, obj, attr, value):
         """  for internal use only    """
-        if self.logProgress: Logger.logInfoMessage('Setting value of: ' + attr)
+        if self.logProgress: logger.info('Setting value of: ' + attr)
         try:
             if obj.fieldsShow:
                 if obj.fieldsShow[attr]:
@@ -91,10 +90,10 @@ class QueryBuilder(Builder, Logger):
                     else:
                         print('new object management')
         except Exception as ex:
-            Logger.logErrorMessage('Setting value of: ' + attr + ' failed - ' + ex.args[0])
+            logger.error('Setting value of: ' + attr + ' failed - ' + ex.args[0])
             
     def cleanValue(self, object, field, attrToDel):
-        if self.logProgress: Logger.logInfoMessage('Cleaning value of: ' + field)
+        if self.logProgress: logger.info('Cleaning value of: ' + field)
         """  for internal use only    """
         if self.buildType == BuildingType.Standard:
             setattr(object, field, None)

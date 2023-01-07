@@ -1,10 +1,9 @@
 import inspect
+import logging as logger
 import re
 import sys
-from io import TextIOWrapper
 from enum import Enum
 from pygqlmap.gqlTypes import ID
-from .logger import Logger
 from .consts import primitives
 
 stdOut = sys.stdout
@@ -47,7 +46,7 @@ def isEmptyField(field):
             out = out and isEmptyField(getattr(field, innerField))
         return out
     else:
-        Logger.logErrorMessage('type not managed!')
+        logger.error('type not managed!')
       
 def isNoneOrBuiltinPrimitive(obj):
     return isinstance(obj, primitives)
@@ -70,15 +69,6 @@ def addTupleUniqueArgument(tup: tuple, strArgument, location):
         tup = tup + (strArgument, location)
 
     return tup
-
-# def splitByArg(string: str, arg: str):
-#     if not arg: return [string]
-    
-#     argFirstIndex = string.find(arg)
-#     argLastIndex = string.rfind(arg)
-    
-#     strings = [string[0,argFirstIndex], string[argLastIndex,]]
-#     return strings
 
 def getDotNotationInfo(input: str) -> tuple:
     """for internal use

@@ -3,7 +3,7 @@ import string
 from pygqlmap.components import GQLArgsSet
 from pygqlmap.src.consts import primitivesStringified, arguedSignatureSuffix
 from pygqlmap.enums import OperationType
-from pygqlmap.src.logger import Logger
+import logging as logger
 from pygqlmap.src.translator import Translate, switchStrType
 from .enums import TypeKind
 from .spSchema import GQLSchema, SCField, SCType
@@ -69,7 +69,7 @@ class Extractor():
             self.extractionResults.queriesEnumClass = self.extractOperationsEnum(OperationType.query, self.queriesEnumValues)
             self.extractionResults.mutationsEnumClass = self.extractOperationsEnum(OperationType.mutation, self.mutationsEnumValues)
         except Exception as ex:
-            Logger.logErrorMessage('Error during Schema code extraction' + ' - ' + ex.args[0])
+            logger.error('Error during Schema code extraction' + ' - ' + ex.args[0])
             
         return self.extractionResults
 
@@ -82,11 +82,11 @@ class Extractor():
            - types
         """
         try:
-            if self.logProgress: Logger.logInfoMessage('Started extraction of types')
+            if self.logProgress: logger.info('Started extraction of types')
             tempTypes = {}
             while self.schema.types: 
                 currentType = self.schema.types.popitem()
-                if self.logProgress: Logger.logInfoMessage('Started extraction of type ' + currentType[0])
+                if self.logProgress: logger.info('Started extraction of type ' + currentType[0])
                 if currentType[0].startswith('__'): 
                     continue
                 if currentType[1].kind == TypeKind.SCALAR.name:
@@ -106,24 +106,24 @@ class Extractor():
                     
             self.simpleTypes, self.types = splitTypes(tempTypes)
         except Exception as ex:
-            Logger.logErrorMessage('Error during GQL schema types extraction - ' + ex.args[0]) 
+            logger.error('Error during GQL schema types extraction - ' + ex.args[0]) 
     
     def extractScalars(self):
         scalarDefinitions = {}
         try:
-            if self.logProgress: Logger.logInfoMessage('Started extraction of scalars')
+            if self.logProgress: logger.info('Started extraction of scalars')
             while self.scalars: 
                 schemaScalar = self.scalars.popitem()[1]
                 
                 scalarCodeLine = self.generateScalar(schemaScalar)
                 scalarDefinitions.update({ schemaScalar.name: scalarCodeLine })
         except Exception as ex:
-            Logger.logErrorMessage('Error during transformation of CodeGenerator enums' + ' - ' + ex.args[0])
+            logger.error('Error during transformation of CodeGenerator enums' + ' - ' + ex.args[0])
         
         return scalarDefinitions
     
     def generateScalar(self, schemaScalar: SCType):
-        if self.logProgress: Logger.logInfoMessage('Started extraction of scalar ' + schemaScalar.name)
+        if self.logProgress: logger.info('Started extraction of scalar ' + schemaScalar.name)
         schemaScalar.typeDefs = schemaScalar.getObjectTypeDefs() 
 
         if schemaScalar.name in switchStrType: 
@@ -138,7 +138,7 @@ class Extractor():
         if self.addDescription and schemaScalar.description: 
                 scalarCodeLine +=  ' ##' + schemaScalar.description.replace('\n', ' - ')
             
-        if self.logProgress: Logger.logInfoMessage(schemaScalar.name + 'scalar extracted')
+        if self.logProgress: logger.info(schemaScalar.name + 'scalar extracted')
         
         return scalarCodeLine
     
@@ -147,13 +147,13 @@ class Extractor():
         enumClasses = {}
         
         try:
-            if self.logProgress: Logger.logInfoMessage('Started extraction of enums')
+            if self.logProgress: logger.info('Started extraction of enums')
             while self.enums: 
                 schemaEnum = self.enums.popitem()[1]
                 
                 if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, schemaEnum.enumValues)): continue
                 
-                if self.logProgress: Logger.logInfoMessage('Started extraction of enum ' + schemaEnum.name)
+                if self.logProgress: logger.info('Started extraction of enum ' + schemaEnum.name)
                 enumCodeLst = []
                 enumCodeLst.append(enumSignature%schemaEnum.name + ':')
                 
@@ -176,10 +176,10 @@ class Extractor():
                         codeLine += ' ##' + enumValue.description
                     enumCodeLst.append(codeLine)
                 
-                if self.logProgress: Logger.logInfoMessage(schemaEnum.name + 'enum extracted')
+                if self.logProgress: logger.info(schemaEnum.name + 'enum extracted')
                 enumClasses.update({ schemaEnum.name: enumCodeLst })
         except Exception as ex:
-            Logger.logErrorMessage('Error during transformation of CodeGenerator enums' + ' - ' + ex.args[0])
+            logger.error('Error during transformation of CodeGenerator enums' + ' - ' + ex.args[0])
         
         return enumClasses
     
@@ -187,42 +187,42 @@ class Extractor():
         """For internal use"""
         simpleTypeClasses = {}
         
-        if self.logProgress: Logger.logInfoMessage('Started extraction of types')
+        if self.logProgress: logger.info('Started extraction of types')
         try:
             while self.simpleTypes:
                 currentTypeKV = self.simpleTypes.popitem()
                 
-                if self.logProgress: Logger.logInfoMessage('Started extraction of type ' + currentTypeKV[0])
+                if self.logProgress: logger.info('Started extraction of type ' + currentTypeKV[0])
                 self.extractSchemaType(currentTypeKV[1])
         
             for priorElement in self.priorList:
                 
                 if not priorElement.codeList: 
-                    Logger.logErrorMessage('No body for simple type ' + priorElement.name)
+                    logger.error('No body for simple type ' + priorElement.name)
                     
                 ##force recheck?
                 simpleTypeClasses.update({ priorElement.name: priorElement.codeList })
                 self.priorList.remove(priorElement)
-            if self.logProgress: Logger.logInfoMessage('Extraction of simpleTypes completed')
+            if self.logProgress: logger.info('Extraction of simpleTypes completed')
         except Exception as ex:
-            Logger.logErrorMessage('Error during transformation of CodeGenerator simpleTypes' + ' - ' + ex.args[0])
+            logger.error('Error during transformation of CodeGenerator simpleTypes' + ' - ' + ex.args[0])
             
         return simpleTypeClasses
     
     def extractTypes(self):
         """For internal use"""
         typeClasses = {}
-        if self.logProgress: Logger.logInfoMessage('Started extraction of types')
+        if self.logProgress: logger.info('Started extraction of types')
         try:
             while self.types:
                 currTypeKV = self.types.popitem()
                 
-                if self.logProgress: Logger.logInfoMessage('Started extraction of type ' + currTypeKV[0])
+                if self.logProgress: logger.info('Started extraction of type ' + currTypeKV[0])
                 self.extractSchemaType(currTypeKV[1])
         
             for priorElement in self.priorList:
                 if not priorElement.codeList: 
-                    Logger.logErrorMessage('No body for type ' + priorElement.name)
+                    logger.error('No body for type ' + priorElement.name)
                     
                 ##recheck for generated classes
                 if priorElement.name.endswith(arguedSignatureSuffix):
@@ -246,9 +246,9 @@ class Extractor():
                 ##recheck for generated classes
                 
                 typeClasses.update({ priorElement.name: priorElement.codeList })
-            if self.logProgress: Logger.logInfoMessage('Extraction of types completed')
+            if self.logProgress: logger.info('Extraction of types completed')
         except Exception as ex:
-            Logger.logErrorMessage('Error during transformation of CodeGenerator types' + ' - ' + ex.args[0])
+            logger.error('Error during transformation of CodeGenerator types' + ' - ' + ex.args[0])
             
         return typeClasses
     
@@ -257,20 +257,20 @@ class Extractor():
         operationClasses = {}
         operationEnumValues = []
         try:
-            if self.logProgress: Logger.logInfoMessage('Started extraction of ' + opType.name)
+            if self.logProgress: logger.info('Started extraction of ' + opType.name)
             
             for operation in operations.fields:
-                if self.logProgress: Logger.logInfoMessage('Started extraction of ' + opType.name + ' ' + operation.name)
+                if self.logProgress: logger.info('Started extraction of ' + opType.name + ' ' + operation.name)
                 try:
                     operationCode = self.extractTypeCode(operation, objType=opType)
                     operationClasses.update({ operation.name : operationCode })
                     operationEnumValues.append(operation.name) 
                 except Exception as ex:
-                    Logger.logErrorMessage('Error during extraction of ' + opType.name + ' ' + operation.name + ' - ' + ex.args[0]) 
+                    logger.error('Error during extraction of ' + opType.name + ' ' + operation.name + ' - ' + ex.args[0]) 
                      
-                if self.logProgress: Logger.logInfoMessage(operation.name + ' extracted')
+                if self.logProgress: logger.info(operation.name + ' extracted')
         except Exception as ex:
-            Logger.logErrorMessage('Error during transformation of CodeGenerator operations' + ' - ' + ex.args[0])
+            logger.error('Error during transformation of CodeGenerator operations' + ' - ' + ex.args[0])
         
         return operationClasses, operationEnumValues
     
@@ -278,7 +278,7 @@ class Extractor():
         """For internal use"""
         operationKey = 'Queries' if opType == OperationType.query else 'Mutations'
         operationEnumClass = {}
-        if self.logProgress: Logger.logInfoMessage('Started generation of ' + operationKey + ' enum')
+        if self.logProgress: logger.info('Started generation of ' + operationKey + ' enum')
         enumCodeLst = []
         
         enumCodeLst.append(enumSignature%operationKey + ':')
@@ -287,7 +287,7 @@ class Extractor():
             enumCodeLst.append(self.indent + enumValue + ' = ' + enumValue)
         
         operationEnumClass.update({ operationKey: enumCodeLst })
-        if self.logProgress: Logger.logInfoMessage(operationKey + ' enum generated')
+        if self.logProgress: logger.info(operationKey + ' enum generated')
         
         return operationEnumClass
     
@@ -307,10 +307,10 @@ class Extractor():
             Defaults to {}.
         """
         currentTypeName = currentType.name if not arguedName else arguedName
-        if self.logProgress: Logger.logInfoMessage('Started extraction of type ' + currentTypeName)
+        if self.logProgress: logger.info('Started extraction of type ' + currentTypeName)
         
         if self.isAlreadyExtracted(currentTypeName):
-            Logger.logWarningMessage(currentTypeName + " already extracted!")
+            logger.warning(currentTypeName + " already extracted!")
             return
         
         usedTypes = []
@@ -331,19 +331,19 @@ class Extractor():
             
             for usedTypeNameKey, occurrences in usedTypesDict.items():
                 try:
-                    if self.logProgress: Logger.logInfoMessage(currentTypeName + ' uses ' + usedTypeNameKey)
+                    if self.logProgress: logger.info(currentTypeName + ' uses ' + usedTypeNameKey)
                     if self.isAlreadyExtracted(usedTypeNameKey):
-                        Logger.logWarningMessage(currentTypeName + " already extracted!") 
+                        logger.warning(currentTypeName + " already extracted!") 
                         continue
                     elif self.types.get(usedTypeNameKey): 
                         poppedUsedType = self.types.pop(usedTypeNameKey)
                         
-                        if self.logProgress: Logger.logInfoMessage('Call extraction for ' + usedTypeNameKey)
+                        if self.logProgress: logger.info('Call extraction for ' + usedTypeNameKey)
                         
                         self.extractSchemaType(poppedUsedType, circularRefTypes)
                     else:
                         # It can be a circular reference
-                        if self.logProgress: Logger.logInfoMessage('Used type ' + usedTypeNameKey + ' for ' + currentTypeName + ' not found in already managed types, it can be a circular reference')
+                        if self.logProgress: logger.info('Used type ' + usedTypeNameKey + ' for ' + currentTypeName + ' not found in already managed types, it can be a circular reference')
                         
                         utilizers = []
                         
@@ -355,7 +355,7 @@ class Extractor():
                                 utilizers.append(arguedName)
                                     
                         if usedTypeNameKey == currentType.name and occurrences == 0:
-                            Logger.logErrorMessage('inconsistence')
+                            logger.error('inconsistence')
                             
                         if not usedTypeNameKey in circularRefTypes.keys(): 
                             circularRefTypes.update({ usedTypeNameKey: utilizers }) 
@@ -364,21 +364,21 @@ class Extractor():
                                 circularRefTypes[usedTypeNameKey].extend(utilizers)
                                 
                 except Exception as ex:
-                    Logger.logErrorMessage('Error during management of used type ' + usedTypeNameKey + ' - ' + ex.args[0])   
+                    logger.error('Error during management of used type ' + usedTypeNameKey + ' - ' + ex.args[0])   
             
             typeCode = self.extractTypeCode(currentType, circularRefTypes, arguedName=arguedName)
 
             if typeCode:
                 pqElement = PriorElement(currentTypeName, currentType, typeCode)
             
-                if self.logProgress: Logger.logInfoMessage(currentTypeName + ' type extracted')
-                if self.logProgress: Logger.logInfoMessage('Appending extracted ' + currentTypeName)
+                if self.logProgress: logger.info(currentTypeName + ' type extracted')
+                if self.logProgress: logger.info('Appending extracted ' + currentTypeName)
                 self.priorList.append(pqElement)
             else:
-                Logger.logWarningMessage('Type ' + currentTypeName + ' not extracted') 
+                logger.warning('Type ' + currentTypeName + ' not extracted') 
                 
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of type ' + currentTypeName + ' - ' + ex.args[0])   
+            logger.error('Error during extraction of type ' + currentTypeName + ' - ' + ex.args[0])   
           
           
     def isAlreadyExtracted(self, typeNameCheck, includeCircularRefs: bool = True):
@@ -403,7 +403,7 @@ class Extractor():
     def extractTypeCode(self, schemaType, circularRefTypes = [], objType: OperationType = OperationType.genericType, arguedName:str = None):
         """For internal use"""
         schemaTypeName = schemaType.name if not arguedName else arguedName
-        if self.logProgress: Logger.logInfoMessage('Started extraction of code for ' + schemaTypeName)
+        if self.logProgress: logger.info('Started extraction of code for ' + schemaTypeName)
         codeLines = []
         try:
             if hasattr(schemaType, 'kind') and schemaType.kind == TypeKind.UNION.name: 
@@ -411,10 +411,10 @@ class Extractor():
             else:                
                 codeLines = self.generateClassCode(schemaType, circularRefTypes, objType, arguedName)
                                     
-            if self.logProgress: Logger.logInfoMessage(schemaTypeName + ' code extraction  completed')
+            if self.logProgress: logger.info(schemaTypeName + ' code extraction  completed')
             return codeLines
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of type ' + schemaTypeName + ' - ' + ex.args[0]) 
+            logger.error('Error during extraction of type ' + schemaTypeName + ' - ' + ex.args[0]) 
             return []
     
     def generateUnionCode(self, scType: SCType, circularRefTypes: dict[str,list[str]]):
@@ -442,7 +442,7 @@ class Extractor():
             #             singleLineCode += Translate.toPythonVariableName(argument[0]) + ', ' 
                 
             #     except Exception as ex:
-            #         Logger.logErrorMessage('Error during extraction of element ' + argument[0] + ' - ' + ex.args[0])
+            #         logger.error('Error during extraction of element ' + argument[0] + ' - ' + ex.args[0])
             
             # singleLineCode = singleLineCode.removesuffix(',')
             
@@ -454,14 +454,14 @@ class Extractor():
             codeLst.append(singleLineCode)
         
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of content for type ' + scType.name + ' - ' + ex.args[0])
+            logger.error('Error during extraction of content for type ' + scType.name + ' - ' + ex.args[0])
 
         return codeLst
     
     def generateClassCode(self, scType: SCType, circularRefTypes: dict[str,list[str]], objType: OperationType = OperationType.genericType, arguedName: str = None):
         """For internal use"""
         scTypeName = scType.name if not arguedName else arguedName
-        if self.logProgress: Logger.logInfoMessage('Started generation of class for ' + scTypeName)
+        if self.logProgress: logger.info('Started generation of class for ' + scTypeName)
         classCodeLst = []
         docsLst = []
         returnCodeList = []
@@ -512,7 +512,7 @@ class Extractor():
                 scTypeName = actualType if actualType not in primitivesStringified and objType == OperationType.genericType else scType.name
                 signature = self.generateTypeSignature(objType, scTypeName, arguedName, possibleTypes, circularRefTypes)
             except Exception as ex:
-                Logger.logErrorMessage('Error during creation of signature for type ' + scTypeName + ' - ' + ex.args[0])
+                logger.error('Error during creation of signature for type ' + scTypeName + ' - ' + ex.args[0])
                     
             if classCodeLst:
                 returnCodeList.append(signature)
@@ -522,12 +522,12 @@ class Extractor():
                     returnCodeList.append(self.indent + '"""')
                 returnCodeList.extend(classCodeLst)
             else:
-                Logger.logErrorMessage('Missing code for type ' + scTypeName)
+                logger.error('Missing code for type ' + scTypeName)
         
-            if self.logProgress: Logger.logInfoMessage(scTypeName + ' code generation completed')
+            if self.logProgress: logger.info(scTypeName + ' code generation completed')
             
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of content for type ' + scTypeName + ' - ' + ex.args[0])
+            logger.error('Error during extraction of content for type ' + scTypeName + ' - ' + ex.args[0])
 
         return returnCodeList
     
@@ -551,7 +551,7 @@ class Extractor():
                     queryArgCodeLst.append(codeLine)
                     
                 except Exception as ex:
-                    Logger.logErrorMessage('Error during extraction of schema field element ' + argument.name + ' - ' + ex.args[0])
+                    logger.error('Error during extraction of schema field element ' + argument.name + ' - ' + ex.args[0])
             
             if self.addDescription and queryArgDocLst:
                 codeLst.append(self.indent + self.indent + '"""')
@@ -584,7 +584,7 @@ class Extractor():
             
             ##check if all elements are deprecated --> get out empty handed
             if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, content)): 
-                Logger.logWarningMessage('Type ' + scType.name + ' deprecated!')
+                logger.warning('Type ' + scType.name + ' deprecated!')
                 return [], []
             
             for element in content:
@@ -599,7 +599,7 @@ class Extractor():
                     codeLst.append(codeLine)
                     
                 except Exception as ex:
-                    Logger.logErrorMessage('Error during extraction of schema Type content ' + element.name + ' - ' + ex.args[0])    
+                    logger.error('Error during extraction of schema Type content ' + element.name + ' - ' + ex.args[0])    
         
         return docsLst, codeLst  
     
@@ -641,7 +641,7 @@ class Extractor():
                 codeLine = self.indent + Translate.toPythonVariableName(element.name) + ': ' + (claimedElType if not arguedName else arguedName)
         
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of element ' + element.name + ' - ' + ex.args[0]) 
+            logger.error('Error during extraction of element ' + element.name + ' - ' + ex.args[0]) 
             
         return docLine, codeLine
                 
@@ -690,7 +690,7 @@ class Extractor():
 
         Returns: dictionary containing used type names and number of occurrences
         """
-        if self.logProgress: Logger.logInfoMessage('Started extraction of used types for ' + scType.name)
+        if self.logProgress: logger.info('Started extraction of used types for ' + scType.name)
         objNames = {}
                 
         fieldsList = scType.getValidFieldsList()
@@ -698,12 +698,12 @@ class Extractor():
         try:
             for field in fieldsList:
                 objNames.update({ field.name: field.getUsedGQLObjectNames() })
-                if self.logProgress and objNames: Logger.logInfoMessage('Found used Types: ' + str(objNames) + 'for field ' + field.name)
+                if self.logProgress and objNames: logger.info('Found used Types: ' + str(objNames) + 'for field ' + field.name)
                 
         except Exception as ex:
-            Logger.logErrorMessage('Error during extraction of used Types for ' + field.name + ' - ' + ex.args[0])
+            logger.error('Error during extraction of used Types for ' + field.name + ' - ' + ex.args[0])
         
-        if self.logProgress: Logger.logInfoMessage('Used types for ' + scType.name + ' extracted')
+        if self.logProgress: logger.info('Used types for ' + scType.name + ' extracted')
         return objNames
     
     def startCheckCircularRefTypes(self, element, parentType, actualElType, circularRefTypes):
