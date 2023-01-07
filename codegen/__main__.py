@@ -68,7 +68,7 @@ def saveJsonSchema(args, destination):
         exit(-1)
 
 def generatePythonCode(args, destPath):
-    try
+    try:
         schemaObject: GQLSchema = None
 
         if destPath:
