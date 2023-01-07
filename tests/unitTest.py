@@ -3,7 +3,7 @@ from pygqlmap.network import GQLResponse, httpRequest
 from pygqlmap.gqlTypes import ID
 from pygqlmap.helper import mapConfig
 from .consts import gdbcHeaders, gdbcUrl
-from output.GeoDBCities.queries import country, currencies, countries
+from .output.GeoDBCities.queries import country, currencies, countries
 # from .utils import ManageException
 
 def testNestedObject(): 
