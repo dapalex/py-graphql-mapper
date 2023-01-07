@@ -47,6 +47,7 @@ def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print("Launching: " + command)
         
     res = os.system(command)
+    assert res == 0
     print("End of runDownloadCommandGithubBySchemaFileRelPath")
     
 def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
@@ -55,6 +56,7 @@ def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
     print("Launching: " + command)
         
     res = os.system(command)
+    assert res == 0
     print("End of runGenerateCommandGeoDBCitiesBySchemaFileRelPath")
     
 def runGenerateCommandGeoDBCitiesByApiRelPath():
@@ -63,6 +65,7 @@ def runGenerateCommandGeoDBCitiesByApiRelPath():
     print("Launching: " + command)
     
     res = os.system(command)
+    assert res == 0
     print("End of runGenerateCommandGeoDBCitiesByApiRelPath")
 
 
@@ -72,6 +75,7 @@ def runDownloadCommandGithubBySchemaFileRelPath():
     print("Launching: " + command)
         
     res = os.system(command)
+    assert res == 0
     print("End of runDownloadCommandGithubBySchemaFileRelPath")
     
 def runGenerateCommandGithubByApiAbsPath():
@@ -80,6 +84,7 @@ def runGenerateCommandGithubByApiAbsPath():
     print("Launching: " + command)
     
     res = os.system(command)
+    assert res == 0
     print("End of runGenerateCommandGithubByApiAbsPath")
     
 def runGenerateCommandGithubBySchemaFile():
@@ -88,6 +93,7 @@ def runGenerateCommandGithubBySchemaFile():
     print("Launching: " + command)
     
     res = os.system(command)
+    assert res == 0
     print("End of runGenerateCommandGithubByApiAbsPath")
 
 def runDownloadCommandRapidApiBySchemaFileRelPath():
@@ -96,6 +102,7 @@ def runDownloadCommandRapidApiBySchemaFileRelPath():
     print("Launching: " + command)
         
     res = os.system(command)
+    assert res == 0
     print("End of runDownloadCommandRapidApiBySchemaFileRelPath")
     
 def runGenerateCommandRapidApiByApiAbsPath():
@@ -104,5 +111,6 @@ def runGenerateCommandRapidApiByApiAbsPath():
     print("Launching: " + command)
     
     res = os.system(command)
+    assert res == 0
     print("End of runGenerateCommandRapidApiByApiAbsPath")
     
