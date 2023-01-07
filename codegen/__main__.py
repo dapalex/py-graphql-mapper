@@ -41,24 +41,24 @@ def main():
 def saveJsonSchema(args, destination):
     try:
         if hasattr(args, 'apiArgs') and args.apiArgs:
-            if args.verbose: print('Checking args file...') #, end="\r")
+            if args.verbose: logger.info('Checking args file...') #, end="\r")
             argsFilePath = pathlib.Path(args.apiArgs).absolute()
-            if args.verbose: print('Reading args file...') #, end="\r")
+            if args.verbose: logger.info('Reading args file...') #, end="\r")
             with open(str(argsFilePath), 'r') as argsFile:
                 arguments = json.load(argsFile)
 
-            if args.verbose: print(arguments)
+            if args.verbose: logger.info(arguments)
 
             if 'apiURL' in arguments.keys() and arguments['apiURL']:
                 httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
-                if args.verbose: print('Fetching schema from server...') #, end="\r")
+                if args.verbose: logger.info('Fetching schema from server...') #, end="\r")
                 schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
 
                 parentFolder = pathlib.Path(destination).parent
                 outputFolder = getValidFolder(str(parentFolder))
                 fileName = pathlib.Path(destination).name
                 outputFile = os.path.join(outputFolder, fileName)
-                if args.verbose: print('Saving Schema...') #, end="\r")
+                if args.verbose: logger.info('Saving Schema...') #, end="\r")
                 with open(outputFile, 'w') as schemaFile:
                     schemaFile.write(json.dumps(schemaResponse.data, indent=2))
 
@@ -70,21 +70,21 @@ def generatePythonCode(args, destPath):
         schemaObject: GQLSchema = None
 
         if destPath:
-            if args.verbose: print('Checking destination folder...') #, end="\r")
+            if args.verbose: logger.info('Checking destination folder...') #, end="\r")
 
             input_path = getValidFolder(destPath)
 
-        if args.verbose: print('Parsing command...') #, end="\r")
+        if args.verbose: logger.info('Parsing command...') #, end="\r")
 
         if hasattr(args, 'apiArgs') and args.apiArgs:
-            if args.verbose: print('Checking args file...') #, end="\r")
+            if args.verbose: logger.info('Checking args file...') #, end="\r")
             argsFilePath = pathlib.Path(args.apiArgs).absolute()
             try:
-                if args.verbose: print('Reading args file...') #, end="\r")
+                if args.verbose: logger.info('Reading args file...') #, end="\r")
                 with open(str(argsFilePath), 'r') as argsFile:
                     arguments = json.load(argsFile)
 
-                if args.verbose: print(arguments)
+                if args.verbose: logger.info(arguments)
             except Exception as ex:
                 logger.critical('args file invalid: ' + ex.args[0])
                 exit()
@@ -94,22 +94,22 @@ def generatePythonCode(args, destPath):
 
         schemaObject = extractSchemaObject(arguments, args.verbose)
 
-        if args.verbose: print('Generating mutations...') #, end="\r")
+        if args.verbose: logger.info('Generating mutations...') #, end="\r")
         CodeGenerator.generateCode(schemaObject, input_path, customTypes=customScalarTypes, logProgress=args.verbose, addDescription=addDescription)
 
 def extractSchemaObject(arguments, verbose):
     if 'apiURL' in arguments.keys() and arguments['apiURL']:
         httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
-        if verbose: print('Fetching schema from server...') #, end="\r")
+        if verbose: logger.info('Fetching schema from server...') #, end="\r")
         schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
 
-        if verbose: print('Mapping response...') #, end="\r")
+        if verbose: logger.info('Mapping response...') #, end="\r")
         schemaResponse.mapGQLDataToObj()
 
         return schemaResponse.resultObject
 
     elif 'schemaFile' in arguments.keys() and arguments['schemaFile']:
-            if verbose: print('Extracting schema from file...') #, end="\r")
+            if verbose: logger.info('Extracting schema from file...') #, end="\r")
             parentFolder = pathlib.Path(arguments['schemaFile']).parent
             outputFolder = getValidFolder(str(parentFolder))
             fileName = pathlib.Path(arguments['schemaFile']).name
@@ -117,12 +117,12 @@ def extractSchemaObject(arguments, verbose):
             with open(outputFilePath, 'r') as wrapper:
                 schemaString = wrapper.read()
 
-            if verbose: print('Creating schema object...') #, end="\r")
+            if verbose: logger.info('Creating schema object...') #, end="\r")
             return buildSchema(schemaString)
 
-    if verbose: print('Schema not extracted!') #, end="\r")
+    if verbose: logger.info('Schema not extracted!') #, end="\r")
     return None
 
 if __name__ == '__main__':
-    print('python-graphql mapper code generator 0.3.0')
+    logger.info('python-graphql mapper code generator 0.3.0')
     main()
