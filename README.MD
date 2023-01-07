@@ -12,15 +12,6 @@ It translates GraphQL entities into python objects and viceversa in order to avo
 The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries. 
 
 
-## Table of Contents
-
-1. [Usage in a nutshell](#usage-in-a-nutshell)
-    1. [Installation](#installation)
-    2. [Generate python code from schema](#generate-python-code-from-schema)
-    3. [Execution of a query](#execution-of-a-query)
-    4. [Retrieval of a response](#retrieval-of-a-response)
-
-
 ## Usage in a nutshell
 
 ### Installation
