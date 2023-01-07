@@ -5,7 +5,7 @@ name: Pyhon-GraphQL Mapping Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "CI-setup" ]
   pull_request:
     branches: [ "main" ]
 
