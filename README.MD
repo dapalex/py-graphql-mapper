@@ -46,7 +46,7 @@ In the output folder there will be the following python files:
 * queries.py
 * mutations.py
 
-Some generated code obtained from [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/RapidApi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/test/output/GeoDBCities)
+Some generated code obtained from [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/RapidApi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/GeoDBCities)
 
 More command options available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
 
@@ -105,4 +105,4 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 
 
-A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD)
+A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/README.MD)
