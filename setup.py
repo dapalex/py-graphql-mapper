@@ -14,7 +14,7 @@ setup(
     python_requires='>=3.10.6',
     entry_points ={
             'console_scripts': [
-                'pygqlcodegen = codegen.__main__:main'
+                'pgmcodegen = codegen.__main__:main'
             ]
         },
     classifiers=[
