@@ -1,10 +1,11 @@
 # pygqlmap
 
-THIS DOCUMENT IS UNDER REVIEW
+*THIS DOCUMENT IS UNDER REVIEW*
 
 ## Introduction
 
-This document explains in detail how the pygqlmap, the core of the mapping, module works.
+This document explains in detail how the core of the mapping works.
+This module can be used to manually create python classes corresponding to a GraphQL type (or a customized version).
 
 ## Table of Contents
 
@@ -20,6 +21,8 @@ This document explains in detail how the pygqlmap, the core of the mapping, modu
 
 
 ## Creation of a mappable python object
+
+In order yo create a python class representing a GraphQL object _GQLObject_ class has to be inherited.
 
 ### GQLObject
 
@@ -40,9 +43,6 @@ Requirements for the class definition:
 
 * Inheriting _GQLObject_ class
 * Fields must be statically declared 
-* If arguments are needed a field '_args' has to be declared. The class representing its type has to:
-    * Inherit from _GQLArgsSet_ and _GQLObject_
-    * Fields must be statically declared 
 
 The example above will be able to generate the following GraphQL object
 
@@ -57,7 +57,58 @@ myCustomObject {
 A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/tstquery/simpleObjectTest.py) 
 
 
+### Adding arguments 
+
+If arguments are needed a field '_args' must be added to the created class. 
+
+Given the example above
+
+```python
+from pygqlmap.components import GQLObject
+
+class myCustomObject(GQLObject): 
+    myString: str
+    myCode: int
+    myList: list
+    _args: MyArgs
+```
+
+The definition of this field must be a class:
+    * Inheriting from _GQLArgsSet_ and _GQLObject_
+    * With fields statically declared 
+
+```python
+from pygqlmap.components import GQLObject
+
+class MyArgs(GQLArgsSet, GQLObject): 
+    firstArg: str
+    secondArg: ID
+```
+
+Instantiating the classes and calling _exportGqlSource_ property
+
+```python
+myObj = myCustomObject()
+myObj._args.firstArg = 'myArgument'
+myObj._args.secondArg = ID('myID')
+
+myObj.exportGqlSource
+```
+
+the following GraphQL object will be generated
+
+```
+myCustomObject(firstArg: "myArgument", secondArg: "myID") {
+    myString
+    myCode
+    myList
+}
+```
+
+
 ## Creation of an operation
+
+GraphQL Operations can be mapped in the same way as for GraphQL types above. In this case _GQLQuery_ class for a query or _GQLMutation_ for a mutation has to be inherited.
 
 ### GQLQuery
 
@@ -66,7 +117,7 @@ GQLQuery is the base class in charge of composing a GraphQL query.
 Example:
 
 ```python
-
+from pygqlmap.components import GQLObject
 
 class CountriesConnection(GQLObject):
    totalCount: int ##NON NULL
@@ -83,23 +134,37 @@ class countries(GQLQuery):
    
 ```
 
-The creation has the following requirements:
+The creation of the operation requires:
 
-* Inheriting _GQLQuery_ class
+* Inheriting _GQLQuery_/_GQLMutation_ class
 * Declaring a field 'type' representing the content of the query
 * If arguments are needed a field '_args' has to be declared. The class representing its type has to:
     * Inherit from _GQLArgsSet_ and _GQLObject_
     * Fields must be statically declared 
 
-Further optional definition are:
+The base class can be customized further with these optional definitions:
 
 * name: string used to give a name to the operation
-* _argsType: how the arguments will be exported (as literal values or with variables)
+* _argsType: how the arguments will be exported (default - literal values)
 
-The function *exportGqlSource* will generate the following GraphQL syntax:
+Instantiating the class and calling _exportGqlSource_ property
+
+```python
+from pygqlmap.enums import ArgType
+
+myQuery = countries()
+myQuery._args.currencyCode = 'USD'
+myQuery._args.namePrefix = "unit"
+
+myQuery.name = 'myFirstQuery'
+myQuery._argsType = ArgType.Variables
+myQuery.exportGqlSource
+```
+
+will generate the following GraphQL syntax:
 
 ```
-query($currencyCode: String, $namePrefix: String){
+query myFirstQuery ($currencyCode: String, $namePrefix: String){
     countries(currencyCode: $currencyCode, namePrefix: $namePrefix) {
         totalCount
         edges {
@@ -114,7 +179,7 @@ query($currencyCode: String, $namePrefix: String){
 }
 ```
 
-Example using _requests_:
+Calling the relating GraphQL API server (example using _requests_):
 
 ```python
 response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
