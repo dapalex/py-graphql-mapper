@@ -4,8 +4,8 @@ from pygqlmap.network import GQLResponse, httpRequest
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from consts import rapidApiHeaders, rapidApiUrl
-from utils import ManageException
+from .consts import rapidApiHeaders, rapidApiUrl
+# from .utils import ManageException
 
 def runDownloadCommandRapidApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
