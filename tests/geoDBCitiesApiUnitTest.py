@@ -2,8 +2,8 @@ import os
 from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
-from consts import gdbcHeaders, gdbcUrl
-from utils import ManageException
+from .consts import gdbcHeaders, gdbcUrl
+# from .utils import ManageException
 
 def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
