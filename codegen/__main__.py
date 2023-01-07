@@ -64,10 +64,11 @@ def saveJsonSchema(args, destination):
                     schemaFile.write(json.dumps(schemaResponse.data, indent=2))
 
     except Exception as ex:
-        print('args file invalid: ' + str(ex.args))
+        print('saveJsonSchema error: ' + str(ex.args))
         exit(-1)
 
 def generatePythonCode(args, destPath):
+    try
         schemaObject: GQLSchema = None
 
         if destPath:
@@ -87,7 +88,7 @@ def generatePythonCode(args, destPath):
 
                 if args.verbose: print(arguments)
             except Exception as ex:
-                print('args file invalid: ' + str(ex.args))
+                print('generatePythonCode - args file invalid: ' + str(ex.args))
                 exit(-1)
 
         customScalarTypes =arguments['customTypes'] if 'customTypes' in arguments.keys() else None
@@ -97,30 +98,38 @@ def generatePythonCode(args, destPath):
 
         if args.verbose: print('Generating mutations...') #, end="\r")
         CodeGenerator.generateCode(schemaObject, input_path, customTypes=customScalarTypes, logProgress=args.verbose, addDescription=addDescription)
-
+    except Exception as ex:
+        print('generatePythonCode error: ' + str(ex.args))
+        exit(-1)
+        
 def extractSchemaObject(arguments, verbose):
-    if 'apiURL' in arguments.keys() and arguments['apiURL']:
-        httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
-        if verbose: print('Fetching schema from server...') #, end="\r")
-        schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
+    try:
+        if 'apiURL' in arguments.keys() and arguments['apiURL']:
+            httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
+            if verbose: print('Fetching schema from server...') #, end="\r")
+            schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
 
-        if verbose: print('Mapping response...') #, end="\r")
-        schemaResponse.mapGQLDataToObj()
+            if verbose: print('Mapping response...') #, end="\r")
+            schemaResponse.mapGQLDataToObj()
 
-        return schemaResponse.resultObject
+            return schemaResponse.resultObject
 
-    elif 'schemaFile' in arguments.keys() and arguments['schemaFile']:
-            if verbose: print('Extracting schema from file...') #, end="\r")
-            parentFolder = pathlib.Path(arguments['schemaFile']).parent
-            outputFolder = getValidFolder(str(parentFolder))
-            fileName = pathlib.Path(arguments['schemaFile']).name
-            outputFilePath = os.path.join(outputFolder, fileName)
-            with open(outputFilePath, 'r') as wrapper:
-                schemaString = wrapper.read()
+        elif 'schemaFile' in arguments.keys() and arguments['schemaFile']:
+                if verbose: print('Extracting schema from file...') #, end="\r")
+                parentFolder = pathlib.Path(arguments['schemaFile']).parent
+                outputFolder = getValidFolder(str(parentFolder))
+                fileName = pathlib.Path(arguments['schemaFile']).name
+                outputFilePath = os.path.join(outputFolder, fileName)
+                with open(outputFilePath, 'r') as wrapper:
+                    schemaString = wrapper.read()
 
-            if verbose: print('Creating schema object...') #, end="\r")
-            return buildSchema(schemaString)
+                if verbose: print('Creating schema object...') #, end="\r")
+                return buildSchema(schemaString)
 
+    except Exception as ex:
+        print('extractSchemaObject error: ' + str(ex.args))
+        exit(-1)
+        
     if verbose: print('Schema not extracted!') #, end="\r")
     return None
 
