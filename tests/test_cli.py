@@ -61,7 +61,7 @@ def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
     
 def runGenerateCommandGeoDBCitiesByApiRelPath():
     print('\nRunning runGenerateCommandGeoDBCitiesByApiRelPath...')
-    command = "pygqlcodegen generate C:/Users/compl/Desktop/Python/proj/py-graphql-mapper/tests/commandsOutput/GeoDBCities -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/generatorArgs.json -v" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/GeoDBCities -apiArgs ./tests/cliInput/gdbcApi/generatorArgs.json -v" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
@@ -71,7 +71,7 @@ def runGenerateCommandGeoDBCitiesByApiRelPath():
 
 def runDownloadCommandGithubBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GithubApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -80,7 +80,7 @@ def runDownloadCommandGithubBySchemaFileRelPath():
     
 def runGenerateCommandGithubByApiAbsPath():
     print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
@@ -89,7 +89,7 @@ def runGenerateCommandGithubByApiAbsPath():
     
 def runGenerateCommandGithubBySchemaFile():
     print('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
@@ -98,7 +98,7 @@ def runGenerateCommandGithubBySchemaFile():
 
 def runDownloadCommandRapidApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./tests/cliInput/RapidApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
@@ -107,7 +107,7 @@ def runDownloadCommandRapidApiBySchemaFileRelPath():
     
 def runGenerateCommandRapidApiByApiAbsPath():
     print('\nRunning runGenerateCommandRapidApiByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
+    command = "pygqlcodegen generate ./tests/commandsOutput/RapidApi -v -apiArgs ./tests/cliInput/RapidApi/generatorArgs.json" #command to be executed
     print("Launching: " + command)
     
     res = os.system(command)
