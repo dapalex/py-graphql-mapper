@@ -106,7 +106,6 @@ def RunGithubAddCommentMutation():
 def RunGithubUpdateRepositoryMutation():
     print('\nRunning RunGithubUpdateRepositoryMutation...')
     try:
-        # from .output.github.gqlTypes import UpdateRepositoryInput
         from .output.github.mutations import Mutations
         
         print('Creating mutation python object...')
@@ -127,6 +126,8 @@ def RunGithubUpdateRepositoryMutation():
         mutation.type.repository.project._args.number = 4
         mutation.type.repository.refs._args.refPrefix = 'pref'
         mutation.type.repository.release._args.tagName = 'tagE'
+        mutation.type.repository.branchProtectionRules._args.first = 1
+        mutation.type.repository.branchProtectionRules._args.after = ''
         
         print('Creating GQLOperation for mutation...')
         pprint(mutation.exportGqlSource)
