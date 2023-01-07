@@ -1,0 +1,3080 @@
+{
+  "__schema": {
+    "queryType": {
+      "name": "Query"
+    },
+    "types": [
+      {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "description": "Built-in Boolean"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ConnectionPageInfo",
+        "description": "Info about the current connection page slice",
+        "fields": [
+          {
+            "name": "startCursor",
+            "description": "The opaque id of the cursor representing the index of the first element in this page",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "endCursor",
+            "description": "The opaque id of the cursor representing the index of the last element in this page",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "hasNextPage",
+            "description": "Whether there are more pages in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "hasPreviousPage",
+            "description": "Whether there are previous pages in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CountriesConnection",
+        "description": "A pageable view into country results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CountryEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Country",
+        "description": "A country",
+        "fields": [
+          {
+            "name": "code",
+            "description": "The ISO-3166 country code",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "callingCode",
+            "description": "The country dialing prefix",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "wikiDataId",
+            "description": "The country WikiData id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "capital",
+            "description": "The country's capital city",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "description": "The country name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "currencyCodes",
+            "description": "A list of supported ISO-4217 currency codes",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "flagImageUri",
+            "description": "The country flag image",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "numRegions",
+            "description": "The number of regions in this country",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "region",
+            "description": "Look up a region in this country",
+            "args": [
+              {
+                "name": "code",
+                "description": "An ISO-3166 or FIPS region code",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CountryRegion"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "regions",
+            "description": "Find regions in this country",
+            "args": [
+              {
+                "name": "namePrefix",
+                "description": "Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefixDefaultLangResults",
+                "description": "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CountryRegionsConnection"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CountryEdge",
+        "description": "When paging countries, wraps a country node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Country"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CountryRegion",
+        "description": "A region in a country. This could be a state, province, district, or otherwise major political division.",
+        "fields": [
+          {
+            "name": "fipsCode",
+            "description": "The region FIPS 10-4 code",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "isoCode",
+            "description": "The region ISO-3166 code",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "wikiDataId",
+            "description": "The region WikiData id",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "description": "The region name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "capital",
+            "description": "The region's capital city",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "country",
+            "description": "The region's country",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Country"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "numPopulatedPlaces",
+            "description": "The number of populated places in this region",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "populatedPlaces",
+            "description": "Find populated places in this region",
+            "args": [
+              {
+                "name": "namePrefix",
+                "description": "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefixDefaultLangResults",
+                "description": "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              },
+              {
+                "name": "minPopulation",
+                "description": "Only places having at least this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "maxPopulation",
+                "description": "Only places having no more than this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "timeZoneIds",
+                "description": "Only places in these time-zones",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "types",
+                "description": "Only places for these types",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "sort",
+                "description": "How to sort place results\nFormat: \u00b1SORT_FIELD,\u00b1SORT_FIELD\nwhere SORT_FIELD = elevation | name | population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "includeDeleted",
+                "description": "Whether to include any places marked deleted",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IncludeDeletedFilterType"
+                },
+                "defaultValue": "NONE"
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RegionPopulatedPlacesConnection"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CountryRegionEdge",
+        "description": "When paging regions, wraps a region node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CountryRegion"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CountryRegionsConnection",
+        "description": "A pageable view into region results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CountryRegionEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CurrenciesConnection",
+        "description": "A pageable view into currency results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CurrencyEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Currency",
+        "description": "A country currency",
+        "fields": [
+          {
+            "name": "countryCodes",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "code",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "symbol",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CurrencyEdge",
+        "description": "When paging currencies, wraps a currency node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Currency"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "DisplayOptions",
+        "description": "How the results should be rendered",
+        "inputFields": [
+          {
+            "name": "asciiMode",
+            "description": "Whether to display results using ASCII-only characters",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "defaultValue": "false"
+          },
+          {
+            "name": "language",
+            "description": "What language to display the results in",
+            "type": {
+              "kind": "ENUM",
+              "name": "Language"
+            },
+            "defaultValue": "EN"
+          }
+        ]
+      },
+      {
+        "kind": "ENUM",
+        "name": "DistanceUnit",
+        "description": "The unit of distance to use when considering a distance arg (for example, in location-related criteria)",
+        "enumValues": [
+          {
+            "name": "KM",
+            "description": "Kilometers",
+            "isDeprecated": false
+          },
+          {
+            "name": "MI",
+            "description": "Miles",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "Built-in Float"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID",
+        "description": "Built-in ID"
+      },
+      {
+        "kind": "ENUM",
+        "name": "IncludeDeletedFilterType",
+        "description": "What level of stale data is ok to pull",
+        "enumValues": [
+          {
+            "name": "ALL",
+            "description": "All data, regardless of if/when marked deleted",
+            "isDeprecated": false
+          },
+          {
+            "name": "SINCE_YESTERDAY",
+            "description": "Only data not marked deleted before yesterday",
+            "isDeprecated": false
+          },
+          {
+            "name": "SINCE_LAST_WEEK",
+            "description": "Only data not marked deleted before last week",
+            "isDeprecated": false
+          },
+          {
+            "name": "NONE",
+            "description": "Only data not marked deleted",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "Built-in Int"
+      },
+      {
+        "kind": "ENUM",
+        "name": "Language",
+        "description": "The languages currently supported",
+        "enumValues": [
+          {
+            "name": "DE",
+            "description": "German",
+            "isDeprecated": false
+          },
+          {
+            "name": "EN",
+            "description": "English",
+            "isDeprecated": false
+          },
+          {
+            "name": "ES",
+            "description": "Spanish",
+            "isDeprecated": false
+          },
+          {
+            "name": "FR",
+            "description": "French",
+            "isDeprecated": false
+          },
+          {
+            "name": "IT",
+            "description": "Italian",
+            "isDeprecated": false
+          },
+          {
+            "name": "PT",
+            "description": "Portuguese",
+            "isDeprecated": false
+          },
+          {
+            "name": "PT_BR",
+            "description": "Portuguese (Brazil)",
+            "isDeprecated": false
+          },
+          {
+            "name": "RU",
+            "description": "Russian",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Locale",
+        "description": "A regional locale representing some country/language combination",
+        "fields": [
+          {
+            "name": "code",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LocaleEdge",
+        "description": "When paging locales, wraps a locale node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Locale"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LocalesConnection",
+        "description": "A pageable view into locale results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LocaleEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "Location",
+        "description": "Location GPS latitude/longitude coordinates",
+        "inputFields": [
+          {
+            "name": "latitude",
+            "description": "DD.DDDD from -90 to 90",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            }
+          },
+          {
+            "name": "longitude",
+            "description": "DD.DDDD from -180 to 180",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NearbyPopulatedPlacesConnection",
+        "description": "A pageable view into nearby populated-place results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PopulatedPlaceEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PopulatedPlace",
+        "description": "A place with some population of inhabitants",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The place native id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "wikiDataId",
+            "description": "The place WikiData id",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "description": "The place name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "placeType",
+            "description": "The place type",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "ENUM",
+                "name": "PopulatedPlaceType"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "elevationMeters",
+            "description": "The place elevation (meters) above sea level",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "latitude",
+            "description": "The place latittude (-90.0 to 90.0)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "longitude",
+            "description": "The place longitude (-180.0 to 180.0)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "population",
+            "description": "The place population",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "timezone",
+            "description": "The place timezone id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "country",
+            "description": "The place's country",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Country"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "region",
+            "description": "The place's region",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CountryRegion"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "distance",
+            "description": "The distance result from some location-based query\nThis field has two forms:\n- As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.\n- As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.",
+            "args": [
+              {
+                "name": "toPlaceId",
+                "description": "The distance to this place",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              },
+              {
+                "name": "distanceUnit",
+                "description": "The unit of distance to use",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "DistanceUnit"
+                },
+                "defaultValue": "MI"
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "locatedIn",
+            "description": "The place containing this place, if any",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PopulatedPlace"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "nearbyPopulatedPlaces",
+            "description": "Find nearby populated places",
+            "args": [
+              {
+                "name": "radius",
+                "description": "The location radius within which to find places",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Float"
+                },
+                "defaultValue": "100"
+              },
+              {
+                "name": "distanceUnit",
+                "description": "The unit of distance to use",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "DistanceUnit"
+                },
+                "defaultValue": "MI"
+              },
+              {
+                "name": "countryIds",
+                "description": "Only places in these countries",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "excludedCountryIds",
+                "description": "Only places NOT in these countries",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "namePrefix",
+                "description": "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefixDefaultLangResults",
+                "description": "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              },
+              {
+                "name": "minPopulation",
+                "description": "Only places having at least this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "maxPopulation",
+                "description": "Only places having no more than this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "timeZoneIds",
+                "description": "Only places in these time-zones",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "types",
+                "description": "Only places for these types",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "sort",
+                "description": "How to sort place results\nFormat: \u00b1SORT_FIELD,\u00b1SORT_FIELD\nwhere SORT_FIELD = countryCode | elevation | name | population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "includeDeleted",
+                "description": "Whether to include any places marked deleted",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IncludeDeletedFilterType"
+                },
+                "defaultValue": "NONE"
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "NearbyPopulatedPlacesConnection"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "deleted",
+            "description": "If this place has been marked deleted",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PopulatedPlaceEdge",
+        "description": "When paging populated places, wraps a place node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PopulatedPlace"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "ENUM",
+        "name": "PopulatedPlaceType",
+        "description": "The populated-place types currently supported",
+        "enumValues": [
+          {
+            "name": "ADM2",
+            "description": "A level-2 administrative division (for example, a county)",
+            "isDeprecated": false
+          },
+          {
+            "name": "CITY",
+            "description": "A city, town, or village",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PopulatedPlacesConnection",
+        "description": "A pageable view into populated-place results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PopulatedPlaceEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Query",
+        "description": "The set of possible top-level queries",
+        "fields": [
+          {
+            "name": "country",
+            "description": "Look up a country",
+            "args": [
+              {
+                "name": "id",
+                "description": "An ISO-3166 country code or WikiData id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "displayOptions",
+                "description": "How to display the results",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "DisplayOptions"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Country"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "countries",
+            "description": "Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.",
+            "args": [
+              {
+                "name": "currencyCode",
+                "description": "Only countries supporting this currency",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefix",
+                "description": "Only countries whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefixDefaultLangResults",
+                "description": "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "displayOptions",
+                "description": "How to display the results",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "DisplayOptions"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CountriesConnection"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "currencies",
+            "description": "Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.",
+            "args": [
+              {
+                "name": "countryId",
+                "description": "Currencies for this country id",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CurrenciesConnection"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "distanceBetween",
+            "description": "Get the distance between any two places",
+            "args": [
+              {
+                "name": "fromPlaceId",
+                "description": "From some place",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "toPlaceId",
+                "description": "To some place",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "distanceUnit",
+                "description": "The unit of distance to use",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "DistanceUnit"
+                },
+                "defaultValue": "MI"
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "locales",
+            "description": "Get all known locales",
+            "args": [
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LocalesConnection"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "populatedPlace",
+            "description": "Look up a populated place",
+            "args": [
+              {
+                "name": "id",
+                "description": " A place id (either native id or Wikidata ID)",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "displayOptions",
+                "description": "How to display the results",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "DisplayOptions"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PopulatedPlace"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "populatedPlaces",
+            "description": "Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.",
+            "args": [
+              {
+                "name": "location",
+                "description": "Only places near this location",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "Location"
+                }
+              },
+              {
+                "name": "radius",
+                "description": "The location radius within which to find places",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Float"
+                },
+                "defaultValue": "100"
+              },
+              {
+                "name": "distanceUnit",
+                "description": "The unit of distance to use",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "DistanceUnit"
+                },
+                "defaultValue": "MI"
+              },
+              {
+                "name": "countryIds",
+                "description": "Only places in these countries",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "excludedCountryIds",
+                "description": "Only places NOT in these countries",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "namePrefix",
+                "description": "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "namePrefixDefaultLangResults",
+                "description": "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              },
+              {
+                "name": "minPopulation",
+                "description": "Only places having at least this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "maxPopulation",
+                "description": "Only places having no more than this population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "timeZoneIds",
+                "description": "Only places in these time-zones",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "types",
+                "description": "Only places for these types",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "sort",
+                "description": "How to sort place results\nFormat: \u00b1SORT_FIELD,\u00b1SORT_FIELD\nwhere SORT_FIELD = countryCode | elevation | name | population",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "displayOptions",
+                "description": "How to display the results",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "DisplayOptions"
+                }
+              },
+              {
+                "name": "includeDeleted",
+                "description": "Whether to include any places marked deleted",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IncludeDeletedFilterType"
+                },
+                "defaultValue": "NONE"
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PopulatedPlacesConnection"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "timeZone",
+            "description": "Look up a time-zone",
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "TimeZone"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "timeZones",
+            "description": "Get all known time-zones",
+            "args": [
+              {
+                "name": "first",
+                "description": "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "after",
+                "description": "The cursor id after which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "last",
+                "description": "How many results to retrieve from the end (or before the 'before' cursor, if specified)",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "before",
+                "description": "The cursor id before which to get results",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "TimeZonesConnection"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RegionPopulatedPlacesConnection",
+        "description": "A pageable view into regional populated-place results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PopulatedPlaceEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "Built-in String"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TimeZone",
+        "description": "A time-zone",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "rawUtcOffsetHours",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "dateTime",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "time",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TimeZoneEdge",
+        "description": "When paging time-zones, wraps a time-zone node together with the cursor referencing its position in the results",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": "The cursor id referencing the position of this node in the results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "description": "The node value",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TimeZone"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TimeZonesConnection",
+        "description": "A pageable view into time-zone results",
+        "fields": [
+          {
+            "name": "totalCount",
+            "description": "The total number of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "edges",
+            "description": "The edges in the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "TimeZoneEdge"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "description": "Info about the current page of results",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Directive",
+        "fields": [
+          {
+            "name": "name",
+            "description": "The __Directive type represents a Directive that a server supports.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "isRepeatable",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "locations",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "__DirectiveLocation"
+                  }
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "args",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue"
+                  }
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "onOperation",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `locations`."
+          },
+          {
+            "name": "onFragment",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `locations`."
+          },
+          {
+            "name": "onField",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `locations`."
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "ENUM",
+        "name": "__DirectiveLocation",
+        "description": "An enum describing valid locations where a directive can be placed",
+        "enumValues": [
+          {
+            "name": "QUERY",
+            "description": "Indicates the directive is valid on queries.",
+            "isDeprecated": false
+          },
+          {
+            "name": "MUTATION",
+            "description": "Indicates the directive is valid on mutations.",
+            "isDeprecated": false
+          },
+          {
+            "name": "SUBSCRIPTION",
+            "description": "Indicates the directive is valid on subscriptions.",
+            "isDeprecated": false
+          },
+          {
+            "name": "FIELD",
+            "description": "Indicates the directive is valid on fields.",
+            "isDeprecated": false
+          },
+          {
+            "name": "FRAGMENT_DEFINITION",
+            "description": "Indicates the directive is valid on fragment definitions.",
+            "isDeprecated": false
+          },
+          {
+            "name": "FRAGMENT_SPREAD",
+            "description": "Indicates the directive is valid on fragment spreads.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INLINE_FRAGMENT",
+            "description": "Indicates the directive is valid on inline fragments.",
+            "isDeprecated": false
+          },
+          {
+            "name": "VARIABLE_DEFINITION",
+            "description": "Indicates the directive is valid on variable definitions.",
+            "isDeprecated": false
+          },
+          {
+            "name": "SCHEMA",
+            "description": "Indicates the directive is valid on a schema SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "SCALAR",
+            "description": "Indicates the directive is valid on a scalar SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "OBJECT",
+            "description": "Indicates the directive is valid on an object SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "FIELD_DEFINITION",
+            "description": "Indicates the directive is valid on a field SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "ARGUMENT_DEFINITION",
+            "description": "Indicates the directive is valid on a field argument SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INTERFACE",
+            "description": "Indicates the directive is valid on an interface SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "UNION",
+            "description": "Indicates the directive is valid on an union SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "ENUM",
+            "description": "Indicates the directive is valid on an enum SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "ENUM_VALUE",
+            "description": "Indicates the directive is valid on an enum value SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INPUT_OBJECT",
+            "description": "Indicates the directive is valid on an input object SDL definition.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INPUT_FIELD_DEFINITION",
+            "description": "Indicates the directive is valid on an input object field SDL definition.",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__EnumValue",
+        "fields": [
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "isDeprecated",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "deprecationReason",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Field",
+        "fields": [
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "args",
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue"
+                  }
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "isDeprecated",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "deprecationReason",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__InputValue",
+        "fields": [
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "defaultValue",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "isDeprecated",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "deprecationReason",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Schema",
+        "description": "A GraphQL Introspection defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, the entry points for query, mutation, and subscription operations.",
+        "fields": [
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "types",
+            "description": "A list of all types supported by this server.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type"
+                  }
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "queryType",
+            "description": "The type that query operations will be rooted at.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "mutationType",
+            "description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "directives",
+            "description": "'A list of all directives supported by this server.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Directive"
+                  }
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "subscriptionType",
+            "description": "'If this server support subscription, the type that subscription operations will be rooted at.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "__Type",
+        "fields": [
+          {
+            "name": "kind",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "ENUM",
+                "name": "__TypeKind"
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "fields",
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Field"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "interfaces",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "possibleTypes",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "enumValues",
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__EnumValue"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "inputFields",
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__InputValue"
+                }
+              }
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "ofType",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type"
+            },
+            "isDeprecated": false
+          },
+          {
+            "name": "specifiedByUrl",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "ENUM",
+        "name": "__TypeKind",
+        "description": "An enum describing what kind of type a given __Type is",
+        "enumValues": [
+          {
+            "name": "SCALAR",
+            "description": "Indicates this type is a scalar. 'specifiedByUrl' is a valid field",
+            "isDeprecated": false
+          },
+          {
+            "name": "OBJECT",
+            "description": "Indicates this type is an object. `fields` and `interfaces` are valid fields.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INTERFACE",
+            "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+            "isDeprecated": false
+          },
+          {
+            "name": "UNION",
+            "description": "Indicates this type is a union. `possibleTypes` is a valid field.",
+            "isDeprecated": false
+          },
+          {
+            "name": "ENUM",
+            "description": "Indicates this type is an enum. `enumValues` is a valid field.",
+            "isDeprecated": false
+          },
+          {
+            "name": "INPUT_OBJECT",
+            "description": "Indicates this type is an input object. `inputFields` is a valid field.",
+            "isDeprecated": false
+          },
+          {
+            "name": "LIST",
+            "description": "Indicates this type is a list. `ofType` is a valid field.",
+            "isDeprecated": false
+          },
+          {
+            "name": "NON_NULL",
+            "description": "Indicates this type is a non-null. `ofType` is a valid field.",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ],
+    "directives": [
+      {
+        "name": "include",
+        "description": "Directs the executor to include this field or fragment only when the `if` argument is true",
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
+        "args": [
+          {
+            "name": "if",
+            "description": "Included when true.",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "skip",
+        "description": "Directs the executor to skip this field or fragment when the `if`'argument is true.",
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
+        "args": [
+          {
+            "name": "if",
+            "description": "Skipped when true.",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "default",
+        "description": "Allows setting runtime defaults on arguments",
+        "locations": [
+          "ARGUMENT_DEFINITION"
+        ],
+        "args": [
+          {
+            "name": "property",
+            "description": "The runtime property to use for the default value",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "fetch",
+        "description": "Allows aliasing a result field by sourcing it to a different underlying field on the type being returned",
+        "locations": [
+          "FIELD_DEFINITION"
+        ],
+        "args": [
+          {
+            "name": "from",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "deprecated",
+        "description": "Marks the field, argument, input field or enum value as deprecated",
+        "locations": [
+          "FIELD_DEFINITION",
+          "ARGUMENT_DEFINITION",
+          "ENUM_VALUE",
+          "INPUT_FIELD_DEFINITION"
+        ],
+        "args": [
+          {
+            "name": "reason",
+            "description": "The reason for the deprecation",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "defaultValue": "\"No longer supported\""
+          }
+        ]
+      },
+      {
+        "name": "specifiedBy",
+        "description": "Exposes a URL that specifies the behaviour of this scalar.",
+        "locations": [
+          "SCALAR"
+        ],
+        "args": [
+          {
+            "name": "url",
+            "description": "The URL that specifies the behaviour of this scalar.",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -24,6 +24,14 @@ def runGenerateCommandGithubByApiAbsPath():
     res = os.system(command)
     print("End of runGenerateCommandGithubByApiAbsPath")
     
+def runGenerateCommandGithubBySchemaFile():
+    print('\nRunning runGenerateCommandGithubByApiAbsPath...')
+    command = "pygqlcodegen generate ./tests/commandsOutput/Github -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/GithubApi/generatorArgs.json" #command to be executed
+    print("Launching: " + command)
+    
+    res = os.system(command)
+    print("End of runGenerateCommandGithubByApiAbsPath")
+    
 def fetchGithubMutationTypes(): 
     print('\nRunning fetchGithubMutationTypes...')
     

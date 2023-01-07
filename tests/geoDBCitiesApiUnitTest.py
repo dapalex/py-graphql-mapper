@@ -7,19 +7,19 @@ from .consts import gdbcHeaders, gdbcUrl
 
 def runDownloadCommandgdbcApiBySchemaFileRelPath():
     print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
+    command = "pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
     print("End of runDownloadCommandGithubBySchemaFileRelPath")
     
-def runDownloadCommandGeoDBCitiesBySchemaFileRelPath():
-    print('\nRunning runDownloadCommandGeoDBCitiesBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./commandsOutput/GeoDBCities/schema.json -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/downloaderArgs.json" #command to be executed
+def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
+    print('\nRunning runGenerateCommandGeoDBCitiesBySchemaFileRelPath...')
+    command = "pygqlcodegen generate ./commandsOutput/GeoDBCities -apiArgs tests/cliInput/GdbcApi/schema.json" #command to be executed
     print("Launching: " + command)
         
     res = os.system(command)
-    print("End of runDownloadCommandGeoDBCitiesBySchemaFileRelPath")
+    print("End of runGenerateCommandGeoDBCitiesBySchemaFileRelPath")
     
 def runGenerateCommandGeoDBCitiesByApiRelPath():
     print('\nRunning runGenerateCommandGeoDBCitiesByApiRelPath...')
