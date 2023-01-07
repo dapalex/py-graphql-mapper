@@ -1,6 +1,7 @@
 import json
 from urllib import request
 from urllib.error import HTTPError
+import logging as logger
 from .src.builder import QueryBuilder
 from .src.enums import BuildingType
 
@@ -75,7 +76,7 @@ class GQLResponse():
                 for error in self.errors:
                     errOutput += str(error) + '\n'
                 errOutput += '\n'
-                raise Exception('Response Errors: ' + errOutput)
+                logger.error('Response Errors: ' + errOutput)
 
             if not hasData and not hasErrors:
                 raise Exception('Inconsistent response: ' + self.httpResponse.text)
