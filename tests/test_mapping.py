@@ -29,54 +29,54 @@ from .tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibilit
 from .tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
 from .tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
 
-testGeneratedDataAsGQLObject())
-testSimpleObject())
-testSimpleObjectArgs_LiteralValues())
-testSimpleObjectArgs_Variables())
-testSimpleObjectVisibility())
+testGeneratedDataAsGQLObject()
+testSimpleObject()
+testSimpleObjectArgs_LiteralValues()
+testSimpleObjectArgs_Variables()
+testSimpleObjectVisibility()
 
-testConnectionObject())
-testConnectionObjectVisibility())
-testConnectionObjectArgs_Variables())
-testConnectionObjectArgs_LiteralValues())
+testConnectionObject()
+testConnectionObjectVisibility()
+testConnectionObjectArgs_Variables()
+testConnectionObjectArgs_LiteralValues()
 
 testComplexObject()
 
 # # #FURTHER TESTS
-testNestedObject())
-testNestedObjectWithLiteralValueArgs())
-testNestedObjectShowChange())
-testComplexObjectWithLiteralValueArgs())
-testComplexObjectWithLiteralValueArgs2())
-testObjectWithComposedArgs()) 
-testComplexObjectShowChange())
-testNestedObjectShowChangeWithArgsAndVariables())
-testComplexObjectShowChangeWithArgsAndVariables()) 
-testNestedObjectWithArgsAndVariables()) 
-testComplexObjectWithArgsAndVariables()) 
+testNestedObject()
+testNestedObjectWithLiteralValueArgs()
+testNestedObjectShowChange()
+testComplexObjectWithLiteralValueArgs()
+testComplexObjectWithLiteralValueArgs2()
+testObjectWithComposedArgs()
+testComplexObjectShowChange()
+testNestedObjectShowChangeWithArgsAndVariables()
+testComplexObjectShowChangeWithArgsAndVariables() 
+testNestedObjectWithArgsAndVariables()
+testComplexObjectWithArgsAndVariables() 
 #Geo DB Cities - END
 
 ###################### QUERIES EXECUTION - END ##############################
 
 ###################### MUTATIONS EXECUTION - START ##############################
 
-testMutationUpdateLiteralValues()) 
-testMutationInsertLiteralValues()) 
+testMutationUpdateLiteralValues()
+testMutationInsertLiteralValues() 
 
 #GITHUB API - START
-RunGithubAddCommentMutation())
-RunGithubUpdateRepositoryMutation())
-RunGithubDeleteProjectMutation())
-RunGithubDeleteProjectV2Mutation())
-RunGithubCreateIssueMutation())
-RunGithubCreateProjectMutation())
+RunGithubAddCommentMutation()
+RunGithubUpdateRepositoryMutation()
+RunGithubDeleteProjectMutation()
+RunGithubDeleteProjectV2Mutation()
+RunGithubCreateIssueMutation()
+RunGithubCreateProjectMutation()
 #GITHUB - END
 
 #RapidAPI - START
-testAdminAuditLogs()) 
-RunRapidApiCreateTransformationsMutation())
-RunRapidApiCreateGatewayInstanceMutation())
-RunRapidApiEditUserAlertMutation())
+testAdminAuditLogs()
+RunRapidApiCreateTransformationsMutation()
+RunRapidApiCreateGatewayInstanceMutation()
+RunRapidApiEditUserAlertMutation()
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################
