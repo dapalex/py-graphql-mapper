@@ -36,7 +36,7 @@ def main():
             raise argparse.ArgumentTypeError('Invalid command')
 
     except Exception as ex:
-        print(ex.args[0])
+        print(str(ex.args))
         exit(-1)
 
 def saveJsonSchema(args, destination):
@@ -64,7 +64,7 @@ def saveJsonSchema(args, destination):
                     schemaFile.write(json.dumps(schemaResponse.data, indent=2))
 
     except Exception as ex:
-        print('args file invalid: ' + ex.args[0])
+        print('args file invalid: ' + str(ex.args))
         exit(-1)
 
 def generatePythonCode(args, destPath):
@@ -87,7 +87,7 @@ def generatePythonCode(args, destPath):
 
                 if args.verbose: print(arguments)
             except Exception as ex:
-                print('args file invalid: ' + ex.args[0])
+                print('args file invalid: ' + str(ex.args))
                 exit(-1)
 
         customScalarTypes =arguments['customTypes'] if 'customTypes' in arguments.keys() else None
