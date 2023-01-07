@@ -5,30 +5,6 @@ from codegen.queryPresets import querySchemaAndTypes
 from .consts import gdbcHeaders, gdbcUrl
 # from .utils import ManageException
 
-def runDownloadCommandgdbcApiBySchemaFileRelPath():
-    print('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json" #command to be executed
-    print("Launching: " + command)
-        
-    res = os.system(command)
-    print("End of runDownloadCommandGithubBySchemaFileRelPath")
-    
-def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
-    print('\nRunning runGenerateCommandGeoDBCitiesBySchemaFileRelPath...')
-    command = "pygqlcodegen generate ./commandsOutput/GeoDBCities -apiArgs tests/cliInput/GdbcApi/schema.json" #command to be executed
-    print("Launching: " + command)
-        
-    res = os.system(command)
-    print("End of runGenerateCommandGeoDBCitiesBySchemaFileRelPath")
-    
-def runGenerateCommandGeoDBCitiesByApiRelPath():
-    print('\nRunning runGenerateCommandGeoDBCitiesByApiRelPath...')
-    command = "pygqlcodegen generate C:/Users/compl/Desktop/Python/proj/py-graphql-mapper/tests/commandsOutput/GeoDBCities -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/gdbcApi/generatorArgs.json -v" #command to be executed
-    print("Launching: " + command)
-    
-    res = os.system(command)
-    print("End of runGenerateCommandGeoDBCitiesByApiRelPath")
-    
 def fetchGeoDBCitiesSchema(): 
     print('\n\nRunning fetchGeoDBCitiesSchema...')
     

@@ -7,22 +7,6 @@ from codegen.queryPresets import querySchemaAndTypes
 from .consts import rapidApiHeaders, rapidApiUrl
 # from .utils import ManageException
 
-def runDownloadCommandRapidApiBySchemaFileRelPath():
-    print('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "pygqlcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./test/GraphQLClients/RapidApi/downloaderArgs.json" #command to be executed
-    print("Launching: " + command)
-        
-    res = os.system(command)
-    print("End of runDownloadCommandRapidApiBySchemaFileRelPath")
-    
-def runGenerateCommandRapidApiByApiAbsPath():
-    print('\nRunning runGenerateCommandRapidApiByApiAbsPath...')
-    command = "pygqlcodegen generate ./tests/commandsOutput/RapidApi -v -apiArgs C:/Users/compl/Desktop/Python/proj/PyGraphQLHelper/test/GraphQLClients/RapidApi/generatorArgs.json" #command to be executed
-    print("Launching: " + command)
-    
-    res = os.system(command)
-    print("End of runGenerateCommandRapidApiByApiAbsPath")
-    
 def fetchRapidApiTestSchemaAndTypes(): 
     print('\nRunning fetchRapidApiTestSchemaAndTypes...')
     
