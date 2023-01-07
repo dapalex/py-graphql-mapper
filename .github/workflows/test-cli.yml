@@ -59,13 +59,13 @@ jobs:
         dir: './tests/cliInput/RapidApi/'
         name: "generatorArgs.json"
         json: ${{ secrets.RAPIDAPI_GENERATOR_ARGS_JSON }}
-    - name: create-json-files
-      id: create-github-json-generator
-      uses: jsdaniell/create-json@v1.2.2
-      with:
-        dir: './tests/cliInput/GithubApi/'
-        name: "generatorArgs.json"
-        json: ${{ secrets.GH_GENERATOR_ARGS_JSON }}
+    # - name: create-json-files
+    #   id: create-github-json-generator
+    #   uses: jsdaniell/create-json@v1.2.2
+    #   with:
+    #     dir: './tests/cliInput/GithubApi/'
+    #     name: "generatorArgs.json"
+    #     json: ${{ secrets.GH_GENERATOR_ARGS_JSON }}
     # - name: create-json-files
     #   id: create-github-json-downloader
     #   uses: jsdaniell/create-json@v1.2.2

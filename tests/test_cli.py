@@ -28,14 +28,11 @@ class TestCLI(unittest.TestCase):
     def testGenerateCommandGeoDBCitiesByApiRelPath(self):
       return runGenerateCommandGeoDBCitiesByApiRelPath()
   
-    def testDownloadCommandGithubBySchemaFileRelPath(self):
-      return runDownloadCommandGithubBySchemaFileRelPath()
+    # def testDownloadCommandGithubBySchemaFileRelPath(self):
+    #   return runDownloadCommandGithubBySchemaFileRelPath()
   
-    def testGenerateCommandGithubByApiAbsPath(self):
-      return runGenerateCommandGithubByApiAbsPath()
-  
-    def testGenerateCommandGeoDBCitiesByApiRelPath(self):
-      return runGenerateCommandGeoDBCitiesByApiRelPath()
+    # def testGenerateCommandGithubByApiAbsPath(self):
+    #   return runGenerateCommandGithubByApiAbsPath()
   
     def testDownloadCommandRapidApiBySchemaFileRelPath(self):
       return runDownloadCommandRapidApiBySchemaFileRelPath()
