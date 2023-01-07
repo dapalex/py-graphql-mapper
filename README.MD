@@ -6,10 +6,10 @@ A python library to interact with GraphQL APIs with no need of hardcoded strings
 
 ## Introduction
 
-This library act as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when calling a GraphQL API server.
+This library acts as a mapper between python and GraphQL languages for GraphQL clients, allowing a code-first approach when calling a GraphQL API server.
 It translates GraphQL entities into python objects and viceversa in order to avoid working with massive "copy&paste"s.
 
-The package does not use any third-party libraries, it relies only on python 3 standard libraries. 
+The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries. 
 
 
 ## Table of Contents
@@ -40,7 +40,7 @@ To generate the code execute the following command:
 pygqlcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs.json
 ```
 
-This command requires a json file containing the parameters necessary to get the GraphQL schema to parse
+This command requires a json file containing the parameters needed to get the GraphQL schema
 
 ![image](https://github.com/dapalex/py-graphql-mapper/blob/main/docs/cli_args_nutshell.png)
 
@@ -77,6 +77,7 @@ myCurrenciesQuery._args.before = 'MTE='
 ```
 Call _exportGqlSource_ property to pass the payload to the HTTP request:
 
+(example using _requests_ library)
 ```python
 import requests
 
@@ -95,7 +96,7 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 ### Retrieval of a response
 
-Obtained the response from the GraphQL API the following code will map the json payload received into the python object
+Obtained the response from the GraphQL API the following code will map the received json payload into the python object
 
 ```python
 from pgqlmCore.network import GQLResponse
@@ -113,4 +114,4 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 
 
 
-A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD#L110)
+A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/test/README.MD)
