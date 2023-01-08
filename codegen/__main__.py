@@ -42,7 +42,7 @@ def main():
 def saveJsonSchema(args, destination):
     try:
         if hasattr(args, 'apiArgs') and args.apiArgs:
-            if args.verbose: print('Checking args file...') 
+            if args.verbose: print('Checking args file...')
             argsFilePath = pathlib.Path(args.apiArgs).absolute()
             if args.verbose: print('args file path -> ' + str(argsFilePath))
             try:
@@ -77,7 +77,7 @@ def generatePythonCode(args, destPath):
         schemaObject: GQLSchema = None
 
         if destPath:
-            if args.verbose: print('Checking destination folder...') 
+            if args.verbose: print('Checking destination folder...')
 
             input_path = getValidFolder(destPath)
 
@@ -106,7 +106,7 @@ def generatePythonCode(args, destPath):
     except Exception as ex:
         print('generatePythonCode error: ' + str(ex.args))
         exit(-1)
-        
+
 def extractSchemaObject(arguments, verbose):
     try:
         if 'apiURL' in arguments.keys() and arguments['apiURL']:
@@ -136,7 +136,7 @@ def extractSchemaObject(arguments, verbose):
     except Exception as ex:
         print('extractSchemaObject error: ' + str(ex.args))
         exit(-1)
-        
+
     if verbose: print('Schema not extracted!')
     return None
 

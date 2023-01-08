@@ -23,7 +23,7 @@ def getObjectClassName(obj):
                 return obj.__doc__.split('(')[0]
         except Exception as sex:
             logger.warning('Got an issue here - ' + sex.args[0])
-    
+
     return str(type(obj))
 
 def isEmptyField(field):
@@ -32,14 +32,14 @@ def isEmptyField(field):
     elif isinstance(field, int) or isinstance(field, float):
         return field < 0
     elif isinstance(field, type): #should never get in
-        return field 
-    elif isinstance(field,bool):  
+        return field
+    elif isinstance(field,bool):
         return False
-    elif isinstance(field, dict): 
+    elif isinstance(field, dict):
         return not not field
-    elif isinstance(field, list): 
+    elif isinstance(field, list):
         return not field
-    elif Enum in inspect.getmro(type(field)): 
+    elif Enum in inspect.getmro(type(field)):
         return field.value == None
     elif inspect.isclass(type(field)):
         out = True
@@ -48,7 +48,7 @@ def isEmptyField(field):
         return out
     else:
         logger.error('type not managed!')
-      
+
 def isNoneOrBuiltinPrimitive(obj):
     return isinstance(obj, primitives)
 
@@ -60,9 +60,9 @@ def popListElementByRef(lst: list, element):
 
 def mergeTupleUniqueArguments(tup1: tuple, tup2: tuple):
     if tup2:
-       
+
             tup1 = addTupleUniqueArgument(tup1, tup2[0], tup2[1])
-    
+
     return tup1
 
 def addTupleUniqueArgument(tup: tuple, strArgument, location):
@@ -75,21 +75,20 @@ def getDotNotationInfo(dataInput: str) -> tuple:
     """for internal use
 
     Args:
-        input (str): path through dot notation to a variable 
-        e.g.: <classInstanceA>.<classInstanceB>.<fieldName>  
+        input (str): path through dot notation to a variable
+        e.g.: <classInstanceA>.<classInstanceB>.<fieldName>
 
     Returns:
         tuple: structured version of input in
         ([path through objects], <fieldName>)
     """
     path = dataInput.split('.')
-    variable = path.pop(len(path) - 1) 
+    variable = path.pop(len(path) - 1)
     return (path, variable)
-    
+
 def executeRegex(dataInput):
     ret = re.sub(r': *\'[!-&(-z]*\'', ' ', dataInput) #removes anything after : -> : '<anything>'
     ret = re.sub(r': *[-A-Za-z0-9]*', ' ', ret)
     ret = ret.replace('\'', ' ').replace(',', ' ')
     ret = ret.replace('[', ' ').replace(']', ' ')
     return ret
-    
