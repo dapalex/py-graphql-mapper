@@ -111,6 +111,8 @@ def runGithubUpdateRepositoryMutation():
         mutation.type.repository.release._args.tagName = 'tagE'
         mutation.type.repository.branchProtectionRules._args.first = 1
         mutation.type.repository.branchProtectionRules._args.after = ''
+        mutation.type.repository.assignableUsers._args.first = 1
+        mutation.type.repository.assignableUsers._args.after = ''
 
         logger.info('Creating GQLOperation for mutation...')
         logger.info(mutation.exportGqlSource)
