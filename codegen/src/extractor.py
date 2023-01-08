@@ -575,31 +575,33 @@ class Extractor():
     def extractSchemaTypeContent(self, scType, circularRefTypes, actualType, contentName):
         codeLst = []
         docsLst = []
+        try:
+            if hasattr(scType, contentName):
+                content = getattr(scType, contentName)
+                if not content: return [scType.name + ' = ' + actualType]
 
-        if hasattr(scType, contentName):
-            content = getattr(scType, contentName)
-            if not content: return [scType.name + ' = ' + actualType]
+                ##check if all elements are deprecated --> get out empty handed
+                if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, content)):
+                    logger.warning('Type ' + scType.name + ' deprecated!')
+                    return [], []
 
-            ##check if all elements are deprecated --> get out empty handed
-            if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, content)):
-                logger.warning('Type ' + scType.name + ' deprecated!')
-                return [], []
+                for element in content:
 
-            for element in content:
+                    ##check if the element is deprecated --> skip it
+                    if isDeprecated(element):
+                        logger.warning(element.name + ' is deprecated')
+                        continue
 
-                ##check if the element is deprecated --> skip it
-                if isDeprecated(element):
-                    logger.warning(element + ' is deprecated')
-                    continue
+                    try:
+                        docLine, codeLine = self.extractElementContent(element, scType, circularRefTypes)
+                        if self.addDescription and docLine: docsLst.append(docLine)
+                        codeLst.append(codeLine)
 
-                try:
-                    docLine, codeLine = self.extractElementContent(element, scType, circularRefTypes)
-                    if self.addDescription and docLine: docsLst.append(docLine)
-                    codeLst.append(codeLine)
+                    except Exception as ex:
+                        logger.error('Error during extraction of content of element ' + element.name + ' for schema Type ' + scType.name + ' - ' + ex.args[0])
 
-                except Exception as ex:
-                    logger.error('Error during extraction of schema Type content ' + element.name + ' - ' + ex.args[0])
-
+        except Exception as ex:
+            logger.error('Error during extraction of schema Type content ' + element.name + ' - ' + ex.args[0])
         return docsLst, codeLst
 
     def extractElementContent(self, element, parentType, circularRefTypes):
