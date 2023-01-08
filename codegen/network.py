@@ -8,7 +8,7 @@ def fetchSchemaResponse(url, httpHeaders, query):
         response = httpRequest(url, payload, httpHeaders)
     except Exception as ex:
         raise ex
-    
+
     return GQLSchemaResponse(response)
 
 def fetchSchemaObject(url, headers, query):
@@ -18,20 +18,20 @@ def fetchSchemaObject(url, headers, query):
     return gqlResponse.resultObject
 
 class GQLSchemaResponse(GQLResponse):
-    
+
     includeDeprecated: bool
-    
+
     def mapGQLDataToObj(self, mappedPyObject = None,  buildType = None):
         """_summary_
 
         Args:
-            includeDeprecated (bool, optional): Decides if deprecated values are to be included. 
+            includeDeprecated (bool, optional): Decides if deprecated values are to be included.
                                                 Defaults to True.
 
         Returns:
             _type_: _description_
         """
-        
+
         if self.data:
             for rootObject in self.data.keys():
                 if rootObject == '__schema': #check self.data type
@@ -41,4 +41,4 @@ class GQLSchemaResponse(GQLResponse):
                     myBuilder = SchemaTypeBuilder()
                     self.resultObject = myBuilder.build(self.data, SCType())
                 else:
-                    return None
+                    self.resultObject = None

@@ -20,29 +20,29 @@ currentPath: str = None
 mergedClasses: dict = {}
 
 depthReached: str = 'Recursion depth %s reached for %s of type %s'
-   
+
 def subClassInit(obj, fields = None):
     """For internal use only"""
     global currentPath
-    
+
     try:
         if not currentPath: currentPath = obj.__class__.__name__
-        
+
         for fieldName in obj.__dataclass_fields__ if not fields else fields:
             try:
                 fieldType = obj.__dataclass_fields__[fieldName].type if not fields else fields[fieldName]
-                
+
                 updateCurrentPath(obj, fieldName, fieldType)
-                initType(obj, fieldType, fieldName) 
+                initType(obj, fieldType, fieldName)
             except Exception as ex:
                 raise HandleRecursiveEx(ex, 'Exception during init of ' + fieldName + ' in ' + str(obj))
-        
+
         if FieldsShow in inspect.getmro(type(obj)):
-            obj.initFieldsShow() 
-        
+            obj.initFieldsShow()
+
         #gotta clean
         removeInitializedFromtPath(obj)
-        
+
     except Exception as ex:
         raise HandleRecursiveEx(ex, 'Error during subClassInit of ' + obj.__class__.__name__)
 
@@ -69,7 +69,7 @@ def initType(obj, fieldType, fieldName):
                     setattr(obj, fieldName, fieldType())
                 else:
                     setattr(obj, fieldName, None)
-        elif type(fieldType) == NewType or type(fieldType) == TypeVar:
+        elif isinstance(fieldType, NewType) or isinstance(fieldType, TypeVar):
             addCircularRef(fieldType)
             defineVariableType(obj, fieldName, fieldType)
         elif fieldType == Union:
@@ -85,7 +85,7 @@ def initType(obj, fieldType, fieldName):
 def initTypedListAsType(obj, fieldName, fieldType):
     try:
         elementType = fieldType.__args__[0]
-        
+
         if checkCircularRefs(elementType):
             initType(obj, elementType, fieldName)
         else:
@@ -99,10 +99,10 @@ def specializeGeneric(obj, fieldName, fieldType):
     try:
         ##extract class from type name stringified of the field
         currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
-        
+
         # if not fieldType.__name__ in circularRef.keys() and int(mapConfig["recursionDepth"]) > 0:
         if checkCircularRefs(currentClass):
-            
+
             #welcome!!
             ## get name of the class
             className = getClassName(fieldType)
@@ -137,7 +137,7 @@ def defineVariableType(obj, fieldName, fieldType):
     try:
         if hasattr(sys.modules[obj.__module__], fieldType.__name__):
             currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
-            
+
             if checkCircularRefs(fieldType):
                 setattr(obj, fieldName, currentClass())
             else:
@@ -146,7 +146,7 @@ def defineVariableType(obj, fieldName, fieldType):
             logger.error('something is wrong')
     except Exception as ex:
         raise HandleRecursiveEx(ex, 'Error during variable type definition ' + fieldName)
-    
+
 def mutationInit(obj):
     global currentPath, circularRefs, mergedClasses
     currentPath = None
@@ -161,7 +161,7 @@ def mutationInit(obj):
         super(GQLMutation, obj).__init__(operationType=OperationType.mutation, dataType=obj.type, argsType=ArgType.LiteralValues)
     except Exception as ex:
         raise HandleRecursiveEx(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
-    
+
 def queryInit(obj):
     global currentPath, circularRefs, mergedClasses
     currentPath = None
@@ -185,16 +185,16 @@ def addCircularRef(fieldType):
                 if currentPath.__contains__(circRefPath):
                     return
         if int(mapConfig["recursionDepth"]) > 0:
-            circularRefs.update({ (fieldType.__name__, currentPath): 1 if type(fieldType) == NewType else -1 })
+            circularRefs.update({ (fieldType.__name__, currentPath): 1 if isinstance(fieldType, NewType) else -1 })
         else:
             logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
-        if not (fieldType.__name__, currentPath) in circularRefs.keys(): 
+        if not (fieldType.__name__, currentPath) in circularRefs.keys():
             circularRefs.update({ (fieldType.__name__, currentPath): 0 })
         else:
             pass
     except Exception as ex:
        raise HandleRecursiveEx(ex, 'Error during circular refs adding for objects Init')
-        
+
 def checkCircularRefs(fieldType):
     """
         Recursion 0 ==> only 1 presence allowed
@@ -209,16 +209,16 @@ def checkCircularRefs(fieldType):
                         return True
                     else:
                         # logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
-                        return False    
-        
-        return True 
+                        return False
+
+        return True
     except Exception as ex:
        raise HandleRecursiveEx(ex, 'Error during circular refs check for objects Init')
-    
+
 def updateCurrentPath(obj, fieldName, fieldType):
     global currentPath
     if hasattr(obj, fieldName): return
-    
+
     if currentPath.endswith(obj.__class__.__name__):
         if obj.__class__.__name__  == fieldType.__name__ + 'Field': pass
         currentPath += '.' + fieldType.__name__
@@ -226,9 +226,8 @@ def updateCurrentPath(obj, fieldName, fieldType):
         if currentPath.__contains__(obj.__class__.__name__):
             currentPath = currentPath[0: currentPath.rfind(obj.__class__.__name__) + len(obj.__class__.__name__)]
             currentPath += '.' + fieldType.__name__
-                
-    
+
+
 def removeInitializedFromtPath(obj):
-    global currentPath    
+    global currentPath
     currentPath = currentPath[0: currentPath.rfind(obj.__class__.__name__)].removesuffix('.')
-    

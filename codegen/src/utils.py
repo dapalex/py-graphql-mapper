@@ -8,8 +8,7 @@ gqlTypeKinds = (TypeKind.INPUT_OBJECT.name, TypeKind.INTERFACE.name, TypeKind.OB
 typesByName = [TypeKind.INPUT_OBJECT.name, TypeKind.OBJECT.name, TypeKind.INTERFACE.name, TypeKind.SCALAR.name, TypeKind.ENUM.name, TypeKind.UNION.name]
     
 def performanceProfilerLog():
-    ppFile = open('test/logs/performance analysis.log', 'w')
-    return ppFile
+    return  open('test/logs/performance analysis.log', 'w')
     
 def splitTypes(dictionary: dict[str, any]):
     myDeque = deque()

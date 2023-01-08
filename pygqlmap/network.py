@@ -33,7 +33,7 @@ class GQLResponse():
         self.jsonResponse = json.loads(response.text)
         self.logProgress = logProgress
         
-        if type(self.jsonResponse) == dict:
+        if isinstance(self.jsonResponse, dict):
             if "errors" in self.jsonResponse.keys():
                 self.errors = self.jsonResponse["errors"]
             if "data" in self.jsonResponse.keys():

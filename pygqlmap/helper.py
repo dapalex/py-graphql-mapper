@@ -23,5 +23,5 @@ def HandleRecursiveEx(ex = None, message: str = None):
         else:
             logger.error(ex.args[0])
             return CustomException(message + ' - ' + ex.args[0])
-    except Exception as ex:
-        logger.warning('HandleRecursiveEx')
+    except Exception as hex:
+        logger.warning('HandleRecursiveEx' + hex.args[0])

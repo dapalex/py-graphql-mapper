@@ -97,7 +97,6 @@ def generatePythonCode(args, destPath):
                 print('generatePythonCode -  arg opening error: ' + str(ex.args))
                 exit(-1)
 
-        customScalarTypes =arguments['customTypes'] if 'customTypes' in arguments.keys() else None
         addDescription =  arguments['addDescToGeneratedFiles'] if 'addDescToGeneratedFiles' in arguments.keys() else True
 
         schemaObject = extractSchemaObject(arguments, args.verbose)
@@ -120,19 +119,19 @@ def extractSchemaObject(arguments, verbose):
             return schemaResponse.resultObject
 
         elif 'schemaFile' in arguments.keys() and arguments['schemaFile']:
-                if verbose: print('Extracting schema from file...') 
-                parentFolder = pathlib.Path(arguments['schemaFile']).parent
-                outputFolder = getValidFolder(str(parentFolder))
-                if verbose: print('output folder: ' + str(outputFolder))
-                fileName = pathlib.Path(arguments['schemaFile']).name
-                if verbose: print('file name: ' + str(fileName))
-                outputFilePath = os.path.join(outputFolder, fileName)
-                if verbose: print('output destination: ' + str(outputFilePath))
-                with open(outputFilePath, 'r') as wrapper:
-                    schemaString = wrapper.read()
+            if verbose: print('Extracting schema from file...')
+            parentFolder = pathlib.Path(arguments['schemaFile']).parent
+            outputFolder = getValidFolder(str(parentFolder))
+            if verbose: print('output folder: ' + str(outputFolder))
+            fileName = pathlib.Path(arguments['schemaFile']).name
+            if verbose: print('file name: ' + str(fileName))
+            outputFilePath = os.path.join(outputFolder, fileName)
+            if verbose: print('output destination: ' + str(outputFilePath))
+            with open(outputFilePath, 'r') as wrapper:
+                schemaString = wrapper.read()
 
-                if verbose: print('Creating schema object...') 
-                return buildSchema(schemaString)
+            if verbose: print('Creating schema object...')
+            return buildSchema(schemaString)
 
     except Exception as ex:
         print('extractSchemaObject error: ' + str(ex.args))

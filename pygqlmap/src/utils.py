@@ -27,17 +27,17 @@ def getObjectClassName(obj):
     return str(type(obj))
 
 def isEmptyField(field):
-    if type(field) == str or  type(field) == ID:
+    if isinstance(field, str) or  isinstance(field, ID):
         return len(field) == 0
-    elif type(field) == int or type(field) == float:
+    elif isinstance(field, int) or isinstance(field, float):
         return field < 0
-    elif type(field) == type: #should never get in
+    elif isinstance(field, type): #should never get in
         return field 
-    elif type(field) == bool:  
+    elif isinstance(field,bool):  
         return False
-    elif type(field) == dict: 
+    elif isinstance(field, dict): 
         return not not field
-    elif type(field) == list: 
+    elif isinstance(field, list): 
         return not field
     elif Enum in inspect.getmro(type(field)): 
         return field.value == None
