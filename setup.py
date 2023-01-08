@@ -3,7 +3,6 @@ from setuptools import setup
 setup(
     name='pygqlmap',
     version='1.0.0',
-    long_description= open('README.md').read(),
     url='https://github.com/dapalex/py-graphql-mapper/',
     author='Alex Dap',
     author_email='shlisi2017@gmail.com',

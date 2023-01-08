@@ -28,7 +28,7 @@ In order to launch the tests locally an API key has to be set for:
 | Querying a connection changing the visibility of fields | Create a GraphQL Query to fetch a simple GraphQL type and build the python class instance containing the data from the response <br> _Note: This is only for descriptive purposes, the GraphQL server involved does not expose such a query, for real-world cases see other tests_ | [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionObjectChangeVisibilityTest.py) |
 | Querying a composed object | Create a GraphQL Query to fetch a GraphQL connection type using Args and Variables and build the python class instance containing the data from the response | [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/complexObjectTest.py) |
 
-Further queries can be found [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/unitTest.py) |
+Further queries can be found [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/unitTest.py)
 
 ## Mutations
 
