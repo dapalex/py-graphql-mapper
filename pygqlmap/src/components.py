@@ -1,5 +1,6 @@
 import inspect
 from .utils import getObjectClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
+import logging as logger
 
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
