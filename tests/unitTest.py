@@ -18,7 +18,7 @@ def runNestedObject():
         gqlResponse = GQLResponse(response)
 
         gqlResponse.printMessageOutput()
-        gqlResponse.mapGQLDataToObj(currencies())
+        gqlResponse.mapGQLDataToObj(query.type)
         logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])

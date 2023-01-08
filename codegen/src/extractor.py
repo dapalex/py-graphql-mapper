@@ -519,7 +519,7 @@ class Extractor():
                     returnCodeList.append(self.indent + '"""')
                 returnCodeList.extend(classCodeLst)
             else:
-                logger.error('Missing code for type ' + scTypeName)
+                logger.warning('Missing code for type ' + scTypeName)
 
             if self.logProgress: logger.info(scTypeName + ' code generation completed')
 
