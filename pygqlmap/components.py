@@ -40,9 +40,9 @@ class GQLOperationArgs(GQLBaseArgsSet):
             if self.arguments:
                 return Translate.toJsonVariables(self.arguments)
             else:
-                raise HandleRecursiveEx(None, 'No variables to export')
+                raise HandleRecursiveEx(message='No variables to export')
         else: 
-            raise HandleRecursiveEx(None, 'Cannot export Variables, arguments type is ' + self._argsType.name)
+            raise HandleRecursiveEx(message='Cannot export Variables, arguments type is ' + self._argsType.name)
         
     def exportArgKey(self, fieldName, fieldValue):
         return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
@@ -114,7 +114,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             for key in keys:
                 self.fieldsShowTree.setFieldShow(key, isVisible)
         else:
-            raise HandleRecursiveEx(None, 'setShow accepts only ''str'' or ''list'' types') ##why not throwing?
+            raise HandleRecursiveEx(message='setShow accepts only ''str'' or ''list'' types') ##why not throwing?
 
     @property
     def exportGqlSource(self):

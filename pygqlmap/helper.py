@@ -16,7 +16,7 @@ mapConfig = config_object["MAPCONFIG"]
 class CustomException(Exception):
     """ Custom exception class """
 
-def HandleRecursiveEx(ex, message: str = None):
+def HandleRecursiveEx(ex = None, message: str = None):
     try:
         if ex and CustomException in inspect.getmro(type(ex)):
             return ex

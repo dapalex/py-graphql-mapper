@@ -96,7 +96,7 @@ class GQLBaseArgsSet():
     @abstractmethod
     def exportArgKey(self, fieldName, fieldValue):
         """ For internal use only """
-        raise HandleRecursiveEx(None, 'exportArg function not implemented')
+        raise HandleRecursiveEx(message='exportArg function not implemented')
     
     @property
     def exportArgs(self):
@@ -111,7 +111,7 @@ class GQLBaseArgsSet():
                         if len(arguments) > 0:
                             return '(' + arguments + ')'
             else:
-                raise HandleRecursiveEx(None, 'No valid argType for ')
+                raise HandleRecursiveEx(message='No valid argType for ')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Issue during export arguments for ' + self.__class__.__name__)
         
@@ -127,7 +127,7 @@ class GQLBaseArgsSet():
                 try:  
                     output += self.exportArgKey(field, getattr(self, field)) + commaConcat
                 except:
-                    raise HandleRecursiveEx(None, 'Issue exporting arg key for: ' + field)
+                    raise HandleRecursiveEx(message='Issue exporting arg key for: ' + field)
         
             output = output.removesuffix(commaConcat)
         except Exception as ex:

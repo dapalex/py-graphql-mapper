@@ -5,28 +5,28 @@ from .spSchema import GQLSchema, SCArg, SCType, SCDirective, SCField, SCEnumValu
 
 class SchemaTypeBuilder(Builder):
     
-    def build(self, input, pyObject):
-        inputType = input['__type']
+    def build(self, dataInput, pyObject):
+        inputType = dataInput['__type']
         
         pyObject = SchemaTypeBuilder.buildType(inputType)
         
         return pyObject
         
-    def buildTypes(input):
+    def buildTypes(dataInput):
         types = {}
-        for typeInput in input:
+        for typeInput in dataInput:
             types.update({ typeInput["name"]: SchemaTypeBuilder.buildType(typeInput) })
         
         return types
             
-    def buildType(input):
+    def buildType(dataInput):
         type = SCType()
-        if not input: return None
+        if not dataInput: return None
         try:
             
-            while len(input.items()) > 0:
+            while len(dataInput.items()) > 0:
                 try:
-                    inputField = input.popitem()
+                    inputField = dataInput.popitem()
                     if inputField[0] == 'ofType':
                         type.ofType = SchemaTypeBuilder.buildOfType(inputField[1]) if inputField[1] else None
                     elif inputField[0] == 'fields':
@@ -51,12 +51,12 @@ class SchemaTypeBuilder(Builder):
             
         return type
     
-    def buildOfType(input):
+    def buildOfType(dataInput):
         field = SCOfType()
         
         try:
-            while len(input.items()) > 0:
-                fieldField = input.popitem()
+            while len(dataInput.items()) > 0:
+                fieldField = dataInput.popitem()
                 if fieldField[0] == 'ofType' and fieldField[1]: ##SKIPPING NON NULL MANAGEMENT, it will be back!
                     return  SchemaTypeBuilder.buildOfType(fieldField[1])
                 else:
@@ -67,12 +67,12 @@ class SchemaTypeBuilder(Builder):
             
         return field
     
-    def buildFieldType(input):
+    def buildFieldType(dataInput):
         field = SCFieldType()
         
         try: 
-            while len(input.items()) > 0:
-                fieldField = input.popitem()
+            while len(dataInput.items()) > 0:
+                fieldField = dataInput.popitem()
                 if fieldField[0] == 'ofType':
                     field.ofType = SchemaTypeBuilder.buildOfType(fieldField[1]) if fieldField[1] else None
                 else:
@@ -83,13 +83,13 @@ class SchemaTypeBuilder(Builder):
             
         return field
     
-    def buildTypeField(input):
+    def buildTypeField(dataInput):
         field = SCField()
         
         try:
             
-            while len(input.items()) > 0:
-                fieldField = input.popitem()
+            while len(dataInput.items()) > 0:
+                fieldField = dataInput.popitem()
                 if fieldField[0] == 'args':
                     field.args = SchemaTypeBuilder.buildArgsOrInputFields(fieldField[1], False) if fieldField[1] else None
                 elif fieldField[0] == 'type':
@@ -102,13 +102,13 @@ class SchemaTypeBuilder(Builder):
             
         return field
     
-    def buildTypeInterface(input):
+    def buildTypeInterface(dataInput):
         interface = SCInterface()
             
         try:
             
-            while len(input.items()) > 0:
-                enumValue = input.popitem()
+            while len(dataInput.items()) > 0:
+                enumValue = dataInput.popitem()
                 setattr(interface, enumValue[0], enumValue[1])
                 
         except Exception as ex:
@@ -116,9 +116,9 @@ class SchemaTypeBuilder(Builder):
             
         return interface
     
-    def buildArgsOrInputFields(input, isInputField):
+    def buildArgsOrInputFields(dataInput, isInputField):
         args = []
-        for inputArg in input:
+        for inputArg in dataInput:
             obj = SCInputField() if isInputField else SCArg()
             while len(inputArg.items()) > 0:
                 inputArgField = inputArg.popitem()
@@ -128,15 +128,15 @@ class SchemaTypeBuilder(Builder):
             args.append(currentObj)
         return args
     
-    def buildInputFields(input):
-        return SchemaTypeBuilder.buildArgsOrInputFields(input, True) 
+    def buildInputFields(dataInput):
+        return SchemaTypeBuilder.buildArgsOrInputFields(dataInput, True) 
     
-    def buildArgType(input):
+    def buildArgType(dataInput):
         field = SCArgType()
         
         try:
-            while len(input.items()) > 0:
-                fieldField = input.popitem()
+            while len(dataInput.items()) > 0:
+                fieldField = dataInput.popitem()
                 setattr(field, fieldField[0], SchemaTypeBuilder.buildArgType(fieldField[1]) if fieldField[0] == 'ofType' and fieldField[1] else fieldField[1])
         
         except Exception as ex:
@@ -144,13 +144,13 @@ class SchemaTypeBuilder(Builder):
             
         return field
     
-    def buildTypeEnumValue(input):
+    def buildTypeEnumValue(dataInput):
         scEnumValue = SCEnumValue()
         
         try: 
             
-            while len(input.items()) > 0:
-                enumValue = input.popitem()
+            while len(dataInput.items()) > 0:
+                enumValue = dataInput.popitem()
                 setattr(scEnumValue, enumValue[0], enumValue[1])
         
         except Exception as ex:
@@ -160,8 +160,8 @@ class SchemaTypeBuilder(Builder):
     
 class SchemaBuilder(Builder):
     
-    def build(self, input, pyObject: GQLSchema):
-        inputSchema = input['__schema']
+    def build(self, dataInput, pyObject: GQLSchema):
+        inputSchema = dataInput['__schema']
         
         while len(inputSchema.items()) > 0:
             data = inputSchema.popitem()
@@ -179,10 +179,10 @@ class SchemaBuilder(Builder):
         
         return pyObject        
     
-    def buildDirective(self, input):
+    def buildDirective(self, dataInput):
         directive = SCDirective()
-        while len(input.items()) > 0:
-            inputField = input.popitem()
+        while len(dataInput.items()) > 0:
+            inputField = dataInput.popitem()
             setattr(directive, inputField[0], SchemaTypeBuilder.buildArgsOrInputFields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
         
         return directive

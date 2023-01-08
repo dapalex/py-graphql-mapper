@@ -10,7 +10,7 @@ from .consts import arguedSignatureSuffix
 from .utils import getClassName
 from pygqlmap.helper import HandleRecursiveEx, mapConfig
 import logging as logger
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 ## dictionary of
 ## key: tuple (type, startingPath)
@@ -215,13 +215,9 @@ def checkCircularRefs(fieldType):
     except Exception as ex:
        raise HandleRecursiveEx(ex, 'Error during circular refs check for objects Init')
     
-    #####@dataclass instead of GQLObject for args
-    
 def updateCurrentPath(obj, fieldName, fieldType):
     global currentPath
     if hasattr(obj, fieldName): return
-    
-    # currentPath.append(fieldType, fieldName, fieldType)
     
     if currentPath.endswith(obj.__class__.__name__):
         if obj.__class__.__name__  == fieldType.__name__ + 'Field': pass

@@ -103,7 +103,7 @@ class Translate():
         elif Enum in inspect.getmro(type(pyVariable)) or inspect.isclass(type(pyVariable)): 
             return type(pyVariable).__name__
         else:
-            raise HandleRecursiveEx(None, 'type not managed!')
+            raise HandleRecursiveEx(message='type not managed!')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
@@ -126,7 +126,7 @@ class Translate():
             
             output.removesuffix(commaConcat)
         except:
-            raise HandleRecursiveEx(None, 'Issue with items exporting variable')   
+            raise HandleRecursiveEx(message='Issue with items exporting variable')   
         
         output += ' }'
         return output
@@ -148,40 +148,17 @@ class Translate():
         
         return output
     
-    # ##works on the last dict
-    # def excludeArgs(inputSourceDict: dict, argsToIgnore: list = []) -> str:
-    #     stringifiedInputDict = str(inputSourceDict)
-    #     output: str = ''
-    #     wentThrough = False
-        
-    #     print('working on ' + stringifiedInputDict)
-    #     try:
-    #         if argsToIgnore:
-    #             for args in argsToIgnore:
-    #                 try:
-    #                     if stringifiedInputDict.__contains__(args):
-    #                         inputList = stringifiedInputDict.split(args)
-    #                         output += args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
-    #                         wentThrough = True    
-    #                 except Exception as ex: 
-    #                     raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
-                   
-    #     except Exception as ex: 
-    #         raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for ' + str(inputSourceDict))
-        
-    #     return executeRegex(stringifiedInputDict) if not wentThrough else output
-
-    def excludeArgsSubstring(input: str, argsToIgnore: list):
+    def excludeArgsSubstring(dataInput: str, argsToIgnore: list):
         for args in argsToIgnore:
             try:
-                if str(input).__contains__(args):
-                    print('splitting ' + input)
-                    inputList = input.split(args)
+                if str(dataInput).__contains__(args):
+                    print('splitting ' + dataInput)
+                    inputList = dataInput.split(args)
                     return args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
             except Exception as ex: 
-                raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for substring ' + input)
+                raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for substring ' + dataInput)
         
-        return executeRegex(input)
+        return executeRegex(dataInput)
     
     def toGraphQLArgsSetDefinition(pyObject):
         output = ''
