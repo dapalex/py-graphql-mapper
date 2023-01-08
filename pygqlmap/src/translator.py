@@ -35,12 +35,12 @@ class Translate():
         try:
             if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
+            elif isinstance(pyVariable, bool):
+                return str(pyVariable).lower()
             elif isinstance(pyVariable, int) or isinstance(pyVariable, float) or isinstance(pyVariable, list):
                 return str(pyVariable).replace('\'', '\"')
             elif isinstance(pyVariable, type):
                 return '\"' + str(pyVariable).replace('\'', '\"') + '\"'
-            elif isinstance(pyVariable, bool):
-                return str(pyVariable).lower()
             elif Enum in inspect.getmro(type(pyVariable)):
                 return pyVariable.value
             elif isinstance(pyVariable, dict):
