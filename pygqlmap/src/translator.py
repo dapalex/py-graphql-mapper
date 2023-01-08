@@ -52,7 +52,7 @@ class Translate():
                 output += ' } '
                 return output
             else:
-                logger.warn('to manage')
+                logger.warning('to manage')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
@@ -77,7 +77,7 @@ class Translate():
                 output += ' } '
                 return output
             else:
-                logger.warn('to manage')
+                logger.warning('to manage')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
 

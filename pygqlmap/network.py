@@ -17,9 +17,9 @@ def httpRequest(api_url, payload, httpHeaders):
             response.ok = response.status == 200
             return response
     except HTTPError as ex:
-        raise Exception(str(ex))
+        raise Exception(str(ex.args))
     except Exception as ex:
-        raise ex
+        raise Exception(str(ex.args))
 
 class GQLResponse():
     httpResponse = None

@@ -1,8 +1,9 @@
-[![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)  
--------------------------------------------------------------------------------- 
-# py-graphql-mapper  
+[![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/280533e425784f7da9ecb0f6e529886b)](https://www.codacy.com/gh/dapalex/py-graphql-mapper/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dapalex/py-graphql-mapper&amp;utm_campaign=Badge_Grade)
+--------------------------------------------------------------------------------
+# py-graphql-mapper
 [![Code Generation Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml)
-[![Pyhon-GraphQL Mapping Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml)   
+[![Pyhon-GraphQL Mapping Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml)
 
 A python library to interact with GraphQL APIs with no need of hardcoded strings.
 
@@ -11,7 +12,7 @@ A python library to interact with GraphQL APIs with no need of hardcoded strings
 This library act as a mapper between python and GraphQL languages for a GraphQL client allowing a code-first approach when calling a GraphQL API server.
 It translates GraphQL entities into python objects and viceversa in order to avoid working with massive "copy&paste"s.
 
-The package does not use any third-party libraries, it relies only on python 3 standard libraries. 
+The package does not use any third-party libraries, it relies only on python 3 standard libraries.
 
 
 ## Table of Contents
@@ -82,11 +83,11 @@ Call _exportGqlSource_ property to pass the payload to the HTTP request:
 ```python
 import requests
 
-response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
-                            json= { "query": myCurrenciesQuery.exportGqlSource }, 
+response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/',
+                            json= { "query": myCurrenciesQuery.exportGqlSource },
                             headers={
                                     "content-type": "application/json",
-                                        "X-RapidAPI-Key": '123402mmri02fni230iif32jr420', 
+                                        "X-RapidAPI-Key": '123402mmri02fni230iif32jr420',
                                         "X-RapidAPI-Host": "geodb-cities-graphql.p.rapidapi.com"
                                     }
                             )

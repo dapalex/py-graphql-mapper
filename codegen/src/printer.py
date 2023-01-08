@@ -18,7 +18,7 @@ class Printer():
             if folder:
                 folder = getValidFolder(folder)
             else:
-                logger.warn('Destination folder missing')
+                logger.warning('Destination folder missing')
 
             self.saveScalarsFile(str(pathlib.Path(os.path.dirname(folder), 'scalars.py').absolute()))
             self.saveEnumsFile(str(pathlib.Path(os.path.dirname(folder), 'enums.py').absolute()))

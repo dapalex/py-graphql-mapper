@@ -27,7 +27,7 @@ class QueryBuilder(Builder):
         try:
             if self.logProgress: logger.info('Started building of python object: ' + getClassName(pyObject))
             item = inputDict.popitem() ##extract the KV pair containing object name and content
-            
+
             if not item[1] == None:
                 self.setPyFields(item[1], pyObject)
             else:

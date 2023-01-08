@@ -166,9 +166,9 @@ class Extractor():
                 for enumValue in schemaEnum.enumValues:
 
                     if isDeprecated(enumValue):
-                        logger.warn(enumValue + ' deprecated!')
+                        logger.warning(enumValue.name + ' deprecated!')
                         continue
-                    
+
                     codeLine = self.indent + Translate.toPythonVariableName(enumValue.name) + ' = \'' + enumValue.name + '\''
                     if hasattr(enumValue, 'description') and enumValue.description:
                         codeLine += ' ##' + enumValue.description
@@ -566,7 +566,7 @@ class Extractor():
 
                 ##check if the element is deprecated --> skip it
                 if isDeprecated(possibleType):
-                    logger.warn(possibleTypeName + ' deprecated!')
+                    logger.warning(possibleTypeName + ' deprecated!')
                     continue
 
                 possibleTypes += "'" + possibleTypeName + "'" if not possibleTypes else (" or '" + possibleTypeName + "'")
@@ -582,14 +582,14 @@ class Extractor():
 
             ##check if all elements are deprecated --> get out empty handed
             if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, content)):
-                logger.warn('Type ' + scType.name + ' deprecated!')
+                logger.warning('Type ' + scType.name + ' deprecated!')
                 return [], []
 
             for element in content:
 
                 ##check if the element is deprecated --> skip it
                 if isDeprecated(element):
-                    logger.warn(element + ' is deprecated')
+                    logger.warning(element + ' is deprecated')
                     continue
 
                 try:
