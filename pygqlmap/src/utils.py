@@ -50,7 +50,7 @@ def isEmptyField(field):
         logger.error('type not managed!')
 
 def isNoneOrBuiltinPrimitive(obj):
-    return isinstance(obj, primitives)
+    return type(obj) in primitives
 
 def popListElementByRef(lst: list, element):
     while lst.index(element) >= 0:
