@@ -19,7 +19,7 @@ It depends on [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main
 2. [Using the generated files](#using-the-generated-files)
 
 
-## Functionalities 
+## Functionalities
 
 Two functionalities are available:
 
@@ -36,16 +36,16 @@ First step is obtaining the schema object, this can be done:
 * Querying the GraphQL server:
 
 ```python
-from pgqlmGenerator.network import fetchSchemaObject
-from pgqlmGenerator.queryPresets import querySchemaAndTypes
+from codegen.network import fetchSchemaObject
+from codegen.queryPresets import querySchemaAndTypes
 
 schemaObject = fetchSchemaObject(<graphQLUrl>, <HTTPHeaders dictionary>, querySchemaAndTypes)
 ```
 
 * or passing a schema as JSON:
- 
+
 ```python
-from pgqlmGenerator.generator import buildSchema
+from codegen.generator import buildSchema
 
 schemaObject = buildSchema(schemaJsonString)
 ```
@@ -53,8 +53,8 @@ schemaObject = buildSchema(schemaJsonString)
 Obtained the schema the following CodeGenerator function has to be called:
 
 ```python
-from pgqlmGenerator.generator import CodeGenerator
-from pgqlmGenerator.queryPresets import querySchemaAndTypes
+from codegen.generator import CodeGenerator
+from codegen.queryPresets import querySchemaAndTypes
 
 CodeGenerator.generateCode(schemaObject, folder='test\\output\\github\\', logProgress=False, addDescription=True)
 ```
@@ -94,18 +94,18 @@ pygqlcodegen generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
 This command will generate python files in _./GeoDBCities/_ using the [information](#json-args-file) given in _./generatorArgs.json_.
 
 
-### Download of a schema as json file 
+### Download of a schema as json file
 
 Example of schema retrieval command:
 
 ```
-pygqlcodegen download ./commandsOutput/Github/schema.json -apiArgs ./downloaderArgs.json
+pgmcodegen download ./commandsOutput/Github/schema.json -apiArgs ./downloaderArgs.json
 ```
 
 This command will create the file in _./commandsOutput/Github/schema.json_ containing the schema in json version using the [information](#json-args-file) given in _./downloaderArgs.json_.
 
 
-A few examples can be seen [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/test/geoDBCitiesApiUnitTest.py#L9) and [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/test/githubApiUnitTest.py#L13)
+A few examples can be seen [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/geoDBCitiesApiUnitTest.py#L9) and [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/githubApiUnitTest.py#L13)
 
 
 #### JSON args file
@@ -115,10 +115,6 @@ This file is used by the generator command line interface, it contains:
 ```python
 {
     "addDescToGeneratedFiles": "True", # boolean telling if descriptions have to be added to the generated classes (strongly advised to be True)
-    "customTypes": { # dictionary containing scalar types not managed in the default mapping
-        "myScalarTypeNameAsInt": "int",
-        "myScalarTypeNameAsString": "str"
-    },
     ##USED FOR QUERYING A GRAPHQL SERVER
     "apiURL": "https://mygraphqlapi.com/v2", # URL of the GraphQL server to query
     "httpHeaders": { # HTTP Headers necessary to query the GraphQL server
@@ -145,7 +141,7 @@ class createProject(GQLMutation):
    input - Parameters for CreateProject
 
    """
-   class createProjectArgs(GQLArgsSet, GQLObject): 
+   class createProjectArgs(GQLArgsSet, GQLObject):
       """
       input - Parameters for AbortQueuedMigrations
 
@@ -206,13 +202,13 @@ mutation._customPayload = '{ project { id } }'
 _exportGqlSource_ will generate the following:
 
 ```
-mutation MycreateProjectMutation  { 
-    createProject ( input: { ownerId: "MDQ6VXNlcjkxMzk2ODM3", name: "Test create project from MutationMon Nov 21 10:19:09 2022", repositoryIds: ["R_kgDOH7MI4g"] }  )  {  
-        project { 
-            id 
-        } 
-    }  
-} 
+mutation MycreateProjectMutation  {
+    createProject ( input: { ownerId: "MDQ6VXNlcjkxMzk2ODM3", name: "Test create project from MutationMon Nov 21 10:19:09 2022", repositoryIds: ["R_kgDOH7MI4g"] }  )  {
+        project {
+            id
+        }
+    }
+}
 ```
 
 Then executed using [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD)
@@ -226,6 +222,6 @@ myMutation.name = 'MycreateProjectMutation'
 response = request("POST", graphQLServerUrl, json=json={ "query": myMutation.exportGqlSource }, headers=headers)
 gqlResponse = GQLResponse(response)
 gqlResponse.printMessageOutput()
-    
+
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```
