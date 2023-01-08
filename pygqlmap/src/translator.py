@@ -33,17 +33,17 @@ class Translate():
 
     def toGraphQLValue(pyVariable):
         try:
-            if type(pyVariable) == ID or type(pyVariable) == str:
+            if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
             elif isinstance(pyVariable, int) or isinstance(pyVariable, float) or isinstance(pyVariable, list):
                 return str(pyVariable).replace('\'', '\"')
             elif isinstance(pyVariable, type):
                 return '\"' + str(pyVariable).replace('\'', '\"') + '\"'
-            elif type(pyVariable) == bool:
+            elif isinstance(pyVariable, bool):
                 return str(pyVariable).lower()
             elif Enum in inspect.getmro(type(pyVariable)):
                 return pyVariable.value
-            elif type(pyVariable) == dict:
+            elif isinstance(pyVariable, dict):
                 output = ' { '
                 for varKey, varValue in pyVariable.items():
                     output += Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLValue(varValue) + commaConcat
@@ -58,7 +58,7 @@ class Translate():
 
     def toJsonValue(pyVariable):
         try:
-            if type(pyVariable) == ID or type(pyVariable) == str:
+            if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
             elif isinstance(pyVariable, int) or isinstance(pyVariable, float) or isinstance(pyVariable, list):
                 return str(pyVariable).replace('\'', '\"')
@@ -122,7 +122,7 @@ class Translate():
                     else:
                         output += Translate.toJsonValue(fieldValue)
                 except Exception as ex:
-                    raise Exception('Issue exporting variable for: ' + fieldName)
+                    raise HandleRecursiveEx(ex, 'Issue exporting variable for: ' + fieldName)
 
             output.removesuffix(commaConcat)
         except Exception as ex:
@@ -135,11 +135,11 @@ class Translate():
         try:
             output= ''
             for inputSourceKey, inputSourceValue in inputSourceDict.items():
-                if type(inputSourceValue) == dict:
+                if isinstance(inputSourceValue, dict):
                     print('Getting into ' + inputSourceKey)
                     output += inputSourceKey + (argsToIgnore if argsToIgnore else '') + ' { ' + Translate.graphQLize(inputSourceValue) + ' } '
                 elif isinstance(inputSourceValue, tuple):
-                    if type(inputSourceValue[1]) == dict:
+                    if isinstance(inputSourceValue[1], dict):
                         output += inputSourceKey + inputSourceValue[0] + ' { ' + Translate.graphQLize(inputSourceValue[1]) + ' } '
                 else:
                     output += executeRegex(" " + inputSourceKey + " ")

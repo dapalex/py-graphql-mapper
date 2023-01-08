@@ -475,7 +475,7 @@ class Extractor():
             fieldsCodeList = []
             fieldsDocCodeList = []
 
-            if type(scType) == SCField:
+            if isinstance(scType, SCField):
                 fieldsCodeList = self.extractSchemaFieldCode(scType, objType, circularRefTypes)
             elif hasattr(scType, 'kind') and scType.kind == 'OBJECT': #fields
                     fieldsDocCodeList, fieldsCodeList =  self.extractSchemaTypeContent(scType, circularRefTypes, actualType, 'fields')
