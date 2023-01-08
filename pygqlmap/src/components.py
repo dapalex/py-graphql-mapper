@@ -22,8 +22,8 @@ class FSTree():
                     if not hasattr(self, 'children'): self.children = []
                     self.children.append(FSTree(objField, field))
         
-    def setFieldShow(self, property: str, show: bool):
-        info = getDotNotationInfo(property)
+    def setFieldShow(self, fieldName: str, show: bool):
+        info = getDotNotationInfo(fieldName)
         path = info[0]
         field = info[1]
         

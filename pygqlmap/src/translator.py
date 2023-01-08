@@ -121,11 +121,11 @@ class Translate():
                         output += Translate.toJsonVariables(fieldValue.__dict__)
                     else:
                         output += Translate.toJsonValue(fieldValue)
-                except:
+                except Exception as ex:
                     raise Exception('Issue exporting variable for: ' + fieldName)
             
             output.removesuffix(commaConcat)
-        except:
+        except Exception as ex:
             raise HandleRecursiveEx(message='Issue with items exporting variable')   
         
         output += ' }'

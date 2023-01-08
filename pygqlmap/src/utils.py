@@ -11,19 +11,19 @@ stdOut = sys.stdout
 def getClassName(cls):
     return str(cls).split('\'')[1].split('.')[len(str(cls).split('\'')[1].split('.')) - 1]
 
-def getObjectClassName(object):
+def getObjectClassName(obj):
     try:
-        if len(splitType := str(type(object)).split('\'')) > 0:
+        if len(splitType := str(type(obj)).split('\'')) > 0:
             if splitPath := splitType[1].split('.'):
                 return splitPath[len(splitPath) - 1]
     except:
         try:
-            if object.__doc__:
-                return object.__doc__.split('(')[0]
-        except:
-            print('Got an issue here')
+            if obj.__doc__:
+                return obj.__doc__.split('(')[0]
+        except Exception as ex:
+            logger.warning('Got an issue here')
     
-    return str(type(object))
+    return str(type(obj))
 
 def isEmptyField(field):
     if type(field) == str or  type(field) == ID:
@@ -70,7 +70,7 @@ def addTupleUniqueArgument(tup: tuple, strArgument, location):
 
     return tup
 
-def getDotNotationInfo(input: str) -> tuple:
+def getDotNotationInfo(dataInput: str) -> tuple:
     """for internal use
 
     Args:
@@ -81,12 +81,12 @@ def getDotNotationInfo(input: str) -> tuple:
         tuple: structured version of input in
         ([path through objects], <fieldName>)
     """
-    path = input.split('.')
+    path = dataInput.split('.')
     variable = path.pop(len(path) - 1) 
     return (path, variable)
     
-def executeRegex(input):
-    ret = re.sub(r': *\'[!-&(-z]*\'', ' ', input) #removes anything after : -> : '<anything>'
+def executeRegex(dataInput):
+    ret = re.sub(r': *\'[!-&(-z]*\'', ' ', dataInput) #removes anything after : -> : '<anything>'
     ret = re.sub(r': *[-A-Za-z0-9]*', ' ', ret)
     ret = ret.replace('\'', ' ').replace(',', ' ')
     ret = ret.replace('[', ' ').replace(']', ' ')

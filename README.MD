@@ -1,7 +1,9 @@
-# py-graphql-mapper  [![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)   
+[![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)  
+-------------------------------------------------------------------------------- 
+# py-graphql-mapper  
 [![Code Generation Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml)
-[![Command Line Interface](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-cli.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-cli.yml)
 [![Pyhon-GraphQL Mapping Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml)   
+
 A python library to interact with GraphQL APIs with no need of hardcoded strings.
 
 ## Introduction

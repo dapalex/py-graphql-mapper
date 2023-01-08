@@ -20,7 +20,7 @@ class SchemaTypeBuilder(Builder):
         return types
             
     def buildType(dataInput):
-        type = SCType()
+        schemaType = SCType()
         if not dataInput: return None
         try:
             
@@ -28,28 +28,28 @@ class SchemaTypeBuilder(Builder):
                 try:
                     inputField = dataInput.popitem()
                     if inputField[0] == 'ofType':
-                        type.ofType = SchemaTypeBuilder.buildOfType(inputField[1]) if inputField[1] else None
+                        schemaType.ofType = SchemaTypeBuilder.buildOfType(inputField[1]) if inputField[1] else None
                     elif inputField[0] == 'fields':
                         # type.fields = SchemaTypeBuilder.buildTypeFields(inputField[1]) if inputField[1] else None
-                        type.fields = list(map(SchemaTypeBuilder.buildTypeField, inputField[1])) if inputField[1] else None
+                        schemaType.fields = list(map(SchemaTypeBuilder.buildTypeField, inputField[1])) if inputField[1] else None
                     elif inputField[0] == 'interfaces':
                         # type.interfaces = SchemaTypeBuilder.buildTypeInterfaces(inputField[1]) if inputField[1] else None
-                        type.interfaces =list(map(SchemaTypeBuilder.buildTypeInterface, inputField[1])) if inputField[1] else None
+                        schemaType.interfaces =list(map(SchemaTypeBuilder.buildTypeInterface, inputField[1])) if inputField[1] else None
                     elif inputField[0] == 'enumValues':
                         # type.enumValues = SchemaTypeBuilder.buildTypeEnumValues(inputField[1]) if inputField[1] else None
-                        type.enumValues =list(map(SchemaTypeBuilder.buildTypeEnumValue, inputField[1])) if inputField[1] else None
+                        schemaType.enumValues =list(map(SchemaTypeBuilder.buildTypeEnumValue, inputField[1])) if inputField[1] else None
                     elif inputField[0] == 'possibleTypes':
-                        type.possibleTypes = SchemaTypeBuilder.buildTypes(inputField[1]) if inputField[1] else None
+                        schemaType.possibleTypes = SchemaTypeBuilder.buildTypes(inputField[1]) if inputField[1] else None
                     elif inputField[0] == 'inputFields':
-                        type.inputFields = SchemaTypeBuilder.buildInputFields(inputField[1]) if inputField[1] else None
+                        schemaType.inputFields = SchemaTypeBuilder.buildInputFields(inputField[1]) if inputField[1] else None
                     else:
-                        setattr(type, inputField[0], inputField[1]) 
+                        setattr(schemaType, inputField[0], inputField[1]) 
                 except Exception as ex:
                     raise Exception("Error during extraction of inputField" + ' - ' + ex.args[0])
         except Exception as ex:
             raise Exception("Exception during Schema Type building" + ' - ' + ex.args[0])
             
-        return type
+        return schemaType
     
     def buildOfType(dataInput):
         field = SCOfType()

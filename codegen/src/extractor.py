@@ -606,7 +606,6 @@ class Extractor():
     def extractElementContent(self, element, parentType, circularRefTypes):  
         docLine = ''  
         codeLine = ''
-        found = False
         
         try:
             if self.addDescription:

@@ -7,7 +7,7 @@ from .consts import primitives
 
 class Builder():
     @abstractmethod
-    def build(self, input, pyObject):
+    def build(self, dataInput, pyObject):
         pass
 
 class QueryBuilder(Builder):
@@ -21,12 +21,12 @@ class QueryBuilder(Builder):
         
         super().__init__()
         
-    def build(self, input: dict, pyObject: any):
+    def build(self, inputDict: dict, pyObject: any):
         """  for internal use only    """
         
         try:
             if self.logProgress: logger.info('Started building of python object: ' + getClassName(pyObject))
-            item = input.popitem() ##extract the KV pair containing object name and content
+            item = inputDict.popitem() ##extract the KV pair containing object name and content
             self.setPyFields(item[1], pyObject)
             
         except Exception as ex:
@@ -34,7 +34,7 @@ class QueryBuilder(Builder):
             
         return pyObject
 
-    def setPyFields(self, input, opObject, customObject=None):
+    def setPyFields(self, dataInput, opObject, customObject=None):
         """  for internal use only    """
         newObjDict = opObject.__dataclass_fields__ ##maybe asdict better
         attrToDel = []
@@ -43,26 +43,26 @@ class QueryBuilder(Builder):
             try:
                 if self.logProgress: logger.info('Started building of field: ' + el)
                 
-                if (hasattr(input, el) or el in input.keys()) and (el in opObject.fieldsShow.keys() and opObject.fieldsShow[el]):
+                if (hasattr(dataInput, el) or el in dataInput.keys()) and (el in opObject.fieldsShow.keys() and opObject.fieldsShow[el]):
                     attrType = type(getattr(opObject, el))
                     if attrType in primitives or attrType == ID or attrType == list:
-                        self.setFieldValue(opObject, el, input[el])
+                        self.setFieldValue(opObject, el, dataInput[el])
                     else:
                         attribute = getattr(opObject, el)
                         if attribute == None:
                             attribute = type(customObject)()
-                        if input[el]:
-                            if type(input[el]) == list:
+                        if dataInput[el]:
+                            if type(dataInput[el]) == list:
                                 setattr(opObject, el, [])
                                 listObjectElement = getattr(opObject, el)
-                                for subEl in input[el]:
+                                for subEl in dataInput[el]:
                                     subElObject = attrType()
                                     self.setPyFields(subEl, subElObject)
                                     listObjectElement.append(subElObject)
                             else:
-                                setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
+                                setattr(opObject, el, self.build({ el: dataInput[el] }, attribute))   #, newObject
                         else:
-                            self.setFieldValue(opObject, el, input[el])
+                            self.setFieldValue(opObject, el, dataInput[el])
                 else: 
                     self.cleanValue(opObject, el, attrToDel)
                     

@@ -21,7 +21,7 @@ class GQLSchemaResponse(GQLResponse):
     
     includeDeprecated: bool
     
-    def mapGQLDataToObj(self):
+    def mapGQLDataToObj(self, mappedPyObject = None,  buildType = None):
         """_summary_
 
         Args:
