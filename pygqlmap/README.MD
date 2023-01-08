@@ -1,7 +1,5 @@
 # pygqlmap
 
-*THIS DOCUMENT IS UNDER REVIEW*
-
 ## Introduction
 
 This document explains in detail how the core of the mapping works.
@@ -33,7 +31,7 @@ Example:
 ```python
 from pygqlmap.components import GQLObject
 
-class myCustomObject(GQLObject): 
+class myCustomObject(GQLObject):
     myString: str
     myCode: int
     myList: list
@@ -42,7 +40,7 @@ class myCustomObject(GQLObject):
 Requirements for the class definition:
 
 * Inheriting _GQLObject_ class
-* Fields must be statically declared 
+* Fields must be statically declared
 
 The example above will be able to generate the following GraphQL object
 
@@ -54,19 +52,19 @@ myCustomObject {
 }
 ```
 
-A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectTest.py) 
+A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectTest.py)
 
 
-### Adding arguments 
+### Adding arguments
 
-If arguments are needed a field '_args' must be added to the created class. 
+If arguments are needed a field '_args' must be added to the created class.
 
 Given the example above
 
 ```python
 from pygqlmap.components import GQLObject
 
-class myCustomObject(GQLObject): 
+class myCustomObject(GQLObject):
     myString: str
     myCode: int
     myList: list
@@ -75,12 +73,12 @@ class myCustomObject(GQLObject):
 
 The definition of this field must be a class:
     * Inheriting from _GQLArgsSet_ and _GQLObject_
-    * With fields statically declared 
+    * With fields statically declared
 
 ```python
 from pygqlmap.components import GQLObject
 
-class MyArgs(GQLArgsSet, GQLObject): 
+class MyArgs(GQLArgsSet, GQLObject):
     firstArg: str
     secondArg: ID
 ```
@@ -127,11 +125,11 @@ class CountriesConnection(GQLObject):
 class CountriesArguments(GQLArgsSet, GQLObject):
     currencyCode: str
     namePrefix: str
-    
+
 class countries(GQLQuery):
    _args: CountriesArguments
    type: CountriesConnection
-   
+
 ```
 
 The creation of the operation requires:
@@ -140,7 +138,7 @@ The creation of the operation requires:
 * Declaring a field 'type' representing the content of the query
 * If arguments are needed a field '_args' has to be declared. The class representing its type has to:
     * Inherit from _GQLArgsSet_ and _GQLObject_
-    * Fields must be statically declared 
+    * Fields must be statically declared
 
 The base class can be customized further with these optional definitions:
 
@@ -175,7 +173,7 @@ query myFirstQuery ($currencyCode: String, $namePrefix: String){
                 myList
             }
         }
-    }  
+    }
 }
 ```
 
@@ -185,7 +183,7 @@ Calling the relating GraphQL API server (example using _requests_):
 response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
 ```
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/) 
+Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/)
 
 
 ### GQLMutation
@@ -219,19 +217,19 @@ response = request("POST", graphQLServerUrl, json={ "query": coreMutation.export
 The function *exportGqlSource* will generate the following GraphQL syntax:
 
 ```
-mutation myManualUpdateRepository  { 
-    updateRepository(input:  { repositoryId: "R_kgDOH7MI4g", hasIssuesEnabled: false } ) { 
-        clientMutationId     
-        repository   { 
+mutation myManualUpdateRepository  {
+    updateRepository(input:  { repositoryId: "R_kgDOH7MI4g", hasIssuesEnabled: false } ) {
+        clientMutationId
+        repository   {
             ....content of Repository....
-        } 
-    } 
+        }
+    }
 }
 ```
 
 Note: Next developments shall allow the usage of automatically generated classes for the queries and mutations
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstmutation/) 
+Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstmutation/)
 
 
 ### Arguments management
@@ -258,7 +256,7 @@ print(query.exportGqlVariables)
 _exportGqlSource_ will generate the following GraphQL object:
 
 ```
-query myQuery($myCode: Int, $myID: ID) { 
+query myQuery($myCode: Int, $myID: ID) {
     myCustomObject(myCode: $myCode, myID: $myID) {
         myString
         myCode
@@ -285,10 +283,10 @@ request("POST", graphQLUrl, json={ "query": query.exportGqlSource, "variables": 
 Note: Right now Arguments as Variables are not supported for mutations
 
 Use cases for queries can be seen here:
-[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_LiteralValuesTest.py) 
-[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_VariablesTest.py) 
-[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionObjectArgs_VariablesTest.py)  
-[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionobjectArgs_LiteralValuesTest.py) 
+[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_LiteralValuesTest.py)
+[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_VariablesTest.py)
+[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionObjectArgs_VariablesTest.py)
+[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionobjectArgs_LiteralValuesTest.py)
 
 
 ## Dynamic visibility of fields
@@ -304,7 +302,7 @@ class myNestedObject(GQLObject):
     fieldA: str
     fieldB: int
 
-class myCustomObject(GQLQuery): 
+class myCustomObject(GQLQuery):
     myString: str
     myCode: int
     myNestedfield: myNestedObject
@@ -351,7 +349,7 @@ query myQuery{
 
 hiding _myCode_ and _fieldB_.
 
-An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectChangeVisibilityTest.py) 
+An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectChangeVisibilityTest.py)
 
 
 ## Parsing of a response

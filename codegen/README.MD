@@ -1,13 +1,9 @@
 # py-graphql-mapper - Generator
 
-THIS DOCUMENT IS UNDER REVIEW
-
 ## Introduction
 
-This module generates python classes corresponding to GraphQL objects present in a schema, secondarily can save a GraphQL schema in a json format.
+This module automatically generates python classes corresponding to schema GraphQL types, moreover it can save a GraphQL schema in json format.
 The generator can be launched through [command line](#usage-via-command-line) or [programmatically](#usage-programmatically).
-
-It depends on [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap) module and uses requests for communications with GraphQL servers.
 
 
 ## Table of Contents
@@ -23,17 +19,15 @@ It depends on [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blob/main
 
 Two functionalities are available:
 
-1) Generate python classes from a schema
-2) Download a schema from a GraphQL server API
+1) Generating python classes from a schema
+2) Downloading a schema from a GraphQL server API
 
 
 ## Usage programmatically
 
-The class in charge of the generation is _CodeGenerator_.
+The class in charge of the generation is _CodeGenerator_, which takes a json schema as input and produces python files containing the mapped GraphQL schema types.
 
-First step is obtaining the schema object, this can be done:
-
-* Querying the GraphQL server:
+If a json version of the schema is not yet available first step is obtaining it, this can be done passing the API Url and HTTP headers to _fetchSchemaObject_ which will query the GraphQL API server:
 
 ```python
 from codegen.network import fetchSchemaObject
@@ -42,7 +36,7 @@ from codegen.queryPresets import querySchemaAndTypes
 schemaObject = fetchSchemaObject(<graphQLUrl>, <HTTPHeaders dictionary>, querySchemaAndTypes)
 ```
 
-* or passing a schema as JSON:
+If a json schema is already available _buildSchema_ can be used:
 
 ```python
 from codegen.generator import buildSchema
@@ -50,7 +44,7 @@ from codegen.generator import buildSchema
 schemaObject = buildSchema(schemaJsonString)
 ```
 
-Obtained the schema the following CodeGenerator function has to be called:
+Obtained the schema object the following function _CodeGenerator.generateCode_ has to be called:
 
 ```python
 from codegen.generator import CodeGenerator
@@ -66,9 +60,8 @@ Required parameters:
 
 Optional parameters:
 
-* customTypes: dictionary containing the mapping of GraphQL scalar types with declaration different from the [standard GraphQL scalar types](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#scalar-types-mapping)) (an example can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/cli_args.json))
-* logProgress: makes the generation verbose
-* addDescription: boolean telling if descriptions have to be added to the generated classes (strongly advised to be True)
+* logProgress: makes the generation verbose (default false)
+* addDescription: boolean telling if descriptions have to be added to the generated classes (default true)
 
 _generateCode_ function will create the following python files containing the GraphQL schema objects as python classes:
 
@@ -85,7 +78,7 @@ _generateCode_ function will create the following python files containing the Gr
 
 ### Generation
 
-Example of python classes generation command:
+Classes can be generated alternatively using the CLI command:
 
 ```
 pygqlcodegen generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
@@ -126,6 +119,7 @@ This file is used by the generator command line interface, it contains:
 }
 ```
 
+_apiURL_, _httpHeaders_ and  _schemaFile_ are mutually exclusive.
 
 ## Using the generated files
 
@@ -194,12 +188,9 @@ mutation = Mutations.createProject.value()
 mutation.input.ownerId = 'MDQ6VXNlcjkxMzk2ODM3'
 mutation.input.name = "Test create project from Mutation" + datetime.now().ctime()
 mutation.input.repositoryIds = ["R_kgDOH7MI4g"]
-
-mutation._customPayload = '{ project { id } }'
-
 ```
 
-_exportGqlSource_ will generate the following:
+then _exportGqlSource_ will be able to create the following GraphQL syntax:
 
 ```
 mutation MycreateProjectMutation  {
@@ -225,3 +216,5 @@ gqlResponse.printMessageOutput()
 
 print('resultObject: ' + str(gqlResponse.resultObject))
 ```
+
+It is possible to create python classes manually (for a customized version for instance) as well only using pygqlmap module.
