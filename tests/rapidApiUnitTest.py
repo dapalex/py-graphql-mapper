@@ -5,47 +5,47 @@ from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
 from .consts import rapidApiHeaders, rapidApiUrl
-# from .utils import ManageException
+import logging as logger
 
-def fetchRapidApiTestSchemaAndTypes(): 
-    print('\nRunning fetchRapidApiTestSchemaAndTypes...')
-    
+def fetchRapidApiTestSchemaAndTypes():
+    logger.info('\nRunning fetchRapidApiTestSchemaAndTypes...')
+
     try:
         gqlSchema = fetchSchemaObject(rapidApiUrl, rapidApiHeaders, querySchemaAndTypes)
-        
+
         if gqlSchema:
-            print('Generating python types from GraphQL data...')
+            logger.info('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\RapidApi\\', logProgress=True)
-            print('Python types generated')
+            logger.info('Python types generated')
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!!' + ex.args[0])
-            
-    print("End of fetchRapidApiTestSchemaAndTypes")
-  
-def fetchRapidApiTestSchemaAndTypesNoDesc(): 
-    print('\nRunning fetchRapidApiTestSchemaAndTypesNoDesc...')
-    
+
+    logger.info("End of fetchRapidApiTestSchemaAndTypes")
+
+def fetchRapidApiTestSchemaAndTypesNoDesc():
+    logger.info('\nRunning fetchRapidApiTestSchemaAndTypesNoDesc...')
+
     try:
         gqlSchema = fetchSchemaObject(rapidApiUrl, rapidApiHeaders, querySchemaAndTypes)
-        
+
         if gqlSchema:
-            print('Generating python types from GraphQL data...')
+            logger.info('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\RapidApiNoDesc\\', addDescription=False, logProgress=True)
-            print('Python types generated')
+            logger.info('Python types generated')
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!!' + ex.args[0])
-            
-    print("End of fetchRapidApiTestSchemaAndTypesNoDesc")
+
+    logger.info("End of fetchRapidApiTestSchemaAndTypesNoDesc")
 
 def runRapidApiCreateTransformationsMutation():
-    print('\nRunning RunRapidApiCreateTransformationsMutation...')
+    logger.info('\nRunning RunRapidApiCreateTransformationsMutation...')
     try:
-        print('Creating mutation python object...')
+        logger.info('Creating mutation python object...')
         from .output.RapidApi.gqlTypes import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
         from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.createTransformations.value()
-        
+
         input1 = TransformationCreateInput()
         input1.apiVersionId = 1
         input1.action = TransformationActionType.ADD
@@ -57,7 +57,7 @@ def runRapidApiCreateTransformationsMutation():
         input1.target = "b"
         input1.value = "val"
         input1.plans = ["planID"]
-        
+
         input2 = TransformationCreateInput()
         input2.apiVersionId = 1
         input2.action = TransformationActionType.REMOVE
@@ -69,38 +69,38 @@ def runRapidApiCreateTransformationsMutation():
         input2.target = "b"
         input2.value = "val"
         input2.plans = ["planID"]
-        
-        print('Inserting python mutation input data...')
-        
+
+        logger.info('Inserting python mutation input data...')
+
         mutation._args.transformations = [input1, input2]
-        
-        pprint(mutation.exportGqlSource)
-        
-        print('Calling GraphQL Server......')
-        response = httpRequest(rapidApiUrl, 
-                                     { "query": mutation.exportGqlSource }, 
-                                    rapidApiHeaders) 
-        print('Response Received')
+
+        logger.info(mutation.exportGqlSource)
+
+        logger.info('Calling GraphQL Server......')
+        response = httpRequest(rapidApiUrl,
+                                     { "query": mutation.exportGqlSource },
+                                    rapidApiHeaders)
+        logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-        
+
         gqlResponse.printMessageOutput()
-        
+
         gqlResponse.mapGQLDataToObj(mutation.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
-        
-    print("End of RunRapidApiCreateTransformationsMutation")
-    
+
+    logger.info("End of RunRapidApiCreateTransformationsMutation")
+
 def runRapidApiCreateGatewayInstanceMutation():
-    print('\nRunning RunRapidApicreateGatewayInstanceMutation...')
+    logger.info('\nRunning RunRapidApicreateGatewayInstanceMutation...')
     try:
-        print('Creating mutation python object...')
+        logger.info('Creating mutation python object...')
         from .output.RapidApi.gqlTypes import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
         from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.createGatewayInstance.value()
-        
+
         mutation._args.createDto = GatewayInstanceCreateInput()
         mutation._args.createDto.apiGatewayCodeTemplateId = 12314
         mutation._args.createDto.dns = 'mydomain.com'
@@ -119,35 +119,35 @@ def runRapidApiCreateGatewayInstanceMutation():
         mutation._args.createDto.dns = 'myDns'
         mutation._args.createDto.isDefault = False
         mutation._args.createDto.type = GatewayType.Kong
-        
-        pprint(mutation.exportGqlSource)
-        
-        print('Calling GraphQL Server......')
-        response = httpRequest(rapidApiUrl, 
-                                     { "query": mutation.exportGqlSource }, 
-                                    rapidApiHeaders) 
-        print('Response Received')
+
+        logger.info(mutation.exportGqlSource)
+
+        logger.info('Calling GraphQL Server......')
+        response = httpRequest(rapidApiUrl,
+                                     { "query": mutation.exportGqlSource },
+                                    rapidApiHeaders)
+        logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-        
+
         gqlResponse.printMessageOutput()
-        
+
         gqlResponse.mapGQLDataToObj(mutation.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
-        
-    print("End of RunRapidApicreateGatewayInstanceMutation")
-  
-  
+
+    logger.info("End of RunRapidApicreateGatewayInstanceMutation")
+
+
 def runRapidApiEditUserAlertMutation():
-    print('\nRunning RunRapidApiEditUserAlertMutation...')
+    logger.info('\nRunning RunRapidApiEditUserAlertMutation...')
     try:
-        print('Creating mutation python object...')
+        logger.info('Creating mutation python object...')
         from .output.RapidApi.gqlTypes import editUserAlertInput, Channel, Condition, AlertStatus, time
         from .output.RapidApi.mutations import Mutations
 
         mutation = Mutations.editUserAlert.value()
-        
+
         mutation._args.input = editUserAlertInput()
         mutation._args.input.apiIds = [123,32,56,23]
         mutation._args.input.apiVersionsIds = [1,2,3,4]
@@ -168,36 +168,36 @@ def runRapidApiEditUserAlertMutation():
         mutation._args.input.timeInterval = time.second
         mutation._args.input.timePeriod = 10
         mutation._args.input.typeId = 124
-        
-        print('Calling GraphQL Server......')
-        response = httpRequest(rapidApiUrl, 
-                                     { "query": mutation.exportGqlSource }, 
-                                    rapidApiHeaders) 
-        print('Response Received')
+
+        logger.info('Calling GraphQL Server......')
+        response = httpRequest(rapidApiUrl,
+                                     { "query": mutation.exportGqlSource },
+                                    rapidApiHeaders)
+        logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-        
+
         gqlResponse.printMessageOutput()
-        
+
         gqlResponse.mapGQLDataToObj(mutation.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
-        
-    print("End of RunRapidApiEditUserAlertMutation")
-    
+
+    logger.info("End of RunRapidApiEditUserAlertMutation")
+
 
 def runAdminAuditLogs():
-    print('\nRunning testAdminAuditLogs...')
+    logger.info('\nRunning testAdminAuditLogs...')
     try:
         # from .output.github.gqlTypes import UpdateRepositoryInput
         from .output.RapidApi.queries import Queries
-        from .output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField  
-        from .output.RapidApi.enums import Order, AdminAuditLogSortables 
-        
-        print('Creating mutation python object...')
+        from .output.RapidApi.gqlTypes import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField
+        from .output.RapidApi.enums import Order, AdminAuditLogSortables
+
+        logger.info('Creating mutation python object...')
         query = Queries.adminAuditLogs.value()
-        print('Inserting python mutation input data...')
-        
+        logger.info('Inserting python mutation input data...')
+
         query._args.orderBy = AdminAuditLogSortablesInput()
         field1 = AdminAuditLogSortablesSortingField()
         field1.fieldName = AdminAuditLogSortables.CREATED_AT
@@ -206,21 +206,21 @@ def runAdminAuditLogs():
         field2.fieldName = AdminAuditLogSortables.CREATED_AT
         field2.order = Order.DESC
         query._args.orderBy.sortingFields = [field1, field2]
-        
-        print('Creating GQLOperation for mutation...')
+
+        logger.info('Creating GQLOperation for mutation...')
         # myMutation = GQLOperation(OperationType.mutation, dataType=mutation, operationName='MyUpdateRepositoryMutation')
-        pprint(query.exportGqlSource)
-            
-        response = httpRequest(rapidApiUrl, 
-                                     { "query": query.exportGqlSource }, 
-                                    rapidApiHeaders) 
+        logger.info(query.exportGqlSource)
+
+        response = httpRequest(rapidApiUrl,
+                                     { "query": query.exportGqlSource },
+                                    rapidApiHeaders)
         gqlResponse = GQLResponse(response)
-        
+
         gqlResponse.printMessageOutput()
-        
+
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
-        
-    print("End of testAdminAuditLogs")
+
+    logger.info("End of testAdminAuditLogs")

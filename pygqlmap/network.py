@@ -11,15 +11,15 @@ def httpRequest(api_url, payload, httpHeaders):
         req = request.Request(api_url, data=body)
         for httpHeaderKey, httpHeaderValue in httpHeaders.items():
             req.add_header(httpHeaderKey, httpHeaderValue)
-        
+
         with request.urlopen(req) as response:
             response.text = response.read().decode('utf-8')
             response.ok = response.status == 200
-            return response 
+            return response
     except HTTPError as ex:
-        raise Exception(str(ex))
+        raise Exception(str(ex.status) + ' - ' + ex.reason)
     except Exception as ex:
-        raise ex
+        raise Exception(str(ex.args[0]))
 
 class GQLResponse():
     httpResponse = None
@@ -27,23 +27,23 @@ class GQLResponse():
     data = None
     resultObject = None
     logProgress: bool= None
-    
-    def __init__(self, response: str, logProgress: bool = False):  
-        self.httpResponse = response 
+
+    def __init__(self, response: str, logProgress: bool = False):
+        self.httpResponse = response
         self.jsonResponse = json.loads(response.text)
         self.logProgress = logProgress
-        
-        if type(self.jsonResponse) == dict:
+
+        if isinstance(self.jsonResponse, dict):
             if "errors" in self.jsonResponse.keys():
                 self.errors = self.jsonResponse["errors"]
             if "data" in self.jsonResponse.keys():
                 self.data = self.jsonResponse["data"]
-                
+
     def mapGQLDataToObj(self, mappedPyObject,  buildType: BuildingType = BuildingType.Standard):
         """Maps the json response to a python object and saves it in resultObject field
 
         Args:
-            mappedPyObject (_type_, optional): python object mapped from a GraphQL type 
+            mappedPyObject (_type_, optional): python object mapped from a GraphQL type
                                                A reference can be found in the GQLOperation object created as <queryObject>.type
             buildType (BuildingType, optional): Options not yet implemented. Defaults to BuildingType.Standard.
         """
@@ -52,7 +52,7 @@ class GQLResponse():
             self.resultObject = myBuilder.build(self.data, mappedPyObject)
         else:
             self.resultObject = None
-        
+
     def printMessageOutput(self):
         """_summary_
 
@@ -61,16 +61,16 @@ class GQLResponse():
             Exception: Presence of errors in the json response
             Exception: Missing errors and data in the json response
         """
-        print('Network result: ' + 'OK' if self.httpResponse.ok else 'KO')
-        print('HTTP code: ' + str(self.httpResponse.status))
-        
+        logger.info('Network result: ' + 'OK' if self.httpResponse.ok else 'KO')
+        logger.info('HTTP code: ' + str(self.httpResponse.status))
+
         if self.httpResponse.status != 200:
             raise Exception('HTTP Error: ' + self.httpResponse.text)
         else:
             if hasData :=(hasattr(self, 'data') and self.data):
-                print('Data returned: ')
-                print(json.dumps(self.data, indent=2))   
-                
+                logger.info('Data returned: ')
+                logger.info(json.dumps(self.data, indent=2))
+
             if hasErrors :=(hasattr(self, 'errors') and self.errors):
                 errOutput = ''
                 for error in self.errors:

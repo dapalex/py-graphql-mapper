@@ -9,26 +9,26 @@ from .enums import ArgType, OperationType
 from .src.translator import Translate
 
 class GQLOperationArgs(GQLBaseArgsSet):
-    
+
     @property
     def exportGQLArgKeys(self):
-       
+
         """ For internal use only """
         output = ''
-        try: 
+        try:
             for fieldName, fieldValue in self.arguments.items():
                 if isEmptyField(fieldValue): continue
-                try:  
+                try:
                     output += self.exportArgKey(fieldName, fieldValue) + commaConcat
                 except Exception as ex:
                     raise HandleRecursiveEx(ex, 'Issue exporting arg key for: ' + fieldName)
-        
+
             output = output.removesuffix(commaConcat)
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Issue exporting arg keys')
 
         return output
-    
+
     @property
     def exportGQLVariables(self):
         """Return the json variables to send to a server
@@ -39,11 +39,7 @@ class GQLOperationArgs(GQLBaseArgsSet):
         if self._argsType == ArgType.Variables:
             if self.arguments:
                 return Translate.toJsonVariables(self.arguments)
-            else:
-                raise HandleRecursiveEx(None, 'No variables to export')
-        else: 
-            raise HandleRecursiveEx(None, 'Cannot export Variables, arguments type is ' + self._argsType.name)
-        
+
     def exportArgKey(self, fieldName, fieldValue):
         return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
 
@@ -113,8 +109,6 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             print('list of keys with same value')
             for key in keys:
                 self.fieldsShowTree.setFieldShow(key, isVisible)
-        else:
-            raise HandleRecursiveEx(None, 'setShow accepts only ''str'' or ''list'' types') ##why not throwing?
 
     @property
     def exportGqlSource(self):
@@ -130,7 +124,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             ##Arguments of the operation are arguments of the root object
             if hasattr(self, argsDeclaration):
                 setattr(self.type, argsDeclaration, getattr(self, argsDeclaration))
-            
+
             #Update all objects args with the argument type requested
             self.manageArgs(self.type)
             rootName = getObjectClassName(self)
@@ -140,7 +134,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
                 # self.argumentsRetrieved = self.retrieveArgs(self.type)
                 if hasattr(self, argsDeclaration) and self.arguments:
                     prefix += '(' + self.exportGQLArgKeys + ')'
-                    
+
             return prefix + ' { ' + rootName + self.type.exportGqlSource + ' } '
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Issue during export of ' + self.name)
@@ -160,7 +154,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
                     argValue = getattr(currentObj._args, arg)
                     if isEmptyField(argValue): continue
                     self.arguments.update({arg: argValue})
-                    
+
             for subObj in currentObj.__dataclass_fields__:
                 if subObj == argsDeclaration:  continue
                 self.manageArgs(getattr(currentObj, subObj))

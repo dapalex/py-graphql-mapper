@@ -10,8 +10,8 @@ class TypeKind(Enum):
     UNION = "UNION", #'Indicates this type is a union. `possibleTypes` is a valid field.',
     INPUT_OBJECT = "INPUT_OBJECT", #'Indicates this type is an input object. `inputFields` is a valid field.',
     NON_NULL = "NON_NULL" #'Indicates this type is a non-null. `ofType` is a valid field.',
-    
-class TemplateType(Enum): 
+
+class TemplateType(Enum):
     SCALAR_TEMPLATE = 'scalarTemplate.py'
     ENUM_TEMPLATE = 'enumTemplate.py'
     FREE_TYPE_TEMPLATE = 'simpleTypeTemplate.py'

@@ -1,7 +1,10 @@
-# py-graphql-mapper  [![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)   
+[![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/280533e425784f7da9ecb0f6e529886b)](https://www.codacy.com/gh/dapalex/py-graphql-mapper/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dapalex/py-graphql-mapper&amp;utm_campaign=Badge_Grade)
+--------------------------------------------------------------------------------
+# py-graphql-mapper
 [![Code Generation Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml)
-[![Command Line Interface](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-cli.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-cli.yml)
-[![Pyhon-GraphQL Mapping Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml)   
+[![Pyhon-GraphQL Mapping Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-map.yml)
+
 A python library to interact with GraphQL APIs with no need of hardcoded strings.
 
 ## Introduction
@@ -72,11 +75,11 @@ Call _exportGqlSource_ property to pass the payload to the HTTP request:
 ```python
 import requests
 
-response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/', 
-                            json= { "query": myCurrenciesQuery.exportGqlSource }, 
+response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/',
+                            json= { "query": myCurrenciesQuery.exportGqlSource },
                             headers={
                                     "content-type": "application/json",
-                                        "X-RapidAPI-Key": '123402mmri02fni230iif32jr420', 
+                                        "X-RapidAPI-Key": '123402mmri02fni230iif32jr420',
                                         "X-RapidAPI-Host": "geodb-cities-graphql.p.rapidapi.com"
                                     }
                             )

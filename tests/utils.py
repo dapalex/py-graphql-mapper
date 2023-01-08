@@ -19,21 +19,21 @@ def cleanFolder(folder):
             directory = os.path.join(folder, dir)
             cleanFolder(directory)
             os.rmdir(directory)
-            
+
 def cleanOutput(outType: OutputType):
     if outType == OutputType.COMMANDS:
         dirToClean = pathlib.Path(os.path.join(os.curdir, 'commandsOutput'))
     if outType == OutputType.SCHEMAS:
         dirToClean = pathlib.Path(os.path.join(os.path.join(os.curdir, 'test'), 'output'))
-    
+
     cleanFolder(dirToClean)
-        
+
 # def waitForInput(isToWait: str):
 #     if isToWait and isToWait.lower() == 'y': input('Go on..')
-    
+
 # def ManageException(message: str):
 #     logger.critical(message)
-    
+
 
 def redirectOutputToFile(fileName, append: bool = True):
     try:

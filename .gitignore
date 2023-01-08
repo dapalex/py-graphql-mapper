@@ -165,3 +165,4 @@ test/core/GraphQLClients/GithubApi/downloaderArgs.json
 test/core/GraphQLClients/GdbcApi/generatorArgs.json
 test/core/GraphQLClients/GdbcApi/downloaderArgs.json
 .vscode/settings__.json
+tests/spotTest.py

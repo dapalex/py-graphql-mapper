@@ -7,77 +7,85 @@ from .consts import primitives
 
 class Builder():
     @abstractmethod
-    def build(self, input, pyObject):
+    def build(self, dataInput, pyObject):
         pass
 
 class QueryBuilder(Builder):
     """  for internal use only    """
     buildType: BuildingType
     logProgress: bool
-    
+
     def __init__(self, buildType: BuildingType, logProgress: bool = False):
         self.buildType = buildType
         self.logProgress = logProgress
-        
+
         super().__init__()
-        
-    def build(self, input: dict, pyObject: any):
+
+    def build(self, inputDict: dict, pyObject: any):
         """  for internal use only    """
-        
+
         try:
             if self.logProgress: logger.info('Started building of python object: ' + getClassName(pyObject))
-            item = input.popitem() ##extract the KV pair containing object name and content
-            self.setPyFields(item[1], pyObject)
-            
+            item = inputDict.popitem() ##extract the KV pair containing object name and content
+
+            if not item[1] == None:
+                self.setPyFields(item[1], pyObject)
+            else:
+                logger.info(item[0] + ' has no content')
+
         except Exception as ex:
-            logger.error('Building of python object failed - ' + ex.args[0]) 
-            
+            logger.error('Building of python object failed - ' + ex.args[0])
+
         return pyObject
 
-    def setPyFields(self, input, opObject, customObject=None):
+    def setPyFields(self, dataInput, opObject, customObject=None):
         """  for internal use only    """
         newObjDict = opObject.__dataclass_fields__ ##maybe asdict better
         attrToDel = []
-        
+
         for el in newObjDict:
             try:
                 if self.logProgress: logger.info('Started building of field: ' + el)
-                
-                if (hasattr(input, el) or el in input.keys()) and (el in opObject.fieldsShow.keys() and opObject.fieldsShow[el]):
+
+                if  (not el in opObject.fieldsShow.keys() or not opObject.fieldsShow[el]):
+                    if self.logProgress: logger.warning('Field ' + el + ' in ' + opObject + 'not present in fieldsShow')
+                    continue
+
+                if (hasattr(dataInput, el) or el in dataInput.keys()):
                     attrType = type(getattr(opObject, el))
                     if attrType in primitives or attrType == ID or attrType == list:
-                        self.setFieldValue(opObject, el, input[el])
+                        self.setFieldValue(opObject, el, dataInput[el])
                     else:
                         attribute = getattr(opObject, el)
                         if attribute == None:
                             attribute = type(customObject)()
-                        if input[el]:
-                            if type(input[el]) == list:
+                        if dataInput[el]:
+                            if isinstance(dataInput[el], list):
                                 setattr(opObject, el, [])
                                 listObjectElement = getattr(opObject, el)
-                                for subEl in input[el]:
+                                for subEl in dataInput[el]:
                                     subElObject = attrType()
                                     self.setPyFields(subEl, subElObject)
                                     listObjectElement.append(subElObject)
                             else:
-                                setattr(opObject, el, self.build({ el: input[el] }, attribute))   #, newObject
+                                setattr(opObject, el, self.build({ el: dataInput[el] }, attribute))   #, newObject
                         else:
-                            self.setFieldValue(opObject, el, input[el])
-                else: 
+                            self.setFieldValue(opObject, el, dataInput[el])
+                else:
                     self.cleanValue(opObject, el, attrToDel)
-                    
+
             except Exception as ex:
-                logger.error('Setting value for element ' + el + ' failed - ' + ex.args[0]) 
-                        
+                logger.error('Setting value for element ' + el + ' failed - ' + ex.args[0])
+
         for a in attrToDel:
             if a in opObject.__dict__.keys():
                 if self.buildType == BuildingType.Standard:
                     attr = getattr(opObject, a)
                     del attr
                 elif self.buildType == BuildingType.AlterClass:
-                    print('delete attribute from class')
+                    logger.info('delete attribute from class')
                 else:
-                    print('should do nothing in new object')
+                    logger.info('should do nothing in new object')
 
     def setFieldValue(self, obj, attr, value):
         """  for internal use only    """
@@ -88,19 +96,19 @@ class QueryBuilder(Builder):
                     if self.buildType == BuildingType.Standard or self.buildType == BuildingType.AlterClass:
                         setattr(obj, attr, value)
                     else:
-                        print('new object management')
+                        logger.info('new object management')
         except Exception as ex:
             logger.error('Setting value of: ' + attr + ' failed - ' + ex.args[0])
-            
-    def cleanValue(self, object, field, attrToDel):
-        if self.logProgress: logger.info('Cleaning value of: ' + field)
+
+    def cleanValue(self, obj, field, attrToDel):
         """  for internal use only    """
+        if self.logProgress: logger.info('Cleaning value of: ' + field)
         if self.buildType == BuildingType.Standard:
-            setattr(object, field, None)
+            setattr(obj, field, None)
         elif self.buildType == BuildingType.AlterClass:
-            print('alter class to delete field')
+            logger.info('alter class to delete field')
             attrToDel.append(field)
         elif self.buildType == BuildingType.CreateNewClass:
-            print('do nothing in new class')
+            logger.info('do nothing in new class')
         else:
-            raise Exception('buildType not assigned')     
+            raise Exception('buildType not assigned')
