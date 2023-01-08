@@ -60,12 +60,12 @@ class Translate():
         try:
             if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
+            elif isinstance(pyVariable, bool):
+                return str(pyVariable).lower()
             elif isinstance(pyVariable, int) or isinstance(pyVariable, float) or isinstance(pyVariable, list):
                 return str(pyVariable).replace('\'', '\"')
             elif isinstance(pyVariable, type):
                 return '\"' + str(pyVariable).replace('\'', '\"') + '\"'
-            elif isinstance(pyVariable, bool):
-                return str(pyVariable).lower()
             elif Enum in inspect.getmro(type(pyVariable)):
                 return'\"' +  pyVariable.value + '\"'
             elif isinstance(pyVariable, dict):
@@ -82,16 +82,16 @@ class Translate():
             raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
     def toGraphQLType(pyVariable):
-        if isinstance(pyVariable, str):
-            return 'String'
-        elif isinstance(pyVariable, int):
-            return 'Int'
-        elif isinstance(pyVariable, ID):
+        if isinstance(pyVariable, ID):
             return 'ID'
-        elif isinstance(pyVariable, type): #should never get in
-            return 'Type'
+        elif isinstance(pyVariable, str):
+            return 'String'
         elif isinstance(pyVariable, bool):
             return 'Boolean'
+        elif isinstance(pyVariable, int):
+            return 'Int'
+        elif isinstance(pyVariable, type): #should never get in
+            return 'Type'
         elif isinstance(pyVariable, dict):
             output = ' { '
             for varKey, varValue in pyVariable.items():

@@ -27,7 +27,11 @@ class QueryBuilder(Builder):
         try:
             if self.logProgress: logger.info('Started building of python object: ' + getClassName(pyObject))
             item = inputDict.popitem() ##extract the KV pair containing object name and content
-            self.setPyFields(item[1], pyObject)
+            
+            if not item[1] == None:
+                self.setPyFields(item[1], pyObject)
+            else:
+                logger.info(item[0] + ' has no content')
 
         except Exception as ex:
             logger.error('Building of python object failed - ' + ex.args[0])
@@ -43,7 +47,11 @@ class QueryBuilder(Builder):
             try:
                 if self.logProgress: logger.info('Started building of field: ' + el)
 
-                if (hasattr(dataInput, el) or el in dataInput.keys()) and (el in opObject.fieldsShow.keys() and opObject.fieldsShow[el]):
+                if  (not el in opObject.fieldsShow.keys() or not opObject.fieldsShow[el]):
+                    if self.logProgress: logger.warning('Field ' + el + ' in ' + opObject + 'not present in fieldsShow')
+                    continue
+
+                if (hasattr(dataInput, el) or el in dataInput.keys()):
                     attrType = type(getattr(opObject, el))
                     if attrType in primitives or attrType == ID or attrType == list:
                         self.setFieldValue(opObject, el, dataInput[el])

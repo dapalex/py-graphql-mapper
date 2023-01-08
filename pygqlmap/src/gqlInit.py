@@ -54,10 +54,10 @@ def initType(obj, fieldType, fieldName):
             initTypedListAsType(obj, fieldName, fieldType)
         elif fieldType == bool:
             setattr(obj, fieldName, False)
-        elif fieldType == str:
-            setattr(obj, fieldName, '')
         elif fieldType == ID:
             setattr(obj, fieldName, ID())
+        elif fieldType == str:
+            setattr(obj, fieldName, '')
         elif inspect.isclass(fieldType):
             if issubclass(fieldType, Enum):
                 setattr(obj, fieldName, list(map(lambda c: c, fieldType))[0]) ##set first value from enum
