@@ -93,8 +93,8 @@ class QueryBuilder(Builder):
             logger.error('Setting value of: ' + attr + ' failed - ' + ex.args[0])
             
     def cleanValue(self, obj, field, attrToDel):
-        if self.logProgress: logger.info('Cleaning value of: ' + field)
         """  for internal use only    """
+        if self.logProgress: logger.info('Cleaning value of: ' + field)
         if self.buildType == BuildingType.Standard:
             setattr(obj, field, None)
         elif self.buildType == BuildingType.AlterClass:

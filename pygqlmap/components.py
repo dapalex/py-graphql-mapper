@@ -39,10 +39,6 @@ class GQLOperationArgs(GQLBaseArgsSet):
         if self._argsType == ArgType.Variables:
             if self.arguments:
                 return Translate.toJsonVariables(self.arguments)
-            else:
-                raise HandleRecursiveEx(message='No variables to export')
-        else: 
-            raise HandleRecursiveEx(message='Cannot export Variables, arguments type is ' + self._argsType.name)
         
     def exportArgKey(self, fieldName, fieldValue):
         return '$' + Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLType(fieldValue)
@@ -113,8 +109,6 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             print('list of keys with same value')
             for key in keys:
                 self.fieldsShowTree.setFieldShow(key, isVisible)
-        else:
-            raise HandleRecursiveEx(message='setShow accepts only ''str'' or ''list'' types') ##why not throwing?
 
     @property
     def exportGqlSource(self):

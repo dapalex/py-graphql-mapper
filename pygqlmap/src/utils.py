@@ -16,12 +16,13 @@ def getObjectClassName(obj):
         if len(splitType := str(type(obj)).split('\'')) > 0:
             if splitPath := splitType[1].split('.'):
                 return splitPath[len(splitPath) - 1]
-    except:
+    except Exception as ex:
+        logger.warning('getObjectClassName - ' + sex.args[0])
         try:
             if obj.__doc__:
                 return obj.__doc__.split('(')[0]
-        except Exception as ex:
-            logger.warning('Got an issue here')
+        except Exception as sex:
+            logger.warning('Got an issue here - ' + sex.args[0])
     
     return str(type(obj))
 

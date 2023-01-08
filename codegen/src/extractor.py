@@ -230,7 +230,7 @@ class Extractor():
                     
                     priorElement.schemaType.typeDefs = priorElement.schemaType.getObjectTypeDefs() 
                     
-                    inlineCodeType, actualType = priorElement.schemaType.composePythonType()
+                    actualType = priorElement.schemaType.composePythonType()[1]
 
                     if actualType in primitivesStringified or actualType in self.extractionResults.scalarDefinitions.keys():
                         for objNameList in self.extractUsedTypes(priorElement.schemaType).values():
@@ -475,7 +475,6 @@ class Extractor():
             scType.typeDefs = scType.getObjectTypeDefs() 
             
             inlineCodeType, actualType = scType.composePythonType()
-            arguedPrimitive = actualType in primitivesStringified
             
             fieldsCodeList = []
             fieldsDocCodeList = []

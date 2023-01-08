@@ -103,7 +103,7 @@ class Translate():
         elif Enum in inspect.getmro(type(pyVariable)) or inspect.isclass(type(pyVariable)): 
             return type(pyVariable).__name__
         else:
-            raise HandleRecursiveEx(message='type not managed!')
+            raise HandleRecursiveEx(Exception('type not managed!'), '')
        
     def toPythonTypeOrOriginal(typeName):
         return switchStrType.get(typeName, typeName)     
@@ -126,7 +126,7 @@ class Translate():
             
             output.removesuffix(commaConcat)
         except Exception as ex:
-            raise HandleRecursiveEx(message='Issue with items exporting variable')   
+            raise HandleRecursiveEx(Exception('Issue with items exporting variable'), '')
         
         output += ' }'
         return output
