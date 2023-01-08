@@ -17,7 +17,7 @@ def getObjectClassName(obj):
             if splitPath := splitType[1].split('.'):
                 return splitPath[len(splitPath) - 1]
     except Exception as ex:
-        logger.warning('getObjectClassName - ' + sex.args[0])
+        logger.warning('getObjectClassName - ' + ex.args[0])
         try:
             if obj.__doc__:
                 return obj.__doc__.split('(')[0]

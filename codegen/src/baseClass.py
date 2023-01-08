@@ -36,8 +36,9 @@ class TypeManager():
         self.typeDefs.clear()
         return typeOutput, currentType
 
-    def getUsedGQLObjectNames(self, gqlTypeNameListParam:list = []):
+    def getUsedGQLObjectNames(self, gqlTypeNameListParam:list = None):
         try:
+            if gqlTypeNameListParam == None: gqlTypeNameListParam = []
             gqlTypeNameList = copy.deepcopy(gqlTypeNameListParam)
             if hasattr(self, 'kind') and self.kind and self.kind in gqlTypeKinds:
                 gqlTypeNameList.append(self.name)
@@ -50,7 +51,8 @@ class TypeManager():
         
         return gqlTypeNameList
             
-    def getObjectTypeDefs(self, typeDefListParam = []):
+    def getObjectTypeDefs(self, typeDefListParam = None):
+        if typeDefListParam == None: typeDefListParam = []
         typeDefList = copy.deepcopy(typeDefListParam)
         
         try:

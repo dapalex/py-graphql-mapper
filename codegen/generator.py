@@ -11,10 +11,10 @@ def buildSchema(schemaString: GQLSchema):
 
 class CodeGenerator():
     
-    def generateCode(schemaObj, folder, customTypes: dict = {}, logProgress: bool = False, addDescription: bool = True):
+    def generateCode(schemaObj, folder, logProgress: bool = False, addDescription: bool = True):
         try:
             if logProgress: logger.info('Initializing Extractor...')
-            extractor = Extractor(schemaObj, customTypes, logProgress, addDescription)
+            extractor = Extractor(schemaObj, logProgress, addDescription)
             if logProgress: logger.info('Extracting schema...')
             extractedData = extractor.extractSchemaCode()
             if logProgress: logger.info('Generating python code...')

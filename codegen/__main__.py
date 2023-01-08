@@ -103,7 +103,7 @@ def generatePythonCode(args, destPath):
         schemaObject = extractSchemaObject(arguments, args.verbose)
 
         if args.verbose: print('Generating mutations...') #, end="\r")
-        CodeGenerator.generateCode(schemaObject, input_path, customTypes=customScalarTypes, logProgress=args.verbose, addDescription=addDescription)
+        CodeGenerator.generateCode(schemaObject, input_path, logProgress=args.verbose, addDescription=addDescription)
     except Exception as ex:
         print('generatePythonCode error: ' + str(ex.args))
         exit(-1)

@@ -26,7 +26,7 @@ class Extractor():
     addDescription: bool
     logProgress: bool
     
-    def __init__(self, schema, customTypes = [], logProgress: bool = False, addDescription: bool = False):
+    def __init__(self, schema, logProgress: bool = False, addDescription: bool = False):
         self.logProgress = logProgress
         self.addDescription = addDescription
         self.indent = '   '
@@ -42,10 +42,6 @@ class Extractor():
         self.extractionResults = ExtractionResults()
 
         self.schema = schema
-        self.customTypes = customTypes
-        
-        if customTypes:
-            switchStrType.update(customTypes)
         
         self.priorList = []
         
