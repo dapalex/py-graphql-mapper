@@ -93,7 +93,7 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygql
 Obtained the response from the GraphQL API the following code will map the received json payload into the python object
 
 ```python
-from pgqlmCore.network import GQLResponse
+from pygqlmap.network import GQLResponse
 
 gqlResponse = GQLResponse(response)
 
