@@ -1,59 +1,59 @@
 
-""" 
-    USE CASE DESCRIPTION: 
+"""
+    USE CASE DESCRIPTION:
     This test shows how to create a GraphQL Mutation using arguments as Literal Values to CREATE a GraphQL record and build the python class instance containing the data from the response
-    
+
     Mutation to reproduce:
-    
-    mutation myCreateDiscussion  { 
-        createDiscussion(input:  { repositoryId: "R_kgDOH7MI4g", title: "My Title", body: "Some text to give info", categoryId: 1, clientMutationId: "Client1" } ){ 
-            clientMutationId     
-            discussion   { 
-                answerChosenAt     
-                body    
-                bodyHTML    
-                bodyText     
-                createdAt     
-                createdViaEmail    
-                databaseId     
-                id     
-                includesCreatedEdit     
-                lastEditedAt     
-                locked     
-                number     
-                publishedAt     
-                repository   { 
-                    allowUpdateBranch     
-                    autoMergeAllowed  
-                }    
-                resourcePath     
-                title     
-                updatedAt     
-                upvoteCount     
-                url     
-                viewerCanDelete    
-                viewerCanReact    
-                viewerCanSubscribe    
-                viewerCanUpdate    
-                viewerCanUpvote    
-                viewerDidAuthor     
-                viewerHasUpvoted 
-            } 
-        } 
+
+    mutation myCreateDiscussion  {
+        createDiscussion(input:  { repositoryId: "R_kgDOH7MI4g", title: "My Title", body: "Some text to give info", categoryId: 1, clientMutationId: "Client1" } ){
+            clientMutationId
+            discussion   {
+                answerChosenAt
+                body
+                bodyHTML
+                bodyText
+                createdAt
+                createdViaEmail
+                databaseId
+                id
+                includesCreatedEdit
+                lastEditedAt
+                locked
+                number
+                publishedAt
+                repository   {
+                    allowUpdateBranch
+                    autoMergeAllowed
+                }
+                resourcePath
+                title
+                updatedAt
+                upvoteCount
+                url
+                viewerCanDelete
+                viewerCanReact
+                viewerCanSubscribe
+                viewerCanUpdate
+                viewerCanUpvote
+                viewerDidAuthor
+                viewerHasUpvoted
+            }
+        }
     }
 
-    STEP 1: Define the python class corresponding to the GraphQL connection type and 'currency' corresponding the the connection node within the query 
+    STEP 1: Define the python class corresponding to the GraphQL connection type and 'currency' corresponding the the connection node within the query
 """
 ##STEP 1
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gqlOperations import GQLMutation
 from pygqlmap.gqlTypes import ID
-# from ..utils import ManageException
+import logging as logger
 
 class Repository(GQLObject):
     allowUpdateBranch: bool
     autoMergeAllowed: bool ##NON NULL
-    
+
 class Discussion(GQLObject):
     answerChosenAt: str
     body: str ##NON NULL
@@ -81,7 +81,7 @@ class Discussion(GQLObject):
     viewerCanUpvote: bool ##NON NULL
     viewerDidAuthor: bool ##NON NULL
     viewerHasUpvoted: bool ##NON NULL
-        
+
 class CreateDiscussionInput(GQLObject):
    repositoryId: ID ##NON NULL
    title: str ##NON NULL
@@ -94,7 +94,7 @@ class CreateDiscussionContent(GQLObject):
     discussion: Discussion
 
 class createDiscussion(GQLMutation):
-   class CreateDiscussionArguments(GQLArgsSet, GQLObject): 
+   class CreateDiscussionArguments(GQLArgsSet, GQLObject):
       input: CreateDiscussionInput ##NON NULL
 
    _args: CreateDiscussionArguments
@@ -103,24 +103,24 @@ class createDiscussion(GQLMutation):
 ##
 
 """
-    STEP 2: Instantiate GQLOperation class representing the GraphQL mutation 
+    STEP 2: Instantiate GQLOperation class representing the GraphQL mutation
     STEP 3: Instantiate GQLArgs object structure with argument type as LiteralValues
     STEP 4: Query the GraphQL server
     STEP 5: Pass the response received to the GQLResponse constructor
     STEP 6: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
-    
+
     RESULT: The object within gqlResponse.resultObject will contain the data from the GraphQL server
 """
 from pygqlmap.network import httpRequest
 from ..consts import githubUrl, githubHeaders
 
-def runMutationInsertLiteralValues(): 
-    print('\n\nRunning testMutationInsertLiteralValues...')
+def runMutationInsertLiteralValues():
+    logger.info('\n\nRunning testMutationInsertLiteralValues...')
 ##STEP 2
     mutation = createDiscussion()
     mutation.name = 'myCreateDiscussion'
 ##
-    
+
 ##STEP 3
     from pygqlmap.components import GQLArgsSet
     from pygqlmap.enums import ArgType
@@ -132,33 +132,33 @@ def runMutationInsertLiteralValues():
     mutation._args.input.body = 'Some text to give info'
     mutation._args.input.categoryId = 'DIC_kwDOIOMoaM4CR_eD'
     mutation._args.input.clientMutationId = 'Client1'
-    
+
     try:
-        print('Query GQL syntax: ' + mutation.exportGqlSource)
+        logger.info('Query GQL syntax: ' + mutation.exportGqlSource)
 ##
 
 ##STEP 4
-        response = httpRequest(githubUrl, 
-                                     { "query": mutation.exportGqlSource }, 
+        response = httpRequest(githubUrl,
+                                     { "query": mutation.exportGqlSource },
                                     githubHeaders)
 ##
-                
+
 ##STEP 5
         from pygqlmap.network import GQLResponse
-        
+
         gqlResponse = GQLResponse(response)
 ##
-        
+
         gqlResponse.printMessageOutput()
-        
+
 ##STEP 6
         gqlResponse.mapGQLDataToObj(mutation.type)
 ##
-        
+
 ##RESULT
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
 ##
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
-        
-    print("End of testMutationInsertLiteralValues")
+
+    logger.info("End of testMutationInsertLiteralValues")

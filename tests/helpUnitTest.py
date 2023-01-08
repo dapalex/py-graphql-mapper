@@ -1,11 +1,11 @@
 
 import os
+import logging as logger
 
 def runGeneratorCommandHelp():
-    print('\nRunning runGeneratorCommandHelp...')
+    logger.info('\nRunning runGeneratorCommandHelp...')
     command = "CodeGenerator -h" #command to be executed
-    print("Launching: " + command)
-    
+    logger.info("Launching: " + command)
+
     ret = os.system(command)
-    print("End of runGeneratorCommandHelp")
-    
+    logger.info("End of runGeneratorCommandHelp")

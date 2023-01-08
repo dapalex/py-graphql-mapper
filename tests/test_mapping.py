@@ -8,14 +8,14 @@
 
 import unittest
 from .githubApiUnitTest import (runGithubAddCommentMutation,
-                               runGithubCreateIssueMutation, runGithubCreateProjectMutation, runGithubDeleteProjectMutation, 
+                               runGithubCreateIssueMutation, runGithubCreateProjectMutation, runGithubDeleteProjectMutation,
                                runGithubDeleteProjectV2Mutation, runGithubUpdateRepositoryMutation)
 from .rapidApiUnitTest import (runRapidApiCreateGatewayInstanceMutation, runAdminAuditLogs,
                               runRapidApiCreateTransformationsMutation, runRapidApiEditUserAlertMutation)
-from .unitTest import (runComplexObjectShowChange, runComplexObjectShowChangeWithArgsAndVariables, 
-                        runComplexObjectWithArgsAndVariables, runComplexObjectWithLiteralValueArgs, 
-                        runComplexObjectWithLiteralValueArgs2, runNestedObject, runNestedObjectShowChange, 
-                        runNestedObjectShowChangeWithArgsAndVariables, runNestedObjectWithArgsAndVariables, 
+from .unitTest import (runComplexObjectShowChange, runComplexObjectShowChangeWithArgsAndVariables,
+                        runComplexObjectWithArgsAndVariables, runComplexObjectWithLiteralValueArgs,
+                        runComplexObjectWithLiteralValueArgs2, runNestedObject, runNestedObjectShowChange,
+                        runNestedObjectShowChangeWithArgsAndVariables, runNestedObjectWithArgsAndVariables,
                         runNestedObjectWithLiteralValueArgs, runObjectWithComposedArgs)
 from .tstquery.complexObjectTest import runComplexObject
 from .tstquery.connectionobjectArgs_LiteralValuesTest import runConnectionObjectArgs_LiteralValues
@@ -31,36 +31,36 @@ from .tstmutation.manuallyCreatedMutationInsertTest import runMutationInsertLite
 from .tstmutation.mutationUpdateTest import runMutationUpdateLiteralValues
 
 class TestMapper(unittest.TestCase):
-    
+
 ###################### QUERIES EXECUTION - START ##############################
 
     def testGeneratedDataAsGQLObject(self):
       return runGeneratedDataAsGQLObject()
-  
+
     def testSimpleObject(self):
       return runSimpleObject()
-  
+
     def testSimpleObjectArgs_LiteralValues(self):
       return runSimpleObjectArgs_LiteralValues()
-  
+
     def testSimpleObjectArgs_Variables(self):
       return runSimpleObjectArgs_Variables()
-  
+
     def testSimpleObjectVisibility(self):
       return runSimpleObjectVisibility()
-  
+
     def testConnectionObject(self):
       return runConnectionObject()
-  
+
     def testConnectionObjectVisibility(self):
       return runConnectionObjectVisibility()
-  
+
     def testConnectionObjectArgs_Variables(self):
       return runConnectionObjectArgs_Variables()
-  
+
     def testConnectionObjectArgs_LiteralValues(self):
       return runConnectionObjectArgs_LiteralValues()
-  
+
 ###################### QUERIES EXECUTION - END ##############################
 
 ###################### MUTATIONS EXECUTION - START ##############################
@@ -69,40 +69,40 @@ class TestMapper(unittest.TestCase):
 #GITHUB API - START
     def testMutationUpdateLiteralValues(self):
       return runMutationUpdateLiteralValues()
-  
+
     def testMutationInsertLiteralValues(self):
       return runMutationInsertLiteralValues()
-  
+
     def testGithubAddCommentMutation(self):
       return runGithubAddCommentMutation()
-  
+
     def testGithubUpdateRepositoryMutation(self):
       return runGithubUpdateRepositoryMutation()
-  
+
     def testGithubDeleteProjectMutation(self):
       return runGithubDeleteProjectMutation()
-  
+
     def testGithubDeleteProjectV2Mutation(self):
       return runGithubDeleteProjectV2Mutation()
-  
+
     def testGithubCreateIssueMutation(self):
       return runGithubCreateIssueMutation()
-  
+
     def testGithubCreateProjectMutation(self):
       return runGithubCreateProjectMutation()
 #GITHUB - END
-  
+
 #RapidAPI - START
-  
+
     def testAdminAuditLogs(self):
       return runAdminAuditLogs()
-  
+
     def testRapidApiCreateTransformationsMutation(self):
       return runRapidApiCreateTransformationsMutation()
-  
+
     def testRapidApiCreateGatewayInstanceMutation(self):
       return runRapidApiCreateGatewayInstanceMutation()
-  
+
     def testRapidApiEditUserAlertMutation(self):
       return runRapidApiEditUserAlertMutation()
 #RapidAPI - END

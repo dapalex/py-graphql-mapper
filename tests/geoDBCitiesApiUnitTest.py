@@ -3,35 +3,35 @@ from codegen.network import fetchSchemaObject
 from codegen.generator import CodeGenerator
 from codegen.queryPresets import querySchemaAndTypes
 from .consts import gdbcHeaders, gdbcUrl
-# from .utils import ManageException
+import logging as logger
 
 def fetchGeoDBCitiesSchema():
-    print('\n\nRunning fetchGeoDBCitiesSchema...')
+    logger.info('\n\nRunning fetchGeoDBCitiesSchema...')
 
     try:
         gqlSchema = fetchSchemaObject(gdbcUrl, gdbcHeaders, querySchemaAndTypes)
 
         if gqlSchema:
-            print('Generating python types from GraphQL data...')
+            logger.info('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\GeoDBCities\\', logProgress=True)
-            print('Python types generated')
+            logger.info('Python types generated')
 
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of fetchGeoDBCitiesSchema")
+    logger.info("End of fetchGeoDBCitiesSchema")
 
 def fetchGeoDBCitiesSchemaNoDesc():
-    print('\n\nRunning fetchGeoDBCitiesSchemaNoDesc...')
+    logger.info('\n\nRunning fetchGeoDBCitiesSchemaNoDesc...')
 
     try:
         gqlSchema = fetchSchemaObject(gdbcUrl, gdbcHeaders, querySchemaAndTypes)
 
         if gqlSchema:
-            print('Generating python types from GraphQL data...')
+            logger.info('Generating python types from GraphQL data...')
             CodeGenerator.generateCode(gqlSchema, folder='tests\\output\\GeoDBCitiesNoDesc\\', addDescription=False, logProgress=True)
-            print('Python types generated')
+            logger.info('Python types generated')
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of fetchGeoDBCitiesSchemaNoDesc")
+    logger.info("End of fetchGeoDBCitiesSchemaNoDesc")

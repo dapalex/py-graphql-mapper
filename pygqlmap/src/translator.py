@@ -2,7 +2,7 @@
 import inspect
 import keyword
 from enum import Enum
-
+import logging as logger
 from pygqlmap.helper import HandleRecursiveEx
 from .utils import executeRegex, isEmptyField
 from pygqlmap.gqlTypes import ID
@@ -52,7 +52,7 @@ class Translate():
                 output += ' } '
                 return output
             else:
-                print('to manage')
+                logger.warn('to manage')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
@@ -64,11 +64,11 @@ class Translate():
                 return str(pyVariable).replace('\'', '\"')
             elif isinstance(pyVariable, type):
                 return '\"' + str(pyVariable).replace('\'', '\"') + '\"'
-            elif type(pyVariable) == bool:
+            elif isinstance(pyVariable, bool):
                 return str(pyVariable).lower()
             elif Enum in inspect.getmro(type(pyVariable)):
                 return'\"' +  pyVariable.value + '\"'
-            elif type(pyVariable) == dict:
+            elif isinstance(pyVariable, dict):
                 output = ' { '
                 for varKey, varValue in pyVariable.items():
                     output += Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLValue(varValue) + commaConcat
@@ -77,7 +77,7 @@ class Translate():
                 output += ' } '
                 return output
             else:
-                print('to manage')
+                logger.warn('to manage')
         except Exception as ex:
             raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
@@ -126,7 +126,7 @@ class Translate():
 
             output.removesuffix(commaConcat)
         except Exception as ex:
-            raise HandleRecursiveEx(Exception('Issue with items exporting variable'), '')
+            raise HandleRecursiveEx(ex, 'Issue with items exporting variable')
 
         output += ' }'
         return output
@@ -152,7 +152,7 @@ class Translate():
         for args in argsToIgnore:
             try:
                 if str(dataInput).__contains__(args):
-                    print('splitting ' + dataInput)
+                    logger.info('splitting ' + dataInput)
                     inputList = dataInput.split(args)
                     return args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
             except Exception as ex:

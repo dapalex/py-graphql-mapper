@@ -4,13 +4,13 @@ from pygqlmap.gqlTypes import ID
 from pygqlmap.helper import mapConfig
 from .consts import gdbcHeaders, gdbcUrl
 from .output.GeoDBCities.queries import country, currencies, countries
-# from .utils import ManageException
+import logging as logger
 
 def runNestedObject():
-    print('\n\nRunning testNestedObject...')
+    logger.info('\n\nRunning testNestedObject...')
     try:
         query = currencies()
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -19,14 +19,14 @@ def runNestedObject():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(currencies())
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testNestedObject")
+    logger.info("End of testNestedObject")
 
 def runNestedObjectShowChange():
-    print('\n\nRunning testNestedObjectShowChange...')
+    logger.info('\n\nRunning testNestedObjectShowChange...')
     query = currencies()
     query.name = 'MyCurrenciesQuery'
 
@@ -38,13 +38,13 @@ def runNestedObjectShowChange():
     # query.setShow('currencies.edges', False)
     query.setShow('currencies', False)
 
-    print('currencies.edges.node.symbol -> Hide')
-    print('currencies.edges.node.countryCodes -> Hide')
-    # print('currencies.edges.node -> Hide')
-    print('currencies.totalCount -> Hide')
-    print('currencies -> Hide')
+    logger.info('currencies.edges.node.symbol -> Hide')
+    logger.info('currencies.edges.node.countryCodes -> Hide')
+    # logger.info('currencies.edges.node -> Hide')
+    logger.info('currencies.totalCount -> Hide')
+    logger.info('currencies -> Hide')
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -53,14 +53,14 @@ def runNestedObjectShowChange():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testNestedObjectShowChange")
+    logger.info("End of testNestedObjectShowChange")
 
 def runComplexObjectShowChange():
-    print('\n\nRunning testComplexObjectShowChange...')
+    logger.info('\n\nRunning testComplexObjectShowChange...')
     query = countries()
     query.type.edges.node.region._args.code = ID("CH")
     query._argsType = ArgType.Variables
@@ -73,16 +73,16 @@ def runComplexObjectShowChange():
     query.setShow('countries.edges.node.capital', False)
     query.setShow('countries.totalCount', False)
 
-    print('countries.edges.cursor -> Hide')
-    print('countries.edges.node.region.country.capital -> Hide')
-    print('countries.edges.node.regions.pageInfo.hasNextPage -> Hide')
-    print('countries.edges.node.regions.pageInfo -> Hide')
-    print('countries.edges.node.callingCode -> Hide')
-    print('countries.edges.node.capital -> Hide')
-    print('countries.totalCount -> Hide')
+    logger.info('countries.edges.cursor -> Hide')
+    logger.info('countries.edges.node.region.country.capital -> Hide')
+    logger.info('countries.edges.node.regions.pageInfo.hasNextPage -> Hide')
+    logger.info('countries.edges.node.regions.pageInfo -> Hide')
+    logger.info('countries.edges.node.callingCode -> Hide')
+    logger.info('countries.edges.node.capital -> Hide')
+    logger.info('countries.totalCount -> Hide')
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
@@ -91,14 +91,14 @@ def runComplexObjectShowChange():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testComplexObjectShowChange")
+    logger.info("End of testComplexObjectShowChange")
 
 def runNestedObjectWithArgsAndVariables():
-    print('\n\nRunning testNestedObjectWithArgsAndVariables...')
+    logger.info('\n\nRunning testNestedObjectWithArgsAndVariables...')
     query = currencies()
     query.name = 'myCurrenciesQuery'
     query._args.first = 3
@@ -106,8 +106,8 @@ def runNestedObjectWithArgsAndVariables():
     query._argsType = ArgType.Variables
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
-        print('variables GQL version: ' + query.exportGQLVariables)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('variables GQL version: ' + query.exportGQLVariables)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
@@ -116,19 +116,19 @@ def runNestedObjectWithArgsAndVariables():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testNestedObjectWithArgsAndVariables")
+    logger.info("End of testNestedObjectWithArgsAndVariables")
 
 def runNestedObjectWithLiteralValueArgs():
-    print('\n\nRunning testNestedObjectWithLiteralValueArgs...')
+    logger.info('\n\nRunning testNestedObjectWithLiteralValueArgs...')
     query = currencies()
     query._args.countryId = 'CH'
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -137,14 +137,14 @@ def runNestedObjectWithLiteralValueArgs():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testNestedObjectWithLiteralValueArgs")
+    logger.info("End of testNestedObjectWithLiteralValueArgs")
 
 def runComplexObjectWithLiteralValueArgs():
-    print('\n\nRunning testComplexObjectWithLiteralValueArgs...')
+    logger.info('\n\nRunning testComplexObjectWithLiteralValueArgs...')
     from .output.GeoDBCities.enums import IncludeDeletedFilterType
     query = countries()
     query._args.currencyCode = 'CNY'
@@ -157,7 +157,7 @@ def runComplexObjectWithLiteralValueArgs():
 
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -166,19 +166,19 @@ def runComplexObjectWithLiteralValueArgs():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testComplexObjectWithLiteralValueArgs")
+    logger.info("End of testComplexObjectWithLiteralValueArgs")
 
 def runComplexObjectWithLiteralValueArgs2():
-    print('\n\nRunning testComplexObjectWithLiteralValueArgs2...')
+    logger.info('\n\nRunning testComplexObjectWithLiteralValueArgs2...')
     query = countries()
     query.type.edges.node.region._args.code = "CN"
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -187,14 +187,14 @@ def runComplexObjectWithLiteralValueArgs2():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testComplexObjectWithLiteralValueArgs2")
+    logger.info("End of testComplexObjectWithLiteralValueArgs2")
 
 def runComplexObjectWithArgsAndVariables():
-    print('\n\nRunning testComplexObjectWithArgsAndVariables...')
+    logger.info('\n\nRunning testComplexObjectWithArgsAndVariables...')
     query = countries()
     query._args.first = 3
     query._args.after = 'Mg=='
@@ -204,8 +204,8 @@ def runComplexObjectWithArgsAndVariables():
     query._argsType = ArgType.Variables
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
-        print('variables GQL version: ' + query.exportGQLVariables)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('variables GQL version: ' + query.exportGQLVariables)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
@@ -214,21 +214,21 @@ def runComplexObjectWithArgsAndVariables():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testComplexObjectWithArgsAndVariables")
+    logger.info("End of testComplexObjectWithArgsAndVariables")
 
 def runNestedObjectShowChangeWithArgsAndVariables():
-    print('\n\nRunning testNestedObjectShowChangeWithArgsAndVariables...')
+    logger.info('\n\nRunning testNestedObjectShowChangeWithArgsAndVariables...')
     query = currencies()
     query._args.countryId = ID('CH')
     query._argsType = ArgType.Variables
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
-        print('variables GQL version: ' + query.exportGQLVariables)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('variables GQL version: ' + query.exportGQLVariables)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
@@ -237,14 +237,14 @@ def runNestedObjectShowChangeWithArgsAndVariables():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testNestedObjectShowChangeWithArgsAndVariables")
+    logger.info("End of testNestedObjectShowChangeWithArgsAndVariables")
 
 def runComplexObjectShowChangeWithArgsAndVariables():
-    print('\n\nRunning testComplexObjectShowChangeWithArgsAndVariables...')
+    logger.info('\n\nRunning testComplexObjectShowChangeWithArgsAndVariables...')
     query = countries()
     query._args.first = 3
     query._args.after = 'MTE='
@@ -258,8 +258,8 @@ def runComplexObjectShowChangeWithArgsAndVariables():
     query._argsType = ArgType.Variables
 
     try:
-        print('gqlSource GQL version: ' + query.exportGqlSource)
-        print('variables GQL version: ' + query.exportGQLVariables)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('variables GQL version: ' + query.exportGQLVariables)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource, "variables": query.exportGQLVariables },
@@ -268,14 +268,14 @@ def runComplexObjectShowChangeWithArgsAndVariables():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testComplexObjectShowChangeWithArgsAndVariables")
+    logger.info("End of testComplexObjectShowChangeWithArgsAndVariables")
 
 def runObjectWithComposedArgs():
-    print('\n\nRunning testObjectWithComposedArgs...')
+    logger.info('\n\nRunning testObjectWithComposedArgs...')
     try:
         query = country()
         query.logProgress=True
@@ -284,7 +284,7 @@ def runObjectWithComposedArgs():
         query._args.displayOptions = {"asciiMode": True, "language": Language.EN }
         query.type.region._args.code = 'Q12094'
 
-        print('gqlSource GQL version: ' + query.exportGqlSource)
+        logger.info('gqlSource GQL version: ' + query.exportGqlSource)
 
         response = httpRequest(gdbcUrl,
                                      { "query": query.exportGqlSource },
@@ -293,8 +293,8 @@ def runObjectWithComposedArgs():
 
         gqlResponse.printMessageOutput()
         gqlResponse.mapGQLDataToObj(query.type)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    print("End of testObjectWithComposedArgs")
+    logger.info("End of testObjectWithComposedArgs")

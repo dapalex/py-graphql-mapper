@@ -1,70 +1,70 @@
 
-""" 
-    USE CASE DESCRIPTION: 
+"""
+    USE CASE DESCRIPTION:
     This test shows how to create a GraphQL Query to fetch a GraphQL complex type (made of objects, connections, and scalar fields) combining arguments usage as literal values
     with visibility usage for chosen fields, and finally build the python class instance containing the data from the response
-    
+
     Query to reproduce:
-    
-    query myCountriesQuery  { 
-        countries(currencyCode: "USD") { 
-            edges { 
-                cursor     
-                node { 
-                    code     
-                    callingCode     
-                    wikiDataId     
-                    capital     
-                    name     
-                    currencyCodes       
-                    flagImageUri     
-                    numRegions     
-                    region(code: "AK") { 
-                        fipsCode     
-                        isoCode     
-                        wikiDataId     
-                        name     
-                        capital     
-                        country { 
-                            code     
+
+    query myCountriesQuery  {
+        countries(currencyCode: "USD") {
+            edges {
+                cursor
+                node {
+                    code
+                    callingCode
+                    wikiDataId
+                    capital
+                    name
+                    currencyCodes
+                    flagImageUri
+                    numRegions
+                    region(code: "AK") {
+                        fipsCode
+                        isoCode
+                        wikiDataId
+                        name
+                        capital
+                        country {
+                            code
                             callingCode         (*)
-                            wikiDataId     
-                            capital     
-                            name     
+                            wikiDataId
+                            capital
+                            name
                             currencyCodes       (*)
-                            flagImageUri     
-                            numRegions  
-                        }        
-                        populatedPlaces { 
-                            totalCount  
-                        } 
-                    }    
-                    regions { 
-                        edges { 
-                            cursor  
-                        }     
-                        totalCount     
-                        pageInfo { 
-                            startCursor     
-                            endCursor     
-                            hasNextPage    (*) 
-                            hasPreviousPage  
-                        } 
-                    } 
-                } 
-            }     
-            totalCount     
-            pageInfo { 
-                startCursor     
-                endCursor     
+                            flagImageUri
+                            numRegions
+                        }
+                        populatedPlaces {
+                            totalCount
+                        }
+                    }
+                    regions {
+                        edges {
+                            cursor
+                        }
+                        totalCount
+                        pageInfo {
+                            startCursor
+                            endCursor
+                            hasNextPage    (*)
+                            hasPreviousPage
+                        }
+                    }
+                }
+            }
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
                 hasNextPage      (*)
-                hasPreviousPage  
-            } 
-        } 
+                hasPreviousPage
+            }
+        }
     }
 
 
-    STEP 1: Define the python classes corresponding to the GraphQL type within the query 
+    STEP 1: Define the python classes corresponding to the GraphQL type within the query
 """
 ##STEP 1
 from enum import Enum
@@ -72,7 +72,7 @@ from typing import NewType
 from pygqlmap.gqlOperations import GQLQuery
 from pygqlmap.gqlTypes import ID
 from pygqlmap.components import GQLObject, GQLArgsSet
-# from ..utils import ManageException
+import logging as logger
 
 class PopulatedPlaceType(Enum):
    ADM2 = 'ADM2' ##A level-2 administrative division (for example, a county)
@@ -108,13 +108,13 @@ class Country(GQLObject):
    currencyCodes: str ##NON NULL
    flagImageUri: str ##NON NULL
    numRegions: int ##NON NULL
-   
+
 class RegionArguments(GQLArgsSet, GQLObject):
     code: ID
-    
+
 class CountryRegion(GQLObject):
    _args: RegionArguments
-   
+
    fipsCode: ID
    isoCode: ID ##NON NULL
    wikiDataId: ID
@@ -192,7 +192,7 @@ class CountriesArguments(GQLArgsSet, GQLObject):
     last: int
     before: str
     displayOptions: DisplayOptions
-    
+
 class countries(GQLQuery):
    _args: CountriesArguments
    type: CountriesConnection
@@ -200,16 +200,16 @@ class countries(GQLQuery):
 ##
 
 """
-    STEP 2: Instantiate GQLOperation class representing the GraphQL query 
+    STEP 2: Instantiate GQLOperation class representing the GraphQL query
     STEP 3: Instantiate GQLArgs object structure with argument type as LiteralValues
     STEP 2: Call setShow function of GQLOperation class to set the visibility of chosen fields (path to declare with dot notation)
     STEP 5: Query the GraphQL server
     STEP 6: Pass the response received to the GQLResponse constructor
     STEP 7: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
-    
-    RESULT: 
+
+    RESULT:
         a) The request toward the GraphQL server will not have the hidden fields
-        b) The request toward the GraphQL server will have the query with arguments 'currencyCode' and 'code' 
+        b) The request toward the GraphQL server will have the query with arguments 'currencyCode' and 'code'
         b) The python class instance obtained from the response will not have the hidden fields
 """
 
@@ -217,13 +217,13 @@ from pygqlmap.network import httpRequest
 from ..consts import gdbcHeaders, gdbcUrl
 # from ..utils import ManageException
 
-def runGeneratedDataAsGQLObject(): 
-    print('\n\nRunning testGeneratedDataAsGQLObject...')
+def runGeneratedDataAsGQLObject():
+    logger.info('\n\nRunning testGeneratedDataAsGQLObject...')
 ##STEP 2
     query = countries()
-    query.name ='myCountriesQuery' #, rootName='countries') 
+    query.name ='myCountriesQuery' #, rootName='countries')
 ##
-    
+
 ##STEP 3
     query._args.currencyCode = 'USD'
     query.type.edges.node.region._args.code = ID('AZ')
@@ -237,33 +237,33 @@ def runGeneratedDataAsGQLObject():
 ##
 
 ##RESULT a) and b)
-    print('Query GQL syntax: ' + query.exportGqlSource)
+    logger.info('Query GQL syntax: ' + query.exportGqlSource)
 ##
 
 ##STEP 3
     try:
-        response = httpRequest(gdbcUrl, 
-                                     { "query": query.exportGqlSource }, 
+        response = httpRequest(gdbcUrl,
+                                     { "query": query.exportGqlSource },
                                     gdbcHeaders)
 ##
-        
+
 ##STEP 4
         from pygqlmap.network import GQLResponse
-        
+
         gqlResponse = GQLResponse(response)
 ##
-        
+
         gqlResponse.printMessageOutput()
-        
+
 ##STEP 5
         gqlResponse.mapGQLDataToObj(query.type)
 ##
-        
+
 ##RESULT c)
-        print('resultObject: ' + str(gqlResponse.resultObject))
+        logger.info('resultObject: ' + str(gqlResponse.resultObject))
 ##
 
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
-        
-    print("End of testGeneratedDataAsGQLObject")
+
+    logger.info("End of testGeneratedDataAsGQLObject")

@@ -75,9 +75,9 @@ class QueryBuilder(Builder):
                     attr = getattr(opObject, a)
                     del attr
                 elif self.buildType == BuildingType.AlterClass:
-                    print('delete attribute from class')
+                    logger.info('delete attribute from class')
                 else:
-                    print('should do nothing in new object')
+                    logger.info('should do nothing in new object')
 
     def setFieldValue(self, obj, attr, value):
         """  for internal use only    """
@@ -88,7 +88,7 @@ class QueryBuilder(Builder):
                     if self.buildType == BuildingType.Standard or self.buildType == BuildingType.AlterClass:
                         setattr(obj, attr, value)
                     else:
-                        print('new object management')
+                        logger.info('new object management')
         except Exception as ex:
             logger.error('Setting value of: ' + attr + ' failed - ' + ex.args[0])
 
@@ -98,9 +98,9 @@ class QueryBuilder(Builder):
         if self.buildType == BuildingType.Standard:
             setattr(obj, field, None)
         elif self.buildType == BuildingType.AlterClass:
-            print('alter class to delete field')
+            logger.info('alter class to delete field')
             attrToDel.append(field)
         elif self.buildType == BuildingType.CreateNewClass:
-            print('do nothing in new class')
+            logger.info('do nothing in new class')
         else:
             raise Exception('buildType not assigned')

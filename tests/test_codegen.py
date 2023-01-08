@@ -13,22 +13,21 @@ from .githubApiUnitTest import (fetchGithubMutationTypes, fetchGithubMutationTyp
 from .rapidApiUnitTest import (fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
 
 class TestCodegen(unittest.TestCase):
-    
+
     def testGeoDBCitiesSchema(self):
       return fetchGeoDBCitiesSchema()
-  
+
     def testGeoDBCitiesSchemaNoDesc(self):
       return fetchGeoDBCitiesSchemaNoDesc()
-  
+
     def testGithubMutationTypesFromSchemaNoDesc(self):
       return fetchGithubMutationTypesFromSchemaNoDesc()
-  
+
     def testGithubMutationTypes(self):
       return fetchGithubMutationTypes()
-  
+
     def testRapidApiTestSchemaAndTypesNoDesc(self):
       return fetchRapidApiTestSchemaAndTypesNoDesc()
-  
+
     def testRapidApiTestSchemaAndTypes(self):
       return fetchRapidApiTestSchemaAndTypes()
-  

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pygqlmap',
-    version='1.0.0',    
+    version='1.0.0',
     description='A python library to call GraphQL APIs without using hardcoded strings',
     long_description= open('README.MD').read(),
     url='https://github.com/dapalex/py-graphql-mapper/',

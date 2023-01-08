@@ -28,7 +28,7 @@ class FSTree():
         field = info[1]
 
         if len(path) == 0:
-            print('trying to hide the entire object...')
+            logger.info('trying to hide the entire object...')
             return
 
         attrContainer = self.findBranchContainer(path)

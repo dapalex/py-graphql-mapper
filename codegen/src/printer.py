@@ -2,6 +2,7 @@ import pathlib
 from .utils import getValidFolder
 from .consts import templateFolder
 import os
+import logging as logger
 from .enums import TemplateType
 from .priority import ExtractionResults
 
@@ -17,7 +18,7 @@ class Printer():
             if folder:
                 folder = getValidFolder(folder)
             else:
-                print('Destination folder missing')
+                logger.warn('Destination folder missing')
 
             self.saveScalarsFile(str(pathlib.Path(os.path.dirname(folder), 'scalars.py').absolute()))
             self.saveEnumsFile(str(pathlib.Path(os.path.dirname(folder), 'enums.py').absolute()))
