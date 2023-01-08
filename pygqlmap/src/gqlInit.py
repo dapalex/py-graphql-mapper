@@ -69,7 +69,7 @@ def initType(obj, fieldType, fieldName):
                     setattr(obj, fieldName, fieldType())
                 else:
                     setattr(obj, fieldName, None)
-        elif isinstance(fieldType, NewType) or isinstance(fieldType, TypeVar):
+        elif type(fieldType) == NewType or type(fieldType) == TypeVar:
             addCircularRef(fieldType)
             defineVariableType(obj, fieldName, fieldType)
         elif fieldType == Union:
@@ -100,7 +100,6 @@ def specializeGeneric(obj, fieldName, fieldType):
         ##extract class from type name stringified of the field
         currentClass = getattr(sys.modules[obj.__module__], fieldType.__name__)
 
-        # if not fieldType.__name__ in circularRef.keys() and int(mapConfig["recursionDepth"]) > 0:
         if checkCircularRefs(currentClass):
 
             #welcome!!
@@ -185,7 +184,7 @@ def addCircularRef(fieldType):
                 if currentPath.__contains__(circRefPath):
                     return
         if int(mapConfig["recursionDepth"]) > 0:
-            circularRefs.update({ (fieldType.__name__, currentPath): 1 if isinstance(fieldType, NewType) else -1 })
+            circularRefs.update({ (fieldType.__name__, currentPath): 1 if type(fieldType) == NewType else -1 })
         else:
             logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
         if not (fieldType.__name__, currentPath) in circularRefs.keys():
@@ -208,7 +207,6 @@ def checkCircularRefs(fieldType):
                         circularRefs[circulaRefTupKey] += 1
                         return True
                     else:
-                        # logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
                         return False
 
         return True
