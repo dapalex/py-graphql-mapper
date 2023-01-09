@@ -35,4 +35,4 @@ jobs:
         python -m pip install pytest coverage coverage-badge   
         python setup.py install
     - name: Test coverage
-      run: coverage pytest ./tests/test_*
+      run: coverage -m pytest ./tests/test_*
