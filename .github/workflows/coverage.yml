@@ -6,20 +6,22 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: Coverage
 
 on:
-  release:
-    types: [published]
-
-permissions:
-  contents: read
+  push:
+    branches: [ "coverage-test" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
-
+  build:
+    environment: develop
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
     steps:
     - name: Set up Python
       with:
