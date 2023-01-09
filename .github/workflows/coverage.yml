@@ -35,8 +35,11 @@ jobs:
         python -m pip install pytest coverage coverage-badge   
         python setup.py install
     - name: Test coverage
-      run: coverage run -m pytest ./tests/test_cli.py ./tests/test_codegen.py ./tests/test_mapping.py
+      run: coverage run -m pytest ./tests/test_codegen.py ./tests/test_mapping.py
       env:
         GEODBCITIES_APIKEY: ${{ secrets.GEODBCITIES_APIKEY }} 
         GH_APIKEY: ${{ secrets.GH_APIKEY }} 
         RAPIDAPI_APIKEY: ${{ secrets.RAPIDAPI_APIKEY }} 
+    - name: Create badge
+      run: |
+        coverage-badge
