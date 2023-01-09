@@ -1,5 +1,6 @@
 [![Python package](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/python-package.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/280533e425784f7da9ecb0f6e529886b)](https://www.codacy.com/gh/dapalex/py-graphql-mapper/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dapalex/py-graphql-mapper&amp;utm_campaign=Badge_Grade)
+[![Coverage badge](https://github.com/dapalex/py-graphql-mapper/actions/workflows/coverage.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/coverage.yml)
 --------------------------------------------------------------------------------
 # py-graphql-mapper
 [![Code Generation Test](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml/badge.svg)](https://github.com/dapalex/py-graphql-mapper/actions/workflows/test-codegen.yml)
