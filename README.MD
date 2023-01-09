@@ -19,7 +19,7 @@ The package does not use any third-party libraries, it relies only on python 3 (
 
 ### Installation
 
-The following command will install the library:
+Available in PyPI, the following command will install the library:
 
 ```
 python setup.py install
