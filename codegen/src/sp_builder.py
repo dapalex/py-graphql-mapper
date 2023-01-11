@@ -12,6 +12,14 @@ class SchemaTypeBuilder(Builder):
 
         return pyObject
 
+    def build_directive(dataInput):
+        directive = SCDirective()
+        while len(dataInput.items()) > 0:
+            inputField = dataInput.popitem()
+            setattr(directive, inputField[0], SchemaTypeBuilder.build_args_inputfields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
+
+        return directive
+
     def build_sctypes(dataInput):
         types = {}
         for typeInput in dataInput:
@@ -175,14 +183,6 @@ class SchemaBuilder(Builder):
                 pyObject.types = SchemaTypeBuilder.build_sctypes(data[1]) if data[1] else None
             if data[0] == 'directives':
                 # pyObject.directives = self.build_directives(data[1]) if data[1] else None
-                pyObject.directives = list(map(self.build_directive, data[1])) if data[1] else None
+                pyObject.directives = list(map(SchemaTypeBuilder.build_directive, data[1])) if data[1] else None
 
         return pyObject
-
-    def build_directive(self, dataInput):
-        directive = SCDirective()
-        while len(dataInput.items()) > 0:
-            inputField = dataInput.popitem()
-            setattr(directive, inputField[0], SchemaTypeBuilder.build_args_inputfields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
-
-        return directive
