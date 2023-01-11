@@ -12,7 +12,13 @@ A python library to interact with GraphQL APIs with no need of hardcoded strings
 This library acts as a mapper between python and GraphQL languages for GraphQL clients, allowing a code-first approach when calling a GraphQL API server.
 It translates GraphQL entities into python objects and viceversa in order to avoid working with massive "copy&paste"s.
 
-The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries. 
+This document contains a quick overview of the functionalities, for more details and options you can read here:
+
+* Code Generation: https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD
+* Core Mapper: https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD
+
+
+The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries.
 
 
 ## Usage in a nutshell
@@ -22,7 +28,7 @@ The package does not use any third-party libraries, it relies only on python 3 (
 Available in PyPI, the following command will install the library:
 
 ```
-python setup.py install
+pip install py-graphql-mapper
 ```
 
 
