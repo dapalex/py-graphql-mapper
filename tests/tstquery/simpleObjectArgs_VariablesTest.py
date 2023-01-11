@@ -19,7 +19,7 @@
         }
     }
 
-    STEP 1: Instantiate class representing the GraphQL query
+    STEP 1: Instantiate the python class representing the GraphQL query
     STEP 2: Define arguments following object structure with argument type as Variables
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
