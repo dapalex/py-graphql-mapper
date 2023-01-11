@@ -5,7 +5,9 @@ name: Code Generation
 
 on:
   push:
-    branches: [ "9-naming-convention" ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
