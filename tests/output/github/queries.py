@@ -1,6 +1,6 @@
 from pygqlmap import GQLQuery
-from .gqlTypes import *
-from .gqlSimpleTypes import *
+from .gql_types import *
+from .gql_simple_types import *
 from .enums import *
 from .scalars import *
 
@@ -309,12 +309,7 @@ class relay(GQLQuery):
    relay - Hack to workaround https://github.com/facebook/relay/issues/112 re-exposing the root query object
 
    """
-   #####FIX FROM GENERATION BECAUSE OF INCONSISTENCY IN SCHEMA - see comment above - START
-   # type: Query ##NON NULL 
-   from typing import Any
-   type: Any ##NON NULL 
-   #####FIX FROM GENERATION BECAUSE OF INCONSISTENCY IN SCHEMA - END
-
+   type: None ##NON NULL
 
 class repository(GQLQuery):
    """

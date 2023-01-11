@@ -2,10 +2,10 @@
 from enum import Enum
 
 class ArgType(Enum):
-    LiteralValues = 0,
-    Variables = 1
+    LITERAL_VALUES = 0
+    VARIABLES = 1
 
 class OperationType(Enum):
-    query = 0,
-    mutation = 1,
-    genericType = 2
+    QUERY = "query"
+    MUTATION = "mutation"
+    GENERIC_TYPE = "generic"

@@ -52,7 +52,7 @@ myCustomObject {
 }
 ```
 
-A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectTest.py)
+A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_test.py)
 
 
 ### Adding arguments
@@ -83,14 +83,14 @@ class MyArgs(GQLArgsSet, GQLObject):
     secondArg: ID
 ```
 
-Instantiating the classes and calling _exportGqlSource_ property
+Instantiating the classes and calling _export_gql_source_ property
 
 ```python
 myObj = myCustomObject()
 myObj._args.firstArg = 'myArgument'
 myObj._args.secondArg = ID('myID')
 
-myObj.exportGqlSource
+myObj.export_gql_source
 ```
 
 the following GraphQL object will be generated
@@ -143,9 +143,9 @@ The creation of the operation requires:
 The base class can be customized further with these optional definitions:
 
 * name: string used to give a name to the operation
-* _argsType: how the arguments will be exported (default - literal values)
+* _args_type: how the arguments will be exported (default - literal values)
 
-Instantiating the class and calling _exportGqlSource_ property
+Instantiating the class and calling _export_gql_source_ property
 
 ```python
 from pygqlmap.enums import ArgType
@@ -155,8 +155,8 @@ myQuery._args.currencyCode = 'USD'
 myQuery._args.namePrefix = "unit"
 
 myQuery.name = 'myFirstQuery'
-myQuery._argsType = ArgType.Variables
-myQuery.exportGqlSource
+myQuery._args_type = ArgType.VARIABLES
+myQuery.export_gql_source
 ```
 
 will generate the following GraphQL syntax:
@@ -180,7 +180,7 @@ query myFirstQuery ($currencyCode: String, $namePrefix: String){
 Calling the relating GraphQL API server (example using _requests_):
 
 ```python
-response = request("POST", graphQLServerUrl, json={ "query": query.exportGqlSource }, headers=headers)
+response = request("POST", gql_url, json={ "query": query.export_gql_source }, headers=headers)
 ```
 
 Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/)
@@ -205,16 +205,16 @@ class updateRepository(GQLMutation):
 Similarly to queries the creation of a mutation would be:
 
 ```python
-coreMutation = updateRepository()
-coreMutation.name = 'myManualMutationUpdateRepository'
+core_mutation = updateRepository()
+core_mutation.name = 'myManualMutationUpdateRepository'
 
-coreMutation._args._input.repositoryId = "someID"
-coreMutation._args._input.hasIssuesEnabled = False
+core_mutation._args._input.repositoryId = "someID"
+core_mutation._args._input.hasIssuesEnabled = False
 
-response = request("POST", graphQLServerUrl, json={ "query": coreMutation.exportGqlSource }, headers=headers)
+response = request("POST", graphQLServerUrl, json={ "query": core_mutation.export_gql_source }, headers=headers)
 ```
 
-The function *exportGqlSource* will generate the following GraphQL syntax:
+The function *export_gql_source* will generate the following GraphQL syntax:
 
 ```
 mutation myManualUpdateRepository  {
@@ -241,19 +241,19 @@ Example:
 ```python
 from pygqlmap.enums import ArgType
 
-query = myCustomQUery()
+query = myCustomQuery()
 query.name = 'myQuery'
 
 query._args.myCode = 3
 query._args.myID = ID('MTE=')
 
-query._argsType = ArgType.Variables
+query._args_type = ArgType.VARIABLES
 
-print(query.exportGqlSource)
-print(query.exportGqlVariables)
+print(query.export_gql_source)
+print(query.export_gqlvariables)
 ```
 
-_exportGqlSource_ will generate the following GraphQL object:
+_export_gql_source_ will generate the following GraphQL object:
 
 ```
 query myQuery($myCode: Int, $myID: ID) {
@@ -265,7 +265,7 @@ query myQuery($myCode: Int, $myID: ID) {
 }
 ```
 
-and _exportGqlVariables_ the following variables:
+and _export_gqlvariables_ the following variables:
 
 ```
 {
@@ -277,16 +277,20 @@ and _exportGqlVariables_ the following variables:
 Example using _requests_:
 
 ```python
-request("POST", graphQLUrl, json={ "query": query.exportGqlSource, "variables": query.exportGqlVariables }, headers=headers)
+request("POST", gql_url, json={ "query": query.export_gql_source, "variables": query.export_gqlvariables }, headers=headers)
 ```
 
-Note: Right now Arguments as Variables are not supported for mutations
+Note: Right now Arguments as VARIABLES are not supported for mutations
 
 Use cases for queries can be seen here:
-[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_LiteralValuesTest.py)
-[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectArgs_VariablesTest.py)
-[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionObjectArgs_VariablesTest.py)
-[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connectionobjectArgs_LiteralValuesTest.py)
+
+[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_literal_test.py)
+
+[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_vars_test.py)
+
+[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_vars_test.py)
+
+[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_literal_test.py)
 
 
 ## Dynamic visibility of fields
@@ -322,16 +326,16 @@ query {
 }
 ```
 
-It is possible to 'temporarily' hide unnecessary fields, this can be done using *setShow* function:
+It is possible to 'temporarily' hide unnecessary fields, this can be done using *set_show* function:
 
 With the following code
 
 ```python
 query = MyConnection()
 query.name = 'myQuery'
-query.setShow('myCustomObject.myCode', False)
-query.setShow('myCustomObject.myNestedfield.fieldB', False)
-query.exportGqlSource
+query.set_show('myCustomObject.myCode', False)
+query.set_show('myCustomObject.myNestedfield.fieldB', False)
+query.export_gql_source
 ```
 
 the mapped GraphQL version of _query_ would become
@@ -349,7 +353,7 @@ query myQuery{
 
 hiding _myCode_ and _fieldB_.
 
-An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simpleObjectChangeVisibilityTest.py)
+An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_viewchange_test.py)
 
 
 ## Parsing of a response
@@ -360,13 +364,13 @@ Responses received from a GraphQL server can be automatically converted into a p
 ```python
     from pgqlmCore import GQLResponse
     ....
-    response = request("POST", graphQLServerUrl, json=json={ "query": query.exportGqlSource }, headers=headers)
+    response = request("POST", gql_server_url, json=json={ "query": query.export_gql_source }, headers=headers)
 
-    gqlResponse = GQLResponse(response)
-    gqlResponse.mapGQLDataToObj(query.type)
+    gql_response = GQLResponse(response)
+    gql_response.map_gqldata_to_obj(query.type)
 
-    gqlResponse.printMessageOutput()
-    print('resultObject: ' + str(gqlResponse.resultObject))
+    gql_response.print_msg_out()
+    print('Result object: ' + str(gql_response.result_obj))
 ```
 
 To parse the GraphQL response:
@@ -375,7 +379,7 @@ To parse the GraphQL response:
 
 * Call mapGQLDataToObj function passing the _obj_ field within query object that has been used for the communication with the server (or alternatively an empty instance of the class).
 
-_printMessageOutput_ function will print the outcome of the request
+_print_msg_out_ function will print the outcome of the request
 
 
 ### GQLResponse
@@ -393,8 +397,8 @@ It requires the following parameter:
 
 Optional parameter:
 
-* buildType: enum *BuildingType* defining how the response will be parsed (right now available only the *Standard* value):
+* build_sctype: enum *BuildingType* defining how the response will be parsed (right now available only the *Standard* value):
     * Standard: GQLObject fields set to be hidden when the query gets generated will be present with value None
-    * CreateNewClass: creates a new class type following the content of the response (not implemented yet)
-    * AlterClass: creates a new class following the data within the response (not implemented yet)
+    * CREATENEWCLASS: creates a new class type following the content of the response (not implemented yet)
+    * ALTERCLASS: creates a new class following the data within the response (not implemented yet)
 

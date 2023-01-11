@@ -7,22 +7,22 @@ from .enums import TypeKind
 gqlTypeKinds = (TypeKind.INPUT_OBJECT.name, TypeKind.INTERFACE.name, TypeKind.OBJECT.name, TypeKind.UNION.name)
 typesByName = [TypeKind.INPUT_OBJECT.name, TypeKind.OBJECT.name, TypeKind.INTERFACE.name, TypeKind.SCALAR.name, TypeKind.ENUM.name, TypeKind.UNION.name]
 
-def performanceProfilerLog():
+def perf_profile_log():
     return  open('test/logs/performance analysis.log', 'w')
 
-def splitTypes(dictionary: dict[str, any]):
+def split_types(dictionary: dict[str, any]):
     myDeque = deque()
     simpleTypes = []
     while dictionary:
         try:
             currentItem = dictionary.popitem()
             currUsedTypes = 0
-            for field in currentItem[1].getValidFieldsList():
-                currUsedTypes +=  len(field.getUsedGQLObjectNames())
+            for field in currentItem[1].get_valid_fields_lst():
+                currUsedTypes +=  len(field.get_used_GQL_objnames())
             if currUsedTypes == 0:
                 simpleTypes.append(currentItem)
             else:
-                minUT = len(myDeque[0][1].getUsedGQLObjectNames()) if myDeque else 1
+                minUT = len(myDeque[0][1].get_used_GQL_objnames()) if myDeque else 1
                 if currUsedTypes <= minUT:
                     myDeque.appendleft(currentItem)
                 else:
@@ -32,7 +32,7 @@ def splitTypes(dictionary: dict[str, any]):
 
     return dict(simpleTypes), dict(myDeque)
 
-def getValidFolder(folder):
+def get_valid_folder(folder):
     try:
         input_path = pathlib.Path(folder).absolute()
 
@@ -46,5 +46,5 @@ def getValidFolder(folder):
 
     return str(input_path)
 
-def isDeprecated(obj):
+def is_deprecated(obj):
     return hasattr(obj, 'isDeprecated') and obj.isDeprecated

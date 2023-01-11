@@ -1,9 +1,9 @@
-primitives = (int, str, bool, float, type(None))
+PRIMITIVES = (int, str, bool, float, type(None))
 
-primitivesStringified = ('int', 'str', 'bool', 'float', 'NoneType')
+STRING_PRIMITIVES = ('int', 'str', 'bool', 'float', 'NoneType')
 
-commaConcat = ', '
+COMMA_CONCAT = ', '
 
-argsDeclaration = '_args'
+ARGS_DECLARE = '_args'
 
-arguedSignatureSuffix = '_Field'
+ARGUED_SIGNATURE_SUFFIX = '_Field'

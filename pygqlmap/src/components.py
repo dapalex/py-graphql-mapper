@@ -1,30 +1,30 @@
 import inspect
-from .utils import getObjectClassName, getDotNotationInfo, isNoneOrBuiltinPrimitive
+from .utils import get_obj_class_name, get_dot_notation_info, is_none_or_builtin_primitive
 import logging as logger
 
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
-        if list in inspect.getmro(type(obj)):
-            self.name = fieldName if fieldName else 'dummyList'
-            if hasattr(obj, 'fieldsShow'):
-                self.fieldsShow = obj.fieldsShow
-            for element in obj:
-                if isNoneOrBuiltinPrimitive(element): continue
-                if hasattr(element, 'fieldsShow'):
-                    if not hasattr(element, 'children'): self.children = []
-                    self.children.append(FSTree(element))
-        else:
-            self.name =  fieldName if fieldName else getObjectClassName(obj)
-            if hasattr(obj, 'fieldsShow'):
-                self.fieldsShow = obj.fieldsShow
-                for field in obj.fieldsShow.keys():
-                    objField = getattr(obj, field)
-                    if isNoneOrBuiltinPrimitive(objField): continue
-                    if not hasattr(self, 'children'): self.children = []
-                    self.children.append(FSTree(objField, field))
+        # if list in inspect.getmro(type(obj)):
+        #     self.name = fieldName if fieldName else 'dummyList'
+        #     if hasattr(obj, 'fields_show'):
+        #         self.fieldsshow = obj.fieldsshow
+        #     for element in obj:
+        #         if is_none_or_builtin_primitive(element): continue
+        #         if hasattr(element, 'fields_show'):
+        #             if not hasattr(element, 'children'): self.children = []
+        #             self.children.append(FSTree(element))
+        # else:
+        self.name =  fieldName if fieldName else get_obj_class_name(obj)
+        if hasattr(obj, 'fieldsshow'):
+            self._fieldsshow = obj._fieldsshow
+            for field in obj.fieldsshow.keys():
+                objField = getattr(obj, field)
+                if is_none_or_builtin_primitive(objField): continue
+                if not hasattr(self, 'children'): self.children = []
+                self.children.append(FSTree(objField, field))
 
-    def setFieldShow(self, fieldName: str, show: bool):
-        info = getDotNotationInfo(fieldName)
+    def set_fieldshow(self, fieldName: str, show: bool):
+        info = get_dot_notation_info(fieldName)
         path = info[0]
         field = info[1]
 
@@ -33,8 +33,8 @@ class FSTree():
             return
 
         attrContainer = self.findBranchContainer(path)
-        if field in attrContainer.fieldsShow.keys():
-            attrContainer.fieldsShow[field] = show
+        if field in attrContainer._fieldsshow.keys():
+            attrContainer._fieldsshow[field] = show
         else:
             raise Exception('field ' + field + ' not found!')
 

@@ -22,7 +22,7 @@ def cleanFolder(folder):
 
 def cleanOutput(outType: OutputType):
     if outType == OutputType.COMMANDS:
-        dirToClean = pathlib.Path(os.path.join(os.curdir, 'commandsOutput'))
+        dirToClean = pathlib.Path(os.path.join(os.curdir, 'cmd_output'))
     if outType == OutputType.SCHEMAS:
         dirToClean = pathlib.Path(os.path.join(os.path.join(os.curdir, 'test'), 'output'))
 

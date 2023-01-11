@@ -38,25 +38,26 @@ pip install py-graphql-mapper
 To generate the code execute the following command:
 
 ```
-pygqlcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs.json
+pgmcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs.json
 ```
 
 This command requires a json file containing the parameters needed to get the GraphQL schema
 
 ![image](https://github.com/dapalex/py-graphql-mapper/blob/main/docs/cli_args_nutshell.png)
 
+A sample is availabe in the main folder 'cli_args.json'
 
-In the output folder there will be the following python files:
+The following python files will be generated:
 
 * enums.py
 * scalars.py
-* gqlSimpleTypes.py
-* gqlTypes.py
-* circularRefs.py
+* gql_simple_types.py
+* gql_types.py
+* circular_refs.py
 * queries.py
 * mutations.py
 
-The following links show code generated using the library [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/RapidApi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/GeoDBCities)
+These links show code generated using the library [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/rapidapi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/gdbc)
 
 More command options available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
 
@@ -66,24 +67,24 @@ More command options available [here](https://github.com/dapalex/py-graphql-mapp
 Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
 ```python
-from .output.GeoDBCities.queries import currencies
+from .output.gdbc.queries import currencies
 
-myCurrenciesQuery = currencies()
+my_currencies = currencies()
 ```
 populate the necessary information to execute the query:
 
 ```python
-myCurrenciesQuery._args.last = 7
-myCurrenciesQuery._args.before = 'MTE='
+my_currencies._args.last = 7
+my_currencies._args.before = 'MTE='
 ```
-Call _exportGqlSource_ property to pass the payload to the HTTP request:
+Call _export_gql_source_ property to pass the payload to the HTTP request:
 
 (example using _requests_ library)
 ```python
 import requests
 
 response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi.com/',
-                            json= { "query": myCurrenciesQuery.exportGqlSource },
+                            json= { "query": my_currencies.export_gql_source },
                             headers={
                                     "content-type": "application/json",
                                         "X-RapidAPI-Key": '123402mmri02fni230iif32jr420',
@@ -104,12 +105,12 @@ from pygqlmap.network import GQLResponse
 
 gqlResponse = GQLResponse(response)
 
-gqlResponse.mapGQLDataToObj(myCurrenciesQuery.type)
+gqlResponse.map_gqldata_to_obj(myCurrenciesQuery.type)
 
-print('resultObject: ' + str(gqlResponse.resultObject))
+print('Result object: ' + str(gqlResponse.result_obj))
 ```
 
-The mapped response from the GraphQL server will be available within _gqlResponse_ object: _gqlResponse.resultObject_
+The mapped response from the GraphQL server will be available within _gqlResponse_ object: _gqlResponse.result_obj_
 
 More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
 

@@ -7,112 +7,112 @@ import pathlib
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
-from .geoDBCitiesApiUnitTest import (runDownloadCommandgdbcApiBySchemaFileRelPath, runDownloadCommandGeoDBCitiesBySchemaFileRelPath, 
-                                    runGenerateCommandGeoDBCitiesByApiRelPath,fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
-from .githubApiUnitTest import (runDownloadCommandGithubBySchemaFileRelPath, RunGithubAddCommentMutation, runGenerateCommandGithubByApiAbsPath,
-                               RunGithubCreateIssueMutation, RunGithubCreateProjectMutation, RunGithubDeleteProjectMutation, 
-                               RunGithubDeleteProjectV2Mutation, RunGithubUpdateRepositoryMutation, fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
-from .helpUnitTest import runGeneratorCommandHelp
-from .rapidApiUnitTest import (runDownloadCommandRapidApiBySchemaFileRelPath, RunRapidApiCreateGatewayInstanceMutation, 
-                              RunRapidApiCreateTransformationsMutation, RunRapidApiEditUserAlertMutation, runGenerateCommandRapidApiByApiAbsPath,
-                              testAdminAuditLogs, fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
+# from help_unittest import run_generator_cmd_help
+# from test_cli import (run_download_cmd_gdbc_file_rel, run_generate_cmd_ra_api_abs, run_download_cmd_ra_file_rel,
+#                                     run_generate_cmd_gdbc_api_rel, run_download_cmd_gh_file_rel, run_generate_cmd_gh_api_abs)
+from gdbc_unittest import (run_fetch_gdbc_schema, run_fetch_gdbc_schema_no_desc)
+from gh_unittest import (run_gh_add_comment_mutation,
+                               run_gh_create_issue_mutation, run_gh_create_proj_mutation, run_gh_delete_proj_mutation,
+                               run_gh_delete_proj_v2_mutation, run_gh_update_repo_mutation, run_fetch_gh_schema, run_fetch_gh_schema_no_desc)
+from ra_unittest import ( run_ra_create_gateway_instance_mutation,
+                              run_ra_create_transformations_mutation, run_ra_edit_user_alert_mutation,
+                              run_ra_admin_audit_logs, run_fetch_ra_schema, run_fetch_ra_schema_no_desc)
 
 
 ###################### CODE GENERATION - START ##############################
 
 # cleanOutput(OutputType.SCHEMAS)
-fetchGeoDBCitiesSchema()
-fetchGeoDBCitiesSchema()
-fetchGeoDBCitiesSchemaNoDesc()
-fetchGithubMutationTypesFromSchemaNoDesc()
-fetchGithubMutationTypes()
-fetchRapidApiTestSchemaAndTypesNoDesc()
-fetchRapidApiTestSchemaAndTypes()
+run_fetch_gdbc_schema()
+run_fetch_gdbc_schema()
+run_fetch_gdbc_schema_no_desc()
+run_fetch_gh_schema_no_desc()
+run_fetch_gh_schema()
+run_fetch_ra_schema_no_desc()
+run_fetch_ra_schema()
 
-#GeoDBCities API - START
-#GeoDBCities API - END
+#gdbc API - START
+#gdbc API - END
 
 ###################### COMMAND LINE INTERFACE - START ##############################
 # cleanOutput(OutputType.COMMANDS)
 
-runGeneratorCommandHelp()
-runDownloadCommandgdbcApiBySchemaFileRelPath()
-runDownloadCommandGeoDBCitiesBySchemaFileRelPath()
-runGenerateCommandGeoDBCitiesByApiRelPath()
-runDownloadCommandGithubBySchemaFileRelPath()
-runGenerateCommandGithubByApiAbsPath()
-runGenerateCommandGeoDBCitiesByApiRelPath()
-runDownloadCommandRapidApiBySchemaFileRelPath()
-runGenerateCommandRapidApiByApiAbsPath()
+# run_generator_cmd_help()
+# run_download_cmd_gdbc_file_rel()
+# run_generate_cmd_gdbc_api_rel()
+# run_download_cmd_gh_file_rel()
+# run_generate_cmd_gh_api_abs()
+# run_generate_cmd_gdbc_api_rel()
+# run_download_cmd_ra_file_rel()
+# run_generate_cmd_ra_api_abs()
 ###################### COMMAND LINE INTERFACE - END ##############################
 
 ###################### CODE GENERATION - END ##############################
 
 ###################### QUERIES EXECUTION - START ##############################
-from unitTest import (testComplexObjectShowChange, testComplexObjectShowChangeWithArgsAndVariables, 
-                        testComplexObjectWithArgsAndVariables, testComplexObjectWithLiteralValueArgs, 
-                        testComplexObjectWithLiteralValueArgs2, testNestedObject, testNestedObjectShowChange, 
-                        testNestedObjectShowChangeWithArgsAndVariables, testNestedObjectWithArgsAndVariables, 
-                        testNestedObjectWithLiteralValueArgs, testObjectWithComposedArgs)
-from tstquery.complexObjectTest import testComplexObject
-from tstquery.connectionobjectArgs_LiteralValuesTest import testConnectionObjectArgs_LiteralValues
-from tstquery.connectionObjectArgs_VariablesTest import testConnectionObjectArgs_Variables
-from tstquery.connectionObjectChangeVisibilityTest import testConnectionObjectVisibility
-from tstquery.connectionObjectTest import testConnectionObject
-from tstquery.manuallyCreatedObjectTest import testGeneratedDataAsGQLObject
-from tstquery.simpleObjectTest import testSimpleObject
-from tstquery.simpleObjectArgs_LiteralValuesTest import testSimpleObjectArgs_LiteralValues
-from tstquery.simpleObjectArgs_VariablesTest import testSimpleObjectArgs_Variables
-from tstquery.simpleObjectChangeVisibilityTest import testSimpleObjectVisibility
-from tstmutation.manuallyCreatedMutationInsertTest import testMutationInsertLiteralValues
-from tstmutation.mutationUpdateTest import testMutationUpdateLiteralValues
+from unittests import (run_gdbc_complex_obj_viewchange, run_gdbc_complex_obj_viewchange_args_vars,
+                        run_gdbc_complex_obj_args_vars, run_gdbc_complex_obj_args_literal,
+                        run_gdbc_complex_obj_args_literal_2, runNestedObject, run_gdbc_nested_obj_viewchange,
+                        run_gdbc_nested_obj_viewchange_args_vars, run_gdbc_nested_obj_args_vars,
+                        run_gdbc_nested_obj_args_literal, run_gdbc_obj_composed_args)
+from tstquery.complex_obj_test import run_gdbc_complex_obj
+from tstquery.connobj_args_literal_test import run_gdbc_connobj_args_literal
+from tstquery.connobj_args_vars_test import run_gdbc_connobj_args_vars
+from tstquery.connobj_view_change_test import run_gdbc_connobj_viewchange
+from tstquery.connobj_test import run_gdbc_connobj
+from tstquery.manual_obj_test import runGeneratedDataAsGQLObject
+from tstquery.simple_obj_test import run_simple_obj
+from tstquery.simple_obj_args_literal_test import run_simple_objargs_literal
+from tstquery.simple_obj_args_vars_test import run_simple_args_vars
+from tstquery.simple_obj_view_change_test import runSimpleOobj_viewchange
+from tstmutation.manual_mutation_test import run_gh_insert_literal_mutation
+from tstmutation.mutation_test import run_gh_update_literal_mutation
 
-testGeneratedDataAsGQLObject()
-testSimpleObject()
-testSimpleObjectArgs_LiteralValues()
-testSimpleObjectArgs_Variables()
-testSimpleObjectVisibility()
-testConnectionObject()
-testConnectionObjectVisibility()
-testConnectionObjectArgs_Variables()
-testConnectionObjectArgs_LiteralValues()
+runGeneratedDataAsGQLObject()
+run_simple_obj()
+run_simple_objargs_literal()
+run_simple_args_vars()
+runSimpleOobj_viewchange()
+run_gdbc_connobj()
+run_gdbc_connobj_viewchange()
+run_gdbc_connobj_args_vars()
+run_gdbc_connobj_args_literal()
 
-testComplexObject()
+run_gdbc_complex_obj()
 
-# # #FURTHER TESTS
-testNestedObjectWithLiteralValueArgs()
-testNestedObjectShowChange()
-testComplexObjectWithLiteralValueArgs()
-testComplexObjectWithLiteralValueArgs2()
-testObjectWithComposedArgs()
-testComplexObjectShowChange()
-testNestedObjectShowChangeWithArgsAndVariables()
-testComplexObjectShowChangeWithArgsAndVariables()
-testNestedObjectWithArgsAndVariables()
-testComplexObjectWithArgsAndVariables()
+# # #FURTHER runS
+run_gdbc_nested_obj_args_literal()
+run_gdbc_nested_obj_viewchange()
+run_gdbc_complex_obj_args_literal()
+run_gdbc_complex_obj_args_literal_2()
+run_gdbc_obj_composed_args()
+run_gdbc_complex_obj_viewchange()
+run_gdbc_nested_obj_viewchange_args_vars()
+run_gdbc_complex_obj_viewchange_args_vars()
+run_gdbc_nested_obj_args_vars()
+run_gdbc_complex_obj_args_vars()
 #Geo DB Cities - END
 
 ###################### QUERIES EXECUTION - END ##############################
 
 ###################### MUTATIONS EXECUTION - START ##############################
 
-testMutationUpdateLiteralValues()
-testMutationInsertLiteralValues()
+run_gh_update_literal_mutation()
+run_gh_insert_literal_mutation()
 
 #GITHUB API - START
-RunGithubAddCommentMutation()
-RunGithubUpdateRepositoryMutation()
-RunGithubDeleteProjectMutation()
-RunGithubDeleteProjectV2Mutation()
-RunGithubCreateIssueMutation()
-RunGithubCreateProjectMutation()
+run_gh_add_comment_mutation()
+run_gh_update_repo_mutation()
+run_gh_delete_proj_mutation()
+run_gh_delete_proj_v2_mutation()
+run_gh_create_issue_mutation()
+run_gh_create_proj_mutation()
 #GITHUB - END
 
 #RapidAPI - START
-testAdminAuditLogs()
-RunRapidApiCreateTransformationsMutation()
-RunRapidApiCreateGatewayInstanceMutation()
-RunRapidApiEditUserAlertMutation()
+run_ra_admin_audit_logs()
+run_ra_create_transformations_mutation()
+run_ra_create_gateway_instance_mutation()
+run_ra_edit_user_alert_mutation()
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################

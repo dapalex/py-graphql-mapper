@@ -157,12 +157,6 @@ cython_debug/
 .vs/*
 .vscode/launch.json
 codegen/codegenlaunch.json
-test/core/output_compare/*
-test/core/GraphQLClients/RapidApi/downloaderArgs.json
-test/core/GraphQLClients/GithubApi/generatorArgs.json
-test/core/GraphQLClients/RapidApi/generatorArgs.json
-test/core/GraphQLClients/GithubApi/downloaderArgs.json
-test/core/GraphQLClients/GdbcApi/generatorArgs.json
-test/core/GraphQLClients/GdbcApi/downloaderArgs.json
 .vscode/settings__.json
 tests/spotTest.py
+tests/cmd_output/*

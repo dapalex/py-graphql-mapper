@@ -1,34 +1,26 @@
-
-# import sys
-# import os
-# import pathlib
-
-# sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
-# sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
-
 import unittest
-from .githubApiUnitTest import (runGithubAddCommentMutation,
-                               runGithubCreateIssueMutation, runGithubCreateProjectMutation, runGithubDeleteProjectMutation,
-                               runGithubDeleteProjectV2Mutation, runGithubUpdateRepositoryMutation)
-from .rapidApiUnitTest import (runRapidApiCreateGatewayInstanceMutation, runAdminAuditLogs,
-                              runRapidApiCreateTransformationsMutation, runRapidApiEditUserAlertMutation)
-from .unitTest import (runComplexObjectShowChange, runComplexObjectShowChangeWithArgsAndVariables,
-                        runComplexObjectWithArgsAndVariables, runComplexObjectWithLiteralValueArgs,
-                        runComplexObjectWithLiteralValueArgs2, runNestedObject, runNestedObjectShowChange,
-                        runNestedObjectShowChangeWithArgsAndVariables, runNestedObjectWithArgsAndVariables,
-                        runNestedObjectWithLiteralValueArgs, runObjectWithComposedArgs)
-from .tstquery.complexObjectTest import runComplexObject
-from .tstquery.connectionobjectArgs_LiteralValuesTest import runConnectionObjectArgs_LiteralValues
-from .tstquery.connectionObjectArgs_VariablesTest import runConnectionObjectArgs_Variables
-from .tstquery.connectionObjectChangeVisibilityTest import runConnectionObjectVisibility
-from .tstquery.connectionObjectTest import runConnectionObject
-from .tstquery.manuallyCreatedObjectTest import runGeneratedDataAsGQLObject
-from .tstquery.simpleObjectTest import runSimpleObject
-from .tstquery.simpleObjectArgs_LiteralValuesTest import runSimpleObjectArgs_LiteralValues
-from .tstquery.simpleObjectArgs_VariablesTest import runSimpleObjectArgs_Variables
-from .tstquery.simpleObjectChangeVisibilityTest import runSimpleObjectVisibility
-from .tstmutation.manuallyCreatedMutationInsertTest import runMutationInsertLiteralValues
-from .tstmutation.mutationUpdateTest import runMutationUpdateLiteralValues
+from .gh_unittest import (run_gh_add_comment_mutation,
+                               run_gh_create_issue_mutation, run_gh_create_proj_mutation, run_gh_delete_proj_mutation,
+                               run_gh_delete_proj_v2_mutation, run_gh_update_repo_mutation)
+from .ra_unittest import (run_ra_create_gateway_instance_mutation, run_ra_admin_audit_logs,
+                              run_ra_create_transformations_mutation, run_ra_edit_user_alert_mutation)
+from .unittests import (run_gdbc_complex_obj_viewchange, run_gdbc_complex_obj_viewchange_args_vars,
+                        run_gdbc_complex_obj_args_vars, run_gdbc_complex_obj_args_literal,
+                        run_gdbc_complex_obj_args_literal_2, runNestedObject, run_gdbc_nested_obj_viewchange,
+                        run_gdbc_nested_obj_viewchange_args_vars, run_gdbc_nested_obj_args_vars,
+                        run_gdbc_nested_obj_args_literal, run_gdbc_obj_composed_args)
+from .tstquery.complex_obj_test import run_gdbc_complex_obj
+from .tstquery.connobj_args_literal_test import run_gdbc_connobj_args_literal
+from .tstquery.connobj_args_vars_test import run_gdbc_connobj_args_vars
+from .tstquery.connobj_viewchange_test import run_gdbc_connobj_viewchange
+from .tstquery.connobj_test import run_gdbc_connobj
+from .tstquery.manual_obj_test import runGeneratedDataAsGQLObject
+from .tstquery.simple_obj_test import run_simple_obj
+from .tstquery.simple_obj_args_literal_test import run_simple_objargs_literal
+from .tstquery.simple_obj_args_vars_test import run_simple_args_vars
+from .tstquery.simple_obj_viewchange_test import runSimpleOobj_viewchange
+from .tstmutation.manual_mutation_test import run_gh_insert_literal_mutation
+from .tstmutation.mutation_test import run_gh_update_literal_mutation
 
 class TestMapper(unittest.TestCase):
 
@@ -37,29 +29,29 @@ class TestMapper(unittest.TestCase):
     def testGeneratedDataAsGQLObject(self):
       return runGeneratedDataAsGQLObject()
 
-    def testSimpleObject(self):
-      return runSimpleObject()
+    def test_simple_obj(self):
+      return run_simple_obj()
 
-    def testSimpleObjectArgs_LiteralValues(self):
-      return runSimpleObjectArgs_LiteralValues()
+    def test_simple_objargs_literal(self):
+      return run_simple_objargs_literal()
 
-    def testSimpleObjectArgs_Variables(self):
-      return runSimpleObjectArgs_Variables()
+    def test_simple_args_vars(self):
+      return run_simple_args_vars()
 
-    def testSimpleObjectVisibility(self):
-      return runSimpleObjectVisibility()
+    def testSimpleOobj_viewchange(self):
+      return runSimpleOobj_viewchange()
 
-    def testConnectionObject(self):
-      return runConnectionObject()
+    def test_gdbc_connobj(self):
+      return run_gdbc_connobj()
 
-    def testConnectionObjectVisibility(self):
-      return runConnectionObjectVisibility()
+    def test_gdbc_connobj_viewchange(self):
+      return run_gdbc_connobj_viewchange()
 
-    def testConnectionObjectArgs_Variables(self):
-      return runConnectionObjectArgs_Variables()
+    def test_gdbc_connobj_args_vars(self):
+      return run_gdbc_connobj_args_vars()
 
-    def testConnectionObjectArgs_LiteralValues(self):
-      return runConnectionObjectArgs_LiteralValues()
+    def test_gdbc_connobj_args_literal(self):
+      return run_gdbc_connobj_args_literal()
 
 ###################### QUERIES EXECUTION - END ##############################
 
@@ -67,70 +59,70 @@ class TestMapper(unittest.TestCase):
 
 
 #GITHUB API - START
-    def testMutationUpdateLiteralValues(self):
-      return runMutationUpdateLiteralValues()
+    def test_gh_update_literal_mutation(self):
+      return run_gh_update_literal_mutation()
 
-    def testMutationInsertLiteralValues(self):
-      return runMutationInsertLiteralValues()
+    def test_gh_insert_literal_mutation(self):
+      return run_gh_insert_literal_mutation()
 
     def testGithubAddCommentMutation(self):
-      return runGithubAddCommentMutation()
+      return run_gh_add_comment_mutation()
 
-    def testGithubUpdateRepositoryMutation(self):
-      return runGithubUpdateRepositoryMutation()
+    def test_gh_update_repo_mutation(self):
+      return run_gh_update_repo_mutation()
 
-    def testGithubDeleteProjectMutation(self):
-      return runGithubDeleteProjectMutation()
+    def test_gh_delete_proj_mutation(self):
+      return run_gh_delete_proj_mutation()
 
-    def testGithubDeleteProjectV2Mutation(self):
-      return runGithubDeleteProjectV2Mutation()
+    def test_gh_delete_proj_v2_mutation(self):
+      return run_gh_delete_proj_v2_mutation()
 
-    def testGithubCreateIssueMutation(self):
-      return runGithubCreateIssueMutation()
+    def test_gh_create_issue_mutation(self):
+      return run_gh_create_issue_mutation()
 
-    def testGithubCreateProjectMutation(self):
-      return runGithubCreateProjectMutation()
+    def test_gh_create_proj_mutation(self):
+      return run_gh_create_proj_mutation()
 #GITHUB - END
 
 #RapidAPI - START
 
-    def testAdminAuditLogs(self):
-      return runAdminAuditLogs()
+    def test_ra_admin_audit_logs(self):
+      return run_ra_admin_audit_logs()
 
-    def testRapidApiCreateTransformationsMutation(self):
-      return runRapidApiCreateTransformationsMutation()
+    def test_ra_create_transformations_mutation(self):
+      return run_ra_create_transformations_mutation()
 
-    def testRapidApiCreateGatewayInstanceMutation(self):
-      return runRapidApiCreateGatewayInstanceMutation()
+    def test_ra_create_gateway_instance_mutation(self):
+      return run_ra_create_gateway_instance_mutation()
 
-    def testRapidApiEditUserAlertMutation(self):
-      return runRapidApiEditUserAlertMutation()
+    def test_ra_edit_user_alert_mutation(self):
+      return run_ra_edit_user_alert_mutation()
 #RapidAPI - END
 
 ###################### MUTATIONS EXECUTION - END ##############################
 
 # # #FURTHER TESTS
-    def testComplexObject(self):
-      return runComplexObject()
+    def test_gdbc_complex_obj(self):
+      return run_gdbc_complex_obj()
     def testNestedObject(self):
       return runNestedObject()
-    def testNestedObjectWithLiteralValueArgs(self):
-      return runNestedObjectWithLiteralValueArgs()
-    def testNestedObjectShowChange(self):
-      return runNestedObjectShowChange()
-    def testComplexObjectWithLiteralValueArgs(self):
-      return runComplexObjectWithLiteralValueArgs()
-    def testComplexObjectWithLiteralValueArgs2(self):
-      return runComplexObjectWithLiteralValueArgs2()
-    def testObjectWithComposedArgs(self):
-      return runObjectWithComposedArgs()
-    def testComplexObjectShowChange(self):
-      return runComplexObjectShowChange()
-    def testNestedObjectShowChangeWithArgsAndVariables(self):
-      return runNestedObjectShowChangeWithArgsAndVariables()
-    def testComplexObjectShowChangeWithArgsAndVariables(self):
-      return runComplexObjectShowChangeWithArgsAndVariables()
-    def testNestedObjectWithArgsAndVariables(self):
-      return runNestedObjectWithArgsAndVariables()
-    def testComplexObjectWithArgsAndVariables(self):
-      return runComplexObjectWithArgsAndVariables()
+    def test_gdbc_nested_obj_args_literal(self):
+      return run_gdbc_nested_obj_args_literal()
+    def test_gdbc_nested_obj_viewchange(self):
+      return run_gdbc_nested_obj_viewchange()
+    def test_gdbc_complex_obj_args_literal(self):
+      return run_gdbc_complex_obj_args_literal()
+    def test_gdbc_complex_obj_args_literal_2(self):
+      return run_gdbc_complex_obj_args_literal_2()
+    def test_gdbc_obj_composed_args(self):
+      return run_gdbc_obj_composed_args()
+    def test_gdbc_complex_obj_viewchange(self):
+      return run_gdbc_complex_obj_viewchange()
+    def test_gdbc_nested_obj_viewchange_args_vars(self):
+      return run_gdbc_nested_obj_viewchange_args_vars()
+    def test_gdbc_complex_obj_viewchange_args_vars(self):
+      return run_gdbc_complex_obj_viewchange_args_vars()
+    def test_gdbc_nested_obj_args_vars(self):
+      return run_gdbc_nested_obj_args_vars()
+    def test_gdbc_complex_obj_args_vars(self):
+      return run_gdbc_complex_obj_args_vars()

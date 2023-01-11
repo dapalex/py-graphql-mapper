@@ -1,1 +1,1 @@
-from .gqlOperations import GQLQuery, GQLMutation
+from .gql_operations import GQLQuery, GQLMutation

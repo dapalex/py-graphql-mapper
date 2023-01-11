@@ -7,110 +7,110 @@ sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
 import unittest
-from .helpUnitTest import runGeneratorCommandHelp
+from .help_unittest import run_generator_cmd_help
 import logging as logger
 
 
 class TestCLI(unittest.TestCase):
 
-    def testGeneratorCommandHelp(self):
-      return runGeneratorCommandHelp()
+    def test_generator_cmd_help(self):
+      return run_generator_cmd_help()
 
-    def testDownloadCommandgdbcApiBySchemaFileRelPath(self):
-      return runDownloadCommandgdbcApiBySchemaFileRelPath()
+    def test_download_cmd_gdbc_file_rel(self):
+      return run_download_cmd_gdbc_file_rel()
 
-    def testGenerateCommandGeoDBCitiesBySchemaFileRelPath(self):
-      return runGenerateCommandGeoDBCitiesBySchemaFileRelPath()
+    def test_generate_cmd_gdbc_file_rel(self):
+      return run_generate_cmd_gdbc_file_rel()
 
-    def testGenerateCommandGeoDBCitiesByApiRelPath(self):
-      return runGenerateCommandGeoDBCitiesByApiRelPath()
+    def test_generate_cmd_gdbc_api_rel(self):
+      return run_generate_cmd_gdbc_api_rel()
 
-    # def testDownloadCommandGithubBySchemaFileRelPath(self):
-    #   return runDownloadCommandGithubBySchemaFileRelPath()
+    def test_download_cmd_gh_file_rel(self):
+      return run_download_cmd_gh_file_rel()
 
-    # def testGenerateCommandGithubByApiAbsPath(self):
-    #   return runGenerateCommandGithubByApiAbsPath()
+    def test_generate_cmd_gh_api_abs(self):
+      return run_generate_cmd_gh_api_abs()
 
-    def testGenerateCommandGithubBySchemaFile(self):
-      return runGenerateCommandGithubBySchemaFile()
+    def test_generate_cmd_gh_file(self):
+      return run_generate_cmd_gh_file()
 
-    def testDownloadCommandRapidApiBySchemaFileRelPath(self):
-      return runDownloadCommandRapidApiBySchemaFileRelPath()
+    def test_download_cmd_ra_file_rel(self):
+      return run_download_cmd_ra_file_rel()
 
-    def testGenerateCommandRapidApiByApiAbsPath(self):
-      return runGenerateCommandRapidApiByApiAbsPath()
+    def test_generate_cmd_ra_api_abs(self):
+      return run_generate_cmd_ra_api_abs()
 
 
 
-def runDownloadCommandgdbcApiBySchemaFileRelPath():
-    logger.info('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pgmcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GdbcApi/downloaderArgs.json -v" #command to be executed
+def run_download_cmd_gdbc_file_rel():
+    logger.info('\nRunning run_download_cmd_gh_file_rel...')
+    command = "pgmcodegen download ./tests/cmd_output/Github/schema.json -apiArgs ./tests/cli_input/gdbc_api/downloaderArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runDownloadCommandGithubBySchemaFileRelPath")
+    logger.info("End of run_download_cmd_gh_file_rel")
 
-def runGenerateCommandGeoDBCitiesBySchemaFileRelPath():
-    logger.info('\nRunning runGenerateCommandGeoDBCitiesBySchemaFileRelPath...')
-    command = "pgmcodegen generate ./tests/commandsOutput/GeoDBCities -apiArgs tests/cliInput/GdbcApi/schema.json -v" #command to be executed
+def run_generate_cmd_gdbc_file_rel():
+    logger.info('\nRunning run_generate_cmd_gdbc_file_rel...')
+    command = "pgmcodegen generate ./tests/cmd_output/gdbc -apiArgs tests/cli_input/gdbc_api/schema.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runGenerateCommandGeoDBCitiesBySchemaFileRelPath")
+    logger.info("End of run_generate_cmd_gdbc_file_rel")
 
-def runGenerateCommandGeoDBCitiesByApiRelPath():
-    logger.info('\nRunning runGenerateCommandGeoDBCitiesByApiRelPath...')
-    command = "pgmcodegen generate ./tests/commandsOutput/GeoDBCities -apiArgs ./tests/cliInput/gdbcApi/generatorArgs.json -v" #command to be executed
+def run_generate_cmd_gdbc_api_rel():
+    logger.info('\nRunning run_generate_cmd_gdbc_api_rel...')
+    command = "pgmcodegen generate ./tests/cmd_output/gdbc -apiArgs ./tests/cli_input/gdbc_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runGenerateCommandGeoDBCitiesByApiRelPath")
+    logger.info("End of run_generate_cmd_gdbc_api_rel")
 
 
-def runDownloadCommandGithubBySchemaFileRelPath():
-    logger.info('\nRunning runDownloadCommandGithubBySchemaFileRelPath...')
-    command = "pgmcodegen download ./tests/commandsOutput/Github/schema.json -apiArgs ./tests/cliInput/GithubApi/downloaderArgs.json -v" #command to be executed
+def run_download_cmd_gh_file_rel():
+    logger.info('\nRunning run_download_cmd_gh_file_rel...')
+    command = "pgmcodegen download ./tests/cmd_output/Github/schema.json -apiArgs ./tests/cli_input/github_api/downloaderArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runDownloadCommandGithubBySchemaFileRelPath")
+    logger.info("End of run_download_cmd_gh_file_rel")
 
-def runGenerateCommandGithubByApiAbsPath():
-    logger.info('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pgmcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json -v" #command to be executed
+def run_generate_cmd_gh_api_abs():
+    logger.info('\nRunning run_generate_cmd_gh_api_abs...')
+    command = "pgmcodegen generate ./tests/cmd_output/Github -v -apiArgs ./tests/cli_input/github_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runGenerateCommandGithubByApiAbsPath")
+    logger.info("End of run_generate_cmd_gh_api_abs")
 
-def runGenerateCommandGithubBySchemaFile():
-    logger.info('\nRunning runGenerateCommandGithubByApiAbsPath...')
-    command = "pgmcodegen generate ./tests/commandsOutput/Github -v -apiArgs ./tests/cliInput/GithubApi/generatorArgs.json -v" #command to be executed
+def run_generate_cmd_gh_file():
+    logger.info('\nRunning run_generate_cmd_gh_api_abs...')
+    command = "pgmcodegen generate ./tests/cmd_output/Github -v -apiArgs ./tests/cli_input/github_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runGenerateCommandGithubByApiAbsPath")
+    logger.info("End of run_generate_cmd_gh_api_abs")
 
-def runDownloadCommandRapidApiBySchemaFileRelPath():
-    logger.info('\nRunning runDownloadCommandRapidApiBySchemaFileRelPath...')
-    command = "pgmcodegen download ./tests/commandsOutput/RapidApi/schema.json -apiArgs ./tests/cliInput/RapidApi/downloaderArgs.json -v" #command to be executed
+def run_download_cmd_ra_file_rel():
+    logger.info('\nRunning run_download_cmd_ra_file_rel...')
+    command = "pgmcodegen download ./tests/cmd_output/rapidapi/schema.json -apiArgs ./tests/cli_input/rapid_api/downloaderArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runDownloadCommandRapidApiBySchemaFileRelPath")
+    logger.info("End of run_download_cmd_ra_file_rel")
 
-def runGenerateCommandRapidApiByApiAbsPath():
-    logger.info('\nRunning runGenerateCommandRapidApiByApiAbsPath...')
-    command = "pgmcodegen generate ./tests/commandsOutput/RapidApi -v -apiArgs ./tests/cliInput/RapidApi/generatorArgs.json -v" #command to be executed
+def run_generate_cmd_ra_api_abs():
+    logger.info('\nRunning run_generate_cmd_ra_api_abs...')
+    command = "pgmcodegen generate ./tests/cmd_output/rapidapi -v -apiArgs ./tests/cli_input/rapid_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
     assert res == 0
-    logger.info("End of runGenerateCommandRapidApiByApiAbsPath")
+    logger.info("End of run_generate_cmd_ra_api_abs")

@@ -3,21 +3,21 @@ import logging as logger
 import re
 import sys
 from enum import Enum
-from pygqlmap.gqlTypes import ID
-from .consts import primitives
+from pygqlmap.gql_types import ID
+from .consts import PRIMITIVES
 
 stdOut = sys.stdout
 
-def getClassName(cls):
+def get_class_name(cls):
     return str(cls).split('\'')[1].split('.')[len(str(cls).split('\'')[1].split('.')) - 1]
 
-def getObjectClassName(obj):
+def get_obj_class_name(obj):
     try:
         if len(splitType := str(type(obj)).split('\'')) > 0:
             if splitPath := splitType[1].split('.'):
                 return splitPath[len(splitPath) - 1]
     except Exception as ex:
-        logger.warning('getObjectClassName - ' + ex.args[0])
+        logger.warning('get_obj_class_name - ' + ex.args[0])
         try:
             if obj.__doc__:
                 return obj.__doc__.split('(')[0]
@@ -26,7 +26,7 @@ def getObjectClassName(obj):
 
     return str(type(obj))
 
-def isEmptyField(field):
+def is_empty_field(field):
     if isinstance(field, str) or  isinstance(field, ID):
         return len(field) == 0
     elif isinstance(field, int) or isinstance(field, float):
@@ -44,34 +44,34 @@ def isEmptyField(field):
     elif inspect.isclass(type(field)):
         out = True
         for innerField in field.__dataclass_fields__:
-            out = out and isEmptyField(getattr(field, innerField))
+            out = out and is_empty_field(getattr(field, innerField))
         return out
     else:
         logger.error('type not managed!')
 
-def isNoneOrBuiltinPrimitive(obj):
-    return type(obj) in primitives
+def is_none_or_builtin_primitive(obj):
+    return type(obj) in PRIMITIVES
 
-def popListElementByRef(lst: list, element):
+def pop_lst_element_by_ref(lst: list, element):
     while lst.index(element) >= 0:
         lstEl = lst[lst.index(element)]
         if id(lstEl) == id(element):
             return lst.pop(lst.index(element))
 
-def mergeTupleUniqueArguments(tup1: tuple, tup2: tuple):
-    if tup2:
+# def merge_tuple_unique_args(tup1: tuple, tup2: tuple):
+#     if tup2:
 
-            tup1 = addTupleUniqueArgument(tup1, tup2[0], tup2[1])
+#             tup1 = addTupleUniqueArgument(tup1, tup2[0], tup2[1])
 
-    return tup1
+#     return tup1
 
-def addTupleUniqueArgument(tup: tuple, strArgument, location):
-    if (strArgument, location) not in tup:
-        tup = tup + (strArgument, location)
+# def addTupleUniqueArgument(tup: tuple, strArgument, location):
+#     if (strArgument, location) not in tup:
+#         tup = tup + (strArgument, location)
 
-    return tup
+#     return tup
 
-def getDotNotationInfo(dataInput: str) -> tuple:
+def get_dot_notation_info(dataInput: str) -> tuple:
     """for internal use
 
     Args:
@@ -86,7 +86,7 @@ def getDotNotationInfo(dataInput: str) -> tuple:
     variable = path.pop(len(path) - 1)
     return (path, variable)
 
-def executeRegex(dataInput):
+def execute_regex(dataInput):
     ret = re.sub(r': *\'[!-&(-z]*\'', ' ', dataInput) #removes anything after : -> : '<anything>'
     ret = re.sub(r': *[-A-Za-z0-9]*', ' ', ret)
     ret = ret.replace('\'', ' ').replace(',', ' ')
