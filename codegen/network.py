@@ -1,27 +1,25 @@
-from pygqlmap.network import GQLResponse, httpRequest
-from .src.spBuilder import SchemaBuilder, SchemaTypeBuilder
-from .src.spSchema import GQLSchema, SCType
+from pygqlmap.network import GQLResponse, send_http_request
+from .src.sp_builder import SchemaBuilder, SchemaTypeBuilder
+from .src.sp_schema import GQLSchema, SCType
 
-def fetchSchemaResponse(url, httpHeaders, query):
+def fetch_schema_response(url, httpHeaders, query):
     try:
         payload = { "query": query }
-        response = httpRequest(url, payload, httpHeaders)
+        response = send_http_request(url, payload, httpHeaders)
     except Exception as ex:
         raise ex
 
     return GQLSchemaResponse(response)
 
-def fetchSchemaObject(url, headers, query):
-    gqlResponse = fetchSchemaResponse(url, headers, query)
-    gqlResponse.mapGQLDataToObj()
-    gqlResponse.printMessageOutput()
-    return gqlResponse.resultObject
+def fetch_schema_obj(url, headers, query):
+    gql_response = fetch_schema_response(url, headers, query)
+    gql_response.map_gqldata_to_obj()
+    gql_response.print_msg_out()
+    return gql_response.result_obj
 
 class GQLSchemaResponse(GQLResponse):
 
-    includeDeprecated: bool
-
-    def mapGQLDataToObj(self, mappedPyObject = None,  buildType = None):
+    def map_gqldata_to_obj(self, mapped_py_obj = None,  build_sctype = None):
         """_summary_
 
         Args:
@@ -33,12 +31,12 @@ class GQLSchemaResponse(GQLResponse):
         """
 
         if self.data:
-            for rootObject in self.data.keys():
-                if rootObject == '__schema': #check self.data type
-                    myBuilder = SchemaBuilder()
-                    self.resultObject = myBuilder.build(self.data, GQLSchema())
-                elif rootObject == '__type': #check self.data  type
-                    myBuilder = SchemaTypeBuilder()
-                    self.resultObject = myBuilder.build(self.data, SCType())
+            for root_obj in self.data.keys():
+                if root_obj == '__schema': #check self.data type
+                    builder = SchemaBuilder()
+                    self.result_obj = builder.build(self.data, GQLSchema())
+                elif root_obj == '__type': #check self.data  type
+                    builder = SchemaTypeBuilder()
+                    self.result_obj = builder.build(self.data, SCType())
                 else:
-                    self.resultObject = None
+                    self.result_obj = None

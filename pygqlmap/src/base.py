@@ -3,86 +3,86 @@ from dataclasses import asdict
 import inspect
 import logging as logger
 
-from pygqlmap.helper import HandleRecursiveEx
-from .consts import commaConcat, argsDeclaration
+from pygqlmap.helper import handle_recursive_ex
+from .consts import COMMA_CONCAT, ARGS_DECLARE
 from ..enums import ArgType
 
-from .utils import getObjectClassName, isEmptyField
+from .utils import get_obj_class_name, is_empty_field
 from .translator import Translate
 
 class FieldsShow(ABC):
 
     @property
-    def fieldsShow(self):
-        return self._fieldsShow
+    def fieldsshow(self):
+        return self._fieldsshow
 
-    def initFieldsShow(self):
+    def init_fieldshow(self):
         """ For internal use only """
         try:
-            self._fieldsShow = asdict(self)
+            self._fieldsshow = asdict(self)
             try:
-                for field in self._fieldsShow:
-                    self._fieldsShow[field] = True
+                for field in self._fieldsshow:
+                    self._fieldsshow[field] = True
             except Exception as ex:
-               raise HandleRecursiveEx(ex, 'Error during fieldShow initialization for field ' + field)
+               raise handle_recursive_ex(ex, 'Error during fieldShow initialization for field ' + field)
         except Exception as ex:
-           raise HandleRecursiveEx(ex, 'Error during fieldShow initialization')
+           raise handle_recursive_ex(ex, 'Error during fieldShow initialization')
 
-    def copyFieldsShow(self, fieldsShow):
+    def copyfields_show(self, fields_show):
         """ For internal use only """
-        self._fieldsShow = fieldsShow
+        self._fieldsshow = fields_show
 
 class GQLExporter():
 
-    logProgress: bool
+    log_progress: bool
 
     @property
-    def exportGqlSource(self):
-        gqlArgs, outputGqlDict = self.exportGqlDict
-        return gqlArgs + ' { ' + Translate.graphQLize(outputGqlDict) + ' } '
+    def export_gql_source(self):
+        gqlArgs, outputGqlDict = self.export_gql_dict
+        return gqlArgs + ' { ' + Translate.graphqlize(outputGqlDict) + ' } '
 
     @property
-    def exportGqlDict(self):
+    def export_gql_dict(self):
         """Return the GraphQL syntax for the current object
 
         Returns:
             str: GraphQL object exported
         """
-        if hasattr(self, 'logProgress') and self.logProgress: logger.info('Started GQL extraction of python: ' + getObjectClassName(self))
+        if hasattr(self, 'log_progress') and self.log_progress: logger.info('Started GQL extraction of python: ' + get_obj_class_name(self))
 
         gqlDict = asdict(self)
         outputGqlDict = {}
 
-        from pygqlmap.src.gqlArgBuiltin import ArguedBuiltin
+        from pygqlmap.src.arg_builtin import ArguedBuiltin
         try:
             for field in gqlDict.keys():
                 try:
-                    if field == argsDeclaration: continue
-                    if self.fieldsShow[field]:
+                    if field == ARGS_DECLARE: continue
+                    if self._fieldsshow[field]:
                         fieldObject = getattr(self, field)
                         if FieldsShow in inspect.getmro(type(fieldObject)):
-                            outputGqlDict[field] = fieldObject.exportGqlDict
+                            outputGqlDict[field] = fieldObject.export_gql_dict
                         elif ArguedBuiltin in inspect.getmro(type(fieldObject)):
-                                builtinArgs = fieldObject._args.exportArgs
-                                outputGqlDict[Translate.toGraphQLFieldName(field)] = builtinArgs, Translate.toGraphQLFieldName(field)
+                                builtinArgs = fieldObject._args.export_args
+                                outputGqlDict[Translate.to_graphql_field_name(field)] = builtinArgs, Translate.to_graphql_field_name(field)
                         else:
                             if not fieldObject == None:
-                                outputGqlDict[Translate.toGraphQLFieldName(field)] = fieldObject
+                                outputGqlDict[Translate.to_graphql_field_name(field)] = fieldObject
 
                 except Exception as ex:
-                    raise HandleRecursiveEx(ex, 'Issue exporting field ' + self.__class__.__name__ + '.' + field)
+                    raise handle_recursive_ex(ex, 'Issue exporting field ' + self.__class__.__name__ + '.' + field)
 
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Issue during export of gql dictionary')
+            raise handle_recursive_ex(ex, 'Issue during export of gql dictionary')
 
         gqlArgs = ''
         #Arguments management START - after check of fields requested
-        if hasattr(self, argsDeclaration):
+        if hasattr(self, ARGS_DECLARE):
             try:
-                if hasattr(self, 'logProgress') and self.logProgress: logger.info('Started GQL extraction of args for: ' + getObjectClassName(self))
-                gqlArgs = self._args.exportArgs
+                if hasattr(self, 'log_progress') and self.log_progress: logger.info('Started GQL extraction of args for: ' + get_obj_class_name(self))
+                gqlArgs = self._args.export_args
             except Exception as ex:
-                raise HandleRecursiveEx(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))
+                raise handle_recursive_ex(ex, 'Issue exporting _args for ' + str(self.__class__.__name__))
 
         #Arguments management END
 
@@ -94,43 +94,43 @@ class GQLExporter():
 class GQLBaseArgsSet():
 
     @abstractmethod
-    def exportArgKey(self, fieldName, fieldValue):
+    def export_arg_key(self, fieldName, fieldValue):
         """ For internal use only """
-        raise HandleRecursiveEx(Exception('exportArg function not implemented'), '')
+        raise handle_recursive_ex(Exception('exportArg function not implemented'), '')
 
     @property
-    def exportArgs(self):
+    def export_args(self):
         arguments = ''
         try:
-            if self._argsType == ArgType.LiteralValues:
-                arguments = self.exportGQLArgsAndValues
+            if self._args_type == ArgType.LITERAL_VALUES:
+                arguments = self.export_gqlargs_and_values
                 if len(arguments) > 0:
                     return '(' + arguments + ')'
-            elif self._argsType == ArgType.Variables:
-                arguments = self.exportGQLArgKeys
+            elif self._args_type == ArgType.VARIABLES:
+                arguments = self.export_gqlarg_keys
                 if len(arguments) > 0:
                     return '(' + arguments + ')'
             else:
-                raise HandleRecursiveEx(Exception('No valid argType for '), '')
+                raise handle_recursive_ex(Exception('No valid argType for '), '')
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Issue during export arguments for ' + self.__class__.__name__)
+            raise handle_recursive_ex(ex, 'Issue during export arguments for ' + self.__class__.__name__)
 
         return arguments
 
     @property
-    def exportGQLArgKeys(self):
+    def export_gqlarg_keys(self):
         """ For internal use only """
         output = ''
         try:
             for field in self.__dataclass_fields__:
-                if isEmptyField(getattr(self, field)): continue
+                if is_empty_field(getattr(self, field)): continue
                 try:
-                    output += self.exportArgKey(field, getattr(self, field)) + commaConcat
+                    output += self.export_arg_key(field, getattr(self, field)) + COMMA_CONCAT
                 except:
-                    raise HandleRecursiveEx(Exception('Issue exporting arg key for: ' + field), '')
+                    raise handle_recursive_ex(Exception('Issue exporting arg key for: ' + field), '')
 
-            output = output.removesuffix(commaConcat)
+            output = output.removesuffix(COMMA_CONCAT)
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Issue exporting arg keys for ' + str(self.__class__))
+            raise handle_recursive_ex(ex, 'Issue exporting arg keys for ' + str(self.__class__))
 
         return output

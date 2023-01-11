@@ -2,25 +2,25 @@ import json
 import logging as logger
 from .src.extractor import Extractor
 from .src.printer import Printer
-from .src.spBuilder import SchemaBuilder
-from .src.spSchema import GQLSchema
+from .src.sp_builder import SchemaBuilder
+from .src.sp_schema import GQLSchema
 
-def buildSchema(schemaString: GQLSchema):
+def build_schema(schemaString: GQLSchema):
     myBuilder = SchemaBuilder()
     return myBuilder.build(json.loads(schemaString), GQLSchema())
 
 class CodeGenerator():
 
-    def generateCode(schemaObj, folder, logProgress: bool = False, addDescription: bool = True):
+    def generate_code(schemaObj, folder, log_progress: bool = False, add_desc: bool = True):
         try:
-            if logProgress: logger.info('Initializing Extractor...')
-            extractor = Extractor(schemaObj, logProgress, addDescription)
-            if logProgress: logger.info('Extracting schema...')
-            extractedData = extractor.extractSchemaCode()
-            if logProgress: logger.info('Generating python code...')
+            if log_progress: logger.info('Initializing Extractor...')
+            extractor = Extractor(schemaObj, log_progress, add_desc)
+            if log_progress: logger.info('Extracting schema...')
+            extractedData = extractor.extract_schema_code()
+            if log_progress: logger.info('Generating python code...')
             printer = Printer(extractedData)
-            if logProgress: logger.info('Saving python files in ' + folder + '...')
-            printer.saveFiles(folder)
+            if log_progress: logger.info('Saving python files in ' + folder + '...')
+            printer.save_files(folder)
 
             #CLEANING
             del extractor

@@ -4,11 +4,11 @@ import os
 import pathlib
 import sys
 # import logging as logger
-from .queryPresets import *
-from .network import fetchSchemaResponse
-from .generator import CodeGenerator, buildSchema
-from .src.spSchema import GQLSchema
-from .src.utils import getValidFolder
+from .query_presets import *
+from .network import fetch_schema_response
+from .generator import CodeGenerator, build_schema
+from .src.sp_schema import GQLSchema
+from .src.utils import get_valid_folder
 
 def main():
     try:
@@ -29,9 +29,9 @@ def main():
         commandArgs = commandParser.parse_args(sys.argv[3:])
 
         if args.command == 'generate':
-            generatePythonCode(commandArgs, args.destPath)
+            generate_py_code(commandArgs, args.destPath)
         elif args.command == 'download':
-            saveJsonSchema(commandArgs, args.destPath)
+            save_json_schema(commandArgs, args.destPath)
         else:
             raise argparse.ArgumentTypeError('Invalid command')
 
@@ -39,7 +39,7 @@ def main():
         print(str(ex.args))
         exit(-1)
 
-def saveJsonSchema(args, destination):
+def save_json_schema(args, destination):
     try:
         if hasattr(args, 'apiArgs') and args.apiArgs:
             if args.verbose: print('Checking args file...')
@@ -58,10 +58,10 @@ def saveJsonSchema(args, destination):
             if 'apiURL' in arguments.keys() and arguments['apiURL']:
                 httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
                 if args.verbose: print('Fetching schema from server...')
-                schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
+                schemaResponse = fetch_schema_response(arguments['apiURL'], httpHeaders, QUERY_SCHEMA_AND_TYPES)
 
                 parentFolder = pathlib.Path(destination).parent
-                outputFolder = getValidFolder(str(parentFolder))
+                outputFolder = get_valid_folder(str(parentFolder))
                 fileName = pathlib.Path(destination).name
                 outputFile = os.path.join(outputFolder, fileName)
                 if args.verbose: print('Saving Schema...')
@@ -72,14 +72,14 @@ def saveJsonSchema(args, destination):
         print('saveJsonSchema error: ' + str(ex.args))
         exit(-1)
 
-def generatePythonCode(args, destPath):
+def generate_py_code(args, destPath):
     try:
         schemaObject: GQLSchema = None
 
         if destPath:
             if args.verbose: print('Checking destination folder...')
 
-            input_path = getValidFolder(destPath)
+            input_path = get_valid_folder(destPath)
 
         if args.verbose: print('Parsing command...')
 
@@ -97,31 +97,31 @@ def generatePythonCode(args, destPath):
                 print('generatePythonCode -  arg opening error: ' + str(ex.args))
                 exit(-1)
 
-        addDescription =  arguments['addDescToGeneratedFiles'] if 'addDescToGeneratedFiles' in arguments.keys() else True
+        add_desc =  arguments['addDescToGeneratedFiles'] if 'addDescToGeneratedFiles' in arguments.keys() else True
 
-        schemaObject = extractSchemaObject(arguments, args.verbose)
+        schemaObject = extract_schema_obj(arguments, args.verbose)
 
         if args.verbose: print('Generating mutations...') #, end="\r")
-        CodeGenerator.generateCode(schemaObject, input_path, logProgress=args.verbose, addDescription=addDescription)
+        CodeGenerator.generate_code(schemaObject, input_path, log_progress=args.verbose, add_desc=add_desc)
     except Exception as ex:
         print('generatePythonCode error: ' + str(ex.args))
         exit(-1)
 
-def extractSchemaObject(arguments, verbose):
+def extract_schema_obj(arguments, verbose):
     try:
         if 'apiURL' in arguments.keys() and arguments['apiURL']:
             httpHeaders = arguments['httpHeaders'] if 'httpHeaders' in arguments.keys() else None
             if verbose: print('Fetching schema from server...')
-            schemaResponse = fetchSchemaResponse(arguments['apiURL'], httpHeaders, querySchemaAndTypes)
+            schemaResponse = fetch_schema_response(arguments['apiURL'], httpHeaders, QUERY_SCHEMA_AND_TYPES)
             if verbose: print('Mapping response...')
-            schemaResponse.mapGQLDataToObj()
+            schemaResponse.map_gqldata_to_obj()
 
-            return schemaResponse.resultObject
+            return schemaResponse.result_obj
 
         elif 'schemaFile' in arguments.keys() and arguments['schemaFile']:
             if verbose: print('Extracting schema from file...')
             parentFolder = pathlib.Path(arguments['schemaFile']).parent
-            outputFolder = getValidFolder(str(parentFolder))
+            outputFolder = get_valid_folder(str(parentFolder))
             if verbose: print('output folder: ' + str(outputFolder))
             fileName = pathlib.Path(arguments['schemaFile']).name
             if verbose: print('file name: ' + str(fileName))
@@ -131,7 +131,7 @@ def extractSchemaObject(arguments, verbose):
                 schemaString = wrapper.read()
 
             if verbose: print('Creating schema object...')
-            return buildSchema(schemaString)
+            return build_schema(schemaString)
 
     except Exception as ex:
         print('extractSchemaObject error: ' + str(ex.args))

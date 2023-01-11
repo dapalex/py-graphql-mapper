@@ -1,4 +1,4 @@
-from pygqlmap.gqlTypes import ID
+from pygqlmap.gql_types import ID
 
 Base64String = str ##A (potentially binary) string encoded using base64.
 
@@ -50,7 +50,9 @@ totalRepositoryContributions = str ##How many repositories the user created.
 
 text = str ##UTF8 text data or null if the file is binary
 
-isSponsoredBy = str ##Check if the given account is sponsoring this user/organization.
+isSponsoredBy = str ##Whether the given account is sponsoring this user/organization.
+
+totalSponsorshipAmountAsSponsorInCents = int ##The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
 anyPinnableItems = str ##Determine if this repository owner has any items that can be pinned to their profile.
 

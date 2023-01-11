@@ -3,10 +3,10 @@ import inspect
 import keyword
 from enum import Enum
 import logging as logger
-from pygqlmap.helper import HandleRecursiveEx
-from .utils import executeRegex, isEmptyField
-from pygqlmap.gqlTypes import ID
-from .consts import commaConcat
+from pygqlmap.helper import handle_recursive_ex
+from .utils import execute_regex, is_empty_field
+from pygqlmap.gql_types import ID
+from .consts import COMMA_CONCAT
 
 
 switchStrType = {
@@ -19,19 +19,19 @@ switchStrType = {
 
 class Translate():
 
-    def toGraphQLFieldName(pyVariableName: str):
+    def to_graphql_field_name(pyVariableName: str):
         try:
             return pyVariableName if not pyVariableName.endswith('_') and pyVariableName.removesuffix('_') not in keyword.kwlist else  pyVariableName.removesuffix('_')
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
+            raise handle_recursive_ex(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
 
-    def toPythonVariableName(gqlFieldName):
+    def to_python_var_name(gqlFieldName):
         try:
             return gqlFieldName if gqlFieldName not in keyword.kwlist else gqlFieldName + '_'
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Error during formatting of python variable name for ' + gqlFieldName)
+            raise handle_recursive_ex(ex, 'Error during formatting of python variable name for ' + gqlFieldName)
 
-    def toGraphQLValue(pyVariable):
+    def to_graphql_value(pyVariable):
         try:
             if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
@@ -46,17 +46,17 @@ class Translate():
             elif isinstance(pyVariable, dict):
                 output = ' { '
                 for varKey, varValue in pyVariable.items():
-                    output += Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLValue(varValue) + commaConcat
+                    output += Translate.to_graphql_field_name(varKey) + ': ' + Translate.to_graphql_value(varValue) + COMMA_CONCAT
 
-                output = output.removesuffix(commaConcat)
+                output = output.removesuffix(COMMA_CONCAT)
                 output += ' } '
                 return output
             else:
                 logger.warning('to manage')
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
+            raise handle_recursive_ex(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
-    def toJsonValue(pyVariable):
+    def to_json_value(pyVariable):
         try:
             if isinstance(pyVariable, ID) or isinstance(pyVariable, str):
                 return '\"' + pyVariable + '\"'
@@ -71,17 +71,17 @@ class Translate():
             elif isinstance(pyVariable, dict):
                 output = ' { '
                 for varKey, varValue in pyVariable.items():
-                    output += Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLValue(varValue) + commaConcat
+                    output += Translate.to_graphql_field_name(varKey) + ': ' + Translate.to_graphql_value(varValue) + COMMA_CONCAT
 
-                output = output.removesuffix(commaConcat)
+                output = output.removesuffix(COMMA_CONCAT)
                 output += ' } '
                 return output
             else:
                 logger.warning('to manage')
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Error during formatting of graphql value for ' + pyVariable)
+            raise handle_recursive_ex(ex, 'Error during formatting of graphql value for ' + pyVariable)
 
-    def toGraphQLType(pyVariable):
+    def to_graphql_type(pyVariable):
         if isinstance(pyVariable, ID):
             return 'ID'
         elif isinstance(pyVariable, str):
@@ -95,103 +95,103 @@ class Translate():
         elif isinstance(pyVariable, dict):
             output = ' { '
             for varKey, varValue in pyVariable.items():
-                output += '$' + Translate.toGraphQLFieldName(varKey) + ': ' + Translate.toGraphQLType(varValue) + commaConcat
+                output += '$' + Translate.to_graphql_field_name(varKey) + ': ' + Translate.to_graphql_type(varValue) + COMMA_CONCAT
 
-            output = output.removesuffix(commaConcat)
+            output = output.removesuffix(COMMA_CONCAT)
             output += ' } '
             return output
         elif Enum in inspect.getmro(type(pyVariable)) or inspect.isclass(type(pyVariable)):
             return type(pyVariable).__name__
         else:
-            raise HandleRecursiveEx(Exception('type not managed!'), '')
+            raise handle_recursive_ex(Exception('type not managed!'), '')
 
-    def toPythonTypeOrOriginal(typeName):
+    def to_python_type(typeName):
         return switchStrType.get(typeName, typeName)
 
-    def toJsonVariables(fields: dict):
+    def to_json_vars(fields: dict):
         output = ''
         try:
             for fieldName, fieldValue in fields.items():
-                if isEmptyField(fieldValue): continue
+                if is_empty_field(fieldValue): continue
                 try:
                     from pygqlmap.components import GQLObject
                     output += ', ' if output.startswith('{') else '{ '
-                    output += '\"' + Translate.toGraphQLFieldName(fieldName) +  '\" :'
+                    output += '\"' + Translate.to_graphql_field_name(fieldName) +  '\" :'
                     if GQLObject in inspect.getmro(type(fieldValue)):
-                        output += Translate.toJsonVariables(fieldValue.__dict__)
+                        output += Translate.to_json_vars(fieldValue.__dict__)
                     else:
-                        output += Translate.toJsonValue(fieldValue)
+                        output += Translate.to_json_value(fieldValue)
                 except Exception as ex:
-                    raise HandleRecursiveEx(ex, 'Issue exporting variable for: ' + fieldName)
+                    raise handle_recursive_ex(ex, 'Issue exporting variable for: ' + fieldName)
 
-            output.removesuffix(commaConcat)
+            output.removesuffix(COMMA_CONCAT)
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Issue with items exporting variable')
+            raise handle_recursive_ex(ex, 'Issue with items exporting variable')
 
         output += ' }'
         return output
 
-    def graphQLize(inputSourceDict, argsToIgnore = None):
+    def graphqlize(inputSourceDict, argsToIgnore = None):
         try:
             output= ''
             for inputSourceKey, inputSourceValue in inputSourceDict.items():
                 if isinstance(inputSourceValue, dict):
                     print('Getting into ' + inputSourceKey)
-                    output += inputSourceKey + (argsToIgnore if argsToIgnore else '') + ' { ' + Translate.graphQLize(inputSourceValue) + ' } '
+                    output += inputSourceKey + (argsToIgnore if argsToIgnore else '') + ' { ' + Translate.graphqlize(inputSourceValue) + ' } '
                 elif isinstance(inputSourceValue, tuple):
                     if isinstance(inputSourceValue[1], dict):
-                        output += inputSourceKey + inputSourceValue[0] + ' { ' + Translate.graphQLize(inputSourceValue[1]) + ' } '
+                        output += inputSourceKey + inputSourceValue[0] + ' { ' + Translate.graphqlize(inputSourceValue[1]) + ' } '
                 else:
-                    output += executeRegex(" " + inputSourceKey + " ")
+                    output += execute_regex(" " + inputSourceKey + " ")
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
+            raise handle_recursive_ex(ex, 'Exception during graphqlizing of ' + str(inputSourceDict))
 
         return output
 
-    def excludeArgsSubstring(dataInput: str, argsToIgnore: list):
+    def exclude_args_substring(dataInput: str, argsToIgnore: list):
         for args in argsToIgnore:
             try:
                 if str(dataInput).__contains__(args):
                     logger.info('splitting ' + dataInput)
                     inputList = dataInput.split(args)
-                    return args.join(Translate.excludeArgsSubstring(x, argsToIgnore) for x in inputList)
+                    return args.join(Translate.exclude_args_substring(x, argsToIgnore) for x in inputList)
             except Exception as ex:
-                raise HandleRecursiveEx(ex, 'Exception during args exclusion from graphqlize for substring ' + dataInput)
+                raise handle_recursive_ex(ex, 'Exception during args exclusion from graphqlize for substring ' + dataInput)
 
-        return executeRegex(dataInput)
+        return execute_regex(dataInput)
 
-    def toGraphQLArgsSetDefinition(pyObject):
+    def to_graphql_argsset_definition(pyObject):
         output = ''
 
         try:
             for field in pyObject.__dataclass_fields__:
                 objectField = getattr(pyObject, field)
-                if isEmptyField(objectField): continue
+                if is_empty_field(objectField): continue
                 try:
                     from pygqlmap.components import GQLObject
                     if GQLObject in inspect.getmro(type(objectField)):
-                        output += field + ': { ' + Translate.toGraphQLArgsSetDefinition(objectField) + ' } '
-                        output += commaConcat
+                        output += field + ': { ' + Translate.to_graphql_argsset_definition(objectField) + ' } '
+                        output += COMMA_CONCAT
                     elif isinstance(objectField, list):
                         output += field + ': [ '
                         for elementList in objectField:
                             if GQLObject in inspect.getmro(type(elementList)):
-                                output += ' { ' + Translate.toGraphQLArgsSetDefinition(elementList) + ' } ' + commaConcat
+                                output += ' { ' + Translate.to_graphql_argsset_definition(elementList) + ' } ' + COMMA_CONCAT
                             else:
-                                output += Translate.toGraphQLValue(elementList) + commaConcat
-                        output = output.removesuffix(commaConcat)
-                        output += ' ] ' + commaConcat
+                                output += Translate.to_graphql_value(elementList) + COMMA_CONCAT
+                        output = output.removesuffix(COMMA_CONCAT)
+                        output += ' ] ' + COMMA_CONCAT
                     else:
                         if hasattr(pyObject, field) and not objectField == None:
-                            output += Translate.toGraphQLArgDefinition(field, objectField)
+                            output += Translate.to_graphql_arg_definition(field, objectField)
                 except Exception as ex:
-                    raise HandleRecursiveEx(ex, 'Issue during export of name and value for: ' + objectField)
+                    raise handle_recursive_ex(ex, 'Issue during export of name and value for: ' + objectField)
 
-            output = output.removesuffix(commaConcat)
+            output = output.removesuffix(COMMA_CONCAT)
 
         except Exception as ex:
-            raise HandleRecursiveEx(ex, 'Error during translation of argument set definition')
+            raise handle_recursive_ex(ex, 'Error during translation of argument set definition')
         return output
 
-    def toGraphQLArgDefinition(fieldName, field):
-        return Translate.toGraphQLFieldName(fieldName) + ': ' + Translate.toGraphQLValue(field) + commaConcat
+    def to_graphql_arg_definition(fieldName, field):
+        return Translate.to_graphql_field_name(fieldName) + ': ' + Translate.to_graphql_value(field) + COMMA_CONCAT

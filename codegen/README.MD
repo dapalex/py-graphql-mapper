@@ -27,51 +27,51 @@ Two functionalities are available:
 
 The class in charge of the generation is _CodeGenerator_, which takes a json schema as input and produces python files containing the mapped GraphQL schema types.
 
-If a json version of the schema is not yet available first step is obtaining it, this can be done passing the API Url and HTTP headers to _fetchSchemaObject_ which will query the GraphQL API server:
+If a json version of the schema is not yet available first step is obtaining it, this can be done passing the API Url and HTTP headers to _fetch_schema_obj_ which will query the GraphQL API server:
 
 ```python
-from codegen.network import fetchSchemaObject
-from codegen.queryPresets import querySchemaAndTypes
+from codegen.network import fetch_schema_obj
+from codegen.queryPresets import QUERY_SCHEMA_AND_TYPES
 
-schemaObject = fetchSchemaObject(<graphQLUrl>, <HTTPHeaders dictionary>, querySchemaAndTypes)
+schemaObject = fetch_schema_obj(<graphQLUrl>, <HTTPHeaders dictionary>, QUERY_SCHEMA_AND_TYPES)
 ```
 
-If a json schema is already available _buildSchema_ can be used:
+If a json schema is already available _build_schema_ can be used:
 
 ```python
-from codegen.generator import buildSchema
+from codegen.generator import build_schema
 
-schemaObject = buildSchema(schemaJsonString)
+schema_obj = build_schema(schema_json_str)
 ```
 
-Obtained the schema object the following function _CodeGenerator.generateCode_ has to be called:
+Obtained the schema object the following function _CodeGenerator.generate_code_ has to be called:
 
 ```python
 from codegen.generator import CodeGenerator
-from codegen.queryPresets import querySchemaAndTypes
+from codegen.queryPresets import QUERY_SCHEMA_AND_TYPES
 
-CodeGenerator.generateCode(schemaObject, folder='test\\output\\github\\', logProgress=False, addDescription=True)
+CodeGenerator.generate_code(schema_obj, folder='test\\output\\github\\', log_progress=False, add_desc=True)
 ```
 
 Required parameters:
 
-* schemaObj: the schema as python object
+* schema_obj: the schema as python object
 * folder: the destination folder where the created python files will be saved
 
 Optional parameters:
 
-* logProgress: makes the generation verbose (default false)
-* addDescription: boolean telling if descriptions have to be added to the generated classes (default true)
+* log_progress: makes the generation verbose (default false)
+* add_desc: boolean telling if descriptions have to be added to the generated classes (default true)
 
-_generateCode_ function will create the following python files containing the GraphQL schema objects as python classes:
+_generate_code_ function will create the following python files containing the GraphQL schema objects as python classes:
 
 * scalars.py -> GraphQL scalar types as python type aliases
 * enums.py -> GraphQL enum types as Enum classes
-* gqlTypes.py -> GraphQL object types as classes
-* gqlSimpleTypes.py -> GraphQL object types as classes not using other object types
+* gql_types.py -> GraphQL object types as classes
+* gql_simple_types.py -> GraphQL object types as classes not using other object types
 * queries.py -> GraphQL query types as classes and an Enum 'Queries' having query names as name and query classes as value
 * mutations.py -> mutation classes and an Enum 'Mutations' having mutation names as name and mutation classes as value
-* circularRefs.py -> Only in case of objects containing recursive references this file will contain references to their types
+* circular_refs.py -> Only in case of objects containing recursive references this file will contain references to their types
 
 
 ## Usage via command line
@@ -81,10 +81,10 @@ _generateCode_ function will create the following python files containing the Gr
 Classes can be generated alternatively using the CLI command:
 
 ```
-pygqlcodegen generate ./GeoDBCities -apiArgs ./generatorArgs.json -v
+pgmcodegen generate ./gdbc -apiArgs ./generatorArgs.json -v
 ```
 
-This command will generate python files in _./GeoDBCities/_ using the [information](#json-args-file) given in _./generatorArgs.json_.
+This command will generate python files in _./gdbc/_ using the [information](#json-args-file) given in _./generatorArgs.json_.
 
 
 ### Download of a schema as json file
@@ -92,13 +92,13 @@ This command will generate python files in _./GeoDBCities/_ using the [informati
 Example of schema retrieval command:
 
 ```
-pgmcodegen download ./commandsOutput/Github/schema.json -apiArgs ./downloaderArgs.json
+pgmcodegen download ./cmd_output/Github/schema.json -apiArgs ./downloaderArgs.json
 ```
 
-This command will create the file in _./commandsOutput/Github/schema.json_ containing the schema in json version using the [information](#json-args-file) given in _./downloaderArgs.json_.
+This command will create the file in _./cmd_output/Github/schema.json_ containing the schema in json version using the [information](#json-args-file) given in _./downloaderArgs.json_.
 
 
-A few examples can be seen [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/geoDBCitiesApiUnitTest.py#L9) and [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/githubApiUnitTest.py#L13)
+A few examples can be seen [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/gdbc_unittest.py#L9) and [here](#https://github.com/dapalex/py-graphql-mapper/blob/main/tests/gh_unittest.py#L13)
 
 
 #### JSON args file
@@ -115,7 +115,7 @@ This file is used by the generator command line interface, it contains:
         "additionalHeader-content-type": "application/json"
     },
     ##USED FOR GENERATE COMMAND USING A SCHEMA FILE
-    "schemaFile": "./commandsOutput/RapidApi/schema.json" # location of the json version of schema file
+    "schemaFile": "./cmd_output/rapidapi/schema.json" # location of the json version of schema file
 }
 ```
 
@@ -150,7 +150,7 @@ class createProject(GQLMutation):
 having as input the following generated class
 
 ```python
-from pygqlmap.gqlTypes import ID
+from pygqlmap.gql_types import ID
 
 class CreateProjectInput():
    """
@@ -190,7 +190,7 @@ mutation.input.name = "Test create project from Mutation" + datetime.now().ctime
 mutation.input.repositoryIds = ["R_kgDOH7MI4g"]
 ```
 
-then _exportGqlSource_ will be able to create the following GraphQL syntax:
+then _export_gql_source_ will be able to create the following GraphQL syntax:
 
 ```
 mutation MycreateProjectMutation  {
@@ -207,14 +207,13 @@ Then executed using [pygqlmap](#https://github.com/dapalex/py-graphql-mapper/blo
 ```python
 from pygqlmap.network import GQLResponse
 
-myMutation = MycreateProjectMutation()
-myMutation.name = 'MycreateProjectMutation'
+my_mutation = MycreateProjectMutation()
+my_mutation.name = 'MycreateProjectMutation'
 
-response = request("POST", graphQLServerUrl, json=json={ "query": myMutation.exportGqlSource }, headers=headers)
+response = request("POST", graphQLServerUrl, json=json={ "query": my_mutation.export_gql_source }, headers=headers)
 gqlResponse = GQLResponse(response)
-gqlResponse.printMessageOutput()
 
-print('resultObject: ' + str(gqlResponse.resultObject))
+print('Result object: ' + str(gqlResponse.result_obj))
 ```
 
 It is possible to create python classes manually (for a customized version for instance) as well only using pygqlmap module.

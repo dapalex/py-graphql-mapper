@@ -1,0 +1,13 @@
+from
+
+_______
+data: Query
+_______
+
+to
+
+_______
+data: None
+_______
+
+for in consistence in GraphQL schema

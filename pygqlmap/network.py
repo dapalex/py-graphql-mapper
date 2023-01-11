@@ -5,12 +5,12 @@ import logging as logger
 from .src.builder import QueryBuilder
 from .src.enums import BuildingType
 
-def httpRequest(api_url, payload, httpHeaders):
+def send_http_request(api_url, payload, httpHeaders):
     try:
         body = json.dumps(payload, indent=2).encode('ascii')
         req = request.Request(api_url, data=body)
-        for httpHeaderKey, httpHeaderValue in httpHeaders.items():
-            req.add_header(httpHeaderKey, httpHeaderValue)
+        for http_header_key, http_header_val in httpHeaders.items():
+            req.add_header(http_header_key, http_header_val)
 
         with request.urlopen(req) as response:
             response.text = response.read().decode('utf-8')
@@ -22,61 +22,62 @@ def httpRequest(api_url, payload, httpHeaders):
         raise Exception(str(ex.args[0]))
 
 class GQLResponse():
-    httpResponse = None
+    http_response = None
+    json_response = None
     errors = None
     data = None
-    resultObject = None
-    logProgress: bool= None
+    result_obj = None
+    log_progress: bool= None
 
-    def __init__(self, response: str, logProgress: bool = False):
-        self.httpResponse = response
-        self.jsonResponse = json.loads(response.text)
-        self.logProgress = logProgress
+    def __init__(self, response: str, log_progress: bool = False):
+        self.http_response = response
+        self.json_response = json.loads(response.text)
+        self.log_progress = log_progress
 
-        if isinstance(self.jsonResponse, dict):
-            if "errors" in self.jsonResponse.keys():
-                self.errors = self.jsonResponse["errors"]
-            if "data" in self.jsonResponse.keys():
-                self.data = self.jsonResponse["data"]
+        if isinstance(self.json_response, dict):
+            if "errors" in self.json_response.keys():
+                self.errors = self.json_response["errors"]
+            if "data" in self.json_response.keys():
+                self.data = self.json_response["data"]
 
-    def mapGQLDataToObj(self, mappedPyObject,  buildType: BuildingType = BuildingType.Standard):
-        """Maps the json response to a python object and saves it in resultObject field
+    def map_gqldata_to_obj(self, mapped_py_obj,  build_type: BuildingType = BuildingType.STANDARD):
+        """Maps the json response to a python object and saves it in result_obj field
 
         Args:
             mappedPyObject (_type_, optional): python object mapped from a GraphQL type
                                                A reference can be found in the GQLOperation object created as <queryObject>.type
-            buildType (BuildingType, optional): Options not yet implemented. Defaults to BuildingType.Standard.
+            build_sctype (BuildingType, optional): Options not yet implemented. Defaults to BuildingType.STANDARD.
         """
         if hasattr(self, 'data') and self.data:
-            myBuilder = QueryBuilder(buildType, self.logProgress)
-            self.resultObject = myBuilder.build(self.data, mappedPyObject)
+            myBuilder = QueryBuilder(build_type, self.log_progress)
+            self.result_obj = myBuilder.build(self.data, mapped_py_obj)
         else:
-            self.resultObject = None
+            self.result_obj = None
 
-    def printMessageOutput(self):
-        """_summary_
+    def print_msg_out(self):
+        """!This function works with built-in python module urllib3!
 
         Raises:
             Exception: HTTP status code != 200
             Exception: Presence of errors in the json response
             Exception: Missing errors and data in the json response
         """
-        logger.info('Network result: ' + 'OK' if self.httpResponse.ok else 'KO')
-        logger.info('HTTP code: ' + str(self.httpResponse.status))
+        logger.info('Network result: ' + 'OK' if self.http_response.ok else 'KO')
+        logger.info('HTTP code: ' + str(self.http_response.status))
 
-        if self.httpResponse.status != 200:
-            raise Exception('HTTP Error: ' + self.httpResponse.text)
+        if self.http_response.status != 200:
+            raise Exception('HTTP Error: ' + self.http_response.text)
         else:
             if hasData :=(hasattr(self, 'data') and self.data):
                 logger.info('Data returned: ')
                 logger.info(json.dumps(self.data, indent=2))
 
             if hasErrors :=(hasattr(self, 'errors') and self.errors):
-                errOutput = ''
+                err_out = ''
                 for error in self.errors:
-                    errOutput += str(error) + '\n'
-                errOutput += '\n'
-                logger.error('Response Errors: ' + errOutput)
+                    err_out += str(error) + '\n'
+                err_out += '\n'
+                logger.error('Response Errors: ' + err_out)
 
             if not hasData and not hasErrors:
-                raise Exception('Inconsistent response: ' + self.httpResponse.text)
+                raise Exception('Inconsistent response: ' + self.http_response.text)
