@@ -5,7 +5,7 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class MJSREname_name_Field(ArguedStr):
+class TYVSQname_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       showDeleted: bool
 
