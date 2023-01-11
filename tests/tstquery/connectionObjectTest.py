@@ -26,7 +26,7 @@
     }
 
 
-    STEP 1: Instantiate class representing the GraphQL query
+    STEP 1: Instantiate the python class representing the GraphQL query
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
     STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
