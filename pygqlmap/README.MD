@@ -283,9 +283,13 @@ request("POST", gql_url, json={ "query": query.export_gql_source, "variables": q
 Note: Right now Arguments as VARIABLES are not supported for mutations
 
 Use cases for queries can be seen here:
+
 [Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_literal_test.py)
-[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_args_vars_test.py)
+
+[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_vars_test.py)
+
 [Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_vars_test.py)
+
 [Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_literal_test.py)
 
 
