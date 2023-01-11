@@ -14,8 +14,9 @@ It translates GraphQL entities into python objects and viceversa in order to avo
 
 This document contains a quick overview of the functionalities, for more details and options you can read here:
 
-* Code Generation: https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD
-* Core Mapper: https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD
+* [Code Generation](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
+* [Core Mapper](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD)
+* [Use Cases](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/README.MD)
 
 
 The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries.
