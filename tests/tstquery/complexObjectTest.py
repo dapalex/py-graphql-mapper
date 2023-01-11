@@ -65,7 +65,7 @@
 
 
     STEP 1: Instantiate the class representing the GraphQL query
-    STEP 2: Set the arguments
+    STEP 2: Set the arguments following the object structure
     STEP 3: Call setShow function of GQLOperation class to set the visibility of chosen fields (path to declare with dot notation)
     STEP 4: Query the GraphQL server
     STEP 5: Pass the response received to the GQLResponse constructor
