@@ -1,4 +1,3 @@
-import logging
 import sys
 import os
 import pathlib
@@ -8,26 +7,26 @@ import unittest
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0])).absolute()))
 sys.path.append(str(pathlib.Path(os.path.dirname(sys.path[0]), 'test').absolute()))
 
-from .geoDBCitiesApiUnitTest import (fetchGeoDBCitiesSchema, fetchGeoDBCitiesSchemaNoDesc)
-from .githubApiUnitTest import (fetchGithubMutationTypes, fetchGithubMutationTypesFromSchemaNoDesc)
-from .rapidApiUnitTest import (fetchRapidApiTestSchemaAndTypes, fetchRapidApiTestSchemaAndTypesNoDesc)
+from .gdbc_unittest import (run_fetch_gdbc_schema, run_fetch_gdbc_schema_no_desc)
+from .gh_unittest import (run_fetch_gh_schema, run_fetch_gh_schema_no_desc)
+from .ra_unittest import (run_fetch_ra_schema, run_fetch_ra_schema_no_desc)
 
 class TestCodegen(unittest.TestCase):
 
-    def testGeoDBCitiesSchema(self):
-      return fetchGeoDBCitiesSchema()
+    def testgdbcSchema(self):
+      return run_fetch_gdbc_schema()
 
-    def testGeoDBCitiesSchemaNoDesc(self):
-      return fetchGeoDBCitiesSchemaNoDesc()
+    def testgdbcschema_no_desc(self):
+      return run_fetch_gdbc_schema_no_desc()
 
-    def testGithubMutationTypesFromSchemaNoDesc(self):
-      return fetchGithubMutationTypesFromSchemaNoDesc()
+    def testGithubMutationTypesFromschema_no_desc(self):
+      return run_fetch_gh_schema_no_desc()
 
     def testGithubMutationTypes(self):
-      return fetchGithubMutationTypes()
+      return run_fetch_gh_schema()
 
-    def testRapidApiTestSchemaAndTypesNoDesc(self):
-      return fetchRapidApiTestSchemaAndTypesNoDesc()
+    def testrapidapiTestSchemaAndTypes_nodesc(self):
+      return run_fetch_ra_schema_no_desc()
 
-    def testRapidApiTestSchemaAndTypes(self):
-      return fetchRapidApiTestSchemaAndTypes()
+    def testrapidapiTestSchemaAndTypes(self):
+      return run_fetch_ra_schema()

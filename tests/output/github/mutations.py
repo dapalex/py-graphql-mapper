@@ -1,6 +1,6 @@
 from pygqlmap import GQLMutation
-from .gqlTypes import *
-from .gqlSimpleTypes import *
+from .gql_types import *
+from .gql_simple_types import *
 from .enums import *
 from .scalars import *
 
@@ -2121,6 +2121,23 @@ class resolveReviewThread(GQLMutation):
 
    type: ResolveReviewThreadPayload
 
+class retireSponsorsTier(GQLMutation):
+   """
+   retireSponsorsTier - Retire a published payment tier from your GitHub Sponsors profile so it cannot be used to start new sponsorships.
+
+   """
+   class RetireSponsorsTierPayloadArgs(GQLArgsSet, GQLObject): 
+      """
+      input - Parameters for RetireSponsorsTier
+
+      """
+      input: RetireSponsorsTierInput ##NON NULL
+
+   _args: RetireSponsorsTierPayloadArgs
+
+
+   type: RetireSponsorsTierPayload
+
 class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
    """
    revokeEnterpriseOrganizationsMigratorRole - Revoke the migrator role to a user for all organizations under an enterprise account.
@@ -2222,6 +2239,23 @@ class setUserInteractionLimit(GQLMutation):
 
 
    type: SetUserInteractionLimitPayload
+
+class startOrganizationMigration(GQLMutation):
+   """
+   startOrganizationMigration - Starts a GitHub Enterprise Importer organization migration.
+
+   """
+   class StartOrganizationMigrationPayloadArgs(GQLArgsSet, GQLObject): 
+      """
+      input - Parameters for StartOrganizationMigration
+
+      """
+      input: StartOrganizationMigrationInput ##NON NULL
+
+   _args: StartOrganizationMigrationPayloadArgs
+
+
+   type: StartOrganizationMigrationPayload
 
 class startRepositoryMigration(GQLMutation):
    """
@@ -3588,12 +3622,14 @@ class Mutations(Enum):
    requestReviews = requestReviews
    rerequestCheckSuite = rerequestCheckSuite
    resolveReviewThread = resolveReviewThread
+   retireSponsorsTier = retireSponsorsTier
    revokeEnterpriseOrganizationsMigratorRole = revokeEnterpriseOrganizationsMigratorRole
    revokeMigratorRole = revokeMigratorRole
    setEnterpriseIdentityProvider = setEnterpriseIdentityProvider
    setOrganizationInteractionLimit = setOrganizationInteractionLimit
    setRepositoryInteractionLimit = setRepositoryInteractionLimit
    setUserInteractionLimit = setUserInteractionLimit
+   startOrganizationMigration = startOrganizationMigration
    startRepositoryMigration = startRepositoryMigration
    submitPullRequestReview = submitPullRequestReview
    transferEnterpriseOrganization = transferEnterpriseOrganization

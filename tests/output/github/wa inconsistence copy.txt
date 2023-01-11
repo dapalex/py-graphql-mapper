@@ -1,0 +1,14 @@
+from
+
+_______
+type: Query
+_______
+
+to
+
+_______
+type: None
+_______
+
+in queries.py
+for in consistence in GraphQL schema

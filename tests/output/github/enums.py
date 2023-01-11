@@ -948,6 +948,21 @@ class OrganizationMembersCanCreateRepositoriesSettingValue(Enum):
    INTERNAL = 'INTERNAL' ##Members will be able to create only internal repositories.
    DISABLED = 'DISABLED' ##Members will not be able to create public or private repositories.
 
+class OrganizationMigrationState(Enum):
+   """
+   OrganizationMigrationState - The Octoshift Organization migration state.
+
+   """
+   DEFAULT = None
+   NOT_STARTED = 'NOT_STARTED' ##The Octoshift migration has not started.
+   QUEUED = 'QUEUED' ##The Octoshift migration has been queued.
+   IN_PROGRESS = 'IN_PROGRESS' ##The Octoshift migration is in progress.
+   PRE_REPO_MIGRATION = 'PRE_REPO_MIGRATION' ##The Octoshift migration is performing pre repository migrations.
+   REPO_MIGRATION = 'REPO_MIGRATION' ##The Octoshift org migration is performing repository migrations.
+   POST_REPO_MIGRATION = 'POST_REPO_MIGRATION' ##The Octoshift migration is performing post repository migrations.
+   SUCCEEDED = 'SUCCEEDED' ##The Octoshift migration has succeeded.
+   FAILED = 'FAILED' ##The Octoshift migration has failed.
+
 class OrganizationOrderField(Enum):
    """
    OrganizationOrderField - Properties by which organization connections can be ordered.
