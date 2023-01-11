@@ -20,8 +20,8 @@
 
     OBJECTIVE: Hiding fields from the original python mapped class (above with (*))
 
-    STEP 1: Instantiate GQLOperation class representing the GraphQL query
-    STEP 2: Call setShow function of GQLOperation class to set the visibility of fields (path to declare with dot notation)
+    STEP 1: Instantiate the python class representing the GraphQL query
+    STEP 2: Call setShow function of the python class to set the visibility of fields (path to declare with dot notation)
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
     STEP 5: Call mapGQLDataToObj() function to obtain the python class with data from GraphQL server
