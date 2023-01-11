@@ -51,7 +51,7 @@
 ##
 
 """
-    STEP 1: Instantiate GQLOperation class representing the GraphQL mutation
+    STEP 1: Instantiate the python class representing the GraphQL query
     STEP 2: Instantiate GQLArgs object structure with argument type as LiteralValues
     STEP 3: Query the GraphQL server
     STEP 4: Pass the response received to the GQLResponse constructor
