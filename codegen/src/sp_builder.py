@@ -182,7 +182,14 @@ class SchemaBuilder(Builder):
             if data[0] == 'types':
                 py_obj.types = SchemaTypeBuilder.build_sctypes(data[1]) if data[1] else None
             if data[0] == 'directives':
-                # pyObject.directives = self.build_directives(data[1]) if data[1] else None
                 py_obj.directives = list(map(SchemaTypeBuilder.build_directive, data[1])) if data[1] else None
 
         return py_obj
+
+    def buildDirective(self, dataInput):
+        directive = SCDirective()
+        while len(dataInput.items()) > 0:
+            inputField = dataInput.popitem()
+            setattr(directive, inputField[0], SchemaTypeBuilder.buildArgsOrInputFields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
+
+        return directive

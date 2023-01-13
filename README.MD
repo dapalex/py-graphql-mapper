@@ -75,8 +75,8 @@ my_currencies = currencies(last=7, before='MTE=')
 or add them using the field _args_
 
 ```python
-my_currencies._args.
-my_currencies._args.
+my_currencies._args.last = 7
+my_currencies._args.before = 'MTE='
 ```
 Then call _export_gql_source_ property to pass the payload to the HTTP request:
 

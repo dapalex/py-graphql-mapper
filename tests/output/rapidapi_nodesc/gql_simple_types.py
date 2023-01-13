@@ -1005,8 +1005,10 @@ class ApiVersionWhereInput(GQLObject):
 
 class APITag(GQLObject):
    id: str
+   apiversion: str
    status: str
    tagdefinition: str
+   type: str
    value: str
    createdAt: DateTime
 

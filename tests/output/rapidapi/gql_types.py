@@ -2,10 +2,14 @@ from typing import Generic, Union
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gql_types import ID
 from pygqlmap.src.arg_builtin import *
+from pygqlmap.gql_types import ID
+from pygqlmap.src.arg_builtin import *
 from typing import NewType
+from .gql_simple_types import *
 from .gql_simple_types import *
 from .enums import *
 from .scalars import *
+from .circular_refs import *
 from .circular_refs import *
 
 class GetWorkflowCountOptions(GQLObject):
@@ -233,6 +237,35 @@ across all the target URLs.
    loadBalancingStrategyValue: str
 
 class TagDefinition(GQLObject):
+   """
+   editableByProvider - When set to `false`, an API provider themself shouldn't be allowed to apply this tag to an API -
+instead, this would be reserved only for tenant admins to perform. Note that setting this attribute to `false` isn't
+meant to affect regular visibility of the tags' attachment whatsoever.
+
+   forceEnumValidation - Determines whether the tag definition is acting in a "values are exclusively selected from a predefined set"
+mode (when `forceEnumValidation: true`) or a "any arbitrary value can be set freely" mode
+(when `forceEnumValidation: false`).
+
+When in the "free" value mode (`forceEnumValidation: false`), the values listed via the `values` attribute act as mere suggestions
+that constitute no enforcement. Also, if at any point in time such tag definition is modified to be `forceEnumValidation: true`,
+then any arbitrary values set beforehand by providers that aren't listed in `values` would still remain effective and intact.
+
+   isVisible - When setting this to `false`, the tag definition is effectively considered "deactivated" on the platform,
+thus it "should" not be allowed to see/attach on their APIs, and in case there were some APIs
+associated with it before it was deactivated as said, then in terms of showcasing an API's attached tags -
+all instances of this particular one "should" be hidden among the rest.
+
+   requiredOnAPI - Specifies whether this particular tag definition "should" be considered mandatory, requiring every API in the given
+tenant to have it attached with at least one of its listed values.
+
+Note that if at any point in time a tag definition's `requiredOnAPI` is updated to whichever state, then all tags currently attached
+to actual APIs remain unchanged from that whatsoever.
+
+   showTagName - For when an API's attached tags are being showcased, this attributes is meant to instruct whether the name of
+the tag definition should be visually displayed next to every value of it set on an API as it is being showcased,
+or otherwise to have just the plain values displayed alone.
+
+   """
    """
    editableByProvider - When set to `false`, an API provider themself shouldn't be allowed to apply this tag to an API -
 instead, this would be reserved only for tenant admins to perform. Note that setting this attribute to `false` isn't
@@ -967,6 +1000,7 @@ class ApiWhereInput(GQLObject):
 
    """
    id: ID ##NON NULL ##LIST
+   externalCustomIds: ID ##NON NULL ##LIST
    ownerId: ID ##NON NULL ##LIST
    subscriberId: ID ##NON NULL ##LIST
    visibility: ApiVisibility
@@ -2052,12 +2086,17 @@ class Api(GQLObject):
 
    id - The RapidAPI API ID for the API. This can be obtained using the **apis** query.
 
+   externalCustomId - An optional provider-specified custom ID by which the API can be later fetched.
+If any external custom ID was set by the API provider, it could then be directly fetched by it as a convenient alternative for the API's basic platform-generated \`id\`, but either one may still be used independently.
+`externalCustomId`s are guaranteed to be **unique** among all APIs in the scope of a certain tenant environment.
+
    name - The API name as displayed in the API Hub.
 
    requestLogs - Raw non-aggregated request logs related to the parent `Api` entity.
 
    """
    id: str ##NON NULL
+   externalCustomId: ID
    name: str
    installsAllTime: int
    requestTimeout: int
@@ -3751,10 +3790,17 @@ class NewApiVersionInput(GQLObject):
    spec: SpecInput
 
 class ApiCreateInput(GQLObject):
+   """
+   externalCustomId - An optional user-selected custom ID to attach to the created API by which it can be later fetched.
+Value must be **unique** among all APIs in the current tenant.
+Will serve as a convenient alternative for the API's basic platform-generated \`id\`, but either one may still be used independently.
+
+   """
    name: str ##NON NULL
-   pricing: ApiPricing
    description: str ##NON NULL
    category: str ##NON NULL
+   externalCustomId: str
+   pricing: ApiPricing
    visibility: ApiVisibility
    apiType: ApiType
    version: NewApiVersionInput
