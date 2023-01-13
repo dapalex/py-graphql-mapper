@@ -52,7 +52,7 @@ def run_ra_create_transformations_mutation():
         input1.transformationType = TransformationType.REQUEST
         input1.condition = TransformationConditionType.IGNORE
         input1.targetPath = "."
-        input1._from = "a"
+        input1.from_ = "a"
         input1.target = "b"
         input1.value = "val"
         input1.plans = ["planID"]
@@ -64,7 +64,7 @@ def run_ra_create_transformations_mutation():
         input2.transformationType = TransformationType.REQUEST
         input2.condition = TransformationConditionType.IGNORE
         input2.targetPath = "."
-        input2._from = "a"
+        input2.from_ = "a"
         input2.target = "b"
         input2.value = "val"
         input2.plans = ["planID"]
@@ -82,7 +82,7 @@ def run_ra_create_transformations_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -92,7 +92,7 @@ def run_ra_create_transformations_mutation():
     logger.info("End of Run_ra_create_transformations_mutation")
 
 def run_ra_create_gateway_instance_mutation():
-    logger.info('\nRunning Run_ra_create_gateway_instance_mutation...')
+    logger.info('\nRunning run_ra_create_gateway_instance_mutation...')
     try:
         logger.info('Creating mutation python object...')
         from .output.rapidapi.gql_types import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
@@ -128,14 +128,14 @@ def run_ra_create_gateway_instance_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of Run_ra_create_gateway_instance_mutation")
+    logger.info("End of run_ra_create_gateway_instance_mutation")
 
 
 def run_ra_edit_user_alert_mutation():
@@ -175,7 +175,7 @@ def run_ra_edit_user_alert_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -214,7 +214,7 @@ def run_ra_admin_audit_logs():
                                     headers=RAPIDAPI_HEADERS)
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))

@@ -63,16 +63,13 @@ from ..output.github.gql_types import UpdateRepositoryInput
 import logging as logger
 
 def run_gh_update_literal_mutation():
-    logger.info('\n\nRunning test_gh_update_literal_mutation...')
+    logger.info('\n\nRunning run_gh_update_literal_mutation...')
 ##STEP 2
     mutation = updateRepository()
     mutation.name = 'myManualUpdateRepository'
 ##
 
 ##STEP 3
-    from pygqlmap.components import GQLArgsSet
-    from pygqlmap.enums import ArgType
-
     mutationInput = UpdateRepositoryInput()
     mutationInput.repositoryId = "R_kgDOH7MI4g"
     mutationInput.hasIssuesEnabled = False
@@ -80,6 +77,7 @@ def run_gh_update_literal_mutation():
 
     mutation.type.repository.assignableUsers._args.first = 1
 
+    mutation.type.repository.branchProtectionRules = type(mutation.type.repository.branchProtectionRules)(number=1, first=1, after='')
     mutation.type.repository.discussion._args.number = 1
     mutation.type.repository.discussionCategory._args.slug = 'slug'
     mutation.type.repository.environment._args.name = 'envName'
@@ -109,7 +107,7 @@ def run_gh_update_literal_mutation():
         gqlResponse = GQLResponse(response)
 ##
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
 ##STEP 6
         gqlResponse.map_gqldata_to_obj(mutation.type)
@@ -121,4 +119,4 @@ def run_gh_update_literal_mutation():
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
 
-    logger.info("End of test_gh_update_literal_mutation")
+    logger.info("End of run_gh_update_literal_mutation")

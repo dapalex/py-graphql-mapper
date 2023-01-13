@@ -58,19 +58,6 @@ def pop_lst_element_by_ref(lst: list, element):
         if id(lstEl) == id(element):
             return lst.pop(lst.index(element))
 
-# def merge_tuple_unique_args(tup1: tuple, tup2: tuple):
-#     if tup2:
-
-#             tup1 = addTupleUniqueArgument(tup1, tup2[0], tup2[1])
-
-#     return tup1
-
-# def addTupleUniqueArgument(tup: tuple, strArgument, location):
-#     if (strArgument, location) not in tup:
-#         tup = tup + (strArgument, location)
-
-#     return tup
-
 def get_dot_notation_info(dataInput: str) -> tuple:
     """for internal use
 

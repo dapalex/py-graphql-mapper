@@ -1,4 +1,3 @@
-import inspect
 from .utils import get_obj_class_name, get_dot_notation_info, is_none_or_builtin_primitive
 import logging as logger
 

@@ -77,7 +77,7 @@ def run_gh_add_comment_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -87,7 +87,7 @@ def run_gh_add_comment_mutation():
     logger.info("End of run_gh_add_comment_mutation")
 
 def run_gh_update_repo_mutation():
-    logger.info('\nRunning Run_gh_update_repo_mutation...')
+    logger.info('\nRunning run_gh_update_repo_mutation...')
     try:
         from .output.github.mutations import Mutations
 
@@ -98,7 +98,7 @@ def run_gh_update_repo_mutation():
         mutation._args.input.repositoryId = "R_kgDOH7MI4g"
         mutation._args.input.hasIssuesEnabled = True
         mutation._args.input.hasWikiEnabled = True
-        'mutation', 'updateRepository', 'repository', 'discussion'
+        mutation.type.repository.deployKeys = type(mutation.type.repository.deployKeys)(first=1, after='')
         mutation.type.repository.discussion._args.number = 1
         mutation.type.repository.discussionCategory._args.slug = "1"
         mutation.type.repository.environment._args.name = "nm"
@@ -122,14 +122,14 @@ def run_gh_update_repo_mutation():
                                     headers=GITHUB_HEADERS)
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of Run_gh_update_repo_mutation")
+    logger.info("End of run_gh_update_repo_mutation")
 
 def run_gh_create_proj_mutation():
     logger.info('\nRunning Run_gh_create_proj_mutation...')
@@ -161,7 +161,7 @@ def run_gh_create_proj_mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         if hasattr(gqlResponse.data, 'createProject') and hasattr(gqlResponse.data['createProject'], 'project'):
             with open('projectsCreated.log', 'a') as logProjCreated:
@@ -197,7 +197,7 @@ def run_gh_delete_proj_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -229,7 +229,7 @@ def runGithubCreateProjectV2Mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -239,7 +239,7 @@ def runGithubCreateProjectV2Mutation():
     logger.info("End of RunGithubCreateProjectV2Mutation")
 
 def run_gh_delete_proj_v2_mutation():
-    logger.info('\nRunning Run_gh_delete_proj_v2_mutation...')
+    logger.info('\nRunning run_gh_delete_proj_v2_mutation...')
     try:
         logger.info('Creating mutation python object...')
         from .output.github.mutations import Mutations
@@ -261,14 +261,14 @@ def run_gh_delete_proj_v2_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of Run_gh_delete_proj_v2_mutation")
+    logger.info("End of run_gh_delete_proj_v2_mutation")
 
 def run_gh_create_issue_mutation():
     logger.info('\nRunning Run_gh_create_issue_mutation...')
@@ -331,7 +331,7 @@ def run_gh_create_issue_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))

@@ -81,9 +81,7 @@ def run_ra_create_transformations_mutation():
                                     headers=RAPIDAPI_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -127,9 +125,7 @@ def run_ra_create_gateway_instance_mutation():
                                     headers=RAPIDAPI_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -174,9 +170,7 @@ def run_ra_edit_user_alert_mutation():
                                     headers=RAPIDAPI_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -214,9 +208,7 @@ def run_ra_admin_audit_logs():
                                     json={ "query": query.export_gql_source },
                                     headers=RAPIDAPI_HEADERS)
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:

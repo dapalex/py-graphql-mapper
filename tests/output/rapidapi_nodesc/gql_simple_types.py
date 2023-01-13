@@ -5,7 +5,7 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class QTCKKname_name_Field(ArguedStr):
+class HCAPE_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       showDeleted: bool
 
@@ -23,6 +23,7 @@ class UpdateWorkflowsInput(GQLObject):
    additionalData: Any
    componentId: str
    subComponentId: str
+   topic: str
 
 class CreateWorkflowInput(GQLObject):
    componentId: str ##NON NULL

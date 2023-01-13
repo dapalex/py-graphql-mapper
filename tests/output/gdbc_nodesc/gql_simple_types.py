@@ -5,7 +5,7 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class JNSTIdistance_distance_Field(ArguedFloat):
+class PQREC_distance_Field(ArguedFloat):
    class floatArgs(GQLArgsSet, GQLObject): 
       toPlaceId: ID
       distanceUnit: DistanceUnit

@@ -240,22 +240,22 @@ def runGeneratedDataAsGQLObject():
     logger.info('Query GQL syntax: ' + query.export_gql_source)
 ##
 
-##STEP 3
+##STEP 5
     try:
         response = requests.request('POST', url=GDBC_URL,
                                      json={ "query": query.export_gql_source },
                                     headers=GDBC_HEADERS)
 ##
 
-##STEP 4
+##STEP 6
         from pygqlmap.network import GQLResponse
 
         gqlResponse = GQLResponse(response)
 ##
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
-##STEP 5
+##STEP 7
         gqlResponse.map_gqldata_to_obj(query.type)
 ##
 

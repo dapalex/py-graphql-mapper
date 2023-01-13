@@ -42,8 +42,7 @@ def run_gh_add_comment_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -86,9 +85,7 @@ def run_gh_update_repo_mutation():
                                      json={ "query": mutation.export_gql_source },
                                     headers=GITHUB_HEADERS)
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -126,8 +123,7 @@ def run_gh_create_proj_mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         if hasattr(gqlResponse.data, 'createProject') and hasattr(gqlResponse.data['createProject'], 'project'):
             with open('projectsCreated.log', 'a') as logProjCreated:
                 logProjCreated.write(gqlResponse.data['createProject']['project']['id'] + '\n')
@@ -161,9 +157,7 @@ def run_gh_delete_proj_mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -193,9 +187,7 @@ def runGithubCreateProjectV2Mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -225,9 +217,7 @@ def run_gh_delete_proj_v2_mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
@@ -295,9 +285,7 @@ def run_gh_create_issue_mutation():
                                     headers=GITHUB_HEADERS)
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
-
-       # gqlResponse.print_msg_out()
-
+        gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:

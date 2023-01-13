@@ -5,12 +5,12 @@ from .sp_schema import GQLSchema, SCArg, SCType, SCDirective, SCField, SCEnumVal
 
 class SchemaTypeBuilder(Builder):
 
-    def build(self, dataInput, pyObject):
-        inputType = dataInput['__type']
+    def build(self, data_input, py_obj):
+        inputType = data_input['__type']
 
-        pyObject = SchemaTypeBuilder.build_sctype(inputType)
+        py_obj = SchemaTypeBuilder.build_sctype(inputType)
 
-        return pyObject
+        return py_obj
 
     def build_directive(dataInput):
         directive = SCDirective()
@@ -168,21 +168,28 @@ class SchemaTypeBuilder(Builder):
 
 class SchemaBuilder(Builder):
 
-    def build(self, dataInput, pyObject: GQLSchema):
-        inputSchema = dataInput['__schema']
+    def build(self, data_input, py_obj: GQLSchema):
+        inputSchema = data_input['__schema']
 
         while len(inputSchema.items()) > 0:
             data = inputSchema.popitem()
             if data[0] == 'queryType' or data[0] == 'mutationType' or data[0] == 'subscriptionType':
                 if data[1]:
-                    operationType = getattr(pyObject, data[0])
+                    operationType = getattr(py_obj, data[0])
                     operationType = SCOperationType()
                     operationType.name = data[1]['name']
-                    setattr(pyObject, data[0], operationType)
+                    setattr(py_obj, data[0], operationType)
             if data[0] == 'types':
-                pyObject.types = SchemaTypeBuilder.build_sctypes(data[1]) if data[1] else None
+                py_obj.types = SchemaTypeBuilder.build_sctypes(data[1]) if data[1] else None
             if data[0] == 'directives':
-                # pyObject.directives = self.build_directives(data[1]) if data[1] else None
-                pyObject.directives = list(map(SchemaTypeBuilder.build_directive, data[1])) if data[1] else None
+                py_obj.directives = list(map(SchemaTypeBuilder.build_directive, data[1])) if data[1] else None
 
-        return pyObject
+        return py_obj
+
+    def buildDirective(self, dataInput):
+        directive = SCDirective()
+        while len(dataInput.items()) > 0:
+            inputField = dataInput.popitem()
+            setattr(directive, inputField[0], SchemaTypeBuilder.buildArgsOrInputFields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
+
+        return directive

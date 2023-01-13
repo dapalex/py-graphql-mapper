@@ -5,7 +5,7 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class WFJINanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class MSGVM_anyPinnableItems_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -13,7 +13,7 @@ class WFJINanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class TFGINlogoUrl_URI_Field(ArguedStr):
+class TJVRC_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -21,7 +21,7 @@ class TFGINlogoUrl_URI_Field(ArguedStr):
 
 
 
-class PWCKBlogoUrl_URI_Field(ArguedStr):
+class HBAFW_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -29,7 +29,7 @@ class PWCKBlogoUrl_URI_Field(ArguedStr):
 
 
 
-class RYMBWavatarUrl_URI_Field(ArguedStr):
+class ORJKN_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -37,7 +37,7 @@ class RYMBWavatarUrl_URI_Field(ArguedStr):
 
 
 
-class TBIOZshortDescriptionHTML_HTML_Field(ArguedStr):
+class FTXDT_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -45,7 +45,7 @@ class TBIOZshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class LGGPVavatarUrl_URI_Field(ArguedStr):
+class JLOKY_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -53,7 +53,7 @@ class LGGPVavatarUrl_URI_Field(ArguedStr):
 
 
 
-class RJNKNtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class LZIYN_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
@@ -63,7 +63,7 @@ class RJNKNtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class FTVHUisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class GPALG_isSponsoredBy_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       accountLogin: str ##NON NULL
 
@@ -71,7 +71,7 @@ class FTVHUisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class CIEGFavatarUrl_URI_Field(ArguedStr):
+class UWBRN_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -79,7 +79,7 @@ class CIEGFavatarUrl_URI_Field(ArguedStr):
 
 
 
-class TUIMCanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class MWOGX_anyPinnableItems_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -87,7 +87,7 @@ class TUIMCanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class TTQFXtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class LFTAX_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
@@ -97,7 +97,7 @@ class TTQFXtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class VOKLTorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Field(ArguedStr):
+class HZJGF_organizationVerifiedDomainEmails_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
@@ -105,7 +105,7 @@ class VOKLTorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Fie
 
 
 
-class NJGXQisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class EVSPT_isSponsoredBy_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       accountLogin: str ##NON NULL
 
@@ -113,7 +113,7 @@ class NJGXQisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class EUQZPcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
+class UIDAJ_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       login: str ##NON NULL
 
@@ -121,7 +121,7 @@ class EUQZPcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrg
 
 
 
-class CXWXWavatarUrl_URI_Field(ArguedStr):
+class DIIPC_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -129,7 +129,7 @@ class CXWXWavatarUrl_URI_Field(ArguedStr):
 
 
 
-class PAVFBanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class SINEE_anyPinnableItems_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -137,7 +137,7 @@ class PAVFBanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class SKLUNtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class DSPLM_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
@@ -147,7 +147,7 @@ class SKLUNtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class ZBRXEisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class AKCHQ_isSponsoredBy_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       accountLogin: str ##NON NULL
 
@@ -155,7 +155,7 @@ class ZBRXEisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class FJLCMtext_text_Field(ArguedStr):
+class VWJNV_text_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       truncate: int
 
@@ -163,7 +163,7 @@ class FJLCMtext_text_Field(ArguedStr):
 
 
 
-class WRAUHtotalRepositoryContributions_totalRepositoryContributions_Field(ArguedStr):
+class NZJSI_totalRepositoryContributions_Field(ArguedStr):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
 
@@ -171,16 +171,7 @@ class WRAUHtotalRepositoryContributions_totalRepositoryContributions_Field(Argue
 
 
 
-class MKNWQtotalRepositoriesWithContributedPullRequests_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class DTRDFtotalRepositoriesWithContributedIssues_totalRepositoriesWithContributedIssues_Field(ArguedStr):
+class HRCTA_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -189,7 +180,7 @@ class DTRDFtotalRepositoriesWithContributedIssues_totalRepositoriesWithContribut
 
 
 
-class YKCTStotalPullRequestContributions_totalPullRequestContributions_Field(ArguedStr):
+class RJUED_totalRepositoriesWithContributedIssues_Field(ArguedStr):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -198,7 +189,7 @@ class YKCTStotalPullRequestContributions_totalPullRequestContributions_Field(Arg
 
 
 
-class YPMUQtotalIssueContributions_totalIssueContributions_Field(ArguedStr):
+class GIHDK_totalPullRequestContributions_Field(ArguedStr):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -207,7 +198,16 @@ class YPMUQtotalIssueContributions_totalIssueContributions_Field(ArguedStr):
 
 
 
-class BGXTIisRequired_isRequired_Field(ArguedStr):
+class VMTSN_totalIssueContributions_Field(ArguedStr):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class YFODI_isRequired_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -216,7 +216,7 @@ class BGXTIisRequired_isRequired_Field(ArguedStr):
 
 
 
-class CGJEFavatarUrl_URI_Field(ArguedStr):
+class SKVKT_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -224,7 +224,7 @@ class CGJEFavatarUrl_URI_Field(ArguedStr):
 
 
 
-class AJAYYisRequired_isRequired_Field(ArguedStr):
+class PIIPV_isRequired_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -233,7 +233,7 @@ class AJAYYisRequired_isRequired_Field(ArguedStr):
 
 
 
-class AYRUCavatarUrl_URI_Field(ArguedStr):
+class ORQWG_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -241,7 +241,7 @@ class AYRUCavatarUrl_URI_Field(ArguedStr):
 
 
 
-class DCFSAviewerMergeHeadlineText_viewerMergeHeadlineText_Field(ArguedStr):
+class ZXXPI_viewerMergeHeadlineText_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
@@ -249,7 +249,7 @@ class DCFSAviewerMergeHeadlineText_viewerMergeHeadlineText_Field(ArguedStr):
 
 
 
-class IDPRXviewerMergeBodyText_viewerMergeBodyText_Field(ArguedStr):
+class TSZQD_viewerMergeBodyText_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
@@ -257,7 +257,7 @@ class IDPRXviewerMergeBodyText_viewerMergeBodyText_Field(ArguedStr):
 
 
 
-class DHJTLavatarUrl_URI_Field(ArguedStr):
+class NCDPQ_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -265,7 +265,7 @@ class DHJTLavatarUrl_URI_Field(ArguedStr):
 
 
 
-class ZJDREtrackedIssuesCount_trackedIssuesCount_Field(ArguedStr):
+class SIBWG_trackedIssuesCount_Field(ArguedStr):
    class intArgs(GQLArgsSet, GQLObject): 
       states: TrackedIssueStates ##LIST
 
@@ -273,7 +273,7 @@ class ZJDREtrackedIssuesCount_trackedIssuesCount_Field(ArguedStr):
 
 
 
-class BEWAXshortDescriptionHTML_HTML_Field(ArguedStr):
+class AUIAN_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -281,7 +281,7 @@ class BEWAXshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class EVFVBavatarUrl_URI_Field(ArguedStr):
+class JCZSB_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -289,7 +289,7 @@ class EVFVBavatarUrl_URI_Field(ArguedStr):
 
 
 
-class NDSVKshortDescriptionHTML_HTML_Field(ArguedStr):
+class EJYWO_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -297,7 +297,7 @@ class NDSVKshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class SORVHavatarUrl_URI_Field(ArguedStr):
+class QZJYU_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -610,7 +610,7 @@ class RerequestCheckSuiteInput(GQLObject):
    checkSuiteId: ID ##NON NULL
    clientMutationId: str
 
-class ZKGFLisRequired_isRequired_Field(ArguedStr):
+class GZNFF_isRequired_Field(ArguedStr):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -1164,7 +1164,7 @@ class CWE(GQLObject):
    id: ID ##NON NULL
    name: str ##NON NULL
 
-class VYVHFavatarUrl_URI_Field(ArguedStr):
+class MIXLA_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -1248,7 +1248,7 @@ class AddAssigneesToAssignableInput(GQLObject):
    assigneeIds: ID ##NON NULL ##LIST
    clientMutationId: str
 
-class JFRTRavatarUrl_URI_Field(ArguedStr):
+class IHEZH_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
