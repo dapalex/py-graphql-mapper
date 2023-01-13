@@ -188,8 +188,12 @@ def run_obj_composed_args():
     logger.info('\n\nRunning run_obj_composed_args...')
     try:
         from .output.gdbc.enums import Language
+        from .output.gdbc.gql_types import DisplayOptions
 
-        query = country(id = ID('CH'), displayOptions = {"asciiMode": True, "language": Language.EN })
+        disp_opt = DisplayOptions()
+        disp_opt.asciiMode = True
+        disp_opt.language = Language.EN
+        query = country(id = ID('CH'), displayOptions = disp_opt)
         query.log_progress=True
         query.type.region = GVHZJ_CountryRegion_Field(code = 'Q12094')
 

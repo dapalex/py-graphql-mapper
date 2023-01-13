@@ -240,10 +240,8 @@ def _init_args(obj, args: dict, is_obj=False):
             else:
                 logger.warning('Arguments not allowed for ' + obj.__class__.__name__)
         else:
-            args = {}
             curr_obj = obj
-            for var_key in curr_obj._fieldsshow.keys():
-                args.update({ var_key: getattr(curr_obj, var_key) })
+            args = dict(filter(lambda kvp: kvp[0] in curr_obj._fieldsshow.keys() and curr_obj._fieldsshow[kvp[0]], args.items()))
 
         for k_arg_key, k_arg_val in args.items():
             try:
@@ -253,7 +251,7 @@ def _init_args(obj, args: dict, is_obj=False):
                 elif arg_val_type == list:
                     setattr(curr_obj, k_arg_key, manage_list(k_arg_val))
                 else:
-                    _init_args(getattr(curr_obj, k_arg_key), None, True)
+                    _init_args(getattr(curr_obj, k_arg_key), k_arg_val.__dict__, True)
             except Exception as ex:
                 raise handle_recursive_ex(ex, 'Error in args as param init for argument ' + k_arg_key)
     except Exception as ex:
@@ -269,7 +267,7 @@ def manage_list(list_val) -> list:
             elif el_type == list:
                 curr_list.append(manage_list(element))
             else:
-                _init_args(element, None, True)
+                _init_args(element, element.__dict__, True)
                 curr_list.append(element)
 
     except Exception as ex:

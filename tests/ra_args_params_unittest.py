@@ -51,7 +51,7 @@ def run_ra_create_transformations_mutation():
         mutationinput1.transformationType = TransformationType.REQUEST
         mutationinput1.condition = TransformationConditionType.IGNORE
         mutationinput1.targetPath = "."
-        mutationinput1._from = "a"
+        mutationinput1.from_ = "a"
         mutationinput1.target = "b"
         mutationinput1.value = "val"
         mutationinput1.plans = ["planID"]
@@ -63,7 +63,7 @@ def run_ra_create_transformations_mutation():
         mutationinput2.transformationType = TransformationType.REQUEST
         mutationinput2.condition = TransformationConditionType.IGNORE
         mutationinput2.targetPath = "."
-        mutationinput2._from = "a"
+        mutationinput2.from_ = "a"
         mutationinput2.target = "b"
         mutationinput2.value = "val"
         mutationinput2.plans = ["planID"]

@@ -279,11 +279,14 @@ def run_gdbc_obj_composed_args():
     logger.info('\n\nRunning test_gdbc_obj_composed_args...')
     try:
         from .output.gdbc.enums import Language
+        from .output.gdbc.gql_types import DisplayOptions
 
         query = country()
         query.log_progress=True
-        query._args.id = ID('CH')
-        query._args.displayOptions = {"asciiMode": True, "language": Language.EN }
+        disp_opt = DisplayOptions()
+        disp_opt.asciiMode = True
+        disp_opt.language = Language.EN
+        query = country(id = ID('CH'), displayOptions = disp_opt)
         query.type.region._args.code = 'Q12094'
 
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
