@@ -92,7 +92,7 @@ def run_ra_create_transformations_mutation():
     logger.info("End of Run_ra_create_transformations_mutation")
 
 def run_ra_create_gateway_instance_mutation():
-    logger.info('\nRunning Run_ra_create_gateway_instance_mutation...')
+    logger.info('\nRunning run_ra_create_gateway_instance_mutation...')
     try:
         logger.info('Creating mutation python object...')
         from .output.rapidapi.gql_types import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
@@ -135,7 +135,7 @@ def run_ra_create_gateway_instance_mutation():
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of Run_ra_create_gateway_instance_mutation")
+    logger.info("End of run_ra_create_gateway_instance_mutation")
 
 
 def run_ra_edit_user_alert_mutation():
