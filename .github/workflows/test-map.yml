@@ -5,9 +5,9 @@ name: Pyhon-GraphQL Mapping
 
 on:
   push:
-    branches: [ "8-args-as-params" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "8-args-as-params" ]
+    branches: [ "main" ]
 
 jobs:
   build:
