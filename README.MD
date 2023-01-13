@@ -66,18 +66,19 @@ More command options available [here](https://github.com/dapalex/py-graphql-mapp
 
 Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
+Instantiate it adding GraphQL arguments as parameters:
 ```python
 from .output.gdbc.queries import currencies
 
-my_currencies = currencies()
+my_currencies = currencies(last=7, before='MTE=')
 ```
-populate the necessary information to execute the query:
+or add them using the field _args_
 
 ```python
-my_currencies._args.last = 7
-my_currencies._args.before = 'MTE='
+my_currencies._args.
+my_currencies._args.
 ```
-Call _export_gql_source_ property to pass the payload to the HTTP request:
+Then call _export_gql_source_ property to pass the payload to the HTTP request:
 
 (example using _requests_ library)
 ```python

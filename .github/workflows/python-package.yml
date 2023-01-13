@@ -5,9 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "8-args-as-params" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "8-args-as-params" ]
 
 jobs:
   build:

@@ -55,18 +55,24 @@ class GQLResponse():
             self.result_obj = None
 
     def print_msg_out(self):
-        """!This function works with built-in python module urllib3!
+        """!This function works with built-in python module urllib3 and requests library
 
         Raises:
             Exception: HTTP status code != 200
             Exception: Presence of errors in the json response
             Exception: Missing errors and data in the json response
         """
+        if hasattr(self.http_response, 'status'):
+            status = self.http_response.status
+        else:
+            status = self.http_response.status_code
         logger.info('Network result: ' + 'OK' if self.http_response.ok else 'KO')
-        logger.info('HTTP code: ' + str(self.http_response.status))
+        logger.info('HTTP code: ' + str(status))
 
-        if self.http_response.status != 200:
-            raise Exception('HTTP Error: ' + self.http_response.text)
+        if status != 200:
+            error = 'HTTP Error: ' + self.http_response.text
+            logger.error(error)
+            raise Exception(error)
         else:
             if hasData :=(hasattr(self, 'data') and self.data):
                 logger.info('Data returned: ')

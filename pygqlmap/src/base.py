@@ -28,10 +28,6 @@ class FieldsShow(ABC):
         except Exception as ex:
            raise handle_recursive_ex(ex, 'Error during fieldShow initialization')
 
-    def copyfields_show(self, fields_show):
-        """ For internal use only """
-        self._fieldsshow = fields_show
-
 class GQLExporter():
 
     log_progress: bool

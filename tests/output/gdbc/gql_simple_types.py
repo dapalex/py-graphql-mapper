@@ -5,9 +5,9 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class LEDUYdistance_distance_Field(ArguedFloat):
+class EKWJA_distance_Field(ArguedFloat):
    """
-   LEDUYdistance_distance_Field - The distance result from some location-based query
+   EKWJA_distance_Field - The distance result from some location-based query
 This field has two forms:
 - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.

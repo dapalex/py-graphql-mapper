@@ -3,7 +3,7 @@ import logging as logger
 import os
 from configparser import ConfigParser
 
-#Read config.ini file   
+#Read config.ini file
 config_object = ConfigParser()
 config_object.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), "config.ini"), encoding='UTF-8')
 

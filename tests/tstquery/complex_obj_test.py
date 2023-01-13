@@ -119,7 +119,7 @@ def run_gdbc_complex_obj():
         gqlResponse = GQLResponse(response)
 ##
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
 ##STEP 6
         gqlResponse.map_gqldata_to_obj(query.type)

@@ -6,7 +6,7 @@ import types
 from typing import Generic, NewType, TypeVar
 from pygqlmap.gql_types import ID
 from .base import FieldsShow
-from .consts import ARGUED_SIGNATURE_SUFFIX
+from .consts import ARGS_DECLARE, ARGUED_SIGNATURE_SUFFIX, GQL_BUILTIN
 from .utils import get_class_name
 from pygqlmap.helper import handle_recursive_ex, mapConfig
 import logging as logger
@@ -21,7 +21,7 @@ mergedClasses: dict = {}
 
 depthReached: str = 'Recursion depth %s reached for %s of type %s'
 
-def _sub_class_init(obj):
+def _sub_class_init(obj, **kwargs):
     """For internal use only"""
     global currentPath
 
@@ -35,6 +35,8 @@ def _sub_class_init(obj):
                 _init_type(obj, fieldType, fieldName)
             except Exception as ex:
                 raise handle_recursive_ex(ex, 'Exception during init of ' + fieldName + ' in ' + str(obj))
+
+        if kwargs: _init_args(obj, kwargs)
 
         if FieldsShow in inspect.getmro(type(obj)):
             print(type(obj))
@@ -146,13 +148,13 @@ def _define_var_type(obj, fieldName, fieldType):
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during variable type definition ' + fieldName)
 
-def _mutation_init(obj):
+def _mutation_init(obj, **kwargs):
     global currentPath, circularRefs, mergedClasses
     currentPath = None
     mergedClasses = {}
     circularRefs = {}
     try:
-        _sub_class_init(obj)
+        _sub_class_init(obj, **kwargs)
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
@@ -161,13 +163,13 @@ def _mutation_init(obj):
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
 
-def _query_init(obj):
+def _query_init(obj, **kwargs):
     global currentPath, circularRefs, mergedClasses
     currentPath = None
     mergedClasses = {}
     circularRefs = {}
     try:
-        _sub_class_init(obj)
+        _sub_class_init(obj, **kwargs)
         if hasattr(obj, 'args'):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
@@ -229,3 +231,48 @@ def _update_current_path(obj, fieldName, fieldType):
 def _rm_initialized_from_path(obj):
     global currentPath
     currentPath = currentPath[0: currentPath.rfind(obj.__class__.__name__)].removesuffix('.')
+
+def _init_args(obj, args: dict, is_obj=False):
+    try:
+        if not is_obj:
+            if hasattr(obj, ARGS_DECLARE):
+                curr_obj = getattr(obj, ARGS_DECLARE)
+            else:
+                logger.warning('Arguments not allowed for ' + obj.__class__.__name__)
+        else:
+            args = {}
+            curr_obj = obj
+            for var_key in curr_obj._fieldsshow.keys():
+                args.update({ var_key: getattr(curr_obj, var_key) })
+
+        for k_arg_key, k_arg_val in args.items():
+            try:
+                arg_val_type = type(k_arg_val)
+                if arg_val_type in GQL_BUILTIN or issubclass(arg_val_type, Enum):
+                    setattr(curr_obj, k_arg_key, k_arg_val)
+                elif arg_val_type == list:
+                    setattr(curr_obj, k_arg_key, manage_list(k_arg_val))
+                else:
+                    _init_args(getattr(curr_obj, k_arg_key), None, True)
+            except Exception as ex:
+                raise handle_recursive_ex(ex, 'Error in args as param init for argument ' + k_arg_key)
+    except Exception as ex:
+       raise handle_recursive_ex(ex, 'Error in args as param init for ' + obj.__class__.__name__)
+
+def manage_list(list_val) -> list:
+    curr_list = []
+    try:
+        for element in list_val:
+            el_type = type(element)
+            if el_type in GQL_BUILTIN or issubclass(el_type, Enum):
+                curr_list.append(element)
+            elif el_type == list:
+                curr_list.append(manage_list(element))
+            else:
+                _init_args(element, None, True)
+                curr_list.append(element)
+
+    except Exception as ex:
+       raise handle_recursive_ex(ex, 'Error in args as param init for list')
+
+    return curr_list

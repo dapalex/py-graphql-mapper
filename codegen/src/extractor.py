@@ -325,7 +325,6 @@ class Extractor():
             if arguedName:
                 splitArgName = arguedName.split('_')
                 usedTypesDict.update({ splitArgName[1]: 1 })
-                # usedTypesDict.update({ arguedName.removesuffix(ARGUED_SIGNATURE_SUFFIX): 1 })
 
             for usedTypeNameKey, occurrences in usedTypesDict.items():
                 try:
@@ -621,7 +620,7 @@ class Extractor():
             if hasattr(element, 'args') and element.args:
                 ## Goes back up to construct an object
                 ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
-                arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + element.name + '_' + (actualElType if not actualElType in STRING_PRIMITIVES else element.name) + ARGUED_SIGNATURE_SUFFIX
+                arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + '_' + (actualElType if not actualElType in STRING_PRIMITIVES else element.name) + ARGUED_SIGNATURE_SUFFIX
                 ##CAREFUL HERE - Pass element.name as usedTypes in extract_schema_type
                 self.extract_schema_type(element, circularRefTypes, arguedName)
 

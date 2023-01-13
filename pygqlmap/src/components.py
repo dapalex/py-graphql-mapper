@@ -1,19 +1,8 @@
-import inspect
 from .utils import get_obj_class_name, get_dot_notation_info, is_none_or_builtin_primitive
 import logging as logger
 
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
-        # if list in inspect.getmro(type(obj)):
-        #     self.name = fieldName if fieldName else 'dummyList'
-        #     if hasattr(obj, 'fields_show'):
-        #         self.fieldsshow = obj.fieldsshow
-        #     for element in obj:
-        #         if is_none_or_builtin_primitive(element): continue
-        #         if hasattr(element, 'fields_show'):
-        #             if not hasattr(element, 'children'): self.children = []
-        #             self.children.append(FSTree(element))
-        # else:
         self.name =  fieldName if fieldName else get_obj_class_name(obj)
         if hasattr(obj, 'fieldsshow'):
             self._fieldsshow = obj._fieldsshow

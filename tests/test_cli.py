@@ -72,7 +72,7 @@ def run_generate_cmd_gdbc_api_rel():
 
 def run_download_cmd_gh_file_rel():
     logger.info('\nRunning run_download_cmd_gh_file_rel...')
-    command = "pgmcodegen download ./tests/cmd_output/Github/schema.json -apiArgs ./tests/cli_input/github_api/downloaderArgs.json -v" #command to be executed
+    command = "pgmcodegen download ./tests/cmd_output/github/schema.json -apiArgs ./tests/cli_input/gh_api/downloaderArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
@@ -81,7 +81,7 @@ def run_download_cmd_gh_file_rel():
 
 def run_generate_cmd_gh_api_abs():
     logger.info('\nRunning run_generate_cmd_gh_api_abs...')
-    command = "pgmcodegen generate ./tests/cmd_output/Github -v -apiArgs ./tests/cli_input/github_api/generatorArgs.json -v" #command to be executed
+    command = "pgmcodegen generate ./tests/cmd_output/github -v -apiArgs ./tests/cli_input/gh_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)
@@ -90,7 +90,7 @@ def run_generate_cmd_gh_api_abs():
 
 def run_generate_cmd_gh_file():
     logger.info('\nRunning run_generate_cmd_gh_api_abs...')
-    command = "pgmcodegen generate ./tests/cmd_output/Github -v -apiArgs ./tests/cli_input/github_api/generatorArgs.json -v" #command to be executed
+    command = "pgmcodegen generate ./tests/cmd_output/github -v -apiArgs ./tests/cli_input/gh_api/generatorArgs.json -v" #command to be executed
     logger.info("Launching: " + command)
 
     res = os.system(command)

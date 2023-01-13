@@ -5,9 +5,9 @@ from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 
-class FVKOAanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class UXJAB_anyPinnableItems_Field(ArguedStr):
    """
-   FVKOAanyPinnableItems_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   UXJAB_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -21,9 +21,9 @@ class FVKOAanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class PEOOAlogoUrl_URI_Field(ArguedStr):
+class ALODJ_URI_Field(ArguedStr):
    """
-   PEOOAlogoUrl_URI_Field - URL for the listing's logo image.
+   ALODJ_URI_Field - URL for the listing's logo image.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -37,9 +37,9 @@ class PEOOAlogoUrl_URI_Field(ArguedStr):
 
 
 
-class AWIQUlogoUrl_URI_Field(ArguedStr):
+class DYGLW_URI_Field(ArguedStr):
    """
-   AWIQUlogoUrl_URI_Field - A URL pointing to the app's logo.
+   DYGLW_URI_Field - A URL pointing to the app's logo.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -53,9 +53,9 @@ class AWIQUlogoUrl_URI_Field(ArguedStr):
 
 
 
-class AKSXHavatarUrl_URI_Field(ArguedStr):
+class VOLFL_URI_Field(ArguedStr):
    """
-   AKSXHavatarUrl_URI_Field - A URL pointing to the enterprise's public avatar.
+   VOLFL_URI_Field - A URL pointing to the enterprise's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -69,9 +69,9 @@ class AKSXHavatarUrl_URI_Field(ArguedStr):
 
 
 
-class ARASQshortDescriptionHTML_HTML_Field(ArguedStr):
+class UNYTI_HTML_Field(ArguedStr):
    """
-   ARASQshortDescriptionHTML_HTML_Field - A description of the repository, rendered to HTML without any links in it.
+   UNYTI_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject): 
@@ -85,9 +85,9 @@ class ARASQshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class ISIXKavatarUrl_URI_Field(ArguedStr):
+class MTNOK_URI_Field(ArguedStr):
    """
-   ISIXKavatarUrl_URI_Field - A URL pointing to the enterprise user account's public avatar.
+   MTNOK_URI_Field - A URL pointing to the enterprise user account's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -101,9 +101,9 @@ class ISIXKavatarUrl_URI_Field(ArguedStr):
 
 
 
-class QBXVUtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class EUXHN_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   QBXVUtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   EUXHN_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -123,9 +123,9 @@ class QBXVUtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class UCTXXisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class TTPUG_isSponsoredBy_Field(ArguedStr):
    """
-   UCTXXisSponsoredBy_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   TTPUG_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -139,9 +139,9 @@ class UCTXXisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class NAEVPavatarUrl_URI_Field(ArguedStr):
+class WHEVD_URI_Field(ArguedStr):
    """
-   NAEVPavatarUrl_URI_Field - A URL pointing to the organization's public avatar.
+   WHEVD_URI_Field - A URL pointing to the organization's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -155,9 +155,9 @@ class NAEVPavatarUrl_URI_Field(ArguedStr):
 
 
 
-class KMYMZanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class XZHWE_anyPinnableItems_Field(ArguedStr):
    """
-   KMYMZanyPinnableItems_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   XZHWE_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -171,9 +171,9 @@ class KMYMZanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class UYSOJtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class UUKAP_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   UYSOJtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   UUKAP_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -193,9 +193,9 @@ class UYSOJtotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class ONGRLorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Field(ArguedStr):
+class ENEBF_organizationVerifiedDomainEmails_Field(ArguedStr):
    """
-   ONGRLorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
+   ENEBF_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
    """
    class strArgs(GQLArgsSet, GQLObject): 
@@ -209,9 +209,9 @@ class ONGRLorganizationVerifiedDomainEmails_organizationVerifiedDomainEmails_Fie
 
 
 
-class THHMDisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class YHNJR_isSponsoredBy_Field(ArguedStr):
    """
-   THHMDisSponsoredBy_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   YHNJR_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -225,9 +225,9 @@ class THHMDisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class SOVEPcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
+class YXVRA_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
    """
-   SOVEPcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
+   YXVRA_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -241,9 +241,9 @@ class SOVEPcanReceiveOrganizationEmailsWhenNotificationsRestricted_canReceiveOrg
 
 
 
-class YIZXUavatarUrl_URI_Field(ArguedStr):
+class AGGPK_URI_Field(ArguedStr):
    """
-   YIZXUavatarUrl_URI_Field - A URL pointing to the user's public avatar.
+   AGGPK_URI_Field - A URL pointing to the user's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -257,9 +257,9 @@ class YIZXUavatarUrl_URI_Field(ArguedStr):
 
 
 
-class YNOASanyPinnableItems_anyPinnableItems_Field(ArguedStr):
+class SVOHV_anyPinnableItems_Field(ArguedStr):
    """
-   YNOASanyPinnableItems_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   SVOHV_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -273,9 +273,9 @@ class YNOASanyPinnableItems_anyPinnableItems_Field(ArguedStr):
 
 
 
-class BKNIStotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class CWCIG_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   BKNIStotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   CWCIG_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -295,9 +295,9 @@ class BKNIStotalSponsorshipAmountAsSponsorInCents_totalSponsorshipAmountAsSponso
 
 
 
-class VHUNAisSponsoredBy_isSponsoredBy_Field(ArguedStr):
+class AGHTX_isSponsoredBy_Field(ArguedStr):
    """
-   VHUNAisSponsoredBy_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   AGHTX_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -311,9 +311,9 @@ class VHUNAisSponsoredBy_isSponsoredBy_Field(ArguedStr):
 
 
 
-class JXSYTtext_text_Field(ArguedStr):
+class XJEXO_text_Field(ArguedStr):
    """
-   JXSYTtext_text_Field - UTF8 text data or null if the file is binary
+   XJEXO_text_Field - UTF8 text data or null if the file is binary
 
    """
    class strArgs(GQLArgsSet, GQLObject): 
@@ -327,9 +327,9 @@ class JXSYTtext_text_Field(ArguedStr):
 
 
 
-class UFJHVtotalRepositoryContributions_totalRepositoryContributions_Field(ArguedStr):
+class BKRKE_totalRepositoryContributions_Field(ArguedStr):
    """
-   UFJHVtotalRepositoryContributions_totalRepositoryContributions_Field - How many repositories the user created.
+   BKRKE_totalRepositoryContributions_Field - How many repositories the user created.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -343,47 +343,9 @@ class UFJHVtotalRepositoryContributions_totalRepositoryContributions_Field(Argue
 
 
 
-class HERTAtotalRepositoriesWithContributedPullRequests_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
+class UMCSI_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
    """
-   HERTAtotalRepositoriesWithContributedPullRequests_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject): 
-      """
-      excludeFirst - Should the user's first pull request ever be excluded from this count.
-
-      excludePopular - Should the user's most commented pull request be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class LDAPWtotalRepositoriesWithContributedIssues_totalRepositoriesWithContributedIssues_Field(ArguedStr):
-   """
-   LDAPWtotalRepositoriesWithContributedIssues_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject): 
-      """
-      excludeFirst - Should the user's first issue ever be excluded from this count.
-
-      excludePopular - Should the user's most commented issue be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class XUQAKtotalPullRequestContributions_totalPullRequestContributions_Field(ArguedStr):
-   """
-   XUQAKtotalPullRequestContributions_totalPullRequestContributions_Field - How many pull requests the user opened.
+   UMCSI_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -400,9 +362,9 @@ class XUQAKtotalPullRequestContributions_totalPullRequestContributions_Field(Arg
 
 
 
-class WNLZCtotalIssueContributions_totalIssueContributions_Field(ArguedStr):
+class RYNDA_totalRepositoriesWithContributedIssues_Field(ArguedStr):
    """
-   WNLZCtotalIssueContributions_totalIssueContributions_Field - How many issues the user opened.
+   RYNDA_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -419,9 +381,47 @@ class WNLZCtotalIssueContributions_totalIssueContributions_Field(ArguedStr):
 
 
 
-class BUJDSisRequired_isRequired_Field(ArguedStr):
+class QNSMI_totalPullRequestContributions_Field(ArguedStr):
    """
-   BUJDSisRequired_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   QNSMI_totalPullRequestContributions_Field - How many pull requests the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject): 
+      """
+      excludeFirst - Should the user's first pull request ever be excluded from this count.
+
+      excludePopular - Should the user's most commented pull request be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class FAFSY_totalIssueContributions_Field(ArguedStr):
+   """
+   FAFSY_totalIssueContributions_Field - How many issues the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject): 
+      """
+      excludeFirst - Should the user's first issue ever be excluded from this count.
+
+      excludePopular - Should the user's most commented issue be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class LVRNI_isRequired_Field(ArguedStr):
+   """
+   LVRNI_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -438,9 +438,9 @@ class BUJDSisRequired_isRequired_Field(ArguedStr):
 
 
 
-class VKGAMavatarUrl_URI_Field(ArguedStr):
+class AECPA_URI_Field(ArguedStr):
    """
-   VKGAMavatarUrl_URI_Field - The avatar of the OAuth application or the user that created the status
+   AECPA_URI_Field - The avatar of the OAuth application or the user that created the status
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -454,9 +454,9 @@ class VKGAMavatarUrl_URI_Field(ArguedStr):
 
 
 
-class QTNWNisRequired_isRequired_Field(ArguedStr):
+class ZBYJX_isRequired_Field(ArguedStr):
    """
-   QTNWNisRequired_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   ZBYJX_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -473,9 +473,9 @@ class QTNWNisRequired_isRequired_Field(ArguedStr):
 
 
 
-class OPHJFavatarUrl_URI_Field(ArguedStr):
+class BMGAY_URI_Field(ArguedStr):
    """
-   OPHJFavatarUrl_URI_Field - A URL pointing to the author's public avatar.
+   BMGAY_URI_Field - A URL pointing to the author's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -489,25 +489,9 @@ class OPHJFavatarUrl_URI_Field(ArguedStr):
 
 
 
-class VGOAVviewerMergeHeadlineText_viewerMergeHeadlineText_Field(ArguedStr):
+class SVTRG_viewerMergeHeadlineText_Field(ArguedStr):
    """
-   VGOAVviewerMergeHeadlineText_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
-
-   """
-   class strArgs(GQLArgsSet, GQLObject): 
-      """
-      mergeType - The merge method for the message.
-
-      """
-      mergeType: PullRequestMergeMethod
-
-   _args: strArgs
-
-
-
-class UIDPBviewerMergeBodyText_viewerMergeBodyText_Field(ArguedStr):
-   """
-   UIDPBviewerMergeBodyText_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+   SVTRG_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
 
    """
    class strArgs(GQLArgsSet, GQLObject): 
@@ -521,9 +505,25 @@ class UIDPBviewerMergeBodyText_viewerMergeBodyText_Field(ArguedStr):
 
 
 
-class TZJSSavatarUrl_URI_Field(ArguedStr):
+class HZYCN_viewerMergeBodyText_Field(ArguedStr):
    """
-   TZJSSavatarUrl_URI_Field - A URL pointing to the team's avatar.
+   HZYCN_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+
+   """
+   class strArgs(GQLArgsSet, GQLObject): 
+      """
+      mergeType - The merge method for the message.
+
+      """
+      mergeType: PullRequestMergeMethod
+
+   _args: strArgs
+
+
+
+class BQDHX_URI_Field(ArguedStr):
+   """
+   BQDHX_URI_Field - A URL pointing to the team's avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -537,9 +537,9 @@ class TZJSSavatarUrl_URI_Field(ArguedStr):
 
 
 
-class ROPYYtrackedIssuesCount_trackedIssuesCount_Field(ArguedStr):
+class DVAQR_trackedIssuesCount_Field(ArguedStr):
    """
-   ROPYYtrackedIssuesCount_trackedIssuesCount_Field - The number of tracked issues for this issue
+   DVAQR_trackedIssuesCount_Field - The number of tracked issues for this issue
 
    """
    class intArgs(GQLArgsSet, GQLObject): 
@@ -553,9 +553,9 @@ class ROPYYtrackedIssuesCount_trackedIssuesCount_Field(ArguedStr):
 
 
 
-class FKCAHshortDescriptionHTML_HTML_Field(ArguedStr):
+class PBLBV_HTML_Field(ArguedStr):
    """
-   FKCAHshortDescriptionHTML_HTML_Field - A description of the repository, rendered to HTML without any links in it.
+   PBLBV_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject): 
@@ -569,9 +569,9 @@ class FKCAHshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class JJPBMavatarUrl_URI_Field(ArguedStr):
+class RKTPS_URI_Field(ArguedStr):
    """
-   JJPBMavatarUrl_URI_Field - A URL pointing to the owner's public avatar.
+   RKTPS_URI_Field - A URL pointing to the owner's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -585,9 +585,9 @@ class JJPBMavatarUrl_URI_Field(ArguedStr):
 
 
 
-class NTYSOshortDescriptionHTML_HTML_Field(ArguedStr):
+class RIFOU_HTML_Field(ArguedStr):
    """
-   NTYSOshortDescriptionHTML_HTML_Field - A description of the release, rendered to HTML without any links in it.
+   RIFOU_HTML_Field - A description of the release, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject): 
@@ -601,9 +601,9 @@ class NTYSOshortDescriptionHTML_HTML_Field(ArguedStr):
 
 
 
-class QSXKPavatarUrl_URI_Field(ArguedStr):
+class ZMYLJ_URI_Field(ArguedStr):
    """
-   QSXKPavatarUrl_URI_Field - A URL pointing to the GitHub App's public avatar.
+   ZMYLJ_URI_Field - A URL pointing to the GitHub App's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -1557,9 +1557,9 @@ class RerequestCheckSuiteInput(GQLObject):
    checkSuiteId: ID ##NON NULL
    clientMutationId: str
 
-class IYERSisRequired_isRequired_Field(ArguedStr):
+class FNQDY_isRequired_Field(ArguedStr):
    """
-   IYERSisRequired_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   FNQDY_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject): 
@@ -3221,9 +3221,9 @@ class CWE(GQLObject):
    id: ID ##NON NULL
    name: str ##NON NULL
 
-class PTYPJavatarUrl_URI_Field(ArguedStr):
+class VCSUI_URI_Field(ArguedStr):
    """
-   PTYPJavatarUrl_URI_Field - A URL pointing to the GitHub App's public avatar.
+   VCSUI_URI_Field - A URL pointing to the GitHub App's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 
@@ -3485,9 +3485,9 @@ class AddAssigneesToAssignableInput(GQLObject):
    assigneeIds: ID ##NON NULL ##LIST
    clientMutationId: str
 
-class GIWOSavatarUrl_URI_Field(ArguedStr):
+class HQAWT_URI_Field(ArguedStr):
    """
-   GIWOSavatarUrl_URI_Field - A URL pointing to the actor's public avatar.
+   HQAWT_URI_Field - A URL pointing to the actor's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject): 

@@ -82,7 +82,7 @@ def run_ra_create_transformations_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -128,7 +128,7 @@ def run_ra_create_gateway_instance_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -175,7 +175,7 @@ def run_ra_edit_user_alert_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -214,7 +214,7 @@ def run_ra_admin_audit_logs():
                                     headers=RAPIDAPI_HEADERS)
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))

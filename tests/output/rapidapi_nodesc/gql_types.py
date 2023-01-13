@@ -917,6 +917,7 @@ class AppAuthorizationsWhereInput(GQLObject):
 
 class ApiWhereInput(GQLObject):
    id: ID ##NON NULL ##LIST
+   externalCustomIds: ID ##NON NULL ##LIST
    ownerId: ID ##NON NULL ##LIST
    subscriberId: ID ##NON NULL ##LIST
    visibility: ApiVisibility
@@ -1274,7 +1275,7 @@ class GraphQLSchema(GQLObject):
    updatedAt: DateTime
    documentation: GqlDoc ##LIST
 
-class CCUEXgraphQLSchema_GraphQLSchema_Field(GraphQLSchema):
+class GZIGM_GraphQLSchema_Field(GraphQLSchema):
    class GraphQLSchemaArgs(GQLArgsSet, GQLObject): 
       withOverrides: bool
 
@@ -1282,7 +1283,7 @@ class CCUEXgraphQLSchema_GraphQLSchema_Field(GraphQLSchema):
 
 
 
-class BBUBOmockResponse_ResponsePayload_Field(ResponsePayload):
+class TGQND_ResponsePayload_Field(ResponsePayload):
    class ResponsePayloadArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1306,7 +1307,7 @@ class Endpoint(GQLObject):
    params: EndpointParams
    displayResponse: bool
    isGraphQL: bool
-   graphQLSchema: CCUEXgraphQLSchema_GraphQLSchema_Field
+   graphQLSchema: GZIGM_GraphQLSchema_Field
    mockResponseId: ID
    isMockResponse: bool
    summary: str
@@ -1315,7 +1316,7 @@ class Endpoint(GQLObject):
    appliedOauth2Scopes: AuthenticationParam ##NON NULL
    requestPayloads: RequestPayload ##LIST
    responsePayloads: ResponsePayload ##LIST
-   mockResponse: BBUBOmockResponse_ResponsePayload_Field
+   mockResponse: TGQND_ResponsePayload_Field
 
 class EndpointsGroup(GQLObject):
    id: ID ##NON NULL
@@ -1372,7 +1373,7 @@ class UsageData(GQLObject):
    subscriptionId: ID
    billingItem: NewType('BillingItem', GQLObject) ## Circular Reference for BillingItem
 
-class KVRQRbillingitemendpoints_BillingItemEndpoint_Field(BillingItemEndpoint):
+class FDQJL_BillingItemEndpoint_Field(BillingItemEndpoint):
    class BillingItemEndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1380,7 +1381,7 @@ class KVRQRbillingitemendpoints_BillingItemEndpoint_Field(BillingItemEndpoint):
 
 
 
-class WEQFKusageInSubscription_UsageData_Field(UsageData):
+class YFYWR_UsageData_Field(UsageData):
    class UsageDataArgs(GQLArgsSet, GQLObject): 
       subscriptionId: ID ##NON NULL
       fromDate: str
@@ -1402,9 +1403,9 @@ class BillingItem(GQLObject):
    status: str
    createdAt: DateTime
    updatedAt: DateTime
-   billingitemendpoints: KVRQRbillingitemendpoints_BillingItemEndpoint_Field
+   billingitemendpoints: FDQJL_BillingItemEndpoint_Field
    allEndpoints: bool
-   usageInSubscription: WEQFKusageInSubscription_UsageData_Field
+   usageInSubscription: YFYWR_UsageData_Field
 
 class BillingLimit(GQLObject):
    id: str
@@ -1501,7 +1502,7 @@ class Transaction(GQLObject):
    invoicePeriodStart: str
    invoicePeriodEnd: str
 
-class YIWVOusageByBillingItem_UsagePeriodGrouper_Field(UsagePeriodGrouper):
+class WQSDR_UsagePeriodGrouper_Field(UsagePeriodGrouper):
    class UsagePeriodGrouperArgs(GQLArgsSet, GQLObject): 
       billingItemIds: ID ##NON NULL ##LIST
       fromDate: str
@@ -1536,14 +1537,14 @@ class BillingSubscription(GQLObject):
    api: NewType('Api', GQLObject) ## Circular Reference for Api
    user: NewType('User', GQLObject) ## Circular Reference for User
    billingPlanVersion: NewType('BillingPlanVersion', GQLObject) ## Circular Reference for BillingPlanVersion
-   usageByBillingItem: YIWVOusageByBillingItem_UsagePeriodGrouper_Field
+   usageByBillingItem: WQSDR_UsagePeriodGrouper_Field
    usages: SubscriptionUsage
    parentId: int
    teamsSubscriptions: NewType('BillingSubscription', GQLObject) ##LIST ## Circular Reference for BillingSubscription
    entity: NewType('Entity', GQLObject) ## Circular Reference for Entity
    transactions: Transaction ##LIST
 
-class MDEQGapiVersionBillingPlanVersion_ApiVersionBillingPlanVersion_Field(ApiVersionBillingPlanVersion):
+class QFVZR_ApiVersionBillingPlanVersion_Field(ApiVersionBillingPlanVersion):
    class ApiVersionBillingPlanVersionArgs(GQLArgsSet, GQLObject): 
       apiVersionId: str
       filters: BillingPlanVersionFilters
@@ -1552,7 +1553,7 @@ class MDEQGapiVersionBillingPlanVersion_ApiVersionBillingPlanVersion_Field(ApiVe
 
 
 
-class IMDTWbillinglimits_BillingLimit_Field(BillingLimit):
+class ZWRWN_BillingLimit_Field(BillingLimit):
    class BillingLimitArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1576,8 +1577,8 @@ class BillingPlanVersion(GQLObject):
    status: str
    createdAt: DateTime
    updatedAt: DateTime
-   apiVersionBillingPlanVersion: MDEQGapiVersionBillingPlanVersion_ApiVersionBillingPlanVersion_Field
-   billinglimits: IMDTWbillinglimits_BillingLimit_Field
+   apiVersionBillingPlanVersion: QFVZR_ApiVersionBillingPlanVersion_Field
+   billinglimits: ZWRWN_BillingLimit_Field
    enablebillingfeatures: EnableBillingFeature ##LIST
    rateLimit: RateLimit
    subscriptions: BillingSubscription ##LIST
@@ -1590,7 +1591,7 @@ class TargetGroup(GQLObject):
    name: str ##NON NULL
    targetUrls: TargetUrl ##NON NULL
 
-class CIFNVversion_BillingPlanVersion_Field(BillingPlanVersion):
+class RVJPM_BillingPlanVersion_Field(BillingPlanVersion):
    class BillingPlanVersionArgs(GQLArgsSet, GQLObject): 
       id: str
       showDeleted: bool
@@ -1616,7 +1617,7 @@ class BillingPlan(GQLObject):
    legalDocumentId: str
    legalAccountId: str
    isStudent: bool
-   version: CIFNVversion_BillingPlanVersion_Field
+   version: RVJPM_BillingPlanVersion_Field
    targetGroup: TargetGroup
    targetGroupId: str
    shouldRequestApproval: bool
@@ -1658,7 +1659,7 @@ class SecretData(GQLObject):
    id: ID ##NON NULL
    apiversion: ID
 
-class YNWXXpayloads_ResponsePayload_Field(ResponsePayload):
+class ZAXDV_ResponsePayload_Field(ResponsePayload):
    class ResponsePayloadArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1666,7 +1667,7 @@ class YNWXXpayloads_ResponsePayload_Field(ResponsePayload):
 
 
 
-class ERIJPendpoints_Endpoint_Field(Endpoint):
+class GIKUS_Endpoint_Field(Endpoint):
    class EndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1674,7 +1675,7 @@ class ERIJPendpoints_Endpoint_Field(Endpoint):
 
 
 
-class WITCYgroups_EndpointsGroup_Field(EndpointsGroup):
+class YOPSR_EndpointsGroup_Field(EndpointsGroup):
    class EndpointsGroupArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1682,7 +1683,7 @@ class WITCYgroups_EndpointsGroup_Field(EndpointsGroup):
 
 
 
-class TTFMOpublicdns_Publicdns_Field(Publicdns):
+class WNDUJ_Publicdns_Field(Publicdns):
    class PublicdnsArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1690,7 +1691,7 @@ class TTFMOpublicdns_Publicdns_Field(Publicdns):
 
 
 
-class KWBKSbillingplans_BillingPlan_Field(BillingPlan):
+class FPITL_BillingPlan_Field(BillingPlan):
    class BillingPlanArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       showDeleted: bool
@@ -1700,7 +1701,7 @@ class KWBKSbillingplans_BillingPlan_Field(BillingPlan):
 
 
 
-class HQGYYheadlines_Headline_Field(Headline):
+class BBEIL_Headline_Field(Headline):
    class HeadlineArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1708,7 +1709,7 @@ class HQGYYheadlines_Headline_Field(Headline):
 
 
 
-class KJRZZbillingitems_BillingItem_Field(BillingItem):
+class HPOZB_BillingItem_Field(BillingItem):
    class BillingItemArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1716,7 +1717,7 @@ class KJRZZbillingitems_BillingItem_Field(BillingItem):
 
 
 
-class NJQOZbillingitemendpoints_BillingItemEndpoint_Field(BillingItemEndpoint):
+class NPZAU_BillingItemEndpoint_Field(BillingItemEndpoint):
    class BillingItemEndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1724,7 +1725,7 @@ class NJQOZbillingitemendpoints_BillingItemEndpoint_Field(BillingItemEndpoint):
 
 
 
-class OJLIIassets_Asset_Field(Asset):
+class PKTCP_Asset_Field(Asset):
    class AssetArgs(GQLArgsSet, GQLObject): 
       visible: bool
 
@@ -1746,15 +1747,15 @@ class ApiVersion(GQLObject):
    kafkaConfiguration: KafkaConfiguration
    asyncApiConfiguration: AsyncApiConfiguration
    webhooks: bool
-   payloads: YNWXXpayloads_ResponsePayload_Field
+   payloads: ZAXDV_ResponsePayload_Field
    accessControl: ApiVersionAccessControlInfo ##NON NULL
-   endpoints: ERIJPendpoints_Endpoint_Field
-   groups: WITCYgroups_EndpointsGroup_Field
-   publicdns: TTFMOpublicdns_Publicdns_Field
-   billingplans: KWBKSbillingplans_BillingPlan_Field
-   headlines: HQGYYheadlines_Headline_Field
-   billingitems: KJRZZbillingitems_BillingItem_Field
-   billingitemendpoints: NJQOZbillingitemendpoints_BillingItemEndpoint_Field
+   endpoints: GIKUS_Endpoint_Field
+   groups: YOPSR_EndpointsGroup_Field
+   publicdns: WNDUJ_Publicdns_Field
+   billingplans: FPITL_BillingPlan_Field
+   headlines: BBEIL_Headline_Field
+   billingitems: HPOZB_BillingItem_Field
+   billingitemendpoints: NPZAU_BillingItemEndpoint_Field
    publicBillingPlanVersions: ApiVersionBillingPlanVersion ##LIST
    targetGroup: TargetGroup
    targetGroupId: str
@@ -1762,7 +1763,7 @@ class ApiVersion(GQLObject):
    versionStatus: VersionStatus
    apiSubType: apiSubTypeEnum
    associatedApiCertificates: ApiCertificateAssociation ##NON NULL
-   assets: OJLIIassets_Asset_Field
+   assets: PKTCP_Asset_Field
    apiSchemas: ApiSchema ##NON NULL
 
 class FollowApi(GQLObject):
@@ -1789,7 +1790,7 @@ class Comment(GQLObject):
    updatedAt: DateTime
    user: NewType('User', GQLObject) ##NON NULL ## Circular Reference for User
 
-class XZEFCcomments_Comment_Field(Comment):
+class BGYTE_Comment_Field(Comment):
    class CommentArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1797,7 +1798,7 @@ class XZEFCcomments_Comment_Field(Comment):
 
 
 
-class KAGZYcommentsV2_Comment_Field(Comment):
+class FZCCY_Comment_Field(Comment):
    class CommentArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1821,8 +1822,8 @@ class Issue(GQLObject):
    status: str
    createdAt: DateTime
    updatedAt: DateTime
-   comments: XZEFCcomments_Comment_Field
-   commentsV2: KAGZYcommentsV2_Comment_Field
+   comments: BGYTE_Comment_Field
+   commentsV2: FZCCY_Comment_Field
    user: NewType('User', GQLObject) ##NON NULL ## Circular Reference for User
    api: NewType('Api', GQLObject) ## Circular Reference for Api
 
@@ -1853,7 +1854,7 @@ class ApiDeveloper(GQLObject):
    deletedAt: DateTime
    user: NewType('Entity', GQLObject) ## Circular Reference for Entity
 
-class FKZRPendpointObject_Endpoint_Field(Endpoint):
+class TDHNA_Endpoint_Field(Endpoint):
    class EndpointArgs(GQLArgsSet, GQLObject): 
       showDeleted: bool
 
@@ -1867,7 +1868,7 @@ class RequestLog(GQLObject):
    api: str
    apiId: ID
    endpoint: str
-   endpointObject: FKZRPendpointObject_Endpoint_Field
+   endpointObject: TDHNA_Endpoint_Field
    endpointId: str
    httpMethod: HttpMethod
    period: int
@@ -1889,7 +1890,7 @@ class RequestLogsResult(GQLObject):
    requests: RequestLog ##LIST
    totalCount: int
 
-class FBKCZissues_Issue_Field(Issue):
+class RHOGZ_Issue_Field(Issue):
    class IssueArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1897,7 +1898,7 @@ class FBKCZissues_Issue_Field(Issue):
 
 
 
-class XSKBKannouncements_Announcement_Field(Announcement):
+class EKGLS_Announcement_Field(Announcement):
    class AnnouncementArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1905,7 +1906,7 @@ class XSKBKannouncements_Announcement_Field(Announcement):
 
 
 
-class IGJFAapiDevelopers_ApiDeveloper_Field(ApiDeveloper):
+class LUOKJ_ApiDeveloper_Field(ApiDeveloper):
    class ApiDeveloperArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1913,7 +1914,7 @@ class IGJFAapiDevelopers_ApiDeveloper_Field(ApiDeveloper):
 
 
 
-class HPHNIheadlines_Headline_Field(Headline):
+class PLHYE_Headline_Field(Headline):
    class HeadlineArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1921,7 +1922,7 @@ class HPHNIheadlines_Headline_Field(Headline):
 
 
 
-class XKMHSendpoints_Endpoint_Field(Endpoint):
+class DHSFA_Endpoint_Field(Endpoint):
    class EndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1929,7 +1930,7 @@ class XKMHSendpoints_Endpoint_Field(Endpoint):
 
 
 
-class YWNERbillingFeatures_BillingFeature_Field(BillingFeature):
+class BWZSW_BillingFeature_Field(BillingFeature):
    class BillingFeatureArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1937,7 +1938,7 @@ class YWNERbillingFeatures_BillingFeature_Field(BillingFeature):
 
 
 
-class HAECXbillingItems_BillingItem_Field(BillingItem):
+class UDCMA_BillingItem_Field(BillingItem):
    class BillingItemArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1945,7 +1946,7 @@ class HAECXbillingItems_BillingItem_Field(BillingItem):
 
 
 
-class WHBGWbillingPlans_BillingPlan_Field(BillingPlan):
+class TRZBK_BillingPlan_Field(BillingPlan):
    class BillingPlanArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -1953,7 +1954,7 @@ class WHBGWbillingPlans_BillingPlan_Field(BillingPlan):
 
 
 
-class ZIZWBrequestLogs_RequestLogsResult_Field(RequestLogsResult):
+class HHVQT_RequestLogsResult_Field(RequestLogsResult):
    class RequestLogsResultArgs(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str
@@ -1969,6 +1970,7 @@ class ZIZWBrequestLogs_RequestLogsResult_Field(RequestLogsResult):
 
 class Api(GQLObject):
    id: str ##NON NULL
+   externalCustomId: ID
    name: str
    installsAllTime: int
    requestTimeout: int
@@ -1998,7 +2000,7 @@ class Api(GQLObject):
    followers: FollowApi ##LIST
    followersCount: int
    subscriptionsCount: int
-   issues: FBKCZissues_Issue_Field
+   issues: RHOGZ_Issue_Field
    rating: apiRating
    slugifiedName: str
    categoryId: str
@@ -2009,8 +2011,8 @@ class Api(GQLObject):
    requestSchemaValidation: bool
    requestSchemaValidationUnknownAttributePolicy: SchemaValidationUnknownAttributePolicy
    gatewayIds: ID ##NON NULL
-   announcements: XSKBKannouncements_Announcement_Field
-   apiDevelopers: IGJFAapiDevelopers_ApiDeveloper_Field
+   announcements: EKGLS_Announcement_Field
+   apiDevelopers: LUOKJ_ApiDeveloper_Field
    targetGroups: TargetGroup ##LIST
    publishApiPendingRequest: bool
    saveRequestHeadersLogging: bool
@@ -2021,14 +2023,14 @@ class Api(GQLObject):
    useHttpProxy: bool
    security: ApiSecurityInfo ##NON NULL
    versions: ApiVersion ##LIST
-   headlines: HPHNIheadlines_Headline_Field
-   endpoints: XKMHSendpoints_Endpoint_Field
-   billingFeatures: YWNERbillingFeatures_BillingFeature_Field
-   billingItems: HAECXbillingItems_BillingItem_Field
-   billingPlans: WHBGWbillingPlans_BillingPlan_Field
+   headlines: PLHYE_Headline_Field
+   endpoints: DHSFA_Endpoint_Field
+   billingFeatures: BWZSW_BillingFeature_Field
+   billingItems: UDCMA_BillingItem_Field
+   billingPlans: TRZBK_BillingPlan_Field
    isFavorite: bool ##NON NULL
    quality: ApiQuality ##NON NULL
-   requestLogs: ZIZWBrequestLogs_RequestLogsResult_Field
+   requestLogs: HHVQT_RequestLogsResult_Field
 
 class ProjectAllowedAPI(GQLObject):
    id: int
@@ -2041,7 +2043,7 @@ class ProjectAllowedAPI(GQLObject):
    updatedAt: DateTime
    status: str
 
-class HAJPRprojectAllowedAPIs_ProjectAllowedAPI_Field(ProjectAllowedAPI):
+class VRAIK_ProjectAllowedAPI_Field(ProjectAllowedAPI):
    class ProjectAllowedAPIArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2049,7 +2051,7 @@ class HAJPRprojectAllowedAPIs_ProjectAllowedAPI_Field(ProjectAllowedAPI):
 
 
 
-class NCIIVrequestLogs_RequestLogsResult_Field(RequestLogsResult):
+class DOSPQ_RequestLogsResult_Field(RequestLogsResult):
    class RequestLogsResultArgs(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str
@@ -2074,8 +2076,8 @@ class Project(GQLObject):
    xMashapeKey: str
    acl: NewType('ProjectInfo', GQLObject) ## Circular Reference for ProjectInfo
    enableLimitsToAPIs: bool
-   projectAllowedAPIs: HAJPRprojectAllowedAPIs_ProjectAllowedAPI_Field
-   requestLogs: NCIIVrequestLogs_RequestLogsResult_Field
+   projectAllowedAPIs: VRAIK_ProjectAllowedAPI_Field
+   requestLogs: DOSPQ_RequestLogsResult_Field
 
 class ProjectInfo(GQLObject):
    id: int
@@ -2138,7 +2140,7 @@ class LegalAgreementInfo(GQLObject):
    deletedAt: DateTime
    docuSign: DocuSign
 
-class HAXCEsubscriptions_BillingSubscription_Field(BillingSubscription):
+class RQVML_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
@@ -2148,7 +2150,7 @@ class HAXCEsubscriptions_BillingSubscription_Field(BillingSubscription):
 
 
 
-class GLEWCsubscriptionsPaging_SubscriptionsPaging_Field(SubscriptionsPaging):
+class LMCPQ_SubscriptionsPaging_Field(SubscriptionsPaging):
    class SubscriptionsPagingArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
@@ -2158,7 +2160,7 @@ class GLEWCsubscriptionsPaging_SubscriptionsPaging_Field(SubscriptionsPaging):
 
 
 
-class FINQZactiveSubscriptionByApiId_BillingSubscription_Field(BillingSubscription):
+class QHKOR_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       apiId: ID ##NON NULL
 
@@ -2166,7 +2168,7 @@ class FINQZactiveSubscriptionByApiId_BillingSubscription_Field(BillingSubscripti
 
 
 
-class KKXWUactiveSubscriptionByApiIdAndBillingPlanVersionId_BillingSubscription_Field(BillingSubscription):
+class NXHEU_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       apiId: ID ##NON NULL
       billingPlanVersionId: ID
@@ -2184,7 +2186,7 @@ class QueryFilter(GQLObject):
 class QueryFilters(GQLObject):
    filters: QueryFilter ##LIST
 
-class ZIOZXpagedTransactions_TransactionsPaging_Field(TransactionsPaging):
+class JNACD_TransactionsPaging_Field(TransactionsPaging):
    class TransactionsPagingArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       apiNameFilter: str
@@ -2194,7 +2196,7 @@ class ZIOZXpagedTransactions_TransactionsPaging_Field(TransactionsPaging):
 
 
 
-class ETZJBnotFullyRefundedTransactions_TransactionsPaging_Field(TransactionsPaging):
+class SLTRP_TransactionsPaging_Field(TransactionsPaging):
    class TransactionsPagingArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       apiNameFilter: str
@@ -2204,7 +2206,7 @@ class ETZJBnotFullyRefundedTransactions_TransactionsPaging_Field(TransactionsPag
 
 
 
-class SPIVMtransaction_Transaction_Field(Transaction):
+class EWULP_Transaction_Field(Transaction):
    class TransactionArgs(GQLArgsSet, GQLObject): 
       id: ID
       mashapeId: ID
@@ -2213,7 +2215,7 @@ class SPIVMtransaction_Transaction_Field(Transaction):
 
 
 
-class KZIPFstats_Stats_Field(Stats):
+class FEEWH_Stats_Field(Stats):
    class StatsArgs(GQLArgsSet, GQLObject): 
       apiId: ID
       fromDate: DateTime ##NON NULL
@@ -2243,16 +2245,16 @@ class Entity(GQLObject):
    followsList: NewType('FollowUser', GQLObject) ##LIST ## Circular Reference for FollowUser
    numOfSubscriptions: int
    projectAcls: ProjectInfo ##LIST
-   subscriptions: HAXCEsubscriptions_BillingSubscription_Field
-   subscriptionsPaging: GLEWCsubscriptionsPaging_SubscriptionsPaging_Field
-   activeSubscriptionByApiId: FINQZactiveSubscriptionByApiId_BillingSubscription_Field
-   activeSubscriptionByApiIdAndBillingPlanVersionId: KKXWUactiveSubscriptionByApiIdAndBillingPlanVersionId_BillingSubscription_Field
-   pagedTransactions: ZIOZXpagedTransactions_TransactionsPaging_Field
-   notFullyRefundedTransactions: ETZJBnotFullyRefundedTransactions_TransactionsPaging_Field
+   subscriptions: RQVML_BillingSubscription_Field
+   subscriptionsPaging: LMCPQ_SubscriptionsPaging_Field
+   activeSubscriptionByApiId: QHKOR_BillingSubscription_Field
+   activeSubscriptionByApiIdAndBillingPlanVersionId: NXHEU_BillingSubscription_Field
+   pagedTransactions: JNACD_TransactionsPaging_Field
+   notFullyRefundedTransactions: SLTRP_TransactionsPaging_Field
    transactionsGraphData: TransactionsGraphData
-   transaction: SPIVMtransaction_Transaction_Field
+   transaction: EWULP_Transaction_Field
    parents: NewType('Entity', GQLObject) ##LIST ## Circular Reference for Entity
-   stats: KZIPFstats_Stats_Field
+   stats: FEEWH_Stats_Field
    billingInformation: BillingInformation
    bio: str
    publishedApisList: Api ##LIST
@@ -2314,7 +2316,7 @@ class IssueObject(GQLObject):
    data: Issue ##LIST
    total: int
 
-class ZHUFQsubscriptions_BillingSubscription_Field(BillingSubscription):
+class SRMCX_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
@@ -2323,7 +2325,7 @@ class ZHUFQsubscriptions_BillingSubscription_Field(BillingSubscription):
 
 
 
-class SJBHWfollowersList_FollowersUser_Field(FollowersUser):
+class WYITV_FollowersUser_Field(FollowersUser):
    class FollowersUserArgs(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
@@ -2331,7 +2333,7 @@ class SJBHWfollowersList_FollowersUser_Field(FollowersUser):
 
 
 
-class STNQPissues_IssueObject_Field(IssueObject):
+class HKZNK_IssueObject_Field(IssueObject):
    class IssueObjectArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2353,13 +2355,13 @@ class Team(GQLObject):
    ProjectAcls: ProjectAcl ##LIST
    usersCount: int
    description: str
-   subscriptions: ZHUFQsubscriptions_BillingSubscription_Field
-   followersList: SJBHWfollowersList_FollowersUser_Field
+   subscriptions: SRMCX_BillingSubscription_Field
+   followersList: WYITV_FollowersUser_Field
    publishedApisList: Api ##LIST
    isTeamMember: bool
-   issues: STNQPissues_IssueObject_Field
+   issues: HKZNK_IssueObject_Field
 
-class ZOPUXfollowersList_FollowersUser_Field(FollowersUser):
+class LJVRP_FollowersUser_Field(FollowersUser):
    class FollowersUserArgs(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
@@ -2367,7 +2369,7 @@ class ZOPUXfollowersList_FollowersUser_Field(FollowersUser):
 
 
 
-class POGRUissues_IssueObject_Field(IssueObject):
+class UAZIG_IssueObject_Field(IssueObject):
    class IssueObjectArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2387,12 +2389,12 @@ class Organization(GQLObject):
    teams: Team ##LIST
    publishedApisList: Api ##LIST
    users: NewType('User', GQLObject) ##LIST ## Circular Reference for User
-   followersList: ZOPUXfollowersList_FollowersUser_Field
+   followersList: LJVRP_FollowersUser_Field
    isOrganizationAdmin: bool
    apisCount: int
    internalSubscriptionsCount: int
    externalSubscriptionsCount: int
-   issues: POGRUissues_IssueObject_Field
+   issues: UAZIG_IssueObject_Field
    billingAdditionalValues: BillingAdditionalValues
    payoutInfo: PayoutInfo
    balance: float
@@ -2401,7 +2403,7 @@ class Organization(GQLObject):
    seatsBillingInformation: SeatsBillingInformation
    billingType: str
 
-class FRNATstats_Stats_Field(Stats):
+class MGUTN_Stats_Field(Stats):
    class StatsArgs(GQLArgsSet, GQLObject): 
       fromDate: str ##NON NULL
       toDate: str ##NON NULL
@@ -2416,7 +2418,7 @@ class FRNATstats_Stats_Field(Stats):
 
 
 
-class NVDDXfollowersList_FollowersUser_Field(FollowersUser):
+class VQOYF_FollowersUser_Field(FollowersUser):
    class FollowersUserArgs(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
@@ -2424,7 +2426,7 @@ class NVDDXfollowersList_FollowersUser_Field(FollowersUser):
 
 
 
-class HDWTOfollowsList_FollowUser_Field(FollowUser):
+class OQTBO_FollowUser_Field(FollowUser):
    class FollowUserArgs(GQLArgsSet, GQLObject): 
       includeUserAttributes: bool
 
@@ -2432,7 +2434,7 @@ class HDWTOfollowsList_FollowUser_Field(FollowUser):
 
 
 
-class IOZLAsubscriptions_BillingSubscription_Field(BillingSubscription):
+class XGHJN_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
@@ -2441,7 +2443,7 @@ class IOZLAsubscriptions_BillingSubscription_Field(BillingSubscription):
 
 
 
-class EPJLDsubscriptionsPaging_SubscriptionsPaging_Field(SubscriptionsPaging):
+class VGJGX_SubscriptionsPaging_Field(SubscriptionsPaging):
    class SubscriptionsPagingArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
       isStripeId: bool
@@ -2450,7 +2452,7 @@ class EPJLDsubscriptionsPaging_SubscriptionsPaging_Field(SubscriptionsPaging):
 
 
 
-class LQGNIactiveSubscriptionByApiId_BillingSubscription_Field(BillingSubscription):
+class MCGAW_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       apiId: ID ##NON NULL
 
@@ -2458,7 +2460,7 @@ class LQGNIactiveSubscriptionByApiId_BillingSubscription_Field(BillingSubscripti
 
 
 
-class QJNBXactiveSubscriptionByApiIdAndBillingPlanVersionId_BillingSubscription_Field(BillingSubscription):
+class WPHOG_BillingSubscription_Field(BillingSubscription):
    class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
       apiId: ID ##NON NULL
       billingPlanVersionId: ID
@@ -2467,7 +2469,7 @@ class QJNBXactiveSubscriptionByApiIdAndBillingPlanVersionId_BillingSubscription_
 
 
 
-class OFXSTproject_Project_Field(Project):
+class XKUWH_Project_Field(Project):
    class ProjectArgs(GQLArgsSet, GQLObject): 
       projectId: ID
       mashapeId: ID
@@ -2476,7 +2478,7 @@ class OFXSTproject_Project_Field(Project):
 
 
 
-class VRQZVprojects_Project_Field(Project):
+class ODBLD_Project_Field(Project):
    class ProjectArgs(GQLArgsSet, GQLObject): 
       projectIds: ID ##NON NULL ##LIST
       mashapeIds: ID ##NON NULL ##LIST
@@ -2485,7 +2487,7 @@ class VRQZVprojects_Project_Field(Project):
 
 
 
-class EUTHXprojectACL_ProjectInfo_Field(ProjectInfo):
+class OSFWY_ProjectInfo_Field(ProjectInfo):
    class ProjectInfoArgs(GQLArgsSet, GQLObject): 
       projectId: ID ##NON NULL
 
@@ -2493,7 +2495,7 @@ class EUTHXprojectACL_ProjectInfo_Field(ProjectInfo):
 
 
 
-class UNIWUtransaction_Transaction_Field(Transaction):
+class PPEHF_Transaction_Field(Transaction):
    class TransactionArgs(GQLArgsSet, GQLObject): 
       id: ID
       mashapeId: ID
@@ -2530,17 +2532,17 @@ class User(GQLObject):
    createdAt: DateTime
    updatedAt: DateTime
    deletedAt: DateTime
-   stats: FRNATstats_Stats_Field
+   stats: MGUTN_Stats_Field
    apisCount: int
-   followersList: NVDDXfollowersList_FollowersUser_Field
-   followsList: HDWTOfollowsList_FollowUser_Field
+   followersList: VQOYF_FollowersUser_Field
+   followsList: OQTBO_FollowUser_Field
    followedApis: ApiFollower ##LIST
    followsIssues: IssueFollow ##LIST
    followsIssuesV2: IssueFollow ##LIST
-   subscriptions: IOZLAsubscriptions_BillingSubscription_Field
-   subscriptionsPaging: EPJLDsubscriptionsPaging_SubscriptionsPaging_Field
-   activeSubscriptionByApiId: LQGNIactiveSubscriptionByApiId_BillingSubscription_Field
-   activeSubscriptionByApiIdAndBillingPlanVersionId: QJNBXactiveSubscriptionByApiIdAndBillingPlanVersionId_BillingSubscription_Field
+   subscriptions: XGHJN_BillingSubscription_Field
+   subscriptionsPaging: VGJGX_SubscriptionsPaging_Field
+   activeSubscriptionByApiId: MCGAW_BillingSubscription_Field
+   activeSubscriptionByApiIdAndBillingPlanVersionId: WPHOG_BillingSubscription_Field
    notifications: Notification ##LIST
    numOfApisUsed: int
    numOfProjects: int
@@ -2548,13 +2550,13 @@ class User(GQLObject):
    billingInformation: BillingInformation
    allowedPlanDevelopers: AllowedPlanDeveloper ##LIST
    payoutInfo: PayoutInfo
-   project: OFXSTproject_Project_Field
-   projects: VRQZVprojects_Project_Field
-   projectACL: EUTHXprojectACL_ProjectInfo_Field
+   project: XKUWH_Project_Field
+   projects: ODBLD_Project_Field
+   projectACL: OSFWY_ProjectInfo_Field
    ProjectACLs: ProjectInfo ##LIST
    ProfileInfo: ProfileInfo
    transactionsGraphData: TransactionsGraphData
-   transaction: UNIWUtransaction_Transaction_Field
+   transaction: PPEHF_Transaction_Field
    ProjectAcls: ProjectAcl ##LIST
    publishedApisList: Api ##LIST
    bio: str
@@ -2640,7 +2642,7 @@ class SpotlightConnection(GQLObject):
    edges: SpotlightEdge ##LIST
    pageInfo: PageInfo
 
-class XLDLOapis_Api_Field(Api):
+class JMYXK_Api_Field(Api):
    class ApiArgs(GQLArgsSet, GQLObject): 
       weightLowerThan: int
 
@@ -2656,7 +2658,7 @@ class SearchCollection(GQLObject):
    shortDescription: str
    longDescription: str
    thumbnail: str
-   apis: XLDLOapis_Api_Field
+   apis: JMYXK_Api_Field
    blogPostId: str
    post: BlogPost
    blogPosts: BlogPosts ##LIST
@@ -2689,7 +2691,7 @@ class SearchBlogPostConnection(GQLObject):
    pageInfo: PageInfo
    total: int
 
-class MQAEDendpoints_Endpoint_Field(Endpoint):
+class VQXFR_Endpoint_Field(Endpoint):
    class EndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2697,7 +2699,7 @@ class MQAEDendpoints_Endpoint_Field(Endpoint):
 
 
 
-class CYQSGgroups_EndpointsGroup_Field(EndpointsGroup):
+class LXDDJ_EndpointsGroup_Field(EndpointsGroup):
    class EndpointsGroupArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2705,7 +2707,7 @@ class CYQSGgroups_EndpointsGroup_Field(EndpointsGroup):
 
 
 
-class VSBBNheadlines_Headline_Field(Headline):
+class JWHER_Headline_Field(Headline):
    class HeadlineArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -2730,10 +2732,10 @@ class SearchApiVersion(GQLObject):
    visibility: str
    webhooks: bool
    websiteUrl: str
-   endpoints: MQAEDendpoints_Endpoint_Field
+   endpoints: VQXFR_Endpoint_Field
    tags: APITag ##LIST
-   groups: CYQSGgroups_EndpointsGroup_Field
-   headlines: VSBBNheadlines_Headline_Field
+   groups: LXDDJ_EndpointsGroup_Field
+   headlines: JWHER_Headline_Field
    authentication: Authentication
 
 class SearchApi(GQLObject):
@@ -2930,7 +2932,7 @@ class EndpointStatsV2(GQLObject):
 
 class EndpointStats(GQLObject):
    endpointid: ID
-   name: QTCKKname_name_Field
+   name: HCAPE_name_Field
    stats: EndpointStatsData ##LIST
    apiData: Api
 
@@ -3021,7 +3023,7 @@ class ConsumersRow(GQLObject):
 class CollectionItem(GQLObject): 
    pass
 
-class OGLJQapis_CollectionItem_Field(CollectionItem):
+class ZEXJQ_CollectionItem_Field(CollectionItem):
    class CollectionItemArgs(GQLArgsSet, GQLObject): 
       apisSkip: int
       apisLimit: int
@@ -3038,7 +3040,7 @@ class CollectionV3(GQLObject):
    shortDescription: str
    longDescription: str
    thumbnail: str
-   apis: OGLJQapis_CollectionItem_Field
+   apis: ZEXJQ_CollectionItem_Field
    blogPostId: str
    post: BlogPost
    blogPosts: BlogPosts ##LIST
@@ -3051,7 +3053,7 @@ class CollectionV3(GQLObject):
    orgName: str
    collection_type: str
 
-class QCAZEapis_CollectionItem_Field(CollectionItem):
+class IGRGF_CollectionItem_Field(CollectionItem):
    class CollectionItemArgs(GQLArgsSet, GQLObject): 
       weightLowerThan: int
 
@@ -3067,7 +3069,7 @@ class CollectionV2(GQLObject):
    shortDescription: str
    longDescription: str
    thumbnail: str
-   apis: QCAZEapis_CollectionItem_Field
+   apis: IGRGF_CollectionItem_Field
    blogPostId: str
    post: BlogPost
    blogPosts: BlogPosts ##LIST
@@ -3080,7 +3082,7 @@ class CollectionV2(GQLObject):
    orgName: str
    collection_type: str
 
-class CDRZMapis_Api_Field(Api):
+class GRJMW_Api_Field(Api):
    class ApiArgs(GQLArgsSet, GQLObject): 
       weightLowerThan: int
 
@@ -3096,7 +3098,7 @@ class Collection(GQLObject):
    shortDescription: str
    longDescription: str
    thumbnail: str
-   apis: CDRZMapis_Api_Field
+   apis: GRJMW_Api_Field
    blogPostId: str
    post: BlogPost
    blogPosts: BlogPosts ##LIST
@@ -3262,7 +3264,7 @@ class ApiVersionConnection(GQLObject):
    edges: ApiVersionEdge ##LIST
    pageInfo: PageInfo ##NON NULL
 
-class ZVTJEendpoints_Endpoint_Field(Endpoint):
+class BCEYV_Endpoint_Field(Endpoint):
    class EndpointArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -3270,7 +3272,7 @@ class ZVTJEendpoints_Endpoint_Field(Endpoint):
 
 
 
-class XTOERgroups_EndpointsGroup_Field(EndpointsGroup):
+class VDVXB_EndpointsGroup_Field(EndpointsGroup):
    class EndpointsGroupArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -3278,7 +3280,7 @@ class XTOERgroups_EndpointsGroup_Field(EndpointsGroup):
 
 
 
-class OZZMGheadlines_Headline_Field(Headline):
+class ERGKU_Headline_Field(Headline):
    class HeadlineArgs(GQLArgsSet, GQLObject): 
       pagingArgs: PagingArgs
 
@@ -3303,9 +3305,9 @@ class ApiVersionSearch(GQLObject):
    visibility: str
    webhooks: bool
    websiteUrl: str
-   endpoints: ZVTJEendpoints_Endpoint_Field
-   groups: XTOERgroups_EndpointsGroup_Field
-   headlines: OZZMGheadlines_Headline_Field
+   endpoints: BCEYV_Endpoint_Field
+   groups: VDVXB_EndpointsGroup_Field
+   headlines: ERGKU_Headline_Field
    authentication: Authentication
 
 class ApiSearch(GQLObject):
@@ -3629,9 +3631,10 @@ class NewApiVersionInput(GQLObject):
 
 class ApiCreateInput(GQLObject):
    name: str ##NON NULL
-   pricing: ApiPricing
    description: str ##NON NULL
    category: str ##NON NULL
+   externalCustomId: str
+   pricing: ApiPricing
    visibility: ApiVisibility
    apiType: ApiType
    version: NewApiVersionInput

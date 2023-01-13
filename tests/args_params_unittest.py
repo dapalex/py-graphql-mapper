@@ -1,69 +1,21 @@
+from .output.github.gql_types import AddCommentInput
+from .consts import GDBC_HEADERS, GDBC_URL, GITHUB_HEADERS, GITHUB_URL
+import logging as logger
 from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
 import requests
 from pygqlmap.gql_types import ID
 from pygqlmap.helper import mapConfig
+from .output.gdbc.gql_types import GVHZJ_CountryRegion_Field
 from .consts import GDBC_HEADERS, GDBC_URL
 from .output.gdbc.queries import country, currencies, countries
 import logging as logger
 
-def runNestedObject():
-    logger.info('\n\nRunning testNestedObject...')
-    try:
-        query = currencies()
-        logger.info('gqlSource GQL version: ' + query.export_gql_source)
-
-        response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
-                                    headers=GDBC_HEADERS)
-        gqlResponse = GQLResponse(response)
-
-        gqlResponse.print_msg_out()
-        gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
-    except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
-
-    logger.info("End of testNestedObject")
-
-def run_gdbc_nested_obj_viewchange():
-    logger.info('\n\nRunning test_gdbc_nested_obj_viewchange...')
-    query = currencies()
-    query.name = 'MyCurrenciesQuery'
-
-    # query.set_show('currencies.edges.cursor', False)
-    query.set_show('currencies.edges.node.symbol', False)
-    query.set_show('currencies.edges.node.countryCodes', False)
-    query.set_show('currencies.edges.node', False)
-    query.set_show('currencies.totalCount', False)
-    # query.set_show('currencies.edges', False)
-    query.set_show('currencies', False)
-
-    logger.info('currencies.edges.node.symbol -> Hide')
-    logger.info('currencies.edges.node.countryCodes -> Hide')
-    # logger.info('currencies.edges.node -> Hide')
-    logger.info('currencies.totalCount -> Hide')
-    logger.info('currencies -> Hide')
-    try:
-        logger.info('gqlSource GQL version: ' + query.export_gql_source)
-
-        response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
-                                    headers=GDBC_HEADERS)
-        gqlResponse = GQLResponse(response)
-
-        gqlResponse.print_msg_out()
-        gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
-    except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
-
-    logger.info("End of test_gdbc_nested_obj_viewchange")
-
-def run_gdbc_complex_obj_viewchange():
-    logger.info('\n\nRunning test_gdbc_complex_obj_viewchange...')
+def run_complex_obj_viewchange():
+    logger.info('\n\nRunning run_complex_obj_viewchange...')
     query = countries()
-    query.type.edges.node.region._args.code = ID("CH")
+    query.type.edges.node.region = type(query.type.edges.node.region)(code=ID("CH"))
+    # query.type.edges.node.region._args.code = ID("CH")
     query._args_type = ArgType.VARIABLES
 
     query.set_show('countries.edges.cursor', False)
@@ -86,7 +38,7 @@ def run_gdbc_complex_obj_viewchange():
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 
         response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
+                                    json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
                                     headers=GDBC_HEADERS)
         gqlResponse = GQLResponse(response)
 
@@ -96,14 +48,14 @@ def run_gdbc_complex_obj_viewchange():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_complex_obj_viewchange")
+    logger.info("End of run_complex_obj_viewchange")
 
-def run_gdbc_nested_obj_args_vars():
-    logger.info('\n\nRunning test_gdbc_nested_obj_args_vars...')
-    query = currencies()
+def run_nested_obj_args_vars():
+    logger.info('\n\nRunning run_nested_obj_args_vars...')
+    query = currencies(first=3, after='MTE=')
     query.name = 'myCurrenciesQuery'
-    query._args.first = 3
-    query._args.after = 'MTE='
+    # query._args.first = 3
+    # query._args.after = 'MTE='
     query._args_type = ArgType.VARIABLES
 
     try:
@@ -111,7 +63,7 @@ def run_gdbc_nested_obj_args_vars():
         logger.info('variables GQL version: ' + query.export_gqlvariables)
 
         response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
+                                    json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
                                     headers=GDBC_HEADERS)
         gqlResponse = GQLResponse(response)
 
@@ -121,18 +73,18 @@ def run_gdbc_nested_obj_args_vars():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_nested_obj_args_vars")
+    logger.info("End of run_nested_obj_args_vars")
 
-def run_gdbc_nested_obj_args_literal():
-    logger.info('\n\nRunning test_gdbc_nested_obj_args_literal...')
-    query = currencies()
-    query._args.countryId = 'CH'
+def run_nested_obj_args_literal():
+    logger.info('\n\nRunning run_nested_obj_args_literal...')
+    query = currencies(countryId="CH")
+    # query._args.countryId = 'CH'
 
     try:
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 
         response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
+                                    json={ "query": query.export_gql_source },
                                     headers=GDBC_HEADERS)
         gqlResponse = GQLResponse(response)
 
@@ -142,14 +94,15 @@ def run_gdbc_nested_obj_args_literal():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_nested_obj_args_literal")
+    logger.info("End of run_nested_obj_args_literal")
 
-def run_gdbc_complex_obj_args_literal():
-    logger.info('\n\nRunning test_gdbc_complex_obj_args_literal...')
+def run_complex_obj_args_literal():
+    logger.info('\n\nRunning run_complex_obj_args_literal...')
     from .output.gdbc.enums import IncludeDeletedFilterType
-    query = countries()
-    query._args.currencyCode = 'CNY'
-    query.type.edges.node.region._args.code = "CH"
+    query = countries(currencyCode='CNY')
+    # query._args.currencyCode = 'CNY'
+    query.type.edges.node.region = GVHZJ_CountryRegion_Field(code="CH")
+    # query.type.edges.node.region._args.code = "CH"
     if int(mapConfig["recursionDepth"]) > 0:
         query.type.edges.node.region.populatedPlaces._args.includeDeleted = IncludeDeletedFilterType.SINCE_LAST_WEEK
         query.type.edges.node.region.populatedPlaces._args.namePrefix = "gua"
@@ -161,7 +114,7 @@ def run_gdbc_complex_obj_args_literal():
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 
         response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
+                                    json={ "query": query.export_gql_source },
                                     headers=GDBC_HEADERS)
         gqlResponse = GQLResponse(response)
 
@@ -171,34 +124,13 @@ def run_gdbc_complex_obj_args_literal():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_complex_obj_args_literal")
+    logger.info("End of run_complex_obj_args_literal")
 
-def run_gdbc_complex_obj_args_literal_2():
-    logger.info('\n\nRunning test_gdbc_complex_obj_args_literal_2...')
-    query = countries()
-    query.type.edges.node.region._args.code = "CN"
-
-    try:
-        logger.info('gqlSource GQL version: ' + query.export_gql_source)
-
-        response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
-                                    headers=GDBC_HEADERS)
-        gqlResponse = GQLResponse(response)
-
-        gqlResponse.print_msg_out()
-        gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
-    except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
-
-    logger.info("End of test_gdbc_complex_obj_args_literal_2")
-
-def run_gdbc_complex_obj_args_vars():
-    logger.info('\n\nRunning test_gdbc_complex_obj_args_vars...')
-    query = countries()
-    query._args.first = 3
-    query._args.after = 'Mg=='
+def run_complex_obj_args_vars():
+    logger.info('\n\nRunning run_complex_obj_args_vars...')
+    query = countries(first=3, after='Mg==')
+    # query._args.first = 3
+    # query._args.after = 'Mg=='
     query.name = 'myCountriesQuery'
 
     query.set_show('countries.edges.node.region', False)
@@ -219,36 +151,13 @@ def run_gdbc_complex_obj_args_vars():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_complex_obj_args_vars")
+    logger.info("End of run_complex_obj_args_vars")
 
-def run_gdbc_nested_obj_viewchange_args_vars():
-    logger.info('\n\nRunning test_gdbc_nested_obj_viewchange_args_vars...')
-    query = currencies()
-    query._args.countryId = ID('CH')
-    query._args_type = ArgType.VARIABLES
-
-    try:
-        logger.info('gqlSource GQL version: ' + query.export_gql_source)
-        logger.info('variables GQL version: ' + query.export_gqlvariables)
-
-        response = requests.request('POST', url=GDBC_URL,
-                                    json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
-                                    headers=GDBC_HEADERS)
-        gqlResponse = GQLResponse(response)
-
-        gqlResponse.print_msg_out()
-        gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
-    except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
-
-    logger.info("End of test_gdbc_nested_obj_viewchange_args_vars")
-
-def run_gdbc_complex_obj_viewchange_args_vars():
-    logger.info('\n\nRunning test_gdbc_complex_obj_viewchange_args_vars...')
-    query = countries()
-    query._args.first = 3
-    query._args.after = 'MTE='
+def run_complex_obj_viewchange_args_vars():
+    logger.info('\n\nRunning run_complex_obj_viewchange_args_vars...')
+    query = countries(first = 3, after = 'MTE=')
+    # query._args.first = 3
+    # query._args.after = 'MTE='
     query.set_show('countries.edges.cursor', False)
     query.set_show('countries.edges.node.region', False)
     query.set_show('countries.edges.node.regions.pageInfo.hasNextPage', False)
@@ -273,23 +182,21 @@ def run_gdbc_complex_obj_viewchange_args_vars():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_complex_obj_viewchange_args_vars")
+    logger.info("End of run_complex_obj_viewchange_args_vars")
 
-def run_gdbc_obj_composed_args():
-    logger.info('\n\nRunning test_gdbc_obj_composed_args...')
+def run_obj_composed_args():
+    logger.info('\n\nRunning run_obj_composed_args...')
     try:
         from .output.gdbc.enums import Language
 
-        query = country()
+        query = country(id = ID('CH'), displayOptions = {"asciiMode": True, "language": Language.EN })
         query.log_progress=True
-        query._args.id = ID('CH')
-        query._args.displayOptions = {"asciiMode": True, "language": Language.EN }
-        query.type.region._args.code = 'Q12094'
+        query.type.region = GVHZJ_CountryRegion_Field(code = 'Q12094')
 
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 
         response = requests.request('POST', url=GDBC_URL,
-                                     json={ "query": query.export_gql_source },
+                                    json={ "query": query.export_gql_source },
                                     headers=GDBC_HEADERS)
         gqlResponse = GQLResponse(response, True)
 
@@ -299,4 +206,47 @@ def run_gdbc_obj_composed_args():
     except Exception as ex:
         raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_gdbc_obj_composed_args")
+    logger.info("End of run_obj_composed_args")
+
+def run_gh_add_comment_mutation():
+    logger.info('\nRunning run_gh_add_comment_mutation... - stack limit for recursion depth')
+    try:
+        logger.info('Creating mutation python object...')
+        from .output.github.mutations import Mutations #, ProjectV2Order, ProjectV2OrderField
+
+        mut_input = AddCommentInput()
+        mut_input.subjectId = 'something'
+        mut_input.body = 'This is the body'
+        mut_input.clientMutationId = 'Me'
+        mutation = Mutations.addComment.value(input=mut_input)
+        # restoreOutput(wrapper)
+        logger.info('Inserting python mutation input data...')
+        mutation.type.commentEdge.node.repository.packages = type(mutation.type.commentEdge.node.repository.packages)(repositoryId='ghjk')
+        mutation.type.commentEdge.node.repository.discussion._args.number = 3
+        mutation.type.commentEdge.node.repository.discussionCategory._args.slug = 'slug'
+        mutation.type.commentEdge.node.repository.environment._args.name = 'envName'
+        mutation.type.commentEdge.node.repository.refs._args.refPrefix = 'pref'
+        mutation.type.commentEdge.node.repository.release._args.tagName = 'aTag'
+        mutation.type.commentEdge.node.repository.label._args.name = 'aName'
+        mutation.type.commentEdge.node.repository.milestone._args.number = 0
+        mutation.type.commentEdge.node.repository.packages.nodes.version._args.version = '2'
+        mutation.type.commentEdge.node.repository.packages.edges.node.version._args.version = '2.6'
+        mutation.type.commentEdge.node.repository.project._args.number = 1
+
+        # wrapper = redirectOutputToFile('mutationCreated.log')
+        logger.info(mutation.export_gql_source)
+        # restoreOutput(wrapper)
+
+        logger.info('Calling GraphQL Server......')
+        response = requests.request('POST', url=GITHUB_URL, json={ "query": mutation.export_gql_source }, headers=GITHUB_HEADERS)
+        logger.info('Response Received')
+        gqlResponse = GQLResponse(response)
+
+        gqlResponse.print_msg_out()
+
+        gqlResponse.map_gqldata_to_obj(mutation.type)
+        logger.info('Result object: ' + str(gqlResponse.result_obj))
+    except Exception as ex:
+        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
+
+    logger.info("End of run_gh_add_comment_mutation")

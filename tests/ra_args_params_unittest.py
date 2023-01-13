@@ -43,35 +43,34 @@ def run_ra_create_transformations_mutation():
         from .output.rapidapi.gql_types import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
         from .output.rapidapi.mutations import Mutations
 
-        mutation = Mutations.createTransformations.value()
+        mutationinput1 = TransformationCreateInput()
 
-        input1 = TransformationCreateInput()
-        input1.apiVersionId = 1
-        input1.action = TransformationActionType.ADD
-        input1.endpoints = ["myID"]
-        input1.transformationType = TransformationType.REQUEST
-        input1.condition = TransformationConditionType.IGNORE
-        input1.targetPath = "."
-        input1._from = "a"
-        input1.target = "b"
-        input1.value = "val"
-        input1.plans = ["planID"]
+        mutationinput1.apiVersionId = 1
+        mutationinput1.action = TransformationActionType.ADD
+        mutationinput1.endpoints = ["myID"]
+        mutationinput1.transformationType = TransformationType.REQUEST
+        mutationinput1.condition = TransformationConditionType.IGNORE
+        mutationinput1.targetPath = "."
+        mutationinput1._from = "a"
+        mutationinput1.target = "b"
+        mutationinput1.value = "val"
+        mutationinput1.plans = ["planID"]
 
-        input2 = TransformationCreateInput()
-        input2.apiVersionId = 1
-        input2.action = TransformationActionType.REMOVE
-        input2.endpoints = ["myID"]
-        input2.transformationType = TransformationType.REQUEST
-        input2.condition = TransformationConditionType.IGNORE
-        input2.targetPath = "."
-        input2._from = "a"
-        input2.target = "b"
-        input2.value = "val"
-        input2.plans = ["planID"]
+        mutationinput2 = TransformationCreateInput()
+        mutationinput2.apiVersionId = 1
+        mutationinput2.action = TransformationActionType.REMOVE
+        mutationinput2.endpoints = ["myEndpoint", "otherEndpoint"]
+        mutationinput2.transformationType = TransformationType.REQUEST
+        mutationinput2.condition = TransformationConditionType.IGNORE
+        mutationinput2.targetPath = "."
+        mutationinput2._from = "a"
+        mutationinput2.target = "b"
+        mutationinput2.value = "val"
+        mutationinput2.plans = ["planID"]
+
+        mutation = Mutations.createTransformations.value(transformations=[mutationinput1, mutationinput2])
 
         logger.info('Inserting python mutation input data...')
-
-        mutation._args.transformations = [input1, input2]
 
         logger.info(mutation.export_gql_source)
 
@@ -82,7 +81,7 @@ def run_ra_create_transformations_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -128,7 +127,7 @@ def run_ra_create_gateway_instance_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -175,7 +174,7 @@ def run_ra_edit_user_alert_mutation():
         logger.info('Response Received')
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
@@ -186,7 +185,7 @@ def run_ra_edit_user_alert_mutation():
 
 
 def run_ra_admin_audit_logs():
-    logger.info('\nRunning test_ra_admin_audit_logs...')
+    logger.info('\nRunning run_ra_admin_audit_logs...')
     try:
         # from .output.github.gql_types import UpdateRepositoryInput
         from .output.rapidapi.queries import Queries
@@ -215,11 +214,11 @@ def run_ra_admin_audit_logs():
                                     headers=RAPIDAPI_HEADERS)
         gqlResponse = GQLResponse(response)
 
-       # gqlResponse.print_msg_out()
+        gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
 
-    logger.info("End of test_ra_admin_audit_logs")
+    logger.info("End of run_ra_admin_audit_logs")
