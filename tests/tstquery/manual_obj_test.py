@@ -74,6 +74,9 @@ from pygqlmap.gql_types import ID
 from pygqlmap.components import GQLObject, GQLArgsSet
 import logging as logger
 
+class NonNullStr(str):
+    pass
+
 class PopulatedPlaceType(Enum):
    ADM2 = 'ADM2' ##A level-2 administrative division (for example, a county)
    CITY = 'CITY' ##A city, town, or village
@@ -184,7 +187,7 @@ class RegionPopulatedPlacesConnection(GQLObject):
    pageInfo: ConnectionPageInfo ##NON NULL
 
 class CountriesArguments(GQLArgsSet, GQLObject):
-    currencyCode: str
+    currencyCode: NonNullStr
     namePrefix: str
     namePrefixDefaultLangResults: bool
     first: int
@@ -217,8 +220,8 @@ import requests
 from ..consts import GDBC_HEADERS, GDBC_URL
 # from ..utils import ManageException
 
-def runGeneratedDataAsGQLObject():
-    logger.info('\n\nRunning testGeneratedDataAsGQLObject...')
+def run_generated_data():
+    logger.info('\n\nRunning run_generated_data...')
 ##STEP 2
     query = countries()
     query.name ='myCountriesQuery' #, rootName='countries')
@@ -264,6 +267,6 @@ def runGeneratedDataAsGQLObject():
 ##
 
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of testGeneratedDataAsGQLObject")
+    logger.info("End of run_generated_data")

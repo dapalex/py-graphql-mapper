@@ -62,8 +62,8 @@ from ..output.github.mutations import updateRepository
 from ..output.github.gql_types import UpdateRepositoryInput
 import logging as logger
 
-def run_gh_update_literal_mutation():
-    logger.info('\n\nRunning run_gh_update_literal_mutation...')
+def run_gh_update_mutation_literal():
+    logger.info('\n\nRunning run_gh_update_mutation_literal...')
 ##STEP 2
     mutation = updateRepository()
     mutation.name = 'myManualUpdateRepository'
@@ -117,6 +117,6 @@ def run_gh_update_literal_mutation():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of run_gh_update_literal_mutation")
+    logger.info("End of run_gh_update_mutation_literal")

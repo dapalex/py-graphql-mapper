@@ -72,6 +72,6 @@ def run_gdbc_connobj():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_connobj")

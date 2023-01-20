@@ -7,8 +7,8 @@ from .consts import GDBC_HEADERS, GDBC_URL
 from .output.gdbc.queries import country, currencies, countries
 import logging as logger
 
-def runNestedObject():
-    logger.info('\n\nRunning testNestedObject...')
+def run_gdbc_nested_object():
+    logger.info('\n\nRunning run_gdbc_nested_object...')
     try:
         query = currencies()
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
@@ -22,9 +22,9 @@ def runNestedObject():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of testNestedObject")
+    logger.info("End of run_gdbc_nested_object")
 
 def run_gdbc_nested_obj_viewchange():
     logger.info('\n\nRunning test_gdbc_nested_obj_viewchange...')
@@ -56,12 +56,12 @@ def run_gdbc_nested_obj_viewchange():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_nested_obj_viewchange")
 
-def run_gdbc_complex_obj_viewchange():
-    logger.info('\n\nRunning test_gdbc_complex_obj_viewchange...')
+def run_gdbc_complex_obj_viewchange_vars():
+    logger.info('\n\nRunning run_gdbc_complex_obj_viewchange_vars...')
     query = countries()
     query.type.edges.node.region._args.code = ID("CH")
     query._args_type = ArgType.VARIABLES
@@ -94,9 +94,9 @@ def run_gdbc_complex_obj_viewchange():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_gdbc_complex_obj_viewchange")
+    logger.info("End of run_gdbc_complex_obj_viewchange_vars")
 
 def run_gdbc_nested_obj_args_vars():
     logger.info('\n\nRunning test_gdbc_nested_obj_args_vars...')
@@ -119,7 +119,7 @@ def run_gdbc_nested_obj_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_nested_obj_args_vars")
 
@@ -140,7 +140,7 @@ def run_gdbc_nested_obj_args_literal():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_nested_obj_args_literal")
 
@@ -169,7 +169,7 @@ def run_gdbc_complex_obj_args_literal():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_complex_obj_args_literal")
 
@@ -190,7 +190,7 @@ def run_gdbc_complex_obj_args_literal_2():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_complex_obj_args_literal_2")
 
@@ -217,7 +217,7 @@ def run_gdbc_complex_obj_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_complex_obj_args_vars")
 
@@ -240,7 +240,7 @@ def run_gdbc_nested_obj_viewchange_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_nested_obj_viewchange_args_vars")
 
@@ -271,7 +271,7 @@ def run_gdbc_complex_obj_viewchange_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_complex_obj_viewchange_args_vars")
 
@@ -300,6 +300,6 @@ def run_gdbc_obj_composed_args():
         gqlResponse.map_gqldata_to_obj(query.type)
         logger.info('Result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_obj_composed_args")

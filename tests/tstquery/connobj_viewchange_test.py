@@ -68,7 +68,7 @@ from ..output.gdbc.queries import currencies
 import logging as logger
 
 def run_gdbc_connobj_viewchange():
-    logger.info('\n\nRunning test_gdbc_connobj_viewchange...')
+    logger.info('\n\nRunning run_gdbc_connobj_viewchange...')
 ##STEP 1
     from pygqlmap.enums import OperationType
     from pygqlmap.components import GQLOperation
@@ -110,6 +110,6 @@ def run_gdbc_connobj_viewchange():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_gdbc_connobj_viewchange")
+    logger.info("End of run_gdbc_connobj_viewchange")

@@ -130,6 +130,6 @@ def run_gdbc_complex_obj():
 ##
 
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_gdbc_complex_obj")

@@ -61,6 +61,6 @@ def run_simple_obj():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of test_simple_obj")

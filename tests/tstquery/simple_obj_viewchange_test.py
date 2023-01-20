@@ -36,8 +36,8 @@ from ..consts import GITHUB_HEADERS, GITHUB_URL
 from ..output.github.queries import rateLimit
 import logging as logger
 
-def runSimpleOobj_viewchange():
-    logger.info('\n\nRunning testSimpleOobj_viewchange...')
+def run_simple_obj_viewchange():
+    logger.info('\n\nRunning run_simple_obj_viewchange...')
 ##STEP 2
     query = rateLimit()
     query.name = 'mySimpleQueryVisibility'
@@ -76,6 +76,6 @@ def runSimpleOobj_viewchange():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of testSimpleOobj_viewchange")
+    logger.info("End of run_simple_obj_viewchange")

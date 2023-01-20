@@ -16,7 +16,7 @@ def run_fetch_gdbc_schema():
             logger.info('Python types generated')
 
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of run_fetch_gdbc_schema")
 
@@ -31,6 +31,6 @@ def run_fetch_gdbc_schema_no_desc():
             CodeGenerator.generate_code(gqlSchema, folder='tests\\output\\gdbc_nodesc\\', add_desc=False, log_progress=True)
             logger.info('Python types generated')
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
     logger.info("End of run_fetch_gdbc_schema_no_desc")

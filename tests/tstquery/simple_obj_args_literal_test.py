@@ -33,8 +33,8 @@ from ..consts import GITHUB_HEADERS, GITHUB_URL
 from ..output.github.queries import rateLimit
 import logging as logger
 
-def run_simple_objargs_literal():
-    logger.info('\n\nRunning test_simple_objargs_literal...')
+def run_simple_obj_args_literal():
+    logger.info('\n\nRunning run_simple_obj_args_literal...')
 ##STEP 2
     query = rateLimit()
     query.name = 'mySimpleQueryArgs'
@@ -66,6 +66,6 @@ def run_simple_objargs_literal():
         logger.info('Result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_simple_objargs_literal")
+    logger.info("End of run_simple_obj_args_literal")
