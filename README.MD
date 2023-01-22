@@ -53,7 +53,7 @@ The following python files will be generated:
 * scalars.py
 * gql_simple_types.py
 * gql_types.py
-* circular_refs.py
+* type_refs.py
 * queries.py
 * mutations.py
 

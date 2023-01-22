@@ -2,6 +2,8 @@
 from os import path
 import pathlib
 
+from codegen.src.enums import TemplateType
+
 CLASS_SIGNATURE = "class %s(GQLObject)"
 INTERFACE_SIGNATURE = "class %s(%s)"
 ARGUED_CLASS_SIGNATURE = "class %s(%s)"
@@ -9,12 +11,17 @@ QUERY_SIGNATURE = "class %s(GQLQuery)"
 MUTATION_SIGNATURE = "class %s(GQLMutation)"
 ENUM_SIGNATURE = "class %s(Enum)"
 SCALAR_SIGNATURE = "%s = %s"
+TYPEVAR_SIGNATURE = "%s = TypeVar('%s', bound=%s)"
 TEMPLATE_FOLDER = str(pathlib.Path(path.dirname(__file__), 'templates').absolute())
 
-SCALARS_FILENAME = 'scalars.py'
-ENUMS_FILENAME = 'enums.py'
-TYPES_FILENAME = 'gql_types.py'
-SIMPLE_TYPES_FILENAME = 'gql_simple_types.py'
-MUTATIONS_FILENAME = 'mutations.py'
-QUERIES_FILENAME = 'queries.py'
-CIRCULARREFS_FILENAME = 'circular_refs.py'
+IMPORT_TEMPLATE = "from .%s import %s"
+
+SCALARS_FILENAME = 'scalars'
+ENUMS_FILENAME = 'enums'
+TYPES_FILENAME = 'gql_types'
+SIMPLE_TYPES_FILENAME = 'gql_simple_types'
+MUTATIONS_FILENAME = 'mutations'
+QUERIES_FILENAME = 'queries'
+TYPE_REFS_FILENAME = 'type_refs'
+
+PY_EXTENSION = '.py'

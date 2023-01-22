@@ -1,10 +1,11 @@
 from dataclasses import dataclass
+import inspect
 from .helper import handle_recursive_ex
 from .src.gql_init import _sub_class_init
 from .src.components import FSTree
 from .src.base import FieldsShow, GQLExporter, GQLBaseArgsSet
 from .src.consts import COMMA_CONCAT, ARGS_DECLARE
-from .src.utils import get_obj_class_name, PRIMITIVES, is_empty_field
+from .src.utils import check_arg_type, get_obj_class_name, PRIMITIVES, is_empty_field
 from .enums import ArgType, OperationType
 from .src.translator import Translate
 
@@ -65,28 +66,24 @@ class GQLObject(FieldsShow, GQLExporter):
         cls = dataclass(cls)
         cls.__init__ = _sub_class_init
 
-    def __post_init__(self, log_progress: bool = False):
-        self.init_fieldshow() ##still working???
-        self.log_progress = log_progress
-
 class GQLOperation(GQLExporter, GQLOperationArgs):
     name: str
-    operationType: OperationType
+    obj_type: OperationType
     fieldShowTree: FSTree
     # argumentsRetrieved: False
 
-    def __init__(self, operationType: OperationType, dataType, operationName: str = None, argsType: ArgType = ArgType.LITERAL_VALUES): #, rootName: str = None, inputFieldName: str = None
+    def __init__(self, op_type: OperationType, dataType, operationName: str = None, argsType: ArgType = ArgType.LITERAL_VALUES): #, rootName: str = None, inputFieldName: str = None
         """_summary_
 
         Args:
-            operationType (OperationType): _description_
+            op_type (OperationType): _description_
             hasArgsAsInput (bool, optional): _description_. Defaults to True.
             name (str, optional): _description_. Defaults to 'myQuery'.
             log_progress (bool, optional): _description_. Defaults to False.
         """
         self.name = operationName if operationName else ''
 
-        self.operationType = operationType
+        self.obj_type = op_type
         self.type = dataType
         self._args_type = argsType
         self.fieldsshowTree = FSTree(self.type, get_obj_class_name(self))
@@ -118,7 +115,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             str: GraphQL Query exported
         """
         try:
-            prefix = self.operationType.value + ' ' + self.name + ' '
+            prefix = self.obj_type.value + ' ' + self.name + ' '
             self.type.log_progress = self.log_progress
 
             ##Arguments of the operation are arguments of the root object

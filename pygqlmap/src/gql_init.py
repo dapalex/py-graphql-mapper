@@ -4,6 +4,7 @@ from enum import Enum
 import inspect
 import types
 from typing import Generic, NewType, TypeVar
+from pygqlmap.enums import OperationType
 from pygqlmap.gql_types import ID
 from .base import FieldsShow
 from .consts import ARGS_DECLARE, ARGUED_SIGNATURE_SUFFIX, GQL_BUILTIN
@@ -39,7 +40,6 @@ def _sub_class_init(obj, **kwargs):
         if kwargs: _init_args(obj, kwargs)
 
         if FieldsShow in inspect.getmro(type(obj)):
-            print(type(obj))
             obj.init_fieldshow()
 
         #gotta clean
@@ -159,7 +159,7 @@ def _mutation_init(obj, **kwargs):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
         from pygqlmap import GQLMutation
-        super(GQLMutation, obj).__init__(operationType=OperationType.MUTATION, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
+        super(GQLMutation, obj).__init__(op_type=OperationType.MUTATION, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
 
@@ -174,7 +174,7 @@ def _query_init(obj, **kwargs):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
         from pygqlmap import GQLQuery
-        super(GQLQuery, obj).__init__(operationType=OperationType.QUERY, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
+        super(GQLQuery, obj).__init__(op_type=OperationType.QUERY, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during Query init execution for ' + obj.__class__.__name__)
 

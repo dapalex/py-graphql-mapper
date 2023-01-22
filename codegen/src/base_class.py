@@ -1,51 +1,49 @@
 import copy
 import logging as logger
+from pygqlmap.src.consts import NON_NULL_PREFIX
 from pygqlmap.src.translator import Translate
 from .enums import TypeKind
 from .utils import gqlTypeKinds, typesByName
 
-class TypeManager():
+class SchemaTypeManager():
 
-    def compose_py_type(self) -> str:
-        is_non_null = False
+    def compose_py_type(self, is_arg: bool = False) -> str:
         is_list = False
-        is_custom_scalar = False
-        typeOutput = ''
+        type_out = ''
 
         if not self.type_defs:
             logger.error('Need to extract type definition first')
-        for typeDef in self.type_defs:
+        for type_def in self.type_defs:
             try:
-                current_sctype = Translate.to_python_type(typeDef)
-                if current_sctype == TypeKind.NON_NULL.name:
-                    is_non_null = True
+                py_type = Translate.to_python_type(type_def)
+                if py_type == TypeKind.NON_NULL.name:
+                    if is_arg: type_out += NON_NULL_PREFIX
                     continue
-                elif current_sctype == TypeKind.LIST.name:
+                elif py_type == TypeKind.LIST.name:
+                    type_out += 'List['
                     is_list = True
                     continue
 
-                typeOutput += current_sctype
+                type_out += py_type
 
             except Exception as ex:
-                raise Exception('Error during composition of type ' + typeDef + ' for ' + self.name + ' - ' + ex.args[0])
+                raise Exception('Error during composition of type ' + type_def + ' for ' + self.name + ' - ' + ex.args[0])
 
-        if is_non_null: typeOutput += ' ##NON NULL'
-        if is_list: typeOutput += ' ##LIST'
-        if is_custom_scalar: typeOutput += ' ##'+ typeDef + '##'
+        if is_list: type_out += ']'
 
         self.type_defs.clear()
-        return typeOutput, current_sctype
+        return type_out, py_type
 
-    def get_used_GQL_objnames(self, gqlTypeNameListParam:list = None):
+    def get_used_typenames(self, gqlTypeNameListParam:list = None):
         try:
             if gqlTypeNameListParam == None: gqlTypeNameListParam = []
             gqlTypeNameList = copy.deepcopy(gqlTypeNameListParam)
             if hasattr(self, 'kind') and self.kind and self.kind in gqlTypeKinds:
                 gqlTypeNameList.append(self.name)
             if hasattr(self, 'ofType') and self.ofType:
-                return self.ofType.get_used_GQL_objnames(gqlTypeNameList)
+                return self.ofType.get_used_typenames(gqlTypeNameList)
             if hasattr(self, 'type') and self.type:
-                return self.type.get_used_GQL_objnames(gqlTypeNameList)
+                return self.type.get_used_typenames(gqlTypeNameList)
         except Exception as ex:
             raise Exception('Error during etraction of used object GraphQL names' + ' - ' + ex.args[0])
 

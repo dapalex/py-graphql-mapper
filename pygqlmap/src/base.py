@@ -2,12 +2,12 @@ from abc import ABC, abstractmethod
 from dataclasses import asdict
 import inspect
 import logging as logger
-
+import typing
 from pygqlmap.helper import handle_recursive_ex
 from .consts import COMMA_CONCAT, ARGS_DECLARE
-from ..enums import ArgType
+from ..enums import ArgType, OperationType
 
-from .utils import get_obj_class_name, is_empty_field
+from .utils import check_arg_type, get_obj_class_name, is_empty_field
 from .translator import Translate
 
 class FieldsShow(ABC):

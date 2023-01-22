@@ -71,7 +71,7 @@ _generate_code_ function will create the following python files containing the G
 * gql_simple_types.py -> GraphQL object types as classes not using other object types
 * queries.py -> GraphQL query types as classes and an Enum 'Queries' having query names as name and query classes as value
 * mutations.py -> mutation classes and an Enum 'Mutations' having mutation names as name and mutation classes as value
-* circular_refs.py -> Only in case of objects containing recursive references this file will contain references to their types
+* type_refs.py -> Only in case of objects containing recursive references this file will contain references to their types
 
 
 ## Usage via command line

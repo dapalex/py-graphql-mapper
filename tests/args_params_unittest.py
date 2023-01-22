@@ -6,7 +6,6 @@ from pygqlmap.network import GQLResponse
 import requests
 from pygqlmap.gql_types import ID
 from pygqlmap.helper import mapConfig
-from .output.gdbc.gql_types import GVHZJ_CountryRegion_Field
 from .consts import GDBC_HEADERS, GDBC_URL
 from .output.gdbc.queries import country, currencies, countries
 import logging as logger
@@ -62,7 +61,7 @@ def run_complex_obj_args_literal():
     from .output.gdbc.enums import IncludeDeletedFilterType
     query = countries(currencyCode='CNY')
     # query._args.currencyCode = 'CNY'
-    query.type.edges.node.region = GVHZJ_CountryRegion_Field(code="CH")
+    query.type.edges.node.region = type(query.type.edges.node.region)(code="CH")
     # query.type.edges.node.region._args.code = "CH"
     if int(mapConfig["recursionDepth"]) > 0:
         query.type.edges.node.region.populatedPlaces._args.includeDeleted = IncludeDeletedFilterType.SINCE_LAST_WEEK
@@ -194,7 +193,7 @@ def run_obj_composed_args_literal():
         disp_opt.language = Language.EN
         query = country(id = ID('CH'), displayOptions = disp_opt)
         query.log_progress=True
-        query.type.region = GVHZJ_CountryRegion_Field(code = 'Q12094')
+        query.type.region = type(query.type.region)(code = 'Q12094')
 
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 
@@ -223,7 +222,7 @@ def run_obj_composed_args_vars():
         query = country(id = ID('CH'), displayOptions = disp_opt)
         query._args_type = ArgType.VARIABLES
         query.log_progress=True
-        query.type.region = GVHZJ_CountryRegion_Field(code = 'Q12094')
+        query.type.region = type(query.type.region)(code = 'Q12094')
 
         logger.info('gqlSource GQL version: ' + query.export_gql_source)
 

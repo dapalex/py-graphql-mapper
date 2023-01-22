@@ -1,6 +1,6 @@
 import pathlib
 from .utils import get_valid_folder
-from .consts import CIRCULARREFS_FILENAME, ENUMS_FILENAME, MUTATIONS_FILENAME, QUERIES_FILENAME, SCALARS_FILENAME, SIMPLE_TYPES_FILENAME, TEMPLATE_FOLDER, TYPES_FILENAME
+from .consts import PY_EXTENSION, TYPE_REFS_FILENAME, ENUMS_FILENAME, MUTATIONS_FILENAME, QUERIES_FILENAME, SCALARS_FILENAME, SIMPLE_TYPES_FILENAME, TEMPLATE_FOLDER, TYPES_FILENAME
 import os
 import logging as logger
 from .enums import TemplateType
@@ -11,7 +11,7 @@ class Printer():
     extractionResults: ExtractionResults
 
     def __init__(self, extractionResults) -> None:
-        self.extractionResults = extractionResults
+        self.extraction_results = extractionResults
 
     def save_files(self, folder: str):
         try:
@@ -19,109 +19,39 @@ class Printer():
                 folder = get_valid_folder(folder)
             else:
                 logger.warning('Destination folder missing')
-
-            self.save_scalars_file(str(pathlib.Path(folder, SCALARS_FILENAME).absolute()))
-            self.save_enums_file(str(pathlib.Path(folder, ENUMS_FILENAME).absolute()))
-            self.save_simple_types_file(str(pathlib.Path(folder, SIMPLE_TYPES_FILENAME).absolute()))
-            self.save_types_file(str(pathlib.Path(folder, TYPES_FILENAME).absolute()))
-            self.save_queries_file(str(pathlib.Path(folder, QUERIES_FILENAME).absolute()))
-            self.save_mutations_file(str(pathlib.Path(folder, MUTATIONS_FILENAME).absolute()))
-            self.save_circular_refs_file(str(pathlib.Path(folder, CIRCULARREFS_FILENAME).absolute()))
+            self.save_file(TemplateType.SCALAR_TEMPLATE, str(pathlib.Path(folder, SCALARS_FILENAME + PY_EXTENSION).absolute()), 'scalar_defs')
+            self.save_file(TemplateType.ENUM_TEMPLATE, str(pathlib.Path(folder, ENUMS_FILENAME + PY_EXTENSION).absolute()), 'enum_classes')
+            self.save_file(TemplateType.FREE_TYPE_TEMPLATE, str(pathlib.Path(folder, SIMPLE_TYPES_FILENAME + PY_EXTENSION).absolute()), 'simple_type_classes')
+            self.save_file(TemplateType.TYPE_TEMPLATE, str(pathlib.Path(folder, TYPES_FILENAME + PY_EXTENSION).absolute()), 'type_classes')
+            self.save_operation_file(TemplateType.QUERY_TEMPLATE, str(pathlib.Path(folder, QUERIES_FILENAME + PY_EXTENSION).absolute()), ('query_classes', 'queries_enum_class'))
+            self.save_operation_file(TemplateType.MUTATION_TEMPLATE, str(pathlib.Path(folder, MUTATIONS_FILENAME + PY_EXTENSION).absolute()), ('mutation_classes', 'mutations_enum_class'))
+            self.save_file(TemplateType.TYPE_REFS_TEMPLATE, str(pathlib.Path(folder, TYPE_REFS_FILENAME + PY_EXTENSION).absolute()), 'type_refs')
         except Exception as ex:
             raise ex
 
-    def save_scalars_file(self, fileName):
+    def save_file(self, enum_template, file_name, attr_name_result):
         """For internal use"""
         try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.SCALAR_TEMPLATE.value))
+            with open(file_name, 'w', encoding='UTF-8') as wrapper:
+                wrapper.write(self.load_template_code(enum_template.value))
                 wrapper.write('\n')
-                for scalarDefinition in self.extractionResults.scalarDefinitions.values():
-                    self.write_class_line_code(scalarDefinition, wrapper)
-                wrapper.write('\n')
+                for curr_class in getattr(self.extraction_results, attr_name_result).values():
+                    self.write_class_code(curr_class, wrapper)
         except Exception as ex:
             raise ex
 
-    def save_enums_file(self, fileName):
+    def save_operation_file(self, enum_template, file_name, attr_name_results):
         """For internal use"""
         try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.ENUM_TEMPLATE.value))
+            with open(file_name, 'w', encoding='UTF-8') as wrapper:
+                wrapper.write(self.load_template_code(enum_template.value))
                 wrapper.write('\n')
-                for enumClass in self.extractionResults.enumClasses.values():
-                    self.write_class_code(enumClass, wrapper)
-                wrapper.write('\n')
-        except Exception as ex:
-            raise ex
-
-    def save_simple_types_file(self, fileName):
-        """For internal use"""
-        try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.FREE_TYPE_TEMPLATE.value))
-                wrapper.write('\n')
-                for simpleTypeClass in self.extractionResults.simpleTypeClasses.values():
-                    self.write_class_code(simpleTypeClass, wrapper)
-        except Exception as ex:
-            raise ex
-
-    def save_types_file(self, fileName):
-        """For internal use"""
-        try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.TYPE_TEMPLATE.value))
-                wrapper.write('\n')
-                for typeClass in self.extractionResults.typeClasses.values():
-                    self.write_class_code(typeClass, wrapper)
-        except Exception as ex:
-            raise ex
-
-    def save_queries_file(self, fileName):
-        try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.QUERY_TEMPLATE.value))
-                wrapper.write('\n')
-                for queryClass in self.extractionResults.queryClasses.values():
-                    self.write_class_code(queryClass, wrapper)
-                if self.extractionResults.queryClasses:
+                for curr_class in getattr(self.extraction_results, attr_name_results[0]).values():
+                    self.write_class_code(curr_class, wrapper)
+                if getattr(self.extraction_results, attr_name_results[0]):
                     wrapper.write('\n')
-                    for queriesEnum in self.extractionResults.queriesEnumClass.values():
+                    for queriesEnum in getattr(self.extraction_results, attr_name_results[1]).values():
                         self.write_class_code(queriesEnum, wrapper)
-        except Exception as ex:
-            raise ex
-
-    def save_mutations_file(self, fileName):
-        """For internal use"""
-        try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.MUTATION_TEMPLATE.value))
-                wrapper.write('\n')
-                for nutationClass in self.extractionResults.mutationClasses.values():
-                    self.write_class_code(nutationClass, wrapper)
-                if self.extractionResults.mutationClasses:
-                    wrapper.write('\n')
-                    for mutationsEnum in self.extractionResults.mutationsEnumClass.values():
-                        self.write_class_code(mutationsEnum, wrapper)
-        except Exception as ex:
-            raise ex
-
-    def save_circular_refs_file(self, fileName):
-        """For internal use"""
-        try:
-            with open(fileName, 'w', encoding='UTF-8') as wrapper:
-                wrapper.write(self.load_template_code(TemplateType.CIRCULAR_REFS_TEMPLATE.value))
-                wrapper.write('\n')
-                for circularRef in self.extractionResults.circularRefs.values():
-                    self.write_class_line_code(circularRef, wrapper)
-                wrapper.write('\n')
-        except Exception as ex:
-            raise ex
-
-    def write_class_line_code(self, codeLine, wrapper):
-        """For internal use"""
-        try:
-            wrapper.write('\n')
-            wrapper.writelines("%s\n"  %codeLine)
         except Exception as ex:
             raise ex
 

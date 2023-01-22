@@ -1,10 +1,11 @@
 
 import inspect
+import typing
 import keyword
 from enum import Enum
 import logging as logger
 from pygqlmap.helper import handle_recursive_ex
-from .utils import execute_regex, is_empty_field
+from .utils import check_arg_type, execute_regex, is_empty_field
 from pygqlmap.gql_types import ID
 from .consts import COMMA_CONCAT
 
@@ -19,17 +20,17 @@ switchStrType = {
 
 class Translate():
 
-    def to_graphql_field_name(pyVariableName: str):
+    def to_graphql_field_name(py_var_name: str):
         try:
-            return pyVariableName if not pyVariableName.endswith('_') and pyVariableName.removesuffix('_') not in keyword.kwlist else  pyVariableName.removesuffix('_')
+            return py_var_name if not py_var_name.endswith('_') and py_var_name.removesuffix('_') not in keyword.kwlist else  py_var_name.removesuffix('_')
         except Exception as ex:
-            raise handle_recursive_ex(ex, 'Error during formatting of graphql field name for ' + pyVariableName)
+            raise handle_recursive_ex(ex, 'Error during formatting of graphql field name for ' + py_var_name)
 
-    def to_python_var_name(gqlFieldName):
+    def to_python_var_name(gql_field_name):
         try:
-            return gqlFieldName if gqlFieldName not in keyword.kwlist else gqlFieldName + '_'
+            return gql_field_name if gql_field_name not in keyword.kwlist else gql_field_name + '_'
         except Exception as ex:
-            raise handle_recursive_ex(ex, 'Error during formatting of python variable name for ' + gqlFieldName)
+            raise handle_recursive_ex(ex, 'Error during formatting of python variable name for ' + gql_field_name)
 
     def to_graphql_value(pyVariable):
         try:
@@ -90,6 +91,8 @@ class Translate():
             return 'Boolean'
         elif isinstance(pyVariable, int):
             return 'Int'
+        elif isinstance(pyVariable, list): #when calling to_graphql_type non null object is already expected
+            return '[' + Translate.to_graphql_type(pyVariable[0]) + ']'
         elif isinstance(pyVariable, type): #should never get in
             return 'Type'
         elif isinstance(pyVariable, dict):

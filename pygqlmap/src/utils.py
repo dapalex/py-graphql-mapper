@@ -1,9 +1,11 @@
 import inspect
+import typing
 import logging as logger
 import re
 import sys
 from enum import Enum
 from pygqlmap.gql_types import ID
+from pygqlmap.helper import handle_recursive_ex
 from .consts import PRIMITIVES
 
 stdOut = sys.stdout
@@ -79,3 +81,28 @@ def execute_regex(dataInput):
     ret = ret.replace('\'', ' ').replace(',', ' ')
     ret = ret.replace('[', ' ').replace(']', ' ')
     return ret
+
+def check_arg_type(obj_type, obj, field_name):
+    is_ok = True
+    warn_el_msg = 'Argument element in %s of type %s differs from alias %s'
+    warn_msg = 'Argument %s of type %s differs from alias %s'
+    try:
+        if type(obj_type) == typing._GenericAlias:
+            if obj_type.__args__:
+                for arg_type in obj_type.__args__:
+                    for element in obj:
+                        curr_ok = arg_type == type(element)
+                        if not curr_ok:
+                            logger.warning(warn_el_msg%(field_name, element.__class__.__name__, arg_type.__name__))
+                        is_ok &= curr_ok
+            curr_ok = obj_type.__origin__ == type(obj)
+            if not curr_ok:
+                logger.warning(warn_msg%(field_name, obj_type.__class__.__name__, obj_type.__origin__))
+            return is_ok & curr_ok
+        else:
+            is_ok = type(obj) == obj_type
+            if not is_ok:
+                logger.warning(warn_msg%(field_name, type(obj).__name__, obj_type.__name__))
+            return is_ok
+    except Exception as ex:
+        handle_recursive_ex(ex, 'Error during check of argument type' + field_name)
