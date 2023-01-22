@@ -30,33 +30,32 @@ URI = str
 
 X509Certificate = str
 
-isRequired = str
+isRequired = bool
 
-trackedIssuesCount = str
+trackedIssuesCount = int
 
 viewerMergeBodyText = str
 
 viewerMergeHeadlineText = str
 
-totalIssueContributions = str
+totalIssueContributions = int
 
-totalPullRequestContributions = str
+totalPullRequestContributions = int
 
-totalRepositoriesWithContributedIssues = str
+totalRepositoriesWithContributedIssues = int
 
-totalRepositoriesWithContributedPullRequests = str
+totalRepositoriesWithContributedPullRequests = int
 
-totalRepositoryContributions = str
+totalRepositoryContributions = int
 
 text = str
 
-isSponsoredBy = str
+isSponsoredBy = bool
 
 totalSponsorshipAmountAsSponsorInCents = int
 
-anyPinnableItems = str
+anyPinnableItems = bool
 
-canReceiveOrganizationEmailsWhenNotificationsRestricted = str
+canReceiveOrganizationEmailsWhenNotificationsRestricted = bool
 
 organizationVerifiedDomainEmails = str
-

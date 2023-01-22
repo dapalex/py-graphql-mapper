@@ -30,33 +30,32 @@ URI = str ##An RFC 3986, RFC 3987, and RFC 6570 (level 4) compliant URI string.
 
 X509Certificate = str ##A valid x509 certificate string
 
-isRequired = str ##Whether this is required to pass before merging for a specific pull request.
+isRequired = bool ##Whether this is required to pass before merging for a specific pull request.
 
-trackedIssuesCount = str ##The number of tracked issues for this issue
+trackedIssuesCount = int ##The number of tracked issues for this issue
 
 viewerMergeBodyText = str ##The merge body text for the viewer and method.
 
 viewerMergeHeadlineText = str ##The merge headline text for the viewer and method.
 
-totalIssueContributions = str ##How many issues the user opened.
+totalIssueContributions = int ##How many issues the user opened.
 
-totalPullRequestContributions = str ##How many pull requests the user opened.
+totalPullRequestContributions = int ##How many pull requests the user opened.
 
-totalRepositoriesWithContributedIssues = str ##How many different repositories the user opened issues in.
+totalRepositoriesWithContributedIssues = int ##How many different repositories the user opened issues in.
 
-totalRepositoriesWithContributedPullRequests = str ##How many different repositories the user opened pull requests in.
+totalRepositoriesWithContributedPullRequests = int ##How many different repositories the user opened pull requests in.
 
-totalRepositoryContributions = str ##How many repositories the user created.
+totalRepositoryContributions = int ##How many repositories the user created.
 
 text = str ##UTF8 text data or null if the file is binary
 
-isSponsoredBy = str ##Whether the given account is sponsoring this user/organization.
+isSponsoredBy = bool ##Whether the given account is sponsoring this user/organization.
 
 totalSponsorshipAmountAsSponsorInCents = int ##The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
-anyPinnableItems = str ##Determine if this repository owner has any items that can be pinned to their profile.
+anyPinnableItems = bool ##Determine if this repository owner has any items that can be pinned to their profile.
 
-canReceiveOrganizationEmailsWhenNotificationsRestricted = str ##Could this user receive email notifications, if the organization had notification restrictions enabled?
+canReceiveOrganizationEmailsWhenNotificationsRestricted = bool ##Could this user receive email notifications, if the organization had notification restrictions enabled?
 
 organizationVerifiedDomainEmails = str ##Verified email addresses that match verified domains for a specified organization the user is a member of.
-

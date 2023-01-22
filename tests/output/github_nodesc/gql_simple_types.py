@@ -1,11 +1,12 @@
-from typing import Generic
+from typing import Generic, List
 from pygqlmap.components import GQLArgsSet, GQLObject
 from pygqlmap.gql_types import ID
 from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
+from .type_refs import *
 
-class MSGVM_anyPinnableItems_Field(ArguedStr):
+class PUSYG_anyPinnableItems_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -13,7 +14,7 @@ class MSGVM_anyPinnableItems_Field(ArguedStr):
 
 
 
-class TJVRC_URI_Field(ArguedStr):
+class BMYZQ_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -21,7 +22,7 @@ class TJVRC_URI_Field(ArguedStr):
 
 
 
-class HBAFW_URI_Field(ArguedStr):
+class IWAYC_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -29,7 +30,7 @@ class HBAFW_URI_Field(ArguedStr):
 
 
 
-class ORJKN_URI_Field(ArguedStr):
+class MLLJL_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -37,7 +38,7 @@ class ORJKN_URI_Field(ArguedStr):
 
 
 
-class FTXDT_HTML_Field(ArguedStr):
+class BBQKL_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -45,7 +46,7 @@ class FTXDT_HTML_Field(ArguedStr):
 
 
 
-class JLOKY_URI_Field(ArguedStr):
+class GWWQI_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -53,25 +54,25 @@ class JLOKY_URI_Field(ArguedStr):
 
 
 
-class LZIYN_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class KBKBD_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
-      sponsorableLogins: str ##NON NULL ##LIST
+      sponsorableLogins: List[NonNull_str]
 
    _args: intArgs
 
 
 
-class GPALG_isSponsoredBy_Field(ArguedStr):
+class KWXXP_isSponsoredBy_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
-      accountLogin: str ##NON NULL
+      accountLogin: NonNull_str
 
    _args: boolArgs
 
 
 
-class UWBRN_URI_Field(ArguedStr):
+class AWKTV_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -79,7 +80,7 @@ class UWBRN_URI_Field(ArguedStr):
 
 
 
-class MWOGX_anyPinnableItems_Field(ArguedStr):
+class NHSYI_anyPinnableItems_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -87,41 +88,41 @@ class MWOGX_anyPinnableItems_Field(ArguedStr):
 
 
 
-class LFTAX_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class CHXWB_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
-      sponsorableLogins: str ##NON NULL ##LIST
+      sponsorableLogins: List[NonNull_str]
 
    _args: intArgs
 
 
 
-class HZJGF_organizationVerifiedDomainEmails_Field(ArguedStr):
+class LVZUA_organizationVerifiedDomainEmails_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
-      login: str ##NON NULL
+      login: NonNull_str
 
    _args: strArgs
 
 
 
-class EVSPT_isSponsoredBy_Field(ArguedStr):
+class NINRK_isSponsoredBy_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
-      accountLogin: str ##NON NULL
+      accountLogin: NonNull_str
 
    _args: boolArgs
 
 
 
-class UIDAJ_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedStr):
+class LSBYR_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
-      login: str ##NON NULL
+      login: NonNull_str
 
    _args: boolArgs
 
 
 
-class DIIPC_URI_Field(ArguedStr):
+class GUIQB_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -129,7 +130,7 @@ class DIIPC_URI_Field(ArguedStr):
 
 
 
-class SINEE_anyPinnableItems_Field(ArguedStr):
+class KJGPN_anyPinnableItems_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       type: PinnableItemType
 
@@ -137,25 +138,25 @@ class SINEE_anyPinnableItems_Field(ArguedStr):
 
 
 
-class DSPLM_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class OHTXO_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       since: DateTime
       until: DateTime
-      sponsorableLogins: str ##NON NULL ##LIST
+      sponsorableLogins: List[NonNull_str]
 
    _args: intArgs
 
 
 
-class AKCHQ_isSponsoredBy_Field(ArguedStr):
+class IYJXM_isSponsoredBy_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
-      accountLogin: str ##NON NULL
+      accountLogin: NonNull_str
 
    _args: boolArgs
 
 
 
-class VWJNV_text_Field(ArguedStr):
+class VQAXJ_text_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       truncate: int
 
@@ -163,7 +164,7 @@ class VWJNV_text_Field(ArguedStr):
 
 
 
-class NZJSI_totalRepositoryContributions_Field(ArguedStr):
+class QXALC_totalRepositoryContributions_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
 
@@ -171,16 +172,7 @@ class NZJSI_totalRepositoryContributions_Field(ArguedStr):
 
 
 
-class HRCTA_totalRepositoriesWithContributedPullRequests_Field(ArguedStr):
-   class intArgs(GQLArgsSet, GQLObject): 
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class RJUED_totalRepositoriesWithContributedIssues_Field(ArguedStr):
+class CAUAU_totalRepositoriesWithContributedPullRequests_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -189,7 +181,7 @@ class RJUED_totalRepositoriesWithContributedIssues_Field(ArguedStr):
 
 
 
-class GIHDK_totalPullRequestContributions_Field(ArguedStr):
+class CGYKV_totalRepositoriesWithContributedIssues_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -198,7 +190,7 @@ class GIHDK_totalPullRequestContributions_Field(ArguedStr):
 
 
 
-class VMTSN_totalIssueContributions_Field(ArguedStr):
+class KIURP_totalPullRequestContributions_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
       excludeFirst: bool
       excludePopular: bool
@@ -207,7 +199,16 @@ class VMTSN_totalIssueContributions_Field(ArguedStr):
 
 
 
-class YFODI_isRequired_Field(ArguedStr):
+class ZQJDY_totalIssueContributions_Field(ArguedInt):
+   class intArgs(GQLArgsSet, GQLObject): 
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class JNDTD_isRequired_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -216,7 +217,7 @@ class YFODI_isRequired_Field(ArguedStr):
 
 
 
-class SKVKT_URI_Field(ArguedStr):
+class BEVOT_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -224,7 +225,7 @@ class SKVKT_URI_Field(ArguedStr):
 
 
 
-class PIIPV_isRequired_Field(ArguedStr):
+class PBIXJ_isRequired_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -233,7 +234,7 @@ class PIIPV_isRequired_Field(ArguedStr):
 
 
 
-class ORQWG_URI_Field(ArguedStr):
+class XFNPM_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -241,7 +242,7 @@ class ORQWG_URI_Field(ArguedStr):
 
 
 
-class ZXXPI_viewerMergeHeadlineText_Field(ArguedStr):
+class SGJGT_viewerMergeHeadlineText_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
@@ -249,7 +250,7 @@ class ZXXPI_viewerMergeHeadlineText_Field(ArguedStr):
 
 
 
-class TSZQD_viewerMergeBodyText_Field(ArguedStr):
+class CURZJ_viewerMergeBodyText_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject): 
       mergeType: PullRequestMergeMethod
 
@@ -257,7 +258,7 @@ class TSZQD_viewerMergeBodyText_Field(ArguedStr):
 
 
 
-class NCDPQ_URI_Field(ArguedStr):
+class MFHFG_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -265,15 +266,15 @@ class NCDPQ_URI_Field(ArguedStr):
 
 
 
-class SIBWG_trackedIssuesCount_Field(ArguedStr):
+class YUMDW_trackedIssuesCount_Field(ArguedInt):
    class intArgs(GQLArgsSet, GQLObject): 
-      states: TrackedIssueStates ##LIST
+      states: List[TrackedIssueStates]
 
    _args: intArgs
 
 
 
-class AUIAN_HTML_Field(ArguedStr):
+class FXDLW_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -281,7 +282,7 @@ class AUIAN_HTML_Field(ArguedStr):
 
 
 
-class JCZSB_URI_Field(ArguedStr):
+class JVHVU_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -289,7 +290,7 @@ class JCZSB_URI_Field(ArguedStr):
 
 
 
-class EJYWO_HTML_Field(ArguedStr):
+class EHDOK_HTML_Field(ArguedStr):
    class HTMLArgs(GQLArgsSet, GQLObject): 
       limit: int
 
@@ -297,7 +298,7 @@ class EJYWO_HTML_Field(ArguedStr):
 
 
 
-class QZJYU_URI_Field(ArguedStr):
+class MNFYQ_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -306,24 +307,24 @@ class QZJYU_URI_Field(ArguedStr):
 
 
 class WorkflowRunOrder(GQLObject):
-   field: WorkflowRunOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: WorkflowRunOrderField
+   direction: OrderDirection
 
 class VerifyVerifiableDomainInput(GQLObject):
-   id: ID ##NON NULL
+   id: ID
    clientMutationId: str
 
 class UserStatusOrder(GQLObject):
-   field: UserStatusOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: UserStatusOrderField
+   direction: OrderDirection
 
 class UpdateTopicsInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   topicNames: str ##NON NULL ##LIST
+   repositoryId: ID
+   topicNames: List[str]
    clientMutationId: str
 
 class UpdateTeamDiscussionInput(GQLObject):
-   id: ID ##NON NULL
+   id: ID
    title: str
    body: str
    bodyVersion: str
@@ -331,33 +332,33 @@ class UpdateTeamDiscussionInput(GQLObject):
    clientMutationId: str
 
 class UpdateSubscriptionInput(GQLObject):
-   subscribableId: ID ##NON NULL
-   state: SubscriptionState ##NON NULL
+   subscribableId: ID
+   state: SubscriptionState
    clientMutationId: str
 
 class UpdateRepositoryWebCommitSignoffSettingInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   webCommitSignoffRequired: bool ##NON NULL
+   repositoryId: ID
+   webCommitSignoffRequired: bool
    clientMutationId: str
 
 class UpdateRefInput(GQLObject):
-   refId: ID ##NON NULL
-   oid: GitObjectID ##NON NULL
+   refId: ID
+   oid: GitObjectID
    force: bool
    clientMutationId: str
 
 class UpdatePullRequestReviewCommentInput(GQLObject):
-   pullRequestReviewCommentId: ID ##NON NULL
-   body: str ##NON NULL
+   pullRequestReviewCommentId: ID
+   body: str
    clientMutationId: str
 
 class UpdatePullRequestBranchInput(GQLObject):
-   pullRequestId: ID ##NON NULL
+   pullRequestId: ID
    expectedHeadOid: GitObjectID
    clientMutationId: str
 
 class UpdateProjectV2Input(GQLObject):
-   projectId: ID ##NON NULL
+   projectId: ID
    title: str
    shortDescription: str
    readme: str
@@ -365,252 +366,247 @@ class UpdateProjectV2Input(GQLObject):
    public: bool
    clientMutationId: str
 
-class UpdateProjectNextItemFieldInput(GQLObject):
-   projectId: ID
-   itemId: ID
-   fieldId: ID
-   fieldWithSettingId: ID
-   fieldConstraintId: ID
-   value: str
-   clientMutationId: str
-
 class UpdateProjectInput(GQLObject):
-   projectId: ID ##NON NULL
+   projectId: ID
    name: str
    body: str
    state: ProjectState
    public: bool
    clientMutationId: str
 
-class UpdateProjectColumnInput(GQLObject):
-   projectColumnId: ID ##NON NULL
-   name: str ##NON NULL
+class UpdateProjectCardInput(GQLObject):
+   projectCardId: ID
+   isArchived: bool
+   note: str
    clientMutationId: str
 
-class UpdateOrganizationWebCommitSignoffSettingInput(GQLObject):
-   organizationId: ID ##NON NULL
-   webCommitSignoffRequired: bool ##NON NULL
+class UpdateOrganizationAllowPrivateRepositoryForkingSettingInput(GQLObject):
+   organizationId: ID
+   forkingEnabled: bool
    clientMutationId: str
 
-class UpdateNotificationRestrictionSettingInput(GQLObject):
-   ownerId: ID ##NON NULL
-   settingValue: NotificationRestrictionSettingValue ##NON NULL
+class UpdateIssueInput(GQLObject):
+   id: ID
+   title: str
+   body: str
+   assigneeIds: List[ID]
+   milestoneId: ID
+   labelIds: List[ID]
+   state: IssueState
+   projectIds: List[ID]
    clientMutationId: str
 
-class UpdateIssueCommentInput(GQLObject):
-   id: ID ##NON NULL
-   body: str ##NON NULL
+class UpdateIpAllowListForInstalledAppsEnabledSettingInput(GQLObject):
+   ownerId: ID
+   settingValue: IpAllowListForInstalledAppsEnabledSettingValue
    clientMutationId: str
 
-class UpdateIpAllowListEntryInput(GQLObject):
-   ipAllowListEntryId: ID ##NON NULL
-   allowListValue: str ##NON NULL
-   name: str
-   isActive: bool ##NON NULL
+class UpdateIpAllowListEnabledSettingInput(GQLObject):
+   ownerId: ID
+   settingValue: IpAllowListEnabledSettingValue
    clientMutationId: str
 
-class UpdateEnvironmentInput(GQLObject):
-   environmentId: ID ##NON NULL
-   waitTimer: int
-   reviewers: ID ##NON NULL ##LIST
+class UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledSettingValue
    clientMutationId: str
 
-class UpdateEnterpriseTeamDiscussionsSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseEnabledDisabledSettingValue ##NON NULL
+class UpdateEnterpriseRepositoryProjectsSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
    clientMutationId: str
 
-class UpdateEnterpriseProfileInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   name: str
-   description: str
-   websiteUrl: str
-   location: str
-   clientMutationId: str
-
-class UpdateEnterpriseOwnerOrganizationRoleInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   organizationId: ID ##NON NULL
-   organizationRole: RoleInOrganization ##NON NULL
-   clientMutationId: str
-
-class UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseEnabledDisabledSettingValue ##NON NULL
-   clientMutationId: str
-
-class UpdateEnterpriseMembersCanMakePurchasesSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseMembersCanMakePurchasesSettingValue ##NON NULL
-   clientMutationId: str
-
-class UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseEnabledDisabledSettingValue ##NON NULL
-   clientMutationId: str
-
-class UpdateEnterpriseMembersCanCreateRepositoriesSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseMembersCanCreateRepositoriesSettingValue
-   membersCanCreateRepositoriesPolicyEnabled: bool
-   membersCanCreatePublicRepositories: bool
-   membersCanCreatePrivateRepositories: bool
-   membersCanCreateInternalRepositories: bool
-   clientMutationId: str
-
-class UpdateEnterpriseDefaultRepositoryPermissionSettingInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   settingValue: EnterpriseDefaultRepositoryPermissionSettingValue ##NON NULL
-   clientMutationId: str
-
-class UpdateEnterpriseAdministratorRolePayload(GQLObject):
+class UpdateEnterpriseOwnerOrganizationRolePayload(GQLObject):
    clientMutationId: str
    message: str
 
-class UpdateDiscussionInput(GQLObject):
-   discussionId: ID ##NON NULL
-   title: str
+class UpdateEnterpriseOrganizationProjectsSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   clientMutationId: str
+
+class UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   clientMutationId: str
+
+class UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   clientMutationId: str
+
+class UpdateEnterpriseMembersCanDeleteIssuesSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   clientMutationId: str
+
+class UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   clientMutationId: str
+
+class UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput(GQLObject):
+   enterpriseId: ID
+   settingValue: EnterpriseEnabledDisabledSettingValue
+   policyValue: EnterpriseAllowPrivateRepositoryForkingPolicyValue
+   clientMutationId: str
+
+class UpdateEnterpriseAdministratorRoleInput(GQLObject):
+   enterpriseId: ID
+   login: str
+   role: EnterpriseAdministratorRole
+   clientMutationId: str
+
+class UpdateDiscussionCommentInput(GQLObject):
+   commentId: ID
    body: str
-   categoryId: ID
    clientMutationId: str
 
-class UpdatableComment(GQLObject):
-   viewerCannotUpdateReasons: CommentCannotUpdateReason ##NON NULL
+class Updatable(GQLObject):
+   viewerCanUpdate: bool
 
-class UnresolveReviewThreadInput(GQLObject):
-   threadId: ID ##NON NULL
+class UnpinIssueInput(GQLObject):
+   issueId: ID
    clientMutationId: str
 
-class UnminimizeCommentInput(GQLObject):
-   subjectId: ID ##NON NULL
+class UnmarkIssueAsDuplicateInput(GQLObject):
+   duplicateId: ID
+   canonicalId: ID
    clientMutationId: str
 
-class UnmarkFileAsViewedInput(GQLObject):
-   pullRequestId: ID ##NON NULL
-   path: str ##NON NULL
+class UnmarkDiscussionCommentAsAnswerInput(GQLObject):
+   id: ID
    clientMutationId: str
 
-class UnlockLockableInput(GQLObject):
-   lockableId: ID ##NON NULL
+class UnlinkRepositoryFromProjectInput(GQLObject):
+   projectId: ID
+   repositoryId: ID
    clientMutationId: str
 
-class UnlinkProjectV2FromTeamInput(GQLObject):
-   projectId: ID ##NON NULL
-   teamId: ID ##NON NULL
+class UnlinkProjectV2FromRepositoryInput(GQLObject):
+   projectId: ID
+   repositoryId: ID
    clientMutationId: str
 
-class UniformResourceLocatable(GQLObject):
-   resourcePath: URI ##NON NULL
-   url: URI ##NON NULL
-
-class UnfollowOrganizationInput(GQLObject):
-   organizationId: ID ##NON NULL
+class UnfollowUserInput(GQLObject):
+   userId: ID
    clientMutationId: str
 
-class UnarchiveProjectV2ItemInput(GQLObject):
-   projectId: ID ##NON NULL
-   itemId: ID ##NON NULL
+class UnarchiveRepositoryInput(GQLObject):
+   repositoryId: ID
    clientMutationId: str
 
-class TransferEnterpriseOrganizationInput(GQLObject):
-   organizationId: ID ##NON NULL
-   destinationEnterpriseId: ID ##NON NULL
+class TransferIssueInput(GQLObject):
+   issueId: ID
+   repositoryId: ID
+   createLabelsIfMissing: bool
    clientMutationId: str
 
-class TeamRepositoryOrder(GQLObject):
-   field: TeamRepositoryOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class TextMatchHighlight(GQLObject):
+   beginIndice: int
+   endIndice: int
+   text: str
 
-class TeamMemberOrder(GQLObject):
-   field: TeamMemberOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class TeamOrder(GQLObject):
+   field: TeamOrderField
+   direction: OrderDirection
 
-class TeamDiscussionCommentOrder(GQLObject):
-   field: TeamDiscussionCommentOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class TeamDiscussionOrder(GQLObject):
+   field: TeamDiscussionOrderField
+   direction: OrderDirection
 
-class Submodule(GQLObject):
-   branch: str
-   gitUrl: URI ##NON NULL
-   name: str ##NON NULL
-   nameRaw: Base64String ##NON NULL
-   path: str ##NON NULL
-   pathRaw: Base64String ##NON NULL
-   subprojectCommitOid: GitObjectID
+class Subscribable(GQLObject):
+   id: ID
+   viewerCanSubscribe: bool
+   viewerSubscription: SubscriptionState
 
-class StatusContextStateCount(GQLObject):
-   count: int ##NON NULL
-   state: StatusState ##NON NULL
-
-class StartOrganizationMigrationInput(GQLObject):
-   sourceOrgUrl: URI ##NON NULL
-   targetOrgName: str ##NON NULL
-   targetEnterpriseId: ID ##NON NULL
-   sourceAccessToken: str ##NON NULL
+class SubmitPullRequestReviewInput(GQLObject):
+   pullRequestId: ID
+   pullRequestReviewId: ID
+   event: PullRequestReviewEvent
+   body: str
    clientMutationId: str
 
-class SponsorshipOrder(GQLObject):
-   field: SponsorshipOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class StartRepositoryMigrationInput(GQLObject):
+   sourceId: ID
+   ownerId: ID
+   sourceRepositoryUrl: URI
+   repositoryName: str
+   continueOnError: bool
+   gitArchiveUrl: str
+   metadataArchiveUrl: str
+   accessToken: str
+   githubPat: str
+   skipReleases: bool
+   targetRepoVisibility: str
+   lockSource: bool
+   clientMutationId: str
 
-class SponsorsTierOrder(GQLObject):
-   field: SponsorsTierOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class StarOrder(GQLObject):
+   field: StarOrderField
+   direction: OrderDirection
 
-class SponsorsActivityOrder(GQLObject):
-   field: SponsorsActivityOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class SponsorshipNewsletterOrder(GQLObject):
+   field: SponsorshipNewsletterOrderField
+   direction: OrderDirection
 
-class SponsorOrder(GQLObject):
-   field: SponsorOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+class SponsorsGoal(GQLObject):
+   description: str
+   kind: SponsorsGoalKind
+   percentComplete: int
+   targetValue: int
+   title: str
+
+class SponsorableOrder(GQLObject):
+   field: SponsorableOrderField
+   direction: OrderDirection
 
 class SetUserInteractionLimitInput(GQLObject):
-   userId: ID ##NON NULL
-   limit: RepositoryInteractionLimit ##NON NULL
+   userId: ID
+   limit: RepositoryInteractionLimit
    expiry: RepositoryInteractionLimitExpiry
    clientMutationId: str
 
 class SetOrganizationInteractionLimitInput(GQLObject):
-   organizationId: ID ##NON NULL
-   limit: RepositoryInteractionLimit ##NON NULL
+   organizationId: ID
+   limit: RepositoryInteractionLimit
    expiry: RepositoryInteractionLimitExpiry
    clientMutationId: str
 
 class SecurityVulnerabilityOrder(GQLObject):
-   field: SecurityVulnerabilityOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: SecurityVulnerabilityOrderField
+   direction: OrderDirection
 
 class SecurityAdvisoryPackageVersion(GQLObject):
-   identifier: str ##NON NULL
+   identifier: str
 
 class SecurityAdvisoryOrder(GQLObject):
-   field: SecurityAdvisoryOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: SecurityAdvisoryOrderField
+   direction: OrderDirection
 
 class SecurityAdvisoryIdentifier(GQLObject):
-   type: str ##NON NULL
-   value: str ##NON NULL
+   type: str
+   value: str
 
 class RevokeMigratorRolePayload(GQLObject):
    clientMutationId: str
    success: bool
 
 class RevokeEnterpriseOrganizationsMigratorRoleInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   login: str ##NON NULL
+   enterpriseId: ID
+   login: str
    clientMutationId: str
 
 class RetireSponsorsTierInput(GQLObject):
-   tierId: ID ##NON NULL
+   tierId: ID
    clientMutationId: str
 
 class RerequestCheckSuiteInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   checkSuiteId: ID ##NON NULL
+   repositoryId: ID
+   checkSuiteId: ID
    clientMutationId: str
 
-class GZNFF_isRequired_Field(ArguedStr):
+class OVEBP_isRequired_Field(ArguedBool):
    class boolArgs(GQLArgsSet, GQLObject): 
       pullRequestId: ID
       pullRequestNumber: int
@@ -620,41 +616,41 @@ class GZNFF_isRequired_Field(ArguedStr):
 
 
 class RequestReviewsInput(GQLObject):
-   pullRequestId: ID ##NON NULL
-   userIds: ID ##NON NULL ##LIST
-   teamIds: ID ##NON NULL ##LIST
+   pullRequestId: ID
+   userIds: List[ID]
+   teamIds: List[ID]
    union: bool
    clientMutationId: str
 
 class RepositoryMigrationOrder(GQLObject):
-   field: RepositoryMigrationOrderField ##NON NULL
-   direction: RepositoryMigrationOrderDirection ##NON NULL
+   field: RepositoryMigrationOrderField
+   direction: RepositoryMigrationOrderDirection
 
 class RepositoryInteractionAbility(GQLObject):
    expiresAt: DateTime
-   limit: RepositoryInteractionLimit ##NON NULL
-   origin: RepositoryInteractionLimitOrigin ##NON NULL
+   limit: RepositoryInteractionLimit
+   origin: RepositoryInteractionLimitOrigin
 
 class RepositoryCodeownersError(GQLObject):
-   column: int ##NON NULL
-   kind: str ##NON NULL
-   line: int ##NON NULL
-   message: str ##NON NULL
-   path: str ##NON NULL
-   source: str ##NON NULL
+   column: int
+   kind: str
+   line: int
+   message: str
+   path: str
+   source: str
    suggestion: str
 
 class ReopenIssueInput(GQLObject):
-   issueId: ID ##NON NULL
+   issueId: ID
    clientMutationId: str
 
 class RemoveStarInput(GQLObject):
-   starrableId: ID ##NON NULL
+   starrableId: ID
    clientMutationId: str
 
 class RemoveOutsideCollaboratorInput(GQLObject):
-   userId: ID ##NON NULL
-   organizationId: ID ##NON NULL
+   userId: ID
+   organizationId: ID
    clientMutationId: str
 
 class RemoveEnterpriseSupportEntitlementPayload(GQLObject):
@@ -662,70 +658,70 @@ class RemoveEnterpriseSupportEntitlementPayload(GQLObject):
    message: str
 
 class RemoveEnterpriseOrganizationInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   organizationId: ID ##NON NULL
+   enterpriseId: ID
+   organizationId: ID
    clientMutationId: str
 
 class RemoveEnterpriseAdminInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   login: str ##NON NULL
+   enterpriseId: ID
+   login: str
    clientMutationId: str
 
 class ReleaseOrder(GQLObject):
-   field: ReleaseOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: ReleaseOrderField
+   direction: OrderDirection
 
 class RegenerateVerifiableDomainTokenPayload(GQLObject):
    clientMutationId: str
    verificationToken: str
 
 class RegenerateEnterpriseIdentityProviderRecoveryCodesInput(GQLObject):
-   enterpriseId: ID ##NON NULL
+   enterpriseId: ID
    clientMutationId: str
 
 class RefOrder(GQLObject):
-   field: RefOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: RefOrderField
+   direction: OrderDirection
 
 class RateLimit(GQLObject):
-   cost: int ##NON NULL
-   limit: int ##NON NULL
-   nodeCount: int ##NON NULL
-   remaining: int ##NON NULL
-   resetAt: DateTime ##NON NULL
-   used: int ##NON NULL
+   cost: int
+   limit: int
+   nodeCount: int
+   remaining: int
+   resetAt: DateTime
+   used: int
 
 class PullRequestChangedFile(GQLObject):
-   additions: int ##NON NULL
-   changeType: PatchStatus ##NON NULL
-   deletions: int ##NON NULL
-   path: str ##NON NULL
-   viewerViewedState: FileViewedState ##NON NULL
+   additions: int
+   changeType: PatchStatus
+   deletions: int
+   path: str
+   viewerViewedState: FileViewedState
 
 class PublicKey(GQLObject):
    accessedAt: DateTime
    createdAt: DateTime
-   fingerprint: str ##NON NULL
-   id: ID ##NON NULL
+   fingerprint: str
+   id: ID
    isReadOnly: bool
-   key: str ##NON NULL
+   key: str
    updatedAt: DateTime
 
 class ProjectV2SingleSelectFieldOption(GQLObject):
-   id: str ##NON NULL
-   name: str ##NON NULL
-   nameHTML: str ##NON NULL
+   id: str
+   name: str
+   nameHTML: str
 
 class ProjectV2IterationFieldIteration(GQLObject):
-   duration: int ##NON NULL
-   id: str ##NON NULL
-   startDate: Date ##NON NULL
-   title: str ##NON NULL
-   titleHTML: str ##NON NULL
+   duration: int
+   id: str
+   startDate: Date
+   title: str
+   titleHTML: str
 
 class ProjectV2ItemFieldValueOrder(GQLObject):
-   field: ProjectV2ItemFieldValueOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: ProjectV2ItemFieldValueOrderField
+   direction: OrderDirection
 
 class ProjectV2FieldValue(GQLObject):
    text: str
@@ -735,38 +731,38 @@ class ProjectV2FieldValue(GQLObject):
    iterationId: str
 
 class ProjectProgress(GQLObject):
-   doneCount: int ##NON NULL
-   donePercentage: float ##NON NULL
-   enabled: bool ##NON NULL
-   inProgressCount: int ##NON NULL
-   inProgressPercentage: float ##NON NULL
-   todoCount: int ##NON NULL
-   todoPercentage: float ##NON NULL
+   doneCount: int
+   donePercentage: float
+   enabled: bool
+   inProgressCount: int
+   inProgressPercentage: float
+   todoCount: int
+   todoPercentage: float
 
 class PinIssueInput(GQLObject):
-   issueId: ID ##NON NULL
+   issueId: ID
    clientMutationId: str
 
 class PackageVersionStatistics(GQLObject):
-   downloadsTotalCount: int ##NON NULL
+   downloadsTotalCount: int
 
 class PackageStatistics(GQLObject):
-   downloadsTotalCount: int ##NON NULL
+   downloadsTotalCount: int
 
 class PackageFileOrder(GQLObject):
    field: PackageFileOrderField
    direction: OrderDirection
 
 class OrganizationMigration(GQLObject):
-   createdAt: DateTime ##NON NULL
+   createdAt: DateTime
    databaseId: str
    failureReason: str
-   id: ID ##NON NULL
+   id: ID
    remainingRepositoriesCount: int
-   sourceOrgName: str ##NON NULL
-   sourceOrgUrl: URI ##NON NULL
-   state: OrganizationMigrationState ##NON NULL
-   targetOrgName: str ##NON NULL
+   sourceOrgName: str
+   sourceOrgUrl: URI
+   state: OrganizationMigrationState
+   targetOrgName: str
    totalRepositoriesCount: int
 
 class OauthApplicationAuditEntryData(GQLObject):
@@ -775,21 +771,21 @@ class OauthApplicationAuditEntryData(GQLObject):
    oauthApplicationUrl: URI
 
 class MoveProjectColumnInput(GQLObject):
-   columnId: ID ##NON NULL
+   columnId: ID
    afterColumnId: ID
    clientMutationId: str
 
 class MinimizeCommentInput(GQLObject):
-   subjectId: ID ##NON NULL
-   classifier: ReportedContentClassifiers ##NON NULL
+   subjectId: ID
+   classifier: ReportedContentClassifiers
    clientMutationId: str
 
 class MilestoneOrder(GQLObject):
-   field: MilestoneOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: MilestoneOrderField
+   direction: OrderDirection
 
 class MergePullRequestInput(GQLObject):
-   pullRequestId: ID ##NON NULL
+   pullRequestId: ID
    commitHeadline: str
    commitBody: str
    expectedHeadOid: GitObjectID
@@ -800,110 +796,110 @@ class MergePullRequestInput(GQLObject):
 class MarketplaceCategory(GQLObject):
    description: str
    howItWorks: str
-   id: ID ##NON NULL
-   name: str ##NON NULL
-   primaryListingCount: int ##NON NULL
-   resourcePath: URI ##NON NULL
-   secondaryListingCount: int ##NON NULL
-   slug: str ##NON NULL
-   url: URI ##NON NULL
+   id: ID
+   name: str
+   primaryListingCount: int
+   resourcePath: URI
+   secondaryListingCount: int
+   slug: str
+   url: URI
 
 class MarkFileAsViewedInput(GQLObject):
-   pullRequestId: ID ##NON NULL
-   path: str ##NON NULL
+   pullRequestId: ID
+   path: str
    clientMutationId: str
 
 class MannequinOrder(GQLObject):
-   field: MannequinOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: MannequinOrderField
+   direction: OrderDirection
 
 class LockLockableInput(GQLObject):
-   lockableId: ID ##NON NULL
+   lockableId: ID
    lockReason: LockReason
    clientMutationId: str
 
 class LinkProjectV2ToTeamInput(GQLObject):
-   projectId: ID ##NON NULL
-   teamId: ID ##NON NULL
+   projectId: ID
+   teamId: ID
    clientMutationId: str
 
 class LicenseRule(GQLObject):
-   description: str ##NON NULL
-   key: str ##NON NULL
-   label: str ##NON NULL
+   description: str
+   key: str
+   label: str
 
 class Language(GQLObject):
    color: str
-   id: ID ##NON NULL
-   name: str ##NON NULL
+   id: ID
+   name: str
 
 class IssueTemplate(GQLObject):
    about: str
    body: str
-   filename: str ##NON NULL
-   name: str ##NON NULL
+   filename: str
+   name: str
    title: str
 
 class IssueFilters(GQLObject):
    assignee: str
    createdBy: str
-   labels: str ##NON NULL ##LIST
+   labels: List[str]
    mentioned: str
    milestone: str
    milestoneNumber: str
    since: DateTime
-   states: IssueState ##NON NULL ##LIST
+   states: List[IssueState]
    viewerSubscribed: bool
 
 class IpAllowListEntryOrder(GQLObject):
-   field: IpAllowListEntryOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: IpAllowListEntryOrderField
+   direction: OrderDirection
 
 class HovercardContext(GQLObject):
-   message: str ##NON NULL
-   octicon: str ##NON NULL
+   message: str
+   octicon: str
 
 class GrantMigratorRoleInput(GQLObject):
-   organizationId: ID ##NON NULL
-   actor: str ##NON NULL
-   actorType: ActorType ##NON NULL
+   organizationId: ID
+   actor: str
+   actorType: ActorType
    clientMutationId: str
 
 class GitHubMetadata(GQLObject):
-   gitHubServicesSha: GitObjectID ##NON NULL
-   gitIpAddresses: str ##LIST
-   hookIpAddresses: str ##LIST
-   importerIpAddresses: str ##LIST
-   isPasswordAuthenticationVerifiable: bool ##NON NULL
-   pagesIpAddresses: str ##LIST
+   gitHubServicesSha: GitObjectID
+   gitIpAddresses: List[str]
+   hookIpAddresses: List[str]
+   importerIpAddresses: List[str]
+   isPasswordAuthenticationVerifiable: bool
+   pagesIpAddresses: List[str]
 
 class GenericHovercardContext(GQLObject):
-   message: str ##NON NULL
-   octicon: str ##NON NULL
+   message: str
+   octicon: str
 
 class FollowUserInput(GQLObject):
-   userId: ID ##NON NULL
+   userId: ID
    clientMutationId: str
 
 class FileDeletion(GQLObject):
-   path: str ##NON NULL
+   path: str
 
 class ExternalIdentityAttribute(GQLObject):
    metadata: str
-   name: str ##NON NULL
-   value: str ##NON NULL
+   name: str
+   value: str
 
 class EnterpriseServerUserAccountOrder(GQLObject):
-   field: EnterpriseServerUserAccountOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: EnterpriseServerUserAccountOrderField
+   direction: OrderDirection
 
 class EnterpriseServerInstallationOrder(GQLObject):
-   field: EnterpriseServerInstallationOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: EnterpriseServerInstallationOrderField
+   direction: OrderDirection
 
 class EnterpriseMemberOrder(GQLObject):
-   field: EnterpriseMemberOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: EnterpriseMemberOrderField
+   direction: OrderDirection
 
 class EnterpriseAuditEntryData(GQLObject):
    enterpriseResourcePath: URI
@@ -911,7 +907,7 @@ class EnterpriseAuditEntryData(GQLObject):
    enterpriseUrl: URI
 
 class EnablePullRequestAutoMergeInput(GQLObject):
-   pullRequestId: ID ##NON NULL
+   pullRequestId: ID
    commitHeadline: str
    commitBody: str
    mergeMethod: PullRequestMergeMethod
@@ -919,27 +915,27 @@ class EnablePullRequestAutoMergeInput(GQLObject):
    clientMutationId: str
 
 class DraftPullRequestReviewComment(GQLObject):
-   path: str ##NON NULL
-   position: int ##NON NULL
-   body: str ##NON NULL
+   path: str
+   position: int
+   body: str
 
 class DismissPullRequestReviewInput(GQLObject):
-   pullRequestReviewId: ID ##NON NULL
-   message: str ##NON NULL
+   pullRequestReviewId: ID
+   message: str
    clientMutationId: str
 
 class DiscussionOrder(GQLObject):
-   field: DiscussionOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: DiscussionOrderField
+   direction: OrderDirection
 
 class DeploymentOrder(GQLObject):
-   field: DeploymentOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: DeploymentOrderField
+   direction: OrderDirection
 
 class DependabotUpdateError(GQLObject):
-   body: str ##NON NULL
-   errorType: str ##NON NULL
-   title: str ##NON NULL
+   body: str
+   errorType: str
+   title: str
 
 class DeleteTeamDiscussionPayload(GQLObject):
    clientMutationId: str
@@ -951,37 +947,34 @@ class DeleteRefPayload(GQLObject):
    clientMutationId: str
 
 class DeletePullRequestReviewInput(GQLObject):
-   pullRequestReviewId: ID ##NON NULL
+   pullRequestReviewId: ID
    clientMutationId: str
 
 class DeleteProjectV2ItemPayload(GQLObject):
    clientMutationId: str
    deletedItemId: ID
 
-class DeleteProjectNextItemPayload(GQLObject):
-   clientMutationId: str
-
 class DeleteProjectInput(GQLObject):
-   projectId: ID ##NON NULL
+   projectId: ID
    clientMutationId: str
 
 class DeleteProjectCardInput(GQLObject):
-   cardId: ID ##NON NULL
+   cardId: ID
    clientMutationId: str
 
 class DeleteIssueInput(GQLObject):
-   issueId: ID ##NON NULL
+   issueId: ID
    clientMutationId: str
 
 class DeleteIssueCommentInput(GQLObject):
-   id: ID ##NON NULL
+   id: ID
    clientMutationId: str
 
 class DeleteEnvironmentPayload(GQLObject):
    clientMutationId: str
 
 class DeleteDiscussionInput(GQLObject):
-   id: ID ##NON NULL
+   id: ID
    clientMutationId: str
 
 class DeleteDeploymentPayload(GQLObject):
@@ -991,12 +984,12 @@ class DeleteBranchProtectionRulePayload(GQLObject):
    clientMutationId: str
 
 class Deletable(GQLObject):
-   viewerCanDelete: bool ##NON NULL
+   viewerCanDelete: bool
 
 class CreateTeamDiscussionInput(GQLObject):
-   teamId: ID ##NON NULL
-   title: str ##NON NULL
-   body: str ##NON NULL
+   teamId: ID
+   title: str
+   body: str
    private: bool
    clientMutationId: str
 
@@ -1023,68 +1016,68 @@ class CreateSponsorsListingInput(GQLObject):
    clientMutationId: str
 
 class CreateRefInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   name: str ##NON NULL
-   oid: GitObjectID ##NON NULL
+   repositoryId: ID
+   name: str
+   oid: GitObjectID
    clientMutationId: str
 
 class CreateProjectV2Input(GQLObject):
-   ownerId: ID ##NON NULL
-   title: str ##NON NULL
+   ownerId: ID
+   title: str
    repositoryId: ID
    teamId: ID
    clientMutationId: str
 
 class CreateMigrationSourceInput(GQLObject):
-   name: str ##NON NULL
-   url: str ##NON NULL
+   name: str
+   url: str
    accessToken: str
-   type: MigrationSourceType ##NON NULL
-   ownerId: ID ##NON NULL
+   type: MigrationSourceType
+   ownerId: ID
    githubPat: str
    clientMutationId: str
 
 class CreateIssueInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   title: str ##NON NULL
+   repositoryId: ID
+   title: str
    body: str
-   assigneeIds: ID ##NON NULL ##LIST
+   assigneeIds: List[ID]
    milestoneId: ID
-   labelIds: ID ##NON NULL ##LIST
-   projectIds: ID ##NON NULL ##LIST
+   labelIds: List[ID]
+   projectIds: List[ID]
    issueTemplate: str
    clientMutationId: str
 
 class CreateEnvironmentInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   name: str ##NON NULL
+   repositoryId: ID
+   name: str
    clientMutationId: str
 
 class CreateDiscussionInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   title: str ##NON NULL
-   body: str ##NON NULL
-   categoryId: ID ##NON NULL
+   repositoryId: ID
+   title: str
+   body: str
+   categoryId: ID
    clientMutationId: str
 
 class CreateAttributionInvitationInput(GQLObject):
-   ownerId: ID ##NON NULL
-   sourceId: ID ##NON NULL
-   targetId: ID ##NON NULL
+   ownerId: ID
+   sourceId: ID
+   targetId: ID
    clientMutationId: str
 
 class ConvertProjectCardNoteToIssueInput(GQLObject):
-   projectCardId: ID ##NON NULL
-   repositoryId: ID ##NON NULL
+   projectCardId: ID
+   repositoryId: ID
    title: str
    body: str
    clientMutationId: str
 
 class ContributionCalendarMonth(GQLObject):
-   firstDay: Date ##NON NULL
-   name: str ##NON NULL
-   totalWeeks: int ##NON NULL
-   year: int ##NON NULL
+   firstDay: Date
+   name: str
+   totalWeeks: int
+   year: int
 
 class CommittableBranch(GQLObject):
    id: ID
@@ -1092,35 +1085,35 @@ class CommittableBranch(GQLObject):
    branchName: str
 
 class CommitContributionOrder(GQLObject):
-   field: CommitContributionOrderField ##NON NULL
-   direction: OrderDirection ##NON NULL
+   field: CommitContributionOrderField
+   direction: OrderDirection
 
 class CodeOfConduct(GQLObject):
    body: str
-   id: ID ##NON NULL
-   key: str ##NON NULL
-   name: str ##NON NULL
+   id: ID
+   key: str
+   name: str
    resourcePath: URI
    url: URI
 
 class CloseIssueInput(GQLObject):
-   issueId: ID ##NON NULL
+   issueId: ID
    stateReason: IssueClosedStateReason
    clientMutationId: str
 
 class CloneTemplateRepositoryInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   name: str ##NON NULL
-   ownerId: ID ##NON NULL
+   repositoryId: ID
+   name: str
+   ownerId: ID
    description: str
-   visibility: RepositoryVisibility ##NON NULL
+   visibility: RepositoryVisibility
    includeAllBranches: bool
    clientMutationId: str
 
 class ClearProjectV2ItemFieldValueInput(GQLObject):
-   projectId: ID ##NON NULL
-   itemId: ID ##NON NULL
-   fieldId: ID ##NON NULL
+   projectId: ID
+   itemId: ID
+   fieldId: ID
    clientMutationId: str
 
 class CheckSuiteFilter(GQLObject):
@@ -1131,25 +1124,25 @@ class CheckStep(GQLObject):
    completedAt: DateTime
    conclusion: CheckConclusionState
    externalId: str
-   name: str ##NON NULL
-   number: int ##NON NULL
+   name: str
+   number: int
    secondsToCompletion: int
    startedAt: DateTime
-   status: CheckStatusState ##NON NULL
+   status: CheckStatusState
 
 class CheckRunOutputImage(GQLObject):
-   alt: str ##NON NULL
-   imageUrl: URI ##NON NULL
+   alt: str
+   imageUrl: URI
    caption: str
 
 class CheckRunAction(GQLObject):
-   label: str ##NON NULL
-   description: str ##NON NULL
-   identifier: str ##NON NULL
+   label: str
+   description: str
+   identifier: str
 
 class CheckAnnotationPosition(GQLObject):
    column: int
-   line: int ##NON NULL
+   line: int
 
 class CancelSponsorshipInput(GQLObject):
    sponsorId: ID
@@ -1159,12 +1152,12 @@ class CancelSponsorshipInput(GQLObject):
    clientMutationId: str
 
 class CWE(GQLObject):
-   cweId: str ##NON NULL
-   description: str ##NON NULL
-   id: ID ##NON NULL
-   name: str ##NON NULL
+   cweId: str
+   description: str
+   id: ID
+   name: str
 
-class MIXLA_URI_Field(ArguedStr):
+class SAHMZ_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -1177,51 +1170,44 @@ class AuditLogOrder(GQLObject):
    direction: OrderDirection
 
 class ArchiveProjectV2ItemInput(GQLObject):
-   projectId: ID ##NON NULL
-   itemId: ID ##NON NULL
+   projectId: ID
+   itemId: ID
    clientMutationId: str
 
 class ApproveDeploymentsInput(GQLObject):
-   workflowRunId: ID ##NON NULL
-   environmentIds: ID ##NON NULL ##LIST
+   workflowRunId: ID
+   environmentIds: List[ID]
    comment: str
    clientMutationId: str
 
 class AddUpvoteInput(GQLObject):
-   subjectId: ID ##NON NULL
+   subjectId: ID
    clientMutationId: str
 
 class AddReactionInput(GQLObject):
-   subjectId: ID ##NON NULL
-   content: ReactionContent ##NON NULL
+   subjectId: ID
+   content: ReactionContent
    clientMutationId: str
 
 class AddPullRequestReviewCommentInput(GQLObject):
    pullRequestId: ID
    pullRequestReviewId: ID
    commitOID: GitObjectID
-   body: str ##NON NULL
+   body: str
    path: str
    position: int
    inReplyTo: ID
    clientMutationId: str
 
 class AddProjectV2DraftIssueInput(GQLObject):
-   projectId: ID ##NON NULL
-   title: str ##NON NULL
-   body: str
-   assigneeIds: ID ##NON NULL ##LIST
-   clientMutationId: str
-
-class AddProjectDraftIssueInput(GQLObject):
    projectId: ID
    title: str
    body: str
-   assigneeIds: ID ##NON NULL ##LIST
+   assigneeIds: List[ID]
    clientMutationId: str
 
 class AddProjectCardInput(GQLObject):
-   projectColumnId: ID ##NON NULL
+   projectColumnId: ID
    contentId: ID
    note: str
    clientMutationId: str
@@ -1231,24 +1217,24 @@ class AddEnterpriseSupportEntitlementPayload(GQLObject):
    message: str
 
 class AddEnterpriseOrganizationMemberInput(GQLObject):
-   enterpriseId: ID ##NON NULL
-   organizationId: ID ##NON NULL
-   userIds: ID ##NON NULL ##LIST
+   enterpriseId: ID
+   organizationId: ID
+   userIds: List[ID]
    role: OrganizationMemberRole
    clientMutationId: str
 
 class AddDiscussionCommentInput(GQLObject):
-   discussionId: ID ##NON NULL
+   discussionId: ID
    replyToId: ID
-   body: str ##NON NULL
+   body: str
    clientMutationId: str
 
 class AddAssigneesToAssignableInput(GQLObject):
-   assignableId: ID ##NON NULL
-   assigneeIds: ID ##NON NULL ##LIST
+   assignableId: ID
+   assigneeIds: List[ID]
    clientMutationId: str
 
-class IHEZH_URI_Field(ArguedStr):
+class LIJWP_URI_Field(ArguedStr):
    class URIArgs(GQLArgsSet, GQLObject): 
       size: int
 
@@ -1257,8 +1243,8 @@ class IHEZH_URI_Field(ArguedStr):
 
 
 class AcceptTopicSuggestionInput(GQLObject):
-   repositoryId: ID ##NON NULL
-   name: str ##NON NULL
+   repositoryId: ID
+   name: str
    clientMutationId: str
 
 class AbortQueuedMigrationsPayload(GQLObject):

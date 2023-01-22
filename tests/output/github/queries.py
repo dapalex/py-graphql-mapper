@@ -1,8 +1,16 @@
+from typing import List
 from pygqlmap import GQLQuery
 from .gql_types import *
 from .gql_simple_types import *
 from .enums import *
 from .scalars import *
+from .type_refs import *
+
+NonNull_EnterpriseAdministratorRole = EnterpriseAdministratorRole
+
+NonNull_URI = URI
+
+NonNull_SearchType = SearchType
 
 class codeOfConduct(GQLQuery):
    """
@@ -14,7 +22,7 @@ class codeOfConduct(GQLQuery):
       key - The code of conduct's key
 
       """
-      key: str ##NON NULL
+      key: NonNull_str
 
    _args: CodeOfConductArgs
 
@@ -26,7 +34,7 @@ class codesOfConduct(GQLQuery):
    codesOfConduct - Look up a code of conduct by its key
 
    """
-   type: CodeOfConduct ##LIST
+   type: List[CodeOfConduct]
 
 class enterprise(GQLQuery):
    """
@@ -40,7 +48,7 @@ class enterprise(GQLQuery):
       invitationToken - The enterprise invitation token.
 
       """
-      slug: str ##NON NULL
+      slug: NonNull_str
       invitationToken: str
 
    _args: EnterpriseArgs
@@ -62,9 +70,9 @@ class enterpriseAdministratorInvitation(GQLQuery):
       role - The role for the business member invitation.
 
       """
-      userLogin: str ##NON NULL
-      enterpriseSlug: str ##NON NULL
-      role: EnterpriseAdministratorRole ##NON NULL
+      userLogin: NonNull_str
+      enterpriseSlug: NonNull_str
+      role: NonNull_EnterpriseAdministratorRole
 
    _args: EnterpriseAdministratorInvitationArgs
 
@@ -81,7 +89,7 @@ class enterpriseAdministratorInvitationByToken(GQLQuery):
       invitationToken - The invitation token sent with the invitation email.
 
       """
-      invitationToken: str ##NON NULL
+      invitationToken: NonNull_str
 
    _args: EnterpriseAdministratorInvitationArgs
 
@@ -98,7 +106,7 @@ class license(GQLQuery):
       key - The license's downcased SPDX ID
 
       """
-      key: str ##NON NULL
+      key: NonNull_str
 
    _args: LicenseArgs
 
@@ -110,7 +118,7 @@ class licenses(GQLQuery):
    licenses - Return a list of known open source licenses
 
    """
-   type: License ##NON NULL
+   type: License
 
 class marketplaceCategories(GQLQuery):
    """
@@ -126,14 +134,14 @@ class marketplaceCategories(GQLQuery):
       excludeSubcategories - Returns top level categories only, excluding any subcategories.
 
       """
-      includeCategories: str ##NON NULL ##LIST
+      includeCategories: List[NonNull_str]
       excludeEmpty: bool
       excludeSubcategories: bool
 
    _args: MarketplaceCategoryArgs
 
 
-   type: MarketplaceCategory ##NON NULL
+   type: MarketplaceCategory
 
 class marketplaceCategory(GQLQuery):
    """
@@ -147,7 +155,7 @@ class marketplaceCategory(GQLQuery):
       useTopicAliases - Also check topic aliases for the category slug
 
       """
-      slug: str ##NON NULL
+      slug: NonNull_str
       useTopicAliases: bool
 
    _args: MarketplaceCategoryArgs
@@ -165,7 +173,7 @@ class marketplaceListing(GQLQuery):
       slug - Select the listing that matches this slug. It's the short name of the listing used in its URL.
 
       """
-      slug: str ##NON NULL
+      slug: NonNull_str
 
    _args: MarketplaceListingArgs
 
@@ -220,21 +228,21 @@ false, only approved listings will be returned.
       adminId: ID
       organizationId: ID
       allStates: bool
-      slugs: str ##LIST
+      slugs: List[str]
       primaryCategoryOnly: bool
       withFreeTrialsOnly: bool
 
    _args: MarketplaceListingConnectionArgs
 
 
-   type: MarketplaceListingConnection ##NON NULL
+   type: MarketplaceListingConnection
 
 class meta(GQLQuery):
    """
    meta - Return information about the GitHub instance
 
    """
-   type: GitHubMetadata ##NON NULL
+   type: GitHubMetadata
 
 class node(GQLQuery):
    """
@@ -246,7 +254,7 @@ class node(GQLQuery):
       id - ID of the object.
 
       """
-      id: ID ##NON NULL
+      id: NonNull_ID
 
    _args: NodeArgs
 
@@ -263,12 +271,12 @@ class nodes(GQLQuery):
       ids - The list of node IDs.
 
       """
-      ids: ID ##NON NULL ##LIST
+      ids: NonNull_List[NonNull_ID]
 
    _args: NodeArgs
 
 
-   type: Node ##NON NULL
+   type: Node
 
 class organization(GQLQuery):
    """
@@ -280,7 +288,7 @@ class organization(GQLQuery):
       login - The organization's login.
 
       """
-      login: str ##NON NULL
+      login: NonNull_str
 
    _args: OrganizationArgs
 
@@ -309,7 +317,7 @@ class relay(GQLQuery):
    relay - Hack to workaround https://github.com/facebook/relay/issues/112 re-exposing the root query object
 
    """
-   type: None ##NON NULL
+   type: None
 
 class repository(GQLQuery):
    """
@@ -325,8 +333,8 @@ class repository(GQLQuery):
       followRenames - Follow repository renames. If disabled, a repository referenced by its old name will return an error.
 
       """
-      owner: str ##NON NULL
-      name: str ##NON NULL
+      owner: NonNull_str
+      name: NonNull_str
       followRenames: bool
 
    _args: RepositoryArgs
@@ -344,7 +352,7 @@ class repositoryOwner(GQLQuery):
       login - The username to lookup the owner by.
 
       """
-      login: str ##NON NULL
+      login: NonNull_str
 
    _args: RepositoryOwnerArgs
 
@@ -361,7 +369,7 @@ class resource(GQLQuery):
       url - The URL.
 
       """
-      url: URI ##NON NULL
+      url: NonNull_URI
 
    _args: UniformResourceLocatableArgs
 
@@ -392,13 +400,13 @@ class search(GQLQuery):
       before: str
       first: int
       last: int
-      query: str ##NON NULL
-      type: SearchType ##NON NULL
+      query: NonNull_str
+      type: NonNull_SearchType
 
    _args: SearchResultItemConnectionArgs
 
 
-   type: SearchResultItemConnection ##NON NULL
+   type: SearchResultItemConnection
 
 class securityAdvisories(GQLQuery):
    """
@@ -430,7 +438,7 @@ class securityAdvisories(GQLQuery):
       identifier: SecurityAdvisoryIdentifierFilter
       publishedSince: DateTime
       updatedSince: DateTime
-      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
+      classifications: List[NonNull_SecurityAdvisoryClassification]
       after: str
       before: str
       first: int
@@ -439,7 +447,7 @@ class securityAdvisories(GQLQuery):
    _args: SecurityAdvisoryConnectionArgs
 
 
-   type: SecurityAdvisoryConnection ##NON NULL
+   type: SecurityAdvisoryConnection
 
 class securityAdvisory(GQLQuery):
    """
@@ -451,7 +459,7 @@ class securityAdvisory(GQLQuery):
       ghsaId - GitHub Security Advisory ID.
 
       """
-      ghsaId: str ##NON NULL
+      ghsaId: NonNull_str
 
    _args: SecurityAdvisoryArgs
 
@@ -487,8 +495,8 @@ class securityVulnerabilities(GQLQuery):
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
       package: str
-      severities: SecurityAdvisorySeverity ##NON NULL ##LIST
-      classifications: SecurityAdvisoryClassification ##NON NULL ##LIST
+      severities: List[NonNull_SecurityAdvisorySeverity]
+      classifications: List[NonNull_SecurityAdvisoryClassification]
       after: str
       before: str
       first: int
@@ -497,7 +505,7 @@ class securityVulnerabilities(GQLQuery):
    _args: SecurityVulnerabilityConnectionArgs
 
 
-   type: SecurityVulnerabilityConnection ##NON NULL
+   type: SecurityVulnerabilityConnection
 
 class sponsorables(GQLQuery):
    """
@@ -543,7 +551,7 @@ class sponsorables(GQLQuery):
    _args: SponsorableItemConnectionArgs
 
 
-   type: SponsorableItemConnection ##NON NULL
+   type: SponsorableItemConnection
 
 class topic(GQLQuery):
    """
@@ -555,7 +563,7 @@ class topic(GQLQuery):
       name - The topic's name.
 
       """
-      name: str ##NON NULL
+      name: NonNull_str
 
    _args: TopicArgs
 
@@ -572,7 +580,7 @@ class user(GQLQuery):
       login - The user's login.
 
       """
-      login: str ##NON NULL
+      login: NonNull_str
 
    _args: UserArgs
 
@@ -584,7 +592,7 @@ class viewer(GQLQuery):
    viewer - The currently authenticated user.
 
    """
-   type: User ##NON NULL
+   type: User
 
 
 class Queries(Enum):

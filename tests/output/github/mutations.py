@@ -1,9 +1,405 @@
+from typing import List
 from pygqlmap import GQLMutation
 from .gql_types import *
 from .gql_simple_types import *
 from .enums import *
 from .scalars import *
+from .type_refs import *
 
+
+NonNull_AbortQueuedMigrationsInput = AbortQueuedMigrationsInput
+
+NonNull_AcceptEnterpriseAdministratorInvitationInput = AcceptEnterpriseAdministratorInvitationInput
+
+NonNull_AcceptTopicSuggestionInput = AcceptTopicSuggestionInput
+
+NonNull_AddAssigneesToAssignableInput = AddAssigneesToAssignableInput
+
+NonNull_AddCommentInput = AddCommentInput
+
+NonNull_AddDiscussionCommentInput = AddDiscussionCommentInput
+
+NonNull_AddDiscussionPollVoteInput = AddDiscussionPollVoteInput
+
+NonNull_AddEnterpriseOrganizationMemberInput = AddEnterpriseOrganizationMemberInput
+
+NonNull_AddEnterpriseSupportEntitlementInput = AddEnterpriseSupportEntitlementInput
+
+NonNull_AddLabelsToLabelableInput = AddLabelsToLabelableInput
+
+NonNull_AddProjectCardInput = AddProjectCardInput
+
+NonNull_AddProjectColumnInput = AddProjectColumnInput
+
+NonNull_AddProjectV2DraftIssueInput = AddProjectV2DraftIssueInput
+
+NonNull_AddProjectV2ItemByIdInput = AddProjectV2ItemByIdInput
+
+NonNull_AddPullRequestReviewInput = AddPullRequestReviewInput
+
+NonNull_AddPullRequestReviewCommentInput = AddPullRequestReviewCommentInput
+
+NonNull_AddPullRequestReviewThreadInput = AddPullRequestReviewThreadInput
+
+NonNull_AddReactionInput = AddReactionInput
+
+NonNull_AddStarInput = AddStarInput
+
+NonNull_AddUpvoteInput = AddUpvoteInput
+
+NonNull_AddVerifiableDomainInput = AddVerifiableDomainInput
+
+NonNull_ApproveDeploymentsInput = ApproveDeploymentsInput
+
+NonNull_ApproveVerifiableDomainInput = ApproveVerifiableDomainInput
+
+NonNull_ArchiveProjectV2ItemInput = ArchiveProjectV2ItemInput
+
+NonNull_ArchiveRepositoryInput = ArchiveRepositoryInput
+
+NonNull_CancelEnterpriseAdminInvitationInput = CancelEnterpriseAdminInvitationInput
+
+NonNull_CancelSponsorshipInput = CancelSponsorshipInput
+
+NonNull_ChangeUserStatusInput = ChangeUserStatusInput
+
+NonNull_ClearLabelsFromLabelableInput = ClearLabelsFromLabelableInput
+
+NonNull_ClearProjectV2ItemFieldValueInput = ClearProjectV2ItemFieldValueInput
+
+NonNull_CloneProjectInput = CloneProjectInput
+
+NonNull_CloneTemplateRepositoryInput = CloneTemplateRepositoryInput
+
+NonNull_CloseIssueInput = CloseIssueInput
+
+NonNull_ClosePullRequestInput = ClosePullRequestInput
+
+NonNull_ConvertProjectCardNoteToIssueInput = ConvertProjectCardNoteToIssueInput
+
+NonNull_ConvertPullRequestToDraftInput = ConvertPullRequestToDraftInput
+
+NonNull_CreateAttributionInvitationInput = CreateAttributionInvitationInput
+
+NonNull_CreateBranchProtectionRuleInput = CreateBranchProtectionRuleInput
+
+NonNull_CreateCheckRunInput = CreateCheckRunInput
+
+NonNull_CreateCheckSuiteInput = CreateCheckSuiteInput
+
+NonNull_CreateCommitOnBranchInput = CreateCommitOnBranchInput
+
+NonNull_CreateDiscussionInput = CreateDiscussionInput
+
+NonNull_CreateEnterpriseOrganizationInput = CreateEnterpriseOrganizationInput
+
+NonNull_CreateEnvironmentInput = CreateEnvironmentInput
+
+NonNull_CreateIpAllowListEntryInput = CreateIpAllowListEntryInput
+
+NonNull_CreateIssueInput = CreateIssueInput
+
+NonNull_CreateLinkedBranchInput = CreateLinkedBranchInput
+
+NonNull_CreateMigrationSourceInput = CreateMigrationSourceInput
+
+NonNull_CreateProjectInput = CreateProjectInput
+
+NonNull_CreateProjectV2Input = CreateProjectV2Input
+
+NonNull_CreatePullRequestInput = CreatePullRequestInput
+
+NonNull_CreateRefInput = CreateRefInput
+
+NonNull_CreateRepositoryInput = CreateRepositoryInput
+
+NonNull_CreateSponsorsListingInput = CreateSponsorsListingInput
+
+NonNull_CreateSponsorsTierInput = CreateSponsorsTierInput
+
+NonNull_CreateSponsorshipInput = CreateSponsorshipInput
+
+NonNull_CreateTeamDiscussionInput = CreateTeamDiscussionInput
+
+NonNull_CreateTeamDiscussionCommentInput = CreateTeamDiscussionCommentInput
+
+NonNull_DeclineTopicSuggestionInput = DeclineTopicSuggestionInput
+
+NonNull_DeleteBranchProtectionRuleInput = DeleteBranchProtectionRuleInput
+
+NonNull_DeleteDeploymentInput = DeleteDeploymentInput
+
+NonNull_DeleteDiscussionInput = DeleteDiscussionInput
+
+NonNull_DeleteDiscussionCommentInput = DeleteDiscussionCommentInput
+
+NonNull_DeleteEnvironmentInput = DeleteEnvironmentInput
+
+NonNull_DeleteIpAllowListEntryInput = DeleteIpAllowListEntryInput
+
+NonNull_DeleteIssueInput = DeleteIssueInput
+
+NonNull_DeleteIssueCommentInput = DeleteIssueCommentInput
+
+NonNull_DeleteLinkedBranchInput = DeleteLinkedBranchInput
+
+NonNull_DeleteProjectInput = DeleteProjectInput
+
+NonNull_DeleteProjectCardInput = DeleteProjectCardInput
+
+NonNull_DeleteProjectColumnInput = DeleteProjectColumnInput
+
+NonNull_DeleteProjectV2ItemInput = DeleteProjectV2ItemInput
+
+NonNull_DeletePullRequestReviewInput = DeletePullRequestReviewInput
+
+NonNull_DeletePullRequestReviewCommentInput = DeletePullRequestReviewCommentInput
+
+NonNull_DeleteRefInput = DeleteRefInput
+
+NonNull_DeleteTeamDiscussionInput = DeleteTeamDiscussionInput
+
+NonNull_DeleteTeamDiscussionCommentInput = DeleteTeamDiscussionCommentInput
+
+NonNull_DeleteVerifiableDomainInput = DeleteVerifiableDomainInput
+
+NonNull_DisablePullRequestAutoMergeInput = DisablePullRequestAutoMergeInput
+
+NonNull_DismissPullRequestReviewInput = DismissPullRequestReviewInput
+
+NonNull_DismissRepositoryVulnerabilityAlertInput = DismissRepositoryVulnerabilityAlertInput
+
+NonNull_EnablePullRequestAutoMergeInput = EnablePullRequestAutoMergeInput
+
+NonNull_FollowOrganizationInput = FollowOrganizationInput
+
+NonNull_FollowUserInput = FollowUserInput
+
+NonNull_GrantEnterpriseOrganizationsMigratorRoleInput = GrantEnterpriseOrganizationsMigratorRoleInput
+
+NonNull_GrantMigratorRoleInput = GrantMigratorRoleInput
+
+NonNull_InviteEnterpriseAdminInput = InviteEnterpriseAdminInput
+
+NonNull_LinkProjectV2ToRepositoryInput = LinkProjectV2ToRepositoryInput
+
+NonNull_LinkProjectV2ToTeamInput = LinkProjectV2ToTeamInput
+
+NonNull_LinkRepositoryToProjectInput = LinkRepositoryToProjectInput
+
+NonNull_LockLockableInput = LockLockableInput
+
+NonNull_MarkDiscussionCommentAsAnswerInput = MarkDiscussionCommentAsAnswerInput
+
+NonNull_MarkFileAsViewedInput = MarkFileAsViewedInput
+
+NonNull_MarkPullRequestReadyForReviewInput = MarkPullRequestReadyForReviewInput
+
+NonNull_MergeBranchInput = MergeBranchInput
+
+NonNull_MergePullRequestInput = MergePullRequestInput
+
+NonNull_MinimizeCommentInput = MinimizeCommentInput
+
+NonNull_MoveProjectCardInput = MoveProjectCardInput
+
+NonNull_MoveProjectColumnInput = MoveProjectColumnInput
+
+NonNull_PinIssueInput = PinIssueInput
+
+NonNull_PublishSponsorsTierInput = PublishSponsorsTierInput
+
+NonNull_RegenerateEnterpriseIdentityProviderRecoveryCodesInput = RegenerateEnterpriseIdentityProviderRecoveryCodesInput
+
+NonNull_RegenerateVerifiableDomainTokenInput = RegenerateVerifiableDomainTokenInput
+
+NonNull_RejectDeploymentsInput = RejectDeploymentsInput
+
+NonNull_RemoveAssigneesFromAssignableInput = RemoveAssigneesFromAssignableInput
+
+NonNull_RemoveEnterpriseAdminInput = RemoveEnterpriseAdminInput
+
+NonNull_RemoveEnterpriseIdentityProviderInput = RemoveEnterpriseIdentityProviderInput
+
+NonNull_RemoveEnterpriseOrganizationInput = RemoveEnterpriseOrganizationInput
+
+NonNull_RemoveEnterpriseSupportEntitlementInput = RemoveEnterpriseSupportEntitlementInput
+
+NonNull_RemoveLabelsFromLabelableInput = RemoveLabelsFromLabelableInput
+
+NonNull_RemoveOutsideCollaboratorInput = RemoveOutsideCollaboratorInput
+
+NonNull_RemoveReactionInput = RemoveReactionInput
+
+NonNull_RemoveStarInput = RemoveStarInput
+
+NonNull_RemoveUpvoteInput = RemoveUpvoteInput
+
+NonNull_ReopenIssueInput = ReopenIssueInput
+
+NonNull_ReopenPullRequestInput = ReopenPullRequestInput
+
+NonNull_RequestReviewsInput = RequestReviewsInput
+
+NonNull_RerequestCheckSuiteInput = RerequestCheckSuiteInput
+
+NonNull_ResolveReviewThreadInput = ResolveReviewThreadInput
+
+NonNull_RetireSponsorsTierInput = RetireSponsorsTierInput
+
+NonNull_RevokeEnterpriseOrganizationsMigratorRoleInput = RevokeEnterpriseOrganizationsMigratorRoleInput
+
+NonNull_RevokeMigratorRoleInput = RevokeMigratorRoleInput
+
+NonNull_SetEnterpriseIdentityProviderInput = SetEnterpriseIdentityProviderInput
+
+NonNull_SetOrganizationInteractionLimitInput = SetOrganizationInteractionLimitInput
+
+NonNull_SetRepositoryInteractionLimitInput = SetRepositoryInteractionLimitInput
+
+NonNull_SetUserInteractionLimitInput = SetUserInteractionLimitInput
+
+NonNull_StartOrganizationMigrationInput = StartOrganizationMigrationInput
+
+NonNull_StartRepositoryMigrationInput = StartRepositoryMigrationInput
+
+NonNull_SubmitPullRequestReviewInput = SubmitPullRequestReviewInput
+
+NonNull_TransferEnterpriseOrganizationInput = TransferEnterpriseOrganizationInput
+
+NonNull_TransferIssueInput = TransferIssueInput
+
+NonNull_UnarchiveProjectV2ItemInput = UnarchiveProjectV2ItemInput
+
+NonNull_UnarchiveRepositoryInput = UnarchiveRepositoryInput
+
+NonNull_UnfollowOrganizationInput = UnfollowOrganizationInput
+
+NonNull_UnfollowUserInput = UnfollowUserInput
+
+NonNull_UnlinkProjectV2FromRepositoryInput = UnlinkProjectV2FromRepositoryInput
+
+NonNull_UnlinkProjectV2FromTeamInput = UnlinkProjectV2FromTeamInput
+
+NonNull_UnlinkRepositoryFromProjectInput = UnlinkRepositoryFromProjectInput
+
+NonNull_UnlockLockableInput = UnlockLockableInput
+
+NonNull_UnmarkDiscussionCommentAsAnswerInput = UnmarkDiscussionCommentAsAnswerInput
+
+NonNull_UnmarkFileAsViewedInput = UnmarkFileAsViewedInput
+
+NonNull_UnmarkIssueAsDuplicateInput = UnmarkIssueAsDuplicateInput
+
+NonNull_UnminimizeCommentInput = UnminimizeCommentInput
+
+NonNull_UnpinIssueInput = UnpinIssueInput
+
+NonNull_UnresolveReviewThreadInput = UnresolveReviewThreadInput
+
+NonNull_UpdateBranchProtectionRuleInput = UpdateBranchProtectionRuleInput
+
+NonNull_UpdateCheckRunInput = UpdateCheckRunInput
+
+NonNull_UpdateCheckSuitePreferencesInput = UpdateCheckSuitePreferencesInput
+
+NonNull_UpdateDiscussionInput = UpdateDiscussionInput
+
+NonNull_UpdateDiscussionCommentInput = UpdateDiscussionCommentInput
+
+NonNull_UpdateEnterpriseAdministratorRoleInput = UpdateEnterpriseAdministratorRoleInput
+
+NonNull_UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput = UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput
+
+NonNull_UpdateEnterpriseDefaultRepositoryPermissionSettingInput = UpdateEnterpriseDefaultRepositoryPermissionSettingInput
+
+NonNull_UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput = UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput
+
+NonNull_UpdateEnterpriseMembersCanCreateRepositoriesSettingInput = UpdateEnterpriseMembersCanCreateRepositoriesSettingInput
+
+NonNull_UpdateEnterpriseMembersCanDeleteIssuesSettingInput = UpdateEnterpriseMembersCanDeleteIssuesSettingInput
+
+NonNull_UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput = UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput
+
+NonNull_UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput = UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput
+
+NonNull_UpdateEnterpriseMembersCanMakePurchasesSettingInput = UpdateEnterpriseMembersCanMakePurchasesSettingInput
+
+NonNull_UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput = UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput
+
+NonNull_UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput = UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput
+
+NonNull_UpdateEnterpriseOrganizationProjectsSettingInput = UpdateEnterpriseOrganizationProjectsSettingInput
+
+NonNull_UpdateEnterpriseOwnerOrganizationRoleInput = UpdateEnterpriseOwnerOrganizationRoleInput
+
+NonNull_UpdateEnterpriseProfileInput = UpdateEnterpriseProfileInput
+
+NonNull_UpdateEnterpriseRepositoryProjectsSettingInput = UpdateEnterpriseRepositoryProjectsSettingInput
+
+NonNull_UpdateEnterpriseTeamDiscussionsSettingInput = UpdateEnterpriseTeamDiscussionsSettingInput
+
+NonNull_UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput = UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput
+
+NonNull_UpdateEnvironmentInput = UpdateEnvironmentInput
+
+NonNull_UpdateIpAllowListEnabledSettingInput = UpdateIpAllowListEnabledSettingInput
+
+NonNull_UpdateIpAllowListEntryInput = UpdateIpAllowListEntryInput
+
+NonNull_UpdateIpAllowListForInstalledAppsEnabledSettingInput = UpdateIpAllowListForInstalledAppsEnabledSettingInput
+
+NonNull_UpdateIssueInput = UpdateIssueInput
+
+NonNull_UpdateIssueCommentInput = UpdateIssueCommentInput
+
+NonNull_UpdateNotificationRestrictionSettingInput = UpdateNotificationRestrictionSettingInput
+
+NonNull_UpdateOrganizationAllowPrivateRepositoryForkingSettingInput = UpdateOrganizationAllowPrivateRepositoryForkingSettingInput
+
+NonNull_UpdateOrganizationWebCommitSignoffSettingInput = UpdateOrganizationWebCommitSignoffSettingInput
+
+NonNull_UpdateProjectInput = UpdateProjectInput
+
+NonNull_UpdateProjectCardInput = UpdateProjectCardInput
+
+NonNull_UpdateProjectColumnInput = UpdateProjectColumnInput
+
+NonNull_UpdateProjectV2Input = UpdateProjectV2Input
+
+NonNull_UpdateProjectV2DraftIssueInput = UpdateProjectV2DraftIssueInput
+
+NonNull_UpdateProjectV2ItemFieldValueInput = UpdateProjectV2ItemFieldValueInput
+
+NonNull_UpdateProjectV2ItemPositionInput = UpdateProjectV2ItemPositionInput
+
+NonNull_UpdatePullRequestInput = UpdatePullRequestInput
+
+NonNull_UpdatePullRequestBranchInput = UpdatePullRequestBranchInput
+
+NonNull_UpdatePullRequestReviewInput = UpdatePullRequestReviewInput
+
+NonNull_UpdatePullRequestReviewCommentInput = UpdatePullRequestReviewCommentInput
+
+NonNull_UpdateRefInput = UpdateRefInput
+
+NonNull_UpdateRepositoryInput = UpdateRepositoryInput
+
+NonNull_UpdateRepositoryWebCommitSignoffSettingInput = UpdateRepositoryWebCommitSignoffSettingInput
+
+NonNull_UpdateSponsorshipPreferencesInput = UpdateSponsorshipPreferencesInput
+
+NonNull_UpdateSubscriptionInput = UpdateSubscriptionInput
+
+NonNull_UpdateTeamDiscussionInput = UpdateTeamDiscussionInput
+
+NonNull_UpdateTeamDiscussionCommentInput = UpdateTeamDiscussionCommentInput
+
+NonNull_UpdateTeamsRepositoryInput = UpdateTeamsRepositoryInput
+
+NonNull_UpdateTopicsInput = UpdateTopicsInput
+
+NonNull_VerifyVerifiableDomainInput = VerifyVerifiableDomainInput
 
 class abortQueuedMigrations(GQLMutation):
    """
@@ -15,7 +411,7 @@ class abortQueuedMigrations(GQLMutation):
       input - Parameters for AbortQueuedMigrations
 
       """
-      input: AbortQueuedMigrationsInput ##NON NULL
+      input: NonNull_AbortQueuedMigrationsInput
 
    _args: AbortQueuedMigrationsPayloadArgs
 
@@ -32,7 +428,7 @@ class acceptEnterpriseAdministratorInvitation(GQLMutation):
       input - Parameters for AcceptEnterpriseAdministratorInvitation
 
       """
-      input: AcceptEnterpriseAdministratorInvitationInput ##NON NULL
+      input: NonNull_AcceptEnterpriseAdministratorInvitationInput
 
    _args: AcceptEnterpriseAdministratorInvitationPayloadArgs
 
@@ -49,7 +445,7 @@ class acceptTopicSuggestion(GQLMutation):
       input - Parameters for AcceptTopicSuggestion
 
       """
-      input: AcceptTopicSuggestionInput ##NON NULL
+      input: NonNull_AcceptTopicSuggestionInput
 
    _args: AcceptTopicSuggestionPayloadArgs
 
@@ -66,7 +462,7 @@ class addAssigneesToAssignable(GQLMutation):
       input - Parameters for AddAssigneesToAssignable
 
       """
-      input: AddAssigneesToAssignableInput ##NON NULL
+      input: NonNull_AddAssigneesToAssignableInput
 
    _args: AddAssigneesToAssignablePayloadArgs
 
@@ -83,7 +479,7 @@ class addComment(GQLMutation):
       input - Parameters for AddComment
 
       """
-      input: AddCommentInput ##NON NULL
+      input: NonNull_AddCommentInput
 
    _args: AddCommentPayloadArgs
 
@@ -100,7 +496,7 @@ class addDiscussionComment(GQLMutation):
       input - Parameters for AddDiscussionComment
 
       """
-      input: AddDiscussionCommentInput ##NON NULL
+      input: NonNull_AddDiscussionCommentInput
 
    _args: AddDiscussionCommentPayloadArgs
 
@@ -117,7 +513,7 @@ class addDiscussionPollVote(GQLMutation):
       input - Parameters for AddDiscussionPollVote
 
       """
-      input: AddDiscussionPollVoteInput ##NON NULL
+      input: NonNull_AddDiscussionPollVoteInput
 
    _args: AddDiscussionPollVotePayloadArgs
 
@@ -134,7 +530,7 @@ class addEnterpriseOrganizationMember(GQLMutation):
       input - Parameters for AddEnterpriseOrganizationMember
 
       """
-      input: AddEnterpriseOrganizationMemberInput ##NON NULL
+      input: NonNull_AddEnterpriseOrganizationMemberInput
 
    _args: AddEnterpriseOrganizationMemberPayloadArgs
 
@@ -151,7 +547,7 @@ class addEnterpriseSupportEntitlement(GQLMutation):
       input - Parameters for AddEnterpriseSupportEntitlement
 
       """
-      input: AddEnterpriseSupportEntitlementInput ##NON NULL
+      input: NonNull_AddEnterpriseSupportEntitlementInput
 
    _args: AddEnterpriseSupportEntitlementPayloadArgs
 
@@ -168,7 +564,7 @@ class addLabelsToLabelable(GQLMutation):
       input - Parameters for AddLabelsToLabelable
 
       """
-      input: AddLabelsToLabelableInput ##NON NULL
+      input: NonNull_AddLabelsToLabelableInput
 
    _args: AddLabelsToLabelablePayloadArgs
 
@@ -185,7 +581,7 @@ class addProjectCard(GQLMutation):
       input - Parameters for AddProjectCard
 
       """
-      input: AddProjectCardInput ##NON NULL
+      input: NonNull_AddProjectCardInput
 
    _args: AddProjectCardPayloadArgs
 
@@ -202,46 +598,12 @@ class addProjectColumn(GQLMutation):
       input - Parameters for AddProjectColumn
 
       """
-      input: AddProjectColumnInput ##NON NULL
+      input: NonNull_AddProjectColumnInput
 
    _args: AddProjectColumnPayloadArgs
 
 
    type: AddProjectColumnPayload
-
-class addProjectDraftIssue(GQLMutation):
-   """
-   addProjectDraftIssue - Creates a new draft issue and add it to a Project.
-
-   """
-   class AddProjectDraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for AddProjectDraftIssue
-
-      """
-      input: AddProjectDraftIssueInput ##NON NULL
-
-   _args: AddProjectDraftIssuePayloadArgs
-
-
-   type: AddProjectDraftIssuePayload
-
-class addProjectNextItem(GQLMutation):
-   """
-   addProjectNextItem - Adds an existing item (Issue or PullRequest) to a Project.
-
-   """
-   class AddProjectNextItemPayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for AddProjectNextItem
-
-      """
-      input: AddProjectNextItemInput ##NON NULL
-
-   _args: AddProjectNextItemPayloadArgs
-
-
-   type: AddProjectNextItemPayload
 
 class addProjectV2DraftIssue(GQLMutation):
    """
@@ -253,7 +615,7 @@ class addProjectV2DraftIssue(GQLMutation):
       input - Parameters for AddProjectV2DraftIssue
 
       """
-      input: AddProjectV2DraftIssueInput ##NON NULL
+      input: NonNull_AddProjectV2DraftIssueInput
 
    _args: AddProjectV2DraftIssuePayloadArgs
 
@@ -270,7 +632,7 @@ class addProjectV2ItemById(GQLMutation):
       input - Parameters for AddProjectV2ItemById
 
       """
-      input: AddProjectV2ItemByIdInput ##NON NULL
+      input: NonNull_AddProjectV2ItemByIdInput
 
    _args: AddProjectV2ItemByIdPayloadArgs
 
@@ -287,7 +649,7 @@ class addPullRequestReview(GQLMutation):
       input - Parameters for AddPullRequestReview
 
       """
-      input: AddPullRequestReviewInput ##NON NULL
+      input: NonNull_AddPullRequestReviewInput
 
    _args: AddPullRequestReviewPayloadArgs
 
@@ -304,7 +666,7 @@ class addPullRequestReviewComment(GQLMutation):
       input - Parameters for AddPullRequestReviewComment
 
       """
-      input: AddPullRequestReviewCommentInput ##NON NULL
+      input: NonNull_AddPullRequestReviewCommentInput
 
    _args: AddPullRequestReviewCommentPayloadArgs
 
@@ -321,7 +683,7 @@ class addPullRequestReviewThread(GQLMutation):
       input - Parameters for AddPullRequestReviewThread
 
       """
-      input: AddPullRequestReviewThreadInput ##NON NULL
+      input: NonNull_AddPullRequestReviewThreadInput
 
    _args: AddPullRequestReviewThreadPayloadArgs
 
@@ -338,7 +700,7 @@ class addReaction(GQLMutation):
       input - Parameters for AddReaction
 
       """
-      input: AddReactionInput ##NON NULL
+      input: NonNull_AddReactionInput
 
    _args: AddReactionPayloadArgs
 
@@ -355,7 +717,7 @@ class addStar(GQLMutation):
       input - Parameters for AddStar
 
       """
-      input: AddStarInput ##NON NULL
+      input: NonNull_AddStarInput
 
    _args: AddStarPayloadArgs
 
@@ -372,7 +734,7 @@ class addUpvote(GQLMutation):
       input - Parameters for AddUpvote
 
       """
-      input: AddUpvoteInput ##NON NULL
+      input: NonNull_AddUpvoteInput
 
    _args: AddUpvotePayloadArgs
 
@@ -389,7 +751,7 @@ class addVerifiableDomain(GQLMutation):
       input - Parameters for AddVerifiableDomain
 
       """
-      input: AddVerifiableDomainInput ##NON NULL
+      input: NonNull_AddVerifiableDomainInput
 
    _args: AddVerifiableDomainPayloadArgs
 
@@ -406,7 +768,7 @@ class approveDeployments(GQLMutation):
       input - Parameters for ApproveDeployments
 
       """
-      input: ApproveDeploymentsInput ##NON NULL
+      input: NonNull_ApproveDeploymentsInput
 
    _args: ApproveDeploymentsPayloadArgs
 
@@ -423,7 +785,7 @@ class approveVerifiableDomain(GQLMutation):
       input - Parameters for ApproveVerifiableDomain
 
       """
-      input: ApproveVerifiableDomainInput ##NON NULL
+      input: NonNull_ApproveVerifiableDomainInput
 
    _args: ApproveVerifiableDomainPayloadArgs
 
@@ -440,7 +802,7 @@ class archiveProjectV2Item(GQLMutation):
       input - Parameters for ArchiveProjectV2Item
 
       """
-      input: ArchiveProjectV2ItemInput ##NON NULL
+      input: NonNull_ArchiveProjectV2ItemInput
 
    _args: ArchiveProjectV2ItemPayloadArgs
 
@@ -457,7 +819,7 @@ class archiveRepository(GQLMutation):
       input - Parameters for ArchiveRepository
 
       """
-      input: ArchiveRepositoryInput ##NON NULL
+      input: NonNull_ArchiveRepositoryInput
 
    _args: ArchiveRepositoryPayloadArgs
 
@@ -474,7 +836,7 @@ class cancelEnterpriseAdminInvitation(GQLMutation):
       input - Parameters for CancelEnterpriseAdminInvitation
 
       """
-      input: CancelEnterpriseAdminInvitationInput ##NON NULL
+      input: NonNull_CancelEnterpriseAdminInvitationInput
 
    _args: CancelEnterpriseAdminInvitationPayloadArgs
 
@@ -491,7 +853,7 @@ class cancelSponsorship(GQLMutation):
       input - Parameters for CancelSponsorship
 
       """
-      input: CancelSponsorshipInput ##NON NULL
+      input: NonNull_CancelSponsorshipInput
 
    _args: CancelSponsorshipPayloadArgs
 
@@ -508,7 +870,7 @@ class changeUserStatus(GQLMutation):
       input - Parameters for ChangeUserStatus
 
       """
-      input: ChangeUserStatusInput ##NON NULL
+      input: NonNull_ChangeUserStatusInput
 
    _args: ChangeUserStatusPayloadArgs
 
@@ -525,7 +887,7 @@ class clearLabelsFromLabelable(GQLMutation):
       input - Parameters for ClearLabelsFromLabelable
 
       """
-      input: ClearLabelsFromLabelableInput ##NON NULL
+      input: NonNull_ClearLabelsFromLabelableInput
 
    _args: ClearLabelsFromLabelablePayloadArgs
 
@@ -542,7 +904,7 @@ class clearProjectV2ItemFieldValue(GQLMutation):
       input - Parameters for ClearProjectV2ItemFieldValue
 
       """
-      input: ClearProjectV2ItemFieldValueInput ##NON NULL
+      input: NonNull_ClearProjectV2ItemFieldValueInput
 
    _args: ClearProjectV2ItemFieldValuePayloadArgs
 
@@ -559,7 +921,7 @@ class cloneProject(GQLMutation):
       input - Parameters for CloneProject
 
       """
-      input: CloneProjectInput ##NON NULL
+      input: NonNull_CloneProjectInput
 
    _args: CloneProjectPayloadArgs
 
@@ -576,7 +938,7 @@ class cloneTemplateRepository(GQLMutation):
       input - Parameters for CloneTemplateRepository
 
       """
-      input: CloneTemplateRepositoryInput ##NON NULL
+      input: NonNull_CloneTemplateRepositoryInput
 
    _args: CloneTemplateRepositoryPayloadArgs
 
@@ -593,7 +955,7 @@ class closeIssue(GQLMutation):
       input - Parameters for CloseIssue
 
       """
-      input: CloseIssueInput ##NON NULL
+      input: NonNull_CloseIssueInput
 
    _args: CloseIssuePayloadArgs
 
@@ -610,7 +972,7 @@ class closePullRequest(GQLMutation):
       input - Parameters for ClosePullRequest
 
       """
-      input: ClosePullRequestInput ##NON NULL
+      input: NonNull_ClosePullRequestInput
 
    _args: ClosePullRequestPayloadArgs
 
@@ -627,7 +989,7 @@ class convertProjectCardNoteToIssue(GQLMutation):
       input - Parameters for ConvertProjectCardNoteToIssue
 
       """
-      input: ConvertProjectCardNoteToIssueInput ##NON NULL
+      input: NonNull_ConvertProjectCardNoteToIssueInput
 
    _args: ConvertProjectCardNoteToIssuePayloadArgs
 
@@ -644,7 +1006,7 @@ class convertPullRequestToDraft(GQLMutation):
       input - Parameters for ConvertPullRequestToDraft
 
       """
-      input: ConvertPullRequestToDraftInput ##NON NULL
+      input: NonNull_ConvertPullRequestToDraftInput
 
    _args: ConvertPullRequestToDraftPayloadArgs
 
@@ -661,7 +1023,7 @@ class createAttributionInvitation(GQLMutation):
       input - Parameters for CreateAttributionInvitation
 
       """
-      input: CreateAttributionInvitationInput ##NON NULL
+      input: NonNull_CreateAttributionInvitationInput
 
    _args: CreateAttributionInvitationPayloadArgs
 
@@ -678,7 +1040,7 @@ class createBranchProtectionRule(GQLMutation):
       input - Parameters for CreateBranchProtectionRule
 
       """
-      input: CreateBranchProtectionRuleInput ##NON NULL
+      input: NonNull_CreateBranchProtectionRuleInput
 
    _args: CreateBranchProtectionRulePayloadArgs
 
@@ -695,7 +1057,7 @@ class createCheckRun(GQLMutation):
       input - Parameters for CreateCheckRun
 
       """
-      input: CreateCheckRunInput ##NON NULL
+      input: NonNull_CreateCheckRunInput
 
    _args: CreateCheckRunPayloadArgs
 
@@ -712,7 +1074,7 @@ class createCheckSuite(GQLMutation):
       input - Parameters for CreateCheckSuite
 
       """
-      input: CreateCheckSuiteInput ##NON NULL
+      input: NonNull_CreateCheckSuiteInput
 
    _args: CreateCheckSuitePayloadArgs
 
@@ -771,7 +1133,7 @@ supported and will be marked as verified in the user interface.
       input - Parameters for CreateCommitOnBranch
 
       """
-      input: CreateCommitOnBranchInput ##NON NULL
+      input: NonNull_CreateCommitOnBranchInput
 
    _args: CreateCommitOnBranchPayloadArgs
 
@@ -788,7 +1150,7 @@ class createDiscussion(GQLMutation):
       input - Parameters for CreateDiscussion
 
       """
-      input: CreateDiscussionInput ##NON NULL
+      input: NonNull_CreateDiscussionInput
 
    _args: CreateDiscussionPayloadArgs
 
@@ -805,7 +1167,7 @@ class createEnterpriseOrganization(GQLMutation):
       input - Parameters for CreateEnterpriseOrganization
 
       """
-      input: CreateEnterpriseOrganizationInput ##NON NULL
+      input: NonNull_CreateEnterpriseOrganizationInput
 
    _args: CreateEnterpriseOrganizationPayloadArgs
 
@@ -822,7 +1184,7 @@ class createEnvironment(GQLMutation):
       input - Parameters for CreateEnvironment
 
       """
-      input: CreateEnvironmentInput ##NON NULL
+      input: NonNull_CreateEnvironmentInput
 
    _args: CreateEnvironmentPayloadArgs
 
@@ -839,7 +1201,7 @@ class createIpAllowListEntry(GQLMutation):
       input - Parameters for CreateIpAllowListEntry
 
       """
-      input: CreateIpAllowListEntryInput ##NON NULL
+      input: NonNull_CreateIpAllowListEntryInput
 
    _args: CreateIpAllowListEntryPayloadArgs
 
@@ -856,7 +1218,7 @@ class createIssue(GQLMutation):
       input - Parameters for CreateIssue
 
       """
-      input: CreateIssueInput ##NON NULL
+      input: NonNull_CreateIssueInput
 
    _args: CreateIssuePayloadArgs
 
@@ -873,7 +1235,7 @@ class createLinkedBranch(GQLMutation):
       input - Parameters for CreateLinkedBranch
 
       """
-      input: CreateLinkedBranchInput ##NON NULL
+      input: NonNull_CreateLinkedBranchInput
 
    _args: CreateLinkedBranchPayloadArgs
 
@@ -890,7 +1252,7 @@ class createMigrationSource(GQLMutation):
       input - Parameters for CreateMigrationSource
 
       """
-      input: CreateMigrationSourceInput ##NON NULL
+      input: NonNull_CreateMigrationSourceInput
 
    _args: CreateMigrationSourcePayloadArgs
 
@@ -907,7 +1269,7 @@ class createProject(GQLMutation):
       input - Parameters for CreateProject
 
       """
-      input: CreateProjectInput ##NON NULL
+      input: NonNull_CreateProjectInput
 
    _args: CreateProjectPayloadArgs
 
@@ -924,7 +1286,7 @@ class createProjectV2(GQLMutation):
       input - Parameters for CreateProjectV2
 
       """
-      input: CreateProjectV2Input ##NON NULL
+      input: NonNull_CreateProjectV2Input
 
    _args: CreateProjectV2PayloadArgs
 
@@ -941,7 +1303,7 @@ class createPullRequest(GQLMutation):
       input - Parameters for CreatePullRequest
 
       """
-      input: CreatePullRequestInput ##NON NULL
+      input: NonNull_CreatePullRequestInput
 
    _args: CreatePullRequestPayloadArgs
 
@@ -958,7 +1320,7 @@ class createRef(GQLMutation):
       input - Parameters for CreateRef
 
       """
-      input: CreateRefInput ##NON NULL
+      input: NonNull_CreateRefInput
 
    _args: CreateRefPayloadArgs
 
@@ -975,7 +1337,7 @@ class createRepository(GQLMutation):
       input - Parameters for CreateRepository
 
       """
-      input: CreateRepositoryInput ##NON NULL
+      input: NonNull_CreateRepositoryInput
 
    _args: CreateRepositoryPayloadArgs
 
@@ -992,7 +1354,7 @@ class createSponsorsListing(GQLMutation):
       input - Parameters for CreateSponsorsListing
 
       """
-      input: CreateSponsorsListingInput ##NON NULL
+      input: NonNull_CreateSponsorsListingInput
 
    _args: CreateSponsorsListingPayloadArgs
 
@@ -1009,7 +1371,7 @@ class createSponsorsTier(GQLMutation):
       input - Parameters for CreateSponsorsTier
 
       """
-      input: CreateSponsorsTierInput ##NON NULL
+      input: NonNull_CreateSponsorsTierInput
 
    _args: CreateSponsorsTierPayloadArgs
 
@@ -1026,7 +1388,7 @@ class createSponsorship(GQLMutation):
       input - Parameters for CreateSponsorship
 
       """
-      input: CreateSponsorshipInput ##NON NULL
+      input: NonNull_CreateSponsorshipInput
 
    _args: CreateSponsorshipPayloadArgs
 
@@ -1043,7 +1405,7 @@ class createTeamDiscussion(GQLMutation):
       input - Parameters for CreateTeamDiscussion
 
       """
-      input: CreateTeamDiscussionInput ##NON NULL
+      input: NonNull_CreateTeamDiscussionInput
 
    _args: CreateTeamDiscussionPayloadArgs
 
@@ -1060,7 +1422,7 @@ class createTeamDiscussionComment(GQLMutation):
       input - Parameters for CreateTeamDiscussionComment
 
       """
-      input: CreateTeamDiscussionCommentInput ##NON NULL
+      input: NonNull_CreateTeamDiscussionCommentInput
 
    _args: CreateTeamDiscussionCommentPayloadArgs
 
@@ -1077,7 +1439,7 @@ class declineTopicSuggestion(GQLMutation):
       input - Parameters for DeclineTopicSuggestion
 
       """
-      input: DeclineTopicSuggestionInput ##NON NULL
+      input: NonNull_DeclineTopicSuggestionInput
 
    _args: DeclineTopicSuggestionPayloadArgs
 
@@ -1094,7 +1456,7 @@ class deleteBranchProtectionRule(GQLMutation):
       input - Parameters for DeleteBranchProtectionRule
 
       """
-      input: DeleteBranchProtectionRuleInput ##NON NULL
+      input: NonNull_DeleteBranchProtectionRuleInput
 
    _args: DeleteBranchProtectionRulePayloadArgs
 
@@ -1111,7 +1473,7 @@ class deleteDeployment(GQLMutation):
       input - Parameters for DeleteDeployment
 
       """
-      input: DeleteDeploymentInput ##NON NULL
+      input: NonNull_DeleteDeploymentInput
 
    _args: DeleteDeploymentPayloadArgs
 
@@ -1128,7 +1490,7 @@ class deleteDiscussion(GQLMutation):
       input - Parameters for DeleteDiscussion
 
       """
-      input: DeleteDiscussionInput ##NON NULL
+      input: NonNull_DeleteDiscussionInput
 
    _args: DeleteDiscussionPayloadArgs
 
@@ -1145,7 +1507,7 @@ class deleteDiscussionComment(GQLMutation):
       input - Parameters for DeleteDiscussionComment
 
       """
-      input: DeleteDiscussionCommentInput ##NON NULL
+      input: NonNull_DeleteDiscussionCommentInput
 
    _args: DeleteDiscussionCommentPayloadArgs
 
@@ -1162,7 +1524,7 @@ class deleteEnvironment(GQLMutation):
       input - Parameters for DeleteEnvironment
 
       """
-      input: DeleteEnvironmentInput ##NON NULL
+      input: NonNull_DeleteEnvironmentInput
 
    _args: DeleteEnvironmentPayloadArgs
 
@@ -1179,7 +1541,7 @@ class deleteIpAllowListEntry(GQLMutation):
       input - Parameters for DeleteIpAllowListEntry
 
       """
-      input: DeleteIpAllowListEntryInput ##NON NULL
+      input: NonNull_DeleteIpAllowListEntryInput
 
    _args: DeleteIpAllowListEntryPayloadArgs
 
@@ -1196,7 +1558,7 @@ class deleteIssue(GQLMutation):
       input - Parameters for DeleteIssue
 
       """
-      input: DeleteIssueInput ##NON NULL
+      input: NonNull_DeleteIssueInput
 
    _args: DeleteIssuePayloadArgs
 
@@ -1213,7 +1575,7 @@ class deleteIssueComment(GQLMutation):
       input - Parameters for DeleteIssueComment
 
       """
-      input: DeleteIssueCommentInput ##NON NULL
+      input: NonNull_DeleteIssueCommentInput
 
    _args: DeleteIssueCommentPayloadArgs
 
@@ -1230,7 +1592,7 @@ class deleteLinkedBranch(GQLMutation):
       input - Parameters for DeleteLinkedBranch
 
       """
-      input: DeleteLinkedBranchInput ##NON NULL
+      input: NonNull_DeleteLinkedBranchInput
 
    _args: DeleteLinkedBranchPayloadArgs
 
@@ -1247,7 +1609,7 @@ class deleteProject(GQLMutation):
       input - Parameters for DeleteProject
 
       """
-      input: DeleteProjectInput ##NON NULL
+      input: NonNull_DeleteProjectInput
 
    _args: DeleteProjectPayloadArgs
 
@@ -1264,7 +1626,7 @@ class deleteProjectCard(GQLMutation):
       input - Parameters for DeleteProjectCard
 
       """
-      input: DeleteProjectCardInput ##NON NULL
+      input: NonNull_DeleteProjectCardInput
 
    _args: DeleteProjectCardPayloadArgs
 
@@ -1281,29 +1643,12 @@ class deleteProjectColumn(GQLMutation):
       input - Parameters for DeleteProjectColumn
 
       """
-      input: DeleteProjectColumnInput ##NON NULL
+      input: NonNull_DeleteProjectColumnInput
 
    _args: DeleteProjectColumnPayloadArgs
 
 
    type: DeleteProjectColumnPayload
-
-class deleteProjectNextItem(GQLMutation):
-   """
-   deleteProjectNextItem - Deletes an item from a Project.
-
-   """
-   class DeleteProjectNextItemPayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for DeleteProjectNextItem
-
-      """
-      input: DeleteProjectNextItemInput ##NON NULL
-
-   _args: DeleteProjectNextItemPayloadArgs
-
-
-   type: DeleteProjectNextItemPayload
 
 class deleteProjectV2Item(GQLMutation):
    """
@@ -1315,7 +1660,7 @@ class deleteProjectV2Item(GQLMutation):
       input - Parameters for DeleteProjectV2Item
 
       """
-      input: DeleteProjectV2ItemInput ##NON NULL
+      input: NonNull_DeleteProjectV2ItemInput
 
    _args: DeleteProjectV2ItemPayloadArgs
 
@@ -1332,7 +1677,7 @@ class deletePullRequestReview(GQLMutation):
       input - Parameters for DeletePullRequestReview
 
       """
-      input: DeletePullRequestReviewInput ##NON NULL
+      input: NonNull_DeletePullRequestReviewInput
 
    _args: DeletePullRequestReviewPayloadArgs
 
@@ -1349,7 +1694,7 @@ class deletePullRequestReviewComment(GQLMutation):
       input - Parameters for DeletePullRequestReviewComment
 
       """
-      input: DeletePullRequestReviewCommentInput ##NON NULL
+      input: NonNull_DeletePullRequestReviewCommentInput
 
    _args: DeletePullRequestReviewCommentPayloadArgs
 
@@ -1366,7 +1711,7 @@ class deleteRef(GQLMutation):
       input - Parameters for DeleteRef
 
       """
-      input: DeleteRefInput ##NON NULL
+      input: NonNull_DeleteRefInput
 
    _args: DeleteRefPayloadArgs
 
@@ -1383,7 +1728,7 @@ class deleteTeamDiscussion(GQLMutation):
       input - Parameters for DeleteTeamDiscussion
 
       """
-      input: DeleteTeamDiscussionInput ##NON NULL
+      input: NonNull_DeleteTeamDiscussionInput
 
    _args: DeleteTeamDiscussionPayloadArgs
 
@@ -1400,7 +1745,7 @@ class deleteTeamDiscussionComment(GQLMutation):
       input - Parameters for DeleteTeamDiscussionComment
 
       """
-      input: DeleteTeamDiscussionCommentInput ##NON NULL
+      input: NonNull_DeleteTeamDiscussionCommentInput
 
    _args: DeleteTeamDiscussionCommentPayloadArgs
 
@@ -1417,7 +1762,7 @@ class deleteVerifiableDomain(GQLMutation):
       input - Parameters for DeleteVerifiableDomain
 
       """
-      input: DeleteVerifiableDomainInput ##NON NULL
+      input: NonNull_DeleteVerifiableDomainInput
 
    _args: DeleteVerifiableDomainPayloadArgs
 
@@ -1434,7 +1779,7 @@ class disablePullRequestAutoMerge(GQLMutation):
       input - Parameters for DisablePullRequestAutoMerge
 
       """
-      input: DisablePullRequestAutoMergeInput ##NON NULL
+      input: NonNull_DisablePullRequestAutoMergeInput
 
    _args: DisablePullRequestAutoMergePayloadArgs
 
@@ -1451,7 +1796,7 @@ class dismissPullRequestReview(GQLMutation):
       input - Parameters for DismissPullRequestReview
 
       """
-      input: DismissPullRequestReviewInput ##NON NULL
+      input: NonNull_DismissPullRequestReviewInput
 
    _args: DismissPullRequestReviewPayloadArgs
 
@@ -1468,7 +1813,7 @@ class dismissRepositoryVulnerabilityAlert(GQLMutation):
       input - Parameters for DismissRepositoryVulnerabilityAlert
 
       """
-      input: DismissRepositoryVulnerabilityAlertInput ##NON NULL
+      input: NonNull_DismissRepositoryVulnerabilityAlertInput
 
    _args: DismissRepositoryVulnerabilityAlertPayloadArgs
 
@@ -1485,7 +1830,7 @@ class enablePullRequestAutoMerge(GQLMutation):
       input - Parameters for EnablePullRequestAutoMerge
 
       """
-      input: EnablePullRequestAutoMergeInput ##NON NULL
+      input: NonNull_EnablePullRequestAutoMergeInput
 
    _args: EnablePullRequestAutoMergePayloadArgs
 
@@ -1502,7 +1847,7 @@ class followOrganization(GQLMutation):
       input - Parameters for FollowOrganization
 
       """
-      input: FollowOrganizationInput ##NON NULL
+      input: NonNull_FollowOrganizationInput
 
    _args: FollowOrganizationPayloadArgs
 
@@ -1519,7 +1864,7 @@ class followUser(GQLMutation):
       input - Parameters for FollowUser
 
       """
-      input: FollowUserInput ##NON NULL
+      input: NonNull_FollowUserInput
 
    _args: FollowUserPayloadArgs
 
@@ -1536,7 +1881,7 @@ class grantEnterpriseOrganizationsMigratorRole(GQLMutation):
       input - Parameters for GrantEnterpriseOrganizationsMigratorRole
 
       """
-      input: GrantEnterpriseOrganizationsMigratorRoleInput ##NON NULL
+      input: NonNull_GrantEnterpriseOrganizationsMigratorRoleInput
 
    _args: GrantEnterpriseOrganizationsMigratorRolePayloadArgs
 
@@ -1553,7 +1898,7 @@ class grantMigratorRole(GQLMutation):
       input - Parameters for GrantMigratorRole
 
       """
-      input: GrantMigratorRoleInput ##NON NULL
+      input: NonNull_GrantMigratorRoleInput
 
    _args: GrantMigratorRolePayloadArgs
 
@@ -1570,7 +1915,7 @@ class inviteEnterpriseAdmin(GQLMutation):
       input - Parameters for InviteEnterpriseAdmin
 
       """
-      input: InviteEnterpriseAdminInput ##NON NULL
+      input: NonNull_InviteEnterpriseAdminInput
 
    _args: InviteEnterpriseAdminPayloadArgs
 
@@ -1587,7 +1932,7 @@ class linkProjectV2ToRepository(GQLMutation):
       input - Parameters for LinkProjectV2ToRepository
 
       """
-      input: LinkProjectV2ToRepositoryInput ##NON NULL
+      input: NonNull_LinkProjectV2ToRepositoryInput
 
    _args: LinkProjectV2ToRepositoryPayloadArgs
 
@@ -1604,7 +1949,7 @@ class linkProjectV2ToTeam(GQLMutation):
       input - Parameters for LinkProjectV2ToTeam
 
       """
-      input: LinkProjectV2ToTeamInput ##NON NULL
+      input: NonNull_LinkProjectV2ToTeamInput
 
    _args: LinkProjectV2ToTeamPayloadArgs
 
@@ -1621,7 +1966,7 @@ class linkRepositoryToProject(GQLMutation):
       input - Parameters for LinkRepositoryToProject
 
       """
-      input: LinkRepositoryToProjectInput ##NON NULL
+      input: NonNull_LinkRepositoryToProjectInput
 
    _args: LinkRepositoryToProjectPayloadArgs
 
@@ -1638,7 +1983,7 @@ class lockLockable(GQLMutation):
       input - Parameters for LockLockable
 
       """
-      input: LockLockableInput ##NON NULL
+      input: NonNull_LockLockableInput
 
    _args: LockLockablePayloadArgs
 
@@ -1655,7 +2000,7 @@ class markDiscussionCommentAsAnswer(GQLMutation):
       input - Parameters for MarkDiscussionCommentAsAnswer
 
       """
-      input: MarkDiscussionCommentAsAnswerInput ##NON NULL
+      input: NonNull_MarkDiscussionCommentAsAnswerInput
 
    _args: MarkDiscussionCommentAsAnswerPayloadArgs
 
@@ -1672,7 +2017,7 @@ class markFileAsViewed(GQLMutation):
       input - Parameters for MarkFileAsViewed
 
       """
-      input: MarkFileAsViewedInput ##NON NULL
+      input: NonNull_MarkFileAsViewedInput
 
    _args: MarkFileAsViewedPayloadArgs
 
@@ -1689,7 +2034,7 @@ class markPullRequestReadyForReview(GQLMutation):
       input - Parameters for MarkPullRequestReadyForReview
 
       """
-      input: MarkPullRequestReadyForReviewInput ##NON NULL
+      input: NonNull_MarkPullRequestReadyForReviewInput
 
    _args: MarkPullRequestReadyForReviewPayloadArgs
 
@@ -1706,7 +2051,7 @@ class mergeBranch(GQLMutation):
       input - Parameters for MergeBranch
 
       """
-      input: MergeBranchInput ##NON NULL
+      input: NonNull_MergeBranchInput
 
    _args: MergeBranchPayloadArgs
 
@@ -1723,7 +2068,7 @@ class mergePullRequest(GQLMutation):
       input - Parameters for MergePullRequest
 
       """
-      input: MergePullRequestInput ##NON NULL
+      input: NonNull_MergePullRequestInput
 
    _args: MergePullRequestPayloadArgs
 
@@ -1740,7 +2085,7 @@ class minimizeComment(GQLMutation):
       input - Parameters for MinimizeComment
 
       """
-      input: MinimizeCommentInput ##NON NULL
+      input: NonNull_MinimizeCommentInput
 
    _args: MinimizeCommentPayloadArgs
 
@@ -1757,7 +2102,7 @@ class moveProjectCard(GQLMutation):
       input - Parameters for MoveProjectCard
 
       """
-      input: MoveProjectCardInput ##NON NULL
+      input: NonNull_MoveProjectCardInput
 
    _args: MoveProjectCardPayloadArgs
 
@@ -1774,7 +2119,7 @@ class moveProjectColumn(GQLMutation):
       input - Parameters for MoveProjectColumn
 
       """
-      input: MoveProjectColumnInput ##NON NULL
+      input: NonNull_MoveProjectColumnInput
 
    _args: MoveProjectColumnPayloadArgs
 
@@ -1791,7 +2136,7 @@ class pinIssue(GQLMutation):
       input - Parameters for PinIssue
 
       """
-      input: PinIssueInput ##NON NULL
+      input: NonNull_PinIssueInput
 
    _args: PinIssuePayloadArgs
 
@@ -1808,7 +2153,7 @@ class publishSponsorsTier(GQLMutation):
       input - Parameters for PublishSponsorsTier
 
       """
-      input: PublishSponsorsTierInput ##NON NULL
+      input: NonNull_PublishSponsorsTierInput
 
    _args: PublishSponsorsTierPayloadArgs
 
@@ -1825,7 +2170,7 @@ class regenerateEnterpriseIdentityProviderRecoveryCodes(GQLMutation):
       input - Parameters for RegenerateEnterpriseIdentityProviderRecoveryCodes
 
       """
-      input: RegenerateEnterpriseIdentityProviderRecoveryCodesInput ##NON NULL
+      input: NonNull_RegenerateEnterpriseIdentityProviderRecoveryCodesInput
 
    _args: RegenerateEnterpriseIdentityProviderRecoveryCodesPayloadArgs
 
@@ -1842,7 +2187,7 @@ class regenerateVerifiableDomainToken(GQLMutation):
       input - Parameters for RegenerateVerifiableDomainToken
 
       """
-      input: RegenerateVerifiableDomainTokenInput ##NON NULL
+      input: NonNull_RegenerateVerifiableDomainTokenInput
 
    _args: RegenerateVerifiableDomainTokenPayloadArgs
 
@@ -1859,7 +2204,7 @@ class rejectDeployments(GQLMutation):
       input - Parameters for RejectDeployments
 
       """
-      input: RejectDeploymentsInput ##NON NULL
+      input: NonNull_RejectDeploymentsInput
 
    _args: RejectDeploymentsPayloadArgs
 
@@ -1876,7 +2221,7 @@ class removeAssigneesFromAssignable(GQLMutation):
       input - Parameters for RemoveAssigneesFromAssignable
 
       """
-      input: RemoveAssigneesFromAssignableInput ##NON NULL
+      input: NonNull_RemoveAssigneesFromAssignableInput
 
    _args: RemoveAssigneesFromAssignablePayloadArgs
 
@@ -1893,7 +2238,7 @@ class removeEnterpriseAdmin(GQLMutation):
       input - Parameters for RemoveEnterpriseAdmin
 
       """
-      input: RemoveEnterpriseAdminInput ##NON NULL
+      input: NonNull_RemoveEnterpriseAdminInput
 
    _args: RemoveEnterpriseAdminPayloadArgs
 
@@ -1910,7 +2255,7 @@ class removeEnterpriseIdentityProvider(GQLMutation):
       input - Parameters for RemoveEnterpriseIdentityProvider
 
       """
-      input: RemoveEnterpriseIdentityProviderInput ##NON NULL
+      input: NonNull_RemoveEnterpriseIdentityProviderInput
 
    _args: RemoveEnterpriseIdentityProviderPayloadArgs
 
@@ -1927,7 +2272,7 @@ class removeEnterpriseOrganization(GQLMutation):
       input - Parameters for RemoveEnterpriseOrganization
 
       """
-      input: RemoveEnterpriseOrganizationInput ##NON NULL
+      input: NonNull_RemoveEnterpriseOrganizationInput
 
    _args: RemoveEnterpriseOrganizationPayloadArgs
 
@@ -1944,7 +2289,7 @@ class removeEnterpriseSupportEntitlement(GQLMutation):
       input - Parameters for RemoveEnterpriseSupportEntitlement
 
       """
-      input: RemoveEnterpriseSupportEntitlementInput ##NON NULL
+      input: NonNull_RemoveEnterpriseSupportEntitlementInput
 
    _args: RemoveEnterpriseSupportEntitlementPayloadArgs
 
@@ -1961,7 +2306,7 @@ class removeLabelsFromLabelable(GQLMutation):
       input - Parameters for RemoveLabelsFromLabelable
 
       """
-      input: RemoveLabelsFromLabelableInput ##NON NULL
+      input: NonNull_RemoveLabelsFromLabelableInput
 
    _args: RemoveLabelsFromLabelablePayloadArgs
 
@@ -1978,7 +2323,7 @@ class removeOutsideCollaborator(GQLMutation):
       input - Parameters for RemoveOutsideCollaborator
 
       """
-      input: RemoveOutsideCollaboratorInput ##NON NULL
+      input: NonNull_RemoveOutsideCollaboratorInput
 
    _args: RemoveOutsideCollaboratorPayloadArgs
 
@@ -1995,7 +2340,7 @@ class removeReaction(GQLMutation):
       input - Parameters for RemoveReaction
 
       """
-      input: RemoveReactionInput ##NON NULL
+      input: NonNull_RemoveReactionInput
 
    _args: RemoveReactionPayloadArgs
 
@@ -2012,7 +2357,7 @@ class removeStar(GQLMutation):
       input - Parameters for RemoveStar
 
       """
-      input: RemoveStarInput ##NON NULL
+      input: NonNull_RemoveStarInput
 
    _args: RemoveStarPayloadArgs
 
@@ -2029,7 +2374,7 @@ class removeUpvote(GQLMutation):
       input - Parameters for RemoveUpvote
 
       """
-      input: RemoveUpvoteInput ##NON NULL
+      input: NonNull_RemoveUpvoteInput
 
    _args: RemoveUpvotePayloadArgs
 
@@ -2046,7 +2391,7 @@ class reopenIssue(GQLMutation):
       input - Parameters for ReopenIssue
 
       """
-      input: ReopenIssueInput ##NON NULL
+      input: NonNull_ReopenIssueInput
 
    _args: ReopenIssuePayloadArgs
 
@@ -2063,7 +2408,7 @@ class reopenPullRequest(GQLMutation):
       input - Parameters for ReopenPullRequest
 
       """
-      input: ReopenPullRequestInput ##NON NULL
+      input: NonNull_ReopenPullRequestInput
 
    _args: ReopenPullRequestPayloadArgs
 
@@ -2080,7 +2425,7 @@ class requestReviews(GQLMutation):
       input - Parameters for RequestReviews
 
       """
-      input: RequestReviewsInput ##NON NULL
+      input: NonNull_RequestReviewsInput
 
    _args: RequestReviewsPayloadArgs
 
@@ -2097,7 +2442,7 @@ class rerequestCheckSuite(GQLMutation):
       input - Parameters for RerequestCheckSuite
 
       """
-      input: RerequestCheckSuiteInput ##NON NULL
+      input: NonNull_RerequestCheckSuiteInput
 
    _args: RerequestCheckSuitePayloadArgs
 
@@ -2114,7 +2459,7 @@ class resolveReviewThread(GQLMutation):
       input - Parameters for ResolveReviewThread
 
       """
-      input: ResolveReviewThreadInput ##NON NULL
+      input: NonNull_ResolveReviewThreadInput
 
    _args: ResolveReviewThreadPayloadArgs
 
@@ -2131,7 +2476,7 @@ class retireSponsorsTier(GQLMutation):
       input - Parameters for RetireSponsorsTier
 
       """
-      input: RetireSponsorsTierInput ##NON NULL
+      input: NonNull_RetireSponsorsTierInput
 
    _args: RetireSponsorsTierPayloadArgs
 
@@ -2148,7 +2493,7 @@ class revokeEnterpriseOrganizationsMigratorRole(GQLMutation):
       input - Parameters for RevokeEnterpriseOrganizationsMigratorRole
 
       """
-      input: RevokeEnterpriseOrganizationsMigratorRoleInput ##NON NULL
+      input: NonNull_RevokeEnterpriseOrganizationsMigratorRoleInput
 
    _args: RevokeEnterpriseOrganizationsMigratorRolePayloadArgs
 
@@ -2165,7 +2510,7 @@ class revokeMigratorRole(GQLMutation):
       input - Parameters for RevokeMigratorRole
 
       """
-      input: RevokeMigratorRoleInput ##NON NULL
+      input: NonNull_RevokeMigratorRoleInput
 
    _args: RevokeMigratorRolePayloadArgs
 
@@ -2182,7 +2527,7 @@ class setEnterpriseIdentityProvider(GQLMutation):
       input - Parameters for SetEnterpriseIdentityProvider
 
       """
-      input: SetEnterpriseIdentityProviderInput ##NON NULL
+      input: NonNull_SetEnterpriseIdentityProviderInput
 
    _args: SetEnterpriseIdentityProviderPayloadArgs
 
@@ -2199,7 +2544,7 @@ class setOrganizationInteractionLimit(GQLMutation):
       input - Parameters for SetOrganizationInteractionLimit
 
       """
-      input: SetOrganizationInteractionLimitInput ##NON NULL
+      input: NonNull_SetOrganizationInteractionLimitInput
 
    _args: SetOrganizationInteractionLimitPayloadArgs
 
@@ -2216,7 +2561,7 @@ class setRepositoryInteractionLimit(GQLMutation):
       input - Parameters for SetRepositoryInteractionLimit
 
       """
-      input: SetRepositoryInteractionLimitInput ##NON NULL
+      input: NonNull_SetRepositoryInteractionLimitInput
 
    _args: SetRepositoryInteractionLimitPayloadArgs
 
@@ -2233,7 +2578,7 @@ class setUserInteractionLimit(GQLMutation):
       input - Parameters for SetUserInteractionLimit
 
       """
-      input: SetUserInteractionLimitInput ##NON NULL
+      input: NonNull_SetUserInteractionLimitInput
 
    _args: SetUserInteractionLimitPayloadArgs
 
@@ -2250,7 +2595,7 @@ class startOrganizationMigration(GQLMutation):
       input - Parameters for StartOrganizationMigration
 
       """
-      input: StartOrganizationMigrationInput ##NON NULL
+      input: NonNull_StartOrganizationMigrationInput
 
    _args: StartOrganizationMigrationPayloadArgs
 
@@ -2267,7 +2612,7 @@ class startRepositoryMigration(GQLMutation):
       input - Parameters for StartRepositoryMigration
 
       """
-      input: StartRepositoryMigrationInput ##NON NULL
+      input: NonNull_StartRepositoryMigrationInput
 
    _args: StartRepositoryMigrationPayloadArgs
 
@@ -2284,7 +2629,7 @@ class submitPullRequestReview(GQLMutation):
       input - Parameters for SubmitPullRequestReview
 
       """
-      input: SubmitPullRequestReviewInput ##NON NULL
+      input: NonNull_SubmitPullRequestReviewInput
 
    _args: SubmitPullRequestReviewPayloadArgs
 
@@ -2301,7 +2646,7 @@ class transferEnterpriseOrganization(GQLMutation):
       input - Parameters for TransferEnterpriseOrganization
 
       """
-      input: TransferEnterpriseOrganizationInput ##NON NULL
+      input: NonNull_TransferEnterpriseOrganizationInput
 
    _args: TransferEnterpriseOrganizationPayloadArgs
 
@@ -2318,7 +2663,7 @@ class transferIssue(GQLMutation):
       input - Parameters for TransferIssue
 
       """
-      input: TransferIssueInput ##NON NULL
+      input: NonNull_TransferIssueInput
 
    _args: TransferIssuePayloadArgs
 
@@ -2335,7 +2680,7 @@ class unarchiveProjectV2Item(GQLMutation):
       input - Parameters for UnarchiveProjectV2Item
 
       """
-      input: UnarchiveProjectV2ItemInput ##NON NULL
+      input: NonNull_UnarchiveProjectV2ItemInput
 
    _args: UnarchiveProjectV2ItemPayloadArgs
 
@@ -2352,7 +2697,7 @@ class unarchiveRepository(GQLMutation):
       input - Parameters for UnarchiveRepository
 
       """
-      input: UnarchiveRepositoryInput ##NON NULL
+      input: NonNull_UnarchiveRepositoryInput
 
    _args: UnarchiveRepositoryPayloadArgs
 
@@ -2369,7 +2714,7 @@ class unfollowOrganization(GQLMutation):
       input - Parameters for UnfollowOrganization
 
       """
-      input: UnfollowOrganizationInput ##NON NULL
+      input: NonNull_UnfollowOrganizationInput
 
    _args: UnfollowOrganizationPayloadArgs
 
@@ -2386,7 +2731,7 @@ class unfollowUser(GQLMutation):
       input - Parameters for UnfollowUser
 
       """
-      input: UnfollowUserInput ##NON NULL
+      input: NonNull_UnfollowUserInput
 
    _args: UnfollowUserPayloadArgs
 
@@ -2403,7 +2748,7 @@ class unlinkProjectV2FromRepository(GQLMutation):
       input - Parameters for UnlinkProjectV2FromRepository
 
       """
-      input: UnlinkProjectV2FromRepositoryInput ##NON NULL
+      input: NonNull_UnlinkProjectV2FromRepositoryInput
 
    _args: UnlinkProjectV2FromRepositoryPayloadArgs
 
@@ -2420,7 +2765,7 @@ class unlinkProjectV2FromTeam(GQLMutation):
       input - Parameters for UnlinkProjectV2FromTeam
 
       """
-      input: UnlinkProjectV2FromTeamInput ##NON NULL
+      input: NonNull_UnlinkProjectV2FromTeamInput
 
    _args: UnlinkProjectV2FromTeamPayloadArgs
 
@@ -2437,7 +2782,7 @@ class unlinkRepositoryFromProject(GQLMutation):
       input - Parameters for UnlinkRepositoryFromProject
 
       """
-      input: UnlinkRepositoryFromProjectInput ##NON NULL
+      input: NonNull_UnlinkRepositoryFromProjectInput
 
    _args: UnlinkRepositoryFromProjectPayloadArgs
 
@@ -2454,7 +2799,7 @@ class unlockLockable(GQLMutation):
       input - Parameters for UnlockLockable
 
       """
-      input: UnlockLockableInput ##NON NULL
+      input: NonNull_UnlockLockableInput
 
    _args: UnlockLockablePayloadArgs
 
@@ -2471,7 +2816,7 @@ class unmarkDiscussionCommentAsAnswer(GQLMutation):
       input - Parameters for UnmarkDiscussionCommentAsAnswer
 
       """
-      input: UnmarkDiscussionCommentAsAnswerInput ##NON NULL
+      input: NonNull_UnmarkDiscussionCommentAsAnswerInput
 
    _args: UnmarkDiscussionCommentAsAnswerPayloadArgs
 
@@ -2488,7 +2833,7 @@ class unmarkFileAsViewed(GQLMutation):
       input - Parameters for UnmarkFileAsViewed
 
       """
-      input: UnmarkFileAsViewedInput ##NON NULL
+      input: NonNull_UnmarkFileAsViewedInput
 
    _args: UnmarkFileAsViewedPayloadArgs
 
@@ -2505,7 +2850,7 @@ class unmarkIssueAsDuplicate(GQLMutation):
       input - Parameters for UnmarkIssueAsDuplicate
 
       """
-      input: UnmarkIssueAsDuplicateInput ##NON NULL
+      input: NonNull_UnmarkIssueAsDuplicateInput
 
    _args: UnmarkIssueAsDuplicatePayloadArgs
 
@@ -2522,7 +2867,7 @@ class unminimizeComment(GQLMutation):
       input - Parameters for UnminimizeComment
 
       """
-      input: UnminimizeCommentInput ##NON NULL
+      input: NonNull_UnminimizeCommentInput
 
    _args: UnminimizeCommentPayloadArgs
 
@@ -2539,7 +2884,7 @@ class unpinIssue(GQLMutation):
       input - Parameters for UnpinIssue
 
       """
-      input: UnpinIssueInput ##NON NULL
+      input: NonNull_UnpinIssueInput
 
    _args: UnpinIssuePayloadArgs
 
@@ -2556,7 +2901,7 @@ class unresolveReviewThread(GQLMutation):
       input - Parameters for UnresolveReviewThread
 
       """
-      input: UnresolveReviewThreadInput ##NON NULL
+      input: NonNull_UnresolveReviewThreadInput
 
    _args: UnresolveReviewThreadPayloadArgs
 
@@ -2573,7 +2918,7 @@ class updateBranchProtectionRule(GQLMutation):
       input - Parameters for UpdateBranchProtectionRule
 
       """
-      input: UpdateBranchProtectionRuleInput ##NON NULL
+      input: NonNull_UpdateBranchProtectionRuleInput
 
    _args: UpdateBranchProtectionRulePayloadArgs
 
@@ -2590,7 +2935,7 @@ class updateCheckRun(GQLMutation):
       input - Parameters for UpdateCheckRun
 
       """
-      input: UpdateCheckRunInput ##NON NULL
+      input: NonNull_UpdateCheckRunInput
 
    _args: UpdateCheckRunPayloadArgs
 
@@ -2607,7 +2952,7 @@ class updateCheckSuitePreferences(GQLMutation):
       input - Parameters for UpdateCheckSuitePreferences
 
       """
-      input: UpdateCheckSuitePreferencesInput ##NON NULL
+      input: NonNull_UpdateCheckSuitePreferencesInput
 
    _args: UpdateCheckSuitePreferencesPayloadArgs
 
@@ -2624,7 +2969,7 @@ class updateDiscussion(GQLMutation):
       input - Parameters for UpdateDiscussion
 
       """
-      input: UpdateDiscussionInput ##NON NULL
+      input: NonNull_UpdateDiscussionInput
 
    _args: UpdateDiscussionPayloadArgs
 
@@ -2641,7 +2986,7 @@ class updateDiscussionComment(GQLMutation):
       input - Parameters for UpdateDiscussionComment
 
       """
-      input: UpdateDiscussionCommentInput ##NON NULL
+      input: NonNull_UpdateDiscussionCommentInput
 
    _args: UpdateDiscussionCommentPayloadArgs
 
@@ -2658,7 +3003,7 @@ class updateEnterpriseAdministratorRole(GQLMutation):
       input - Parameters for UpdateEnterpriseAdministratorRole
 
       """
-      input: UpdateEnterpriseAdministratorRoleInput ##NON NULL
+      input: NonNull_UpdateEnterpriseAdministratorRoleInput
 
    _args: UpdateEnterpriseAdministratorRolePayloadArgs
 
@@ -2675,7 +3020,7 @@ class updateEnterpriseAllowPrivateRepositoryForkingSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseAllowPrivateRepositoryForkingSetting
 
       """
-      input: UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput
 
    _args: UpdateEnterpriseAllowPrivateRepositoryForkingSettingPayloadArgs
 
@@ -2692,7 +3037,7 @@ class updateEnterpriseDefaultRepositoryPermissionSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseDefaultRepositoryPermissionSetting
 
       """
-      input: UpdateEnterpriseDefaultRepositoryPermissionSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseDefaultRepositoryPermissionSettingInput
 
    _args: UpdateEnterpriseDefaultRepositoryPermissionSettingPayloadArgs
 
@@ -2709,7 +3054,7 @@ class updateEnterpriseMembersCanChangeRepositoryVisibilitySetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanChangeRepositoryVisibilitySetting
 
       """
-      input: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput
 
    _args: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingPayloadArgs
 
@@ -2726,7 +3071,7 @@ class updateEnterpriseMembersCanCreateRepositoriesSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanCreateRepositoriesSetting
 
       """
-      input: UpdateEnterpriseMembersCanCreateRepositoriesSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanCreateRepositoriesSettingInput
 
    _args: UpdateEnterpriseMembersCanCreateRepositoriesSettingPayloadArgs
 
@@ -2743,7 +3088,7 @@ class updateEnterpriseMembersCanDeleteIssuesSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanDeleteIssuesSetting
 
       """
-      input: UpdateEnterpriseMembersCanDeleteIssuesSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanDeleteIssuesSettingInput
 
    _args: UpdateEnterpriseMembersCanDeleteIssuesSettingPayloadArgs
 
@@ -2760,7 +3105,7 @@ class updateEnterpriseMembersCanDeleteRepositoriesSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanDeleteRepositoriesSetting
 
       """
-      input: UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput
 
    _args: UpdateEnterpriseMembersCanDeleteRepositoriesSettingPayloadArgs
 
@@ -2777,7 +3122,7 @@ class updateEnterpriseMembersCanInviteCollaboratorsSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanInviteCollaboratorsSetting
 
       """
-      input: UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput
 
    _args: UpdateEnterpriseMembersCanInviteCollaboratorsSettingPayloadArgs
 
@@ -2794,7 +3139,7 @@ class updateEnterpriseMembersCanMakePurchasesSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanMakePurchasesSetting
 
       """
-      input: UpdateEnterpriseMembersCanMakePurchasesSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanMakePurchasesSettingInput
 
    _args: UpdateEnterpriseMembersCanMakePurchasesSettingPayloadArgs
 
@@ -2811,7 +3156,7 @@ class updateEnterpriseMembersCanUpdateProtectedBranchesSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanUpdateProtectedBranchesSetting
 
       """
-      input: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput
 
    _args: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingPayloadArgs
 
@@ -2828,7 +3173,7 @@ class updateEnterpriseMembersCanViewDependencyInsightsSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseMembersCanViewDependencyInsightsSetting
 
       """
-      input: UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput
 
    _args: UpdateEnterpriseMembersCanViewDependencyInsightsSettingPayloadArgs
 
@@ -2845,7 +3190,7 @@ class updateEnterpriseOrganizationProjectsSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseOrganizationProjectsSetting
 
       """
-      input: UpdateEnterpriseOrganizationProjectsSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseOrganizationProjectsSettingInput
 
    _args: UpdateEnterpriseOrganizationProjectsSettingPayloadArgs
 
@@ -2862,7 +3207,7 @@ class updateEnterpriseOwnerOrganizationRole(GQLMutation):
       input - Parameters for UpdateEnterpriseOwnerOrganizationRole
 
       """
-      input: UpdateEnterpriseOwnerOrganizationRoleInput ##NON NULL
+      input: NonNull_UpdateEnterpriseOwnerOrganizationRoleInput
 
    _args: UpdateEnterpriseOwnerOrganizationRolePayloadArgs
 
@@ -2879,7 +3224,7 @@ class updateEnterpriseProfile(GQLMutation):
       input - Parameters for UpdateEnterpriseProfile
 
       """
-      input: UpdateEnterpriseProfileInput ##NON NULL
+      input: NonNull_UpdateEnterpriseProfileInput
 
    _args: UpdateEnterpriseProfilePayloadArgs
 
@@ -2896,7 +3241,7 @@ class updateEnterpriseRepositoryProjectsSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseRepositoryProjectsSetting
 
       """
-      input: UpdateEnterpriseRepositoryProjectsSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseRepositoryProjectsSettingInput
 
    _args: UpdateEnterpriseRepositoryProjectsSettingPayloadArgs
 
@@ -2913,7 +3258,7 @@ class updateEnterpriseTeamDiscussionsSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseTeamDiscussionsSetting
 
       """
-      input: UpdateEnterpriseTeamDiscussionsSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseTeamDiscussionsSettingInput
 
    _args: UpdateEnterpriseTeamDiscussionsSettingPayloadArgs
 
@@ -2930,7 +3275,7 @@ class updateEnterpriseTwoFactorAuthenticationRequiredSetting(GQLMutation):
       input - Parameters for UpdateEnterpriseTwoFactorAuthenticationRequiredSetting
 
       """
-      input: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput ##NON NULL
+      input: NonNull_UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput
 
    _args: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingPayloadArgs
 
@@ -2947,7 +3292,7 @@ class updateEnvironment(GQLMutation):
       input - Parameters for UpdateEnvironment
 
       """
-      input: UpdateEnvironmentInput ##NON NULL
+      input: NonNull_UpdateEnvironmentInput
 
    _args: UpdateEnvironmentPayloadArgs
 
@@ -2964,7 +3309,7 @@ class updateIpAllowListEnabledSetting(GQLMutation):
       input - Parameters for UpdateIpAllowListEnabledSetting
 
       """
-      input: UpdateIpAllowListEnabledSettingInput ##NON NULL
+      input: NonNull_UpdateIpAllowListEnabledSettingInput
 
    _args: UpdateIpAllowListEnabledSettingPayloadArgs
 
@@ -2981,7 +3326,7 @@ class updateIpAllowListEntry(GQLMutation):
       input - Parameters for UpdateIpAllowListEntry
 
       """
-      input: UpdateIpAllowListEntryInput ##NON NULL
+      input: NonNull_UpdateIpAllowListEntryInput
 
    _args: UpdateIpAllowListEntryPayloadArgs
 
@@ -2998,7 +3343,7 @@ class updateIpAllowListForInstalledAppsEnabledSetting(GQLMutation):
       input - Parameters for UpdateIpAllowListForInstalledAppsEnabledSetting
 
       """
-      input: UpdateIpAllowListForInstalledAppsEnabledSettingInput ##NON NULL
+      input: NonNull_UpdateIpAllowListForInstalledAppsEnabledSettingInput
 
    _args: UpdateIpAllowListForInstalledAppsEnabledSettingPayloadArgs
 
@@ -3015,7 +3360,7 @@ class updateIssue(GQLMutation):
       input - Parameters for UpdateIssue
 
       """
-      input: UpdateIssueInput ##NON NULL
+      input: NonNull_UpdateIssueInput
 
    _args: UpdateIssuePayloadArgs
 
@@ -3032,7 +3377,7 @@ class updateIssueComment(GQLMutation):
       input - Parameters for UpdateIssueComment
 
       """
-      input: UpdateIssueCommentInput ##NON NULL
+      input: NonNull_UpdateIssueCommentInput
 
    _args: UpdateIssueCommentPayloadArgs
 
@@ -3049,7 +3394,7 @@ class updateNotificationRestrictionSetting(GQLMutation):
       input - Parameters for UpdateNotificationRestrictionSetting
 
       """
-      input: UpdateNotificationRestrictionSettingInput ##NON NULL
+      input: NonNull_UpdateNotificationRestrictionSettingInput
 
    _args: UpdateNotificationRestrictionSettingPayloadArgs
 
@@ -3066,7 +3411,7 @@ class updateOrganizationAllowPrivateRepositoryForkingSetting(GQLMutation):
       input - Parameters for UpdateOrganizationAllowPrivateRepositoryForkingSetting
 
       """
-      input: UpdateOrganizationAllowPrivateRepositoryForkingSettingInput ##NON NULL
+      input: NonNull_UpdateOrganizationAllowPrivateRepositoryForkingSettingInput
 
    _args: UpdateOrganizationAllowPrivateRepositoryForkingSettingPayloadArgs
 
@@ -3083,7 +3428,7 @@ class updateOrganizationWebCommitSignoffSetting(GQLMutation):
       input - Parameters for UpdateOrganizationWebCommitSignoffSetting
 
       """
-      input: UpdateOrganizationWebCommitSignoffSettingInput ##NON NULL
+      input: NonNull_UpdateOrganizationWebCommitSignoffSettingInput
 
    _args: UpdateOrganizationWebCommitSignoffSettingPayloadArgs
 
@@ -3100,7 +3445,7 @@ class updateProject(GQLMutation):
       input - Parameters for UpdateProject
 
       """
-      input: UpdateProjectInput ##NON NULL
+      input: NonNull_UpdateProjectInput
 
    _args: UpdateProjectPayloadArgs
 
@@ -3117,7 +3462,7 @@ class updateProjectCard(GQLMutation):
       input - Parameters for UpdateProjectCard
 
       """
-      input: UpdateProjectCardInput ##NON NULL
+      input: NonNull_UpdateProjectCardInput
 
    _args: UpdateProjectCardPayloadArgs
 
@@ -3134,63 +3479,12 @@ class updateProjectColumn(GQLMutation):
       input - Parameters for UpdateProjectColumn
 
       """
-      input: UpdateProjectColumnInput ##NON NULL
+      input: NonNull_UpdateProjectColumnInput
 
    _args: UpdateProjectColumnPayloadArgs
 
 
    type: UpdateProjectColumnPayload
-
-class updateProjectDraftIssue(GQLMutation):
-   """
-   updateProjectDraftIssue - Updates a draft issue within a Project.
-
-   """
-   class UpdateProjectDraftIssuePayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for UpdateProjectDraftIssue
-
-      """
-      input: UpdateProjectDraftIssueInput ##NON NULL
-
-   _args: UpdateProjectDraftIssuePayloadArgs
-
-
-   type: UpdateProjectDraftIssuePayload
-
-class updateProjectNext(GQLMutation):
-   """
-   updateProjectNext - Updates an existing project (beta).
-
-   """
-   class UpdateProjectNextPayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for UpdateProjectNext
-
-      """
-      input: UpdateProjectNextInput ##NON NULL
-
-   _args: UpdateProjectNextPayloadArgs
-
-
-   type: UpdateProjectNextPayload
-
-class updateProjectNextItemField(GQLMutation):
-   """
-   updateProjectNextItemField - Updates a field of an item from a Project.
-
-   """
-   class UpdateProjectNextItemFieldPayloadArgs(GQLArgsSet, GQLObject): 
-      """
-      input - Parameters for UpdateProjectNextItemField
-
-      """
-      input: UpdateProjectNextItemFieldInput ##NON NULL
-
-   _args: UpdateProjectNextItemFieldPayloadArgs
-
-
-   type: UpdateProjectNextItemFieldPayload
 
 class updateProjectV2(GQLMutation):
    """
@@ -3202,7 +3496,7 @@ class updateProjectV2(GQLMutation):
       input - Parameters for UpdateProjectV2
 
       """
-      input: UpdateProjectV2Input ##NON NULL
+      input: NonNull_UpdateProjectV2Input
 
    _args: UpdateProjectV2PayloadArgs
 
@@ -3219,7 +3513,7 @@ class updateProjectV2DraftIssue(GQLMutation):
       input - Parameters for UpdateProjectV2DraftIssue
 
       """
-      input: UpdateProjectV2DraftIssueInput ##NON NULL
+      input: NonNull_UpdateProjectV2DraftIssueInput
 
    _args: UpdateProjectV2DraftIssuePayloadArgs
 
@@ -3236,7 +3530,7 @@ class updateProjectV2ItemFieldValue(GQLMutation):
       input - Parameters for UpdateProjectV2ItemFieldValue
 
       """
-      input: UpdateProjectV2ItemFieldValueInput ##NON NULL
+      input: NonNull_UpdateProjectV2ItemFieldValueInput
 
    _args: UpdateProjectV2ItemFieldValuePayloadArgs
 
@@ -3253,7 +3547,7 @@ class updateProjectV2ItemPosition(GQLMutation):
       input - Parameters for UpdateProjectV2ItemPosition
 
       """
-      input: UpdateProjectV2ItemPositionInput ##NON NULL
+      input: NonNull_UpdateProjectV2ItemPositionInput
 
    _args: UpdateProjectV2ItemPositionPayloadArgs
 
@@ -3270,7 +3564,7 @@ class updatePullRequest(GQLMutation):
       input - Parameters for UpdatePullRequest
 
       """
-      input: UpdatePullRequestInput ##NON NULL
+      input: NonNull_UpdatePullRequestInput
 
    _args: UpdatePullRequestPayloadArgs
 
@@ -3287,7 +3581,7 @@ class updatePullRequestBranch(GQLMutation):
       input - Parameters for UpdatePullRequestBranch
 
       """
-      input: UpdatePullRequestBranchInput ##NON NULL
+      input: NonNull_UpdatePullRequestBranchInput
 
    _args: UpdatePullRequestBranchPayloadArgs
 
@@ -3304,7 +3598,7 @@ class updatePullRequestReview(GQLMutation):
       input - Parameters for UpdatePullRequestReview
 
       """
-      input: UpdatePullRequestReviewInput ##NON NULL
+      input: NonNull_UpdatePullRequestReviewInput
 
    _args: UpdatePullRequestReviewPayloadArgs
 
@@ -3321,7 +3615,7 @@ class updatePullRequestReviewComment(GQLMutation):
       input - Parameters for UpdatePullRequestReviewComment
 
       """
-      input: UpdatePullRequestReviewCommentInput ##NON NULL
+      input: NonNull_UpdatePullRequestReviewCommentInput
 
    _args: UpdatePullRequestReviewCommentPayloadArgs
 
@@ -3338,7 +3632,7 @@ class updateRef(GQLMutation):
       input - Parameters for UpdateRef
 
       """
-      input: UpdateRefInput ##NON NULL
+      input: NonNull_UpdateRefInput
 
    _args: UpdateRefPayloadArgs
 
@@ -3355,7 +3649,7 @@ class updateRepository(GQLMutation):
       input - Parameters for UpdateRepository
 
       """
-      input: UpdateRepositoryInput ##NON NULL
+      input: NonNull_UpdateRepositoryInput
 
    _args: UpdateRepositoryPayloadArgs
 
@@ -3372,7 +3666,7 @@ class updateRepositoryWebCommitSignoffSetting(GQLMutation):
       input - Parameters for UpdateRepositoryWebCommitSignoffSetting
 
       """
-      input: UpdateRepositoryWebCommitSignoffSettingInput ##NON NULL
+      input: NonNull_UpdateRepositoryWebCommitSignoffSettingInput
 
    _args: UpdateRepositoryWebCommitSignoffSettingPayloadArgs
 
@@ -3389,7 +3683,7 @@ class updateSponsorshipPreferences(GQLMutation):
       input - Parameters for UpdateSponsorshipPreferences
 
       """
-      input: UpdateSponsorshipPreferencesInput ##NON NULL
+      input: NonNull_UpdateSponsorshipPreferencesInput
 
    _args: UpdateSponsorshipPreferencesPayloadArgs
 
@@ -3406,7 +3700,7 @@ class updateSubscription(GQLMutation):
       input - Parameters for UpdateSubscription
 
       """
-      input: UpdateSubscriptionInput ##NON NULL
+      input: NonNull_UpdateSubscriptionInput
 
    _args: UpdateSubscriptionPayloadArgs
 
@@ -3423,7 +3717,7 @@ class updateTeamDiscussion(GQLMutation):
       input - Parameters for UpdateTeamDiscussion
 
       """
-      input: UpdateTeamDiscussionInput ##NON NULL
+      input: NonNull_UpdateTeamDiscussionInput
 
    _args: UpdateTeamDiscussionPayloadArgs
 
@@ -3440,7 +3734,7 @@ class updateTeamDiscussionComment(GQLMutation):
       input - Parameters for UpdateTeamDiscussionComment
 
       """
-      input: UpdateTeamDiscussionCommentInput ##NON NULL
+      input: NonNull_UpdateTeamDiscussionCommentInput
 
    _args: UpdateTeamDiscussionCommentPayloadArgs
 
@@ -3457,7 +3751,7 @@ class updateTeamsRepository(GQLMutation):
       input - Parameters for UpdateTeamsRepository
 
       """
-      input: UpdateTeamsRepositoryInput ##NON NULL
+      input: NonNull_UpdateTeamsRepositoryInput
 
    _args: UpdateTeamsRepositoryPayloadArgs
 
@@ -3474,7 +3768,7 @@ class updateTopics(GQLMutation):
       input - Parameters for UpdateTopics
 
       """
-      input: UpdateTopicsInput ##NON NULL
+      input: NonNull_UpdateTopicsInput
 
    _args: UpdateTopicsPayloadArgs
 
@@ -3491,7 +3785,7 @@ class verifyVerifiableDomain(GQLMutation):
       input - Parameters for VerifyVerifiableDomain
 
       """
-      input: VerifyVerifiableDomainInput ##NON NULL
+      input: NonNull_VerifyVerifiableDomainInput
 
    _args: VerifyVerifiableDomainPayloadArgs
 
@@ -3512,8 +3806,6 @@ class Mutations(Enum):
    addLabelsToLabelable = addLabelsToLabelable
    addProjectCard = addProjectCard
    addProjectColumn = addProjectColumn
-   addProjectDraftIssue = addProjectDraftIssue
-   addProjectNextItem = addProjectNextItem
    addProjectV2DraftIssue = addProjectV2DraftIssue
    addProjectV2ItemById = addProjectV2ItemById
    addPullRequestReview = addPullRequestReview
@@ -3573,7 +3865,6 @@ class Mutations(Enum):
    deleteProject = deleteProject
    deleteProjectCard = deleteProjectCard
    deleteProjectColumn = deleteProjectColumn
-   deleteProjectNextItem = deleteProjectNextItem
    deleteProjectV2Item = deleteProjectV2Item
    deletePullRequestReview = deletePullRequestReview
    deletePullRequestReviewComment = deletePullRequestReviewComment
@@ -3682,9 +3973,6 @@ class Mutations(Enum):
    updateProject = updateProject
    updateProjectCard = updateProjectCard
    updateProjectColumn = updateProjectColumn
-   updateProjectDraftIssue = updateProjectDraftIssue
-   updateProjectNext = updateProjectNext
-   updateProjectNextItemField = updateProjectNextItemField
    updateProjectV2 = updateProjectV2
    updateProjectV2DraftIssue = updateProjectV2DraftIssue
    updateProjectV2ItemFieldValue = updateProjectV2ItemFieldValue

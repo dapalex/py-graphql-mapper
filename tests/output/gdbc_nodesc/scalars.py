@@ -11,4 +11,3 @@ Int = int
 String = str
 
 distance = float
-

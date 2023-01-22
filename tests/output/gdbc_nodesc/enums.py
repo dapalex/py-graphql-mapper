@@ -27,4 +27,3 @@ class PopulatedPlaceType(Enum):
    DEFAULT = None
    ADM2 = 'ADM2' ##A level-2 administrative division (for example, a county)
    CITY = 'CITY' ##A city, town, or village
-

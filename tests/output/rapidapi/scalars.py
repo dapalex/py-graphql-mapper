@@ -17,4 +17,3 @@ Any = str ##Dynamic type, returns a value as is.
 Upload = str ##The `Upload` scalar type represents a file upload.
 
 name = str
-

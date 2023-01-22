@@ -1,12 +1,14 @@
+from typing import List
 from pygqlmap import GQLQuery
 from .gql_types import *
 from .gql_simple_types import *
 from .enums import *
 from .scalars import *
+from .type_refs import *
 
 class country(GQLQuery):
    class CountryArgs(GQLArgsSet, GQLObject): 
-      id: ID ##NON NULL
+      id: NonNull_ID
       displayOptions: DisplayOptions
 
    _args: CountryArgs
@@ -46,8 +48,8 @@ class currencies(GQLQuery):
 
 class distanceBetween(GQLQuery):
    class floatArgs(GQLArgsSet, GQLObject): 
-      fromPlaceId: ID ##NON NULL
-      toPlaceId: ID ##NON NULL
+      fromPlaceId: NonNull_ID
+      toPlaceId: NonNull_ID
       distanceUnit: DistanceUnit
 
    _args: floatArgs
@@ -69,7 +71,7 @@ class locales(GQLQuery):
 
 class populatedPlace(GQLQuery):
    class PopulatedPlaceArgs(GQLArgsSet, GQLObject): 
-      id: ID ##NON NULL
+      id: NonNull_ID
       displayOptions: DisplayOptions
 
    _args: PopulatedPlaceArgs
@@ -82,14 +84,14 @@ class populatedPlaces(GQLQuery):
       location: Location
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: ID ##LIST
-      excludedCountryIds: ID ##LIST
+      countryIds: List[ID]
+      excludedCountryIds: List[ID]
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: ID ##LIST
-      types: str ##LIST
+      timeZoneIds: List[ID]
+      types: List[str]
       sort: str
       first: int
       after: str
@@ -105,7 +107,7 @@ class populatedPlaces(GQLQuery):
 
 class timeZone(GQLQuery):
    class TimeZoneArgs(GQLArgsSet, GQLObject): 
-      id: ID ##NON NULL
+      id: NonNull_ID
 
    _args: TimeZoneArgs
 
