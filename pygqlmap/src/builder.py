@@ -1,9 +1,8 @@
 from abc import abstractmethod
+from enum import Enum
 import logging as logger
 from .enums import BuildingType
-from ..gql_types import ID
-from .utils import get_class_name
-from .consts import PRIMITIVES
+from .consts import GQL_BUILTIN
 
 class Builder():
     @abstractmethod
@@ -25,7 +24,7 @@ class QueryBuilder(Builder):
         """  for internal use only    """
 
         try:
-            if self.log_progress: logger.info('Started building of python object: ' + get_class_name(pyObject))
+            if self.log_progress: logger.info('Started building of python object: ' + pyObject.__class__.__name__)
             item = inputDict.popitem() ##extract the KV pair containing object name and content
 
             if not item[1] == None:
@@ -48,15 +47,17 @@ class QueryBuilder(Builder):
                 if self.log_progress: logger.info('Started building of field: ' + el)
 
                 if  (not el in opObject.fieldsshow.keys() or not opObject.fieldsshow[el]):
-                    if self.log_progress: logger.warning('Field ' + el + ' in ' + opObject + 'not present in fields_show')
+                    if self.log_progress: logger.warning('Field ' + el + ' in ' + opObject + 'not present in fieldsshow')
                     continue
 
                 if (hasattr(dataInput, el) or el in dataInput.keys()):
-                    attrType = type(getattr(opObject, el))
-                    if attrType in PRIMITIVES or attrType == ID or attrType == list:
+                    attribute = getattr(opObject, el)
+                    attrType = type(attribute)
+                    if attrType in GQL_BUILTIN or attrType == list:
                         self.set_py_field_value(opObject, el, dataInput[el])
+                    elif isinstance(attribute, Enum):
+                        self.set_py_field_value(opObject, el, attrType(dataInput[el]))
                     else:
-                        attribute = getattr(opObject, el)
                         if attribute == None:
                             attribute = type(customObject)()
                         if dataInput[el]:

@@ -118,12 +118,12 @@ Example:
 from pygqlmap.components import GQLObject
 
 class CountriesConnection(GQLObject):
-   totalCount: int ##NON NULL
-   edges: CountryEdge ##NON NULL
-   pageInfo: ConnectionPageInfo ##NON NULL
+   totalCount: int
+   edges: CountryEdge
+   pageInfo: ConnectionPageInfo
 
 class CountriesArguments(GQLArgsSet, GQLObject):
-    currencyCode: str
+    currencyCode: NonNull_str
     namePrefix: str
 
 class countries(GQLQuery):
@@ -162,7 +162,7 @@ myQuery.export_gql_source
 will generate the following GraphQL syntax:
 
 ```
-query myFirstQuery ($currencyCode: String, $namePrefix: String){
+query myFirstQuery ($currencyCode: String!, $namePrefix: String){
     countries(currencyCode: $currencyCode, namePrefix: $namePrefix) {
         totalCount
         edges {

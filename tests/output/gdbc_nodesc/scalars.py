@@ -1,4 +1,4 @@
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 
 Boolean = bool
 
@@ -11,4 +11,3 @@ Int = int
 String = str
 
 distance = float
-

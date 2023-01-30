@@ -18,11 +18,11 @@ def split_types(dictionary: dict[str, any]):
             currentItem = dictionary.popitem()
             currUsedTypes = 0
             for field in currentItem[1].get_valid_fields_lst():
-                currUsedTypes +=  len(field.get_used_GQL_objnames())
+                currUsedTypes +=  len(field.get_used_typenames())
             if currUsedTypes == 0:
                 simpleTypes.append(currentItem)
             else:
-                minUT = len(myDeque[0][1].get_used_GQL_objnames()) if myDeque else 1
+                minUT = len(myDeque[0][1].get_used_typenames()) if myDeque else 1
                 if currUsedTypes <= minUT:
                     myDeque.appendleft(currentItem)
                 else:
@@ -39,8 +39,6 @@ def get_valid_folder(folder):
         if not input_path.exists():
             if input_path.parent.absolute().exists():
                 os.mkdir(input_path)
-            # else:
-            #     raise Exception('Invalid folder:' + str(input_path))
     except Exception as ex:
         raise ex
 
@@ -48,3 +46,16 @@ def get_valid_folder(folder):
 
 def is_deprecated(obj):
     return hasattr(obj, 'isDeprecated') and obj.isDeprecated
+
+def pop_val_clean_dict(value, dictionary: dict[str, list], key = None):
+    k_to_check = []
+    if not key:
+        for k, v in dictionary.items():
+            if value in v:
+                v.remove(value)
+                k_to_check.append(k)
+    else:
+        dictionary[key].remove(value)
+        k_to_check.append(key)
+
+    map(lambda key: dictionary.pop(key) if not dictionary[key] else None, k_to_check)

@@ -18,4 +18,4 @@ class TemplateType(Enum):
     QUERY_TEMPLATE = 'query_template.py'
     MUTATION_TEMPLATE = 'mutation_template.py'
     TYPE_TEMPLATE = 'type_template.py'
-    CIRCULAR_REFS_TEMPLATE = 'circular_refs_template.py'
+    TYPE_REFS_TEMPLATE = 'type_refs_template.py'

@@ -59,11 +59,11 @@
 import requests
 from ..consts import GITHUB_URL, GITHUB_HEADERS
 from ..output.github.mutations import updateRepository
-from ..output.github.gql_types import UpdateRepositoryInput
+from ..output.github.gql_types import Package, UpdateRepositoryInput
 import logging as logger
 
-def run_gh_update_literal_mutation():
-    logger.info('\n\nRunning run_gh_update_literal_mutation...')
+def run_gh_update_mutation_literal():
+    logger.debug('\n\nRunning run_gh_update_mutation_literal...')
 ##STEP 2
     mutation = updateRepository()
     mutation.name = 'myManualUpdateRepository'
@@ -83,8 +83,9 @@ def run_gh_update_literal_mutation():
     mutation.type.repository.environment._args.name = 'envName'
     mutation.type.repository.label._args.name = 'lblName'
     mutation.type.repository.milestone._args.number = 2
-    mutation.type.repository.packages.edges.node.version._args.version = '1.2.1'
-    mutation.type.repository.packages.nodes.version._args.version = '1.1.1'
+    package = Package()
+    package.version._args.version = '1.1.1'
+    mutation.type.repository.packages.nodes = [package]
     mutation.type.repository.project._args.number = 1
     mutation.type.repository.refs._args.refPrefix = 'ref'
     mutation.type.repository.release._args.tagName = 'tagX'
@@ -92,7 +93,7 @@ def run_gh_update_literal_mutation():
 
 
     try:
-        logger.info('Query GQL syntax: ' + mutation.export_gql_source)
+        logger.debug('Query GQL syntax: ' + mutation.export_gql_source)
 ##
 
 ##STEP 4
@@ -114,9 +115,9 @@ def run_gh_update_literal_mutation():
 ##
 
 ##RESULT
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of run_gh_update_literal_mutation")
+    logger.debug("End of run_gh_update_mutation_literal")

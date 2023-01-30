@@ -691,13 +691,6 @@ class ProjectColumnPurpose(Enum):
    IN_PROGRESS = 'IN_PROGRESS' ##The column contains cards which are currently being worked on
    DONE = 'DONE' ##The column contains cards which are complete
 
-class ProjectItemType(Enum):
-   DEFAULT = None
-   ISSUE = 'ISSUE' ##Issue
-   PULL_REQUEST = 'PULL_REQUEST' ##Pull Request
-   DRAFT_ISSUE = 'DRAFT_ISSUE' ##Draft Issue
-   REDACTED = 'REDACTED' ##Redacted Item
-
 class ProjectOrderField(Enum):
    DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order projects by creation time
@@ -776,11 +769,6 @@ class ProjectV2ViewOrderField(Enum):
    POSITION = 'POSITION' ##Order project v2 views by position
    CREATED_AT = 'CREATED_AT' ##Order project v2 views by creation time
    NAME = 'NAME' ##Order project v2 views by name
-
-class ProjectViewLayout(Enum):
-   DEFAULT = None
-   BOARD_LAYOUT = 'BOARD_LAYOUT' ##Board layout
-   TABLE_LAYOUT = 'TABLE_LAYOUT' ##Table layout
 
 class PullRequestMergeMethod(Enum):
    DEFAULT = None
@@ -1554,4 +1542,3 @@ class VerifiableDomainOrderField(Enum):
 class WorkflowRunOrderField(Enum):
    DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order workflow runs by most recently created
-

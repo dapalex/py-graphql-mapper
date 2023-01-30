@@ -13,20 +13,21 @@ from .ra_unittest import (run_fetch_ra_schema, run_fetch_ra_schema_no_desc)
 
 class TestCodegen(unittest.TestCase):
 
-    def testgdbcSchema(self):
+    def test_gdbc_schema(self):
       return run_fetch_gdbc_schema()
 
-    def testgdbcschema_no_desc(self):
+    def test_gdbc_schema_no_desc(self):
       return run_fetch_gdbc_schema_no_desc()
 
-    def testGithubMutationTypesFromschema_no_desc(self):
-      return run_fetch_gh_schema_no_desc()
-
-    def testGithubMutationTypes(self):
+    def test_gh_schema(self):
       return run_fetch_gh_schema()
 
-    def testrapidapiTestSchemaAndTypes_nodesc(self):
+    def test_gh_schema_no_desc(self):
+      return run_fetch_gh_schema_no_desc()
+
+    def test_ra_schema(self):
+      return run_fetch_ra_schema()
+
+    def test_ra_schema_nodesc(self):
       return run_fetch_ra_schema_no_desc()
 
-    def testrapidapiTestSchemaAndTypes(self):
-      return run_fetch_ra_schema()

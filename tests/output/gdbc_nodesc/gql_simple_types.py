@@ -1,12 +1,13 @@
-from typing import Generic
+from typing import Generic, List
 from pygqlmap.components import GQLArgsSet, GQLObject
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
+from .type_refs import *
 
-class PQREC_distance_Field(ArguedFloat):
-   class floatArgs(GQLArgsSet, GQLObject): 
+class GTEBK_distance_Field(ArguedFloat):
+   class floatArgs(GQLArgsSet, GQLObject):
       toPlaceId: ID
       distanceUnit: DistanceUnit
 
@@ -15,17 +16,17 @@ class PQREC_distance_Field(ArguedFloat):
 
 
 class TimeZone(GQLObject):
-   id: ID ##NON NULL
-   name: str ##NON NULL
-   rawUtcOffsetHours: int ##NON NULL
-   dateTime: str ##NON NULL
-   time: str ##NON NULL
+   id: ID
+   name: str
+   rawUtcOffsetHours: int
+   dateTime: str
+   time: str
 
 class Locale(GQLObject):
-   code: ID ##NON NULL
-   name: str ##NON NULL
+   code: ID
+   name: str
 
 class Currency(GQLObject):
-   countryCodes: ID ##NON NULL
-   code: ID ##NON NULL
-   symbol: str ##NON NULL
+   countryCodes: ID
+   code: ID
+   symbol: str

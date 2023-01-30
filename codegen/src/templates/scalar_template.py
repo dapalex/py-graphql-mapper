@@ -1,1 +1,1 @@
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *

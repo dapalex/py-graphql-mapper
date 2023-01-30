@@ -1,49 +1,49 @@
 from .enums import TypeKind
-from .base_class import TypeManager
+from .base_class import SchemaTypeManager
 
 class SCEnumValue():
     name: str
     description: str
     isDeprecated: bool
 
-class SCOfType(TypeManager):
+class SCOfType(SchemaTypeManager):
     kind: str
     name: str
     ofType: any #SCOfType || SCType
 
-class SCArgType(TypeManager):
+class SCArgType(SchemaTypeManager):
     kind: TypeKind
     name: str
     ofType: SCOfType
 
-class SCArg(TypeManager):
+class SCArg(SchemaTypeManager):
     name: str
     description: str
     type: SCArgType
 
-class SCFieldType(TypeManager):
+class SCFieldType(SchemaTypeManager):
     kind: str
     ofType: SCOfType
 
-class SCField(TypeManager):
+class SCField(SchemaTypeManager):
     name: str
     description: str
     args: list[SCArg]
     type: SCFieldType
     isDeprecated: bool
 
-class SCInterface(TypeManager):
+class SCInterface(SchemaTypeManager):
     kind: TypeKind
     name: str
     ofType: SCOfType
 
-class SCInputField(TypeManager):
+class SCInputField(SchemaTypeManager):
     name: str
     description: str
     type: SCInterface
     defaultValue: str
 
-class SCType(TypeManager):
+class SCType(SchemaTypeManager):
     kind: str
     name: str
     description: str

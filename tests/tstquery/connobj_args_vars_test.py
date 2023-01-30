@@ -47,7 +47,7 @@ from ..output.gdbc.queries import currencies
 import logging as logger
 
 def run_gdbc_connobj_args_vars():
-    logger.info('\n\nRunning test_gdbc_connobj_args_vars...')
+    logger.debug('\n\nRunning run_gdbc_connobj_args_vars...')
 ##STEP 1
     query = currencies()
     query.name = 'myCurrenciesQuery'
@@ -62,8 +62,8 @@ def run_gdbc_connobj_args_vars():
 ##
     try:
 ##RESULT
-        logger.info('Query GQL syntax: ' + query.export_gql_source)
-        logger.info('Variables: ' + query.export_gqlvariables)
+        logger.debug('Query GQL syntax: ' + query.export_gql_source)
+        logger.debug('Variables: ' + query.export_gqlvariables)
 ##
 
 ##STEP 3
@@ -84,9 +84,9 @@ def run_gdbc_connobj_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
 ##
 
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_gdbc_connobj_args_vars")
+    logger.debug("End of run_gdbc_connobj_args_vars")

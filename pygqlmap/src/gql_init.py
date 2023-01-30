@@ -7,7 +7,6 @@ from typing import Generic, NewType, TypeVar
 from pygqlmap.gql_types import ID
 from .base import FieldsShow
 from .consts import ARGS_DECLARE, ARGUED_SIGNATURE_SUFFIX, GQL_BUILTIN
-from .utils import get_class_name
 from pygqlmap.helper import handle_recursive_ex, mapConfig
 import logging as logger
 from dataclasses import dataclass
@@ -39,7 +38,6 @@ def _sub_class_init(obj, **kwargs):
         if kwargs: _init_args(obj, kwargs)
 
         if FieldsShow in inspect.getmro(type(obj)):
-            print(type(obj))
             obj.init_fieldshow()
 
         #gotta clean
@@ -106,7 +104,7 @@ def _specialize_generic(obj, fieldName, fieldType):
 
             #welcome!!
             ## get name of the class
-            className = get_class_name(fieldType)
+            className = fieldType.__name__
             ## check if it is a Argued class
             if className.endswith(ARGUED_SIGNATURE_SUFFIX):
                 if className in mergedClasses.keys():
@@ -159,7 +157,7 @@ def _mutation_init(obj, **kwargs):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
         from pygqlmap import GQLMutation
-        super(GQLMutation, obj).__init__(operationType=OperationType.MUTATION, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
+        super(GQLMutation, obj).__init__(op_type=OperationType.MUTATION, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during Mutation init execution for ' + obj.__class__.__name__)
 
@@ -174,7 +172,7 @@ def _query_init(obj, **kwargs):
             obj._args = obj.args
         from pygqlmap.enums import ArgType, OperationType
         from pygqlmap import GQLQuery
-        super(GQLQuery, obj).__init__(operationType=OperationType.QUERY, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
+        super(GQLQuery, obj).__init__(op_type=OperationType.QUERY, dataType=obj.type, argsType=ArgType.LITERAL_VALUES)
     except Exception as ex:
         raise handle_recursive_ex(ex, 'Error during Query init execution for ' + obj.__class__.__name__)
 
@@ -188,7 +186,7 @@ def _add_circular_ref(fieldType):
         if int(mapConfig["recursionDepth"]) > 0:
             circularRefs.update({ (fieldType.__name__, currentPath): 1 if type(fieldType) == NewType else -1 })
         else:
-            logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
+            pass# logger.warning(depthReached%(mapConfig["recursionDepth"], currentPath, fieldType.__name__))
         if not (fieldType.__name__, currentPath) in circularRefs.keys():
             circularRefs.update({ (fieldType.__name__, currentPath): 0 })
         else:
@@ -248,7 +246,7 @@ def _init_args(obj, args: dict, is_obj=False):
                 arg_val_type = type(k_arg_val)
                 if arg_val_type in GQL_BUILTIN or issubclass(arg_val_type, Enum):
                     setattr(curr_obj, k_arg_key, k_arg_val)
-                elif arg_val_type == list:
+                elif arg_val_type == list or list in inspect.getmro(arg_val_type):
                     setattr(curr_obj, k_arg_key, manage_list(k_arg_val))
                 else:
                     _init_args(getattr(curr_obj, k_arg_key), k_arg_val.__dict__, True)

@@ -114,8 +114,8 @@ class createDiscussion(GQLMutation):
 """
 from ..consts import GITHUB_URL, GITHUB_HEADERS
 
-def run_gh_insert_literal_mutation():
-    logger.info('\n\nRunning test_gh_insert_literal_mutation...')
+def run_gh_insert_mutation_literal():
+    logger.debug('\n\nRunning run_gh_insert_mutation_literal...')
 ##STEP 2
     mutation = createDiscussion()
     mutation.name = 'myCreateDiscussion'
@@ -133,7 +133,7 @@ def run_gh_insert_literal_mutation():
     mutation._args.input.clientMutationId = 'Client1'
 
     try:
-        logger.info('Query GQL syntax: ' + mutation.export_gql_source)
+        logger.debug('Query GQL syntax: ' + mutation.export_gql_source)
 ##
 
 ##STEP 4
@@ -155,9 +155,9 @@ def run_gh_insert_literal_mutation():
 ##
 
 ##RESULT
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_gh_insert_literal_mutation")
+    logger.debug("End of run_gh_insert_mutation_literal")

@@ -5,32 +5,32 @@ from .consts import GDBC_HEADERS, GDBC_URL
 import logging as logger
 
 def run_fetch_gdbc_schema():
-    logger.info('\n\nRunning run_fetch_gdbc_schema...')
+    logger.debug('\n\nRunning run_fetch_gdbc_schema...')
 
     try:
         gqlSchema = fetch_schema_obj(GDBC_URL, GDBC_HEADERS, QUERY_SCHEMA_AND_TYPES)
 
         if gqlSchema:
-            logger.info('Generating python types from GraphQL data...')
+            logger.debug('Generating python types from GraphQL data...')
             CodeGenerator.generate_code(gqlSchema, folder='tests\\output\\gdbc\\', log_progress=True)
-            logger.info('Python types generated')
+            logger.debug('Python types generated')
 
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of run_fetch_gdbc_schema")
+    logger.debug("End of run_fetch_gdbc_schema")
 
 def run_fetch_gdbc_schema_no_desc():
-    logger.info('\n\nRunning run_fetch_gdbc_schema_no_desc...')
+    logger.debug('\n\nRunning run_fetch_gdbc_schema_no_desc...')
 
     try:
         gqlSchema = fetch_schema_obj(GDBC_URL, GDBC_HEADERS, QUERY_SCHEMA_AND_TYPES)
 
         if gqlSchema:
-            logger.info('Generating python types from GraphQL data...')
+            logger.debug('Generating python types from GraphQL data...')
             CodeGenerator.generate_code(gqlSchema, folder='tests\\output\\gdbc_nodesc\\', add_desc=False, log_progress=True)
-            logger.info('Python types generated')
+            logger.debug('Python types generated')
     except Exception as ex:
-        raise ex #ManageException('executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of run_fetch_gdbc_schema_no_desc")
+    logger.debug("End of run_fetch_gdbc_schema_no_desc")

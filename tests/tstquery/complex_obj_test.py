@@ -84,7 +84,7 @@ from ..output.gdbc.queries import countries
 import logging as logger
 
 def run_gdbc_complex_obj():
-    logger.info('\n\nRunning test_gdbc_complex_obj...')
+    logger.debug('\n\nRunning test_gdbc_complex_obj...')
 ##STEP 1
     query = countries()
     query.name = 'myCountriesQuery'
@@ -103,7 +103,7 @@ def run_gdbc_complex_obj():
 ##
 
 ##RESULT a) and b)
-    logger.info('Query GQL syntax: ' + query.export_gql_source)
+    logger.debug('Query GQL syntax: ' + query.export_gql_source)
 ##
 
 ##STEP 4
@@ -126,10 +126,10 @@ def run_gdbc_complex_obj():
 ##
 
 ##RESULT c)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
 
     except Exception as ex:
-        raise ex #ManageException('!!executeQuery FAILED!! - ' + ex.args[0])
+        raise ex
 
-    logger.info("End of test_gdbc_complex_obj")
+    logger.debug("End of test_gdbc_complex_obj")

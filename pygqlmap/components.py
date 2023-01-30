@@ -3,8 +3,8 @@ from .helper import handle_recursive_ex
 from .src.gql_init import _sub_class_init
 from .src.components import FSTree
 from .src.base import FieldsShow, GQLExporter, GQLBaseArgsSet
-from .src.consts import COMMA_CONCAT, ARGS_DECLARE
-from .src.utils import get_obj_class_name, PRIMITIVES, is_empty_field
+from .src.consts import COMMA_CONCAT, ARGS_DECLARE, PRIMITIVES
+from .src.utils import is_empty_field
 from .enums import ArgType, OperationType
 from .src.translator import Translate
 
@@ -17,9 +17,9 @@ class GQLOperationArgs(GQLBaseArgsSet):
         output = ''
         try:
             for fieldName, fieldValue in self.arguments.items():
-                if is_empty_field(fieldValue): continue
+                if is_empty_field(fieldValue[0]): continue
                 try:
-                    output += self.export_arg_key(fieldName, fieldValue) + COMMA_CONCAT
+                    output += self.export_arg_key(fieldName, fieldValue[0], fieldValue[1]) + COMMA_CONCAT
                 except Exception as ex:
                     raise handle_recursive_ex(ex, 'Issue exporting arg key for: ' + fieldName)
 
@@ -38,10 +38,11 @@ class GQLOperationArgs(GQLBaseArgsSet):
         """
         if self._args_type == ArgType.VARIABLES:
             if self.arguments:
-                return Translate.to_json_vars(self.arguments)
+                json_fields = dict((key, val[0]) for key, val in self.arguments.items())
+                return Translate.to_json_vars(json_fields)
 
-    def export_arg_key(self, fieldName, fieldValue):
-        return '$' + Translate.to_graphql_field_name(fieldName) + ': ' + Translate.to_graphql_type(fieldValue)
+    def export_arg_key(self, field_name, field_value, field_type):
+        return '$' + Translate.to_graphql_field_name(field_name) + ': ' + Translate.to_graphql_type(field_value, field_type)
 
 class GQLArgsSet(GQLBaseArgsSet):
 
@@ -49,9 +50,9 @@ class GQLArgsSet(GQLBaseArgsSet):
         cls = dataclass(cls)
         cls.__init__ = _sub_class_init
 
-    def export_arg_key(self, fieldName, fieldValue):
+    def export_arg_key(self, field_name, field_value, field_type):
         """ For internal use only """
-        return Translate.to_graphql_field_name(fieldName) + ': $' + Translate.to_graphql_field_name(fieldName)
+        return Translate.to_graphql_field_name(field_name) + ': $' + Translate.to_graphql_field_name(field_name)
 
     @property
     def export_gqlargs_and_values(self):
@@ -65,31 +66,32 @@ class GQLObject(FieldsShow, GQLExporter):
         cls = dataclass(cls)
         cls.__init__ = _sub_class_init
 
-    def __post_init__(self, log_progress: bool = False):
-        self.init_fieldshow() ##still working???
-        self.log_progress = log_progress
-
 class GQLOperation(GQLExporter, GQLOperationArgs):
     name: str
-    operationType: OperationType
+    obj_type: OperationType
     fieldShowTree: FSTree
+    type: GQLObject
+    ##key: field name
+    ##value: (field value, field original type)
+    arguments: dict = None
+
     # argumentsRetrieved: False
 
-    def __init__(self, operationType: OperationType, dataType, operationName: str = None, argsType: ArgType = ArgType.LITERAL_VALUES): #, rootName: str = None, inputFieldName: str = None
+    def __init__(self, op_type: OperationType, dataType, operationName: str = None, argsType: ArgType = ArgType.LITERAL_VALUES): #, rootName: str = None, inputFieldName: str = None
         """_summary_
 
         Args:
-            operationType (OperationType): _description_
+            op_type (OperationType): _description_
             hasArgsAsInput (bool, optional): _description_. Defaults to True.
             name (str, optional): _description_. Defaults to 'myQuery'.
             log_progress (bool, optional): _description_. Defaults to False.
         """
         self.name = operationName if operationName else ''
 
-        self.operationType = operationType
+        self.obj_type = op_type
         self.type = dataType
         self._args_type = argsType
-        self.fieldsshowTree = FSTree(self.type, get_obj_class_name(self))
+        self.fieldsshowTree = FSTree(self.type, self.__class__.__name__)
         self.log_progress = False
 
     def set_show(self, keys: str or list[str], isVisible: bool):
@@ -118,7 +120,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             str: GraphQL Query exported
         """
         try:
-            prefix = self.operationType.value + ' ' + self.name + ' '
+            prefix = self.obj_type.value + ' ' + self.name + ' '
             self.type.log_progress = self.log_progress
 
             ##Arguments of the operation are arguments of the root object
@@ -127,23 +129,23 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
 
             #Update all objects args with the argument type requested
             self.manage_args(self.type)
-            rootName = get_obj_class_name(self)
             # self.setArgsLocations(self.type, None, rootName, '')
 
             if self._args_type == ArgType.VARIABLES:
-                # self.argumentsRetrieved = self.retrieveArgs(self.type)
                 if hasattr(self, ARGS_DECLARE) and self.arguments:
                     prefix += '(' + self.export_gqlarg_keys + ')'
 
-            return prefix + ' { ' + rootName + self.type.export_gql_source + ' } '
+            return prefix + ' { ' + self.__class__.__name__ + self.type.export_gql_source + ' } '
         except Exception as ex:
             raise handle_recursive_ex(ex, 'Issue during export of ' + self.name)
-
-    arguments: dict = None
 
     def manage_args(self, currentObj):
         if not self.arguments: self.arguments = {}
         try:
+            if isinstance(currentObj, list): #if it is I have to set the elements as well?
+                for list_el in currentObj:
+                    self.manage_args(list_el)
+
             #if obj contains field with arg name, add arg
             if type(currentObj) in PRIMITIVES or not hasattr(currentObj, '__dataclass_fields__'):
                 return
@@ -153,7 +155,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
                 for arg in currentObj._args.__dataclass_fields__:
                     argValue = getattr(currentObj._args, arg)
                     if is_empty_field(argValue): continue
-                    self.arguments.update({arg: argValue})
+                    self.arguments.update({arg: (argValue, currentObj._args.__dataclass_fields__[arg].type)})
 
             for subObj in currentObj.__dataclass_fields__:
                 if subObj == ARGS_DECLARE:  continue

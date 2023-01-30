@@ -619,4 +619,3 @@ class WorkflowTopic(Enum):
 class SignupApprovalWorkflowTopic(Enum):
    DEFAULT = None
    SignupRequestApproval = 'SignupRequestApproval'
-
