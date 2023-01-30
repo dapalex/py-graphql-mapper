@@ -5,9 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ "17-nonnull-args" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "17-nonnull-args" ]
+    branches: [ "develop" ]
 
 jobs:
   build:
