@@ -1,6 +1,6 @@
 import copy
 import logging as logger
-from pygqlmap.src.consts import GQLLIST_PREFIX, NON_NULL_PREFIX, STRING_GQL_BUILTIN, STRING_GQLLIST_BUILTIN
+from pygqlmap.src.consts import GQLLIST_PREFIX, NON_NULL_PREFIX, STRING_GQLLIST_BUILTIN
 from pygqlmap.src.translator import Translate
 from .enums import TypeKind
 from .utils import gqlTypeKinds, typesByName

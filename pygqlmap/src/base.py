@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from dataclasses import asdict
 import inspect
 import logging as logger
-import typing
 from pygqlmap.helper import handle_recursive_ex
 from .consts import COMMA_CONCAT, ARGS_DECLARE
 from ..enums import ArgType

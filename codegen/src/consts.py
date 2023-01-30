@@ -2,8 +2,6 @@
 from os import path
 import pathlib
 
-from codegen.src.enums import TemplateType
-
 CLASS_SIGNATURE = "class %s(GQLObject)"
 INTERFACE_SIGNATURE = "class %s(%s)"
 ARGUED_CLASS_SIGNATURE = "class %s(%s)"

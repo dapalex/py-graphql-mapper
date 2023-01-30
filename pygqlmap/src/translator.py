@@ -2,12 +2,11 @@
 from dataclasses import asdict
 import inspect
 from types import GenericAlias
-import typing
 import keyword
 from enum import Enum
 import logging as logger
 from pygqlmap.helper import handle_recursive_ex
-from .utils import check_arg_type, execute_regex, is_empty_field
+from .utils import execute_regex, is_empty_field
 from pygqlmap.gql_types import ID
 from .consts import COMMA_CONCAT, NON_NULL_PREFIX, PRIMITIVES
 

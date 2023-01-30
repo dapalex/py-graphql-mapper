@@ -1,7 +1,7 @@
 import random
 import string
 from codegen.src.base_class import SchemaTypeManager
-from pygqlmap.components import GQLArgsSet, GQLOperationArgs
+from pygqlmap.components import GQLArgsSet
 from pygqlmap.src.consts import ARGS_DECLARE, GQLLIST_PREFIX, NON_NULL_PREFIX, STRING_GQL_BUILTIN, STRING_GQLLIST_BUILTIN, STRING_PRIMITIVES, ARGUED_SIGNATURE_SUFFIX
 from pygqlmap.enums import OperationType
 import logging as logger
@@ -478,7 +478,7 @@ class Extractor():
 
             scType.type_defs = scType.get_objtype_defs()
 
-            inlineCodeType, actualType = scType.compose_py_type(arguedName)
+            actualType = scType.compose_py_type(arguedName)[1]
 
             fieldsCodeList = []
             fieldsDocCodeList = []
