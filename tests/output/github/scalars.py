@@ -1,4 +1,4 @@
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 
 Base64String = str ##A (potentially binary) string encoded using base64.
 

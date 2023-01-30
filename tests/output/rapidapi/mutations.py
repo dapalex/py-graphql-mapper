@@ -7,174 +7,220 @@ from .scalars import *
 from .type_refs import *
 
 
-NonNull_EventUrlCreateInput = EventUrlCreateInput
+class NonNull_EventUrlCreateInput(EventUrlCreateInput): pass
 
-NonNull_EventUrlUpdateInput = EventUrlUpdateInput
+class NonNull_EventUrlUpdateInput(EventUrlUpdateInput): pass
 
-NonNull_EventConfigUpdateInput = EventConfigUpdateInput
+class NonNull_EventConfigUpdateInput(EventConfigUpdateInput): pass
 
-NonNull_GatewayInstanceCreateInput = GatewayInstanceCreateInput
+class NonNull_GatewayInstanceCreateInput(GatewayInstanceCreateInput): pass
 
-NonNull_GatewayInstanceUpdateInput = GatewayInstanceUpdateInput
+class NonNull_GatewayInstanceUpdateInput(GatewayInstanceUpdateInput): pass
 
-NonNull_GatewayTemplateCreateInput = GatewayTemplateCreateInput
+class NonNull_GatewayTemplateCreateInput(GatewayTemplateCreateInput): pass
 
-NonNull_GatewayTemplateUpdateInput = GatewayTemplateUpdateInput
+class NonNull_GatewayTemplateUpdateInput(GatewayTemplateUpdateInput): pass
 
-NonNull_GatewayTemplateParamsCreateInput = GatewayTemplateParamsCreateInput
+class NonNull_GatewayTemplateParamsCreateInput(GatewayTemplateParamsCreateInput): pass
 
-NonNull_EnvConfigUpdateInput = EnvConfigUpdateInput
+class NonNull_EnvConfigUpdateInput(EnvConfigUpdateInput): pass
 
-NonNull_deleteUserAlertsInput = deleteUserAlertsInput
+class NonNull_deleteUserAlertsInput(deleteUserAlertsInput): pass
 
-NonNull_editUserAlertInput = editUserAlertInput
+class NonNull_editUserAlertInput(editUserAlertInput): pass
 
-NonNull_UserAlertUpdateInput = UserAlertUpdateInput
+class NonNull_UserAlertUpdateInput(UserAlertUpdateInput): pass
 
-NonNull_ApiCertificateCreateInput = ApiCertificateCreateInput
+class NonNull_list_UserAlertUpdateInput(list, UserAlertUpdateInput): pass
 
-NonNull_SaveApiDevelopersInput = SaveApiDevelopersInput
+class NonNull_ApiCertificateCreateInput(ApiCertificateCreateInput): pass
 
-NonNull_CreateApiFavoritesInput = CreateApiFavoritesInput
+class NonNull_list_ApiCertificateCreateInput(list, ApiCertificateCreateInput): pass
 
-NonNull_DeleteApiFavoritesInput = DeleteApiFavoritesInput
+class NonNull_SaveApiDevelopersInput(SaveApiDevelopersInput): pass
 
-NonNull_ApiFollowerCreateInput = ApiFollowerCreateInput
+class NonNull_CreateApiFavoritesInput(CreateApiFavoritesInput): pass
 
-NonNull_ApiFollowerDeleteInput = ApiFollowerDeleteInput
+class NonNull_DeleteApiFavoritesInput(DeleteApiFavoritesInput): pass
 
-NonNull_ApiCreateFromSpecInput = ApiCreateFromSpecInput
+class NonNull_ApiFollowerCreateInput(ApiFollowerCreateInput): pass
 
-NonNull_ApiUpdateFromSpecInput = ApiUpdateFromSpecInput
+class NonNull_ApiFollowerDeleteInput(ApiFollowerDeleteInput): pass
 
-NonNull_ApiCreateFromRapidOasInput = ApiCreateFromRapidOasInput
+class NonNull_ApiCreateFromSpecInput(ApiCreateFromSpecInput): pass
 
-NonNull_ApiUpdateFromRapidOasInput = ApiUpdateFromRapidOasInput
+class NonNull_list_ApiCreateFromSpecInput(list, ApiCreateFromSpecInput): pass
 
-NonNull_ApiVersionCreateInput = ApiVersionCreateInput
+class NonNull_ApiUpdateFromSpecInput(ApiUpdateFromSpecInput): pass
 
-NonNull_GqlApiVersionCreateInput = GqlApiVersionCreateInput
+class NonNull_list_ApiUpdateFromSpecInput(list, ApiUpdateFromSpecInput): pass
 
-NonNull_ApiVersionUpdateInput = ApiVersionUpdateInput
+class NonNull_ApiCreateFromRapidOasInput(ApiCreateFromRapidOasInput): pass
 
-NonNull_ApiCreateInput = ApiCreateInput
+class NonNull_list_ApiCreateFromRapidOasInput(list, ApiCreateFromRapidOasInput): pass
 
-NonNull_ApiUpdateInput = ApiUpdateInput
+class NonNull_ApiUpdateFromRapidOasInput(ApiUpdateFromRapidOasInput): pass
 
-NonNull_ProvisionApiFromFileInput = ProvisionApiFromFileInput
+class NonNull_list_ApiUpdateFromRapidOasInput(list, ApiUpdateFromRapidOasInput): pass
 
-NonNull_AppAuthorizationCreateInput = AppAuthorizationCreateInput
+class NonNull_ApiVersionCreateInput(ApiVersionCreateInput): pass
 
-NonNull_AppAuthorizationUpdateInput = AppAuthorizationUpdateInput
+class NonNull_list_ApiVersionCreateInput(list, ApiVersionCreateInput): pass
 
-NonNull_AddApplicationEnvironmentKeyInput = AddApplicationEnvironmentKeyInput
+class NonNull_GqlApiVersionCreateInput(GqlApiVersionCreateInput): pass
 
-NonNull_EditApplicationEnviornmentKeyInput = EditApplicationEnviornmentKeyInput
+class NonNull_list_GqlApiVersionCreateInput(list, GqlApiVersionCreateInput): pass
 
-NonNull_DeleteApplicationEnvironmentKeyInput = DeleteApplicationEnvironmentKeyInput
+class NonNull_ApiVersionUpdateInput(ApiVersionUpdateInput): pass
 
-NonNull_GenerateAssetUploadUrlInput = GenerateAssetUploadUrlInput
+class NonNull_list_ApiVersionUpdateInput(list, ApiVersionUpdateInput): pass
 
-NonNull_AssetUpdateInput = AssetUpdateInput
+class NonNull_ApiCreateInput(ApiCreateInput): pass
 
-NonNull_AsyncApiConfigurationCreateInput = AsyncApiConfigurationCreateInput
+class NonNull_ApiUpdateInput(ApiUpdateInput): pass
 
-NonNull_ThemeUserAttributesInput = ThemeUserAttributesInput
+class NonNull_ProvisionApiFromFileInput(ProvisionApiFromFileInput): pass
 
-NonNull_AuthenticationCreateInput = AuthenticationCreateInput
+class list_ProvisionApiFromFileInput(list, ProvisionApiFromFileInput): pass
 
-NonNull_AuthenticationUpdateInput = AuthenticationUpdateInput
+class NonNull_AppAuthorizationCreateInput(AppAuthorizationCreateInput): pass
 
-NonNull_upsertBillingFeatureInput = upsertBillingFeatureInput
+class NonNull_AppAuthorizationUpdateInput(AppAuthorizationUpdateInput): pass
 
-NonNull_BillingItemUpsertInput = BillingItemUpsertInput
+class NonNull_AddApplicationEnvironmentKeyInput(AddApplicationEnvironmentKeyInput): pass
 
-NonNull_BillingPlanCreateInput = BillingPlanCreateInput
+class NonNull_EditApplicationEnviornmentKeyInput(EditApplicationEnviornmentKeyInput): pass
 
-NonNull_BillingPlanMetadataUpdateInput = BillingPlanMetadataUpdateInput
+class NonNull_DeleteApplicationEnvironmentKeyInput(DeleteApplicationEnvironmentKeyInput): pass
 
-NonNull_BillingPlanExtendedUpdateInput = BillingPlanExtendedUpdateInput
+class NonNull_GenerateAssetUploadUrlInput(GenerateAssetUploadUrlInput): pass
 
-NonNull_upsertBillingPlanAndVersionInput = upsertBillingPlanAndVersionInput
+class NonNull_AssetUpdateInput(AssetUpdateInput): pass
 
-NonNull_CategoryCreateInput = CategoryCreateInput
+class NonNull_AsyncApiConfigurationCreateInput(AsyncApiConfigurationCreateInput): pass
 
-NonNull_CategoryUpdateInput = CategoryUpdateInput
+class NonNull_list_AsyncApiConfigurationCreateInput(list, AsyncApiConfigurationCreateInput): pass
 
-NonNull_CollectionUpdateInput = CollectionUpdateInput
+class NonNull_ThemeUserAttributesInput(ThemeUserAttributesInput): pass
 
-NonNull_CollectionCreateInput = CollectionCreateInput
+class NonNull_AuthenticationCreateInput(AuthenticationCreateInput): pass
 
-NonNull_EndpointsGroupCreateInput = EndpointsGroupCreateInput
+class NonNull_list_AuthenticationCreateInput(list, AuthenticationCreateInput): pass
 
-NonNull_EndpointsGroupUpdateInput = EndpointsGroupUpdateInput
+class NonNull_AuthenticationUpdateInput(AuthenticationUpdateInput): pass
 
-NonNull_EntityMetadataInput = EntityMetadataInput
+class NonNull_list_AuthenticationUpdateInput(list, AuthenticationUpdateInput): pass
 
-NonNull_UpdateGraphQLSchemaInput = UpdateGraphQLSchemaInput
+class NonNull_upsertBillingFeatureInput(upsertBillingFeatureInput): pass
 
-NonNull_SubscribeOptions = SubscribeOptions
+class NonNull_BillingItemUpsertInput(BillingItemUpsertInput): pass
 
-NonNull_ProduceMessageInput = ProduceMessageInput
+class NonNull_BillingPlanCreateInput(BillingPlanCreateInput): pass
 
-NonNull_MessageCreateInput = MessageCreateInput
+class NonNull_BillingPlanMetadataUpdateInput(BillingPlanMetadataUpdateInput): pass
 
-NonNull_OrganizationUpdateInput = OrganizationUpdateInput
+class NonNull_BillingPlanExtendedUpdateInput(BillingPlanExtendedUpdateInput): pass
 
-NonNull_OrganizationCreateInput = OrganizationCreateInput
+class NonNull_upsertBillingPlanAndVersionInput(upsertBillingPlanAndVersionInput): pass
 
-NonNull_ResetUserPasswordInput = ResetUserPasswordInput
+class NonNull_CategoryCreateInput(CategoryCreateInput): pass
 
-NonNull_AddProjectInput = AddProjectInput
+class NonNull_CategoryUpdateInput(CategoryUpdateInput): pass
 
-NonNull_EditProjectInput = EditProjectInput
+class NonNull_CollectionUpdateInput(CollectionUpdateInput): pass
 
-NonNull_DeleteProjectInput = DeleteProjectInput
+class NonNull_CollectionCreateInput(CollectionCreateInput): pass
 
-NonNull_ProjectCreateInput = ProjectCreateInput
+class NonNull_list_UpdateCollectionsInput(list, UpdateCollectionsInput): pass
 
-NonNull_ProjectUpdateInput = ProjectUpdateInput
+class list_EndpointOrder(list, EndpointOrder): pass
 
-NonNull_RoleUpdateInput = RoleUpdateInput
+class NonNull_EndpointsGroupCreateInput(EndpointsGroupCreateInput): pass
 
-NonNull_RoleCreateInput = RoleCreateInput
+class NonNull_list_EndpointsGroupCreateInput(list, EndpointsGroupCreateInput): pass
 
-NonNull_SpotlightCreateInput = SpotlightCreateInput
+class NonNull_EndpointsGroupUpdateInput(EndpointsGroupUpdateInput): pass
 
-NonNull_SpotlightUpdateInput = SpotlightUpdateInput
+class NonNull_list_EndpointsGroupUpdateInput(list, EndpointsGroupUpdateInput): pass
 
-NonNull_SpotlightDeleteInput = SpotlightDeleteInput
+class NonNull_EntityMetadataInput(EntityMetadataInput): pass
 
-NonNull_SubscriptionCreateInput = SubscriptionCreateInput
+class NonNull_UpdateGraphQLSchemaInput(UpdateGraphQLSchemaInput): pass
 
-NonNull_TargetGroupUpdateInput = TargetGroupUpdateInput
+class NonNull_SubscribeOptions(SubscribeOptions): pass
 
-NonNull_TeamCreateInput = TeamCreateInput
+class NonNull_ProduceMessageInput(ProduceMessageInput): pass
 
-NonNull_TeamUpdateInput = TeamUpdateInput
+class list_ProduceMessageResponse(list, ProduceMessageResponse): pass
 
-NonNull_TransformationCreateInput = TransformationCreateInput
+class NonNull_MessageCreateInput(MessageCreateInput): pass
 
-NonNull_TransformationUpdateInput = TransformationUpdateInput
+class NonNull_OrganizationUpdateInput(OrganizationUpdateInput): pass
 
-NonNull_TutorialCreateInput = TutorialCreateInput
+class NonNull_OrganizationCreateInput(OrganizationCreateInput): pass
 
-NonNull_TutorialUpdateInput = TutorialUpdateInput
+class NonNull_ResetUserPasswordInput(ResetUserPasswordInput): pass
 
-NonNull_TutorialDeleteInput = TutorialDeleteInput
+class NonNull_AddProjectInput(AddProjectInput): pass
 
-NonNull_UserInvitesDeleteInput = UserInvitesDeleteInput
+class NonNull_EditProjectInput(EditProjectInput): pass
 
-NonNull_UserInvitesReactivateInput = UserInvitesReactivateInput
+class NonNull_DeleteProjectInput(DeleteProjectInput): pass
 
-NonNull_UserUpdateInput = UserUpdateInput
+class NonNull_ProjectCreateInput(ProjectCreateInput): pass
+
+class NonNull_ProjectUpdateInput(ProjectUpdateInput): pass
+
+class list_createProjectAllowedAPIInput(list, createProjectAllowedAPIInput): pass
+
+class NonNull_RoleUpdateInput(RoleUpdateInput): pass
+
+class NonNull_RoleCreateInput(RoleCreateInput): pass
+
+class NonNull_SpotlightCreateInput(SpotlightCreateInput): pass
+
+class NonNull_SpotlightUpdateInput(SpotlightUpdateInput): pass
+
+class NonNull_SpotlightDeleteInput(SpotlightDeleteInput): pass
+
+class NonNull_SubscriptionCreateInput(SubscriptionCreateInput): pass
+
+class NonNull_TargetGroupUpdateInput(TargetGroupUpdateInput): pass
+
+class NonNull_list_TargetGroupUpdateInput(list, TargetGroupUpdateInput): pass
+
+class NonNull_TeamCreateInput(TeamCreateInput): pass
+
+class NonNull_TeamUpdateInput(TeamUpdateInput): pass
+
+class NonNull_TransformationCreateInput(TransformationCreateInput): pass
+
+class NonNull_list_TransformationCreateInput(list, TransformationCreateInput): pass
+
+class NonNull_TransformationUpdateInput(TransformationUpdateInput): pass
+
+class NonNull_list_TransformationUpdateInput(list, TransformationUpdateInput): pass
+
+class NonNull_TutorialCreateInput(TutorialCreateInput): pass
+
+class NonNull_TutorialUpdateInput(TutorialUpdateInput): pass
+
+class NonNull_TutorialDeleteInput(TutorialDeleteInput): pass
+
+class list_RecoveryCode(list, RecoveryCode): pass
+
+class NonNull_UserInvitesDeleteInput(UserInvitesDeleteInput): pass
+
+class NonNull_UserInvitesReactivateInput(UserInvitesReactivateInput): pass
+
+class NonNull_UserUpdateInput(UserUpdateInput): pass
 
 class createEventUrl(GQLMutation):
    """
    createEventUrl - Create an Event that can be subscribed to via a webhook
 
    """
-   class EventUrlArgs(GQLArgsSet, GQLObject): 
+   class EventUrlArgs(GQLArgsSet, GQLObject):
       createDto: NonNull_EventUrlCreateInput
 
    _args: EventUrlArgs
@@ -187,7 +233,7 @@ class updateEventUrl(GQLMutation):
    updateEventUrl - URLs for the events webhooks feature
 
    """
-   class EventUrlArgs(GQLArgsSet, GQLObject): 
+   class EventUrlArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
       updateDto: NonNull_EventUrlUpdateInput
 
@@ -201,7 +247,7 @@ class deleteEventUrl(GQLMutation):
    deleteEventUrl - Delete event Url
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: IDArgs
@@ -214,7 +260,7 @@ class upsertEventConfig(GQLMutation):
    upsertEventConfig - Update or Insert event configuration
 
    """
-   class EventConfigArgs(GQLArgsSet, GQLObject): 
+   class EventConfigArgs(GQLArgsSet, GQLObject):
       input: NonNull_EventConfigUpdateInput
 
    _args: EventConfigArgs
@@ -227,7 +273,7 @@ class deleteEventConfig(GQLMutation):
    deleteEventConfig - Delete event configuration
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: IDArgs
@@ -240,7 +286,7 @@ class createGatewayInstance(GQLMutation):
    createGatewayInstance - Create a Gateway Instance in the Enterprise Tenant
 
    """
-   class GatewayInstanceArgs(GQLArgsSet, GQLObject): 
+   class GatewayInstanceArgs(GQLArgsSet, GQLObject):
       createDto: NonNull_GatewayInstanceCreateInput
 
    _args: GatewayInstanceArgs
@@ -253,7 +299,7 @@ class updateGatewayInstance(GQLMutation):
    updateGatewayInstance - Update the gateway instance information
 
    """
-   class GatewayInstanceArgs(GQLArgsSet, GQLObject): 
+   class GatewayInstanceArgs(GQLArgsSet, GQLObject):
       updateDto: NonNull_GatewayInstanceUpdateInput
 
    _args: GatewayInstanceArgs
@@ -266,7 +312,7 @@ class deleteGatewayInstance(GQLMutation):
    deleteGatewayInstance - Delete Gateway Instance
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: IDArgs
@@ -279,7 +325,7 @@ class createGatewayTemplate(GQLMutation):
    createGatewayTemplate - Create a code template that can be referenced in a Gateway instance
 
    """
-   class GwTemplateArgs(GQLArgsSet, GQLObject): 
+   class GwTemplateArgs(GQLArgsSet, GQLObject):
       createDto: NonNull_GatewayTemplateCreateInput
 
    _args: GwTemplateArgs
@@ -292,7 +338,7 @@ class updateGatewayTemplate(GQLMutation):
    updateGatewayTemplate - Update the gateway configuration
 
    """
-   class GwTemplateArgs(GQLArgsSet, GQLObject): 
+   class GwTemplateArgs(GQLArgsSet, GQLObject):
       updateDto: NonNull_GatewayTemplateUpdateInput
 
    _args: GwTemplateArgs
@@ -305,7 +351,7 @@ class deleteGatewayTemplate(GQLMutation):
    deleteGatewayTemplate - Delete a code template and all its references in Gateways
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: IDArgs
@@ -318,7 +364,7 @@ class createGatewayTemplateParam(GQLMutation):
    createGatewayTemplateParam - Create a user specified variable that can be referenced in the Gatway templates 
 
    """
-   class GatewayTemplateParamArgs(GQLArgsSet, GQLObject): 
+   class GatewayTemplateParamArgs(GQLArgsSet, GQLObject):
       createDto: NonNull_GatewayTemplateParamsCreateInput
 
    _args: GatewayTemplateParamArgs
@@ -331,7 +377,7 @@ class updateEnvConfig(GQLMutation):
    updateEnvConfig - updating advance settings   
 
    """
-   class EnvConfigArgs(GQLArgsSet, GQLObject): 
+   class EnvConfigArgs(GQLArgsSet, GQLObject):
       envConfig: NonNull_EnvConfigUpdateInput
 
    _args: EnvConfigArgs
@@ -340,7 +386,7 @@ class updateEnvConfig(GQLMutation):
    type: EnvConfig
 
 class resetEnvConfig(GQLMutation):
-   class EnvConfigArgs(GQLArgsSet, GQLObject): 
+   class EnvConfigArgs(GQLArgsSet, GQLObject):
       id: NonNull_int
 
    _args: EnvConfigArgs
@@ -353,7 +399,7 @@ class addUserAlert(GQLMutation):
    addUserAlert - Creates an alert to be notified when a metric crosses a threshold
 
    """
-   class UserAlertArgs(GQLArgsSet, GQLObject): 
+   class UserAlertArgs(GQLArgsSet, GQLObject):
       input: addUserAlertInput
 
    _args: UserAlertArgs
@@ -366,7 +412,7 @@ class deleteUserAlerts(GQLMutation):
    deleteUserAlerts - Delete alerts created by an API provider for an API
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       input: NonNull_deleteUserAlertsInput
 
    _args: IDArgs
@@ -379,7 +425,7 @@ class editUserAlert(GQLMutation):
    editUserAlert - Update alert created by an API provider for an API
 
    """
-   class UserAlertArgs(GQLArgsSet, GQLObject): 
+   class UserAlertArgs(GQLArgsSet, GQLObject):
       input: NonNull_editUserAlertInput
 
    _args: UserAlertArgs
@@ -392,8 +438,8 @@ class updateUserAlerts(GQLMutation):
    updateUserAlerts - Update alerts created by an API provider for an API
 
    """
-   class UserAlertArgs(GQLArgsSet, GQLObject): 
-      input: NonNull_List[NonNull_UserAlertUpdateInput]
+   class UserAlertArgs(GQLArgsSet, GQLObject):
+      input: NonNull_list_UserAlertUpdateInput[NonNull_UserAlertUpdateInput]
 
    _args: UserAlertArgs
 
@@ -405,8 +451,8 @@ class createApiCertificates(GQLMutation):
    createApiCertificates - Creates API certificate for 
 
    """
-   class ApiCertificateCreationResultArgs(GQLArgsSet, GQLObject): 
-      certificates: NonNull_List[NonNull_ApiCertificateCreateInput]
+   class ApiCertificateCreationResultArgs(GQLArgsSet, GQLObject):
+      certificates: NonNull_list_ApiCertificateCreateInput[NonNull_ApiCertificateCreateInput]
 
    _args: ApiCertificateCreationResultArgs
 
@@ -418,8 +464,8 @@ class deleteApiCertificates(GQLMutation):
    deleteApiCertificates - Delete the API Certificate
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      ids: NonNull_List[ID]
+   class boolArgs(GQLArgsSet, GQLObject):
+      ids: NonNull_list[ID]
 
    _args: boolArgs
 
@@ -431,7 +477,7 @@ class saveApiDevelopersToApi(GQLMutation):
    saveApiDevelopersToApi - Invite developers to an API 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: NonNull_SaveApiDevelopersInput
 
    _args: boolArgs
@@ -444,7 +490,7 @@ class copyApiDevelopersFromVersion(GQLMutation):
    copyApiDevelopersFromVersion - Copies all API developers from an API Version
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: CopyApiDevelopersInput
 
    _args: boolArgs
@@ -457,7 +503,7 @@ class createApiFavorites(GQLMutation):
    createApiFavorites - Adding an API to the user favoites list on the user/team context on studio
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: NonNull_CreateApiFavoritesInput
 
    _args: boolArgs
@@ -470,7 +516,7 @@ class deleteApiFavorites(GQLMutation):
    deleteApiFavorites - Unmark the API from the user's favorites list 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: NonNull_DeleteApiFavoritesInput
 
    _args: boolArgs
@@ -483,7 +529,7 @@ class createApiFollowers(GQLMutation):
    createApiFollowers - Adds a follower to an API
 
    """
-   class ApiFollowerArgs(GQLArgsSet, GQLObject): 
+   class ApiFollowerArgs(GQLArgsSet, GQLObject):
       apiFollowers: NonNull_ApiFollowerCreateInput
 
    _args: ApiFollowerArgs
@@ -496,7 +542,7 @@ class deleteApiFollowers(GQLMutation):
    deleteApiFollowers - Removes a follower from an API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       apiFollowers: NonNull_ApiFollowerDeleteInput
 
    _args: boolArgs
@@ -509,8 +555,8 @@ class createApisFromSpecs(GQLMutation):
    createApisFromSpecs - Create an API from Supported spec files
 
    """
-   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject): 
-      creations: NonNull_List[NonNull_ApiCreateFromSpecInput]
+   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject):
+      creations: NonNull_list_ApiCreateFromSpecInput[NonNull_ApiCreateFromSpecInput]
 
    _args: ApiSpecImportResultArgs
 
@@ -524,8 +570,8 @@ class updateApisFromSpecs(GQLMutation):
 https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#update-an-api
 
    """
-   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject): 
-      updates: NonNull_List[NonNull_ApiUpdateFromSpecInput]
+   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject):
+      updates: NonNull_list_ApiUpdateFromSpecInput[NonNull_ApiUpdateFromSpecInput]
 
    _args: ApiSpecImportResultArgs
 
@@ -537,8 +583,8 @@ class createApisFromRapidOas(GQLMutation):
    createApisFromRapidOas - This mutation currently supports providing no more than one item to create at a time
 
    """
-   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject): 
-      creations: NonNull_List[NonNull_ApiCreateFromRapidOasInput]
+   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject):
+      creations: NonNull_list_ApiCreateFromRapidOasInput[NonNull_ApiCreateFromRapidOasInput]
 
    _args: ApiSpecImportResultArgs
 
@@ -550,8 +596,8 @@ class updateApisFromRapidOas(GQLMutation):
    updateApisFromRapidOas - This mutation currently supports providing no more than one item to update at a time
 
    """
-   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject): 
-      updates: NonNull_List[NonNull_ApiUpdateFromRapidOasInput]
+   class ApiSpecImportResultArgs(GQLArgsSet, GQLObject):
+      updates: NonNull_list_ApiUpdateFromRapidOasInput[NonNull_ApiUpdateFromRapidOasInput]
 
    _args: ApiSpecImportResultArgs
 
@@ -563,8 +609,8 @@ class createApiVersions(GQLMutation):
    createApiVersions - Creates a multiple API Versions
 
    """
-   class ApiVersionArgs(GQLArgsSet, GQLObject): 
-      apiVersions: NonNull_List[NonNull_ApiVersionCreateInput]
+   class ApiVersionArgs(GQLArgsSet, GQLObject):
+      apiVersions: NonNull_list_ApiVersionCreateInput[NonNull_ApiVersionCreateInput]
 
    _args: ApiVersionArgs
 
@@ -576,8 +622,8 @@ class createGqlApiVersions(GQLMutation):
    createGqlApiVersions - Create a new GraphQL API Version
 
    """
-   class ApiVersionArgs(GQLArgsSet, GQLObject): 
-      gqlApiVersions: NonNull_List[NonNull_GqlApiVersionCreateInput]
+   class ApiVersionArgs(GQLArgsSet, GQLObject):
+      gqlApiVersions: NonNull_list_GqlApiVersionCreateInput[NonNull_GqlApiVersionCreateInput]
 
    _args: ApiVersionArgs
 
@@ -589,8 +635,8 @@ class updateApiVersions(GQLMutation):
    updateApiVersions - update the API Versions
 
    """
-   class ApiVersionArgs(GQLArgsSet, GQLObject): 
-      apiVersions: NonNull_List[NonNull_ApiVersionUpdateInput]
+   class ApiVersionArgs(GQLArgsSet, GQLObject):
+      apiVersions: NonNull_list_ApiVersionUpdateInput[NonNull_ApiVersionUpdateInput]
 
    _args: ApiVersionArgs
 
@@ -602,7 +648,7 @@ class createApiVersionBillingPlanVersion(GQLMutation):
    createApiVersionBillingPlanVersion - [will be deprecated; do not use] Create API version and Billing Plan Version
 
    """
-   class ApiVersionBillingPlanVersionArgs(GQLArgsSet, GQLObject): 
+   class ApiVersionBillingPlanVersionArgs(GQLArgsSet, GQLObject):
       input: createApiVersionBillingPlanVersionInput
 
    _args: ApiVersionBillingPlanVersionArgs
@@ -617,7 +663,7 @@ class createApi(GQLMutation):
 https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#create-an-api
 
    """
-   class ApiArgs(GQLArgsSet, GQLObject): 
+   class ApiArgs(GQLArgsSet, GQLObject):
       api: NonNull_ApiCreateInput
 
    _args: ApiArgs
@@ -632,7 +678,7 @@ class updateApi(GQLMutation):
 
 
    """
-   class ApiArgs(GQLArgsSet, GQLObject): 
+   class ApiArgs(GQLArgsSet, GQLObject):
       api: NonNull_ApiUpdateInput
 
    _args: ApiArgs
@@ -645,20 +691,20 @@ class provisionSwaggerFiles(GQLMutation):
    provisionSwaggerFiles - [do not use; will be deprecated] use createApisFromSpecs
 
    """
-   class strArgs(GQLArgsSet, GQLObject): 
-      input: List[NonNull_ProvisionApiFromFileInput]
+   class strArgs(GQLArgsSet, GQLObject):
+      input: list_ProvisionApiFromFileInput[NonNull_ProvisionApiFromFileInput]
 
    _args: strArgs
 
 
-   type: List[str]
+   type: list[str]
 
 class deleteApi(GQLMutation):
    """
    deleteApi - Delete the API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -671,7 +717,7 @@ class createApplicationAuthorization(GQLMutation):
    createApplicationAuthorization - Creates authorization of type OAuth 
 
    """
-   class ApplicationAuthorizationArgs(GQLArgsSet, GQLObject): 
+   class ApplicationAuthorizationArgs(GQLArgsSet, GQLObject):
       input: NonNull_AppAuthorizationCreateInput
 
    _args: ApplicationAuthorizationArgs
@@ -684,7 +730,7 @@ class updateApplicationAuthorization(GQLMutation):
    updateApplicationAuthorization - updated authorization value  
 
    """
-   class ApplicationAuthorizationArgs(GQLArgsSet, GQLObject): 
+   class ApplicationAuthorizationArgs(GQLArgsSet, GQLObject):
       input: NonNull_AppAuthorizationUpdateInput
 
    _args: ApplicationAuthorizationArgs
@@ -697,7 +743,7 @@ class deleteApplicationAuthorization(GQLMutation):
    deleteApplicationAuthorization - delete application authorization by id
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -710,7 +756,7 @@ class addApplicationEnvironmentKey(GQLMutation):
    addApplicationEnvironmentKey - Creates an authorization of type x-rapid-key
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_AddApplicationEnvironmentKeyInput
 
    _args: AnyArgs
@@ -723,7 +769,7 @@ class editApplicationEnvironmentKey(GQLMutation):
    editApplicationEnvironmentKey - edit authorization value ( aka application env key )
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_EditApplicationEnviornmentKeyInput
 
    _args: AnyArgs
@@ -736,7 +782,7 @@ class deleteApplicationEnvironmentKey(GQLMutation):
    deleteApplicationEnvironmentKey - delete application authorization of type x-rapid-key
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       input: NonNull_DeleteApplicationEnvironmentKeyInput
 
    _args: IDArgs
@@ -749,7 +795,7 @@ class generateAssetUploadUrl(GQLMutation):
    generateAssetUploadUrl - Creates asset object; returns presignedURL used to upload asset.
 
    """
-   class AssetArgs(GQLArgsSet, GQLObject): 
+   class AssetArgs(GQLArgsSet, GQLObject):
       input: NonNull_GenerateAssetUploadUrlInput
 
    _args: AssetArgs
@@ -762,7 +808,7 @@ class deleteAsset(GQLMutation):
    deleteAsset - Delete an asset by ID
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -775,7 +821,7 @@ class updateAssetUploaded(GQLMutation):
    updateAssetUploaded - Updates asset object state to uploaded after asset is uploaded to the presignedURL
 
    """
-   class AssetArgs(GQLArgsSet, GQLObject): 
+   class AssetArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: AssetArgs
@@ -788,7 +834,7 @@ class updateAsset(GQLMutation):
    updateAsset - Update asset metadata: title, description, visibility - will control whether is visible in the hub 
 
    """
-   class AssetArgs(GQLArgsSet, GQLObject): 
+   class AssetArgs(GQLArgsSet, GQLObject):
       input: NonNull_AssetUpdateInput
 
    _args: AssetArgs
@@ -801,8 +847,8 @@ class upsertAsyncApiConfiguration(GQLMutation):
    upsertAsyncApiConfiguration - [experimental] Update Async API configuration
 
    """
-   class AsyncApiConfigurationArgs(GQLArgsSet, GQLObject): 
-      asyncApiConfigurations: NonNull_List[NonNull_AsyncApiConfigurationCreateInput]
+   class AsyncApiConfigurationArgs(GQLArgsSet, GQLObject):
+      asyncApiConfigurations: NonNull_list_AsyncApiConfigurationCreateInput[NonNull_AsyncApiConfigurationCreateInput]
 
    _args: AsyncApiConfigurationArgs
 
@@ -814,7 +860,7 @@ class upsertUserAttributes(GQLMutation):
    upsertUserAttributes - Takes a set of user attributes and updates them for a user
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: UserAttributesInput
 
    _args: AnyArgs
@@ -827,7 +873,7 @@ class updateUserAttributeItem(GQLMutation):
    updateUserAttributeItem - Update user metadata 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_ThemeUserAttributesInput
 
    _args: AnyArgs
@@ -840,8 +886,8 @@ class createAuthentications(GQLMutation):
    createAuthentications - Create provider specific authentication for an API
 
    """
-   class AuthenticationArgs(GQLArgsSet, GQLObject): 
-      authentications: NonNull_List[NonNull_AuthenticationCreateInput]
+   class AuthenticationArgs(GQLArgsSet, GQLObject):
+      authentications: NonNull_list_AuthenticationCreateInput[NonNull_AuthenticationCreateInput]
 
    _args: AuthenticationArgs
 
@@ -853,8 +899,8 @@ class updateAuthentications(GQLMutation):
    updateAuthentications - Set the API authentications configuration
 
    """
-   class AuthenticationArgs(GQLArgsSet, GQLObject): 
-      authentications: NonNull_List[NonNull_AuthenticationUpdateInput]
+   class AuthenticationArgs(GQLArgsSet, GQLObject):
+      authentications: NonNull_list_AuthenticationUpdateInput[NonNull_AuthenticationUpdateInput]
 
    _args: AuthenticationArgs
 
@@ -866,7 +912,7 @@ class createOrUpdateAPIVersionAuthentication(GQLMutation):
    createOrUpdateAPIVersionAuthentication - Create or Update the authentication used to access an API
 
    """
-   class AuthenticationCreateOrUpdateResultArgs(GQLArgsSet, GQLObject): 
+   class AuthenticationCreateOrUpdateResultArgs(GQLArgsSet, GQLObject):
       input: createAuthenticationInput
 
    _args: AuthenticationCreateOrUpdateResultArgs
@@ -879,7 +925,7 @@ class createBillingFeature(GQLMutation):
    createBillingFeature - Create a new Billing Feature
 
    """
-   class BillingFeatureArgs(GQLArgsSet, GQLObject): 
+   class BillingFeatureArgs(GQLArgsSet, GQLObject):
       createBillingFeature: createBillingFeature
 
    _args: BillingFeatureArgs
@@ -892,7 +938,7 @@ class updateBillingFeature(GQLMutation):
    updateBillingFeature - Update the API billing feature
 
    """
-   class BillingFeatureArgs(GQLArgsSet, GQLObject): 
+   class BillingFeatureArgs(GQLArgsSet, GQLObject):
       updateBillingFeature: updateBillingFeature
 
    _args: BillingFeatureArgs
@@ -905,7 +951,7 @@ class upsertBillingFeature(GQLMutation):
    upsertBillingFeature - [will be deprecated; do not use] Updates billing feature for 1 API
 
    """
-   class BillingFeatureArgs(GQLArgsSet, GQLObject): 
+   class BillingFeatureArgs(GQLArgsSet, GQLObject):
       upsertBillingFeature: NonNull_upsertBillingFeatureInput
 
    _args: BillingFeatureArgs
@@ -918,7 +964,7 @@ class deleteBillingFeature(GQLMutation):
    deleteBillingFeature - Delete API billing feature by id
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       billingFeatureId: str
 
    _args: AnyArgs
@@ -931,8 +977,8 @@ class deleteBillingFeatures(GQLMutation):
    deleteBillingFeatures - Delete API billing features
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
-      billingFeatureIds: List[str]
+   class AnyArgs(GQLArgsSet, GQLObject):
+      billingFeatureIds: list[str]
 
    _args: AnyArgs
 
@@ -944,7 +990,7 @@ class createStripeCustomer(GQLMutation):
    createStripeCustomer - Create a customer in Stripe with credit card details and personal details
 
    """
-   class BillingInformationArgs(GQLArgsSet, GQLObject): 
+   class BillingInformationArgs(GQLArgsSet, GQLObject):
       input: CreateStripeCustomerInput
 
    _args: BillingInformationArgs
@@ -957,7 +1003,7 @@ class updateStripeCustomer(GQLMutation):
    updateStripeCustomer - Updates customer details in Stripe
 
    """
-   class BillingInformationArgs(GQLArgsSet, GQLObject): 
+   class BillingInformationArgs(GQLArgsSet, GQLObject):
       input: CreateStripeCustomerInput
 
    _args: BillingInformationArgs
@@ -970,7 +1016,7 @@ class createStripeCustomerV2(GQLMutation):
    createStripeCustomerV2 - Create a customer in Stripe with credit card details and personal details
 
    """
-   class BillingInformationArgs(GQLArgsSet, GQLObject): 
+   class BillingInformationArgs(GQLArgsSet, GQLObject):
       input: CreateStripeCustomerInput
 
    _args: BillingInformationArgs
@@ -983,7 +1029,7 @@ class updateStripeCustomerV2(GQLMutation):
    updateStripeCustomerV2 - Updates customer details in Stripe
 
    """
-   class BillingInformationArgs(GQLArgsSet, GQLObject): 
+   class BillingInformationArgs(GQLArgsSet, GQLObject):
       input: CreateStripeCustomerInput
 
    _args: BillingInformationArgs
@@ -1003,7 +1049,7 @@ class upsertBillingItem(GQLMutation):
    upsertBillingItem - [will be deprecated; do not use] Updates 1 billing item
 
    """
-   class BillingItemArgs(GQLArgsSet, GQLObject): 
+   class BillingItemArgs(GQLArgsSet, GQLObject):
       input: NonNull_BillingItemUpsertInput
 
    _args: BillingItemArgs
@@ -1016,7 +1062,7 @@ class deleteBillingItem(GQLMutation):
    deleteBillingItem - Delete a single billing item, in the UI we call these Objects
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: AnyArgs
@@ -1029,8 +1075,8 @@ class deleteBillingItems(GQLMutation):
    deleteBillingItems - Delete all billing items for an API Project
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      ids: NonNull_List[NonNull_ID]
+   class boolArgs(GQLArgsSet, GQLObject):
+      ids: NonNull_list[NonNull_ID]
 
    _args: boolArgs
 
@@ -1042,8 +1088,8 @@ class deleteBillingPlans(GQLMutation):
    deleteBillingPlans - Delete billing plan from the API level 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      ids: NonNull_List[NonNull_ID]
+   class boolArgs(GQLArgsSet, GQLObject):
+      ids: NonNull_list[NonNull_ID]
 
    _args: boolArgs
 
@@ -1055,20 +1101,20 @@ class updateAllowedPlanDevelopers(GQLMutation):
    updateAllowedPlanDevelopers - Invite developer to a private created plan
 
    """
-   class AllowedPlanDeveloperArgs(GQLArgsSet, GQLObject): 
+   class AllowedPlanDeveloperArgs(GQLArgsSet, GQLObject):
       input: AllowedPlanDevelopersUpdateInput
 
    _args: AllowedPlanDeveloperArgs
 
 
-   type: List[AllowedPlanDeveloper]
+   type: list_AllowedPlanDeveloper[AllowedPlanDeveloper]
 
 class editOrganizationInvoice(GQLMutation):
    """
    editOrganizationInvoice - Update Orgs free seats count ( will be deprecated )
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: EditOrganizationInvoiceInput
 
    _args: boolArgs
@@ -1081,7 +1127,7 @@ class createBillingPlan(GQLMutation):
    createBillingPlan - Create a new Billing Plan
 
    """
-   class BillingPlanArgs(GQLArgsSet, GQLObject): 
+   class BillingPlanArgs(GQLArgsSet, GQLObject):
       billingPlan: NonNull_BillingPlanCreateInput
 
    _args: BillingPlanArgs
@@ -1094,7 +1140,7 @@ class updateBillingPlanMetadata(GQLMutation):
    updateBillingPlanMetadata - Updates the data of the billing plan
 
    """
-   class BillingPlanArgs(GQLArgsSet, GQLObject): 
+   class BillingPlanArgs(GQLArgsSet, GQLObject):
       billingPlan: NonNull_BillingPlanMetadataUpdateInput
 
    _args: BillingPlanArgs
@@ -1107,7 +1153,7 @@ class updateBillingPlanExtended(GQLMutation):
    updateBillingPlanExtended - Updates billing plan sub object
 
    """
-   class BillingPlanArgs(GQLArgsSet, GQLObject): 
+   class BillingPlanArgs(GQLArgsSet, GQLObject):
       billingPlan: NonNull_BillingPlanExtendedUpdateInput
 
    _args: BillingPlanArgs
@@ -1120,7 +1166,7 @@ class upsertBillingPlanAndVersion(GQLMutation):
    upsertBillingPlanAndVersion - [will be deprecated; do not use] Updates plan and version for 1 API
 
    """
-   class BillingPlanVersionArgs(GQLArgsSet, GQLObject): 
+   class BillingPlanVersionArgs(GQLArgsSet, GQLObject):
       upsertBillingPlanAndVersionInput: NonNull_upsertBillingPlanAndVersionInput
 
    _args: BillingPlanVersionArgs
@@ -1133,7 +1179,7 @@ class blockUsers(GQLMutation):
    blockUsers - Block paid users from accessing the API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: BlockedUserInput
 
    _args: boolArgs
@@ -1146,7 +1192,7 @@ class unblockUsers(GQLMutation):
    unblockUsers - Unblock paied users from accessing the API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: BlockedUserInput
 
    _args: boolArgs
@@ -1159,7 +1205,7 @@ class createCategory(GQLMutation):
    createCategory - Create a new Category (API Level)
 
    """
-   class CategoryArgs(GQLArgsSet, GQLObject): 
+   class CategoryArgs(GQLArgsSet, GQLObject):
       category: NonNull_CategoryCreateInput
 
    _args: CategoryArgs
@@ -1172,7 +1218,7 @@ class updateCategory(GQLMutation):
    updateCategory - Update category itself
 
    """
-   class CategoryArgs(GQLArgsSet, GQLObject): 
+   class CategoryArgs(GQLArgsSet, GQLObject):
       category: NonNull_CategoryUpdateInput
 
    _args: CategoryArgs
@@ -1185,8 +1231,8 @@ class deleteCategories(GQLMutation):
    deleteCategories - Deletes a category
 
    """
-   class DeletedCategoryArgs(GQLArgsSet, GQLObject): 
-      categories: NonNull_List[NonNull_ID]
+   class DeletedCategoryArgs(GQLArgsSet, GQLObject):
+      categories: NonNull_list[NonNull_ID]
 
    _args: DeletedCategoryArgs
 
@@ -1198,7 +1244,7 @@ class deleteCollection(GQLMutation):
    deleteCollection - Deletes an existing collection 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -1211,7 +1257,7 @@ class updateCollection(GQLMutation):
    updateCollection - Update single collection
 
    """
-   class CollectionArgs(GQLArgsSet, GQLObject): 
+   class CollectionArgs(GQLArgsSet, GQLObject):
       input: NonNull_CollectionUpdateInput
 
    _args: CollectionArgs
@@ -1224,7 +1270,7 @@ class createCollection(GQLMutation):
    createCollection - Create a new Hub Category
 
    """
-   class CollectionArgs(GQLArgsSet, GQLObject): 
+   class CollectionArgs(GQLArgsSet, GQLObject):
       input: NonNull_CollectionCreateInput
 
    _args: CollectionArgs
@@ -1237,33 +1283,33 @@ class bulkUpdateCollections(GQLMutation):
    bulkUpdateCollections - Updates collection 
 
    """
-   class CollectionArgs(GQLArgsSet, GQLObject): 
-      collections: NonNull_List[UpdateCollectionsInput]
+   class CollectionArgs(GQLArgsSet, GQLObject):
+      collections: NonNull_list_UpdateCollectionsInput[UpdateCollectionsInput]
 
    _args: CollectionArgs
 
 
-   type: List[Collection]
+   type: list_Collection[Collection]
 
 class updateCollections(GQLMutation):
    """
    updateCollections - Update multiple collections
 
    """
-   class CollectionArgs(GQLArgsSet, GQLObject): 
-      collections: NonNull_List[UpdateCollectionsInput]
+   class CollectionArgs(GQLArgsSet, GQLObject):
+      collections: NonNull_list_UpdateCollectionsInput[UpdateCollectionsInput]
 
    _args: CollectionArgs
 
 
-   type: List[Collection]
+   type: list_Collection[Collection]
 
 class postCommentV2(GQLMutation):
    """
    postCommentV2 - Post a comment
 
    """
-   class CommentArgs(GQLArgsSet, GQLObject): 
+   class CommentArgs(GQLArgsSet, GQLObject):
       input: CommentCreateInput
 
    _args: CommentArgs
@@ -1276,7 +1322,7 @@ class deleteCommentV2(GQLMutation):
    deleteCommentV2 - Delete a comment
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: CommentDeleteInput
 
    _args: AnyArgs
@@ -1289,7 +1335,7 @@ class updateCommentV2(GQLMutation):
    updateCommentV2 - Update a comment
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: CommentUpdateInput
 
    _args: AnyArgs
@@ -1302,7 +1348,7 @@ class postCommentV3(GQLMutation):
    postCommentV3 - Post a comment
 
    """
-   class CommentArgs(GQLArgsSet, GQLObject): 
+   class CommentArgs(GQLArgsSet, GQLObject):
       input: CommentCreateInput
 
    _args: CommentArgs
@@ -1315,7 +1361,7 @@ class subscribeToPlan(GQLMutation):
    subscribeToPlan - A user or team can subscribe to an API
 
    """
-   class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
+   class BillingSubscriptionArgs(GQLArgsSet, GQLObject):
       input: SubscribeInput
 
    _args: BillingSubscriptionArgs
@@ -1328,7 +1374,7 @@ class unfollowUser(GQLMutation):
    unfollowUser - Unfollow a user
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: FollowInput
 
    _args: boolArgs
@@ -1341,7 +1387,7 @@ class followUser(GQLMutation):
    followUser - Follow a user
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: FollowInput
 
    _args: boolArgs
@@ -1354,7 +1400,7 @@ class followApi(GQLMutation):
    followApi - [do not use; will be deprecated] Use createApiFollower
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: FollowApiInput
 
    _args: boolArgs
@@ -1367,7 +1413,7 @@ class unfollowApi(GQLMutation):
    unfollowApi - Unfollow selected API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: FollowApiInput
 
    _args: boolArgs
@@ -1380,7 +1426,7 @@ class sendMessage(GQLMutation):
    sendMessage - Send a message to an API provider
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: SendMessageInput
 
    _args: boolArgs
@@ -1393,7 +1439,7 @@ class rateApi(GQLMutation):
    rateApi - Give an API rating
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: RatingInput
 
    _args: AnyArgs
@@ -1406,9 +1452,9 @@ class upsertEntityMetadataBulk(GQLMutation):
    upsertEntityMetadataBulk - [will be deprecated; do not use] Assign one or more attributes to an entity
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       entityId: ID
-      entityAttributes: NonNull_List[EntityAttribute]
+      entityAttributes: NonNull_list_EntityAttribute[EntityAttribute]
 
    _args: AnyArgs
 
@@ -1420,7 +1466,7 @@ class upsertEntityMetadata(GQLMutation):
    upsertEntityMetadata - Assign one or more attributes to an entity (user, role, team)
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       entityMetadata: EntityMetadataInput
 
    _args: AnyArgs
@@ -1433,7 +1479,7 @@ class deleteIssueV2(GQLMutation):
    deleteIssueV2 - Deletes an issue 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: IssueDeleteInput
 
    _args: AnyArgs
@@ -1446,7 +1492,7 @@ class updateIssueV2(GQLMutation):
    updateIssueV2 - Make a change to a public comment on an API.
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: IssueUpdateInput
 
    _args: AnyArgs
@@ -1459,7 +1505,7 @@ class deleteIssues(GQLMutation):
    deleteIssues - Deletes an issue 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: IssuesDeleteInput
 
    _args: AnyArgs
@@ -1472,7 +1518,7 @@ class postIssueV3(GQLMutation):
    postIssueV3 - Post an issue to a provider
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: IssueCreateInputV2
 
    _args: AnyArgs
@@ -1485,7 +1531,7 @@ class updateOrCreateEndpointWithParameters(GQLMutation):
    updateOrCreateEndpointWithParameters - Create or make changes to an endpoint with a parameter on a provider's API.
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: updateOrCreateEndpointWithParameters
 
    _args: AnyArgs
@@ -1498,7 +1544,7 @@ class updateEndpointEntity(GQLMutation):
    updateEndpointEntity - [do not use; will be deprecated] use updateOrCreateEndpointWithParameters
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: updateEndpointEntity
 
    _args: AnyArgs
@@ -1511,7 +1557,7 @@ class deleteEndpoint(GQLMutation):
    deleteEndpoint - Delete an endpoint
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       endpointId: str
 
    _args: AnyArgs
@@ -1524,8 +1570,8 @@ class deleteEndpoints(GQLMutation):
    deleteEndpoints - Delete a few endpoints at once
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
-      endpointIds: List[str]
+   class AnyArgs(GQLArgsSet, GQLObject):
+      endpointIds: list[str]
 
    _args: AnyArgs
 
@@ -1537,8 +1583,8 @@ class updateEndpointsCollectionOrder(GQLMutation):
    updateEndpointsCollectionOrder - Update selected endpoints order on playground
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
-      endpointsCollectionOrder: List[EndpointOrder]
+   class AnyArgs(GQLArgsSet, GQLObject):
+      endpointsCollectionOrder: list_EndpointOrder[EndpointOrder]
 
    _args: AnyArgs
 
@@ -1550,8 +1596,8 @@ class createEndpointsGroups(GQLMutation):
    createEndpointsGroups - Create a group object that later user can attach endpoints
 
    """
-   class EndpointsGroupArgs(GQLArgsSet, GQLObject): 
-      groups: NonNull_List[NonNull_EndpointsGroupCreateInput]
+   class EndpointsGroupArgs(GQLArgsSet, GQLObject):
+      groups: NonNull_list_EndpointsGroupCreateInput[NonNull_EndpointsGroupCreateInput]
 
    _args: EndpointsGroupArgs
 
@@ -1563,8 +1609,8 @@ class updateEndpointsGroups(GQLMutation):
    updateEndpointsGroups - Update endpoints group properties
 
    """
-   class EndpointsGroupArgs(GQLArgsSet, GQLObject): 
-      groups: NonNull_List[NonNull_EndpointsGroupUpdateInput]
+   class EndpointsGroupArgs(GQLArgsSet, GQLObject):
+      groups: NonNull_list_EndpointsGroupUpdateInput[NonNull_EndpointsGroupUpdateInput]
 
    _args: EndpointsGroupArgs
 
@@ -1576,8 +1622,8 @@ class deleteEndpointsGroups(GQLMutation):
    deleteEndpointsGroups - Delete a group that endpoints are attached to
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
-      ids: NonNull_List[NonNull_ID]
+   class IDArgs(GQLArgsSet, GQLObject):
+      ids: NonNull_list[NonNull_ID]
 
    _args: IDArgs
 
@@ -1589,7 +1635,7 @@ class duplicateNameCheck(GQLMutation):
    duplicateNameCheck - get entities ( User/Governance/Identity ) by term
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: DuplicateNameCheckInput
 
    _args: boolArgs
@@ -1598,7 +1644,7 @@ class duplicateNameCheck(GQLMutation):
    type: bool
 
 class createEntityMetadata(GQLMutation):
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       entityMetadata: NonNull_EntityMetadataInput
 
    _args: boolArgs
@@ -1607,7 +1653,7 @@ class createEntityMetadata(GQLMutation):
    type: bool
 
 class updateEntityMetadata(GQLMutation):
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       entityMetadata: NonNull_EntityMetadataInput
 
    _args: boolArgs
@@ -1620,7 +1666,7 @@ class createEntitiesRoles(GQLMutation):
    createEntitiesRoles - Assign roles to users ( in all levels )
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: EntityRoleCreateInput
 
    _args: boolArgs
@@ -1633,7 +1679,7 @@ class upsertEntityRole(GQLMutation):
    upsertEntityRole - Assigning roles to an entity (user, role, team)
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: EntityRoleInput
 
    _args: boolArgs
@@ -1646,7 +1692,7 @@ class updateGraphQLSchema(GQLMutation):
    updateGraphQLSchema - Update GraphQLSchema by graphQLSchemaId or endpointId (at least one is mandatory, graphQLSchemaId is prioritized)
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       input: NonNull_UpdateGraphQLSchemaInput
 
    _args: IDArgs
@@ -1659,7 +1705,7 @@ class createHeadlines(GQLMutation):
    createHeadlines - [will be deprecated; do not use] use createHeadlinesPerApiId
 
    """
-   class strArgs(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject):
       createHeadlines: createHeadlines
 
    _args: strArgs
@@ -1672,7 +1718,7 @@ class createHeadlinesPerApiId(GQLMutation):
    createHeadlinesPerApiId - Creates a readme for the API, shows on the hub about page
 
    """
-   class strArgs(GQLArgsSet, GQLObject): 
+   class strArgs(GQLArgsSet, GQLObject):
       createHeadlines: createHeadlines
 
    _args: strArgs
@@ -1685,7 +1731,7 @@ class updateHeadlines(GQLMutation):
    updateHeadlines - Updates a readme for the API, shows on the hub about page
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       updateHeadlines: updateHeadlines
 
    _args: boolArgs
@@ -1698,7 +1744,7 @@ class followIssueV2(GQLMutation):
    followIssueV2 - Follow an issue 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: IssueFollowInputV2
 
    _args: AnyArgs
@@ -1711,7 +1757,7 @@ class updateKafkaConfiguration(GQLMutation):
    updateKafkaConfiguration - Update the configuration of the Kafka service
 
    """
-   class KafkaConfigurationArgs(GQLArgsSet, GQLObject): 
+   class KafkaConfigurationArgs(GQLArgsSet, GQLObject):
       input: UpdateKafkaConfigurationInput
 
    _args: KafkaConfigurationArgs
@@ -1724,7 +1770,7 @@ class subscribeToKafkaTopic(GQLMutation):
    subscribeToKafkaTopic - Get kafka subscription by topic for an API verison
 
    """
-   class SubscribeKafkaResponseArgs(GQLArgsSet, GQLObject): 
+   class SubscribeKafkaResponseArgs(GQLArgsSet, GQLObject):
       apiVersionId: NonNull_str
       topicName: NonNull_str
       options: NonNull_SubscribeOptions
@@ -1739,20 +1785,20 @@ class produceKafkaMessage(GQLMutation):
    produceKafkaMessage - Produce a message to a Kafka API
 
    """
-   class ProduceMessageResponseArgs(GQLArgsSet, GQLObject): 
+   class ProduceMessageResponseArgs(GQLArgsSet, GQLObject):
       message: NonNull_ProduceMessageInput
 
    _args: ProduceMessageResponseArgs
 
 
-   type: List[ProduceMessageResponse]
+   type: list_ProduceMessageResponse[ProduceMessageResponse]
 
 class postMessage(GQLMutation):
    """
    postMessage - Adds a message to an API's discussion board
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       message: NonNull_MessageCreateInput
 
    _args: AnyArgs
@@ -1765,7 +1811,7 @@ class postMessageV2(GQLMutation):
    postMessageV2 - Adds a message to an API's discussion board
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       message: NonNull_MessageCreateInput
 
    _args: AnyArgs
@@ -1778,7 +1824,7 @@ class updateThreadEntityStatus(GQLMutation):
    updateThreadEntityStatus - updates issues thread status 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: ThreadEntityStatusUpdateInput
 
    _args: boolArgs
@@ -1791,7 +1837,7 @@ class markNotificationAsViewed(GQLMutation):
    markNotificationAsViewed - Mark new notification as view
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: MarkNewNotificationAsViewedInput
 
    _args: boolArgs
@@ -1804,7 +1850,7 @@ class markNewNotificationAsRead(GQLMutation):
    markNewNotificationAsRead - Mark new notification as read
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: MarkNewNotificationsAsReadInput
 
    _args: boolArgs
@@ -1817,7 +1863,7 @@ class markNotificationsAsRead(GQLMutation):
    markNotificationsAsRead - [do not use; will be deprecated] Mark new notification as read
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: MarkNotificationsAsReadInput
 
    _args: boolArgs
@@ -1830,7 +1876,7 @@ class updateOrganization(GQLMutation):
    updateOrganization - Updating organization 
 
    """
-   class OrganizationArgs(GQLArgsSet, GQLObject): 
+   class OrganizationArgs(GQLArgsSet, GQLObject):
       input: NonNull_OrganizationUpdateInput
 
    _args: OrganizationArgs
@@ -1843,7 +1889,7 @@ class deleteOrganization(GQLMutation):
    deleteOrganization - Delete an organization
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -1856,7 +1902,7 @@ class createOrganization(GQLMutation):
    createOrganization - Create an organization 
 
    """
-   class OrganizationArgs(GQLArgsSet, GQLObject): 
+   class OrganizationArgs(GQLArgsSet, GQLObject):
       input: NonNull_OrganizationCreateInput
 
    _args: OrganizationArgs
@@ -1869,7 +1915,7 @@ class createNewOrganizationV4(GQLMutation):
    createNewOrganizationV4 - [will be deprecated; do not use] Create an organization 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: CreateNewOrganizationInputV4
 
    _args: AnyArgs
@@ -1882,7 +1928,7 @@ class generateResetPasswordToken(GQLMutation):
    generateResetPasswordToken - Generate a reset password token
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       email: NonNull_str
 
    _args: AnyArgs
@@ -1895,7 +1941,7 @@ class resetUserPassword(GQLMutation):
    resetUserPassword - resets user password 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_ResetUserPasswordInput
 
    _args: AnyArgs
@@ -1908,7 +1954,7 @@ class deletePayoutInfo(GQLMutation):
    deletePayoutInfo - Delete payout information
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       userId: NonNull_ID
 
    _args: boolArgs
@@ -1921,7 +1967,7 @@ class addProject(GQLMutation):
    addProject - [will be deprecated; do not use] Creates Application ( application and x-rapid-key  ) 
 
    """
-   class ProjectArgs(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject):
       input: NonNull_AddProjectInput
 
    _args: ProjectArgs
@@ -1934,7 +1980,7 @@ class addProjectV2(GQLMutation):
    addProjectV2 - Creates Application ( application and x-rapid-key  ) 
 
    """
-   class ProjectArgs(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject):
       input: NonNull_AddProjectInput
 
    _args: ProjectArgs
@@ -1947,7 +1993,7 @@ class editProjectV2(GQLMutation):
    editProjectV2 - Edit user application properties
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_EditProjectInput
 
    _args: AnyArgs
@@ -1960,7 +2006,7 @@ class deleteProject(GQLMutation):
    deleteProject - Delete a user application project
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       input: NonNull_DeleteProjectInput
 
    _args: IDArgs
@@ -1973,7 +2019,7 @@ class createProject(GQLMutation):
    createProject - Create an Application
 
    """
-   class ProjectArgs(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject):
       project: NonNull_ProjectCreateInput
 
    _args: ProjectArgs
@@ -1986,33 +2032,33 @@ class updateProject(GQLMutation):
    updateProject - updating project ( aka application ) 
 
    """
-   class ProjectArgs(GQLArgsSet, GQLObject): 
+   class ProjectArgs(GQLArgsSet, GQLObject):
       project: NonNull_ProjectUpdateInput
 
    _args: ProjectArgs
 
 
-   type: List[Project]
+   type: list_Project[Project]
 
 class createProjectAllowedAPIs(GQLMutation):
    """
    createProjectAllowedAPIs - Create the allowed APIs in an Application
 
    """
-   class ProjectAllowedAPIArgs(GQLArgsSet, GQLObject): 
-      input: List[createProjectAllowedAPIInput]
+   class ProjectAllowedAPIArgs(GQLArgsSet, GQLObject):
+      input: list_createProjectAllowedAPIInput[createProjectAllowedAPIInput]
 
    _args: ProjectAllowedAPIArgs
 
 
-   type: List[ProjectAllowedAPI]
+   type: list_ProjectAllowedAPI[ProjectAllowedAPI]
 
 class updateProjectAllowedAPI(GQLMutation):
    """
    updateProjectAllowedAPI - Change the APIs list that the app/project has access to
 
    """
-   class ProjectAllowedAPIArgs(GQLArgsSet, GQLObject): 
+   class ProjectAllowedAPIArgs(GQLArgsSet, GQLObject):
       input: updateProjectAllowedAPIInput
 
    _args: ProjectAllowedAPIArgs
@@ -2025,7 +2071,7 @@ class deleteProjectAllowedAPIs(GQLMutation):
    deleteProjectAllowedAPIs - Deattach APIs from a project allowed list
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: deleteProjectAllowedAPIsInput
 
    _args: boolArgs
@@ -2038,7 +2084,7 @@ class changeApiUsedVersion(GQLMutation):
    changeApiUsedVersion - Changes the API version used by the developer application
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: changeApiUsedVersionInput
 
    _args: boolArgs
@@ -2051,7 +2097,7 @@ class createRapidReason(GQLMutation):
    createRapidReason - Give a reason for unsubscribing to an API
 
    """
-   class IDArgs(GQLArgsSet, GQLObject): 
+   class IDArgs(GQLArgsSet, GQLObject):
       rapidReasonInput: RapidReasonInput
 
    _args: IDArgs
@@ -2064,7 +2110,7 @@ class deprecatedUpdateRole(GQLMutation):
    deprecatedUpdateRole - [do not use; will be deprecated] update role
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       role: NonNull_RoleUpdateInput
 
    _args: AnyArgs
@@ -2077,7 +2123,7 @@ class updateRole(GQLMutation):
    updateRole - Updates a role's description or permissions, or change whether it's set as default.
 
    """
-   class RoleArgs(GQLArgsSet, GQLObject): 
+   class RoleArgs(GQLArgsSet, GQLObject):
       role: NonNull_RoleUpdateInput
 
    _args: RoleArgs
@@ -2090,7 +2136,7 @@ class deprecatedCreateRole(GQLMutation):
    deprecatedCreateRole - [do not use; will be deprecated] create role
 
    """
-   class RoleArgs(GQLArgsSet, GQLObject): 
+   class RoleArgs(GQLArgsSet, GQLObject):
       role: NonNull_RoleCreateInput
 
    _args: RoleArgs
@@ -2103,7 +2149,7 @@ class createRole(GQLMutation):
    createRole - Create a role 
 
    """
-   class RoleArgs(GQLArgsSet, GQLObject): 
+   class RoleArgs(GQLArgsSet, GQLObject):
       role: NonNull_RoleCreateInput
 
    _args: RoleArgs
@@ -2116,7 +2162,7 @@ class deprecatedDeleteRole(GQLMutation):
    deprecatedDeleteRole - [do not use; will be deprecated] delete role
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       roleId: ID
 
    _args: AnyArgs
@@ -2129,8 +2175,8 @@ class deleteRole(GQLMutation):
    deleteRole - Delete Role 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      id: NonNull_List[NonNull_ID]
+   class boolArgs(GQLArgsSet, GQLObject):
+      id: NonNull_list[NonNull_ID]
 
    _args: boolArgs
 
@@ -2142,7 +2188,7 @@ class createSecretData(GQLMutation):
    createSecretData - [will be deprecated; do not use] Create an API secret
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: createSecretDataInput
 
    _args: AnyArgs
@@ -2155,7 +2201,7 @@ class updateBaseUrl(GQLMutation):
    updateBaseUrl - [do not use; will be deprecated] use updateTargetGroups
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: updateBaseUrlInput
 
    _args: boolArgs
@@ -2168,7 +2214,7 @@ class createSpotlight(GQLMutation):
    createSpotlight - Creates a spotlight on an API listing
 
    """
-   class SpotlightArgs(GQLArgsSet, GQLObject): 
+   class SpotlightArgs(GQLArgsSet, GQLObject):
       spotlight: NonNull_SpotlightCreateInput
 
    _args: SpotlightArgs
@@ -2181,7 +2227,7 @@ class updateSpotlight(GQLMutation):
    updateSpotlight - Updates an existing spotlight on an API listing
 
    """
-   class SpotlightArgs(GQLArgsSet, GQLObject): 
+   class SpotlightArgs(GQLArgsSet, GQLObject):
       spotlight: NonNull_SpotlightUpdateInput
 
    _args: SpotlightArgs
@@ -2194,7 +2240,7 @@ class deleteSpotlight(GQLMutation):
    deleteSpotlight - Delete a spotlight connected to an API
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       spotlight: NonNull_SpotlightDeleteInput
 
    _args: boolArgs
@@ -2207,8 +2253,8 @@ class deleteSubscriptions(GQLMutation):
    deleteSubscriptions - Delete a range of subscriptions by aray of IDs
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      ids: NonNull_List[NonNull_ID]
+   class boolArgs(GQLArgsSet, GQLObject):
+      ids: NonNull_list[NonNull_ID]
 
    _args: boolArgs
 
@@ -2220,7 +2266,7 @@ class deleteSubscription(GQLMutation):
    deleteSubscription - Delete a single API subscription by ID
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -2233,7 +2279,7 @@ class createSubscription(GQLMutation):
    createSubscription - Create a new API subscription
 
    """
-   class BillingSubscriptionArgs(GQLArgsSet, GQLObject): 
+   class BillingSubscriptionArgs(GQLArgsSet, GQLObject):
       input: NonNull_SubscriptionCreateInput
 
    _args: BillingSubscriptionArgs
@@ -2246,8 +2292,8 @@ class updateTargetGroups(GQLMutation):
    updateTargetGroups - Updates the target URL on 1 API version
 
    """
-   class TargetGroupArgs(GQLArgsSet, GQLObject): 
-      targetGroups: NonNull_List[NonNull_TargetGroupUpdateInput]
+   class TargetGroupArgs(GQLArgsSet, GQLObject):
+      targetGroups: NonNull_list_TargetGroupUpdateInput[NonNull_TargetGroupUpdateInput]
 
    _args: TargetGroupArgs
 
@@ -2259,7 +2305,7 @@ class removeTeamUserFromAllOrgTeams(GQLMutation):
    removeTeamUserFromAllOrgTeams - remove user from the organization
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       orgId: NonNull_int
       email: NonNull_str
 
@@ -2273,7 +2319,7 @@ class updateTeamUser(GQLMutation):
    updateTeamUser - Add/Remove team for user
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: TeamUserUpdateInput
 
    _args: boolArgs
@@ -2286,7 +2332,7 @@ class updateUserRoles(GQLMutation):
    updateUserRoles - Update the role of user
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: UserRolesUpdateInput
 
    _args: boolArgs
@@ -2299,7 +2345,7 @@ class editTeam(GQLMutation):
    editTeam - Edit a team 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: EditTeamInput
 
    _args: boolArgs
@@ -2312,9 +2358,9 @@ class addUserToTeams(GQLMutation):
    addUserToTeams - Adds organization users to teams 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       userId: NonNull_int
-      teamIds: NonNull_List[int]
+      teamIds: NonNull_list[int]
 
    _args: boolArgs
 
@@ -2326,7 +2372,7 @@ class deleteTeam(GQLMutation):
    deleteTeam - Delete team
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: boolArgs
@@ -2339,7 +2385,7 @@ class createTeam(GQLMutation):
    createTeam - Create a team
 
    """
-   class TeamArgs(GQLArgsSet, GQLObject): 
+   class TeamArgs(GQLArgsSet, GQLObject):
       input: NonNull_TeamCreateInput
 
    _args: TeamArgs
@@ -2352,7 +2398,7 @@ class updateTeam(GQLMutation):
    updateTeam - Updates team
 
    """
-   class TeamArgs(GQLArgsSet, GQLObject): 
+   class TeamArgs(GQLArgsSet, GQLObject):
       input: NonNull_TeamUpdateInput
 
    _args: TeamArgs
@@ -2365,7 +2411,7 @@ class updateTransactions(GQLMutation):
    updateTransactions - Update transactions payout status
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: updateTransactionInput
 
    _args: boolArgs
@@ -2378,8 +2424,8 @@ class createTransformations(GQLMutation):
    createTransformations - Create a new API verison transformation
 
    """
-   class TransformationArgs(GQLArgsSet, GQLObject): 
-      transformations: NonNull_List[NonNull_TransformationCreateInput]
+   class TransformationArgs(GQLArgsSet, GQLObject):
+      transformations: NonNull_list_TransformationCreateInput[NonNull_TransformationCreateInput]
 
    _args: TransformationArgs
 
@@ -2391,8 +2437,8 @@ class updateTransformations(GQLMutation):
    updateTransformations - Update API version transformations
 
    """
-   class TransformationArgs(GQLArgsSet, GQLObject): 
-      transformations: NonNull_List[NonNull_TransformationUpdateInput]
+   class TransformationArgs(GQLArgsSet, GQLObject):
+      transformations: NonNull_list_TransformationUpdateInput[NonNull_TransformationUpdateInput]
 
    _args: TransformationArgs
 
@@ -2404,8 +2450,8 @@ class deleteTransformations(GQLMutation):
    deleteTransformations - delete transformation from the api version 
 
    """
-   class DeletedTransformationArgs(GQLArgsSet, GQLObject): 
-      transformations: NonNull_List[NonNull_ID]
+   class DeletedTransformationArgs(GQLArgsSet, GQLObject):
+      transformations: NonNull_list[NonNull_ID]
 
    _args: DeletedTransformationArgs
 
@@ -2417,7 +2463,7 @@ class createTutorial(GQLMutation):
    createTutorial - Creates a tutorial on an API listing
 
    """
-   class TutorialArgs(GQLArgsSet, GQLObject): 
+   class TutorialArgs(GQLArgsSet, GQLObject):
       tutorial: NonNull_TutorialCreateInput
 
    _args: TutorialArgs
@@ -2430,7 +2476,7 @@ class updateTutorial(GQLMutation):
    updateTutorial - Updates an existing tutorial on an API listing
 
    """
-   class TutorialArgs(GQLArgsSet, GQLObject): 
+   class TutorialArgs(GQLArgsSet, GQLObject):
       tutorial: NonNull_TutorialUpdateInput
 
    _args: TutorialArgs
@@ -2443,7 +2489,7 @@ class deleteTutorial(GQLMutation):
    deleteTutorial - Removes an existing tutorial on an API listing
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       tutorial: NonNull_TutorialDeleteInput
 
    _args: boolArgs
@@ -2456,7 +2502,7 @@ class phoneAuthSetup(GQLMutation):
    phoneAuthSetup - setting up phone authentication ( 2fa flow)
 
    """
-   class PhoneVerificationArgs(GQLArgsSet, GQLObject): 
+   class PhoneVerificationArgs(GQLArgsSet, GQLObject):
       phoneNumber: NonNull_str
 
    _args: PhoneVerificationArgs
@@ -2469,7 +2515,7 @@ class phoneAuthSetupVerify(GQLMutation):
    phoneAuthSetupVerify - verifying phone authentication setup
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       code: NonNull_str
       token: NonNull_str
 
@@ -2483,7 +2529,7 @@ class authenticateUsingPhone(GQLMutation):
    authenticateUsingPhone - Authenticates the user using phone code 
 
    """
-   class PhoneVerificationArgs(GQLArgsSet, GQLObject): 
+   class PhoneVerificationArgs(GQLArgsSet, GQLObject):
       phoneId: NonNull_ID
 
    _args: PhoneVerificationArgs
@@ -2496,7 +2542,7 @@ class authenticateUsingPhoneVerify(GQLMutation):
    authenticateUsingPhoneVerify - Verifies that the phone setup succeeded ( by the user sending a code + token)
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       code: NonNull_str
       token: NonNull_str
 
@@ -2510,7 +2556,7 @@ class deletePhoneNumber(GQLMutation):
    deletePhoneNumber - Delete user phone number
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       phoneId: NonNull_int
 
    _args: boolArgs
@@ -2523,21 +2569,21 @@ class generateRecoveryCodes(GQLMutation):
    generateRecoveryCodes - Generate a recovery codes for MFA 
 
    """
-   type: List[RecoveryCode]
+   type: list_RecoveryCode[RecoveryCode]
 
 class regenerateRecoveryCodes(GQLMutation):
    """
    regenerateRecoveryCodes - generates recovery codes part of setting up 2fa to a user
 
    """
-   type: List[RecoveryCode]
+   type: list_RecoveryCode[RecoveryCode]
 
 class markRecoveryCodeAsUsed(GQLMutation):
    """
    markRecoveryCodeAsUsed - authenticates the user using recovery code ( 2fa flow )
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       code: NonNull_str
 
    _args: boolArgs
@@ -2557,7 +2603,7 @@ class applicationAuthSetupVerify(GQLMutation):
    applicationAuthSetupVerify - Verifies that the Google authenticator setup succeeded ( by user sending a code)
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       code: NonNull_str
 
    _args: boolArgs
@@ -2570,7 +2616,7 @@ class authenticateUsingApp(GQLMutation):
    authenticateUsingApp - Authenticates the user using google auth app 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       code: NonNull_str
 
    _args: boolArgs
@@ -2590,7 +2636,7 @@ class createUserInvites(GQLMutation):
    createUserInvites - Invite users to organization
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: UserInvitesInput
 
    _args: boolArgs
@@ -2603,7 +2649,7 @@ class createUserInvitesV2(GQLMutation):
    createUserInvitesV2 - [do not use; will be deprecated] Invite users to organization
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: UserInvitesCreateInput
 
    _args: boolArgs
@@ -2616,7 +2662,7 @@ class acceptUserInvite(GQLMutation):
    acceptUserInvite - Accepts user invite to organization 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       token: NonNull_str
 
    _args: boolArgs
@@ -2629,8 +2675,8 @@ class bulkDeleteUserInvitesV2(GQLMutation):
    bulkDeleteUserInvitesV2 - Deletes users that are in pending mode from the organization 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
-      emails: List[str]
+   class AnyArgs(GQLArgsSet, GQLObject):
+      emails: list[str]
       orgId: int
 
    _args: AnyArgs
@@ -2643,7 +2689,7 @@ class deleteUserInvites(GQLMutation):
    deleteUserInvites - Used for deleting user/s that not yet confirmed the invitation
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: NonNull_UserInvitesDeleteInput
 
    _args: AnyArgs
@@ -2656,8 +2702,8 @@ class bulkReactivateUserInvitesV2(GQLMutation):
    bulkReactivateUserInvitesV2 - Reactivates users from the organizartion 
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
-      emails: List[str]
+   class boolArgs(GQLArgsSet, GQLObject):
+      emails: list[str]
       orgId: int
 
    _args: boolArgs
@@ -2670,7 +2716,7 @@ class reactivateUserInvites(GQLMutation):
    reactivateUserInvites - Used for activating user/s that was deactivated
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: NonNull_UserInvitesReactivateInput
 
    _args: boolArgs
@@ -2683,7 +2729,7 @@ class inviteUsersToTeams(GQLMutation):
    inviteUsersToTeams - Adds an array of user IDs to a team at the time the Org is created
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       usersToInvite: Any
       orgId: NonNull_ID
       meta: Any
@@ -2698,7 +2744,7 @@ class saveUserApi(GQLMutation):
    saveUserApi - Save an API as a favorite
 
    """
-   class UserSavedApiArgs(GQLArgsSet, GQLObject): 
+   class UserSavedApiArgs(GQLArgsSet, GQLObject):
       saveUserApi: SaveUserApi
 
    _args: UserSavedApiArgs
@@ -2711,7 +2757,7 @@ class updateUserById(GQLMutation):
    updateUserById - Update a set of attributes on a user by ID.
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       input: UpdateUserInput
 
    _args: AnyArgs
@@ -2724,7 +2770,7 @@ class updateUserPassword(GQLMutation):
    updateUserPassword - Update the password of a user
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: UserPasswordInput
 
    _args: boolArgs
@@ -2737,7 +2783,7 @@ class deleteAll2faData(GQLMutation):
    deleteAll2faData - Delete all 2FA data
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       userId: NonNull_str
 
    _args: AnyArgs
@@ -2750,7 +2796,7 @@ class updateUserEmail(GQLMutation):
    updateUserEmail - Update the email address of a user
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       email: NonNull_str
 
    _args: AnyArgs
@@ -2763,7 +2809,7 @@ class verifyEmailCode(GQLMutation):
    verifyEmailCode - Takes a verification code and returns a boolean
 
    """
-   class boolArgs(GQLArgsSet, GQLObject): 
+   class boolArgs(GQLArgsSet, GQLObject):
       input: VerifyEmailCodeInput
 
    _args: boolArgs
@@ -2776,7 +2822,7 @@ class updateUser(GQLMutation):
    updateUser - Updates user metadata / password 
 
    """
-   class UserArgs(GQLArgsSet, GQLObject): 
+   class UserArgs(GQLArgsSet, GQLObject):
       input: NonNull_UserUpdateInput
 
    _args: UserArgs
@@ -2789,7 +2835,7 @@ class createWorkflow(GQLMutation):
    createWorkflow - Create a workflow
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       options: CreateWorkflowInput
 
    _args: AnyArgs
@@ -2802,7 +2848,7 @@ class createSignupApprovalWorkflow(GQLMutation):
    createSignupApprovalWorkflow - Create a signup approval request
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       options: CreateSignupApprovalWorkflowInput
 
    _args: AnyArgs
@@ -2815,7 +2861,7 @@ class updateWorkflows(GQLMutation):
    updateWorkflows - Change an entity's workflow
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject): 
+   class AnyArgs(GQLArgsSet, GQLObject):
       options: UpdateWorkflowsInput
 
    _args: AnyArgs

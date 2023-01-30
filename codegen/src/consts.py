@@ -12,8 +12,11 @@ MUTATION_SIGNATURE = "class %s(GQLMutation)"
 ENUM_SIGNATURE = "class %s(Enum)"
 SCALAR_SIGNATURE = "%s = %s"
 TYPEVAR_SIGNATURE = "%s = TypeVar('%s', bound=%s)"
-TEMPLATE_FOLDER = str(pathlib.Path(path.dirname(__file__), 'templates').absolute())
+EMPTY_CLASS_SIGNATURE = "class %s(%s): pass"
+GQLLIST_SIGNATURE = "class %s(list, %s): pass"
 
+NEWTYPE_DECLARATION = "NewType('%s', GQLObject)"
+TEMPLATE_FOLDER = str(pathlib.Path(path.dirname(__file__), 'templates').absolute())
 IMPORT_TEMPLATE = "from .%s import %s"
 
 SCALARS_FILENAME = 'scalars'

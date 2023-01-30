@@ -7,13 +7,13 @@ from .consts import RAPIDAPI_HEADERS, RAPIDAPI_URL
 import logging as logger
 
 def run_ra_create_transformations_mutation_args_literal():
-    logger.info('\nRunning run_ra_create_transformations_mutation_args_literal...')
+    logger.debug('\nRunning run_ra_create_transformations_mutation_args_literal...')
     try:
-        logger.info('Creating mutation python object...')
-        from .output.rapidapi.gql_types import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
-        from .output.rapidapi.mutations import Mutations
+        logger.debug('Creating mutation python object...')
+        from .output.rapidapi.gql_types import TransformationActionType, TransformationType, TransformationConditionType, NonNull_list
+        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput
 
-        input1 = TransformationCreateInput()
+        input1 = NonNull_TransformationCreateInput()
         input1.apiVersionId = 1
         input1.action = TransformationActionType.ADD
         input1.endpoints = ["myID"]
@@ -25,7 +25,7 @@ def run_ra_create_transformations_mutation_args_literal():
         input1.value = "val"
         input1.plans = ["planID"]
 
-        input2 = TransformationCreateInput()
+        input2 = NonNull_TransformationCreateInput()
         input2.apiVersionId = 1
         input2.action = TransformationActionType.REMOVE
         input2.endpoints = ["myID"]
@@ -37,34 +37,37 @@ def run_ra_create_transformations_mutation_args_literal():
         input2.value = "val"
         input2.plans = ["planID"]
 
-        logger.info('Inserting python mutation input data...')
+        logger.debug('Inserting python mutation input data...')
 
-        mutation = Mutations.createTransformations.value(transformations=[input1, input2])
+        transformation_lst = NonNull_list()
+        transformation_lst.append(input1)
+        transformation_lst.append(input2)
+        mutation = Mutations.createTransformations.value(transformations=transformation_lst)
 
-        logger.info(mutation.export_gql_source)
+        logger.debug(mutation.export_gql_source)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
                                      json={ "query": mutation.export_gql_source },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_create_transformations_mutation_args_literal")
+    logger.debug("End of run_ra_create_transformations_mutation_args_literal")
 
 def run_ra_create_transformations_mutation_args_vars():
-    logger.info('\nRunning run_ra_create_transformations_mutation_args_vars...')
+    logger.debug('\nRunning run_ra_create_transformations_mutation_args_vars...')
     try:
-        logger.info('Creating mutation python object...')
-        from .output.rapidapi.gql_types import TransformationCreateInput, TransformationActionType, TransformationType, TransformationConditionType
-        from .output.rapidapi.mutations import Mutations
+        logger.debug('Creating mutation python object...')
+        from .output.rapidapi.gql_types import TransformationActionType, TransformationType, TransformationConditionType, NonNull_list
+        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput
 
-        input1 = TransformationCreateInput()
+        input1 = NonNull_TransformationCreateInput()
         input1.apiVersionId = 1
         input1.action = TransformationActionType.ADD
         input1.endpoints = ["myID"]
@@ -76,7 +79,7 @@ def run_ra_create_transformations_mutation_args_vars():
         input1.value = "val"
         input1.plans = ["planID"]
 
-        input2 = TransformationCreateInput()
+        input2 = NonNull_TransformationCreateInput()
         input2.apiVersionId = 1
         input2.action = TransformationActionType.REMOVE
         input2.endpoints = ["myID"]
@@ -88,30 +91,33 @@ def run_ra_create_transformations_mutation_args_vars():
         input2.value = "val"
         input2.plans = ["planID"]
 
-        logger.info('Inserting python mutation input data...')
+        logger.debug('Inserting python mutation input data...')
 
-        mutation = Mutations.createTransformations.value(transformations=[input1, input2])
+        transformation_lst = NonNull_list()
+        transformation_lst.append(input1)
+        transformation_lst.append(input2)
+        mutation = Mutations.createTransformations.value(transformations=transformation_lst)
 
-        logger.info(mutation.export_gql_source)
+        logger.debug(mutation.export_gql_source)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
-                                     json={ "query": mutation.export_gql_source },
+                                     json={ "query": mutation.export_gql_source, "variables": mutation.export_gqlvariables },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_create_transformations_mutation_args_vars")
+    logger.debug("End of run_ra_create_transformations_mutation_args_vars")
 
 def run_ra_create_gateway_instance_mutation_args_literal():
-    logger.info('\nRunning run_ra_create_gateway_instance_mutation_args_literal...')
+    logger.debug('\nRunning run_ra_create_gateway_instance_mutation_args_literal...')
     try:
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
         from .output.rapidapi.mutations import Mutations
 
@@ -136,26 +142,26 @@ def run_ra_create_gateway_instance_mutation_args_literal():
 
         mutation = Mutations.createGatewayInstance.value(createDto=mut_cd)
 
-        logger.info(mutation.export_gql_source)
+        logger.debug(mutation.export_gql_source)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
                                      json={ "query": mutation.export_gql_source },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_create_gateway_instance_mutation_args_literal")
+    logger.debug("End of run_ra_create_gateway_instance_mutation_args_literal")
 
 def run_ra_create_gateway_instance_mutation_args_vars():
-    logger.info('\nRunning run_ra_create_gateway_instance_mutation_args_vars...')
+    logger.debug('\nRunning run_ra_create_gateway_instance_mutation_args_vars...')
     try:
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import GatewayInstanceCreateInput, GatewayConfigurationCreateInput, GatewayCustomMessageCreateInput, MessageKey, GatewayType
         from .output.rapidapi.mutations import Mutations
 
@@ -180,26 +186,26 @@ def run_ra_create_gateway_instance_mutation_args_vars():
 
         mutation = Mutations.createGatewayInstance.value(createDto=mut_cd)
 
-        logger.info(mutation.export_gql_source)
+        logger.debug(mutation.export_gql_source)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
-                                     json={ "query": mutation.export_gql_source },
+                                     json={ "query": mutation.export_gql_source, "variables": mutation.export_gqlvariables },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_create_gateway_instance_mutation_args_vars")
+    logger.debug("End of run_ra_create_gateway_instance_mutation_args_vars")
 
 def run_ra_edit_user_alert_mutation_args_literal():
-    logger.info('\nRunning run_ra_edit_user_alert_mutation_args_literal...')
+    logger.debug('\nRunning run_ra_edit_user_alert_mutation_args_literal...')
     try:
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import editUserAlertInput, Channel, Condition, AlertStatus, time
         from .output.rapidapi.mutations import Mutations
 
@@ -226,24 +232,24 @@ def run_ra_edit_user_alert_mutation_args_literal():
 
         mutation = Mutations.editUserAlert.value(input=eua_input)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
                                      json={ "query": mutation.export_gql_source },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_edit_user_alert_mutation_args_literal")
+    logger.debug("End of run_ra_edit_user_alert_mutation_args_literal")
 
 def run_ra_edit_user_alert_mutation_args_vars():
-    logger.info('\nRunning run_ra_edit_user_alert_mutation_args_vars...')
+    logger.debug('\nRunning run_ra_edit_user_alert_mutation_args_vars...')
     try:
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import editUserAlertInput, Channel, Condition, AlertStatus, time
         from .output.rapidapi.mutations import Mutations
 
@@ -270,22 +276,22 @@ def run_ra_edit_user_alert_mutation_args_vars():
 
         mutation = Mutations.editUserAlert.value(input=eua_input)
 
-        logger.info('Calling GraphQL Server......')
+        logger.debug('Calling GraphQL Server......')
         response = requests.request('POST', url=RAPIDAPI_URL,
-                                     json={ "query": mutation.export_gql_source },
+                                     json={ "query": mutation.export_gql_source, "variables": mutation.export_gqlvariables },
                                     headers=RAPIDAPI_HEADERS)
-        logger.info('Response Received')
+        logger.debug('Response Received')
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_edit_user_alert_mutation_vars")
+    logger.debug("End of run_ra_edit_user_alert_mutation_vars")
 
 def run_ra_admin_audit_logs_query_args_literal():
-    logger.info('\nRunning run_ra_edit_user_alert_mutation_args_vars...')
+    logger.debug('\nRunning run_ra_edit_user_alert_mutation_args_vars...')
     try:
         from .output.rapidapi.queries import Queries
         from .output.rapidapi.gql_types import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField
@@ -300,12 +306,12 @@ def run_ra_admin_audit_logs_query_args_literal():
         field2.order = Order.DESC
         orderby_input.sortingFields = [field1, field2]
 
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         query = Queries.adminAuditLogs.value(orderBy=orderby_input)
 
-        logger.info('Creating GQLOperation for mutation...')
+        logger.debug('Creating GQLOperation for mutation...')
 
-        logger.info(query.export_gql_source)
+        logger.debug(query.export_gql_source)
 
         response = requests.request('POST', url=RAPIDAPI_URL,
                                     json={ "query": query.export_gql_source },
@@ -313,14 +319,14 @@ def run_ra_admin_audit_logs_query_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_admin_audit_logs_query_args_literal")
+    logger.debug("End of run_ra_admin_audit_logs_query_args_literal")
 
 def run_ra_admin_audit_logs_query_args_vars():
-    logger.info('\nRunning run_ra_admin_audit_logs_query_args_vars...')
+    logger.debug('\nRunning run_ra_admin_audit_logs_query_args_vars...')
     try:
         from .output.rapidapi.queries import Queries
         from .output.rapidapi.gql_types import AdminAuditLogSortablesInput, AdminAuditLogSortablesSortingField
@@ -335,21 +341,21 @@ def run_ra_admin_audit_logs_query_args_vars():
         field2.order = Order.DESC
         orderby_input.sortingFields = [field1, field2]
 
-        logger.info('Creating mutation python object...')
+        logger.debug('Creating mutation python object...')
         query = Queries.adminAuditLogs.value(orderBy=orderby_input)
 
-        logger.info('Creating GQLOperation for mutation...')
+        logger.debug('Creating GQLOperation for mutation...')
 
-        logger.info(query.export_gql_source)
+        logger.debug(query.export_gql_source)
 
         response = requests.request('POST', url=RAPIDAPI_URL,
-                                    json={ "query": query.export_gql_source },
+                                    json={ "query": query.export_gql_source, "variables": query.export_gqlvariables },
                                     headers=RAPIDAPI_HEADERS)
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_ra_admin_audit_logs_query_args_vars")
+    logger.debug("End of run_ra_admin_audit_logs_query_args_vars")

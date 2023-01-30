@@ -37,7 +37,7 @@ from ..output.github.queries import rateLimit
 import logging as logger
 
 def run_simple_obj_viewchange():
-    logger.info('\n\nRunning run_simple_obj_viewchange...')
+    logger.debug('\n\nRunning run_simple_obj_viewchange...')
 ##STEP 2
     query = rateLimit()
     query.name = 'mySimpleQueryVisibility'
@@ -51,7 +51,7 @@ def run_simple_obj_viewchange():
 
     try:
 ##RESULT a)
-        logger.info('Query GQL syntax: ' + query.export_gql_source)
+        logger.debug('Query GQL syntax: ' + query.export_gql_source)
 ##
 
 ##STEP 4
@@ -73,9 +73,9 @@ def run_simple_obj_viewchange():
 ##
 
 ##RESULT b)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_simple_obj_viewchange")
+    logger.debug("End of run_simple_obj_viewchange")

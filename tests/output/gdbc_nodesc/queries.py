@@ -7,7 +7,7 @@ from .scalars import *
 from .type_refs import *
 
 class country(GQLQuery):
-   class CountryArgs(GQLArgsSet, GQLObject): 
+   class CountryArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
       displayOptions: DisplayOptions
 
@@ -17,7 +17,7 @@ class country(GQLQuery):
    type: Country
 
 class countries(GQLQuery):
-   class CountriesConnectionArgs(GQLArgsSet, GQLObject): 
+   class CountriesConnectionArgs(GQLArgsSet, GQLObject):
       currencyCode: str
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -34,7 +34,7 @@ class countries(GQLQuery):
    type: CountriesConnection
 
 class currencies(GQLQuery):
-   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject): 
+   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject):
       countryId: ID
       first: int
       after: str
@@ -47,7 +47,7 @@ class currencies(GQLQuery):
    type: CurrenciesConnection
 
 class distanceBetween(GQLQuery):
-   class floatArgs(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject):
       fromPlaceId: NonNull_ID
       toPlaceId: NonNull_ID
       distanceUnit: DistanceUnit
@@ -58,7 +58,7 @@ class distanceBetween(GQLQuery):
    type: float
 
 class locales(GQLQuery):
-   class LocalesConnectionArgs(GQLArgsSet, GQLObject): 
+   class LocalesConnectionArgs(GQLArgsSet, GQLObject):
       first: int
       after: str
       last: int
@@ -70,7 +70,7 @@ class locales(GQLQuery):
    type: LocalesConnection
 
 class populatedPlace(GQLQuery):
-   class PopulatedPlaceArgs(GQLArgsSet, GQLObject): 
+   class PopulatedPlaceArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
       displayOptions: DisplayOptions
 
@@ -80,18 +80,18 @@ class populatedPlace(GQLQuery):
    type: PopulatedPlace
 
 class populatedPlaces(GQLQuery):
-   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       location: Location
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: List[ID]
-      excludedCountryIds: List[ID]
+      countryIds: list[ID]
+      excludedCountryIds: list[ID]
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -106,7 +106,7 @@ class populatedPlaces(GQLQuery):
    type: PopulatedPlacesConnection
 
 class timeZone(GQLQuery):
-   class TimeZoneArgs(GQLArgsSet, GQLObject): 
+   class TimeZoneArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: TimeZoneArgs
@@ -115,7 +115,7 @@ class timeZone(GQLQuery):
    type: TimeZone
 
 class timeZones(GQLQuery):
-   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject): 
+   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject):
       first: int
       after: str
       last: int

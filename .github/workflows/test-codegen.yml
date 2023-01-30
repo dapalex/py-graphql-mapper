@@ -5,9 +5,9 @@ name: Code Generation
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "17-nonnull-args" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "17-nonnull-args" ]
 
 jobs:
   build:

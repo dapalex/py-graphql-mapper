@@ -221,7 +221,7 @@ from ..consts import GDBC_HEADERS, GDBC_URL
 # from ..utils import ManageException
 
 def run_generated_data():
-    logger.info('\n\nRunning run_generated_data...')
+    logger.debug('\n\nRunning run_generated_data...')
 ##STEP 2
     query = countries()
     query.name ='myCountriesQuery' #, rootName='countries')
@@ -240,7 +240,7 @@ def run_generated_data():
 ##
 
 ##RESULT a) and b)
-    logger.info('Query GQL syntax: ' + query.export_gql_source)
+    logger.debug('Query GQL syntax: ' + query.export_gql_source)
 ##
 
 ##STEP 5
@@ -263,10 +263,10 @@ def run_generated_data():
 ##
 
 ##RESULT c)
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
 
     except Exception as ex:
         raise ex
 
-    logger.info("End of run_generated_data")
+    logger.debug("End of run_generated_data")

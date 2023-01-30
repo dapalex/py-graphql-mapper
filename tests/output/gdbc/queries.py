@@ -11,7 +11,7 @@ class country(GQLQuery):
    country - Look up a country
 
    """
-   class CountryArgs(GQLArgsSet, GQLObject): 
+   class CountryArgs(GQLArgsSet, GQLObject):
       """
       id - An ISO-3166 country code or WikiData id
 
@@ -31,7 +31,7 @@ class countries(GQLQuery):
    countries - Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.
 
    """
-   class CountriesConnectionArgs(GQLArgsSet, GQLObject): 
+   class CountriesConnectionArgs(GQLArgsSet, GQLObject):
       """
       currencyCode - Only countries supporting this currency
 
@@ -74,7 +74,7 @@ class currencies(GQLQuery):
    currencies - Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.
 
    """
-   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject): 
+   class CurrenciesConnectionArgs(GQLArgsSet, GQLObject):
       """
       countryId - Currencies for this country id
 
@@ -103,7 +103,7 @@ class distanceBetween(GQLQuery):
    distanceBetween - Get the distance between any two places
 
    """
-   class floatArgs(GQLArgsSet, GQLObject): 
+   class floatArgs(GQLArgsSet, GQLObject):
       """
       fromPlaceId - From some place
 
@@ -126,7 +126,7 @@ class locales(GQLQuery):
    locales - Get all known locales
 
    """
-   class LocalesConnectionArgs(GQLArgsSet, GQLObject): 
+   class LocalesConnectionArgs(GQLArgsSet, GQLObject):
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 
@@ -152,7 +152,7 @@ class populatedPlace(GQLQuery):
    populatedPlace - Look up a populated place
 
    """
-   class PopulatedPlaceArgs(GQLArgsSet, GQLObject): 
+   class PopulatedPlaceArgs(GQLArgsSet, GQLObject):
       """
       id -  A place id (either native id or Wikidata ID)
 
@@ -172,7 +172,7 @@ class populatedPlaces(GQLQuery):
    populatedPlaces - Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places.
 
    """
-   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+   class PopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       """
       location - Only places near this location
 
@@ -216,14 +216,14 @@ where SORT_FIELD = countryCode | elevation | name | population
       location: Location
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: List[ID]
-      excludedCountryIds: List[ID]
+      countryIds: list[ID]
+      excludedCountryIds: list[ID]
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -242,7 +242,7 @@ class timeZone(GQLQuery):
    timeZone - Look up a time-zone
 
    """
-   class TimeZoneArgs(GQLArgsSet, GQLObject): 
+   class TimeZoneArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
 
    _args: TimeZoneArgs
@@ -255,7 +255,7 @@ class timeZones(GQLQuery):
    timeZones - Get all known time-zones
 
    """
-   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject): 
+   class TimeZonesConnectionArgs(GQLArgsSet, GQLObject):
       """
       first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
 

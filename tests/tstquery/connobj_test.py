@@ -40,7 +40,7 @@ from ..output.gdbc.queries import currencies
 import logging as logger
 
 def run_gdbc_connobj():
-    logger.info('\n\nRunning test_gdbc_connobj...')
+    logger.debug('\n\nRunning test_gdbc_connobj...')
 ##STEP 2
 
     query = currencies()
@@ -48,7 +48,7 @@ def run_gdbc_connobj():
 ##
 
     try:
-        logger.info('Query GQL syntax: ' + query.export_gql_source)
+        logger.debug('Query GQL syntax: ' + query.export_gql_source)
 
 ##STEP 3
         response = requests.request('POST', url=GDBC_URL,
@@ -69,9 +69,9 @@ def run_gdbc_connobj():
 ##
 
 ##RESULT
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex
 
-    logger.info("End of test_gdbc_connobj")
+    logger.debug("End of test_gdbc_connobj")

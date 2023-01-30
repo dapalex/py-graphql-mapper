@@ -1,6 +1,6 @@
 from typing import Generic, Union, List
 from pygqlmap.components import GQLArgsSet, GQLObject
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 from pygqlmap.src.arg_builtin import *
 from typing import NewType
 from .gql_simple_types import *
@@ -31,14 +31,14 @@ class TimeZonesConnection(GQLObject):
    edges: TimeZoneEdge
    pageInfo: ConnectionPageInfo
 
-class TYMRI_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
-   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+class LCMEY_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -58,7 +58,7 @@ class CountryRegion(GQLObject):
    capital: str
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: TYMRI_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: LCMEY_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    cursor: str
@@ -69,16 +69,16 @@ class CountryRegionsConnection(GQLObject):
    edges: CountryRegionEdge
    pageInfo: ConnectionPageInfo
 
-class TMUPF_CountryRegion_Field(CountryRegion):
-   class CountryRegionArgs(GQLArgsSet, GQLObject): 
+class KJNYC_CountryRegion_Field(CountryRegion):
+   class CountryRegionArgs(GQLArgsSet, GQLObject):
       code: ID
 
    _args: CountryRegionArgs
 
 
 
-class DNNWM_CountryRegionsConnection_Field(CountryRegionsConnection):
-   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
+class NQGUO_CountryRegionsConnection_Field(CountryRegionsConnection):
+   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
       sort: str
@@ -100,26 +100,26 @@ class Country(GQLObject):
    currencyCodes: str
    flagImageUri: str
    numRegions: int
-   region: TMUPF_CountryRegion_Field
-   regions: DNNWM_CountryRegionsConnection_Field
+   region: KJNYC_CountryRegion_Field
+   regions: NQGUO_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    totalCount: int
    edges: NewType('PopulatedPlaceEdge', GQLObject) ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class CNSNU_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
-   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+class TLNGC_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: List[ID]
-      excludedCountryIds: List[ID]
+      countryIds: list[ID]
+      excludedCountryIds: list[ID]
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -143,9 +143,9 @@ class PopulatedPlace(GQLObject):
    timezone: str
    country: Country
    region: CountryRegion
-   distance: HSONS_distance_Field
+   distance: GTEBK_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: CNSNU_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: TLNGC_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):

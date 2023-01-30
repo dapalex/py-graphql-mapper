@@ -9,7 +9,7 @@ class ArguedBuiltin():
 
 class ArguedInt(ArguedBuiltin, int):
 
-    def __new__(cls, number):
+    def __new__(cls, number = -1):
         arguedInt = super().__new__(cls, number)
         return arguedInt
 
@@ -24,7 +24,7 @@ class ArguedBool(ArguedBuiltin):
 
 class ArguedFloat(ArguedBuiltin, float):
 
-    def __init__(self,value): #Constructor like method
+    def __init__(self,value = -1): #Constructor like method
         self.value = value
 
     def __add__(self, other): #rounds results to the higher number of decimal places

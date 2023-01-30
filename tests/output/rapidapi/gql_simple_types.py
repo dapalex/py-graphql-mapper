@@ -1,13 +1,13 @@
 from typing import Generic, List
 from pygqlmap.components import GQLArgsSet, GQLObject
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 from pygqlmap.src.arg_builtin import *
 from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class CRFCA_name_Field(ArguedStr):
-   class strArgs(GQLArgsSet, GQLObject): 
+class YNSOJ_name_Field(ArguedStr):
+   class strArgs(GQLArgsSet, GQLObject):
       showDeleted: bool
 
    _args: strArgs
@@ -18,7 +18,7 @@ class Exclusion(GQLObject):
    topic: str
 
 class UpdateWorkflowsInput(GQLObject):
-   workflowIds: List[int]
+   workflowIds: NonNull_list[int]
    status: DeletionStatus
    workflowStatus: WorkflowStatus
    additionalData: Any
@@ -57,7 +57,7 @@ class WorkflowAudit(GQLObject):
    componentDisplayName: str
 
 class VirtualPermissionWhereInput(GQLObject):
-   permissionLevel: List[RoleLevel]
+   permissionLevel: list[RoleLevel]
 
 class RolePermission(GQLObject):
    granted: bool
@@ -110,7 +110,7 @@ class ProfileInfo(GQLObject):
    googleplus: str
 
 class UserInvitesReactivateInput(GQLObject):
-   emails: List[str]
+   emails: NonNull_list[str]
    orgId: int
 
 class UserInvitesBrandingInput(GQLObject):
@@ -120,7 +120,7 @@ class UserInvitesBrandingInput(GQLObject):
 
 class UserInvitesInput(GQLObject):
    email: str
-   teamIds: List[int]
+   teamIds: NonNull_list[int]
    organizationId: int
    role: str
    id: int
@@ -225,8 +225,8 @@ class TransformationCreateInput(GQLObject):
    target: str
    value: str
    valueType: TransformationValueType
-   plans: List[ID]
-   endpoints: List[ID]
+   plans: NonNull_list[ID]
+   endpoints: NonNull_list[ID]
 
 class Transformation(GQLObject):
    id: ID
@@ -240,8 +240,8 @@ class Transformation(GQLObject):
    targetMethod: TransformationMethodType
    value: str
    valueType: TransformationValueType
-   plans: List[ID]
-   endpoints: List[ID]
+   plans: list[ID]
+   endpoints: list[ID]
    createdAt: DateTime
    updatedAt: DateTime
    deletedAt: DateTime
@@ -256,7 +256,7 @@ class TransactionsAnalytics(GQLObject):
    total: float
    mrrTotal: float
    overagesTotal: float
-   categories: List[str]
+   categories: list[str]
    series: Any
 
 class TransactionCharge(GQLObject):
@@ -372,11 +372,11 @@ class SearchBlogPost(GQLObject):
    updatedAt: DateTime
 
 class SearchApiWhereInput(GQLObject):
-   categoryNames: List[str]
-   exclude: List[str]
+   categoryNames: list[str]
+   exclude: list[str]
    term: str
-   tags: List[Any]
-   collectionIds: List[str]
+   tags: list[Any]
+   collectionIds: list[str]
    privateApisJwt: str
    locale: Locale
 
@@ -388,14 +388,14 @@ class Score(GQLObject):
    popularityScore: float
 
 class RoleWhereInput(GQLObject):
-   roleLevels: List[RoleLevel]
+   roleLevels: list[RoleLevel]
 
 class RequestLogsOnApiFilters(GQLObject):
-   projectIds: List[ID]
-   endpoints: List[str]
-   httpMethods: List[HttpMethod]
-   httpStatuses: List[int]
-   originIps: List[str]
+   projectIds: list[ID]
+   endpoints: list[str]
+   httpMethods: list[HttpMethod]
+   httpStatuses: list[int]
+   originIps: list[str]
 
 class RapidReasonInput(GQLObject):
    consumerUserId: int
@@ -463,7 +463,7 @@ class MarkNotificationsAsReadInput(GQLObject):
    createdAt: str
 
 class MarkNewNotificationAsViewedInput(GQLObject):
-   notificationsIds: List[int]
+   notificationsIds: list[int]
    isNew: bool
 
 class NewNotification(GQLObject):
@@ -605,7 +605,7 @@ class EntityRoleInput(GQLObject):
    orgId: int
 
 class EntityMetadataWhereInput(GQLObject):
-   entityId: List[ID]
+   entityId: list[ID]
    attributeName: str
    attributeValue: str
 
@@ -648,7 +648,7 @@ class payloadParametersForUpdateOrCreateEndpointWithParameters(GQLObject):
    querystring: bool
    type: str
    status: str
-   options: List[str]
+   options: list[str]
    schema: Any
    schemaDefinition: Any
    examples: Any
@@ -663,7 +663,7 @@ class routeParametersArray(GQLObject):
    paramType: str
    querystring: bool
    value: Any
-   options: List[str]
+   options: list[str]
    schema: Any
    schemaDefinition: Any
    examples: Any
@@ -688,7 +688,7 @@ class IssueDeleteInput(GQLObject):
    issueId: int
 
 class IssuesDeleteInput(GQLObject):
-   issueIds: List[int]
+   issueIds: list[int]
 
 class Currency(GQLObject):
    code: str
@@ -760,7 +760,7 @@ class CollectionUpdateInput(GQLObject):
    shortDescription: str
    longDescription: str
    thumbnail: str
-   apis: List[ID]
+   apis: list[ID]
    ownerId: int
 
 class BlogPosts(GQLObject):
@@ -777,10 +777,10 @@ class CollectionsWhereInput(GQLObject):
    collectionType: str
 
 class CategoryWhereInput(GQLObject):
-   id: List[ID]
-   name: List[str]
+   id: list[ID]
+   name: list[str]
    language: CategoryLanguage
-   slugifiedName: List[str]
+   slugifiedName: list[str]
 
 class CategoryTextualDataInput(GQLObject):
    language: CategoryLanguage
@@ -806,7 +806,7 @@ class endpointsAndApiVersionCouples(GQLObject):
 
 class BlockedUserInput(GQLObject):
    apiId: str
-   usersIds: List[int]
+   usersIds: list[int]
 
 class BillingLimitInputV2(GQLObject):
    id: str
@@ -865,7 +865,7 @@ class upsertBillingItem(GQLObject):
    name: str
    description: str
    allEndpoints: bool
-   endpointHashes: List[str]
+   endpointHashes: list[str]
 
 class BillingInformation(GQLObject):
    id: int
@@ -891,7 +891,7 @@ class upsertBillingFeatureInput(GQLObject):
    name: str
    description: str
    billingFeatureId: str
-   endpointHashes: List[str]
+   endpointHashes: list[str]
 
 class AuthenticationParamInput(GQLObject):
    id: ID
@@ -935,8 +935,8 @@ class AssetWhereInput(GQLObject):
    AssetWhereInput - You can search by ID's or externalId or by (ID's will take precedence)
 
    """
-   ids: List[ID]
-   externalIds: List[ID]
+   ids: list[ID]
+   externalIds: list[ID]
    visible: bool
 
 class Asset(GQLObject):
@@ -964,7 +964,7 @@ class AppAuthorizationCreateInput(GQLObject):
    authorizationType: AppAuthorizationType
    grantType: AuthorizationGrantType
    authorizationValues: str
-   gatewayIds: List[ID]
+   gatewayIds: list[ID]
 
 class GqlOptions(GQLObject):
    """
@@ -1024,9 +1024,9 @@ class ResponsePayload(GQLObject):
    schemaDefinition: Any
 
 class ApiVersionWhereInput(GQLObject):
-   id: List[ID]
-   apiId: List[ID]
-   versionStatus: List[VersionStatus]
+   id: list[ID]
+   apiId: list[ID]
+   versionStatus: list[VersionStatus]
 
 class APITag(GQLObject):
    id: str
@@ -1036,7 +1036,7 @@ class APITag(GQLObject):
    createdAt: DateTime
 
 class StatsFilterBy(GQLObject):
-   values: List[str]
+   values: list[str]
    name: str
 
 class BatchTrackingIdsSummary(GQLObject):
@@ -1080,13 +1080,13 @@ class apiRating(GQLObject):
 
 class ApiFollowerWhereInput(GQLObject):
    apiId: ID
-   followerIds: List[ID]
+   followerIds: list[ID]
 
 class ApiFollowerDeleteInput(GQLObject):
    apiId: ID
 
 class DeleteApiFavoritesInput(GQLObject):
-   apiIds: List[ID]
+   apiIds: list[ID]
 
 class CopyApiDevelopersInput(GQLObject):
    apiId: str
@@ -1111,7 +1111,7 @@ class ApiCertificateIssuerInfo(GQLObject):
    emailAddress: str
 
 class deleteUserAlertsInput(GQLObject):
-   ids: List[ID]
+   ids: NonNull_list[ID]
 
 class editUserAlertInput(GQLObject):
    id: ID
@@ -1126,14 +1126,14 @@ class editUserAlertInput(GQLObject):
    status: AlertStatus
    throttleInterval: time
    throttlePeriod: int
-   apiIds: List[ID]
-   projectIds: List[ID]
+   apiIds: list[ID]
+   projectIds: list[ID]
    baseUrl: str
    minNextAlertTime: DateTime
-   endpointsIds: List[ID]
-   apiVersionsIds: List[ID]
-   billingPlansIds: List[ID]
-   endpointHashes: List[ID]
+   endpointsIds: list[ID]
+   apiVersionsIds: list[ID]
+   billingPlansIds: list[ID]
+   endpointHashes: list[ID]
 
 class UserAlert(GQLObject):
    id: ID
@@ -1150,14 +1150,14 @@ class UserAlert(GQLObject):
    status: AlertStatus
    throttleInterval: time
    throttlePeriod: int
-   apiIds: List[ID]
-   projectIds: List[ID]
+   apiIds: list[ID]
+   projectIds: list[ID]
    endpointsIds: ID
    baseUrl: str
    apiVersionsIds: ID
    billingPlansIds: ID
    minNextAlertTime: DateTime
-   endpointHashes: List[ID]
+   endpointHashes: list[ID]
    deletedAt: DateTime
    createdAt: DateTime
    updatedAt: DateTime

@@ -43,6 +43,8 @@ class Printer():
     def save_operation_file(self, enum_template, file_name, attr_name_results):
         """For internal use"""
         try:
+            if not getattr(self.extraction_results, attr_name_results[0]): return
+
             with open(file_name, 'w', encoding='UTF-8') as wrapper:
                 wrapper.write(self.load_template_code(enum_template.value))
                 wrapper.write('\n')

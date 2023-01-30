@@ -34,7 +34,7 @@ from ..output.github.queries import rateLimit
 import logging as logger
 
 def run_simple_args_vars():
-    logger.info('\n\nRunning test_simple_args_vars...')
+    logger.debug('\n\nRunning test_simple_args_vars...')
     try:
 
     ##STEP 2
@@ -50,8 +50,8 @@ def run_simple_args_vars():
     ##
 
     ##RESULT
-        logger.info('Query GQL syntax: ' + query.export_gql_source)
-        logger.info('Variables: ' + query.export_gqlvariables)
+        logger.debug('Query GQL syntax: ' + query.export_gql_source)
+        logger.debug('Variables: ' + query.export_gqlvariables)
     ##
 
 ##STEP 4
@@ -73,9 +73,9 @@ def run_simple_args_vars():
 ##
 
 ##RESULT
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex
 
-    logger.info("End of test_simple_args_vars")
+    logger.debug("End of test_simple_args_vars")

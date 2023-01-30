@@ -1,6 +1,6 @@
 from typing import Generic, Union, List
 from pygqlmap.components import GQLArgsSet, GQLObject
-from pygqlmap.gql_types import ID
+from pygqlmap.gql_types import *
 from pygqlmap.src.arg_builtin import *
 from typing import NewType
 from .gql_simple_types import *
@@ -77,12 +77,12 @@ class TimeZonesConnection(GQLObject):
    edges: TimeZoneEdge
    pageInfo: ConnectionPageInfo
 
-class RNJUJ_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class UVKHI_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    """
-   RNJUJ_RegionPopulatedPlacesConnection_Field - Find populated places in this region
+   UVKHI_RegionPopulatedPlacesConnection_Field - Find populated places in this region
 
    """
-   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+   class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       """
       namePrefix - Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -115,8 +115,8 @@ where SORT_FIELD = elevation | name | population
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -156,7 +156,7 @@ class CountryRegion(GQLObject):
    capital: str
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: RNJUJ_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: UVKHI_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    """
@@ -185,12 +185,12 @@ class CountryRegionsConnection(GQLObject):
    edges: CountryRegionEdge
    pageInfo: ConnectionPageInfo
 
-class UDUPP_CountryRegion_Field(CountryRegion):
+class FISQV_CountryRegion_Field(CountryRegion):
    """
-   UDUPP_CountryRegion_Field - Look up a region in this country
+   FISQV_CountryRegion_Field - Look up a region in this country
 
    """
-   class CountryRegionArgs(GQLArgsSet, GQLObject): 
+   class CountryRegionArgs(GQLArgsSet, GQLObject):
       """
       code - An ISO-3166 or FIPS region code
 
@@ -201,12 +201,12 @@ class UDUPP_CountryRegion_Field(CountryRegion):
 
 
 
-class ZLZCI_CountryRegionsConnection_Field(CountryRegionsConnection):
+class XFPEE_CountryRegionsConnection_Field(CountryRegionsConnection):
    """
-   ZLZCI_CountryRegionsConnection_Field - Find regions in this country
+   XFPEE_CountryRegionsConnection_Field - Find regions in this country
 
    """
-   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject): 
+   class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
       """
       namePrefix - Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
 
@@ -270,8 +270,8 @@ class Country(GQLObject):
    currencyCodes: str
    flagImageUri: str
    numRegions: int
-   region: UDUPP_CountryRegion_Field
-   regions: ZLZCI_CountryRegionsConnection_Field
+   region: FISQV_CountryRegion_Field
+   regions: XFPEE_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    """
@@ -288,12 +288,12 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    edges: NewType('PopulatedPlaceEdge', GQLObject) ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class OZZML_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class PJTYA_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    """
-   OZZML_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
+   PJTYA_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
 
    """
-   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject): 
+   class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       """
       radius - The location radius within which to find places
 
@@ -332,14 +332,14 @@ where SORT_FIELD = countryCode | elevation | name | population
       """
       radius: float
       distanceUnit: DistanceUnit
-      countryIds: List[ID]
-      excludedCountryIds: List[ID]
+      countryIds: list[ID]
+      excludedCountryIds: list[ID]
       namePrefix: str
       namePrefixDefaultLangResults: bool
       minPopulation: int
       maxPopulation: int
-      timeZoneIds: List[ID]
-      types: List[str]
+      timeZoneIds: list[ID]
+      types: list[str]
       sort: str
       first: int
       after: str
@@ -400,9 +400,9 @@ This field has two forms:
    timezone: str
    country: Country
    region: CountryRegion
-   distance: KSKRK_distance_Field
+   distance: JHMNO_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: OZZML_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: PJTYA_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):

@@ -1,9 +1,9 @@
-from .utils import get_obj_class_name, get_dot_notation_info, is_none_or_builtin_primitive
+from .utils import get_dot_notation_info, is_none_or_builtin_primitive
 import logging as logger
 
 class FSTree():
     def __init__(self, obj, fieldName: str = None):
-        self.name =  fieldName if fieldName else get_obj_class_name(obj)
+        self.name =  fieldName if fieldName else obj.__class__.__name__
         if hasattr(obj, 'fieldsshow'):
             self._fieldsshow = obj._fieldsshow
             for field in obj.fieldsshow.keys():

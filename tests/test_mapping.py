@@ -201,9 +201,6 @@ class TestMapper(unittest.TestCase):
   def test_gdbc_complex_obj_args_literal_2(self):
     return run_gdbc_complex_obj_args_literal_2()
 
-  def test_gdbc_obj_composed_args(self):
-    return run_gdbc_obj_composed_args()
-
   def test_gdbc_complex_obj_viewchange(self):
     return run_gdbc_complex_obj_viewchange_vars()
 

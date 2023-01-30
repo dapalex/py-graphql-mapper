@@ -32,14 +32,14 @@ from ..output.github.queries import rateLimit
 import logging as logger
 
 def run_simple_obj():
-    logger.info('\n\nRunning test_simple_obj...')
+    logger.debug('\n\nRunning test_simple_obj...')
 ##STEP 2
     query = rateLimit()
     query.name = 'mySimpleQuery'
 ##
 
     try:
-        logger.info('Query GQL syntax: ' + query.export_gql_source)
+        logger.debug('Query GQL syntax: ' + query.export_gql_source)
 
 ##STEP 3
         response = requests.request('POST', url=GITHUB_URL, json={ "query": query.export_gql_source }, headers=GITHUB_HEADERS)
@@ -58,9 +58,9 @@ def run_simple_obj():
 ##
 
 ##RESULT
-        logger.info('Result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + str(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex
 
-    logger.info("End of test_simple_obj")
+    logger.debug("End of test_simple_obj")
