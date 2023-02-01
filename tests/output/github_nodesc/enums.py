@@ -587,6 +587,12 @@ class OrganizationInvitationRole(Enum):
    BILLING_MANAGER = 'BILLING_MANAGER' ##The user is invited to be a billing manager of the organization.
    REINSTATE = 'REINSTATE' ##The user's previous role will be reinstated.
 
+class OrganizationInvitationSource(Enum):
+   DEFAULT = None
+   UNKNOWN = 'UNKNOWN' ##The invitation was sent before this feature was added
+   MEMBER = 'MEMBER' ##The invitation was created from the web interface or from API
+   SCIM = 'SCIM' ##The invitation was created from SCIM
+
 class OrganizationInvitationType(Enum):
    DEFAULT = None
    USER = 'USER' ##The invitation was to an existing user.

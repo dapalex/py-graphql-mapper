@@ -32,11 +32,8 @@ class SchemaTypeManager():
                         type_out += '['
                     else:
                         type_out += py_type + '['
-                if is_nonnull:
-                    if is_arg: ##if it is not an argument we can ignore the nonnullability, it is responsibility of the server
+                if is_nonnull and is_arg: ##if it is not an argument we can ignore the nonnullability, it is responsibility of the server
                         type_out += NON_NULL_PREFIX
-                    else:
-                        pass
 
                 type_out += py_type
 

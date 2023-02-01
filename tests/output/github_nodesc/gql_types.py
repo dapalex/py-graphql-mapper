@@ -833,7 +833,7 @@ class CVSS(GQLObject):
    vectorString: str
 
 class Bot(GQLObject):
-   avatarUrl: FKOKY_URI_Field
+   avatarUrl: LYBCE_URI_Field
    createdAt: DateTime
    databaseId: int
    id: ID
@@ -850,75 +850,73 @@ class ApproveVerifiableDomainInput(GQLObject):
    id: ID
    clientMutationId: str
 
-class AddVerifiableDomainInput(GQLObject):
-   ownerId: ID
-   domain: URI
+class AnnouncementBanner(GQLObject):
+   announcement: str
+   announcementExpiresAt: DateTime
+   announcementUserDismissible: bool
+
+class AddUpvoteInput(GQLObject):
+   subjectId: ID
    clientMutationId: str
 
-class AddStarInput(GQLObject):
-   starrableId: ID
+class AddReactionInput(GQLObject):
+   subjectId: ID
+   content: ReactionContent
    clientMutationId: str
 
-class AddPullRequestReviewThreadInput(GQLObject):
-   path: str
-   body: str
+class AddPullRequestReviewCommentInput(GQLObject):
    pullRequestId: ID
    pullRequestReviewId: ID
-   line: int
-   side: DiffSide
-   startLine: int
-   startSide: DiffSide
+   commitOID: GitObjectID
+   body: str
+   path: str
+   position: int
+   inReplyTo: ID
    clientMutationId: str
 
-class AddProjectV2ItemByIdInput(GQLObject):
+class AddProjectV2DraftIssueInput(GQLObject):
    projectId: ID
+   title: str
+   body: str
+   assigneeIds: list[ID]
+   clientMutationId: str
+
+class AddProjectCardInput(GQLObject):
+   projectColumnId: ID
    contentId: ID
+   note: str
    clientMutationId: str
 
-class AddProjectColumnInput(GQLObject):
-   projectId: ID
+class AddEnterpriseSupportEntitlementPayload(GQLObject):
+   clientMutationId: str
+   message: str
+
+class AddEnterpriseOrganizationMemberInput(GQLObject):
+   enterpriseId: ID
+   organizationId: ID
+   userIds: NonNull_list[ID]
+   role: OrganizationMemberRole
+   clientMutationId: str
+
+class AddDiscussionCommentInput(GQLObject):
+   discussionId: ID
+   replyToId: ID
+   body: str
+   clientMutationId: str
+
+class AddAssigneesToAssignableInput(GQLObject):
+   assignableId: ID
+   assigneeIds: NonNull_list[ID]
+   clientMutationId: str
+
+class AcceptTopicSuggestionInput(GQLObject):
+   repositoryId: ID
    name: str
    clientMutationId: str
 
-class AddLabelsToLabelableInput(GQLObject):
-   labelableId: ID
-   labelIds: NonNull_list[ID]
+class AbortQueuedMigrationsPayload(GQLObject):
    clientMutationId: str
-
-class AddEnterpriseSupportEntitlementInput(GQLObject):
-   enterpriseId: ID
-   login: str
-   clientMutationId: str
-
-class AddDiscussionPollVoteInput(GQLObject):
-   pollOptionId: ID
-   clientMutationId: str
-
-class AddCommentInput(GQLObject):
-   subjectId: ID
-   body: str
-   clientMutationId: str
-
-class ActorLocation(GQLObject):
-   city: str
-   country: str
-   countryCode: str
-   region: str
-   regionCode: str
-
-class Actor(GQLObject):
-   avatarUrl: MJJUJ_URI_Field
-   login: str
-   resourcePath: URI
-   url: URI
-
-class AcceptEnterpriseAdministratorInvitationInput(GQLObject):
-   invitationId: ID
-   clientMutationId: str
-
-class AbortQueuedMigrationsInput(GQLObject):
-   ownerId: ID
-   clientMutationId: str
+   success: bool
 
 class UserEdge(GQLObject):
    cursor: str
@@ -975,7 +973,7 @@ class TeamConnection(GQLObject):
    totalCount: int
 
 class Mannequin(GQLObject):
-   avatarUrl: OHFBC_URI_Field
+   avatarUrl: EUZPS_URI_Field
    claimant: NewType('User', GQLObject) ## Circular Reference for User
    createdAt: DateTime
    databaseId: int
@@ -1027,7 +1025,7 @@ class ReactionConnection(GQLObject):
    totalCount: int
    viewerHasReacted: bool
 
-class OFRTU_ReactionConnection_Field(ReactionConnection):
+class XHITR_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1044,7 +1042,7 @@ class Reactable(GQLObject):
    databaseId: int
    id: ID
    reactionGroups: list_GQLObject[GQLObject] ## Circular Reference for ReactionGroup
-   reactions: OFRTU_ReactionConnection_Field
+   reactions: XHITR_ReactionConnection_Field
    viewerCanReact: bool
 
 class ReactingUserEdge(GQLObject):
@@ -1060,7 +1058,7 @@ class ReactingUserConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class HLLTT_ReactorConnection_Field(ReactorConnection):
+class BHTMX_ReactorConnection_Field(ReactorConnection):
    class ReactorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1074,7 +1072,7 @@ class HLLTT_ReactorConnection_Field(ReactorConnection):
 class ReactionGroup(GQLObject):
    content: ReactionContent
    createdAt: DateTime
-   reactors: HLLTT_ReactorConnection_Field
+   reactors: BHTMX_ReactorConnection_Field
    subject: Reactable
    viewerHasReacted: bool
 
@@ -1104,7 +1102,7 @@ class UserContentEditConnection(GQLObject):
 
 class list_ReactionGroup(list, ReactionGroup): pass
 
-class SLKQS_ReactionConnection_Field(ReactionConnection):
+class EUCKB_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1117,7 +1115,7 @@ class SLKQS_ReactionConnection_Field(ReactionConnection):
 
 
 
-class HBACL_UserContentEditConnection_Field(UserContentEditConnection):
+class FTMKE_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1146,11 +1144,11 @@ class TeamDiscussionComment(GQLObject):
    number: int
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: SLKQS_ReactionConnection_Field
+   reactions: EUCKB_ReactionConnection_Field
    resourcePath: URI
    updatedAt: DateTime
    url: URI
-   userContentEdits: HBACL_UserContentEditConnection_Field
+   userContentEdits: FTMKE_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanReact: bool
    viewerCanUpdate: bool
@@ -1171,7 +1169,7 @@ class TeamDiscussionCommentConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class PRQQM_TeamDiscussionCommentConnection_Field(TeamDiscussionCommentConnection):
+class MDSEN_TeamDiscussionCommentConnection_Field(TeamDiscussionCommentConnection):
    class TeamDiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1184,7 +1182,7 @@ class PRQQM_TeamDiscussionCommentConnection_Field(TeamDiscussionCommentConnectio
 
 
 
-class TRDYG_ReactionConnection_Field(ReactionConnection):
+class ANYDB_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1197,7 +1195,7 @@ class TRDYG_ReactionConnection_Field(ReactionConnection):
 
 
 
-class BMEKM_UserContentEditConnection_Field(UserContentEditConnection):
+class EFIED_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1215,7 +1213,7 @@ class TeamDiscussion(GQLObject):
    bodyHTML: HTML
    bodyText: str
    bodyVersion: str
-   comments: PRQQM_TeamDiscussionCommentConnection_Field
+   comments: MDSEN_TeamDiscussionCommentConnection_Field
    commentsResourcePath: URI
    commentsUrl: URI
    createdAt: DateTime
@@ -1230,13 +1228,13 @@ class TeamDiscussion(GQLObject):
    number: int
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: TRDYG_ReactionConnection_Field
+   reactions: ANYDB_ReactionConnection_Field
    resourcePath: URI
    team: NewType('Team', GQLObject) ## Circular Reference for Team
    title: str
    updatedAt: DateTime
    url: URI
-   userContentEdits: BMEKM_UserContentEditConnection_Field
+   userContentEdits: EFIED_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanPin: bool
    viewerCanReact: bool
@@ -1264,6 +1262,7 @@ class OrganizationInvitation(GQLObject):
    createdAt: DateTime
    email: str
    id: ID
+   invitationSource: OrganizationInvitationSource
    invitationType: OrganizationInvitationType
    invitee: NewType('User', GQLObject) ## Circular Reference for User
    inviter: NewType('User', GQLObject) ## Circular Reference for User
@@ -1389,7 +1388,7 @@ class ProjectV2Connection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class IZINN_UserConnection_Field(UserConnection):
+class WITJC_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1400,7 +1399,7 @@ class IZINN_UserConnection_Field(UserConnection):
 
 
 
-class KAOJE_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
+class RUOCS_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
    class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1411,7 +1410,7 @@ class KAOJE_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
 
 
 
-class TXLKA_ProjectV2Connection_Field(ProjectV2Connection):
+class IFPTR_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1423,15 +1422,15 @@ class TXLKA_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 class DraftIssue(GQLObject):
-   assignees: IZINN_UserConnection_Field
+   assignees: WITJC_UserConnection_Field
    body: str
    bodyHTML: HTML
    bodyText: str
    createdAt: DateTime
    creator: Actor
    id: ID
-   projectV2Items: KAOJE_ProjectV2ItemConnection_Field ## Circular Reference for ProjectV2ItemConnection
-   projectsV2: TXLKA_ProjectV2Connection_Field
+   projectV2Items: RUOCS_ProjectV2ItemConnection_Field ## Circular Reference for ProjectV2ItemConnection
+   projectsV2: IFPTR_ProjectV2Connection_Field
    title: str
    updatedAt: DateTime
 
@@ -1513,7 +1512,7 @@ class DeploymentStatusConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class LQYWX_DeploymentStatusConnection_Field(DeploymentStatusConnection):
+class AREUH_DeploymentStatusConnection_Field(DeploymentStatusConnection):
    class DeploymentStatusConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1540,7 +1539,7 @@ class Deployment(GQLObject):
    ref: NewType('Ref', GQLObject) ## Circular Reference for Ref
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    state: DeploymentState
-   statuses: LQYWX_DeploymentStatusConnection_Field
+   statuses: AREUH_DeploymentStatusConnection_Field
    task: str
    updatedAt: DateTime
 
@@ -1570,7 +1569,7 @@ class DiscussionCommentConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class EWNEX_ReactionConnection_Field(ReactionConnection):
+class RAEMU_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1583,7 +1582,7 @@ class EWNEX_ReactionConnection_Field(ReactionConnection):
 
 
 
-class YJYHF_DiscussionCommentConnection_Field(DiscussionCommentConnection):
+class UHPAH_DiscussionCommentConnection_Field(DiscussionCommentConnection):
    class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1594,7 +1593,7 @@ class YJYHF_DiscussionCommentConnection_Field(DiscussionCommentConnection):
 
 
 
-class WHFCM_UserContentEditConnection_Field(UserContentEditConnection):
+class RUSQO_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1625,14 +1624,14 @@ class DiscussionComment(GQLObject):
    minimizedReason: str
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: EWNEX_ReactionConnection_Field
-   replies: YJYHF_DiscussionCommentConnection_Field
+   reactions: RAEMU_ReactionConnection_Field
+   replies: UHPAH_DiscussionCommentConnection_Field
    replyTo: NewType('DiscussionComment', GQLObject) ## Circular Reference for DiscussionComment
    resourcePath: URI
    updatedAt: DateTime
    upvoteCount: int
    url: URI
-   userContentEdits: WHFCM_UserContentEditConnection_Field
+   userContentEdits: RUSQO_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanMarkAsAnswer: bool
    viewerCanMinimize: bool
@@ -1670,7 +1669,7 @@ class IssueConnection(GQLObject):
 
 class NonNull_IssueState(GQLObject): pass
 
-class KNSIM_IssueConnection_Field(IssueConnection):
+class LIFCC_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueOrder
       labels: list[NonNull_str]
@@ -1687,7 +1686,7 @@ class KNSIM_IssueConnection_Field(IssueConnection):
 
 class NonNull_PullRequestState(GQLObject): pass
 
-class DBFSH_PullRequestConnection_Field(Generic[PullRequestConnection]):
+class EHOAV_PullRequestConnection_Field(Generic[PullRequestConnection]):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -1709,9 +1708,9 @@ class Label(GQLObject):
    description: str
    id: ID
    isDefault: bool
-   issues: KNSIM_IssueConnection_Field
+   issues: LIFCC_IssueConnection_Field
    name: str
-   pullRequests: DBFSH_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
+   pullRequests: EHOAV_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    resourcePath: URI
    updatedAt: DateTime
@@ -1752,7 +1751,7 @@ class DiscussionPollOptionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class DSYWN_DiscussionPollOptionConnection_Field(DiscussionPollOptionConnection):
+class RESZZ_DiscussionPollOptionConnection_Field(DiscussionPollOptionConnection):
    class DiscussionPollOptionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1767,13 +1766,13 @@ class DSYWN_DiscussionPollOptionConnection_Field(DiscussionPollOptionConnection)
 class DiscussionPoll(GQLObject):
    discussion: NewType('Discussion', GQLObject) ## Circular Reference for Discussion
    id: ID
-   options: DSYWN_DiscussionPollOptionConnection_Field
+   options: RESZZ_DiscussionPollOptionConnection_Field
    question: str
    totalVoteCount: int
    viewerCanVote: bool
    viewerHasVoted: bool
 
-class QITAG_DiscussionCommentConnection_Field(DiscussionCommentConnection):
+class OEDUS_DiscussionCommentConnection_Field(DiscussionCommentConnection):
    class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1784,7 +1783,7 @@ class QITAG_DiscussionCommentConnection_Field(DiscussionCommentConnection):
 
 
 
-class OGNZN_LabelConnection_Field(LabelConnection):
+class FXFVF_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: LabelOrder
       after: str
@@ -1796,7 +1795,7 @@ class OGNZN_LabelConnection_Field(LabelConnection):
 
 
 
-class RLKBM_ReactionConnection_Field(ReactionConnection):
+class ZQTED_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1809,7 +1808,7 @@ class RLKBM_ReactionConnection_Field(ReactionConnection):
 
 
 
-class XUWNT_UserContentEditConnection_Field(UserContentEditConnection):
+class QIFXR_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1831,28 +1830,28 @@ class Discussion(GQLObject):
    bodyHTML: HTML
    bodyText: str
    category: DiscussionCategory
-   comments: QITAG_DiscussionCommentConnection_Field
+   comments: OEDUS_DiscussionCommentConnection_Field
    createdAt: DateTime
    createdViaEmail: bool
    databaseId: int
    editor: Actor
    id: ID
    includesCreatedEdit: bool
-   labels: OGNZN_LabelConnection_Field
+   labels: FXFVF_LabelConnection_Field
    lastEditedAt: DateTime
    locked: bool
    number: int
    poll: DiscussionPoll
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: RLKBM_ReactionConnection_Field
+   reactions: ZQTED_ReactionConnection_Field
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    resourcePath: URI
    title: str
    updatedAt: DateTime
    upvoteCount: int
    url: URI
-   userContentEdits: XUWNT_UserContentEditConnection_Field
+   userContentEdits: QIFXR_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanReact: bool
    viewerCanSubscribe: bool
@@ -1907,7 +1906,7 @@ class DeploymentReviewerConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class NEPFI_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
+class EOGSZ_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
    class DeploymentReviewerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1920,7 +1919,7 @@ class NEPFI_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
 
 class DeploymentProtectionRule(GQLObject):
    databaseId: int
-   reviewers: NEPFI_DeploymentReviewerConnection_Field
+   reviewers: EOGSZ_DeploymentReviewerConnection_Field
    timeout: int
    type: DeploymentProtectionRuleType
 
@@ -1938,7 +1937,7 @@ class DeploymentProtectionRuleConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class ASIVS_DeploymentProtectionRuleConnection_Field(DeploymentProtectionRuleConnection):
+class JKIDK_DeploymentProtectionRuleConnection_Field(DeploymentProtectionRuleConnection):
    class DeploymentProtectionRuleConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -1953,7 +1952,7 @@ class Environment(GQLObject):
    databaseId: int
    id: ID
    name: str
-   protectionRules: ASIVS_DeploymentProtectionRuleConnection_Field
+   protectionRules: JKIDK_DeploymentProtectionRuleConnection_Field
 
 class EnvironmentEdge(GQLObject):
    cursor: str
@@ -2028,7 +2027,7 @@ class ReleaseAssetConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class MSUSE_UserConnection_Field(UserConnection):
+class GRNKN_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2039,7 +2038,7 @@ class MSUSE_UserConnection_Field(UserConnection):
 
 
 
-class YKUEB_ReactionConnection_Field(ReactionConnection):
+class LUUCD_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2052,7 +2051,7 @@ class YKUEB_ReactionConnection_Field(ReactionConnection):
 
 
 
-class RNCWW_ReleaseAssetConnection_Field(ReleaseAssetConnection):
+class SUQJU_ReleaseAssetConnection_Field(ReleaseAssetConnection):
    class ReleaseAssetConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2074,15 +2073,15 @@ class Release(GQLObject):
    isDraft: bool
    isLatest: bool
    isPrerelease: bool
-   mentions: MSUSE_UserConnection_Field
+   mentions: GRNKN_UserConnection_Field
    name: str
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: YKUEB_ReactionConnection_Field
-   releaseAssets: RNCWW_ReleaseAssetConnection_Field
+   reactions: LUUCD_ReactionConnection_Field
+   releaseAssets: SUQJU_ReleaseAssetConnection_Field
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    resourcePath: URI
-   shortDescriptionHTML: WQJYH_HTML_Field
+   shortDescriptionHTML: VVAIP_HTML_Field
    tag: NewType('Ref', GQLObject) ## Circular Reference for Ref
    tagCommit: NewType('Commit', GQLObject) ## Circular Reference for Commit
    tagName: str
@@ -2107,7 +2106,7 @@ class License(GQLObject):
    spdxId: str
    url: URI
 
-class SHKKW_IssueConnection_Field(IssueConnection):
+class VFUJS_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueOrder
       labels: list[NonNull_str]
@@ -2122,7 +2121,7 @@ class SHKKW_IssueConnection_Field(IssueConnection):
 
 
 
-class KUTFH_PullRequestConnection_Field(Generic[PullRequestConnection]):
+class VAPJZ_PullRequestConnection_Field(Generic[PullRequestConnection]):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -2146,10 +2145,10 @@ class Milestone(GQLObject):
    description: str
    dueOn: DateTime
    id: ID
-   issues: SHKKW_IssueConnection_Field
+   issues: VFUJS_IssueConnection_Field
    number: int
    progressPercentage: float
-   pullRequests: KUTFH_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
+   pullRequests: VAPJZ_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    resourcePath: URI
    state: MilestoneState
@@ -2179,7 +2178,7 @@ class GitObject(GQLObject):
    oid: GitObjectID
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
 
-class DDCDT_RepositoryConnection_Field(RepositoryConnection):
+class RPFQR_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -2196,7 +2195,7 @@ class DDCDT_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class KNVEY_Repository_Field(Generic[Repository]):
+class WUARD_Repository_Field(Generic[Repository]):
    class RepositoryArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
       followRenames: bool
@@ -2206,11 +2205,11 @@ class KNVEY_Repository_Field(Generic[Repository]):
 
 
 class RepositoryOwner(GQLObject):
-   avatarUrl: GCHYR_URI_Field
+   avatarUrl: EFOOO_URI_Field
    id: ID
    login: str
-   repositories: DDCDT_RepositoryConnection_Field
-   repository: KNVEY_Repository_Field ## Circular Reference for Repository
+   repositories: RPFQR_RepositoryConnection_Field
+   repository: WUARD_Repository_Field ## Circular Reference for Repository
    resourcePath: URI
    url: URI
 
@@ -2239,7 +2238,7 @@ class PackageFileConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class GCKFH_PackageFileConnection_Field(PackageFileConnection):
+class WPKGC_PackageFileConnection_Field(PackageFileConnection):
    class PackageFileConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: PackageFileOrder
       after: str
@@ -2252,7 +2251,7 @@ class GCKFH_PackageFileConnection_Field(PackageFileConnection):
 
 
 class PackageVersion(GQLObject):
-   files: GCKFH_PackageFileConnection_Field
+   files: WPKGC_PackageFileConnection_Field
    id: ID
    package: NewType('Package', GQLObject) ## Circular Reference for Package
    platform: str
@@ -2277,7 +2276,7 @@ class PackageVersionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class IYSNU_PackageVersion_Field(PackageVersion):
+class DUYCS_PackageVersion_Field(PackageVersion):
    class PackageVersionArgs(GQLArgsSet, GQLObject):
       version: NonNull_str
 
@@ -2285,7 +2284,7 @@ class IYSNU_PackageVersion_Field(PackageVersion):
 
 
 
-class RWCYS_PackageVersionConnection_Field(PackageVersionConnection):
+class YYKLU_PackageVersionConnection_Field(PackageVersionConnection):
    class PackageVersionConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: PackageVersionOrder
       after: str
@@ -2304,8 +2303,8 @@ class Package(GQLObject):
    packageType: PackageType
    repository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    statistics: PackageStatistics
-   version: IYSNU_PackageVersion_Field
-   versions: RWCYS_PackageVersionConnection_Field
+   version: DUYCS_PackageVersion_Field
+   versions: YYKLU_PackageVersionConnection_Field
 
 class PackageEdge(GQLObject):
    cursor: str
@@ -2400,7 +2399,7 @@ class ProjectCardConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class WOWCE_ProjectCardConnection_Field(ProjectCardConnection):
+class NUAGK_ProjectCardConnection_Field(ProjectCardConnection):
    class ProjectCardConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2413,7 +2412,7 @@ class WOWCE_ProjectCardConnection_Field(ProjectCardConnection):
 
 
 class ProjectColumn(GQLObject):
-   cards: WOWCE_ProjectCardConnection_Field
+   cards: NUAGK_ProjectCardConnection_Field
    createdAt: DateTime
    databaseId: int
    id: ID
@@ -2450,7 +2449,7 @@ class ProjectConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class QMCQS_Project_Field(Generic[Project]):
+class BJGVO_Project_Field(Generic[Project]):
    class ProjectArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -2460,7 +2459,7 @@ class QMCQS_Project_Field(Generic[Project]):
 
 class NonNull_ProjectState(GQLObject): pass
 
-class BHECN_ProjectConnection_Field(ProjectConnection):
+class MMTUT_ProjectConnection_Field(ProjectConnection):
    class ProjectConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: ProjectOrder
       search: str
@@ -2476,13 +2475,13 @@ class BHECN_ProjectConnection_Field(ProjectConnection):
 
 class ProjectOwner(GQLObject):
    id: ID
-   project: QMCQS_Project_Field ## Circular Reference for Project
-   projects: BHECN_ProjectConnection_Field
+   project: BJGVO_Project_Field ## Circular Reference for Project
+   projects: MMTUT_ProjectConnection_Field
    projectsResourcePath: URI
    projectsUrl: URI
    viewerCanCreateProjects: bool
 
-class FIFQE_ProjectColumnConnection_Field(ProjectColumnConnection):
+class LRBFK_ProjectColumnConnection_Field(ProjectColumnConnection):
    class ProjectColumnConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2493,7 +2492,7 @@ class FIFQE_ProjectColumnConnection_Field(ProjectColumnConnection):
 
 
 
-class UNXFF_ProjectCardConnection_Field(ProjectCardConnection):
+class IGITZ_ProjectCardConnection_Field(ProjectCardConnection):
    class ProjectCardConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2510,7 +2509,7 @@ class Project(GQLObject):
    bodyHTML: HTML
    closed: bool
    closedAt: DateTime
-   columns: FIFQE_ProjectColumnConnection_Field
+   columns: LRBFK_ProjectColumnConnection_Field
    createdAt: DateTime
    creator: Actor
    databaseId: int
@@ -2518,7 +2517,7 @@ class Project(GQLObject):
    name: str
    number: int
    owner: ProjectOwner
-   pendingCards: UNXFF_ProjectCardConnection_Field
+   pendingCards: IGITZ_ProjectCardConnection_Field
    progress: ProjectProgress
    resourcePath: URI
    state: ProjectState
@@ -2570,7 +2569,7 @@ class StargazerConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class SWZXB_Topic_Field(Generic[Topic]):
+class LNPID_Topic_Field(Generic[Topic]):
    class TopicArgs(GQLArgsSet, GQLObject):
       first: int
 
@@ -2578,7 +2577,7 @@ class SWZXB_Topic_Field(Generic[Topic]):
 
 
 
-class WENPZ_RepositoryConnection_Field(RepositoryConnection):
+class IDHHW_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -2595,7 +2594,7 @@ class WENPZ_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class AIVOP_StargazerConnection_Field(StargazerConnection):
+class SSXHF_StargazerConnection_Field(StargazerConnection):
    class StargazerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2610,10 +2609,10 @@ class AIVOP_StargazerConnection_Field(StargazerConnection):
 class Topic(GQLObject):
    id: ID
    name: str
-   relatedTopics: SWZXB_Topic_Field ## Circular Reference for Topic
-   repositories: WENPZ_RepositoryConnection_Field
+   relatedTopics: LNPID_Topic_Field ## Circular Reference for Topic
+   repositories: IDHHW_RepositoryConnection_Field
    stargazerCount: int
-   stargazers: AIVOP_StargazerConnection_Field
+   stargazers: SSXHF_StargazerConnection_Field
    viewerHasStarred: bool
 
 class RepositoryTopic(GQLObject):
@@ -2691,7 +2690,7 @@ class SecurityVulnerabilityConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class GCHPR_CWEConnection_Field(CWEConnection):
+class CIIDD_CWEConnection_Field(CWEConnection):
    class CWEConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2706,7 +2705,7 @@ class NonNull_SecurityAdvisorySeverity(GQLObject): pass
 
 class NonNull_SecurityAdvisoryClassification(GQLObject): pass
 
-class TWZFB_SecurityVulnerabilityConnection_Field(SecurityVulnerabilityConnection):
+class MXINA_SecurityVulnerabilityConnection_Field(SecurityVulnerabilityConnection):
    class SecurityVulnerabilityConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: SecurityVulnerabilityOrder
       ecosystem: SecurityAdvisoryEcosystem
@@ -2725,7 +2724,7 @@ class TWZFB_SecurityVulnerabilityConnection_Field(SecurityVulnerabilityConnectio
 class SecurityAdvisory(GQLObject):
    classification: SecurityAdvisoryClassification
    cvss: CVSS
-   cwes: GCHPR_CWEConnection_Field
+   cwes: CIIDD_CWEConnection_Field
    databaseId: int
    description: str
    ghsaId: str
@@ -2739,7 +2738,7 @@ class SecurityAdvisory(GQLObject):
    severity: SecurityAdvisorySeverity
    summary: str
    updatedAt: DateTime
-   vulnerabilities: TWZFB_SecurityVulnerabilityConnection_Field
+   vulnerabilities: MXINA_SecurityVulnerabilityConnection_Field
    withdrawnAt: DateTime
 
 class RepositoryVulnerabilityAlert(GQLObject):
@@ -2775,7 +2774,7 @@ class RepositoryVulnerabilityAlertConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class ATLLS_UserConnection_Field(UserConnection):
+class PGJJT_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       after: str
@@ -2787,7 +2786,7 @@ class ATLLS_UserConnection_Field(UserConnection):
 
 
 
-class KXWJQ_BranchProtectionRuleConnection_Field(BranchProtectionRuleConnection):
+class TUQEK_BranchProtectionRuleConnection_Field(BranchProtectionRuleConnection):
    class BranchProtectionRuleConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2798,7 +2797,7 @@ class KXWJQ_BranchProtectionRuleConnection_Field(BranchProtectionRuleConnection)
 
 
 
-class YMGNL_RepositoryCodeowners_Field(RepositoryCodeowners):
+class RIJRO_RepositoryCodeowners_Field(RepositoryCodeowners):
    class RepositoryCodeownersArgs(GQLArgsSet, GQLObject):
       refName: str
 
@@ -2806,7 +2805,7 @@ class YMGNL_RepositoryCodeowners_Field(RepositoryCodeowners):
 
 
 
-class ZURLP_RepositoryCollaboratorConnection_Field(RepositoryCollaboratorConnection):
+class VIIED_RepositoryCollaboratorConnection_Field(RepositoryCollaboratorConnection):
    class RepositoryCollaboratorConnectionArgs(GQLArgsSet, GQLObject):
       affiliation: CollaboratorAffiliation
       query: str
@@ -2819,7 +2818,7 @@ class ZURLP_RepositoryCollaboratorConnection_Field(RepositoryCollaboratorConnect
 
 
 
-class LGPLB_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
+class KOLAN_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
    class CommitCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2832,7 +2831,7 @@ class LGPLB_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
 
 class list_RepositoryContactLink(list, RepositoryContactLink): pass
 
-class KIAFE_DeployKeyConnection_Field(DeployKeyConnection):
+class YGRIE_DeployKeyConnection_Field(DeployKeyConnection):
    class DeployKeyConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2843,7 +2842,7 @@ class KIAFE_DeployKeyConnection_Field(DeployKeyConnection):
 
 
 
-class FYCBW_DeploymentConnection_Field(DeploymentConnection):
+class QKHPX_DeploymentConnection_Field(DeploymentConnection):
    class DeploymentConnectionArgs(GQLArgsSet, GQLObject):
       environments: list[NonNull_str]
       orderBy: DeploymentOrder
@@ -2856,7 +2855,7 @@ class FYCBW_DeploymentConnection_Field(DeploymentConnection):
 
 
 
-class FYVDE_Discussion_Field(Discussion):
+class EPNUI_Discussion_Field(Discussion):
    class DiscussionArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -2864,7 +2863,7 @@ class FYVDE_Discussion_Field(Discussion):
 
 
 
-class CKZBX_DiscussionCategoryConnection_Field(DiscussionCategoryConnection):
+class FUSKN_DiscussionCategoryConnection_Field(DiscussionCategoryConnection):
    class DiscussionCategoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2876,7 +2875,7 @@ class CKZBX_DiscussionCategoryConnection_Field(DiscussionCategoryConnection):
 
 
 
-class UJNXV_DiscussionCategory_Field(DiscussionCategory):
+class SOWZF_DiscussionCategory_Field(DiscussionCategory):
    class DiscussionCategoryArgs(GQLArgsSet, GQLObject):
       slug: NonNull_str
 
@@ -2884,7 +2883,7 @@ class UJNXV_DiscussionCategory_Field(DiscussionCategory):
 
 
 
-class YVXKL_DiscussionConnection_Field(DiscussionConnection):
+class AZXFP_DiscussionConnection_Field(DiscussionConnection):
    class DiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2897,7 +2896,7 @@ class YVXKL_DiscussionConnection_Field(DiscussionConnection):
 
 
 
-class FBQHB_Environment_Field(Environment):
+class KRHEA_Environment_Field(Environment):
    class EnvironmentArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -2905,7 +2904,7 @@ class FBQHB_Environment_Field(Environment):
 
 
 
-class URDHG_EnvironmentConnection_Field(EnvironmentConnection):
+class BDKIM_EnvironmentConnection_Field(EnvironmentConnection):
    class EnvironmentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2916,7 +2915,7 @@ class URDHG_EnvironmentConnection_Field(EnvironmentConnection):
 
 
 
-class SVKWE_RepositoryConnection_Field(RepositoryConnection):
+class UMOAT_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -2932,7 +2931,7 @@ class SVKWE_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class FQSAR_Issue_Field(Generic[Issue]):
+class YMGHX_Issue_Field(Generic[Issue]):
    class IssueArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -2940,7 +2939,7 @@ class FQSAR_Issue_Field(Generic[Issue]):
 
 
 
-class CIQHN_IssueOrPullRequest_Field(IssueOrPullRequest):
+class ABHVH_IssueOrPullRequest_Field(IssueOrPullRequest):
    class IssueOrPullRequestArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -2950,7 +2949,7 @@ class CIQHN_IssueOrPullRequest_Field(IssueOrPullRequest):
 
 class list_IssueTemplate(list, IssueTemplate): pass
 
-class RXXVR_IssueConnection_Field(IssueConnection):
+class OXDRW_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueOrder
       labels: list[NonNull_str]
@@ -2965,7 +2964,7 @@ class RXXVR_IssueConnection_Field(IssueConnection):
 
 
 
-class GCXYO_Label_Field(Label):
+class KMPHG_Label_Field(Label):
    class LabelArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -2973,7 +2972,7 @@ class GCXYO_Label_Field(Label):
 
 
 
-class TYCAN_LabelConnection_Field(LabelConnection):
+class YLRBB_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: LabelOrder
       after: str
@@ -2986,7 +2985,7 @@ class TYCAN_LabelConnection_Field(LabelConnection):
 
 
 
-class DJNGM_LanguageConnection_Field(LanguageConnection):
+class CBJVM_LanguageConnection_Field(LanguageConnection):
    class LanguageConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -2998,7 +2997,7 @@ class DJNGM_LanguageConnection_Field(LanguageConnection):
 
 
 
-class JHBJD_UserConnection_Field(UserConnection):
+class OXWAA_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       after: str
@@ -3010,7 +3009,7 @@ class JHBJD_UserConnection_Field(UserConnection):
 
 
 
-class MGNMP_Milestone_Field(Milestone):
+class CPCCU_Milestone_Field(Milestone):
    class MilestoneArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -3020,7 +3019,7 @@ class MGNMP_Milestone_Field(Milestone):
 
 class NonNull_MilestoneState(GQLObject): pass
 
-class MFLFB_MilestoneConnection_Field(MilestoneConnection):
+class PGPMI_MilestoneConnection_Field(MilestoneConnection):
    class MilestoneConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3034,7 +3033,7 @@ class MFLFB_MilestoneConnection_Field(MilestoneConnection):
 
 
 
-class RWDOJ_GitObject_Field(GitObject):
+class UWBVP_GitObject_Field(GitObject):
    class GitObjectArgs(GQLArgsSet, GQLObject):
       oid: GitObjectID
       expression: str
@@ -3043,7 +3042,7 @@ class RWDOJ_GitObject_Field(GitObject):
 
 
 
-class NLUDN_PackageConnection_Field(PackageConnection):
+class XCKEE_PackageConnection_Field(PackageConnection):
    class PackageConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3058,7 +3057,7 @@ class NLUDN_PackageConnection_Field(PackageConnection):
 
 
 
-class GBEQU_PinnedDiscussionConnection_Field(PinnedDiscussionConnection):
+class RWLET_PinnedDiscussionConnection_Field(PinnedDiscussionConnection):
    class PinnedDiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3069,7 +3068,7 @@ class GBEQU_PinnedDiscussionConnection_Field(PinnedDiscussionConnection):
 
 
 
-class XVIQD_PinnedIssueConnection_Field(PinnedIssueConnection):
+class UGFTT_PinnedIssueConnection_Field(PinnedIssueConnection):
    class PinnedIssueConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3080,7 +3079,7 @@ class XVIQD_PinnedIssueConnection_Field(PinnedIssueConnection):
 
 
 
-class NGESH_Project_Field(Project):
+class SVXNN_Project_Field(Project):
    class ProjectArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -3088,7 +3087,7 @@ class NGESH_Project_Field(Project):
 
 
 
-class FFFAZ_ProjectV2_Field(Generic[ProjectV2]):
+class OTZSD_ProjectV2_Field(Generic[ProjectV2]):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -3096,7 +3095,7 @@ class FFFAZ_ProjectV2_Field(Generic[ProjectV2]):
 
 
 
-class NCUJT_ProjectConnection_Field(ProjectConnection):
+class LLXOF_ProjectConnection_Field(ProjectConnection):
    class ProjectConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: ProjectOrder
       search: str
@@ -3110,7 +3109,7 @@ class NCUJT_ProjectConnection_Field(ProjectConnection):
 
 
 
-class OXWDH_ProjectV2Connection_Field(ProjectV2Connection):
+class QJXUK_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3123,7 +3122,7 @@ class OXWDH_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class HMQUB_PullRequest_Field(Generic[PullRequest]):
+class HDLMC_PullRequest_Field(Generic[PullRequest]):
    class PullRequestArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -3133,7 +3132,7 @@ class HMQUB_PullRequest_Field(Generic[PullRequest]):
 
 class list_PullRequestTemplate(list, PullRequestTemplate): pass
 
-class PFBUV_PullRequestConnection_Field(Generic[PullRequestConnection]):
+class NOWVN_PullRequestConnection_Field(Generic[PullRequestConnection]):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -3149,7 +3148,7 @@ class PFBUV_PullRequestConnection_Field(Generic[PullRequestConnection]):
 
 
 
-class HKSDH_ProjectV2Connection_Field(ProjectV2Connection):
+class KIZQN_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3160,7 +3159,7 @@ class HKSDH_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class PDUSE_Ref_Field(Generic[Ref]):
+class GHVCI_Ref_Field(Generic[Ref]):
    class RefArgs(GQLArgsSet, GQLObject):
       qualifiedName: NonNull_str
 
@@ -3168,7 +3167,7 @@ class PDUSE_Ref_Field(Generic[Ref]):
 
 
 
-class RCZFW_RefConnection_Field(RefConnection):
+class OMGGK_RefConnection_Field(RefConnection):
    class RefConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       after: str
@@ -3183,7 +3182,7 @@ class RCZFW_RefConnection_Field(RefConnection):
 
 
 
-class KCQQV_Release_Field(Release):
+class BBYFM_Release_Field(Release):
    class ReleaseArgs(GQLArgsSet, GQLObject):
       tagName: NonNull_str
 
@@ -3191,7 +3190,7 @@ class KCQQV_Release_Field(Release):
 
 
 
-class HZWUY_ReleaseConnection_Field(ReleaseConnection):
+class MFVPL_ReleaseConnection_Field(ReleaseConnection):
    class ReleaseConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3203,7 +3202,7 @@ class HZWUY_ReleaseConnection_Field(ReleaseConnection):
 
 
 
-class NICKN_RepositoryTopicConnection_Field(RepositoryTopicConnection):
+class EQYIH_RepositoryTopicConnection_Field(RepositoryTopicConnection):
    class RepositoryTopicConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3214,7 +3213,7 @@ class NICKN_RepositoryTopicConnection_Field(RepositoryTopicConnection):
 
 
 
-class BHDKK_StargazerConnection_Field(StargazerConnection):
+class AHPTQ_StargazerConnection_Field(StargazerConnection):
    class StargazerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3226,7 +3225,7 @@ class BHDKK_StargazerConnection_Field(StargazerConnection):
 
 
 
-class KJJCF_SubmoduleConnection_Field(SubmoduleConnection):
+class DCLUN_SubmoduleConnection_Field(SubmoduleConnection):
    class SubmoduleConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3241,7 +3240,7 @@ class NonNull_RepositoryVulnerabilityAlertState(GQLObject): pass
 
 class NonNull_RepositoryVulnerabilityAlertDependencyScope(GQLObject): pass
 
-class FYPEO_RepositoryVulnerabilityAlertConnection_Field(RepositoryVulnerabilityAlertConnection):
+class CANGU_RepositoryVulnerabilityAlertConnection_Field(RepositoryVulnerabilityAlertConnection):
    class RepositoryVulnerabilityAlertConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3254,7 +3253,7 @@ class FYPEO_RepositoryVulnerabilityAlertConnection_Field(RepositoryVulnerability
 
 
 
-class YMGYF_UserConnection_Field(UserConnection):
+class LWCUG_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3267,32 +3266,32 @@ class YMGYF_UserConnection_Field(UserConnection):
 
 class Repository(GQLObject):
    allowUpdateBranch: bool
-   assignableUsers: ATLLS_UserConnection_Field
+   assignableUsers: PGJJT_UserConnection_Field
    autoMergeAllowed: bool
-   branchProtectionRules: KXWJQ_BranchProtectionRuleConnection_Field
+   branchProtectionRules: TUQEK_BranchProtectionRuleConnection_Field
    codeOfConduct: CodeOfConduct
-   codeowners: YMGNL_RepositoryCodeowners_Field
-   collaborators: ZURLP_RepositoryCollaboratorConnection_Field
-   commitComments: LGPLB_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
+   codeowners: RIJRO_RepositoryCodeowners_Field
+   collaborators: VIIED_RepositoryCollaboratorConnection_Field
+   commitComments: KOLAN_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
    contactLinks: list_RepositoryContactLink[RepositoryContactLink]
    createdAt: DateTime
    databaseId: int
    defaultBranchRef: NewType('Ref', GQLObject) ## Circular Reference for Ref
    deleteBranchOnMerge: bool
-   deployKeys: KIAFE_DeployKeyConnection_Field
-   deployments: FYCBW_DeploymentConnection_Field
+   deployKeys: YGRIE_DeployKeyConnection_Field
+   deployments: QKHPX_DeploymentConnection_Field
    description: str
    descriptionHTML: HTML
-   discussion: FYVDE_Discussion_Field
-   discussionCategories: CKZBX_DiscussionCategoryConnection_Field
-   discussionCategory: UJNXV_DiscussionCategory_Field
-   discussions: YVXKL_DiscussionConnection_Field
+   discussion: EPNUI_Discussion_Field
+   discussionCategories: FUSKN_DiscussionCategoryConnection_Field
+   discussionCategory: SOWZF_DiscussionCategory_Field
+   discussions: AZXFP_DiscussionConnection_Field
    diskUsage: int
-   environment: FBQHB_Environment_Field
-   environments: URDHG_EnvironmentConnection_Field
+   environment: KRHEA_Environment_Field
+   environments: BDKIM_EnvironmentConnection_Field
    forkCount: int
    forkingAllowed: bool
-   forks: SVKWE_RepositoryConnection_Field
+   forks: UMOAT_RepositoryConnection_Field
    fundingLinks: FundingLink
    hasDiscussionsEnabled: bool
    hasIssuesEnabled: bool
@@ -3314,60 +3313,60 @@ class Repository(GQLObject):
    isSecurityPolicyEnabled: bool
    isTemplate: bool
    isUserConfigurationRepository: bool
-   issue: FQSAR_Issue_Field ## Circular Reference for Issue
-   issueOrPullRequest: CIQHN_IssueOrPullRequest_Field
+   issue: YMGHX_Issue_Field ## Circular Reference for Issue
+   issueOrPullRequest: ABHVH_IssueOrPullRequest_Field
    issueTemplates: list_IssueTemplate[IssueTemplate]
-   issues: RXXVR_IssueConnection_Field
-   label: GCXYO_Label_Field
-   labels: TYCAN_LabelConnection_Field
-   languages: DJNGM_LanguageConnection_Field
+   issues: OXDRW_IssueConnection_Field
+   label: KMPHG_Label_Field
+   labels: YLRBB_LabelConnection_Field
+   languages: CBJVM_LanguageConnection_Field
    latestRelease: Release
    licenseInfo: License
    lockReason: RepositoryLockReason
-   mentionableUsers: JHBJD_UserConnection_Field
+   mentionableUsers: OXWAA_UserConnection_Field
    mergeCommitAllowed: bool
    mergeCommitMessage: MergeCommitMessage
    mergeCommitTitle: MergeCommitTitle
-   milestone: MGNMP_Milestone_Field
-   milestones: MFLFB_MilestoneConnection_Field
+   milestone: CPCCU_Milestone_Field
+   milestones: PGPMI_MilestoneConnection_Field
    mirrorUrl: URI
    name: str
    nameWithOwner: str
-   object: RWDOJ_GitObject_Field
+   object: UWBVP_GitObject_Field
    openGraphImageUrl: URI
    owner: RepositoryOwner
-   packages: NLUDN_PackageConnection_Field
+   packages: XCKEE_PackageConnection_Field
    parent: NewType('Repository', GQLObject) ## Circular Reference for Repository
-   pinnedDiscussions: GBEQU_PinnedDiscussionConnection_Field
-   pinnedIssues: XVIQD_PinnedIssueConnection_Field
+   pinnedDiscussions: RWLET_PinnedDiscussionConnection_Field
+   pinnedIssues: UGFTT_PinnedIssueConnection_Field
    primaryLanguage: Language
-   project: NGESH_Project_Field
-   projectV2: FFFAZ_ProjectV2_Field ## Circular Reference for ProjectV2
-   projects: NCUJT_ProjectConnection_Field
+   project: SVXNN_Project_Field
+   projectV2: OTZSD_ProjectV2_Field ## Circular Reference for ProjectV2
+   projects: LLXOF_ProjectConnection_Field
    projectsResourcePath: URI
    projectsUrl: URI
-   projectsV2: OXWDH_ProjectV2Connection_Field
-   pullRequest: HMQUB_PullRequest_Field ## Circular Reference for PullRequest
+   projectsV2: QJXUK_ProjectV2Connection_Field
+   pullRequest: HDLMC_PullRequest_Field ## Circular Reference for PullRequest
    pullRequestTemplates: list_PullRequestTemplate[PullRequestTemplate]
-   pullRequests: PFBUV_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
+   pullRequests: NOWVN_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
    pushedAt: DateTime
    rebaseMergeAllowed: bool
-   recentProjects: HKSDH_ProjectV2Connection_Field
-   ref: PDUSE_Ref_Field ## Circular Reference for Ref
-   refs: RCZFW_RefConnection_Field
-   release: KCQQV_Release_Field
-   releases: HZWUY_ReleaseConnection_Field
-   repositoryTopics: NICKN_RepositoryTopicConnection_Field
+   recentProjects: KIZQN_ProjectV2Connection_Field
+   ref: GHVCI_Ref_Field ## Circular Reference for Ref
+   refs: OMGGK_RefConnection_Field
+   release: BBYFM_Release_Field
+   releases: MFVPL_ReleaseConnection_Field
+   repositoryTopics: EQYIH_RepositoryTopicConnection_Field
    resourcePath: URI
    securityPolicyUrl: URI
-   shortDescriptionHTML: LRQST_HTML_Field
+   shortDescriptionHTML: JSVHZ_HTML_Field
    squashMergeAllowed: bool
    squashMergeCommitMessage: SquashMergeCommitMessage
    squashMergeCommitTitle: SquashMergeCommitTitle
    sshUrl: GitSSHRemote
    stargazerCount: int
-   stargazers: BHDKK_StargazerConnection_Field
-   submodules: KJJCF_SubmoduleConnection_Field
+   stargazers: AHPTQ_StargazerConnection_Field
+   submodules: DCLUN_SubmoduleConnection_Field
    tempCloneToken: str
    templateRepository: NewType('Repository', GQLObject) ## Circular Reference for Repository
    updatedAt: DateTime
@@ -3384,11 +3383,11 @@ class Repository(GQLObject):
    viewerPossibleCommitEmails: list[str]
    viewerSubscription: SubscriptionState
    visibility: RepositoryVisibility
-   vulnerabilityAlerts: FYPEO_RepositoryVulnerabilityAlertConnection_Field
-   watchers: YMGYF_UserConnection_Field
+   vulnerabilityAlerts: CANGU_RepositoryVulnerabilityAlertConnection_Field
+   watchers: LWCUG_UserConnection_Field
    webCommitSignoffRequired: bool
 
-class PPNQC_ReactionConnection_Field(ReactionConnection):
+class WFMJA_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3401,7 +3400,7 @@ class PPNQC_ReactionConnection_Field(ReactionConnection):
 
 
 
-class PNYAH_UserContentEditConnection_Field(UserContentEditConnection):
+class RKBZJ_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3431,12 +3430,12 @@ class IssueComment(GQLObject):
    publishedAt: DateTime
    pullRequest: NewType('PullRequest', GQLObject) ## Circular Reference for PullRequest
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: PPNQC_ReactionConnection_Field
+   reactions: WFMJA_ReactionConnection_Field
    repository: Repository
    resourcePath: URI
    updatedAt: DateTime
    url: URI
-   userContentEdits: PNYAH_UserContentEditConnection_Field
+   userContentEdits: RKBZJ_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanMinimize: bool
    viewerCanReact: bool
@@ -3479,7 +3478,7 @@ class LinkedBranchConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class UVPRP_UserConnection_Field(UserConnection):
+class NGMIZ_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3491,7 +3490,7 @@ class UVPRP_UserConnection_Field(UserConnection):
 
 
 class Assignable(GQLObject):
-   assignees: UVPRP_UserConnection_Field
+   assignees: NGMIZ_UserConnection_Field
 
 class Assignee(GQLObject): 
    pass
@@ -3541,7 +3540,7 @@ class DemilestonedEvent(GQLObject):
    milestoneTitle: str
    subject: MilestoneItem
 
-class IBJMO_LabelConnection_Field(LabelConnection):
+class EQCNX_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: LabelOrder
       after: str
@@ -3554,7 +3553,7 @@ class IBJMO_LabelConnection_Field(LabelConnection):
 
 
 class Labelable(GQLObject):
-   labels: IBJMO_LabelConnection_Field
+   labels: EQCNX_LabelConnection_Field
 
 class LabeledEvent(GQLObject):
    actor: Actor
@@ -3775,7 +3774,7 @@ class IssueTimelineItemsConnection(GQLObject):
    totalCount: int
    updatedAt: DateTime
 
-class WYOGC_UserConnection_Field(UserConnection):
+class WFYCH_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3786,7 +3785,7 @@ class WYOGC_UserConnection_Field(UserConnection):
 
 
 
-class EVIIN_IssueCommentConnection_Field(IssueCommentConnection):
+class KIHBZ_IssueCommentConnection_Field(IssueCommentConnection):
    class IssueCommentConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueCommentOrder
       after: str
@@ -3798,7 +3797,7 @@ class EVIIN_IssueCommentConnection_Field(IssueCommentConnection):
 
 
 
-class HTFVM_Hovercard_Field(Hovercard):
+class OFVZY_Hovercard_Field(Hovercard):
    class HovercardArgs(GQLArgsSet, GQLObject):
       includeNotificationContexts: bool
 
@@ -3806,7 +3805,7 @@ class HTFVM_Hovercard_Field(Hovercard):
 
 
 
-class LCZIB_LabelConnection_Field(LabelConnection):
+class UXIHV_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: LabelOrder
       after: str
@@ -3818,7 +3817,7 @@ class LCZIB_LabelConnection_Field(LabelConnection):
 
 
 
-class JDRQU_LinkedBranchConnection_Field(LinkedBranchConnection):
+class TUIAD_LinkedBranchConnection_Field(LinkedBranchConnection):
    class LinkedBranchConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3829,7 +3828,7 @@ class JDRQU_LinkedBranchConnection_Field(LinkedBranchConnection):
 
 
 
-class IRKHL_UserConnection_Field(UserConnection):
+class IWUSW_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3840,7 +3839,7 @@ class IRKHL_UserConnection_Field(UserConnection):
 
 
 
-class QQEEY_ProjectCardConnection_Field(ProjectCardConnection):
+class ROEMF_ProjectCardConnection_Field(ProjectCardConnection):
    class ProjectCardConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3852,7 +3851,7 @@ class QQEEY_ProjectCardConnection_Field(ProjectCardConnection):
 
 
 
-class LTBLT_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
+class XTYDD_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
    class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject):
       includeArchived: bool
       after: str
@@ -3864,7 +3863,7 @@ class LTBLT_ProjectV2ItemConnection_Field(Generic[ProjectV2ItemConnection]):
 
 
 
-class HPSHE_ProjectV2_Field(Generic[ProjectV2]):
+class VSCZH_ProjectV2_Field(Generic[ProjectV2]):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -3872,7 +3871,7 @@ class HPSHE_ProjectV2_Field(Generic[ProjectV2]):
 
 
 
-class DNOKX_ProjectV2Connection_Field(ProjectV2Connection):
+class RNQOI_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: ProjectV2Order
@@ -3885,7 +3884,7 @@ class DNOKX_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class KDQIG_ReactionConnection_Field(ReactionConnection):
+class IIOXS_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3900,7 +3899,7 @@ class KDQIG_ReactionConnection_Field(ReactionConnection):
 
 class NonNull_IssueTimelineItemsItemType(GQLObject): pass
 
-class BREAH_IssueTimelineItemsConnection_Field(IssueTimelineItemsConnection):
+class OLVDU_IssueTimelineItemsConnection_Field(IssueTimelineItemsConnection):
    class IssueTimelineItemsConnectionArgs(GQLArgsSet, GQLObject):
       since: DateTime
       skip: int
@@ -3914,7 +3913,7 @@ class BREAH_IssueTimelineItemsConnection_Field(IssueTimelineItemsConnection):
 
 
 
-class PRSXU_IssueConnection_Field(IssueConnection):
+class SSGKH_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3925,7 +3924,7 @@ class PRSXU_IssueConnection_Field(IssueConnection):
 
 
 
-class BHALD_IssueConnection_Field(IssueConnection):
+class BWTIH_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3936,7 +3935,7 @@ class BHALD_IssueConnection_Field(IssueConnection):
 
 
 
-class WYHKN_UserContentEditConnection_Field(UserContentEditConnection):
+class AEXVC_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -3949,7 +3948,7 @@ class WYHKN_UserContentEditConnection_Field(UserContentEditConnection):
 
 class Issue(GQLObject):
    activeLockReason: LockReason
-   assignees: WYOGC_UserConnection_Field
+   assignees: WFYCH_UserConnection_Field
    author: Actor
    authorAssociation: CommentAuthorAssociation
    body: str
@@ -3959,43 +3958,43 @@ class Issue(GQLObject):
    bodyUrl: URI
    closed: bool
    closedAt: DateTime
-   comments: EVIIN_IssueCommentConnection_Field
+   comments: KIHBZ_IssueCommentConnection_Field
    createdAt: DateTime
    createdViaEmail: bool
    databaseId: int
    editor: Actor
-   hovercard: HTFVM_Hovercard_Field
+   hovercard: OFVZY_Hovercard_Field
    id: ID
    includesCreatedEdit: bool
    isPinned: bool
    isReadByViewer: bool
-   labels: LCZIB_LabelConnection_Field
+   labels: UXIHV_LabelConnection_Field
    lastEditedAt: DateTime
-   linkedBranches: JDRQU_LinkedBranchConnection_Field
+   linkedBranches: TUIAD_LinkedBranchConnection_Field
    locked: bool
    milestone: Milestone
    number: int
-   participants: IRKHL_UserConnection_Field
-   projectCards: QQEEY_ProjectCardConnection_Field
-   projectItems: LTBLT_ProjectV2ItemConnection_Field ## Circular Reference for ProjectV2ItemConnection
-   projectV2: HPSHE_ProjectV2_Field ## Circular Reference for ProjectV2
-   projectsV2: DNOKX_ProjectV2Connection_Field
+   participants: IWUSW_UserConnection_Field
+   projectCards: ROEMF_ProjectCardConnection_Field
+   projectItems: XTYDD_ProjectV2ItemConnection_Field ## Circular Reference for ProjectV2ItemConnection
+   projectV2: VSCZH_ProjectV2_Field ## Circular Reference for ProjectV2
+   projectsV2: RNQOI_ProjectV2Connection_Field
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: KDQIG_ReactionConnection_Field
+   reactions: IIOXS_ReactionConnection_Field
    repository: Repository
    resourcePath: URI
    state: IssueState
    stateReason: IssueStateReason
-   timelineItems: BREAH_IssueTimelineItemsConnection_Field
+   timelineItems: OLVDU_IssueTimelineItemsConnection_Field
    title: str
    titleHTML: str
-   trackedInIssues: PRSXU_IssueConnection_Field
-   trackedIssues: BHALD_IssueConnection_Field
-   trackedIssuesCount: GKNMZ_trackedIssuesCount_Field
+   trackedInIssues: SSGKH_IssueConnection_Field
+   trackedIssues: BWTIH_IssueConnection_Field
+   trackedIssuesCount: GKPSH_trackedIssuesCount_Field
    updatedAt: DateTime
    url: URI
-   userContentEdits: WYHKN_UserContentEditConnection_Field
+   userContentEdits: AEXVC_UserContentEditConnection_Field
    viewerCanReact: bool
    viewerCanSubscribe: bool
    viewerCanUpdate: bool
@@ -4030,7 +4029,7 @@ class ProjectV2ItemFieldIterationValue(GQLObject):
    titleHTML: str
    updatedAt: DateTime
 
-class UVHDM_LabelConnection_Field(LabelConnection):
+class GLLFX_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4043,7 +4042,7 @@ class UVHDM_LabelConnection_Field(LabelConnection):
 
 class ProjectV2ItemFieldLabelValue(GQLObject):
    field: ProjectV2FieldConfiguration
-   labels: UVHDM_LabelConnection_Field
+   labels: GLLFX_LabelConnection_Field
 
 class ProjectV2ItemFieldMilestoneValue(GQLObject):
    field: ProjectV2FieldConfiguration
@@ -4059,7 +4058,7 @@ class ProjectV2ItemFieldNumberValue(GQLObject):
    number: float
    updatedAt: DateTime
 
-class ACZBB_PullRequestConnection_Field(Generic[PullRequestConnection]):
+class KTIQR_PullRequestConnection_Field(Generic[PullRequestConnection]):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4073,7 +4072,7 @@ class ACZBB_PullRequestConnection_Field(Generic[PullRequestConnection]):
 
 class ProjectV2ItemFieldPullRequestValue(GQLObject):
    field: ProjectV2FieldConfiguration
-   pullRequests: ACZBB_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
+   pullRequests: KTIQR_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
 
 class ProjectV2ItemFieldRepositoryValue(GQLObject):
    field: ProjectV2FieldConfiguration
@@ -4096,7 +4095,7 @@ class RequestedReviewerConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class NOCFY_RequestedReviewerConnection_Field(RequestedReviewerConnection):
+class CKNHX_RequestedReviewerConnection_Field(RequestedReviewerConnection):
    class RequestedReviewerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4109,7 +4108,7 @@ class NOCFY_RequestedReviewerConnection_Field(RequestedReviewerConnection):
 
 class ProjectV2ItemFieldReviewerValue(GQLObject):
    field: ProjectV2FieldConfiguration
-   reviewers: NOCFY_RequestedReviewerConnection_Field
+   reviewers: CKNHX_RequestedReviewerConnection_Field
 
 class ProjectV2ItemFieldSingleSelectValue(GQLObject):
    createdAt: DateTime
@@ -4133,7 +4132,7 @@ class ProjectV2ItemFieldTextValue(GQLObject):
    text: str
    updatedAt: DateTime
 
-class OZZRF_UserConnection_Field(UserConnection):
+class VIQZZ_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4146,7 +4145,7 @@ class OZZRF_UserConnection_Field(UserConnection):
 
 class ProjectV2ItemFieldUserValue(GQLObject):
    field: ProjectV2FieldConfiguration
-   users: OZZRF_UserConnection_Field
+   users: VIQZZ_UserConnection_Field
 
 class ProjectV2ItemFieldValue(GQLObject): 
    pass
@@ -4165,7 +4164,7 @@ class ProjectV2ItemFieldValueConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class JAWUI_ProjectV2ItemFieldValue_Field(ProjectV2ItemFieldValue):
+class NYUNT_ProjectV2ItemFieldValue_Field(ProjectV2ItemFieldValue):
    class ProjectV2ItemFieldValueArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -4173,7 +4172,7 @@ class JAWUI_ProjectV2ItemFieldValue_Field(ProjectV2ItemFieldValue):
 
 
 
-class TYAPM_ProjectV2ItemFieldValueConnection_Field(ProjectV2ItemFieldValueConnection):
+class VMOSM_ProjectV2ItemFieldValueConnection_Field(ProjectV2ItemFieldValueConnection):
    class ProjectV2ItemFieldValueConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4190,8 +4189,8 @@ class ProjectV2Item(GQLObject):
    createdAt: DateTime
    creator: Actor
    databaseId: int
-   fieldValueByName: JAWUI_ProjectV2ItemFieldValue_Field
-   fieldValues: TYAPM_ProjectV2ItemFieldValueConnection_Field
+   fieldValueByName: NYUNT_ProjectV2ItemFieldValue_Field
+   fieldValues: VMOSM_ProjectV2ItemFieldValueConnection_Field
    id: ID
    isArchived: bool
    project: NewType('ProjectV2', GQLObject) ## Circular Reference for ProjectV2
@@ -4212,7 +4211,7 @@ class ProjectV2ItemConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class YIJUA_ProjectV2_Field(Generic[ProjectV2]):
+class BXUMT_ProjectV2_Field(Generic[ProjectV2]):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -4220,7 +4219,7 @@ class YIJUA_ProjectV2_Field(Generic[ProjectV2]):
 
 
 
-class IDZQI_ProjectV2Connection_Field(ProjectV2Connection):
+class AOIUB_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: ProjectV2Order
@@ -4235,8 +4234,8 @@ class IDZQI_ProjectV2Connection_Field(ProjectV2Connection):
 
 class ProjectV2Owner(GQLObject):
    id: ID
-   projectV2: YIJUA_ProjectV2_Field ## Circular Reference for ProjectV2
-   projectsV2: IDZQI_ProjectV2Connection_Field
+   projectV2: BXUMT_ProjectV2_Field ## Circular Reference for ProjectV2
+   projectsV2: AOIUB_ProjectV2Connection_Field
 
 class ProjectV2FieldEdge(GQLObject):
    cursor: str
@@ -4288,7 +4287,7 @@ class ProjectV2SortByFieldConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class CVLMM_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
+class QZZHS_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
    class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4300,7 +4299,7 @@ class CVLMM_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurat
 
 
 
-class SDHAZ_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
+class ZXGRM_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
    class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4312,7 +4311,7 @@ class SDHAZ_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurat
 
 
 
-class JPYBG_ProjectV2SortByFieldConnection_Field(ProjectV2SortByFieldConnection):
+class VCKYJ_ProjectV2SortByFieldConnection_Field(ProjectV2SortByFieldConnection):
    class ProjectV2SortByFieldConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4323,7 +4322,7 @@ class JPYBG_ProjectV2SortByFieldConnection_Field(ProjectV2SortByFieldConnection)
 
 
 
-class EPHXZ_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
+class QXJDM_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
    class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4338,17 +4337,17 @@ class EPHXZ_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurat
 class ProjectV2View(GQLObject):
    createdAt: DateTime
    databaseId: int
-   fields: CVLMM_ProjectV2FieldConfigurationConnection_Field
+   fields: QZZHS_ProjectV2FieldConfigurationConnection_Field
    filter: str
-   groupByFields: SDHAZ_ProjectV2FieldConfigurationConnection_Field
+   groupByFields: ZXGRM_ProjectV2FieldConfigurationConnection_Field
    id: ID
    layout: ProjectV2ViewLayout
    name: str
    number: int
    project: NewType('ProjectV2', GQLObject) ## Circular Reference for ProjectV2
-   sortByFields: JPYBG_ProjectV2SortByFieldConnection_Field
+   sortByFields: VCKYJ_ProjectV2SortByFieldConnection_Field
    updatedAt: DateTime
-   verticalGroupByFields: EPHXZ_ProjectV2FieldConfigurationConnection_Field
+   verticalGroupByFields: QXJDM_ProjectV2FieldConfigurationConnection_Field
 
 class ProjectV2ViewEdge(GQLObject):
    cursor: str
@@ -4364,7 +4363,7 @@ class ProjectV2ViewConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class GFSHD_ProjectV2FieldConfiguration_Field(ProjectV2FieldConfiguration):
+class LBPGK_ProjectV2FieldConfiguration_Field(ProjectV2FieldConfiguration):
    class ProjectV2FieldConfigurationArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -4372,7 +4371,7 @@ class GFSHD_ProjectV2FieldConfiguration_Field(ProjectV2FieldConfiguration):
 
 
 
-class MXWOR_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
+class ECCCS_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurationConnection):
    class ProjectV2FieldConfigurationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4384,7 +4383,7 @@ class MXWOR_ProjectV2FieldConfigurationConnection_Field(ProjectV2FieldConfigurat
 
 
 
-class YMTCA_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
+class MHZBW_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
    class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4396,7 +4395,7 @@ class YMTCA_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
 
 
 
-class BCRYO_RepositoryConnection_Field(RepositoryConnection):
+class ZTOYY_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4408,7 +4407,7 @@ class BCRYO_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class WGOSN_TeamConnection_Field(TeamConnection):
+class PJNSO_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4420,7 +4419,7 @@ class WGOSN_TeamConnection_Field(TeamConnection):
 
 
 
-class ZPLAG_ProjectV2View_Field(ProjectV2View):
+class SATUE_ProjectV2View_Field(ProjectV2View):
    class ProjectV2ViewArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -4428,7 +4427,7 @@ class ZPLAG_ProjectV2View_Field(ProjectV2View):
 
 
 
-class VOUKG_ProjectV2ViewConnection_Field(ProjectV2ViewConnection):
+class HCKUP_ProjectV2ViewConnection_Field(ProjectV2ViewConnection):
    class ProjectV2ViewConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4446,24 +4445,24 @@ class ProjectV2(GQLObject):
    createdAt: DateTime
    creator: Actor
    databaseId: int
-   field: GFSHD_ProjectV2FieldConfiguration_Field
-   fields: MXWOR_ProjectV2FieldConfigurationConnection_Field
+   field: LBPGK_ProjectV2FieldConfiguration_Field
+   fields: ECCCS_ProjectV2FieldConfigurationConnection_Field
    id: ID
-   items: YMTCA_ProjectV2ItemConnection_Field
+   items: MHZBW_ProjectV2ItemConnection_Field
    number: int
    owner: ProjectV2Owner
    public: bool
    readme: str
-   repositories: BCRYO_RepositoryConnection_Field
+   repositories: ZTOYY_RepositoryConnection_Field
    resourcePath: URI
    shortDescription: str
-   teams: WGOSN_TeamConnection_Field
+   teams: PJNSO_TeamConnection_Field
    title: str
    updatedAt: DateTime
    url: URI
-   view: ZPLAG_ProjectV2View_Field
+   view: SATUE_ProjectV2View_Field
    viewerCanUpdate: bool
-   views: VOUKG_ProjectV2ViewConnection_Field
+   views: HCKUP_ProjectV2ViewConnection_Field
 
 class TeamRepositoryEdge(GQLObject):
    cursor: str
@@ -4480,7 +4479,7 @@ class TeamRepositoryConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class NBJVT_TeamConnection_Field(TeamConnection):
+class JCZTA_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4491,7 +4490,7 @@ class NBJVT_TeamConnection_Field(TeamConnection):
 
 
 
-class ORAQX_TeamConnection_Field(TeamConnection):
+class HBTWT_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: TeamOrder
       userLogins: list[NonNull_str]
@@ -4505,7 +4504,7 @@ class ORAQX_TeamConnection_Field(TeamConnection):
 
 
 
-class IHBXU_TeamDiscussion_Field(TeamDiscussion):
+class LJYMG_TeamDiscussion_Field(TeamDiscussion):
    class TeamDiscussionArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -4513,7 +4512,7 @@ class IHBXU_TeamDiscussion_Field(TeamDiscussion):
 
 
 
-class PMJNR_TeamDiscussionConnection_Field(TeamDiscussionConnection):
+class MBMHT_TeamDiscussionConnection_Field(TeamDiscussionConnection):
    class TeamDiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4526,7 +4525,7 @@ class PMJNR_TeamDiscussionConnection_Field(TeamDiscussionConnection):
 
 
 
-class GIVQZ_OrganizationInvitationConnection_Field(OrganizationInvitationConnection):
+class FJKGD_OrganizationInvitationConnection_Field(OrganizationInvitationConnection):
    class OrganizationInvitationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4537,7 +4536,7 @@ class GIVQZ_OrganizationInvitationConnection_Field(OrganizationInvitationConnect
 
 
 
-class SICSY_UserStatusConnection_Field(UserStatusConnection):
+class DFCFY_UserStatusConnection_Field(UserStatusConnection):
    class UserStatusConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4549,7 +4548,7 @@ class SICSY_UserStatusConnection_Field(UserStatusConnection):
 
 
 
-class UZLTU_TeamMemberConnection_Field(TeamMemberConnection):
+class LOSTL_TeamMemberConnection_Field(TeamMemberConnection):
    class TeamMemberConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4564,7 +4563,7 @@ class UZLTU_TeamMemberConnection_Field(TeamMemberConnection):
 
 
 
-class QKZOG_ProjectV2_Field(ProjectV2):
+class VSXPE_ProjectV2_Field(ProjectV2):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -4572,7 +4571,7 @@ class QKZOG_ProjectV2_Field(ProjectV2):
 
 
 
-class RDBUU_ProjectV2Connection_Field(ProjectV2Connection):
+class RLUWE_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4586,7 +4585,7 @@ class RDBUU_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class RFBRP_TeamRepositoryConnection_Field(TeamRepositoryConnection):
+class WDVNZ_TeamRepositoryConnection_Field(TeamRepositoryConnection):
    class TeamRepositoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4600,23 +4599,23 @@ class RFBRP_TeamRepositoryConnection_Field(TeamRepositoryConnection):
 
 
 class Team(GQLObject):
-   ancestors: NBJVT_TeamConnection_Field
-   avatarUrl: TAJTM_URI_Field
-   childTeams: ORAQX_TeamConnection_Field
+   ancestors: JCZTA_TeamConnection_Field
+   avatarUrl: OGGXC_URI_Field
+   childTeams: HBTWT_TeamConnection_Field
    combinedSlug: str
    createdAt: DateTime
    databaseId: int
    description: str
-   discussion: IHBXU_TeamDiscussion_Field
-   discussions: PMJNR_TeamDiscussionConnection_Field
+   discussion: LJYMG_TeamDiscussion_Field
+   discussions: MBMHT_TeamDiscussionConnection_Field
    discussionsResourcePath: URI
    discussionsUrl: URI
    editTeamResourcePath: URI
    editTeamUrl: URI
    id: ID
-   invitations: GIVQZ_OrganizationInvitationConnection_Field
-   memberStatuses: SICSY_UserStatusConnection_Field
-   members: UZLTU_TeamMemberConnection_Field
+   invitations: FJKGD_OrganizationInvitationConnection_Field
+   memberStatuses: DFCFY_UserStatusConnection_Field
+   members: LOSTL_TeamMemberConnection_Field
    membersResourcePath: URI
    membersUrl: URI
    name: str
@@ -4625,9 +4624,9 @@ class Team(GQLObject):
    organization: NewType('Organization', GQLObject) ## Circular Reference for Organization
    parentTeam: NewType('Team', GQLObject) ## Circular Reference for Team
    privacy: TeamPrivacy
-   projectV2: QKZOG_ProjectV2_Field
-   projectsV2: RDBUU_ProjectV2Connection_Field
-   repositories: RFBRP_TeamRepositoryConnection_Field
+   projectV2: VSXPE_ProjectV2_Field
+   projectsV2: RLUWE_ProjectV2Connection_Field
+   repositories: WDVNZ_TeamRepositoryConnection_Field
    repositoriesResourcePath: URI
    repositoriesUrl: URI
    resourcePath: URI
@@ -4729,7 +4728,7 @@ class ReviewDismissalAllowanceConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class MOCSQ_BranchProtectionRuleConflictConnection_Field(BranchProtectionRuleConflictConnection):
+class NVGEL_BranchProtectionRuleConflictConnection_Field(BranchProtectionRuleConflictConnection):
    class BranchProtectionRuleConflictConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4740,7 +4739,7 @@ class MOCSQ_BranchProtectionRuleConflictConnection_Field(BranchProtectionRuleCon
 
 
 
-class OXQJF_BypassForcePushAllowanceConnection_Field(BypassForcePushAllowanceConnection):
+class SVXWP_BypassForcePushAllowanceConnection_Field(BypassForcePushAllowanceConnection):
    class BypassForcePushAllowanceConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4751,7 +4750,7 @@ class OXQJF_BypassForcePushAllowanceConnection_Field(BypassForcePushAllowanceCon
 
 
 
-class TVMSM_BypassPullRequestAllowanceConnection_Field(BypassPullRequestAllowanceConnection):
+class KVJLU_BypassPullRequestAllowanceConnection_Field(BypassPullRequestAllowanceConnection):
    class BypassPullRequestAllowanceConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4762,7 +4761,7 @@ class TVMSM_BypassPullRequestAllowanceConnection_Field(BypassPullRequestAllowanc
 
 
 
-class WYGOI_RefConnection_Field(RefConnection):
+class LXZBZ_RefConnection_Field(RefConnection):
    class RefConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       after: str
@@ -4774,7 +4773,7 @@ class WYGOI_RefConnection_Field(RefConnection):
 
 
 
-class TVDEC_PushAllowanceConnection_Field(PushAllowanceConnection):
+class YOPMH_PushAllowanceConnection_Field(PushAllowanceConnection):
    class PushAllowanceConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4787,7 +4786,7 @@ class TVDEC_PushAllowanceConnection_Field(PushAllowanceConnection):
 
 class list_RequiredStatusCheckDescription(list, RequiredStatusCheckDescription): pass
 
-class TZEEA_ReviewDismissalAllowanceConnection_Field(ReviewDismissalAllowanceConnection):
+class LPQMP_ReviewDismissalAllowanceConnection_Field(ReviewDismissalAllowanceConnection):
    class ReviewDismissalAllowanceConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4802,9 +4801,9 @@ class BranchProtectionRule(GQLObject):
    allowsDeletions: bool
    allowsForcePushes: bool
    blocksCreations: bool
-   branchProtectionRuleConflicts: MOCSQ_BranchProtectionRuleConflictConnection_Field
-   bypassForcePushAllowances: OXQJF_BypassForcePushAllowanceConnection_Field
-   bypassPullRequestAllowances: TVMSM_BypassPullRequestAllowanceConnection_Field
+   branchProtectionRuleConflicts: NVGEL_BranchProtectionRuleConflictConnection_Field
+   bypassForcePushAllowances: SVXWP_BypassForcePushAllowanceConnection_Field
+   bypassPullRequestAllowances: KVJLU_BypassPullRequestAllowanceConnection_Field
    creator: Actor
    databaseId: int
    dismissesStaleReviews: bool
@@ -4812,9 +4811,9 @@ class BranchProtectionRule(GQLObject):
    isAdminEnforced: bool
    lockAllowsFetchAndMerge: bool
    lockBranch: bool
-   matchingRefs: WYGOI_RefConnection_Field
+   matchingRefs: LXZBZ_RefConnection_Field
    pattern: str
-   pushAllowances: TVDEC_PushAllowanceConnection_Field
+   pushAllowances: YOPMH_PushAllowanceConnection_Field
    repository: Repository
    requireLastPushApproval: bool
    requiredApprovingReviewCount: int
@@ -4829,7 +4828,7 @@ class BranchProtectionRule(GQLObject):
    requiresStrictStatusChecks: bool
    restrictsPushes: bool
    restrictsReviewDismissals: bool
-   reviewDismissalAllowances: TZEEA_ReviewDismissalAllowanceConnection_Field
+   reviewDismissalAllowances: LPQMP_ReviewDismissalAllowanceConnection_Field
 
 class CommitEdge(GQLObject):
    cursor: str
@@ -4844,7 +4843,7 @@ class ComparisonCommitConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class FCFZW_ComparisonCommitConnection_Field(ComparisonCommitConnection):
+class FBWWR_ComparisonCommitConnection_Field(ComparisonCommitConnection):
    class ComparisonCommitConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4859,12 +4858,12 @@ class Comparison(GQLObject):
    aheadBy: int
    baseTarget: GitObject
    behindBy: int
-   commits: FCFZW_ComparisonCommitConnection_Field
+   commits: FBWWR_ComparisonCommitConnection_Field
    headTarget: GitObject
    id: ID
    status: ComparisonStatus
 
-class DNMRB_PullRequestConnection_Field(Generic[PullRequestConnection]):
+class NUMHH_PullRequestConnection_Field(Generic[PullRequestConnection]):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -4880,7 +4879,7 @@ class DNMRB_PullRequestConnection_Field(Generic[PullRequestConnection]):
 
 
 
-class HEKRL_Comparison_Field(Comparison):
+class CFIEI_Comparison_Field(Comparison):
    class ComparisonArgs(GQLArgsSet, GQLObject):
       headRef: NonNull_str
 
@@ -4889,9 +4888,9 @@ class HEKRL_Comparison_Field(Comparison):
 
 
 class Ref(GQLObject):
-   associatedPullRequests: DNMRB_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
+   associatedPullRequests: NUMHH_PullRequestConnection_Field ## Circular Reference for PullRequestConnection
    branchProtectionRule: BranchProtectionRule
-   compare: HEKRL_Comparison_Field
+   compare: CFIEI_Comparison_Field
    id: ID
    name: str
    prefix: str
@@ -4934,7 +4933,7 @@ class PullRequestChangedFileConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class MNXTI_ReactionConnection_Field(ReactionConnection):
+class BLFIW_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4947,7 +4946,7 @@ class MNXTI_ReactionConnection_Field(ReactionConnection):
 
 
 
-class LEDAE_UserContentEditConnection_Field(UserContentEditConnection):
+class WFONC_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -4985,14 +4984,14 @@ class PullRequestReviewComment(GQLObject):
    pullRequest: NewType('PullRequest', GQLObject) ## Circular Reference for PullRequest
    pullRequestReview: NewType('PullRequestReview', GQLObject) ## Circular Reference for PullRequestReview
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: MNXTI_ReactionConnection_Field
+   reactions: BLFIW_ReactionConnection_Field
    replyTo: NewType('PullRequestReviewComment', GQLObject) ## Circular Reference for PullRequestReviewComment
    repository: Repository
    resourcePath: URI
    state: PullRequestReviewCommentState
    updatedAt: DateTime
    url: URI
-   userContentEdits: LEDAE_UserContentEditConnection_Field
+   userContentEdits: WFONC_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanMinimize: bool
    viewerCanReact: bool
@@ -5014,7 +5013,7 @@ class PullRequestReviewCommentConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class RTOCA_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
+class CEJXO_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
    class PullRequestReviewCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5025,7 +5024,7 @@ class RTOCA_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentCon
 
 
 
-class KJESP_TeamConnection_Field(TeamConnection):
+class KKIMB_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5036,7 +5035,7 @@ class KJESP_TeamConnection_Field(TeamConnection):
 
 
 
-class AKGXV_ReactionConnection_Field(ReactionConnection):
+class HRSQL_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5049,7 +5048,7 @@ class AKGXV_ReactionConnection_Field(ReactionConnection):
 
 
 
-class OVWNR_UserContentEditConnection_Field(UserContentEditConnection):
+class DJFMV_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5067,7 +5066,7 @@ class PullRequestReview(GQLObject):
    body: str
    bodyHTML: HTML
    bodyText: str
-   comments: RTOCA_PullRequestReviewCommentConnection_Field
+   comments: CEJXO_PullRequestReviewCommentConnection_Field
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
    createdAt: DateTime
    createdViaEmail: bool
@@ -5076,18 +5075,18 @@ class PullRequestReview(GQLObject):
    id: ID
    includesCreatedEdit: bool
    lastEditedAt: DateTime
-   onBehalfOf: KJESP_TeamConnection_Field
+   onBehalfOf: KKIMB_TeamConnection_Field
    publishedAt: DateTime
    pullRequest: NewType('PullRequest', GQLObject) ## Circular Reference for PullRequest
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: AKGXV_ReactionConnection_Field
+   reactions: HRSQL_ReactionConnection_Field
    repository: Repository
    resourcePath: URI
    state: PullRequestReviewState
    submittedAt: DateTime
    updatedAt: DateTime
    url: URI
-   userContentEdits: OVWNR_UserContentEditConnection_Field
+   userContentEdits: DJFMV_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanReact: bool
    viewerCanUpdate: bool
@@ -5129,7 +5128,7 @@ class ReviewRequestConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class TARBY_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
+class NNRLQ_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
    class PullRequestReviewCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5142,7 +5141,7 @@ class TARBY_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentCon
 
 
 class PullRequestReviewThread(GQLObject):
-   comments: TARBY_PullRequestReviewCommentConnection_Field
+   comments: NNRLQ_PullRequestReviewCommentConnection_Field
    diffSide: DiffSide
    id: ID
    isCollapsed: bool
@@ -5196,7 +5195,7 @@ class BaseRefForcePushedEvent(GQLObject):
    pullRequest: NewType('PullRequest', GQLObject) ## Circular Reference for PullRequest
    ref: Ref
 
-class BLZPC_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
+class RMGAI_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
    class CommitCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5208,7 +5207,7 @@ class BLZPC_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
 
 
 class CommitCommentThread(GQLObject):
-   comments: BLZPC_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
+   comments: RMGAI_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
    id: ID
    path: str
@@ -5373,7 +5372,7 @@ class ConvertToDraftEvent(GQLObject):
    resourcePath: URI
    url: URI
 
-class GDYJX_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
+class MNGZQ_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
    class CommitCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5385,7 +5384,7 @@ class GDYJX_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
 
 
 class PullRequestCommitCommentThread(GQLObject):
-   comments: GDYJX_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
+   comments: MNGZQ_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
    id: ID
    path: str
@@ -5426,7 +5425,7 @@ class PullRequestTimelineItemsConnection(GQLObject):
    totalCount: int
    updatedAt: DateTime
 
-class KSVEB_UserConnection_Field(UserConnection):
+class HCPOK_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5437,7 +5436,7 @@ class KSVEB_UserConnection_Field(UserConnection):
 
 
 
-class RQNWT_IssueConnection_Field(IssueConnection):
+class AZBUG_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       userLinkedOnly: bool
       after: str
@@ -5450,7 +5449,7 @@ class RQNWT_IssueConnection_Field(IssueConnection):
 
 
 
-class GHLWN_IssueCommentConnection_Field(IssueCommentConnection):
+class UDFWI_IssueCommentConnection_Field(IssueCommentConnection):
    class IssueCommentConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueCommentOrder
       after: str
@@ -5462,7 +5461,7 @@ class GHLWN_IssueCommentConnection_Field(IssueCommentConnection):
 
 
 
-class FTAHL_PullRequestCommitConnection_Field(PullRequestCommitConnection):
+class ZGRNO_PullRequestCommitConnection_Field(PullRequestCommitConnection):
    class PullRequestCommitConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5473,7 +5472,7 @@ class FTAHL_PullRequestCommitConnection_Field(PullRequestCommitConnection):
 
 
 
-class EEYEB_PullRequestChangedFileConnection_Field(PullRequestChangedFileConnection):
+class LPYPF_PullRequestChangedFileConnection_Field(PullRequestChangedFileConnection):
    class PullRequestChangedFileConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5484,7 +5483,7 @@ class EEYEB_PullRequestChangedFileConnection_Field(PullRequestChangedFileConnect
 
 
 
-class GYCDI_Hovercard_Field(Hovercard):
+class XUBDA_Hovercard_Field(Hovercard):
    class HovercardArgs(GQLArgsSet, GQLObject):
       includeNotificationContexts: bool
 
@@ -5492,7 +5491,7 @@ class GYCDI_Hovercard_Field(Hovercard):
 
 
 
-class QQBMI_LabelConnection_Field(LabelConnection):
+class FCQGH_LabelConnection_Field(LabelConnection):
    class LabelConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: LabelOrder
       after: str
@@ -5504,7 +5503,7 @@ class QQBMI_LabelConnection_Field(LabelConnection):
 
 
 
-class ZODCZ_PullRequestReviewConnection_Field(PullRequestReviewConnection):
+class DHJKY_PullRequestReviewConnection_Field(PullRequestReviewConnection):
    class PullRequestReviewConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5516,7 +5515,7 @@ class ZODCZ_PullRequestReviewConnection_Field(PullRequestReviewConnection):
 
 
 
-class HJSUE_PullRequestReviewConnection_Field(PullRequestReviewConnection):
+class VHKTE_PullRequestReviewConnection_Field(PullRequestReviewConnection):
    class PullRequestReviewConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5527,7 +5526,7 @@ class HJSUE_PullRequestReviewConnection_Field(PullRequestReviewConnection):
 
 
 
-class QYTER_UserConnection_Field(UserConnection):
+class MUVEP_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5538,7 +5537,7 @@ class QYTER_UserConnection_Field(UserConnection):
 
 
 
-class VFXZW_ProjectCardConnection_Field(ProjectCardConnection):
+class AEGRJ_ProjectCardConnection_Field(ProjectCardConnection):
    class ProjectCardConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5550,7 +5549,7 @@ class VFXZW_ProjectCardConnection_Field(ProjectCardConnection):
 
 
 
-class LRRII_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
+class PAIUQ_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
    class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject):
       includeArchived: bool
       after: str
@@ -5562,7 +5561,7 @@ class LRRII_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
 
 
 
-class RIZTB_ProjectV2_Field(ProjectV2):
+class FJFGT_ProjectV2_Field(ProjectV2):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -5570,7 +5569,7 @@ class RIZTB_ProjectV2_Field(ProjectV2):
 
 
 
-class FPOXK_ProjectV2Connection_Field(ProjectV2Connection):
+class YFBGX_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: ProjectV2Order
@@ -5583,7 +5582,7 @@ class FPOXK_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class JHUGT_ReactionConnection_Field(ReactionConnection):
+class EWNXU_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5596,7 +5595,7 @@ class JHUGT_ReactionConnection_Field(ReactionConnection):
 
 
 
-class DYSID_ReviewRequestConnection_Field(ReviewRequestConnection):
+class AOLPW_ReviewRequestConnection_Field(ReviewRequestConnection):
    class ReviewRequestConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5607,7 +5606,7 @@ class DYSID_ReviewRequestConnection_Field(ReviewRequestConnection):
 
 
 
-class IJKNU_PullRequestReviewThreadConnection_Field(PullRequestReviewThreadConnection):
+class JJCUH_PullRequestReviewThreadConnection_Field(PullRequestReviewThreadConnection):
    class PullRequestReviewThreadConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5620,7 +5619,7 @@ class IJKNU_PullRequestReviewThreadConnection_Field(PullRequestReviewThreadConne
 
 class NonNull_PullRequestReviewState(GQLObject): pass
 
-class JTRJY_PullRequestReviewConnection_Field(PullRequestReviewConnection):
+class WRQHV_PullRequestReviewConnection_Field(PullRequestReviewConnection):
    class PullRequestReviewConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5635,7 +5634,7 @@ class JTRJY_PullRequestReviewConnection_Field(PullRequestReviewConnection):
 
 class NonNull_PullRequestTimelineItemsItemType(GQLObject): pass
 
-class OJHKV_PullRequestTimelineItemsConnection_Field(PullRequestTimelineItemsConnection):
+class PFNJC_PullRequestTimelineItemsConnection_Field(PullRequestTimelineItemsConnection):
    class PullRequestTimelineItemsConnectionArgs(GQLArgsSet, GQLObject):
       since: DateTime
       skip: int
@@ -5649,7 +5648,7 @@ class OJHKV_PullRequestTimelineItemsConnection_Field(PullRequestTimelineItemsCon
 
 
 
-class KTQFL_UserContentEditConnection_Field(UserContentEditConnection):
+class AKNYQ_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5663,7 +5662,7 @@ class KTQFL_UserContentEditConnection_Field(UserContentEditConnection):
 class PullRequest(GQLObject):
    activeLockReason: LockReason
    additions: int
-   assignees: KSVEB_UserConnection_Field
+   assignees: HCPOK_UserConnection_Field
    author: Actor
    authorAssociation: CommentAuthorAssociation
    autoMergeRequest: AutoMergeRequest
@@ -5679,30 +5678,30 @@ class PullRequest(GQLObject):
    checksUrl: URI
    closed: bool
    closedAt: DateTime
-   closingIssuesReferences: RQNWT_IssueConnection_Field
-   comments: GHLWN_IssueCommentConnection_Field
-   commits: FTAHL_PullRequestCommitConnection_Field
+   closingIssuesReferences: AZBUG_IssueConnection_Field
+   comments: UDFWI_IssueCommentConnection_Field
+   commits: ZGRNO_PullRequestCommitConnection_Field
    createdAt: DateTime
    createdViaEmail: bool
    databaseId: int
    deletions: int
    editor: Actor
-   files: EEYEB_PullRequestChangedFileConnection_Field
+   files: LPYPF_PullRequestChangedFileConnection_Field
    headRef: Ref
    headRefName: str
    headRefOid: GitObjectID
    headRepository: Repository
    headRepositoryOwner: RepositoryOwner
-   hovercard: GYCDI_Hovercard_Field
+   hovercard: XUBDA_Hovercard_Field
    id: ID
    includesCreatedEdit: bool
    isCrossRepository: bool
    isDraft: bool
    isReadByViewer: bool
-   labels: QQBMI_LabelConnection_Field
+   labels: FCQGH_LabelConnection_Field
    lastEditedAt: DateTime
-   latestOpinionatedReviews: ZODCZ_PullRequestReviewConnection_Field
-   latestReviews: HJSUE_PullRequestReviewConnection_Field
+   latestOpinionatedReviews: DHJKY_PullRequestReviewConnection_Field
+   latestReviews: VHKTE_PullRequestReviewConnection_Field
    locked: bool
    maintainerCanModify: bool
    mergeCommit: NewType('Commit', GQLObject) ## Circular Reference for Commit
@@ -5712,33 +5711,33 @@ class PullRequest(GQLObject):
    mergedBy: Actor
    milestone: Milestone
    number: int
-   participants: QYTER_UserConnection_Field
+   participants: MUVEP_UserConnection_Field
    permalink: URI
    potentialMergeCommit: NewType('Commit', GQLObject) ## Circular Reference for Commit
-   projectCards: VFXZW_ProjectCardConnection_Field
-   projectItems: LRRII_ProjectV2ItemConnection_Field
-   projectV2: RIZTB_ProjectV2_Field
-   projectsV2: FPOXK_ProjectV2Connection_Field
+   projectCards: AEGRJ_ProjectCardConnection_Field
+   projectItems: PAIUQ_ProjectV2ItemConnection_Field
+   projectV2: FJFGT_ProjectV2_Field
+   projectsV2: YFBGX_ProjectV2Connection_Field
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: JHUGT_ReactionConnection_Field
+   reactions: EWNXU_ReactionConnection_Field
    repository: Repository
    resourcePath: URI
    revertResourcePath: URI
    revertUrl: URI
    reviewDecision: PullRequestReviewDecision
-   reviewRequests: DYSID_ReviewRequestConnection_Field
-   reviewThreads: IJKNU_PullRequestReviewThreadConnection_Field
-   reviews: JTRJY_PullRequestReviewConnection_Field
+   reviewRequests: AOLPW_ReviewRequestConnection_Field
+   reviewThreads: JJCUH_PullRequestReviewThreadConnection_Field
+   reviews: WRQHV_PullRequestReviewConnection_Field
    state: PullRequestState
    suggestedReviewers: SuggestedReviewer
-   timelineItems: OJHKV_PullRequestTimelineItemsConnection_Field
+   timelineItems: PFNJC_PullRequestTimelineItemsConnection_Field
    title: str
    titleHTML: HTML
    totalCommentsCount: int
    updatedAt: DateTime
    url: URI
-   userContentEdits: KTQFL_UserContentEditConnection_Field
+   userContentEdits: AKNYQ_UserContentEditConnection_Field
    viewerCanApplySuggestion: bool
    viewerCanDeleteHeadRef: bool
    viewerCanDisableAutoMerge: bool
@@ -5752,8 +5751,8 @@ class PullRequest(GQLObject):
    viewerDidAuthor: bool
    viewerLatestReview: PullRequestReview
    viewerLatestReviewRequest: ReviewRequest
-   viewerMergeBodyText: ULLSC_viewerMergeBodyText_Field
-   viewerMergeHeadlineText: QNEME_viewerMergeHeadlineText_Field
+   viewerMergeBodyText: JUTMB_viewerMergeBodyText_Field
+   viewerMergeHeadlineText: ZQSSH_viewerMergeHeadlineText_Field
    viewerSubscription: SubscriptionState
 
 class PullRequestEdge(GQLObject):
@@ -5771,7 +5770,7 @@ class PullRequestConnection(GQLObject):
    totalCount: int
 
 class GitActor(GQLObject):
-   avatarUrl: LHKDV_URI_Field
+   avatarUrl: FDWKE_URI_Field
    date: GitTimestamp
    email: str
    name: str
@@ -5878,7 +5877,7 @@ class CheckAnnotationConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class HHUJB_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
+class CZEAF_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
    class DeploymentReviewerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5892,7 +5891,7 @@ class HHUJB_DeploymentReviewerConnection_Field(DeploymentReviewerConnection):
 class DeploymentRequest(GQLObject):
    currentUserCanApprove: bool
    environment: Environment
-   reviewers: HHUJB_DeploymentReviewerConnection_Field
+   reviewers: CZEAF_DeploymentReviewerConnection_Field
    waitTimer: int
    waitTimerStartedAt: DateTime
 
@@ -5910,7 +5909,7 @@ class CheckStepConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class CVMMT_CheckAnnotationConnection_Field(CheckAnnotationConnection):
+class FWEEE_CheckAnnotationConnection_Field(CheckAnnotationConnection):
    class CheckAnnotationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5921,7 +5920,7 @@ class CVMMT_CheckAnnotationConnection_Field(CheckAnnotationConnection):
 
 
 
-class DIUDG_CheckStepConnection_Field(CheckStepConnection):
+class ZDGGO_CheckStepConnection_Field(CheckStepConnection):
    class CheckStepConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -5934,7 +5933,7 @@ class DIUDG_CheckStepConnection_Field(CheckStepConnection):
 
 
 class CheckRun(GQLObject):
-   annotations: CVMMT_CheckAnnotationConnection_Field
+   annotations: FWEEE_CheckAnnotationConnection_Field
    checkSuite: NewType('CheckSuite', GQLObject) ## Circular Reference for CheckSuite
    completedAt: DateTime
    conclusion: CheckConclusionState
@@ -5943,7 +5942,7 @@ class CheckRun(GQLObject):
    detailsUrl: URI
    externalId: str
    id: ID
-   isRequired: QBHRC_isRequired_Field
+   isRequired: SDQUK_isRequired_Field
    name: str
    pendingDeploymentRequest: DeploymentRequest
    permalink: URI
@@ -5951,21 +5950,21 @@ class CheckRun(GQLObject):
    resourcePath: URI
    startedAt: DateTime
    status: CheckStatusState
-   steps: DIUDG_CheckStepConnection_Field
+   steps: ZDGGO_CheckStepConnection_Field
    summary: str
    text: str
    title: str
    url: URI
 
 class StatusContext(GQLObject):
-   avatarUrl: LNEYZ_URI_Field
+   avatarUrl: BGIJX_URI_Field
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
    context: str
    createdAt: DateTime
    creator: Actor
    description: str
    id: ID
-   isRequired: JVVIJ_isRequired_Field
+   isRequired: YIPUF_isRequired_Field
    state: StatusState
    targetUrl: URI
 
@@ -5994,7 +5993,7 @@ class StatusCheckRollupContextConnection(GQLObject):
    statusContextCountsByState: list_StatusContextStateCount[StatusContextStateCount]
    totalCount: int
 
-class WXXRA_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextConnection):
+class NKXOH_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextConnection):
    class StatusCheckRollupContextConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6005,7 +6004,7 @@ class WXXRA_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextCon
 
 
 
-class DLDBD_StatusContext_Field(StatusContext):
+class LFDCG_StatusContext_Field(StatusContext):
    class StatusContextArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -6014,14 +6013,14 @@ class DLDBD_StatusContext_Field(StatusContext):
 
 
 class Status(GQLObject):
-   combinedContexts: WXXRA_StatusCheckRollupContextConnection_Field
+   combinedContexts: NKXOH_StatusCheckRollupContextConnection_Field
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
-   context: DLDBD_StatusContext_Field
+   context: LFDCG_StatusContext_Field
    contexts: StatusContext
    id: ID
    state: StatusState
 
-class IKXML_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextConnection):
+class BBALG_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextConnection):
    class StatusCheckRollupContextConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6034,7 +6033,7 @@ class IKXML_StatusCheckRollupContextConnection_Field(StatusCheckRollupContextCon
 
 class StatusCheckRollup(GQLObject):
    commit: NewType('Commit', GQLObject) ## Circular Reference for Commit
-   contexts: IKXML_StatusCheckRollupContextConnection_Field
+   contexts: BBALG_StatusCheckRollupContextConnection_Field
    id: ID
    state: StatusState
 
@@ -6049,7 +6048,7 @@ class Tree(GQLObject):
    oid: GitObjectID
    repository: Repository
 
-class KNSJI_PullRequestConnection_Field(PullRequestConnection):
+class QKRYA_PullRequestConnection_Field(PullRequestConnection):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6061,7 +6060,7 @@ class KNSJI_PullRequestConnection_Field(PullRequestConnection):
 
 
 
-class ERAPK_GitActorConnection_Field(GitActorConnection):
+class RTADD_GitActorConnection_Field(GitActorConnection):
    class GitActorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6072,7 +6071,7 @@ class ERAPK_GitActorConnection_Field(GitActorConnection):
 
 
 
-class YVQTR_Blame_Field(Blame):
+class TDLPX_Blame_Field(Blame):
    class BlameArgs(GQLArgsSet, GQLObject):
       path: NonNull_str
 
@@ -6080,7 +6079,7 @@ class YVQTR_Blame_Field(Blame):
 
 
 
-class QWKCQ_CheckSuiteConnection_Field(CheckSuiteConnection):
+class ZBSTK_CheckSuiteConnection_Field(CheckSuiteConnection):
    class CheckSuiteConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6092,7 +6091,7 @@ class QWKCQ_CheckSuiteConnection_Field(CheckSuiteConnection):
 
 
 
-class IFFLO_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
+class VQKIN_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
    class CommitCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6103,7 +6102,7 @@ class IFFLO_CommitCommentConnection_Field(Generic[CommitCommentConnection]):
 
 
 
-class CIRXU_DeploymentConnection_Field(DeploymentConnection):
+class RIZSP_DeploymentConnection_Field(DeploymentConnection):
    class DeploymentConnectionArgs(GQLArgsSet, GQLObject):
       environments: list[NonNull_str]
       orderBy: DeploymentOrder
@@ -6116,7 +6115,7 @@ class CIRXU_DeploymentConnection_Field(DeploymentConnection):
 
 
 
-class HBSRF_TreeEntry_Field(TreeEntry):
+class QFFBA_TreeEntry_Field(TreeEntry):
    class TreeEntryArgs(GQLArgsSet, GQLObject):
       path: NonNull_str
 
@@ -6124,7 +6123,7 @@ class HBSRF_TreeEntry_Field(TreeEntry):
 
 
 
-class JKZWE_CommitHistoryConnection_Field(CommitHistoryConnection):
+class WHLAG_CommitHistoryConnection_Field(CommitHistoryConnection):
    class CommitHistoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6139,7 +6138,7 @@ class JKZWE_CommitHistoryConnection_Field(CommitHistoryConnection):
 
 
 
-class EXEZT_CommitConnection_Field(CommitConnection):
+class BMVHK_CommitConnection_Field(CommitConnection):
    class CommitConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6150,7 +6149,7 @@ class EXEZT_CommitConnection_Field(CommitConnection):
 
 
 
-class UXESY_SubmoduleConnection_Field(SubmoduleConnection):
+class CJWSG_SubmoduleConnection_Field(SubmoduleConnection):
    class SubmoduleConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6164,24 +6163,24 @@ class UXESY_SubmoduleConnection_Field(SubmoduleConnection):
 class Commit(GQLObject):
    abbreviatedOid: str
    additions: int
-   associatedPullRequests: KNSJI_PullRequestConnection_Field
+   associatedPullRequests: QKRYA_PullRequestConnection_Field
    author: GitActor
    authoredByCommitter: bool
    authoredDate: DateTime
-   authors: ERAPK_GitActorConnection_Field
-   blame: YVQTR_Blame_Field
+   authors: RTADD_GitActorConnection_Field
+   blame: TDLPX_Blame_Field
    changedFilesIfAvailable: int
-   checkSuites: QWKCQ_CheckSuiteConnection_Field
-   comments: IFFLO_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
+   checkSuites: ZBSTK_CheckSuiteConnection_Field
+   comments: VQKIN_CommitCommentConnection_Field ## Circular Reference for CommitCommentConnection
    commitResourcePath: URI
    commitUrl: URI
    committedDate: DateTime
    committedViaWeb: bool
    committer: GitActor
    deletions: int
-   deployments: CIRXU_DeploymentConnection_Field
-   file: HBSRF_TreeEntry_Field
-   history: JKZWE_CommitHistoryConnection_Field
+   deployments: RIZSP_DeploymentConnection_Field
+   file: QFFBA_TreeEntry_Field
+   history: WHLAG_CommitHistoryConnection_Field
    id: ID
    message: str
    messageBody: str
@@ -6190,14 +6189,14 @@ class Commit(GQLObject):
    messageHeadlineHTML: HTML
    oid: GitObjectID
    onBehalfOf: NewType('Organization', GQLObject) ## Circular Reference for Organization
-   parents: EXEZT_CommitConnection_Field
+   parents: BMVHK_CommitConnection_Field
    pushedDate: DateTime
    repository: Repository
    resourcePath: URI
    signature: GitSignature
    status: Status
    statusCheckRollup: StatusCheckRollup
-   submodules: UXESY_SubmoduleConnection_Field
+   submodules: CJWSG_SubmoduleConnection_Field
    tarballUrl: URI
    tree: Tree
    treeResourcePath: URI
@@ -6207,7 +6206,7 @@ class Commit(GQLObject):
    viewerSubscription: SubscriptionState
    zipballUrl: URI
 
-class FMMQT_ReactionConnection_Field(ReactionConnection):
+class CJOIA_ReactionConnection_Field(ReactionConnection):
    class ReactionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6220,7 +6219,7 @@ class FMMQT_ReactionConnection_Field(ReactionConnection):
 
 
 
-class RVFYB_UserContentEditConnection_Field(UserContentEditConnection):
+class HHGYR_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6251,12 +6250,12 @@ class CommitComment(GQLObject):
    position: int
    publishedAt: DateTime
    reactionGroups: list_ReactionGroup[ReactionGroup]
-   reactions: FMMQT_ReactionConnection_Field
+   reactions: CJOIA_ReactionConnection_Field
    repository: Repository
    resourcePath: URI
    updatedAt: DateTime
    url: URI
-   userContentEdits: RVFYB_UserContentEditConnection_Field
+   userContentEdits: HHGYR_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanMinimize: bool
    viewerCanReact: bool
@@ -6301,7 +6300,7 @@ class CreatedCommitContributionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class DVQQS_CreatedCommitContributionConnection_Field(CreatedCommitContributionConnection):
+class LEAHL_CreatedCommitContributionConnection_Field(CreatedCommitContributionConnection):
    class CreatedCommitContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6314,7 +6313,7 @@ class DVQQS_CreatedCommitContributionConnection_Field(CreatedCommitContributionC
 
 
 class CommitContributionsByRepository(GQLObject):
-   contributions: DVQQS_CreatedCommitContributionConnection_Field
+   contributions: LEAHL_CreatedCommitContributionConnection_Field
    repository: Repository
    resourcePath: URI
    url: URI
@@ -6384,7 +6383,7 @@ class CreatedIssueContributionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class QEAVJ_CreatedIssueContributionConnection_Field(CreatedIssueContributionConnection):
+class PWLGA_CreatedIssueContributionConnection_Field(CreatedIssueContributionConnection):
    class CreatedIssueContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6397,7 +6396,7 @@ class QEAVJ_CreatedIssueContributionConnection_Field(CreatedIssueContributionCon
 
 
 class IssueContributionsByRepository(GQLObject):
-   contributions: QEAVJ_CreatedIssueContributionConnection_Field
+   contributions: PWLGA_CreatedIssueContributionConnection_Field
    repository: Repository
 
 class JoinedGitHubContribution(GQLObject):
@@ -6421,7 +6420,7 @@ class CreatedPullRequestContributionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class GCZFY_CreatedPullRequestContributionConnection_Field(CreatedPullRequestContributionConnection):
+class EELPE_CreatedPullRequestContributionConnection_Field(CreatedPullRequestContributionConnection):
    class CreatedPullRequestContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6434,7 +6433,7 @@ class GCZFY_CreatedPullRequestContributionConnection_Field(CreatedPullRequestCon
 
 
 class PullRequestContributionsByRepository(GQLObject):
-   contributions: GCZFY_CreatedPullRequestContributionConnection_Field
+   contributions: EELPE_CreatedPullRequestContributionConnection_Field
    repository: Repository
 
 class CreatedPullRequestReviewContribution(GQLObject):
@@ -6461,7 +6460,7 @@ class CreatedPullRequestReviewContributionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class JUFCH_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequestReviewContributionConnection):
+class CNSCY_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequestReviewContributionConnection):
    class CreatedPullRequestReviewContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6474,7 +6473,7 @@ class JUFCH_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequ
 
 
 class PullRequestReviewContributionsByRepository(GQLObject):
-   contributions: JUFCH_CreatedPullRequestReviewContributionConnection_Field
+   contributions: CNSCY_CreatedPullRequestReviewContributionConnection_Field
    repository: Repository
 
 class CreatedRepositoryContributionEdge(GQLObject):
@@ -6491,7 +6490,7 @@ class CreatedRepositoryContributionConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class DOYDD_CommitContributionsByRepository_Field(CommitContributionsByRepository):
+class RTWHN_CommitContributionsByRepository_Field(CommitContributionsByRepository):
    class CommitContributionsByRepositoryArgs(GQLArgsSet, GQLObject):
       maxRepositories: int
 
@@ -6499,7 +6498,7 @@ class DOYDD_CommitContributionsByRepository_Field(CommitContributionsByRepositor
 
 
 
-class DYAKT_CreatedIssueContributionConnection_Field(CreatedIssueContributionConnection):
+class AIBBS_CreatedIssueContributionConnection_Field(CreatedIssueContributionConnection):
    class CreatedIssueContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6513,7 +6512,7 @@ class DYAKT_CreatedIssueContributionConnection_Field(CreatedIssueContributionCon
 
 
 
-class SMQRI_IssueContributionsByRepository_Field(IssueContributionsByRepository):
+class NXNUI_IssueContributionsByRepository_Field(IssueContributionsByRepository):
    class IssueContributionsByRepositoryArgs(GQLArgsSet, GQLObject):
       maxRepositories: int
       excludeFirst: bool
@@ -6523,7 +6522,7 @@ class SMQRI_IssueContributionsByRepository_Field(IssueContributionsByRepository)
 
 
 
-class HKRXA_CreatedPullRequestContributionConnection_Field(CreatedPullRequestContributionConnection):
+class TZYCV_CreatedPullRequestContributionConnection_Field(CreatedPullRequestContributionConnection):
    class CreatedPullRequestContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6537,7 +6536,7 @@ class HKRXA_CreatedPullRequestContributionConnection_Field(CreatedPullRequestCon
 
 
 
-class CXWBS_PullRequestContributionsByRepository_Field(PullRequestContributionsByRepository):
+class CNBKS_PullRequestContributionsByRepository_Field(PullRequestContributionsByRepository):
    class PullRequestContributionsByRepositoryArgs(GQLArgsSet, GQLObject):
       maxRepositories: int
       excludeFirst: bool
@@ -6547,7 +6546,7 @@ class CXWBS_PullRequestContributionsByRepository_Field(PullRequestContributionsB
 
 
 
-class WUPKP_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequestReviewContributionConnection):
+class CWRWB_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequestReviewContributionConnection):
    class CreatedPullRequestReviewContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6559,7 +6558,7 @@ class WUPKP_CreatedPullRequestReviewContributionConnection_Field(CreatedPullRequ
 
 
 
-class QHPNM_PullRequestReviewContributionsByRepository_Field(PullRequestReviewContributionsByRepository):
+class WPXFW_PullRequestReviewContributionsByRepository_Field(PullRequestReviewContributionsByRepository):
    class PullRequestReviewContributionsByRepositoryArgs(GQLArgsSet, GQLObject):
       maxRepositories: int
 
@@ -6567,7 +6566,7 @@ class QHPNM_PullRequestReviewContributionsByRepository_Field(PullRequestReviewCo
 
 
 
-class NLCMY_CreatedRepositoryContributionConnection_Field(CreatedRepositoryContributionConnection):
+class JJTNX_CreatedRepositoryContributionConnection_Field(CreatedRepositoryContributionConnection):
    class CreatedRepositoryContributionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6581,7 +6580,7 @@ class NLCMY_CreatedRepositoryContributionConnection_Field(CreatedRepositoryContr
 
 
 class ContributionsCollection(GQLObject):
-   commitContributionsByRepository: DOYDD_CommitContributionsByRepository_Field
+   commitContributionsByRepository: RTWHN_CommitContributionsByRepository_Field
    contributionCalendar: ContributionCalendar
    contributionYears: int
    doesEndInCurrentMonth: bool
@@ -6594,30 +6593,30 @@ class ContributionsCollection(GQLObject):
    hasAnyContributions: bool
    hasAnyRestrictedContributions: bool
    isSingleDay: bool
-   issueContributions: DYAKT_CreatedIssueContributionConnection_Field
-   issueContributionsByRepository: SMQRI_IssueContributionsByRepository_Field
+   issueContributions: AIBBS_CreatedIssueContributionConnection_Field
+   issueContributionsByRepository: NXNUI_IssueContributionsByRepository_Field
    joinedGitHubContribution: JoinedGitHubContribution
    latestRestrictedContributionDate: Date
    mostRecentCollectionWithActivity: NewType('ContributionsCollection', GQLObject) ## Circular Reference for ContributionsCollection
    mostRecentCollectionWithoutActivity: NewType('ContributionsCollection', GQLObject) ## Circular Reference for ContributionsCollection
    popularIssueContribution: CreatedIssueContribution
    popularPullRequestContribution: CreatedPullRequestContribution
-   pullRequestContributions: HKRXA_CreatedPullRequestContributionConnection_Field
-   pullRequestContributionsByRepository: CXWBS_PullRequestContributionsByRepository_Field
-   pullRequestReviewContributions: WUPKP_CreatedPullRequestReviewContributionConnection_Field
-   pullRequestReviewContributionsByRepository: QHPNM_PullRequestReviewContributionsByRepository_Field
-   repositoryContributions: NLCMY_CreatedRepositoryContributionConnection_Field
+   pullRequestContributions: TZYCV_CreatedPullRequestContributionConnection_Field
+   pullRequestContributionsByRepository: CNBKS_PullRequestContributionsByRepository_Field
+   pullRequestReviewContributions: CWRWB_CreatedPullRequestReviewContributionConnection_Field
+   pullRequestReviewContributionsByRepository: WPXFW_PullRequestReviewContributionsByRepository_Field
+   repositoryContributions: JJTNX_CreatedRepositoryContributionConnection_Field
    restrictedContributionsCount: int
    startedAt: DateTime
    totalCommitContributions: int
-   totalIssueContributions: TTIHZ_totalIssueContributions_Field
-   totalPullRequestContributions: GNBHJ_totalPullRequestContributions_Field
+   totalIssueContributions: PBPMT_totalIssueContributions_Field
+   totalPullRequestContributions: FRXSN_totalPullRequestContributions_Field
    totalPullRequestReviewContributions: int
    totalRepositoriesWithContributedCommits: int
-   totalRepositoriesWithContributedIssues: UALFL_totalRepositoriesWithContributedIssues_Field
+   totalRepositoriesWithContributedIssues: ERTLR_totalRepositoriesWithContributedIssues_Field
    totalRepositoriesWithContributedPullRequestReviews: int
-   totalRepositoriesWithContributedPullRequests: RMZIL_totalRepositoriesWithContributedPullRequests_Field
-   totalRepositoryContributions: TOYEM_totalRepositoryContributions_Field
+   totalRepositoriesWithContributedPullRequests: IRLGS_totalRepositoriesWithContributedPullRequests_Field
+   totalRepositoryContributions: LOSNG_totalRepositoryContributions_Field
    user: NewType('User', GQLObject) ## Circular Reference for User
 
 class FollowerConnection(GQLObject):
@@ -6632,7 +6631,7 @@ class FollowingConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class CFOZE_UserContentEditConnection_Field(UserContentEditConnection):
+class CSASF_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6661,7 +6660,7 @@ class GistComment(GQLObject):
    minimizedReason: str
    publishedAt: DateTime
    updatedAt: DateTime
-   userContentEdits: CFOZE_UserContentEditConnection_Field
+   userContentEdits: CSASF_UserContentEditConnection_Field
    viewerCanDelete: bool
    viewerCanMinimize: bool
    viewerCanUpdate: bool
@@ -6691,7 +6690,7 @@ class GistFile(GQLObject):
    language: Language
    name: str
    size: int
-   text: KTKXF_text_Field
+   text: MVXGN_text_Field
 
 class GistEdge(GQLObject):
    cursor: str
@@ -6705,7 +6704,7 @@ class GistConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class ZPCSC_GistCommentConnection_Field(GistCommentConnection):
+class OFFDY_GistCommentConnection_Field(GistCommentConnection):
    class GistCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6716,7 +6715,7 @@ class ZPCSC_GistCommentConnection_Field(GistCommentConnection):
 
 
 
-class BWWTR_GistFile_Field(GistFile):
+class UJCGC_GistFile_Field(GistFile):
    class GistFileArgs(GQLArgsSet, GQLObject):
       limit: int
       oid: GitObjectID
@@ -6727,7 +6726,7 @@ class BWWTR_GistFile_Field(GistFile):
 
 class list_GistFile(list, GistFile): pass
 
-class UQRVZ_GistConnection_Field(GistConnection):
+class HGDEZ_GistConnection_Field(GistConnection):
    class GistConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6739,7 +6738,7 @@ class UQRVZ_GistConnection_Field(GistConnection):
 
 
 
-class RIOEL_StargazerConnection_Field(StargazerConnection):
+class MIDTI_StargazerConnection_Field(StargazerConnection):
    class StargazerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6752,11 +6751,11 @@ class RIOEL_StargazerConnection_Field(StargazerConnection):
 
 
 class Gist(GQLObject):
-   comments: ZPCSC_GistCommentConnection_Field
+   comments: OFFDY_GistCommentConnection_Field
    createdAt: DateTime
    description: str
-   files: BWWTR_GistFile_Field
-   forks: UQRVZ_GistConnection_Field
+   files: UJCGC_GistFile_Field
+   forks: HGDEZ_GistConnection_Field
    id: ID
    isFork: bool
    isPublic: bool
@@ -6765,7 +6764,7 @@ class Gist(GQLObject):
    pushedAt: DateTime
    resourcePath: URI
    stargazerCount: int
-   stargazers: RIOEL_StargazerConnection_Field
+   stargazers: MIDTI_StargazerConnection_Field
    updatedAt: DateTime
    url: URI
    viewerHasStarred: bool
@@ -6787,7 +6786,7 @@ class PinnableItemConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class NYJDR_PinnableItemConnection_Field(PinnableItemConnection):
+class PDRQA_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6800,7 +6799,7 @@ class NYJDR_PinnableItemConnection_Field(PinnableItemConnection):
 
 class ProfileItemShowcase(GQLObject):
    hasPinnedItems: bool
-   items: NYJDR_PinnableItemConnection_Field
+   items: PDRQA_PinnableItemConnection_Field
 
 class OrganizationEdge(GQLObject):
    cursor: str
@@ -6901,7 +6900,7 @@ class SponsorsTierConnection(GQLObject):
 
 class NonNull_SponsorsListingFeaturedItemFeatureableType(GQLObject): pass
 
-class NNBYT_SponsorsListingFeaturedItem_Field(SponsorsListingFeaturedItem):
+class GZRGR_SponsorsListingFeaturedItem_Field(SponsorsListingFeaturedItem):
    class SponsorsListingFeaturedItemArgs(GQLArgsSet, GQLObject):
       featureableTypes: list[NonNull_SponsorsListingFeaturedItemFeatureableType]
 
@@ -6909,7 +6908,7 @@ class NNBYT_SponsorsListingFeaturedItem_Field(SponsorsListingFeaturedItem):
 
 
 
-class BBVCL_SponsorsTierConnection_Field(SponsorsTierConnection):
+class RIQNU_SponsorsTierConnection_Field(SponsorsTierConnection):
    class SponsorsTierConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6930,7 +6929,7 @@ class SponsorsListing(GQLObject):
    createdAt: DateTime
    dashboardResourcePath: URI
    dashboardUrl: URI
-   featuredItems: NNBYT_SponsorsListingFeaturedItem_Field
+   featuredItems: GZRGR_SponsorsListingFeaturedItem_Field
    fiscalHost: NewType('Organization', GQLObject) ## Circular Reference for Organization
    fullDescription: str
    fullDescriptionHTML: HTML
@@ -6943,7 +6942,7 @@ class SponsorsListing(GQLObject):
    shortDescription: str
    slug: str
    sponsorable: NewType('Sponsorable', GQLObject) ## Circular Reference for Sponsorable
-   tiers: BBVCL_SponsorsTierConnection_Field
+   tiers: RIQNU_SponsorsTierConnection_Field
    url: URI
 
 class SponsorshipNewsletter(GQLObject):
@@ -6970,7 +6969,7 @@ class SponsorshipNewsletterConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class QFNUI_SponsorConnection_Field(SponsorConnection):
+class KAAXS_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6982,7 +6981,7 @@ class QFNUI_SponsorConnection_Field(SponsorConnection):
 
 
 
-class WBAFS_SponsorConnection_Field(SponsorConnection):
+class UOJIH_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -6997,7 +6996,7 @@ class WBAFS_SponsorConnection_Field(SponsorConnection):
 
 class NonNull_SponsorsActivityAction(GQLObject): pass
 
-class LQHJH_SponsorsActivityConnection_Field(Generic[SponsorsActivityConnection]):
+class UWNSJ_SponsorsActivityConnection_Field(Generic[SponsorsActivityConnection]):
    class SponsorsActivityConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7014,7 +7013,7 @@ class LQHJH_SponsorsActivityConnection_Field(Generic[SponsorsActivityConnection]
 
 
 
-class NQLGS_Sponsorship_Field(Generic[Sponsorship]):
+class ZRJRR_Sponsorship_Field(Generic[Sponsorship]):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -7022,7 +7021,7 @@ class NQLGS_Sponsorship_Field(Generic[Sponsorship]):
 
 
 
-class PWNEQ_Sponsorship_Field(Generic[Sponsorship]):
+class PTBNT_Sponsorship_Field(Generic[Sponsorship]):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -7030,7 +7029,7 @@ class PWNEQ_Sponsorship_Field(Generic[Sponsorship]):
 
 
 
-class ZKHOG_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
+class GBTOL_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
    class SponsorshipNewsletterConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7042,7 +7041,7 @@ class ZKHOG_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnectio
 
 
 
-class HIBUL_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
+class QIMIO_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7056,7 +7055,7 @@ class HIBUL_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
 
 
 
-class JPIBT_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
+class KXGEX_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7073,19 +7072,19 @@ class JPIBT_SponsorshipConnection_Field(Generic[SponsorshipConnection]):
 class Sponsorable(GQLObject):
    estimatedNextSponsorsPayoutInCents: int
    hasSponsorsListing: bool
-   isSponsoredBy: KXELZ_isSponsoredBy_Field
+   isSponsoredBy: IDILW_isSponsoredBy_Field
    isSponsoringViewer: bool
    monthlyEstimatedSponsorsIncomeInCents: int
-   sponsoring: QFNUI_SponsorConnection_Field
-   sponsors: WBAFS_SponsorConnection_Field
-   sponsorsActivities: LQHJH_SponsorsActivityConnection_Field ## Circular Reference for SponsorsActivityConnection
+   sponsoring: KAAXS_SponsorConnection_Field
+   sponsors: UOJIH_SponsorConnection_Field
+   sponsorsActivities: UWNSJ_SponsorsActivityConnection_Field ## Circular Reference for SponsorsActivityConnection
    sponsorsListing: SponsorsListing
-   sponsorshipForViewerAsSponsor: NQLGS_Sponsorship_Field ## Circular Reference for Sponsorship
-   sponsorshipForViewerAsSponsorable: PWNEQ_Sponsorship_Field ## Circular Reference for Sponsorship
-   sponsorshipNewsletters: ZKHOG_SponsorshipNewsletterConnection_Field
-   sponsorshipsAsMaintainer: HIBUL_SponsorshipConnection_Field ## Circular Reference for SponsorshipConnection
-   sponsorshipsAsSponsor: JPIBT_SponsorshipConnection_Field ## Circular Reference for SponsorshipConnection
-   totalSponsorshipAmountAsSponsorInCents: TKSSF_totalSponsorshipAmountAsSponsorInCents_Field
+   sponsorshipForViewerAsSponsor: ZRJRR_Sponsorship_Field ## Circular Reference for Sponsorship
+   sponsorshipForViewerAsSponsorable: PTBNT_Sponsorship_Field ## Circular Reference for Sponsorship
+   sponsorshipNewsletters: GBTOL_SponsorshipNewsletterConnection_Field
+   sponsorshipsAsMaintainer: QIMIO_SponsorshipConnection_Field ## Circular Reference for SponsorshipConnection
+   sponsorshipsAsSponsor: KXGEX_SponsorshipConnection_Field ## Circular Reference for SponsorshipConnection
+   totalSponsorshipAmountAsSponsorInCents: ERAGL_totalSponsorshipAmountAsSponsorInCents_Field
    viewerCanSponsor: bool
    viewerIsSponsoring: bool
 
@@ -7117,7 +7116,7 @@ class SponsorshipConnection(GQLObject):
    totalRecurringMonthlyPriceInCents: int
    totalRecurringMonthlyPriceInDollars: int
 
-class FHMWM_SponsorshipConnection_Field(SponsorshipConnection):
+class GOEPF_SponsorshipConnection_Field(SponsorshipConnection):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7134,7 +7133,7 @@ class SponsorsTierAdminInfo(GQLObject):
    isDraft: bool
    isPublished: bool
    isRetired: bool
-   sponsorships: FHMWM_SponsorshipConnection_Field
+   sponsorships: GOEPF_SponsorshipConnection_Field
 
 class SponsorsTier(GQLObject):
    adminInfo: SponsorsTierAdminInfo
@@ -7188,7 +7187,7 @@ class StarredRepositoryConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class CYYMB_CommitCommentConnection_Field(CommitCommentConnection):
+class IQYVN_CommitCommentConnection_Field(CommitCommentConnection):
    class CommitCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7199,7 +7198,7 @@ class CYYMB_CommitCommentConnection_Field(CommitCommentConnection):
 
 
 
-class EQUKB_ContributionsCollection_Field(ContributionsCollection):
+class BBKOW_ContributionsCollection_Field(ContributionsCollection):
    class ContributionsCollectionArgs(GQLArgsSet, GQLObject):
       organizationID: ID
       from_: DateTime
@@ -7209,7 +7208,7 @@ class EQUKB_ContributionsCollection_Field(ContributionsCollection):
 
 
 
-class PJQKP_FollowerConnection_Field(FollowerConnection):
+class MTOGS_FollowerConnection_Field(FollowerConnection):
    class FollowerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7220,7 +7219,7 @@ class PJQKP_FollowerConnection_Field(FollowerConnection):
 
 
 
-class PLRJH_FollowingConnection_Field(FollowingConnection):
+class TTHKG_FollowingConnection_Field(FollowingConnection):
    class FollowingConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7231,7 +7230,7 @@ class PLRJH_FollowingConnection_Field(FollowingConnection):
 
 
 
-class ADGZY_Gist_Field(Gist):
+class QUALE_Gist_Field(Gist):
    class GistArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
 
@@ -7239,7 +7238,7 @@ class ADGZY_Gist_Field(Gist):
 
 
 
-class VVIMW_GistCommentConnection_Field(GistCommentConnection):
+class MEZXC_GistCommentConnection_Field(GistCommentConnection):
    class GistCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7250,7 +7249,7 @@ class VVIMW_GistCommentConnection_Field(GistCommentConnection):
 
 
 
-class OQBBT_GistConnection_Field(GistConnection):
+class QXOBC_GistConnection_Field(GistConnection):
    class GistConnectionArgs(GQLArgsSet, GQLObject):
       privacy: GistPrivacy
       orderBy: GistOrder
@@ -7263,7 +7262,7 @@ class OQBBT_GistConnection_Field(GistConnection):
 
 
 
-class NHDNX_Hovercard_Field(Hovercard):
+class GXURK_Hovercard_Field(Hovercard):
    class HovercardArgs(GQLArgsSet, GQLObject):
       primarySubjectId: ID
 
@@ -7271,7 +7270,7 @@ class NHDNX_Hovercard_Field(Hovercard):
 
 
 
-class TECFA_IssueCommentConnection_Field(IssueCommentConnection):
+class XTXKT_IssueCommentConnection_Field(IssueCommentConnection):
    class IssueCommentConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueCommentOrder
       after: str
@@ -7283,7 +7282,7 @@ class TECFA_IssueCommentConnection_Field(IssueCommentConnection):
 
 
 
-class MFFZH_IssueConnection_Field(IssueConnection):
+class BXFOR_IssueConnection_Field(IssueConnection):
    class IssueConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: IssueOrder
       labels: list[NonNull_str]
@@ -7298,7 +7297,7 @@ class MFFZH_IssueConnection_Field(IssueConnection):
 
 
 
-class MWWEN_Organization_Field(Generic[Organization]):
+class QPIJV_Organization_Field(Generic[Organization]):
    class OrganizationArgs(GQLArgsSet, GQLObject):
       login: NonNull_str
 
@@ -7306,7 +7305,7 @@ class MWWEN_Organization_Field(Generic[Organization]):
 
 
 
-class YPDCP_OrganizationConnection_Field(OrganizationConnection):
+class MKWOJ_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: OrganizationOrder
       after: str
@@ -7318,7 +7317,7 @@ class YPDCP_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class NJWWL_PackageConnection_Field(PackageConnection):
+class EKZRX_PackageConnection_Field(PackageConnection):
    class PackageConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7335,7 +7334,7 @@ class NJWWL_PackageConnection_Field(PackageConnection):
 
 class NonNull_PinnableItemType(GQLObject): pass
 
-class GFHRN_PinnableItemConnection_Field(PinnableItemConnection):
+class CSMMU_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -7347,7 +7346,7 @@ class GFHRN_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 
-class OAOYC_PinnableItemConnection_Field(PinnableItemConnection):
+class ZBLFE_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -7359,7 +7358,7 @@ class OAOYC_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 
-class QVGQV_Project_Field(Project):
+class BCUFV_Project_Field(Project):
    class ProjectArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -7367,7 +7366,7 @@ class QVGQV_Project_Field(Project):
 
 
 
-class WCPWR_ProjectV2_Field(ProjectV2):
+class RTWFN_ProjectV2_Field(ProjectV2):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -7375,7 +7374,7 @@ class WCPWR_ProjectV2_Field(ProjectV2):
 
 
 
-class QUAPZ_ProjectConnection_Field(ProjectConnection):
+class CZRAV_ProjectConnection_Field(ProjectConnection):
    class ProjectConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: ProjectOrder
       search: str
@@ -7389,7 +7388,7 @@ class QUAPZ_ProjectConnection_Field(ProjectConnection):
 
 
 
-class PSUFM_ProjectV2Connection_Field(ProjectV2Connection):
+class BUTJB_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: ProjectV2Order
@@ -7402,7 +7401,7 @@ class PSUFM_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class EFBWB_PublicKeyConnection_Field(PublicKeyConnection):
+class WKYAT_PublicKeyConnection_Field(PublicKeyConnection):
    class PublicKeyConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7413,7 +7412,7 @@ class EFBWB_PublicKeyConnection_Field(PublicKeyConnection):
 
 
 
-class VLMSM_PullRequestConnection_Field(PullRequestConnection):
+class VSBAR_PullRequestConnection_Field(PullRequestConnection):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -7429,7 +7428,7 @@ class VLMSM_PullRequestConnection_Field(PullRequestConnection):
 
 
 
-class VINKK_ProjectV2Connection_Field(ProjectV2Connection):
+class IMYYU_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7440,7 +7439,7 @@ class VINKK_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class GNBAY_RepositoryConnection_Field(RepositoryConnection):
+class EUGKM_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -7457,7 +7456,7 @@ class GNBAY_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class CHYRV_RepositoryConnection_Field(RepositoryConnection):
+class HQQQM_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -7473,7 +7472,7 @@ class CHYRV_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class FRSJU_Repository_Field(Repository):
+class TKBGI_Repository_Field(Repository):
    class RepositoryArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
       followRenames: bool
@@ -7482,7 +7481,7 @@ class FRSJU_Repository_Field(Repository):
 
 
 
-class WWUKF_DiscussionCommentConnection_Field(DiscussionCommentConnection):
+class KVMKB_DiscussionCommentConnection_Field(DiscussionCommentConnection):
    class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7495,7 +7494,7 @@ class WWUKF_DiscussionCommentConnection_Field(DiscussionCommentConnection):
 
 
 
-class TBPWK_DiscussionConnection_Field(DiscussionConnection):
+class NAEQS_DiscussionConnection_Field(DiscussionConnection):
    class DiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7509,7 +7508,7 @@ class TBPWK_DiscussionConnection_Field(DiscussionConnection):
 
 
 
-class WRDED_SavedReplyConnection_Field(SavedReplyConnection):
+class NYYLO_SavedReplyConnection_Field(SavedReplyConnection):
    class SavedReplyConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7521,7 +7520,7 @@ class WRDED_SavedReplyConnection_Field(SavedReplyConnection):
 
 
 
-class UMCQW_SponsorConnection_Field(SponsorConnection):
+class CGLBR_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7533,7 +7532,7 @@ class UMCQW_SponsorConnection_Field(SponsorConnection):
 
 
 
-class WHDTA_SponsorConnection_Field(SponsorConnection):
+class DBAYO_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7546,7 +7545,7 @@ class WHDTA_SponsorConnection_Field(SponsorConnection):
 
 
 
-class YFQKK_SponsorsActivityConnection_Field(SponsorsActivityConnection):
+class IXYXD_SponsorsActivityConnection_Field(SponsorsActivityConnection):
    class SponsorsActivityConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7563,7 +7562,7 @@ class YFQKK_SponsorsActivityConnection_Field(SponsorsActivityConnection):
 
 
 
-class MSWVA_Sponsorship_Field(Sponsorship):
+class DQMHZ_Sponsorship_Field(Sponsorship):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -7571,7 +7570,7 @@ class MSWVA_Sponsorship_Field(Sponsorship):
 
 
 
-class IUPNO_Sponsorship_Field(Sponsorship):
+class NQYOW_Sponsorship_Field(Sponsorship):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -7579,7 +7578,7 @@ class IUPNO_Sponsorship_Field(Sponsorship):
 
 
 
-class MZXRN_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
+class LZOSI_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
    class SponsorshipNewsletterConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7591,7 +7590,7 @@ class MZXRN_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnectio
 
 
 
-class GGXKZ_SponsorshipConnection_Field(SponsorshipConnection):
+class JLSYY_SponsorshipConnection_Field(SponsorshipConnection):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7605,7 +7604,7 @@ class GGXKZ_SponsorshipConnection_Field(SponsorshipConnection):
 
 
 
-class UWEXP_SponsorshipConnection_Field(SponsorshipConnection):
+class TFGZD_SponsorshipConnection_Field(SponsorshipConnection):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7619,7 +7618,7 @@ class UWEXP_SponsorshipConnection_Field(SponsorshipConnection):
 
 
 
-class DPEUJ_StarredRepositoryConnection_Field(StarredRepositoryConnection):
+class KVQGV_StarredRepositoryConnection_Field(StarredRepositoryConnection):
    class StarredRepositoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7634,7 +7633,7 @@ class DPEUJ_StarredRepositoryConnection_Field(StarredRepositoryConnection):
 
 class NonNull_RepositoryOrder(RepositoryOrder): pass
 
-class BLEJV_RepositoryConnection_Field(RepositoryConnection):
+class BSMKP_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -7647,7 +7646,7 @@ class BLEJV_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class XNGMU_RepositoryConnection_Field(RepositoryConnection):
+class BKKHV_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -7664,26 +7663,26 @@ class XNGMU_RepositoryConnection_Field(RepositoryConnection):
 
 
 class User(GQLObject):
-   anyPinnableItems: OZZSE_anyPinnableItems_Field
-   avatarUrl: MLBIQ_URI_Field
+   anyPinnableItems: FVIRY_anyPinnableItems_Field
+   avatarUrl: KNIKP_URI_Field
    bio: str
    bioHTML: HTML
-   canReceiveOrganizationEmailsWhenNotificationsRestricted: GROVZ_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field
-   commitComments: CYYMB_CommitCommentConnection_Field
+   canReceiveOrganizationEmailsWhenNotificationsRestricted: UPNFZ_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field
+   commitComments: IQYVN_CommitCommentConnection_Field
    company: str
    companyHTML: HTML
-   contributionsCollection: EQUKB_ContributionsCollection_Field
+   contributionsCollection: BBKOW_ContributionsCollection_Field
    createdAt: DateTime
    databaseId: int
    email: str
    estimatedNextSponsorsPayoutInCents: int
-   followers: PJQKP_FollowerConnection_Field
-   following: PLRJH_FollowingConnection_Field
-   gist: ADGZY_Gist_Field
-   gistComments: VVIMW_GistCommentConnection_Field
-   gists: OQBBT_GistConnection_Field
+   followers: MTOGS_FollowerConnection_Field
+   following: TTHKG_FollowingConnection_Field
+   gist: QUALE_Gist_Field
+   gistComments: MEZXC_GistCommentConnection_Field
+   gists: QXOBC_GistConnection_Field
    hasSponsorsListing: bool
-   hovercard: NHDNX_Hovercard_Field
+   hovercard: GXURK_Hovercard_Field
    id: ID
    interactionAbility: RepositoryInteractionAbility
    isBountyHunter: bool
@@ -7694,52 +7693,52 @@ class User(GQLObject):
    isGitHubStar: bool
    isHireable: bool
    isSiteAdmin: bool
-   isSponsoredBy: VFQRL_isSponsoredBy_Field
+   isSponsoredBy: HJFNL_isSponsoredBy_Field
    isSponsoringViewer: bool
    isViewer: bool
-   issueComments: TECFA_IssueCommentConnection_Field
-   issues: MFFZH_IssueConnection_Field
+   issueComments: XTXKT_IssueCommentConnection_Field
+   issues: BXFOR_IssueConnection_Field
    itemShowcase: ProfileItemShowcase
    location: str
    login: str
    monthlyEstimatedSponsorsIncomeInCents: int
    name: str
-   organization: MWWEN_Organization_Field ## Circular Reference for Organization
-   organizationVerifiedDomainEmails: AGOCV_organizationVerifiedDomainEmails_Field
-   organizations: YPDCP_OrganizationConnection_Field
-   packages: NJWWL_PackageConnection_Field
-   pinnableItems: GFHRN_PinnableItemConnection_Field
-   pinnedItems: OAOYC_PinnableItemConnection_Field
+   organization: QPIJV_Organization_Field ## Circular Reference for Organization
+   organizationVerifiedDomainEmails: NTILC_organizationVerifiedDomainEmails_Field
+   organizations: MKWOJ_OrganizationConnection_Field
+   packages: EKZRX_PackageConnection_Field
+   pinnableItems: CSMMU_PinnableItemConnection_Field
+   pinnedItems: ZBLFE_PinnableItemConnection_Field
    pinnedItemsRemaining: int
-   project: QVGQV_Project_Field
-   projectV2: WCPWR_ProjectV2_Field
-   projects: QUAPZ_ProjectConnection_Field
+   project: BCUFV_Project_Field
+   projectV2: RTWFN_ProjectV2_Field
+   projects: CZRAV_ProjectConnection_Field
    projectsResourcePath: URI
    projectsUrl: URI
-   projectsV2: PSUFM_ProjectV2Connection_Field
-   publicKeys: EFBWB_PublicKeyConnection_Field
-   pullRequests: VLMSM_PullRequestConnection_Field
-   recentProjects: VINKK_ProjectV2Connection_Field
-   repositories: GNBAY_RepositoryConnection_Field
-   repositoriesContributedTo: CHYRV_RepositoryConnection_Field
-   repository: FRSJU_Repository_Field
-   repositoryDiscussionComments: WWUKF_DiscussionCommentConnection_Field
-   repositoryDiscussions: TBPWK_DiscussionConnection_Field
+   projectsV2: BUTJB_ProjectV2Connection_Field
+   publicKeys: WKYAT_PublicKeyConnection_Field
+   pullRequests: VSBAR_PullRequestConnection_Field
+   recentProjects: IMYYU_ProjectV2Connection_Field
+   repositories: EUGKM_RepositoryConnection_Field
+   repositoriesContributedTo: HQQQM_RepositoryConnection_Field
+   repository: TKBGI_Repository_Field
+   repositoryDiscussionComments: KVMKB_DiscussionCommentConnection_Field
+   repositoryDiscussions: NAEQS_DiscussionConnection_Field
    resourcePath: URI
-   savedReplies: WRDED_SavedReplyConnection_Field
-   sponsoring: UMCQW_SponsorConnection_Field
-   sponsors: WHDTA_SponsorConnection_Field
-   sponsorsActivities: YFQKK_SponsorsActivityConnection_Field
+   savedReplies: NYYLO_SavedReplyConnection_Field
+   sponsoring: CGLBR_SponsorConnection_Field
+   sponsors: DBAYO_SponsorConnection_Field
+   sponsorsActivities: IXYXD_SponsorsActivityConnection_Field
    sponsorsListing: SponsorsListing
-   sponsorshipForViewerAsSponsor: MSWVA_Sponsorship_Field
-   sponsorshipForViewerAsSponsorable: IUPNO_Sponsorship_Field
-   sponsorshipNewsletters: MZXRN_SponsorshipNewsletterConnection_Field
-   sponsorshipsAsMaintainer: GGXKZ_SponsorshipConnection_Field
-   sponsorshipsAsSponsor: UWEXP_SponsorshipConnection_Field
-   starredRepositories: DPEUJ_StarredRepositoryConnection_Field
+   sponsorshipForViewerAsSponsor: DQMHZ_Sponsorship_Field
+   sponsorshipForViewerAsSponsorable: NQYOW_Sponsorship_Field
+   sponsorshipNewsletters: LZOSI_SponsorshipNewsletterConnection_Field
+   sponsorshipsAsMaintainer: JLSYY_SponsorshipConnection_Field
+   sponsorshipsAsSponsor: TFGZD_SponsorshipConnection_Field
+   starredRepositories: KVQGV_StarredRepositoryConnection_Field
    status: UserStatus
-   topRepositories: BLEJV_RepositoryConnection_Field
-   totalSponsorshipAmountAsSponsorInCents: VQVKQ_totalSponsorshipAmountAsSponsorInCents_Field
+   topRepositories: BSMKP_RepositoryConnection_Field
+   totalSponsorshipAmountAsSponsorInCents: XQMCD_totalSponsorshipAmountAsSponsorInCents_Field
    twitterUsername: str
    updatedAt: DateTime
    url: URI
@@ -7749,7 +7748,7 @@ class User(GQLObject):
    viewerCanSponsor: bool
    viewerIsFollowing: bool
    viewerIsSponsoring: bool
-   watching: XNGMU_RepositoryConnection_Field
+   watching: BKKHV_RepositoryConnection_Field
    websiteUrl: URI
 
 class AuditEntryActor(GQLObject): 
@@ -9317,7 +9316,7 @@ class ExternalIdentityConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class OQVXJ_ExternalIdentityConnection_Field(ExternalIdentityConnection):
+class UYVBH_ExternalIdentityConnection_Field(ExternalIdentityConnection):
    class ExternalIdentityConnectionArgs(GQLArgsSet, GQLObject):
       membersOnly: bool
       login: str
@@ -9333,7 +9332,7 @@ class OQVXJ_ExternalIdentityConnection_Field(ExternalIdentityConnection):
 
 class OrganizationIdentityProvider(GQLObject):
    digestMethod: URI
-   externalIdentities: OQVXJ_ExternalIdentityConnection_Field
+   externalIdentities: UYVBH_ExternalIdentityConnection_Field
    id: ID
    idpCertificate: X509Certificate
    issuer: str
@@ -9341,7 +9340,7 @@ class OrganizationIdentityProvider(GQLObject):
    signatureMethod: URI
    ssoUrl: URI
 
-class AIQZP_OrganizationAuditEntryConnection_Field(OrganizationAuditEntryConnection):
+class UDIQN_OrganizationAuditEntryConnection_Field(OrganizationAuditEntryConnection):
    class OrganizationAuditEntryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9354,7 +9353,7 @@ class AIQZP_OrganizationAuditEntryConnection_Field(OrganizationAuditEntryConnect
 
 
 
-class AFDKQ_VerifiableDomainConnection_Field(VerifiableDomainConnection):
+class ULAGM_VerifiableDomainConnection_Field(VerifiableDomainConnection):
    class VerifiableDomainConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9368,7 +9367,7 @@ class AFDKQ_VerifiableDomainConnection_Field(VerifiableDomainConnection):
 
 
 
-class EDBAM_OrganizationEnterpriseOwnerConnection_Field(OrganizationEnterpriseOwnerConnection):
+class LPOUX_OrganizationEnterpriseOwnerConnection_Field(OrganizationEnterpriseOwnerConnection):
    class OrganizationEnterpriseOwnerConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       organizationRole: RoleInOrganization
@@ -9382,7 +9381,7 @@ class EDBAM_OrganizationEnterpriseOwnerConnection_Field(OrganizationEnterpriseOw
 
 
 
-class AEBND_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]):
+class BRJXE_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]):
    class IpAllowListEntryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9394,7 +9393,7 @@ class AEBND_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]
 
 
 
-class RDJEI_MannequinConnection_Field(MannequinConnection):
+class SCMNT_MannequinConnection_Field(MannequinConnection):
    class MannequinConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9406,7 +9405,7 @@ class RDJEI_MannequinConnection_Field(MannequinConnection):
 
 
 
-class AUBRS_UserStatusConnection_Field(UserStatusConnection):
+class YCLDV_UserStatusConnection_Field(UserStatusConnection):
    class UserStatusConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9418,7 +9417,7 @@ class AUBRS_UserStatusConnection_Field(UserStatusConnection):
 
 
 
-class CHBEX_OrganizationMemberConnection_Field(OrganizationMemberConnection):
+class QZKCN_OrganizationMemberConnection_Field(OrganizationMemberConnection):
    class OrganizationMemberConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9429,7 +9428,7 @@ class CHBEX_OrganizationMemberConnection_Field(OrganizationMemberConnection):
 
 
 
-class NYDPE_PackageConnection_Field(PackageConnection):
+class LEGFV_PackageConnection_Field(PackageConnection):
    class PackageConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9444,7 +9443,7 @@ class NYDPE_PackageConnection_Field(PackageConnection):
 
 
 
-class XXCOZ_UserConnection_Field(UserConnection):
+class YYEWO_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9455,7 +9454,7 @@ class XXCOZ_UserConnection_Field(UserConnection):
 
 
 
-class JYCNF_PinnableItemConnection_Field(PinnableItemConnection):
+class IQGFP_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -9467,7 +9466,7 @@ class JYCNF_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 
-class THMUJ_PinnableItemConnection_Field(PinnableItemConnection):
+class NHFZN_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -9479,7 +9478,7 @@ class THMUJ_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 
-class NKJBZ_Project_Field(Project):
+class ENTLP_Project_Field(Project):
    class ProjectArgs(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -9487,7 +9486,7 @@ class NKJBZ_Project_Field(Project):
 
 
 
-class WUVOP_ProjectV2_Field(ProjectV2):
+class JJOMQ_ProjectV2_Field(ProjectV2):
    class ProjectV2Args(GQLArgsSet, GQLObject):
       number: NonNull_int
 
@@ -9495,7 +9494,7 @@ class WUVOP_ProjectV2_Field(ProjectV2):
 
 
 
-class AUUFE_ProjectConnection_Field(ProjectConnection):
+class HBABP_ProjectConnection_Field(ProjectConnection):
    class ProjectConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: ProjectOrder
       search: str
@@ -9509,7 +9508,7 @@ class AUUFE_ProjectConnection_Field(ProjectConnection):
 
 
 
-class JXHUF_ProjectV2Connection_Field(ProjectV2Connection):
+class JQCOF_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: ProjectV2Order
@@ -9522,7 +9521,7 @@ class JXHUF_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class ZLUGU_ProjectV2Connection_Field(ProjectV2Connection):
+class IVDKR_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9533,7 +9532,7 @@ class ZLUGU_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 
-class NBJNJ_RepositoryConnection_Field(RepositoryConnection):
+class AYRJY_RepositoryConnection_Field(RepositoryConnection):
    class RepositoryConnectionArgs(GQLArgsSet, GQLObject):
       privacy: RepositoryPrivacy
       orderBy: RepositoryOrder
@@ -9550,7 +9549,7 @@ class NBJNJ_RepositoryConnection_Field(RepositoryConnection):
 
 
 
-class GYFCG_Repository_Field(Repository):
+class KKADL_Repository_Field(Repository):
    class RepositoryArgs(GQLArgsSet, GQLObject):
       name: NonNull_str
       followRenames: bool
@@ -9559,7 +9558,7 @@ class GYFCG_Repository_Field(Repository):
 
 
 
-class RULLK_DiscussionCommentConnection_Field(DiscussionCommentConnection):
+class UEMDI_DiscussionCommentConnection_Field(DiscussionCommentConnection):
    class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9572,7 +9571,7 @@ class RULLK_DiscussionCommentConnection_Field(DiscussionCommentConnection):
 
 
 
-class RRKLB_DiscussionConnection_Field(DiscussionConnection):
+class PRFXM_DiscussionConnection_Field(DiscussionConnection):
    class DiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9586,7 +9585,7 @@ class RRKLB_DiscussionConnection_Field(DiscussionConnection):
 
 
 
-class IEWAF_RepositoryMigrationConnection_Field(RepositoryMigrationConnection):
+class ANTSK_RepositoryMigrationConnection_Field(RepositoryMigrationConnection):
    class RepositoryMigrationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9600,7 +9599,7 @@ class IEWAF_RepositoryMigrationConnection_Field(RepositoryMigrationConnection):
 
 
 
-class KWULK_SponsorConnection_Field(SponsorConnection):
+class ZVDPU_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9612,7 +9611,7 @@ class KWULK_SponsorConnection_Field(SponsorConnection):
 
 
 
-class NOPVL_SponsorConnection_Field(SponsorConnection):
+class NFTVX_SponsorConnection_Field(SponsorConnection):
    class SponsorConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9625,7 +9624,7 @@ class NOPVL_SponsorConnection_Field(SponsorConnection):
 
 
 
-class WNGBY_SponsorsActivityConnection_Field(SponsorsActivityConnection):
+class ZRACG_SponsorsActivityConnection_Field(SponsorsActivityConnection):
    class SponsorsActivityConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9642,7 +9641,7 @@ class WNGBY_SponsorsActivityConnection_Field(SponsorsActivityConnection):
 
 
 
-class VYADG_Sponsorship_Field(Sponsorship):
+class BQPQS_Sponsorship_Field(Sponsorship):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -9650,7 +9649,7 @@ class VYADG_Sponsorship_Field(Sponsorship):
 
 
 
-class XFXNT_Sponsorship_Field(Sponsorship):
+class CDBVO_Sponsorship_Field(Sponsorship):
    class SponsorshipArgs(GQLArgsSet, GQLObject):
       activeOnly: bool
 
@@ -9658,7 +9657,7 @@ class XFXNT_Sponsorship_Field(Sponsorship):
 
 
 
-class WLKIP_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
+class XODEC_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnection):
    class SponsorshipNewsletterConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9670,7 +9669,7 @@ class WLKIP_SponsorshipNewsletterConnection_Field(SponsorshipNewsletterConnectio
 
 
 
-class VXGDY_SponsorshipConnection_Field(SponsorshipConnection):
+class ICVSP_SponsorshipConnection_Field(SponsorshipConnection):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9684,7 +9683,7 @@ class VXGDY_SponsorshipConnection_Field(SponsorshipConnection):
 
 
 
-class GXYCU_SponsorshipConnection_Field(SponsorshipConnection):
+class IGKGG_SponsorshipConnection_Field(SponsorshipConnection):
    class SponsorshipConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -9698,7 +9697,7 @@ class GXYCU_SponsorshipConnection_Field(SponsorshipConnection):
 
 
 
-class YBBUQ_Team_Field(Team):
+class RZBPU_Team_Field(Team):
    class TeamArgs(GQLArgsSet, GQLObject):
       slug: NonNull_str
 
@@ -9706,7 +9705,7 @@ class YBBUQ_Team_Field(Team):
 
 
 
-class KWJKA_TeamConnection_Field(TeamConnection):
+class WEHNX_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       privacy: TeamPrivacy
       role: TeamRole
@@ -9725,73 +9724,76 @@ class KWJKA_TeamConnection_Field(TeamConnection):
 
 
 class Organization(GQLObject):
-   anyPinnableItems: LQXXH_anyPinnableItems_Field
-   auditLog: AIQZP_OrganizationAuditEntryConnection_Field
-   avatarUrl: CTCAJ_URI_Field
+   announcement: str
+   announcementExpiresAt: DateTime
+   announcementUserDismissible: bool
+   anyPinnableItems: HQGVF_anyPinnableItems_Field
+   auditLog: UDIQN_OrganizationAuditEntryConnection_Field
+   avatarUrl: FDCMQ_URI_Field
    createdAt: DateTime
    databaseId: int
    description: str
    descriptionHTML: str
-   domains: AFDKQ_VerifiableDomainConnection_Field
+   domains: ULAGM_VerifiableDomainConnection_Field
    email: str
-   enterpriseOwners: EDBAM_OrganizationEnterpriseOwnerConnection_Field
+   enterpriseOwners: LPOUX_OrganizationEnterpriseOwnerConnection_Field
    estimatedNextSponsorsPayoutInCents: int
    hasSponsorsListing: bool
    id: ID
    interactionAbility: RepositoryInteractionAbility
    ipAllowListEnabledSetting: IpAllowListEnabledSettingValue
-   ipAllowListEntries: AEBND_IpAllowListEntryConnection_Field ## Circular Reference for IpAllowListEntryConnection
+   ipAllowListEntries: BRJXE_IpAllowListEntryConnection_Field ## Circular Reference for IpAllowListEntryConnection
    ipAllowListForInstalledAppsEnabledSetting: IpAllowListForInstalledAppsEnabledSettingValue
-   isSponsoredBy: DVNDG_isSponsoredBy_Field
+   isSponsoredBy: OVOQQ_isSponsoredBy_Field
    isSponsoringViewer: bool
    isVerified: bool
    itemShowcase: ProfileItemShowcase
    location: str
    login: str
-   mannequins: RDJEI_MannequinConnection_Field
-   memberStatuses: AUBRS_UserStatusConnection_Field
+   mannequins: SCMNT_MannequinConnection_Field
+   memberStatuses: YCLDV_UserStatusConnection_Field
    membersCanForkPrivateRepositories: bool
-   membersWithRole: CHBEX_OrganizationMemberConnection_Field
+   membersWithRole: QZKCN_OrganizationMemberConnection_Field
    monthlyEstimatedSponsorsIncomeInCents: int
    name: str
    newTeamResourcePath: URI
    newTeamUrl: URI
    notificationDeliveryRestrictionEnabledSetting: NotificationRestrictionSettingValue
    organizationBillingEmail: str
-   packages: NYDPE_PackageConnection_Field
-   pendingMembers: XXCOZ_UserConnection_Field
-   pinnableItems: JYCNF_PinnableItemConnection_Field
-   pinnedItems: THMUJ_PinnableItemConnection_Field
+   packages: LEGFV_PackageConnection_Field
+   pendingMembers: YYEWO_UserConnection_Field
+   pinnableItems: IQGFP_PinnableItemConnection_Field
+   pinnedItems: NHFZN_PinnableItemConnection_Field
    pinnedItemsRemaining: int
-   project: NKJBZ_Project_Field
-   projectV2: WUVOP_ProjectV2_Field
-   projects: AUUFE_ProjectConnection_Field
+   project: ENTLP_Project_Field
+   projectV2: JJOMQ_ProjectV2_Field
+   projects: HBABP_ProjectConnection_Field
    projectsResourcePath: URI
    projectsUrl: URI
-   projectsV2: JXHUF_ProjectV2Connection_Field
-   recentProjects: ZLUGU_ProjectV2Connection_Field
-   repositories: NBJNJ_RepositoryConnection_Field
-   repository: GYFCG_Repository_Field
-   repositoryDiscussionComments: RULLK_DiscussionCommentConnection_Field
-   repositoryDiscussions: RRKLB_DiscussionConnection_Field
-   repositoryMigrations: IEWAF_RepositoryMigrationConnection_Field
+   projectsV2: JQCOF_ProjectV2Connection_Field
+   recentProjects: IVDKR_ProjectV2Connection_Field
+   repositories: AYRJY_RepositoryConnection_Field
+   repository: KKADL_Repository_Field
+   repositoryDiscussionComments: UEMDI_DiscussionCommentConnection_Field
+   repositoryDiscussions: PRFXM_DiscussionConnection_Field
+   repositoryMigrations: ANTSK_RepositoryMigrationConnection_Field
    requiresTwoFactorAuthentication: bool
    resourcePath: URI
    samlIdentityProvider: OrganizationIdentityProvider
-   sponsoring: KWULK_SponsorConnection_Field
-   sponsors: NOPVL_SponsorConnection_Field
-   sponsorsActivities: WNGBY_SponsorsActivityConnection_Field
+   sponsoring: ZVDPU_SponsorConnection_Field
+   sponsors: NFTVX_SponsorConnection_Field
+   sponsorsActivities: ZRACG_SponsorsActivityConnection_Field
    sponsorsListing: SponsorsListing
-   sponsorshipForViewerAsSponsor: VYADG_Sponsorship_Field
-   sponsorshipForViewerAsSponsorable: XFXNT_Sponsorship_Field
-   sponsorshipNewsletters: WLKIP_SponsorshipNewsletterConnection_Field
-   sponsorshipsAsMaintainer: VXGDY_SponsorshipConnection_Field
-   sponsorshipsAsSponsor: GXYCU_SponsorshipConnection_Field
-   team: YBBUQ_Team_Field
-   teams: KWJKA_TeamConnection_Field
+   sponsorshipForViewerAsSponsor: BQPQS_Sponsorship_Field
+   sponsorshipForViewerAsSponsorable: CDBVO_Sponsorship_Field
+   sponsorshipNewsletters: XODEC_SponsorshipNewsletterConnection_Field
+   sponsorshipsAsMaintainer: ICVSP_SponsorshipConnection_Field
+   sponsorshipsAsSponsor: IGKGG_SponsorshipConnection_Field
+   team: RZBPU_Team_Field
+   teams: WEHNX_TeamConnection_Field
    teamsResourcePath: URI
    teamsUrl: URI
-   totalSponsorshipAmountAsSponsorInCents: CTFUG_totalSponsorshipAmountAsSponsorInCents_Field
+   totalSponsorshipAmountAsSponsorInCents: JBWFU_totalSponsorshipAmountAsSponsorInCents_Field
    twitterUsername: str
    updatedAt: DateTime
    url: URI
@@ -9822,7 +9824,7 @@ class EnterpriseOrganizationMembershipConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class SBBGV_EnterpriseOrganizationMembershipConnection_Field(EnterpriseOrganizationMembershipConnection):
+class YHVCH_EnterpriseOrganizationMembershipConnection_Field(EnterpriseOrganizationMembershipConnection):
    class EnterpriseOrganizationMembershipConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: OrganizationOrder
@@ -9837,13 +9839,13 @@ class SBBGV_EnterpriseOrganizationMembershipConnection_Field(EnterpriseOrganizat
 
 
 class EnterpriseUserAccount(GQLObject):
-   avatarUrl: ARSHS_URI_Field
+   avatarUrl: LHIHH_URI_Field
    createdAt: DateTime
    enterprise: NewType('Enterprise', GQLObject) ## Circular Reference for Enterprise
    id: ID
    login: str
    name: str
-   organizations: SBBGV_EnterpriseOrganizationMembershipConnection_Field
+   organizations: YHVCH_EnterpriseOrganizationMembershipConnection_Field
    resourcePath: URI
    updatedAt: DateTime
    url: URI
@@ -9901,7 +9903,7 @@ class EnterpriseServerUserAccountEmailConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class LJPEB_EnterpriseServerUserAccountEmailConnection_Field(EnterpriseServerUserAccountEmailConnection):
+class CZAWQ_EnterpriseServerUserAccountEmailConnection_Field(EnterpriseServerUserAccountEmailConnection):
    class EnterpriseServerUserAccountEmailConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: EnterpriseServerUserAccountEmailOrder
       after: str
@@ -9915,7 +9917,7 @@ class LJPEB_EnterpriseServerUserAccountEmailConnection_Field(EnterpriseServerUse
 
 class EnterpriseServerUserAccount(GQLObject):
    createdAt: DateTime
-   emails: LJPEB_EnterpriseServerUserAccountEmailConnection_Field
+   emails: CZAWQ_EnterpriseServerUserAccountEmailConnection_Field
    enterpriseServerInstallation: NewType('EnterpriseServerInstallation', GQLObject) ## Circular Reference for EnterpriseServerInstallation
    id: ID
    isSiteAdmin: bool
@@ -9962,7 +9964,7 @@ class EnterpriseServerUserAccountsUploadConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class QXMMA_EnterpriseServerUserAccountConnection_Field(EnterpriseServerUserAccountConnection):
+class KQTIB_EnterpriseServerUserAccountConnection_Field(EnterpriseServerUserAccountConnection):
    class EnterpriseServerUserAccountConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: EnterpriseServerUserAccountOrder
       after: str
@@ -9974,7 +9976,7 @@ class QXMMA_EnterpriseServerUserAccountConnection_Field(EnterpriseServerUserAcco
 
 
 
-class QHFTJ_EnterpriseServerUserAccountsUploadConnection_Field(EnterpriseServerUserAccountsUploadConnection):
+class XVBGC_EnterpriseServerUserAccountsUploadConnection_Field(EnterpriseServerUserAccountsUploadConnection):
    class EnterpriseServerUserAccountsUploadConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: EnterpriseServerUserAccountsUploadOrder
       after: str
@@ -9993,8 +9995,8 @@ class EnterpriseServerInstallation(GQLObject):
    id: ID
    isConnected: bool
    updatedAt: DateTime
-   userAccounts: QXMMA_EnterpriseServerUserAccountConnection_Field
-   userAccountsUploads: QHFTJ_EnterpriseServerUserAccountsUploadConnection_Field
+   userAccounts: KQTIB_EnterpriseServerUserAccountConnection_Field
+   userAccountsUploads: XVBGC_EnterpriseServerUserAccountsUploadConnection_Field
 
 class EnterpriseServerInstallationEdge(GQLObject):
    cursor: str
@@ -10010,7 +10012,20 @@ class EnterpriseServerInstallationConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class KDEFW_ExternalIdentityConnection_Field(ExternalIdentityConnection):
+class EnterpriseFailedInvitationEdge(GQLObject):
+   cursor: str
+   node: OrganizationInvitation
+
+class list_EnterpriseFailedInvitationEdge(list, EnterpriseFailedInvitationEdge): pass
+
+class EnterpriseFailedInvitationConnection(GQLObject):
+   edges: list_EnterpriseFailedInvitationEdge[EnterpriseFailedInvitationEdge]
+   nodes: list_OrganizationInvitation[OrganizationInvitation]
+   pageInfo: PageInfo
+   totalCount: int
+   totalUniqueUserCount: int
+
+class RNCQQ_ExternalIdentityConnection_Field(ExternalIdentityConnection):
    class ExternalIdentityConnectionArgs(GQLArgsSet, GQLObject):
       membersOnly: bool
       login: str
@@ -10026,7 +10041,7 @@ class KDEFW_ExternalIdentityConnection_Field(ExternalIdentityConnection):
 
 class OIDCProvider(GQLObject):
    enterprise: NewType('Enterprise', GQLObject) ## Circular Reference for Enterprise
-   externalIdentities: KDEFW_ExternalIdentityConnection_Field
+   externalIdentities: RNCQQ_ExternalIdentityConnection_Field
    id: ID
    providerType: OIDCProviderType
    tenantId: str
@@ -10045,7 +10060,7 @@ class EnterpriseRepositoryInfoConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class JQRKS_EnterpriseRepositoryInfoConnection_Field(EnterpriseRepositoryInfoConnection):
+class BEYAI_EnterpriseRepositoryInfoConnection_Field(EnterpriseRepositoryInfoConnection):
    class EnterpriseRepositoryInfoConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10060,7 +10075,7 @@ class JQRKS_EnterpriseRepositoryInfoConnection_Field(EnterpriseRepositoryInfoCon
 class EnterpriseOutsideCollaboratorEdge(GQLObject):
    cursor: str
    node: User
-   repositories: JQRKS_EnterpriseRepositoryInfoConnection_Field
+   repositories: BEYAI_EnterpriseRepositoryInfoConnection_Field
 
 class list_EnterpriseOutsideCollaboratorEdge(list, EnterpriseOutsideCollaboratorEdge): pass
 
@@ -10119,7 +10134,7 @@ class RepositoryInfo(GQLObject):
    owner: RepositoryOwner
    pushedAt: DateTime
    resourcePath: URI
-   shortDescriptionHTML: BHHDH_HTML_Field
+   shortDescriptionHTML: BELQK_HTML_Field
    updatedAt: DateTime
    url: URI
    usesCustomOpenGraphImage: bool
@@ -10161,7 +10176,7 @@ class EnterprisePendingMemberInvitationConnection(GQLObject):
    totalCount: int
    totalUniqueUserCount: int
 
-class MOVNU_ExternalIdentityConnection_Field(ExternalIdentityConnection):
+class PJTIU_ExternalIdentityConnection_Field(ExternalIdentityConnection):
    class ExternalIdentityConnectionArgs(GQLArgsSet, GQLObject):
       membersOnly: bool
       login: str
@@ -10178,7 +10193,7 @@ class MOVNU_ExternalIdentityConnection_Field(ExternalIdentityConnection):
 class EnterpriseIdentityProvider(GQLObject):
    digestMethod: SamlDigestAlgorithm
    enterprise: NewType('Enterprise', GQLObject) ## Circular Reference for Enterprise
-   externalIdentities: MOVNU_ExternalIdentityConnection_Field
+   externalIdentities: PJTIU_ExternalIdentityConnection_Field
    id: ID
    idpCertificate: X509Certificate
    issuer: str
@@ -10186,7 +10201,7 @@ class EnterpriseIdentityProvider(GQLObject):
    signatureMethod: SamlSignatureAlgorithm
    ssoUrl: URI
 
-class OMMNB_EnterpriseAdministratorConnection_Field(EnterpriseAdministratorConnection):
+class NLWHI_EnterpriseAdministratorConnection_Field(EnterpriseAdministratorConnection):
    class EnterpriseAdministratorConnectionArgs(GQLArgsSet, GQLObject):
       organizationLogins: list[NonNull_str]
       query: str
@@ -10202,7 +10217,7 @@ class OMMNB_EnterpriseAdministratorConnection_Field(EnterpriseAdministratorConne
 
 
 
-class HUHKI_UserConnection_Field(UserConnection):
+class QLPQE_UserConnection_Field(UserConnection):
    class UserConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10213,7 +10228,7 @@ class HUHKI_UserConnection_Field(UserConnection):
 
 
 
-class SGMLG_OrganizationConnection_Field(OrganizationConnection):
+class GIVUF_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10228,7 +10243,7 @@ class SGMLG_OrganizationConnection_Field(OrganizationConnection):
 
 class NonNull_DefaultRepositoryPermissionField(GQLObject): pass
 
-class DLXIM_OrganizationConnection_Field(OrganizationConnection):
+class LEXQF_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10241,7 +10256,7 @@ class DLXIM_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class ESXUM_VerifiableDomainConnection_Field(VerifiableDomainConnection):
+class QINHM_VerifiableDomainConnection_Field(VerifiableDomainConnection):
    class VerifiableDomainConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10255,7 +10270,7 @@ class ESXUM_VerifiableDomainConnection_Field(VerifiableDomainConnection):
 
 
 
-class BBNOZ_EnterpriseServerInstallationConnection_Field(EnterpriseServerInstallationConnection):
+class GEQUH_EnterpriseServerInstallationConnection_Field(EnterpriseServerInstallationConnection):
    class EnterpriseServerInstallationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10268,7 +10283,19 @@ class BBNOZ_EnterpriseServerInstallationConnection_Field(EnterpriseServerInstall
 
 
 
-class FWNTF_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]):
+class KYKMI_EnterpriseFailedInvitationConnection_Field(EnterpriseFailedInvitationConnection):
+   class EnterpriseFailedInvitationConnectionArgs(GQLArgsSet, GQLObject):
+      query: str
+      after: str
+      before: str
+      first: int
+      last: int
+
+   _args: EnterpriseFailedInvitationConnectionArgs
+
+
+
+class UEBGI_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]):
    class IpAllowListEntryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10280,7 +10307,7 @@ class FWNTF_IpAllowListEntryConnection_Field(Generic[IpAllowListEntryConnection]
 
 
 
-class PZLGA_OrganizationConnection_Field(OrganizationConnection):
+class DODEQ_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10295,7 +10322,7 @@ class PZLGA_OrganizationConnection_Field(OrganizationConnection):
 
 class NonNull_OrganizationMembersCanCreateRepositoriesSettingValue(GQLObject): pass
 
-class HKMYN_OrganizationConnection_Field(OrganizationConnection):
+class KSVSR_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10308,7 +10335,7 @@ class HKMYN_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class JRBJT_OrganizationConnection_Field(OrganizationConnection):
+class OOQZV_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10321,7 +10348,7 @@ class JRBJT_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class IHLVK_OrganizationConnection_Field(OrganizationConnection):
+class LSNXQ_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10334,7 +10361,7 @@ class IHLVK_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class KRTWZ_OrganizationConnection_Field(OrganizationConnection):
+class GCEAN_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10347,7 +10374,7 @@ class KRTWZ_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class YDKMZ_OrganizationConnection_Field(OrganizationConnection):
+class JNTYH_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10360,7 +10387,7 @@ class YDKMZ_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class OJPWN_OrganizationConnection_Field(OrganizationConnection):
+class BPSZL_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10373,7 +10400,7 @@ class OJPWN_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class PHAZP_OrganizationConnection_Field(OrganizationConnection):
+class ENVTJ_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10386,7 +10413,7 @@ class PHAZP_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class LVOND_EnterpriseOutsideCollaboratorConnection_Field(EnterpriseOutsideCollaboratorConnection):
+class CXKSH_EnterpriseOutsideCollaboratorConnection_Field(EnterpriseOutsideCollaboratorConnection):
    class EnterpriseOutsideCollaboratorConnectionArgs(GQLArgsSet, GQLObject):
       login: str
       query: str
@@ -10403,7 +10430,7 @@ class LVOND_EnterpriseOutsideCollaboratorConnection_Field(EnterpriseOutsideColla
 
 
 
-class AOCRJ_EnterpriseAdministratorInvitationConnection_Field(EnterpriseAdministratorInvitationConnection):
+class UCSIJ_EnterpriseAdministratorInvitationConnection_Field(EnterpriseAdministratorInvitationConnection):
    class EnterpriseAdministratorInvitationConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: EnterpriseAdministratorInvitationOrder
@@ -10417,7 +10444,7 @@ class AOCRJ_EnterpriseAdministratorInvitationConnection_Field(EnterpriseAdminist
 
 
 
-class HSSOL_RepositoryInvitationConnection_Field(RepositoryInvitationConnection):
+class XCBYK_RepositoryInvitationConnection_Field(RepositoryInvitationConnection):
    class RepositoryInvitationConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       orderBy: RepositoryInvitationOrder
@@ -10430,10 +10457,11 @@ class HSSOL_RepositoryInvitationConnection_Field(RepositoryInvitationConnection)
 
 
 
-class LDLPG_EnterprisePendingMemberInvitationConnection_Field(EnterprisePendingMemberInvitationConnection):
+class NFGZA_EnterprisePendingMemberInvitationConnection_Field(EnterprisePendingMemberInvitationConnection):
    class EnterprisePendingMemberInvitationConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       organizationLogins: list[NonNull_str]
+      invitationSource: OrganizationInvitationSource
       after: str
       before: str
       first: int
@@ -10443,7 +10471,7 @@ class LDLPG_EnterprisePendingMemberInvitationConnection_Field(EnterprisePendingM
 
 
 
-class QKQYD_OrganizationConnection_Field(OrganizationConnection):
+class ENJWV_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10458,7 +10486,7 @@ class QKQYD_OrganizationConnection_Field(OrganizationConnection):
 
 class NonNull_IdentityProviderConfigurationState(GQLObject): pass
 
-class ARVAH_OrganizationConnection_Field(OrganizationConnection):
+class ZQDJP_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10471,7 +10499,7 @@ class ARVAH_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class INNEP_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
+class UBKJU_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
    class EnterpriseMemberConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: EnterpriseMemberOrder
       after: str
@@ -10483,7 +10511,7 @@ class INNEP_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
 
 
 
-class WKDGW_OrganizationConnection_Field(OrganizationConnection):
+class VTHYQ_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10496,7 +10524,7 @@ class WKDGW_OrganizationConnection_Field(OrganizationConnection):
 
 
 
-class ZBGDK_OrganizationConnection_Field(OrganizationConnection):
+class CGNRW_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10510,58 +10538,59 @@ class ZBGDK_OrganizationConnection_Field(OrganizationConnection):
 
 
 class EnterpriseOwnerInfo(GQLObject):
-   admins: OMMNB_EnterpriseAdministratorConnection_Field
-   affiliatedUsersWithTwoFactorDisabled: HUHKI_UserConnection_Field
+   admins: NLWHI_EnterpriseAdministratorConnection_Field
+   affiliatedUsersWithTwoFactorDisabled: QLPQE_UserConnection_Field
    affiliatedUsersWithTwoFactorDisabledExist: bool
    allowPrivateRepositoryForkingSetting: EnterpriseEnabledDisabledSettingValue
-   allowPrivateRepositoryForkingSettingOrganizations: SGMLG_OrganizationConnection_Field
+   allowPrivateRepositoryForkingSettingOrganizations: GIVUF_OrganizationConnection_Field
    allowPrivateRepositoryForkingSettingPolicyValue: EnterpriseAllowPrivateRepositoryForkingPolicyValue
    defaultRepositoryPermissionSetting: EnterpriseDefaultRepositoryPermissionSettingValue
-   defaultRepositoryPermissionSettingOrganizations: DLXIM_OrganizationConnection_Field
-   domains: ESXUM_VerifiableDomainConnection_Field
-   enterpriseServerInstallations: BBNOZ_EnterpriseServerInstallationConnection_Field
+   defaultRepositoryPermissionSettingOrganizations: LEXQF_OrganizationConnection_Field
+   domains: QINHM_VerifiableDomainConnection_Field
+   enterpriseServerInstallations: GEQUH_EnterpriseServerInstallationConnection_Field
+   failedInvitations: KYKMI_EnterpriseFailedInvitationConnection_Field
    ipAllowListEnabledSetting: IpAllowListEnabledSettingValue
-   ipAllowListEntries: FWNTF_IpAllowListEntryConnection_Field ## Circular Reference for IpAllowListEntryConnection
+   ipAllowListEntries: UEBGI_IpAllowListEntryConnection_Field ## Circular Reference for IpAllowListEntryConnection
    ipAllowListForInstalledAppsEnabledSetting: IpAllowListForInstalledAppsEnabledSettingValue
    isUpdatingDefaultRepositoryPermission: bool
    isUpdatingTwoFactorRequirement: bool
    membersCanChangeRepositoryVisibilitySetting: EnterpriseEnabledDisabledSettingValue
-   membersCanChangeRepositoryVisibilitySettingOrganizations: PZLGA_OrganizationConnection_Field
+   membersCanChangeRepositoryVisibilitySettingOrganizations: DODEQ_OrganizationConnection_Field
    membersCanCreateInternalRepositoriesSetting: bool
    membersCanCreatePrivateRepositoriesSetting: bool
    membersCanCreatePublicRepositoriesSetting: bool
    membersCanCreateRepositoriesSetting: EnterpriseMembersCanCreateRepositoriesSettingValue
-   membersCanCreateRepositoriesSettingOrganizations: HKMYN_OrganizationConnection_Field
+   membersCanCreateRepositoriesSettingOrganizations: KSVSR_OrganizationConnection_Field
    membersCanDeleteIssuesSetting: EnterpriseEnabledDisabledSettingValue
-   membersCanDeleteIssuesSettingOrganizations: JRBJT_OrganizationConnection_Field
+   membersCanDeleteIssuesSettingOrganizations: OOQZV_OrganizationConnection_Field
    membersCanDeleteRepositoriesSetting: EnterpriseEnabledDisabledSettingValue
-   membersCanDeleteRepositoriesSettingOrganizations: IHLVK_OrganizationConnection_Field
+   membersCanDeleteRepositoriesSettingOrganizations: LSNXQ_OrganizationConnection_Field
    membersCanInviteCollaboratorsSetting: EnterpriseEnabledDisabledSettingValue
-   membersCanInviteCollaboratorsSettingOrganizations: KRTWZ_OrganizationConnection_Field
+   membersCanInviteCollaboratorsSettingOrganizations: GCEAN_OrganizationConnection_Field
    membersCanMakePurchasesSetting: EnterpriseMembersCanMakePurchasesSettingValue
    membersCanUpdateProtectedBranchesSetting: EnterpriseEnabledDisabledSettingValue
-   membersCanUpdateProtectedBranchesSettingOrganizations: YDKMZ_OrganizationConnection_Field
+   membersCanUpdateProtectedBranchesSettingOrganizations: JNTYH_OrganizationConnection_Field
    membersCanViewDependencyInsightsSetting: EnterpriseEnabledDisabledSettingValue
-   membersCanViewDependencyInsightsSettingOrganizations: OJPWN_OrganizationConnection_Field
+   membersCanViewDependencyInsightsSettingOrganizations: BPSZL_OrganizationConnection_Field
    notificationDeliveryRestrictionEnabledSetting: NotificationRestrictionSettingValue
    oidcProvider: OIDCProvider
    organizationProjectsSetting: EnterpriseEnabledDisabledSettingValue
-   organizationProjectsSettingOrganizations: PHAZP_OrganizationConnection_Field
-   outsideCollaborators: LVOND_EnterpriseOutsideCollaboratorConnection_Field
-   pendingAdminInvitations: AOCRJ_EnterpriseAdministratorInvitationConnection_Field
-   pendingCollaboratorInvitations: HSSOL_RepositoryInvitationConnection_Field
-   pendingMemberInvitations: LDLPG_EnterprisePendingMemberInvitationConnection_Field
+   organizationProjectsSettingOrganizations: ENVTJ_OrganizationConnection_Field
+   outsideCollaborators: CXKSH_EnterpriseOutsideCollaboratorConnection_Field
+   pendingAdminInvitations: UCSIJ_EnterpriseAdministratorInvitationConnection_Field
+   pendingCollaboratorInvitations: XCBYK_RepositoryInvitationConnection_Field
+   pendingMemberInvitations: NFGZA_EnterprisePendingMemberInvitationConnection_Field
    repositoryProjectsSetting: EnterpriseEnabledDisabledSettingValue
-   repositoryProjectsSettingOrganizations: QKQYD_OrganizationConnection_Field
+   repositoryProjectsSettingOrganizations: ENJWV_OrganizationConnection_Field
    samlIdentityProvider: EnterpriseIdentityProvider
-   samlIdentityProviderSettingOrganizations: ARVAH_OrganizationConnection_Field
-   supportEntitlements: INNEP_EnterpriseMemberConnection_Field
+   samlIdentityProviderSettingOrganizations: ZQDJP_OrganizationConnection_Field
+   supportEntitlements: UBKJU_EnterpriseMemberConnection_Field
    teamDiscussionsSetting: EnterpriseEnabledDisabledSettingValue
-   teamDiscussionsSettingOrganizations: WKDGW_OrganizationConnection_Field
+   teamDiscussionsSettingOrganizations: VTHYQ_OrganizationConnection_Field
    twoFactorRequiredSetting: EnterpriseEnabledSettingValue
-   twoFactorRequiredSettingOrganizations: ZBGDK_OrganizationConnection_Field
+   twoFactorRequiredSettingOrganizations: CGNRW_OrganizationConnection_Field
 
-class NKXGF_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
+class VOADO_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
    class EnterpriseMemberConnectionArgs(GQLArgsSet, GQLObject):
       organizationLogins: list[NonNull_str]
       query: str
@@ -10578,7 +10607,7 @@ class NKXGF_EnterpriseMemberConnection_Field(EnterpriseMemberConnection):
 
 
 
-class KYEAH_OrganizationConnection_Field(OrganizationConnection):
+class PFDDY_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       query: str
       viewerOrganizationRole: RoleInOrganization
@@ -10593,7 +10622,10 @@ class KYEAH_OrganizationConnection_Field(OrganizationConnection):
 
 
 class Enterprise(GQLObject):
-   avatarUrl: SILSD_URI_Field
+   announcement: str
+   announcementExpiresAt: DateTime
+   announcementUserDismissible: bool
+   avatarUrl: ODNVG_URI_Field
    billingInfo: EnterpriseBillingInfo
    createdAt: DateTime
    databaseId: int
@@ -10601,9 +10633,9 @@ class Enterprise(GQLObject):
    descriptionHTML: HTML
    id: ID
    location: str
-   members: NKXGF_EnterpriseMemberConnection_Field
+   members: VOADO_EnterpriseMemberConnection_Field
    name: str
-   organizations: KYEAH_OrganizationConnection_Field
+   organizations: PFDDY_OrganizationConnection_Field
    ownerInfo: EnterpriseOwnerInfo
    resourcePath: URI
    slug: str
@@ -10637,7 +10669,7 @@ class IpAllowListEntryConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class FAXGI_IpAllowListEntryConnection_Field(IpAllowListEntryConnection):
+class SASWN_IpAllowListEntryConnection_Field(IpAllowListEntryConnection):
    class IpAllowListEntryConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10654,9 +10686,9 @@ class App(GQLObject):
    databaseId: int
    description: str
    id: ID
-   ipAllowListEntries: FAXGI_IpAllowListEntryConnection_Field
+   ipAllowListEntries: SASWN_IpAllowListEntryConnection_Field
    logoBackgroundColor: str
-   logoUrl: OCZPK_URI_Field
+   logoUrl: GHGWM_URI_Field
    name: str
    slug: str
    updatedAt: DateTime
@@ -10684,7 +10716,7 @@ class Push(GQLObject):
    pusher: Actor
    repository: Repository
 
-class AQRPU_CheckRunConnection_Field(CheckRunConnection):
+class AOCYO_CheckRunConnection_Field(CheckRunConnection):
    class CheckRunConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10696,7 +10728,7 @@ class AQRPU_CheckRunConnection_Field(CheckRunConnection):
 
 
 
-class UPQAJ_PullRequestConnection_Field(PullRequestConnection):
+class OKLOB_PullRequestConnection_Field(PullRequestConnection):
    class PullRequestConnectionArgs(GQLArgsSet, GQLObject):
       states: list[NonNull_PullRequestState]
       labels: list[NonNull_str]
@@ -10715,14 +10747,14 @@ class UPQAJ_PullRequestConnection_Field(PullRequestConnection):
 class CheckSuite(GQLObject):
    app: App
    branch: Ref
-   checkRuns: AQRPU_CheckRunConnection_Field
+   checkRuns: AOCYO_CheckRunConnection_Field
    commit: Commit
    conclusion: CheckConclusionState
    createdAt: DateTime
    creator: User
    databaseId: int
    id: ID
-   matchingPullRequests: UPQAJ_PullRequestConnection_Field
+   matchingPullRequests: OKLOB_PullRequestConnection_Field
    push: Push
    repository: Repository
    resourcePath: URI
@@ -10731,7 +10763,7 @@ class CheckSuite(GQLObject):
    url: URI
    workflowRun: NewType('WorkflowRun', GQLObject) ## Circular Reference for WorkflowRun
 
-class WSESE_EnvironmentConnection_Field(EnvironmentConnection):
+class JYTHT_EnvironmentConnection_Field(EnvironmentConnection):
    class EnvironmentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10745,7 +10777,7 @@ class WSESE_EnvironmentConnection_Field(EnvironmentConnection):
 class DeploymentReview(GQLObject):
    comment: str
    databaseId: int
-   environments: WSESE_EnvironmentConnection_Field
+   environments: JYTHT_EnvironmentConnection_Field
    id: ID
    state: DeploymentReviewState
    user: User
@@ -10778,7 +10810,7 @@ class DeploymentRequestConnection(GQLObject):
    pageInfo: PageInfo
    totalCount: int
 
-class XQDSL_WorkflowRunConnection_Field(Generic[WorkflowRunConnection]):
+class NPMFB_WorkflowRunConnection_Field(Generic[WorkflowRunConnection]):
    class WorkflowRunConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10795,10 +10827,10 @@ class Workflow(GQLObject):
    databaseId: int
    id: ID
    name: str
-   runs: XQDSL_WorkflowRunConnection_Field ## Circular Reference for WorkflowRunConnection
+   runs: NPMFB_WorkflowRunConnection_Field ## Circular Reference for WorkflowRunConnection
    updatedAt: DateTime
 
-class EPPOD_DeploymentReviewConnection_Field(DeploymentReviewConnection):
+class FDBWK_DeploymentReviewConnection_Field(DeploymentReviewConnection):
    class DeploymentReviewConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10809,7 +10841,7 @@ class EPPOD_DeploymentReviewConnection_Field(DeploymentReviewConnection):
 
 
 
-class SDRSS_DeploymentRequestConnection_Field(DeploymentRequestConnection):
+class EIUXJ_DeploymentRequestConnection_Field(DeploymentRequestConnection):
    class DeploymentRequestConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -10824,9 +10856,9 @@ class WorkflowRun(GQLObject):
    checkSuite: CheckSuite
    createdAt: DateTime
    databaseId: int
-   deploymentReviews: EPPOD_DeploymentReviewConnection_Field
+   deploymentReviews: FDBWK_DeploymentReviewConnection_Field
    id: ID
-   pendingDeploymentRequests: SDRSS_DeploymentRequestConnection_Field
+   pendingDeploymentRequests: EIUXJ_DeploymentRequestConnection_Field
    resourcePath: URI
    runNumber: int
    updatedAt: DateTime
@@ -10981,7 +11013,7 @@ class MarketplaceListing(GQLObject):
    isVerificationPendingFromUnverified: bool
    isVerified: bool
    logoBackgroundColor: str
-   logoUrl: KKNZP_URI_Field
+   logoUrl: QTTQR_URI_Field
    name: str
    normalizedShortDescription: str
    pricingUrl: URI
@@ -11076,7 +11108,7 @@ class RemoveEnterpriseAdminPayload(GQLObject):
    message: str
    viewer: User
 
-class GDHIB_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
+class ASDPC_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentConnection):
    class PullRequestReviewCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11089,7 +11121,7 @@ class GDHIB_PullRequestReviewCommentConnection_Field(PullRequestReviewCommentCon
 
 
 class PullRequestThread(GQLObject):
-   comments: GDHIB_PullRequestReviewCommentConnection_Field
+   comments: ASDPC_PullRequestReviewCommentConnection_Field
    diffSide: DiffSide
    id: ID
    isCollapsed: bool
@@ -11114,7 +11146,7 @@ class ProjectV2ItemFieldValueCommon(GQLObject):
    item: ProjectV2Item
    updatedAt: DateTime
 
-class GXUAL_PinnableItemConnection_Field(PinnableItemConnection):
+class KXFVH_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -11126,7 +11158,7 @@ class GXUAL_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 
-class TYVZY_PinnableItemConnection_Field(PinnableItemConnection):
+class GFUIH_PinnableItemConnection_Field(PinnableItemConnection):
    class PinnableItemConnectionArgs(GQLArgsSet, GQLObject):
       types: list[NonNull_PinnableItemType]
       after: str
@@ -11139,15 +11171,15 @@ class TYVZY_PinnableItemConnection_Field(PinnableItemConnection):
 
 
 class ProfileOwner(GQLObject):
-   anyPinnableItems: OXMQI_anyPinnableItems_Field
+   anyPinnableItems: QZCCR_anyPinnableItems_Field
    email: str
    id: ID
    itemShowcase: ProfileItemShowcase
    location: str
    login: str
    name: str
-   pinnableItems: GXUAL_PinnableItemConnection_Field
-   pinnedItems: TYVZY_PinnableItemConnection_Field
+   pinnableItems: KXFVH_PinnableItemConnection_Field
+   pinnedItems: GFUIH_PinnableItemConnection_Field
    pinnedItemsRemaining: int
    viewerCanChangePinnedItems: bool
    websiteUrl: URI
@@ -11247,7 +11279,7 @@ class CreateAttributionInvitationPayload(GQLObject):
    source: Claimable
    target: Claimable
 
-class ZYZAQ_UserContentEditConnection_Field(UserContentEditConnection):
+class VNKES_UserContentEditConnection_Field(UserContentEditConnection):
    class UserContentEditConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11272,7 +11304,7 @@ class Comment(GQLObject):
    lastEditedAt: DateTime
    publishedAt: DateTime
    updatedAt: DateTime
-   userContentEdits: ZYZAQ_UserContentEditConnection_Field
+   userContentEdits: VNKES_UserContentEditConnection_Field
    viewerDidAuthor: bool
 
 class AuditEntry(GQLObject):
@@ -11376,7 +11408,7 @@ class AddPullRequestReviewThreadPayload(GQLObject):
    clientMutationId: str
    thread: PullRequestReviewThread
 
-class CZQRO_StargazerConnection_Field(StargazerConnection):
+class TCDRQ_StargazerConnection_Field(StargazerConnection):
    class StargazerConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11391,7 +11423,7 @@ class CZQRO_StargazerConnection_Field(StargazerConnection):
 class Starrable(GQLObject):
    id: ID
    stargazerCount: int
-   stargazers: CZQRO_StargazerConnection_Field
+   stargazers: TCDRQ_StargazerConnection_Field
    viewerHasStarred: bool
 
 class AddStarPayload(GQLObject):
@@ -11666,7 +11698,7 @@ class GpgSignature(GQLObject):
    state: GitSignatureState
    wasSignedByGitHub: bool
 
-class YAUXV_OrganizationConnection_Field(OrganizationConnection):
+class MDOBM_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11679,7 +11711,7 @@ class YAUXV_OrganizationConnection_Field(OrganizationConnection):
 
 class GrantEnterpriseOrganizationsMigratorRolePayload(GQLObject):
    clientMutationId: str
-   organizations: YAUXV_OrganizationConnection_Field
+   organizations: MDOBM_OrganizationConnection_Field
 
 class InviteEnterpriseAdminPayload(GQLObject):
    clientMutationId: str
@@ -11705,7 +11737,7 @@ class MarkPullRequestReadyForReviewPayload(GQLObject):
    clientMutationId: str
    pullRequest: PullRequest
 
-class LQVBP_UserStatusConnection_Field(UserStatusConnection):
+class YRANG_UserStatusConnection_Field(UserStatusConnection):
    class UserStatusConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11718,7 +11750,7 @@ class LQVBP_UserStatusConnection_Field(UserStatusConnection):
 
 
 class MemberStatusable(GQLObject):
-   memberStatuses: LQVBP_UserStatusConnection_Field
+   memberStatuses: YRANG_UserStatusConnection_Field
 
 class MergeBranchPayload(GQLObject):
    clientMutationId: str
@@ -11754,7 +11786,7 @@ class OrganizationAuditEntryData(GQLObject):
    organizationResourcePath: URI
    organizationUrl: URI
 
-class BJYAY_TeamConnection_Field(TeamConnection):
+class JLQLY_TeamConnection_Field(TeamConnection):
    class TeamConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11768,12 +11800,12 @@ class BJYAY_TeamConnection_Field(TeamConnection):
 class OrganizationTeamsHovercardContext(GQLObject):
    message: str
    octicon: str
-   relevantTeams: BJYAY_TeamConnection_Field
+   relevantTeams: JLQLY_TeamConnection_Field
    teamsResourcePath: URI
    teamsUrl: URI
    totalTeamCount: int
 
-class TBICW_OrganizationConnection_Field(OrganizationConnection):
+class EVYFY_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       orderBy: OrganizationOrder
       after: str
@@ -11788,10 +11820,10 @@ class TBICW_OrganizationConnection_Field(OrganizationConnection):
 class OrganizationsHovercardContext(GQLObject):
    message: str
    octicon: str
-   relevantOrganizations: TBICW_OrganizationConnection_Field
+   relevantOrganizations: EVYFY_OrganizationConnection_Field
    totalOrganizationCount: int
 
-class YIRIR_PackageConnection_Field(PackageConnection):
+class ETQYV_PackageConnection_Field(PackageConnection):
    class PackageConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11808,7 +11840,7 @@ class YIRIR_PackageConnection_Field(PackageConnection):
 
 class PackageOwner(GQLObject):
    id: ID
-   packages: YIRIR_PackageConnection_Field
+   packages: ETQYV_PackageConnection_Field
 
 class PackageTag(GQLObject):
    id: ID
@@ -11828,7 +11860,7 @@ class ProjectV2FieldCommon(GQLObject):
    project: ProjectV2
    updatedAt: DateTime
 
-class XCIUJ_ProjectV2Connection_Field(ProjectV2Connection):
+class SJCNJ_ProjectV2Connection_Field(ProjectV2Connection):
    class ProjectV2ConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11840,7 +11872,7 @@ class XCIUJ_ProjectV2Connection_Field(ProjectV2Connection):
 
 
 class ProjectV2Recent(GQLObject):
-   recentProjects: XCIUJ_ProjectV2Connection_Field
+   recentProjects: SJCNJ_ProjectV2Connection_Field
 
 class PublishSponsorsTierPayload(GQLObject):
    clientMutationId: str
@@ -11892,7 +11924,7 @@ class RepositoryAuditEntryData(GQLObject):
    repositoryResourcePath: URI
    repositoryUrl: URI
 
-class SUTVN_DiscussionConnection_Field(DiscussionConnection):
+class HLUCT_DiscussionConnection_Field(DiscussionConnection):
    class DiscussionConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11907,9 +11939,9 @@ class SUTVN_DiscussionConnection_Field(DiscussionConnection):
 
 
 class RepositoryDiscussionAuthor(GQLObject):
-   repositoryDiscussions: SUTVN_DiscussionConnection_Field
+   repositoryDiscussions: HLUCT_DiscussionConnection_Field
 
-class OKHXT_DiscussionCommentConnection_Field(DiscussionCommentConnection):
+class CCSFI_DiscussionCommentConnection_Field(DiscussionCommentConnection):
    class DiscussionCommentConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11923,7 +11955,7 @@ class OKHXT_DiscussionCommentConnection_Field(DiscussionCommentConnection):
 
 
 class RepositoryDiscussionCommentAuthor(GQLObject):
-   repositoryDiscussionComments: OKHXT_DiscussionCommentConnection_Field
+   repositoryDiscussionComments: CCSFI_DiscussionCommentConnection_Field
 
 class RepositoryNode(GQLObject):
    repository: Repository
@@ -11940,7 +11972,7 @@ class RetireSponsorsTierPayload(GQLObject):
    clientMutationId: str
    sponsorsTier: SponsorsTier
 
-class SEWTU_OrganizationConnection_Field(OrganizationConnection):
+class OPLRO_OrganizationConnection_Field(OrganizationConnection):
    class OrganizationConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -11953,7 +11985,7 @@ class SEWTU_OrganizationConnection_Field(OrganizationConnection):
 
 class RevokeEnterpriseOrganizationsMigratorRolePayload(GQLObject):
    clientMutationId: str
-   organizations: SEWTU_OrganizationConnection_Field
+   organizations: OPLRO_OrganizationConnection_Field
 
 class SetEnterpriseIdentityProviderPayload(GQLObject):
    clientMutationId: str
@@ -12268,7 +12300,7 @@ class UpdateProjectV2ItemFieldValuePayload(GQLObject):
    clientMutationId: str
    projectV2Item: ProjectV2Item
 
-class EZTHQ_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
+class YMHGF_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
    class ProjectV2ItemConnectionArgs(GQLArgsSet, GQLObject):
       after: str
       before: str
@@ -12281,7 +12313,7 @@ class EZTHQ_ProjectV2ItemConnection_Field(ProjectV2ItemConnection):
 
 class UpdateProjectV2ItemPositionPayload(GQLObject):
    clientMutationId: str
-   items: EZTHQ_ProjectV2ItemConnection_Field
+   items: YMHGF_ProjectV2ItemConnection_Field
 
 class UpdateProjectV2Payload(GQLObject):
    clientMutationId: str

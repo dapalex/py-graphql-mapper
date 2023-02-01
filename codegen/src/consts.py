@@ -17,12 +17,12 @@ NEWTYPE_DECLARATION = "NewType('%s', GQLObject)"
 TEMPLATE_FOLDER = str(pathlib.Path(path.dirname(__file__), 'templates').absolute())
 IMPORT_TEMPLATE = "from .%s import %s"
 
-SCALARS_FILENAME = 'scalars'
-ENUMS_FILENAME = 'enums'
-TYPES_FILENAME = 'gql_types'
-SIMPLE_TYPES_FILENAME = 'gql_simple_types'
-MUTATIONS_FILENAME = 'mutations'
-QUERIES_FILENAME = 'queries'
-TYPE_REFS_FILENAME = 'type_refs'
+SCALARS_NAME = 'scalars'
+ENUMS_NAME = 'enums'
+TYPES_NAME = 'gql_types'
+SIMPLE_TYPES_NAME = 'gql_simple_types'
+QUERIES_NAME = 'queries'
+MUTATIONS_NAME = 'mutations'
+TYPE_REFS_NAME = 'type_refs'
 
 PY_EXTENSION = '.py'

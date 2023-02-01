@@ -6,9 +6,9 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class JHMNO_distance_Field(ArguedFloat):
+class WHTYR_distance_Field(ArguedFloat):
    """
-   JHMNO_distance_Field - The distance result from some location-based query
+   WHTYR_distance_Field - The distance result from some location-based query
 This field has two forms:
 - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.

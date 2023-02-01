@@ -1,6 +1,6 @@
 import pathlib
 from .utils import get_valid_folder
-from .consts import PY_EXTENSION, TYPE_REFS_FILENAME, ENUMS_FILENAME, MUTATIONS_FILENAME, QUERIES_FILENAME, SCALARS_FILENAME, SIMPLE_TYPES_FILENAME, TEMPLATE_FOLDER, TYPES_FILENAME
+from .consts import PY_EXTENSION, TYPE_REFS_NAME, ENUMS_NAME, MUTATIONS_NAME, QUERIES_NAME, SCALARS_NAME, SIMPLE_TYPES_NAME, TEMPLATE_FOLDER, TYPES_NAME
 import os
 import logging as logger
 from .enums import TemplateType
@@ -19,13 +19,13 @@ class Printer():
                 folder = get_valid_folder(folder)
             else:
                 logger.warning('Destination folder missing')
-            self.save_file(TemplateType.SCALAR_TEMPLATE, str(pathlib.Path(folder, SCALARS_FILENAME + PY_EXTENSION).absolute()), 'scalar_defs')
-            self.save_file(TemplateType.ENUM_TEMPLATE, str(pathlib.Path(folder, ENUMS_FILENAME + PY_EXTENSION).absolute()), 'enum_classes')
-            self.save_file(TemplateType.FREE_TYPE_TEMPLATE, str(pathlib.Path(folder, SIMPLE_TYPES_FILENAME + PY_EXTENSION).absolute()), 'simple_type_classes')
-            self.save_file(TemplateType.TYPE_TEMPLATE, str(pathlib.Path(folder, TYPES_FILENAME + PY_EXTENSION).absolute()), 'type_classes')
-            self.save_operation_file(TemplateType.QUERY_TEMPLATE, str(pathlib.Path(folder, QUERIES_FILENAME + PY_EXTENSION).absolute()), ('query_classes', 'queries_enum_class'))
-            self.save_operation_file(TemplateType.MUTATION_TEMPLATE, str(pathlib.Path(folder, MUTATIONS_FILENAME + PY_EXTENSION).absolute()), ('mutation_classes', 'mutations_enum_class'))
-            self.save_file(TemplateType.TYPE_REFS_TEMPLATE, str(pathlib.Path(folder, TYPE_REFS_FILENAME + PY_EXTENSION).absolute()), 'type_refs')
+            self.save_file(TemplateType.SCALAR_TEMPLATE, str(pathlib.Path(folder, SCALARS_NAME + PY_EXTENSION).absolute()), 'scalar_defs')
+            self.save_file(TemplateType.ENUM_TEMPLATE, str(pathlib.Path(folder, ENUMS_NAME + PY_EXTENSION).absolute()), 'enum_classes')
+            self.save_file(TemplateType.FREE_TYPE_TEMPLATE, str(pathlib.Path(folder, SIMPLE_TYPES_NAME + PY_EXTENSION).absolute()), 'simple_type_classes')
+            self.save_file(TemplateType.TYPE_TEMPLATE, str(pathlib.Path(folder, TYPES_NAME + PY_EXTENSION).absolute()), 'type_classes')
+            self.save_operation_file(TemplateType.QUERY_TEMPLATE, str(pathlib.Path(folder, QUERIES_NAME + PY_EXTENSION).absolute()), ('query_classes', 'queries_enum_class'))
+            self.save_operation_file(TemplateType.MUTATION_TEMPLATE, str(pathlib.Path(folder, MUTATIONS_NAME + PY_EXTENSION).absolute()), ('mutation_classes', 'mutations_enum_class'))
+            self.save_file(TemplateType.TYPE_REFS_TEMPLATE, str(pathlib.Path(folder, TYPE_REFS_NAME + PY_EXTENSION).absolute()), 'type_refs')
         except Exception as ex:
             raise ex
 

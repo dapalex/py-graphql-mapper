@@ -6,9 +6,9 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class JGNFE_anyPinnableItems_Field(ArguedBool):
+class ODBXR_anyPinnableItems_Field(ArguedBool):
    """
-   JGNFE_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   ODBXR_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -22,9 +22,9 @@ class JGNFE_anyPinnableItems_Field(ArguedBool):
 
 
 
-class TTPFY_URI_Field(ArguedStr):
+class SCWND_URI_Field(ArguedStr):
    """
-   TTPFY_URI_Field - URL for the listing's logo image.
+   SCWND_URI_Field - URL for the listing's logo image.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -38,9 +38,9 @@ class TTPFY_URI_Field(ArguedStr):
 
 
 
-class FKTCZ_URI_Field(ArguedStr):
+class XTPZA_URI_Field(ArguedStr):
    """
-   FKTCZ_URI_Field - A URL pointing to the app's logo.
+   XTPZA_URI_Field - A URL pointing to the app's logo.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -54,9 +54,9 @@ class FKTCZ_URI_Field(ArguedStr):
 
 
 
-class XKOZU_URI_Field(ArguedStr):
+class CYSMW_URI_Field(ArguedStr):
    """
-   XKOZU_URI_Field - A URL pointing to the enterprise's public avatar.
+   CYSMW_URI_Field - A URL pointing to the enterprise's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -70,9 +70,9 @@ class XKOZU_URI_Field(ArguedStr):
 
 
 
-class XWMKE_HTML_Field(ArguedStr):
+class VUBLQ_HTML_Field(ArguedStr):
    """
-   XWMKE_HTML_Field - A description of the repository, rendered to HTML without any links in it.
+   VUBLQ_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject):
@@ -86,9 +86,9 @@ class XWMKE_HTML_Field(ArguedStr):
 
 
 
-class XLDSE_URI_Field(ArguedStr):
+class IFUMS_URI_Field(ArguedStr):
    """
-   XLDSE_URI_Field - A URL pointing to the enterprise user account's public avatar.
+   IFUMS_URI_Field - A URL pointing to the enterprise user account's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -102,9 +102,9 @@ class XLDSE_URI_Field(ArguedStr):
 
 
 
-class RTOSF_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class NZMVG_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   RTOSF_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   NZMVG_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -124,9 +124,9 @@ class RTOSF_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class IBPFH_isSponsoredBy_Field(ArguedBool):
+class KIYOL_isSponsoredBy_Field(ArguedBool):
    """
-   IBPFH_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   KIYOL_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -140,9 +140,9 @@ class IBPFH_isSponsoredBy_Field(ArguedBool):
 
 
 
-class VHDME_URI_Field(ArguedStr):
+class HBYVQ_URI_Field(ArguedStr):
    """
-   VHDME_URI_Field - A URL pointing to the organization's public avatar.
+   HBYVQ_URI_Field - A URL pointing to the organization's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -156,9 +156,9 @@ class VHDME_URI_Field(ArguedStr):
 
 
 
-class QOATW_anyPinnableItems_Field(ArguedBool):
+class VMKWJ_anyPinnableItems_Field(ArguedBool):
    """
-   QOATW_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   VMKWJ_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -172,9 +172,9 @@ class QOATW_anyPinnableItems_Field(ArguedBool):
 
 
 
-class NEXXR_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class IHBCR_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   NEXXR_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   IHBCR_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -194,9 +194,9 @@ class NEXXR_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class XAAWA_organizationVerifiedDomainEmails_Field(ArguedStr):
+class FOGWM_organizationVerifiedDomainEmails_Field(ArguedStr):
    """
-   XAAWA_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
+   FOGWM_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -210,9 +210,9 @@ class XAAWA_organizationVerifiedDomainEmails_Field(ArguedStr):
 
 
 
-class TAAEY_isSponsoredBy_Field(ArguedBool):
+class VKERH_isSponsoredBy_Field(ArguedBool):
    """
-   TAAEY_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   VKERH_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -226,9 +226,9 @@ class TAAEY_isSponsoredBy_Field(ArguedBool):
 
 
 
-class AHAOB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedBool):
+class JWHUW_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedBool):
    """
-   AHAOB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
+   JWHUW_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -242,9 +242,9 @@ class AHAOB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(Argued
 
 
 
-class JFULJ_URI_Field(ArguedStr):
+class RTAOK_URI_Field(ArguedStr):
    """
-   JFULJ_URI_Field - A URL pointing to the user's public avatar.
+   RTAOK_URI_Field - A URL pointing to the user's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -258,9 +258,9 @@ class JFULJ_URI_Field(ArguedStr):
 
 
 
-class AYYWA_anyPinnableItems_Field(ArguedBool):
+class IPLGW_anyPinnableItems_Field(ArguedBool):
    """
-   AYYWA_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   IPLGW_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -274,9 +274,9 @@ class AYYWA_anyPinnableItems_Field(ArguedBool):
 
 
 
-class GZWRT_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class SAMNF_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   GZWRT_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   SAMNF_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -296,9 +296,9 @@ class GZWRT_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class OGEOK_isSponsoredBy_Field(ArguedBool):
+class LAPKE_isSponsoredBy_Field(ArguedBool):
    """
-   OGEOK_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   LAPKE_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -312,9 +312,9 @@ class OGEOK_isSponsoredBy_Field(ArguedBool):
 
 
 
-class DNUFM_text_Field(ArguedStr):
+class VHAOC_text_Field(ArguedStr):
    """
-   DNUFM_text_Field - UTF8 text data or null if the file is binary
+   VHAOC_text_Field - UTF8 text data or null if the file is binary
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -328,9 +328,9 @@ class DNUFM_text_Field(ArguedStr):
 
 
 
-class VPGHK_totalRepositoryContributions_Field(ArguedInt):
+class JVPAP_totalRepositoryContributions_Field(ArguedInt):
    """
-   VPGHK_totalRepositoryContributions_Field - How many repositories the user created.
+   JVPAP_totalRepositoryContributions_Field - How many repositories the user created.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -344,47 +344,9 @@ class VPGHK_totalRepositoryContributions_Field(ArguedInt):
 
 
 
-class XJGMB_totalRepositoriesWithContributedPullRequests_Field(ArguedInt):
+class QWHHU_totalRepositoriesWithContributedPullRequests_Field(ArguedInt):
    """
-   XJGMB_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject):
-      """
-      excludeFirst - Should the user's first pull request ever be excluded from this count.
-
-      excludePopular - Should the user's most commented pull request be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class OQLIW_totalRepositoriesWithContributedIssues_Field(ArguedInt):
-   """
-   OQLIW_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject):
-      """
-      excludeFirst - Should the user's first issue ever be excluded from this count.
-
-      excludePopular - Should the user's most commented issue be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class ISODT_totalPullRequestContributions_Field(ArguedInt):
-   """
-   ISODT_totalPullRequestContributions_Field - How many pull requests the user opened.
+   QWHHU_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -401,9 +363,9 @@ class ISODT_totalPullRequestContributions_Field(ArguedInt):
 
 
 
-class DBGHE_totalIssueContributions_Field(ArguedInt):
+class PDWSN_totalRepositoriesWithContributedIssues_Field(ArguedInt):
    """
-   DBGHE_totalIssueContributions_Field - How many issues the user opened.
+   PDWSN_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -420,9 +382,47 @@ class DBGHE_totalIssueContributions_Field(ArguedInt):
 
 
 
-class FBKYR_isRequired_Field(ArguedBool):
+class XEEGR_totalPullRequestContributions_Field(ArguedInt):
    """
-   FBKYR_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   XEEGR_totalPullRequestContributions_Field - How many pull requests the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject):
+      """
+      excludeFirst - Should the user's first pull request ever be excluded from this count.
+
+      excludePopular - Should the user's most commented pull request be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class SGTYP_totalIssueContributions_Field(ArguedInt):
+   """
+   SGTYP_totalIssueContributions_Field - How many issues the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject):
+      """
+      excludeFirst - Should the user's first issue ever be excluded from this count.
+
+      excludePopular - Should the user's most commented issue be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class PKCUV_isRequired_Field(ArguedBool):
+   """
+   PKCUV_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -439,9 +439,9 @@ class FBKYR_isRequired_Field(ArguedBool):
 
 
 
-class LMPPY_URI_Field(ArguedStr):
+class HAYOW_URI_Field(ArguedStr):
    """
-   LMPPY_URI_Field - The avatar of the OAuth application or the user that created the status
+   HAYOW_URI_Field - The avatar of the OAuth application or the user that created the status
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -455,9 +455,9 @@ class LMPPY_URI_Field(ArguedStr):
 
 
 
-class GSVAX_isRequired_Field(ArguedBool):
+class AEGOW_isRequired_Field(ArguedBool):
    """
-   GSVAX_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   AEGOW_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -474,9 +474,9 @@ class GSVAX_isRequired_Field(ArguedBool):
 
 
 
-class EKVBH_URI_Field(ArguedStr):
+class UCYLQ_URI_Field(ArguedStr):
    """
-   EKVBH_URI_Field - A URL pointing to the author's public avatar.
+   UCYLQ_URI_Field - A URL pointing to the author's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -490,25 +490,9 @@ class EKVBH_URI_Field(ArguedStr):
 
 
 
-class XJLOL_viewerMergeHeadlineText_Field(ArguedStr):
+class IXZOF_viewerMergeHeadlineText_Field(ArguedStr):
    """
-   XJLOL_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
-
-   """
-   class strArgs(GQLArgsSet, GQLObject):
-      """
-      mergeType - The merge method for the message.
-
-      """
-      mergeType: PullRequestMergeMethod
-
-   _args: strArgs
-
-
-
-class DDYNG_viewerMergeBodyText_Field(ArguedStr):
-   """
-   DDYNG_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+   IXZOF_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -522,9 +506,25 @@ class DDYNG_viewerMergeBodyText_Field(ArguedStr):
 
 
 
-class TLQIQ_URI_Field(ArguedStr):
+class ACHOO_viewerMergeBodyText_Field(ArguedStr):
    """
-   TLQIQ_URI_Field - A URL pointing to the team's avatar.
+   ACHOO_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+
+   """
+   class strArgs(GQLArgsSet, GQLObject):
+      """
+      mergeType - The merge method for the message.
+
+      """
+      mergeType: PullRequestMergeMethod
+
+   _args: strArgs
+
+
+
+class FRTRH_URI_Field(ArguedStr):
+   """
+   FRTRH_URI_Field - A URL pointing to the team's avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -538,9 +538,9 @@ class TLQIQ_URI_Field(ArguedStr):
 
 
 
-class WNYYO_trackedIssuesCount_Field(ArguedInt):
+class ADVTC_trackedIssuesCount_Field(ArguedInt):
    """
-   WNYYO_trackedIssuesCount_Field - The number of tracked issues for this issue
+   ADVTC_trackedIssuesCount_Field - The number of tracked issues for this issue
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -554,41 +554,9 @@ class WNYYO_trackedIssuesCount_Field(ArguedInt):
 
 
 
-class VFHOV_HTML_Field(ArguedStr):
+class QHOFH_HTML_Field(ArguedStr):
    """
-   VFHOV_HTML_Field - A description of the repository, rendered to HTML without any links in it.
-
-   """
-   class HTMLArgs(GQLArgsSet, GQLObject):
-      """
-      limit - How many characters to return.
-
-      """
-      limit: int
-
-   _args: HTMLArgs
-
-
-
-class DLSBL_URI_Field(ArguedStr):
-   """
-   DLSBL_URI_Field - A URL pointing to the owner's public avatar.
-
-   """
-   class URIArgs(GQLArgsSet, GQLObject):
-      """
-      size - The size of the resulting square image.
-
-      """
-      size: int
-
-   _args: URIArgs
-
-
-
-class JKNMR_HTML_Field(ArguedStr):
-   """
-   JKNMR_HTML_Field - A description of the release, rendered to HTML without any links in it.
+   QHOFH_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject):
@@ -602,9 +570,9 @@ class JKNMR_HTML_Field(ArguedStr):
 
 
 
-class DMKNT_URI_Field(ArguedStr):
+class PZYRM_URI_Field(ArguedStr):
    """
-   DMKNT_URI_Field - A URL pointing to the GitHub App's public avatar.
+   PZYRM_URI_Field - A URL pointing to the owner's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -618,9 +586,57 @@ class DMKNT_URI_Field(ArguedStr):
 
 
 
-class DSMPH_isRequired_Field(ArguedBool):
+class FECCR_HTML_Field(ArguedStr):
    """
-   DSMPH_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   FECCR_HTML_Field - A description of the release, rendered to HTML without any links in it.
+
+   """
+   class HTMLArgs(GQLArgsSet, GQLObject):
+      """
+      limit - How many characters to return.
+
+      """
+      limit: int
+
+   _args: HTMLArgs
+
+
+
+class UMCLH_URI_Field(ArguedStr):
+   """
+   UMCLH_URI_Field - A URL pointing to the GitHub App's public avatar.
+
+   """
+   class URIArgs(GQLArgsSet, GQLObject):
+      """
+      size - The size of the resulting square image.
+
+      """
+      size: int
+
+   _args: URIArgs
+
+
+
+class NYOXP_URI_Field(ArguedStr):
+   """
+   NYOXP_URI_Field - A URL pointing to the actor's public avatar.
+
+   """
+   class URIArgs(GQLArgsSet, GQLObject):
+      """
+      size - The size of the resulting square image.
+
+      """
+      size: int
+
+   _args: URIArgs
+
+
+
+class JEYBZ_isRequired_Field(ArguedBool):
+   """
+   JEYBZ_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -1560,7 +1576,7 @@ class RequirableByPullRequest(GQLObject):
    isRequired - Whether this is required to pass before merging for a specific pull request.
 
    """
-   isRequired: DSMPH_isRequired_Field
+   isRequired: JEYBZ_isRequired_Field
 
 class RepositoryOrder(GQLObject):
    """
@@ -3180,9 +3196,9 @@ class CWE(GQLObject):
    id: ID
    name: str
 
-class HUERW_URI_Field(ArguedStr):
+class CDIHG_URI_Field(ArguedStr):
    """
-   HUERW_URI_Field - A URL pointing to the GitHub App's public avatar.
+   CDIHG_URI_Field - A URL pointing to the GitHub App's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -3241,207 +3257,212 @@ class ApproveDeploymentsInput(GQLObject):
    comment: str
    clientMutationId: str
 
-class AddUpvoteInput(GQLObject):
+class AddVerifiableDomainInput(GQLObject):
    """
-   AddUpvoteInput - Autogenerated input type of AddUpvote
+   AddVerifiableDomainInput - Autogenerated input type of AddVerifiableDomain
 
-   subjectId - The Node ID of the discussion or comment to upvote.
+   ownerId - The ID of the owner to add the domain to
+
+   domain - The URL of the domain
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   subjectId: ID
+   ownerId: ID
+   domain: URI
    clientMutationId: str
 
-class AddReactionInput(GQLObject):
+class AddStarInput(GQLObject):
    """
-   AddReactionInput - Autogenerated input type of AddReaction
+   AddStarInput - Autogenerated input type of AddStar
 
-   subjectId - The Node ID of the subject to modify.
-
-   content - The name of the emoji to react with.
+   starrableId - The Starrable ID to star.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   subjectId: ID
-   content: ReactionContent
+   starrableId: ID
    clientMutationId: str
 
-class AddPullRequestReviewCommentInput(GQLObject):
+class AddPullRequestReviewThreadInput(GQLObject):
    """
-   AddPullRequestReviewCommentInput - Autogenerated input type of AddPullRequestReviewComment
+   AddPullRequestReviewThreadInput - Autogenerated input type of AddPullRequestReviewThread
+
+   path - Path to the file being commented on.
+
+   body - Body of the thread's first comment.
 
    pullRequestId - The node ID of the pull request reviewing
 
    pullRequestReviewId - The Node ID of the review to modify.
 
-   commitOID - The SHA of the commit to comment on.
+   line - The line of the blob to which the thread refers. The end of the line range for multi-line comments.
 
-   body - The text of the comment.
+   side - The side of the diff on which the line resides. For multi-line comments, this is the side for the end of the line range.
 
-   path - The relative path of the file to comment on.
+   startLine - The first line of the range to which the comment refers.
 
-   position - The line index in the diff to comment on.
-
-   inReplyTo - The comment id to reply to.
+   startSide - The side of the diff on which the start line resides.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
+   path: str
+   body: str
    pullRequestId: ID
    pullRequestReviewId: ID
-   commitOID: GitObjectID
-   body: str
-   path: str
-   position: int
-   inReplyTo: ID
+   line: int
+   side: DiffSide
+   startLine: int
+   startSide: DiffSide
    clientMutationId: str
 
-class AddProjectV2DraftIssueInput(GQLObject):
+class AddProjectV2ItemByIdInput(GQLObject):
    """
-   AddProjectV2DraftIssueInput - Autogenerated input type of AddProjectV2DraftIssue
+   AddProjectV2ItemByIdInput - Autogenerated input type of AddProjectV2ItemById
 
-   projectId - The ID of the Project to add the draft issue to.
+   projectId - The ID of the Project to add the item to.
 
-   title - The title of the draft issue.
-
-   body - The body of the draft issue.
-
-   assigneeIds - The IDs of the assignees of the draft issue.
+   contentId - The id of the Issue or Pull Request to add.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    projectId: ID
-   title: str
-   body: str
-   assigneeIds: list[ID]
-   clientMutationId: str
-
-class AddProjectCardInput(GQLObject):
-   """
-   AddProjectCardInput - Autogenerated input type of AddProjectCard
-
-   projectColumnId - The Node ID of the ProjectColumn.
-
-   contentId - The content of the card. Must be a member of the ProjectCardItem union
-
-   note - The note on the card.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   projectColumnId: ID
    contentId: ID
-   note: str
    clientMutationId: str
 
-class AddEnterpriseSupportEntitlementPayload(GQLObject):
+class AddProjectColumnInput(GQLObject):
    """
-   AddEnterpriseSupportEntitlementPayload - Autogenerated return type of AddEnterpriseSupportEntitlement
+   AddProjectColumnInput - Autogenerated input type of AddProjectColumn
+
+   projectId - The Node ID of the project.
+
+   name - The name of the column.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
-   message - A message confirming the result of adding the support entitlement.
-
    """
+   projectId: ID
+   name: str
    clientMutationId: str
-   message: str
 
-class AddEnterpriseOrganizationMemberInput(GQLObject):
+class AddLabelsToLabelableInput(GQLObject):
    """
-   AddEnterpriseOrganizationMemberInput - Autogenerated input type of AddEnterpriseOrganizationMember
+   AddLabelsToLabelableInput - Autogenerated input type of AddLabelsToLabelable
 
-   enterpriseId - The ID of the enterprise which owns the organization.
+   labelableId - The id of the labelable object to add labels to.
 
-   organizationId - The ID of the organization the users will be added to.
+   labelIds - The ids of the labels to add.
 
-   userIds - The IDs of the enterprise members to add.
+   clientMutationId - A unique identifier for the client performing the mutation.
 
-   role - The role to assign the users in the organization
+   """
+   labelableId: ID
+   labelIds: NonNull_list[ID]
+   clientMutationId: str
+
+class AddEnterpriseSupportEntitlementInput(GQLObject):
+   """
+   AddEnterpriseSupportEntitlementInput - Autogenerated input type of AddEnterpriseSupportEntitlement
+
+   enterpriseId - The ID of the Enterprise which the admin belongs to.
+
+   login - The login of a member who will receive the support entitlement.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    enterpriseId: ID
-   organizationId: ID
-   userIds: NonNull_list[ID]
-   role: OrganizationMemberRole
+   login: str
    clientMutationId: str
 
-class AddDiscussionCommentInput(GQLObject):
+class AddDiscussionPollVoteInput(GQLObject):
    """
-   AddDiscussionCommentInput - Autogenerated input type of AddDiscussionComment
+   AddDiscussionPollVoteInput - Autogenerated input type of AddDiscussionPollVote
 
-   discussionId - The Node ID of the discussion to comment on.
+   pollOptionId - The Node ID of the discussion poll option to vote for.
 
-   replyToId - The Node ID of the discussion comment within this discussion to reply to.
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   pollOptionId: ID
+   clientMutationId: str
+
+class AddCommentInput(GQLObject):
+   """
+   AddCommentInput - Autogenerated input type of AddComment
+
+   subjectId - The Node ID of the subject to modify.
 
    body - The contents of the comment.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   discussionId: ID
-   replyToId: ID
+   subjectId: ID
    body: str
    clientMutationId: str
 
-class AddAssigneesToAssignableInput(GQLObject):
+class ActorLocation(GQLObject):
    """
-   AddAssigneesToAssignableInput - Autogenerated input type of AddAssigneesToAssignable
+   ActorLocation - Location information for an actor
 
-   assignableId - The id of the assignable object to add assignees to.
+   city - City
 
-   assigneeIds - The id of users to add as assignees.
+   country - Country name
+
+   countryCode - Country code
+
+   region - Region name
+
+   regionCode - Region or state code
+
+   """
+   city: str
+   country: str
+   countryCode: str
+   region: str
+   regionCode: str
+
+class Actor(GQLObject):
+   """
+   Actor - Represents an object which can take actions on GitHub. Typically a User or Bot.
+
+   avatarUrl - A URL pointing to the actor's public avatar.
+
+   login - The username of the actor.
+
+   resourcePath - The HTTP path for this actor.
+
+   url - The HTTP URL for this actor.
+
+   """
+   avatarUrl: NYOXP_URI_Field
+   login: str
+   resourcePath: URI
+   url: URI
+
+class AcceptEnterpriseAdministratorInvitationInput(GQLObject):
+   """
+   AcceptEnterpriseAdministratorInvitationInput - Autogenerated input type of AcceptEnterpriseAdministratorInvitation
+
+   invitationId - The id of the invitation being accepted
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   assignableId: ID
-   assigneeIds: NonNull_list[ID]
+   invitationId: ID
    clientMutationId: str
 
-class LHOEE_URI_Field(ArguedStr):
+class AbortQueuedMigrationsInput(GQLObject):
    """
-   LHOEE_URI_Field - A URL pointing to the actor's public avatar.
+   AbortQueuedMigrationsInput - Autogenerated input type of AbortQueuedMigrations
 
-   """
-   class URIArgs(GQLArgsSet, GQLObject):
-      """
-      size - The size of the resulting square image.
-
-      """
-      size: int
-
-   _args: URIArgs
-
-
-
-class AcceptTopicSuggestionInput(GQLObject):
-   """
-   AcceptTopicSuggestionInput - Autogenerated input type of AcceptTopicSuggestion
-
-   repositoryId - The Node ID of the repository.
-
-   name - The name of the suggested topic.
+   ownerId - The ID of the organization that is running the migrations.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   repositoryId: ID
-   name: str
+   ownerId: ID
    clientMutationId: str
-
-class AbortQueuedMigrationsPayload(GQLObject):
-   """
-   AbortQueuedMigrationsPayload - Autogenerated return type of AbortQueuedMigrations
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   success - Did the operation succeed?
-
-   """
-   clientMutationId: str
-   success: bool

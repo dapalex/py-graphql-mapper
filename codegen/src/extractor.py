@@ -1,16 +1,16 @@
 import random
 import string
+import logging as logger
 from codegen.src.base_class import SchemaTypeManager
 from pygqlmap.components import GQLArgsSet
-from pygqlmap.src.consts import ARGS_DECLARE, GQLLIST_PREFIX, NON_NULL_PREFIX, STRING_GQL_BUILTIN, STRING_GQLLIST_BUILTIN, STRING_PRIMITIVES, ARGUED_SIGNATURE_SUFFIX
 from pygqlmap.enums import OperationType
-import logging as logger
 from pygqlmap.src.translator import Translate, switch_gql_py_type
+from pygqlmap.src.consts import *
+from .consts import *
 from .enums import TypeKind
 from .sp_schema import GQLSchema, SCField, SCType
-from .utils import is_deprecated, pop_val_clean_dict, split_types
+from .utils import add_val_update_dict, is_deprecated, pop_val_clean_dict, split_types
 from .priority import ExtractionResults, PriorElement
-from .consts import *
 
 class Extractor():
 
@@ -26,6 +26,7 @@ class Extractor():
     extraction_results: ExtractionResults
     add_desc: bool
     log_progress: bool
+    circular_ref_types: dict[str, list[str]]
 
     def __init__(self, schema, log_progress: bool = False, add_desc: bool = False):
         self.log_progress = log_progress
@@ -39,6 +40,7 @@ class Extractor():
         self.queriesEnumValues = []
         self.mutations = None
         self.mutationsEnumValues = []
+        self.circular_ref_types = {}
 
         self.extraction_results = ExtractionResults()
 
@@ -48,7 +50,7 @@ class Extractor():
 
         super().__init__()
 
-    def extract_schema_code (self):
+    def extract_schema_code(self):
         try:
             self.extract_types_from_gqlschema()
 
@@ -194,7 +196,7 @@ class Extractor():
                 currentTypeKV = self.simpleTypes.popitem()
 
                 if self.log_progress: logger.info('Started extraction of type ' + currentTypeKV[0])
-                self.extract_schema_type(currentTypeKV[1], {})
+                self.extract_schema_type(currentTypeKV[1])
 
             for priorElement in self.priorList:
 
@@ -256,13 +258,14 @@ class Extractor():
         """For internal use"""
         operationClasses = {}
         operationEnumValues = []
+        self.circular_ref_types = {}
         try:
             if self.log_progress: logger.info('Started extraction of ' + opType.name)
 
             for operation in operations.fields:
                 if self.log_progress: logger.info('Started extraction of ' + opType.name + ' ' + operation.name)
                 try:
-                    operation_code_list = self.extract_type_code(operation, circularRefTypes=[], objType=opType)
+                    operation_code_list = self.extract_type_code(operation, objType=opType)
                     operationClasses.update({ operation.name : operation_code_list })
                     operationEnumValues.append(operation.name)
                 except Exception as ex:
@@ -291,12 +294,12 @@ class Extractor():
 
         return operationEnumClass
 
-    def extract_schema_type(self, curr_schematype, circularRefTypes: dict[str, list[str]], argued_field_cls_name: str = None):
+    def extract_schema_type(self, curr_schematype, argued_field_cls_name: str = None):
         """For internal use
 
         Args:
             currentType (tuple): tuple containing (schema name, schema type) to extract
-            circularRefTypes (dict[str, list[str]], optional):
+           self.circular_ref_types (dict[str, list[str]], optional):
 
             Dictionary containing
 
@@ -310,7 +313,7 @@ class Extractor():
         if self.log_progress: logger.info('Started extraction of type ' + currentTypeName)
 
         if self.is_already_extracted(currentTypeName)[0]:
-            logger.warning(currentTypeName + " already extracted!")
+            logger.debug(currentTypeName + " already extracted!")
             return
 
         try:
@@ -323,23 +326,13 @@ class Extractor():
                 splitArgName = argued_field_cls_name.split('_')
                 fields_name_usedtype.update({ argued_field_cls_name: [splitArgName[1]] })
 
-            ###### Transform the information to a dictionary with
-            # key: type used
-            # value: total occurrences within the current schema type
-            fields_usedtype_occurr = {}
-            for type_name_lst in fields_name_usedtype.values():
-                for type_name in type_name_lst:
-                    if type_name not in fields_usedtype_occurr.keys():
-                        fields_usedtype_occurr.update({ type_name: 1 })
-                    else:
-                        fields_usedtype_occurr[type_name] += 1
-
-            for usedtype_name, occurrences in fields_usedtype_occurr.items():
+            for used_types in fields_name_usedtype.values():
+              for usedtype_name in used_types:
                 try:
                     if self.log_progress: logger.info(currentTypeName + ' uses ' + usedtype_name)
 
                     if self.is_already_extracted(usedtype_name)[0]:
-                        logger.warning(usedtype_name + ' for ' + currentTypeName + " already extracted!")
+                        logger.debug(usedtype_name + ' for ' + currentTypeName + " already extracted!")
                         pop_val_clean_dict(usedtype_name, fields_name_usedtype)
                         continue
                     elif self.types.get(usedtype_name):
@@ -347,12 +340,12 @@ class Extractor():
 
                         if self.log_progress: logger.info('Calling extraction for ' + usedtype_name)
 
-                        self.extract_schema_type(poppedUsedType, circularRefTypes)
+                        self.extract_schema_type(poppedUsedType)
                     else:
-                        # It can be a circular reference
+                        # It is a circular reference
                         if self.log_progress: logger.info('Used type ' + usedtype_name + ' for ' + currentTypeName + ' not found in already managed types, it can be a circular reference')
 
-                        ###### List containing dotted path to the used type?
+                        ###### Generate list containing dotted path to the used type for circular references registration
                         utilizers = []
 
                         for fieldName, usedTypeList in fields_name_usedtype.items():
@@ -361,19 +354,13 @@ class Extractor():
                             elif usedtype_name in usedTypeList:
                                 utilizers.append(curr_schematype.name + '.' + fieldName)
 
-
-                        if usedtype_name == curr_schematype.name and occurrences == 0:
-                            logger.error('inconsistence')
-
-                        if not usedtype_name in circularRefTypes.keys():
-                            circularRefTypes.update({ usedtype_name: utilizers })
-                        elif not curr_schematype.name in circularRefTypes[usedtype_name]:
-                                circularRefTypes[usedtype_name].extend(utilizers)
+                        #Register the used type in the circular references
+                        add_val_update_dict(self.circular_ref_types, usedtype_name, utilizers)
 
                 except Exception as ex:
                     logger.error('Error during management of used type ' + usedtype_name + ' - ' + ex.args[0])
 
-            typeCode = self.extract_type_code(curr_schematype, circularRefTypes, arguedName=argued_field_cls_name)
+            typeCode = self.extract_type_code(curr_schematype, arguedName=argued_field_cls_name)
 
             if typeCode:
                 pqElement = PriorElement(currentTypeName, curr_schematype, typeCode)
@@ -386,34 +373,16 @@ class Extractor():
         except Exception as ex:
             logger.error('Error during extraction of type ' + currentTypeName + ' - ' + ex.args[0])
 
-    def is_already_extracted(self, typeNameCheck, include_type_refs: bool = False):
-        if typeNameCheck in self.extraction_results.scalar_defs.keys():
-            return True, SCALARS_FILENAME
-        if typeNameCheck in self.extraction_results.enum_classes.keys():
-            return True, ENUMS_FILENAME
-        elif typeNameCheck in self.extraction_results.simple_type_classes.keys():
-            return True, SIMPLE_TYPES_FILENAME
-        elif typeNameCheck in self.extraction_results.type_classes.keys():
-            return True, TYPES_FILENAME
-        elif include_type_refs and typeNameCheck in self.extraction_results.type_refs.keys():
-            return True, TYPE_REFS_FILENAME
-        else:
-            for x in self.priorList:
-                if typeNameCheck == x.name:
-                    return True, ''
-
-        return False, ''
-
-    def extract_type_code(self, schemaType, circularRefTypes, objType: OperationType = OperationType.GENERIC_TYPE, arguedName:str = None):
+    def extract_type_code(self, schemaType, objType: OperationType = OperationType.GENERIC_TYPE, arguedName:str = None):
         """For internal use"""
         schemaTypeName = schemaType.name if not arguedName else arguedName
         if self.log_progress: logger.info('Started extraction of code for ' + schemaTypeName)
         codeLines = []
         try:
             if hasattr(schemaType, 'kind') and schemaType.kind == TypeKind.UNION.name:
-                codeLines = self.generate_union_code(schemaType, circularRefTypes)
+                codeLines = self.generate_union_code(schemaType)
             else:
-                codeLines = self.generate_class_code(schemaType, circularRefTypes, objType, arguedName)
+                codeLines = self.generate_class_code(schemaType, objType, arguedName)
 
             if self.log_progress: logger.info(schemaTypeName + ' code extraction  completed')
             return codeLines
@@ -421,7 +390,7 @@ class Extractor():
             logger.error('Error during extraction of type ' + schemaTypeName + ' - ' + ex.args[0])
             return []
 
-    def generate_union_code(self, scType: SCType, circularRefTypes: dict[str,list[str]]):
+    def generate_union_code(self, scType: SCType):
         """For internal use"""
         try:
             codeLst = []
@@ -436,12 +405,12 @@ class Extractor():
             # while scType.possibleTypes:
             #     argument = scType.possibleTypes.popitem()
             #     try:
-            #         if argument[0] in circularRefTypes.keys() and scType.name + '.' + argument[0] in circularRefTypes[argument[0]]:
+            #         if argument[0] inself.circular_ref_types.keys() and scType.name + '.' + argument[0] inself.circular_ref_types[argument[0]]:
             #             singleLineCode += "'" + Translate.to_python_var_name(argument[0]) + "'" + ','
-            #             self.removeFromCheckCircularTypes(argument[0], scType.name + '.' + argument[0], circularRefTypes)
-            #             # circularRefTypes[argument[0]].remove(scType.name + '.' + argument[0])
-            #             # if not circularRefTypes[argument[0]]:
-            #             #     circularRefTypes.pop(argument[0])
+            #             self.removeFromCheckCircularTypes(argument[0], scType.name + '.' + argument[0])
+            #             #self.circular_ref_types[argument[0]].remove(scType.name + '.' + argument[0])
+            #             # if notself.circular_ref_types[argument[0]]:
+            #             #    self.circular_ref_types.pop(argument[0])
             #         else:
             #             singleLineCode += Translate.to_python_var_name(argument[0]) + ', '
 
@@ -462,9 +431,9 @@ class Extractor():
 
         return codeLst
 
-    def generate_class_code(self, scType: SCType, circularRefTypes: dict[str,list[str]], obj_type: OperationType = OperationType.GENERIC_TYPE, arguedName: str = None):
+    def generate_class_code(self, scType: SCType, obj_type: OperationType = OperationType.GENERIC_TYPE, argued_class_name: str = None):
         """For internal use"""
-        scTypeName = scType.name if not arguedName else arguedName
+        scTypeName = scType.name if not argued_class_name else argued_class_name
         if self.log_progress: logger.info('Started generation of class for ' + scTypeName)
         classCodeLst = []
         docsLst = []
@@ -477,37 +446,36 @@ class Extractor():
                     docsLst.append(self.indent + scTypeName + ' - ' + scType.description + '\n')
 
             scType.type_defs = scType.get_objtype_defs()
-
-            actualType = scType.compose_py_type(arguedName)[1]
+            py_type = scType.compose_py_type(argued_class_name)[1]
 
             fieldsCodeList = []
             fieldsDocCodeList = []
 
             if isinstance(scType, SCField):
-                fieldsCodeList = self.extract_schema_field_code(scType, obj_type, circularRefTypes)
+                fieldsCodeList = self.extract_schema_field_code(scType, obj_type)
             elif hasattr(scType, 'kind') and scType.kind == 'OBJECT': #fields
-                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, circularRefTypes, actualType, 'fields')
+                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, py_type, obj_type, 'fields')
             elif hasattr(scType, 'kind') and scType.kind == 'INTERFACE':
-                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, circularRefTypes, actualType, 'fields')
+                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, py_type, obj_type, 'fields')
                     # if scType.possibleTypes:
                     #     possibleTypes =  self.extract_schema_possible_types(scType)
             elif hasattr(scType, 'kind') and  scType.kind == 'INPUT_OBJECT': #inputFields
-                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, circularRefTypes, actualType, 'inputFields')
+                    fieldsDocCodeList, fieldsCodeList =  self.extract_schema_type_content(scType, py_type, obj_type, 'inputFields')
 
             if self.add_desc and fieldsDocCodeList: docsLst.extend(fieldsDocCodeList)
             classCodeLst.extend(fieldsCodeList)
 
-            if not arguedName:
+            if not argued_class_name:
                     if hasattr(scType, 'type') and scType.type:
-                        classCodeLst.append(self.generate_code_line(scType, None, {}, obj_type)[1])
+                        classCodeLst.append(self.generate_code_line(scType, None, obj_type)[1])
             else:
-                if actualType in STRING_PRIMITIVES:
+                if py_type in STRING_PRIMITIVES:
                     scalarCodeLine = self.generate_scalar(scType)
                     self.extraction_results.scalar_defs.update({ scType.name: [scalarCodeLine] })
 
             try:
-                scTypeName = actualType if actualType not in STRING_PRIMITIVES and obj_type == OperationType.GENERIC_TYPE else scType.name
-                signature = self.generate_type_signature(obj_type, scTypeName, arguedName, possibleTypes, circularRefTypes)
+                scTypeName = py_type if py_type not in STRING_PRIMITIVES and obj_type == OperationType.GENERIC_TYPE else scType.name
+                signature = self.generate_type_signature(obj_type, scTypeName, argued_class_name, possibleTypes)
             except Exception as ex:
                 logger.error('Error during creation of signature for type ' + scTypeName + ' - ' + ex.args[0])
 
@@ -528,7 +496,18 @@ class Extractor():
 
         return returnCodeList
 
-    def extract_schema_field_code(self, scType: SchemaTypeManager, obj_type: OperationType, circular_ref_types):
+    def extract_schema_field_code(self, scType: SchemaTypeManager, obj_type: OperationType):
+        """For internal use
+           Generates the class content corresponding to the schema type
+           plus a nested custom class with signature suffix 'Args' corresponding to a field
+
+        Args:
+            scType (SchemaTypeManager)
+            obj_type (OperationType)
+
+        Returns:
+            _type_: class code
+        """
         codeLst = []
 
         if hasattr(scType, 'args') and scType.args:
@@ -542,14 +521,7 @@ class Extractor():
             for argument in scType.args:
 
                 try:
-                    # if hasattr(argument, 'args') and argument.args:
-                    #     ## Goes back up to construct an object
-                    #     ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
-                    #     arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + '_' + (py_el_type if not py_el_type in STRING_PRIMITIVES else argument.name) + ARGUED_SIGNATURE_SUFFIX
-                    #     ##CAREFUL HERE - Pass element.name as usedTypes in extract_schema_type
-                    #     self.extract_schema_type(argument, circular_ref_types, arguedName)
-
-                    docLine, codeLine = self.generate_code_line(argument, scType, circular_ref_types, obj_type, is_argument=True)
+                    docLine, codeLine = self.generate_code_line(argument, scType, obj_type, is_argument=True)
                     if self.add_desc and docLine: queryArgDocLst.append(docLine)
                     queryArgCodeLst.append(codeLine)
 
@@ -578,13 +550,24 @@ class Extractor():
                 possibleTypes += "'" + possibleTypeName + "'" if not possibleTypes else (" or '" + possibleTypeName + "'")
         return possibleTypes
 
-    def extract_schema_type_content(self, scType, circular_ref_types, py_el_type, contentName):
+    def extract_schema_type_content(self, scType, py_sctype, obj_type, contentName):
+        """For internal use
+           Generate the class content corresponding to the schema type
+
+        Args:
+            scType (_type_)
+            py_el_type (_type_)
+            contentName (_type_)
+
+        Returns:
+            _type_: _description_
+        """
         codeLst = []
         docsLst = []
         try:
             if hasattr(scType, contentName):
                 content = getattr(scType, contentName)
-                if not content: return [scType.name + ' = ' + py_el_type]
+                if not content: return [scType.name + ' = ' + py_sctype]
 
                 ##check if all elements are deprecated --> get out empty handed
                 if not list(filter(lambda ev: not hasattr(ev, 'isDeprecated') or ev.isDeprecated == False, content)):
@@ -599,14 +582,7 @@ class Extractor():
                         continue
 
                     try:
-                        # if hasattr(element, 'args') and element.args:
-                        #     ## Goes back up to construct an object
-                        #     ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
-                        #     arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + '_' + (py_el_type if not py_el_type in STRING_PRIMITIVES else element.name) + ARGUED_SIGNATURE_SUFFIX
-                        #     ##CAREFUL HERE - Pass element.name as usedTypes in extract_schema_type
-                        #     self.extract_schema_type(element, circular_ref_types, arguedName)
-
-                        docLine, codeLine = self.generate_code_line(element, scType, circular_ref_types)
+                        docLine, codeLine = self.generate_code_line(element, scType)
                         if self.add_desc and docLine: docsLst.append(docLine)
                         codeLst.append(codeLine)
 
@@ -617,7 +593,7 @@ class Extractor():
             logger.error('Error during extraction of schema Type content ' + element.name + ' - ' + ex.args[0])
         return docsLst, codeLst
 
-    def generate_code_line(self, element: SchemaTypeManager, parentType, circular_ref_types, obj_type: OperationType = OperationType.GENERIC_TYPE, is_argument: bool = False):
+    def generate_code_line(self, element: SchemaTypeManager, parentType, obj_type: OperationType = OperationType.GENERIC_TYPE, is_argument: bool = False):
         docLine = ''
         codeLine = ''
 
@@ -629,9 +605,9 @@ class Extractor():
             element.type_defs = element.get_objtype_defs()
             py_inline_type, py_el_tp = element.compose_py_type(is_arg=is_argument)
             #################################################################
-            #
-            #
-            #
+            #If the current schema field will be used as argument
+            #If it has a nonnull constraint it will create a custom empty class
+            #keeping note of that in the class name
             #################################################################
             try:
                 if is_argument:
@@ -649,38 +625,42 @@ class Extractor():
 
                             self.add_custom_class(obj_type, non_null_type, element, nonnull_ref_code_lines)
             except Exception as ex:
-                logger.error('Error during circular ref management of element ' + element.name + ' - ' + ex.args[0])
+                logger.error('Error during code line generation - nonnull check - for ' + element.name + ' - ' + ex.args[0])
 
-            arguedName = None
+            #################################################################
+            #Check if the current type contains arguments with schema type to extract
+            #If so, extract the type as argued class first.
+            #It has to be done here in order to keep the arg class name generated
+            #################################################################
+            argued_class_name = None
+
+            if hasattr(element, 'args') and element.args and obj_type == OperationType.GENERIC_TYPE: ##MOVE OUT!
+                ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
+                argued_class_name = ''.join(random.choices(string.ascii_uppercase, k=5)) + '_' + (py_el_tp if not py_el_tp in STRING_PRIMITIVES else element.name) + ARGUED_SIGNATURE_SUFFIX
+                self.extract_schema_type(element, argued_class_name)
+
+            #################################################################
+            #Check if the current type has been registered as circular reference
+            #If so, it will create a type alias (and deregister the type)
+            #################################################################
             circ_ref_utilizer = False
 
-            #################################################################
-            #
-            #
-            #
-            #################################################################
-            if hasattr(element, 'args') and element.args and obj_type == OperationType.GENERIC_TYPE: ##MOVE OUT!
-                ## Goes back up to construct an object
-                ## Argued class name -> 5 chars random & field name & "_" parent class Name & "_Field"
-                arguedName = ''.join(random.choices(string.ascii_uppercase, k=5)) + '_' + (py_el_tp if not py_el_tp in STRING_PRIMITIVES else element.name) + ARGUED_SIGNATURE_SUFFIX
-                ##CAREFUL HERE - Pass element.name as usedTypes in extract_schema_type
-                self.extract_schema_type(element, circular_ref_types, arguedName)
-
             try:
-                if element.get_used_typenames() and circular_ref_types:
-                    circ_ref_utilizer = self.start_check_circular_ref_types(element, parentType, py_el_tp, circular_ref_types)
+                if element.get_used_typenames() and self.circular_ref_types:
+                    circ_ref_utilizer = self.start_check_circular_ref_types(element, parentType, py_el_tp)
 
                     if circ_ref_utilizer:
                         new_type = NEWTYPE_DECLARATION%py_el_tp
                         py_inline_type = py_inline_type.replace(py_el_tp, new_type)
-                        pop_val_clean_dict(circ_ref_utilizer, circular_ref_types, py_el_tp)
+                        #Deregister the type from circular references
+                        pop_val_clean_dict(circ_ref_utilizer, self.circular_ref_types, py_el_tp)
             except Exception as ex:
-                logger.error('Error during circular ref management of element ' + element.name + ' - ' + ex.args[0])
+                logger.error('Error during code line generation - type alias creation - for element ' + element.name + ' - ' + ex.args[0])
 
             #################################################################
-            #
-            #
-            #
+            #Last alteration of type declaration in the code
+            #If it is a list of schema types it will create a new class merging list and class
+            #so it can be directly used when its arguments need to be set
             #################################################################
             ##Check if gqllist type
             try:
@@ -703,22 +683,19 @@ class Extractor():
                         gqllist_type = gqllist_type.replace(new_type, 'GQLObject')
                         py_inline_type = py_inline_split[0] + gqllist_type + py_inline_split[1].replace(new_type, 'GQLObject')
                     if not self.is_already_extracted(gqllist_type, include_type_refs=True)[0]:
-                        ##Create class with merged types (list, GQLObject)
                         gqllist_ref_code_lines = []
                         gqllist_ref_code_lines.append(GQLLIST_SIGNATURE%(gqllist_type, py_el_tp if not circ_ref_utilizer else 'GQLObject'))
                         self.add_custom_class(obj_type, gqllist_type, element, gqllist_ref_code_lines)
             except Exception as ex:
-                logger.error('Error during gqllist check of element ' + element.name + ' - ' + ex.args[0])
+                logger.error('Error during code line generation - gqllist check - for element ' + element.name + ' - ' + ex.args[0])
 
 
             #################################################################
-            #
-            #
-            #
+            #Actual generation of line of code
             #################################################################
             try:
                 var_name = Translate.to_python_var_name(element.name) if (obj_type == OperationType.GENERIC_TYPE or is_argument) else 'type'
-                codeLine = self.indent + var_name + ': ' + (py_inline_type if not arguedName else arguedName)
+                codeLine = self.indent + var_name + ': ' + (py_inline_type if not argued_class_name else argued_class_name)
                 if circ_ref_utilizer: codeLine += ' ## Circular Reference for ' + py_el_tp
             except Exception as ex:
                 logger.error('Error during generation of line code for element ' + element.name + ' - ' + ex.args[0])
@@ -728,20 +705,12 @@ class Extractor():
 
         return docLine, codeLine
 
-    def add_custom_class(self, obj_type, custom_typename, schema_type, code_lines):
-        if obj_type == OperationType.GENERIC_TYPE:
-            self.priorList.append(PriorElement(custom_typename, schema_type, code_lines))
-        elif obj_type == OperationType.QUERY:
-            self.extraction_results.query_classes.update({custom_typename: code_lines})
-        elif obj_type == OperationType.MUTATION:
-            self.extraction_results.mutation_classes.update({custom_typename: code_lines})
-
-    def generate_type_signature(self, objType: OperationType, sctype_name, arguedName, possibleTypes, circularRefTypes):
-        if not arguedName:
+    def generate_type_signature(self, objType: OperationType, sctype_name, argued_class_name, possibleTypes):
+        if not argued_class_name:
             if not possibleTypes:
                 if objType == OperationType.QUERY:
                     return QUERY_SIGNATURE%sctype_name + ':'
-                if objType == OperationType.MUTATION:
+                elif objType == OperationType.MUTATION:
                     return MUTATION_SIGNATURE%sctype_name + ':'
                 else:
                     return CLASS_SIGNATURE%sctype_name + ':'
@@ -749,15 +718,15 @@ class Extractor():
                 return INTERFACE_SIGNATURE%(sctype_name, possibleTypes) + ':'
         else:
             if sctype_name not in STRING_PRIMITIVES and sctype_name not in self.extraction_results.scalar_defs.keys():
-                if sctype_name in circularRefTypes.keys() and arguedName in circularRefTypes[sctype_name]:
+                if sctype_name in self.circular_ref_types.keys() and argued_class_name in self.circular_ref_types[sctype_name]:
                     ##creates circular ref type
                     circular_ref_code_line = TYPEVAR_SIGNATURE%(sctype_name, sctype_name, 'GQLObject')
                     self.extraction_results.type_refs.update({ sctype_name: [circular_ref_code_line] })
                     #update signature with circular ref management
-                    signature = ARGUED_CLASS_SIGNATURE%(arguedName, "Generic[" + sctype_name + "]") + ':'
+                    signature = ARGUED_CLASS_SIGNATURE%(argued_class_name, "Generic[" + sctype_name + "]") + ':'
 
-                    pop_val_clean_dict(arguedName, circularRefTypes, sctype_name)
-                    # self.removeFromCheckCircularTypes(sctype_name, arguedName, circularRefTypes )
+                    #Deregister the type from circular references
+                    pop_val_clean_dict(argued_class_name, self.circular_ref_types, sctype_name)
                     return signature
             else:
                 try:
@@ -767,13 +736,21 @@ class Extractor():
                     raise Exception('Error during scalar code string extrapolation - ' + ex.args[0])
 
                 gqlArguedScalar = 'Argued' + scalar.capitalize()
-                return ARGUED_CLASS_SIGNATURE%(arguedName, gqlArguedScalar) + ':'
+                return ARGUED_CLASS_SIGNATURE%(argued_class_name, gqlArguedScalar) + ':'
 
             if sctype_name in self.extraction_results.type_refs.keys() and \
                not self.is_already_extracted(sctype_name, include_type_refs=False):
-                return ARGUED_CLASS_SIGNATURE%(arguedName, "Generic[" + sctype_name + "]") + ':'
+                return ARGUED_CLASS_SIGNATURE%(argued_class_name, "Generic[" + sctype_name + "]") + ':'
             else:
-                return ARGUED_CLASS_SIGNATURE%(arguedName, sctype_name) + ':'
+                return ARGUED_CLASS_SIGNATURE%(argued_class_name, sctype_name) + ':'
+
+    def add_custom_class(self, obj_type, custom_typename, schema_type, code_lines):
+        if obj_type == OperationType.GENERIC_TYPE:
+            self.priorList.append(PriorElement(custom_typename, schema_type, code_lines))
+        elif obj_type == OperationType.QUERY:
+            self.extraction_results.query_classes.update({custom_typename: code_lines})
+        elif obj_type == OperationType.MUTATION:
+            self.extraction_results.mutation_classes.update({custom_typename: code_lines})
 
     def extract_fields_types(self, scType: SCType):
         """For internal use
@@ -801,9 +778,27 @@ class Extractor():
         if self.log_progress: logger.info('Used types for ' + scType.name + ' extracted')
         return field_usedtypes
 
-    def start_check_circular_ref_types(self, element, parentType, actualElType, circularRefTypes):
+    def is_already_extracted(self, typeNameCheck, include_type_refs: bool = False):
+        if typeNameCheck in self.extraction_results.scalar_defs.keys():
+            return True, SCALARS_NAME
+        if typeNameCheck in self.extraction_results.enum_classes.keys():
+            return True, ENUMS_NAME
+        elif typeNameCheck in self.extraction_results.simple_type_classes.keys():
+            return True, SIMPLE_TYPES_NAME
+        elif typeNameCheck in self.extraction_results.type_classes.keys():
+            return True, TYPES_NAME
+        elif include_type_refs and typeNameCheck in self.extraction_results.type_refs.keys():
+            return True, TYPE_REFS_NAME
+        else:
+            for x in self.priorList:
+                if typeNameCheck == x.name:
+                    return True, ''
+
+        return False, ''
+
+    def start_check_circular_ref_types(self, element, parentType, actualElType):
         try:
-            if circTypeUtilizers:= circularRefTypes.get(actualElType):
+            if self.circular_ref_types and (circTypeUtilizers := self.circular_ref_types.get(actualElType)):
 
                     for circTypeUtilizer in circTypeUtilizers:
                         circType, circTypeField = circTypeUtilizer.split('.')

@@ -6,7 +6,7 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class YNSOJ_name_Field(ArguedStr):
+class JDKLI_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject):
       showDeleted: bool
 

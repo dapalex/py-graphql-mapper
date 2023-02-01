@@ -49,13 +49,28 @@ def is_deprecated(obj):
 
 def pop_val_clean_dict(value, dictionary: dict[str, list], key = None):
     k_to_check = []
-    if not key:
-        for k, v in dictionary.items():
-            if value in v:
-                v.remove(value)
-                k_to_check.append(k)
-    else:
-        dictionary[key].remove(value)
-        k_to_check.append(key)
+    try:
+        if not key:
+            for k, v in dictionary.items():
+                if value in v:
+                    v.remove(value)
+                    k_to_check.append(k)
+        else:
+            dictionary[key].remove(value)
+            k_to_check.append(key)
 
-    map(lambda key: dictionary.pop(key) if not dictionary[key] else None, k_to_check)
+        map(lambda key: dictionary.pop(key) if not dictionary[key] else None, k_to_check)
+    except Exception as ex:
+        raise ex
+
+def add_val_update_dict(dictionary: dict, key, value):
+    try:
+        if not key in dictionary.keys():
+            dictionary.update({ key: value })
+        else:
+            if isinstance(value, list):
+                dictionary[key].extend(value)
+            elif isinstance(value, int):
+                dictionary[key] += value
+    except Exception as ex:
+        raise ex
