@@ -52,7 +52,7 @@ myCustomObject {
 }
 ```
 
-A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_test.py)
+A use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_test.py)
 
 
 ### Adding arguments
@@ -183,7 +183,7 @@ Calling the relating GraphQL API server (example using _requests_):
 response = request("POST", gql_url, json={ "query": query.export_gql_source }, headers=headers)
 ```
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/)
+Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/)
 
 
 ### GQLMutation
@@ -229,7 +229,7 @@ mutation myManualUpdateRepository  {
 
 Note: Next developments shall allow the usage of automatically generated classes for the queries and mutations
 
-Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstmutation/)
+Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstmutation/)
 
 
 ### Arguments management
@@ -282,13 +282,13 @@ request("POST", gql_url, json={ "query": query.export_gql_source, "variables": q
 
 Use cases for queries can be seen here:
 
-[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_literal_test.py)
+[Object with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_args_literal_test.py)
 
-[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_args_vars_test.py)
+[Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_args_vars_test.py)
 
-[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_vars_test.py)
+[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/connobj_args_vars_test.py)
 
-[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/connobj_args_literal_test.py)
+[Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/connobj_args_literal_test.py)
 
 
 ## Dynamic visibility of fields
@@ -351,7 +351,7 @@ query myQuery{
 
 hiding _myCode_ and _fieldB_.
 
-An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/tstquery/simple_obj_viewchange_test.py)
+An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_viewchange_test.py)
 
 
 ## Parsing of a response
