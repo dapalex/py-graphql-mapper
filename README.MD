@@ -43,7 +43,7 @@ pgmcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs
 
 This command requires a json file containing the parameters needed to get the GraphQL schema
 
-![image](https://github.com/dapalex/py-graphql-mapper/blob/main/docs/cli_args_nutshell.png)
+![image](https://github.com/dapalex/py-graphql-mapper/blob/develop/docs/cli_args_nutshell.png)
 
 A sample is availabe in the main folder 'cli_args.json'
 
