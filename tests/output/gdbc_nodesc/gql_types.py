@@ -26,12 +26,21 @@ class TimeZoneEdge(GQLObject):
    cursor: str
    node: TimeZone
 
+class NonNull_list_TimeZoneEdge(list, TimeZoneEdge): pass
+
 class TimeZonesConnection(GQLObject):
    totalCount: int
-   edges: TimeZoneEdge
+   edges: NonNull_list_TimeZoneEdge[TimeZoneEdge]
    pageInfo: ConnectionPageInfo
 
-class MUAZP_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class NonNull_list_GQLObject(list, GQLObject): pass
+
+class CountryPopulatedPlacesConnection(GQLObject):
+   totalCount: int
+   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
+   pageInfo: ConnectionPageInfo
+
+class BPDFV_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -56,20 +65,42 @@ class CountryRegion(GQLObject):
    wikiDataId: ID
    name: str
    capital: str
+   containingRegion: NewType('CountryRegion', GQLObject) ## Circular Reference for CountryRegion
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: MUAZP_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: BPDFV_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    cursor: str
    node: CountryRegion
 
+class NonNull_list_CountryRegionEdge(list, CountryRegionEdge): pass
+
 class CountryRegionsConnection(GQLObject):
    totalCount: int
-   edges: CountryRegionEdge
+   edges: NonNull_list_CountryRegionEdge[CountryRegionEdge]
    pageInfo: ConnectionPageInfo
 
-class STGQW_CountryRegion_Field(CountryRegion):
+class NWKEP_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
+   class CountryPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
+      namePrefix: str
+      namePrefixDefaultLangResults: bool
+      minPopulation: int
+      maxPopulation: int
+      timeZoneIds: list[ID]
+      types: list[str]
+      sort: str
+      first: int
+      after: str
+      last: int
+      before: str
+      includeDeleted: IncludeDeletedFilterType
+
+   _args: CountryPopulatedPlacesConnectionArgs
+
+
+
+class SFKJJ_CountryRegion_Field(CountryRegion):
    class CountryRegionArgs(GQLArgsSet, GQLObject):
       code: ID
 
@@ -77,7 +108,7 @@ class STGQW_CountryRegion_Field(CountryRegion):
 
 
 
-class YCJHK_CountryRegionsConnection_Field(CountryRegionsConnection):
+class PBCPX_CountryRegionsConnection_Field(CountryRegionsConnection):
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -97,18 +128,19 @@ class Country(GQLObject):
    wikiDataId: ID
    capital: str
    name: str
-   currencyCodes: str
+   currencyCodes: NonNull_list[str]
    flagImageUri: str
    numRegions: int
-   region: STGQW_CountryRegion_Field
-   regions: YCJHK_CountryRegionsConnection_Field
+   populatedPlaces: NWKEP_CountryPopulatedPlacesConnection_Field
+   region: SFKJJ_CountryRegion_Field
+   regions: PBCPX_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: NewType('PopulatedPlaceEdge', GQLObject) ## Circular Reference for PopulatedPlaceEdge
+   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class YIUSU_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class RIYHR_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       radius: float
       distanceUnit: DistanceUnit
@@ -143,48 +175,56 @@ class PopulatedPlace(GQLObject):
    timezone: str
    country: Country
    region: CountryRegion
-   distance: BJKCR_distance_Field
+   distance: IITIY_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: YIUSU_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: RIYHR_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):
    cursor: str
    node: PopulatedPlace
 
+class NonNull_list_PopulatedPlaceEdge(list, PopulatedPlaceEdge): pass
+
 class RegionPopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: PopulatedPlaceEdge
+   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class PopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: PopulatedPlaceEdge
+   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class LocaleEdge(GQLObject):
    cursor: str
    node: Locale
 
+class NonNull_list_LocaleEdge(list, LocaleEdge): pass
+
 class LocalesConnection(GQLObject):
    totalCount: int
-   edges: LocaleEdge
+   edges: NonNull_list_LocaleEdge[LocaleEdge]
    pageInfo: ConnectionPageInfo
 
 class CurrencyEdge(GQLObject):
    cursor: str
    node: Currency
 
+class NonNull_list_CurrencyEdge(list, CurrencyEdge): pass
+
 class CurrenciesConnection(GQLObject):
    totalCount: int
-   edges: CurrencyEdge
+   edges: NonNull_list_CurrencyEdge[CurrencyEdge]
    pageInfo: ConnectionPageInfo
 
 class CountryEdge(GQLObject):
    cursor: str
    node: Country
 
+class NonNull_list_CountryEdge(list, CountryEdge): pass
+
 class CountriesConnection(GQLObject):
    totalCount: int
-   edges: CountryEdge
+   edges: NonNull_list_CountryEdge[CountryEdge]
    pageInfo: ConnectionPageInfo

@@ -71,6 +71,8 @@ class NonNull_CloneProjectInput(CloneProjectInput): pass
 
 class NonNull_CloneTemplateRepositoryInput(CloneTemplateRepositoryInput): pass
 
+class NonNull_CloseDiscussionInput(CloseDiscussionInput): pass
+
 class NonNull_CloseIssueInput(CloseIssueInput): pass
 
 class NonNull_ClosePullRequestInput(ClosePullRequestInput): pass
@@ -78,6 +80,8 @@ class NonNull_ClosePullRequestInput(ClosePullRequestInput): pass
 class NonNull_ConvertProjectCardNoteToIssueInput(ConvertProjectCardNoteToIssueInput): pass
 
 class NonNull_ConvertPullRequestToDraftInput(ConvertPullRequestToDraftInput): pass
+
+class NonNull_CopyProjectV2Input(CopyProjectV2Input): pass
 
 class NonNull_CreateAttributionInvitationInput(CreateAttributionInvitationInput): pass
 
@@ -107,17 +111,23 @@ class NonNull_CreateProjectInput(CreateProjectInput): pass
 
 class NonNull_CreateProjectV2Input(CreateProjectV2Input): pass
 
+class NonNull_CreateProjectV2FieldInput(CreateProjectV2FieldInput): pass
+
 class NonNull_CreatePullRequestInput(CreatePullRequestInput): pass
 
 class NonNull_CreateRefInput(CreateRefInput): pass
 
 class NonNull_CreateRepositoryInput(CreateRepositoryInput): pass
 
+class NonNull_CreateRepositoryRulesetInput(CreateRepositoryRulesetInput): pass
+
 class NonNull_CreateSponsorsListingInput(CreateSponsorsListingInput): pass
 
 class NonNull_CreateSponsorsTierInput(CreateSponsorsTierInput): pass
 
 class NonNull_CreateSponsorshipInput(CreateSponsorshipInput): pass
+
+class NonNull_CreateSponsorshipsInput(CreateSponsorshipsInput): pass
 
 class NonNull_CreateTeamDiscussionInput(CreateTeamDiscussionInput): pass
 
@@ -149,7 +159,13 @@ class NonNull_DeleteProjectCardInput(DeleteProjectCardInput): pass
 
 class NonNull_DeleteProjectColumnInput(DeleteProjectColumnInput): pass
 
+class NonNull_DeleteProjectV2Input(DeleteProjectV2Input): pass
+
+class NonNull_DeleteProjectV2FieldInput(DeleteProjectV2FieldInput): pass
+
 class NonNull_DeleteProjectV2ItemInput(DeleteProjectV2ItemInput): pass
+
+class NonNull_DeleteProjectV2WorkflowInput(DeleteProjectV2WorkflowInput): pass
 
 class NonNull_DeletePullRequestReviewInput(DeletePullRequestReviewInput): pass
 
@@ -157,11 +173,15 @@ class NonNull_DeletePullRequestReviewCommentInput(DeletePullRequestReviewComment
 
 class NonNull_DeleteRefInput(DeleteRefInput): pass
 
+class NonNull_DeleteRepositoryRulesetInput(DeleteRepositoryRulesetInput): pass
+
 class NonNull_DeleteTeamDiscussionInput(DeleteTeamDiscussionInput): pass
 
 class NonNull_DeleteTeamDiscussionCommentInput(DeleteTeamDiscussionCommentInput): pass
 
 class NonNull_DeleteVerifiableDomainInput(DeleteVerifiableDomainInput): pass
+
+class NonNull_DequeuePullRequestInput(DequeuePullRequestInput): pass
 
 class NonNull_DisablePullRequestAutoMergeInput(DisablePullRequestAutoMergeInput): pass
 
@@ -170,6 +190,8 @@ class NonNull_DismissPullRequestReviewInput(DismissPullRequestReviewInput): pass
 class NonNull_DismissRepositoryVulnerabilityAlertInput(DismissRepositoryVulnerabilityAlertInput): pass
 
 class NonNull_EnablePullRequestAutoMergeInput(EnablePullRequestAutoMergeInput): pass
+
+class NonNull_EnqueuePullRequestInput(EnqueuePullRequestInput): pass
 
 class NonNull_FollowOrganizationInput(FollowOrganizationInput): pass
 
@@ -192,6 +214,8 @@ class NonNull_LockLockableInput(LockLockableInput): pass
 class NonNull_MarkDiscussionCommentAsAnswerInput(MarkDiscussionCommentAsAnswerInput): pass
 
 class NonNull_MarkFileAsViewedInput(MarkFileAsViewedInput): pass
+
+class NonNull_MarkProjectV2AsTemplateInput(MarkProjectV2AsTemplateInput): pass
 
 class NonNull_MarkPullRequestReadyForReviewInput(MarkPullRequestReadyForReviewInput): pass
 
@@ -236,6 +260,8 @@ class NonNull_RemoveReactionInput(RemoveReactionInput): pass
 class NonNull_RemoveStarInput(RemoveStarInput): pass
 
 class NonNull_RemoveUpvoteInput(RemoveUpvoteInput): pass
+
+class NonNull_ReopenDiscussionInput(ReopenDiscussionInput): pass
 
 class NonNull_ReopenIssueInput(ReopenIssueInput): pass
 
@@ -294,6 +320,8 @@ class NonNull_UnmarkDiscussionCommentAsAnswerInput(UnmarkDiscussionCommentAsAnsw
 class NonNull_UnmarkFileAsViewedInput(UnmarkFileAsViewedInput): pass
 
 class NonNull_UnmarkIssueAsDuplicateInput(UnmarkIssueAsDuplicateInput): pass
+
+class NonNull_UnmarkProjectV2AsTemplateInput(UnmarkProjectV2AsTemplateInput): pass
 
 class NonNull_UnminimizeCommentInput(UnminimizeCommentInput): pass
 
@@ -371,6 +399,8 @@ class NonNull_UpdateProjectColumnInput(UpdateProjectColumnInput): pass
 
 class NonNull_UpdateProjectV2Input(UpdateProjectV2Input): pass
 
+class NonNull_UpdateProjectV2CollaboratorsInput(UpdateProjectV2CollaboratorsInput): pass
+
 class NonNull_UpdateProjectV2DraftIssueInput(UpdateProjectV2DraftIssueInput): pass
 
 class NonNull_UpdateProjectV2ItemFieldValueInput(UpdateProjectV2ItemFieldValueInput): pass
@@ -388,6 +418,8 @@ class NonNull_UpdatePullRequestReviewCommentInput(UpdatePullRequestReviewComment
 class NonNull_UpdateRefInput(UpdateRefInput): pass
 
 class NonNull_UpdateRepositoryInput(UpdateRepositoryInput): pass
+
+class NonNull_UpdateRepositoryRulesetInput(UpdateRepositoryRulesetInput): pass
 
 class NonNull_UpdateRepositoryWebCommitSignoffSettingInput(UpdateRepositoryWebCommitSignoffSettingInput): pass
 
@@ -949,6 +981,23 @@ class cloneTemplateRepository(GQLMutation):
 
    type: CloneTemplateRepositoryPayload
 
+class closeDiscussion(GQLMutation):
+   """
+   closeDiscussion - Close a discussion.
+
+   """
+   class CloseDiscussionPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for CloseDiscussion
+
+      """
+      input: NonNull_CloseDiscussionInput
+
+   _args: CloseDiscussionPayloadArgs
+
+
+   type: CloseDiscussionPayload
+
 class closeIssue(GQLMutation):
    """
    closeIssue - Close an issue.
@@ -1016,6 +1065,23 @@ class convertPullRequestToDraft(GQLMutation):
 
 
    type: ConvertPullRequestToDraftPayload
+
+class copyProjectV2(GQLMutation):
+   """
+   copyProjectV2 - Copy a project.
+
+   """
+   class CopyProjectV2PayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for CopyProjectV2
+
+      """
+      input: NonNull_CopyProjectV2Input
+
+   _args: CopyProjectV2PayloadArgs
+
+
+   type: CopyProjectV2Payload
 
 class createAttributionInvitation(GQLMutation):
    """
@@ -1297,6 +1363,23 @@ class createProjectV2(GQLMutation):
 
    type: CreateProjectV2Payload
 
+class createProjectV2Field(GQLMutation):
+   """
+   createProjectV2Field - Create a new project field.
+
+   """
+   class CreateProjectV2FieldPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for CreateProjectV2Field
+
+      """
+      input: NonNull_CreateProjectV2FieldInput
+
+   _args: CreateProjectV2FieldPayloadArgs
+
+
+   type: CreateProjectV2FieldPayload
+
 class createPullRequest(GQLMutation):
    """
    createPullRequest - Create a new pull request
@@ -1348,6 +1431,23 @@ class createRepository(GQLMutation):
 
    type: CreateRepositoryPayload
 
+class createRepositoryRuleset(GQLMutation):
+   """
+   createRepositoryRuleset - Create a repository ruleset
+
+   """
+   class CreateRepositoryRulesetPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for CreateRepositoryRuleset
+
+      """
+      input: NonNull_CreateRepositoryRulesetInput
+
+   _args: CreateRepositoryRulesetPayloadArgs
+
+
+   type: CreateRepositoryRulesetPayload
+
 class createSponsorsListing(GQLMutation):
    """
    createSponsorsListing - Create a GitHub Sponsors profile to allow others to sponsor you or your organization.
@@ -1398,6 +1498,23 @@ class createSponsorship(GQLMutation):
 
 
    type: CreateSponsorshipPayload
+
+class createSponsorships(GQLMutation):
+   """
+   createSponsorships - Make many one-time sponsorships for different sponsorable users or organizations at once. Can only sponsor those who have a public GitHub Sponsors profile.
+
+   """
+   class CreateSponsorshipsPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for CreateSponsorships
+
+      """
+      input: NonNull_CreateSponsorshipsInput
+
+   _args: CreateSponsorshipsPayloadArgs
+
+
+   type: CreateSponsorshipsPayload
 
 class createTeamDiscussion(GQLMutation):
    """
@@ -1654,6 +1771,40 @@ class deleteProjectColumn(GQLMutation):
 
    type: DeleteProjectColumnPayload
 
+class deleteProjectV2(GQLMutation):
+   """
+   deleteProjectV2 - Delete a project.
+
+   """
+   class DeleteProjectV2PayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for DeleteProjectV2
+
+      """
+      input: NonNull_DeleteProjectV2Input
+
+   _args: DeleteProjectV2PayloadArgs
+
+
+   type: DeleteProjectV2Payload
+
+class deleteProjectV2Field(GQLMutation):
+   """
+   deleteProjectV2Field - Delete a project field.
+
+   """
+   class DeleteProjectV2FieldPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for DeleteProjectV2Field
+
+      """
+      input: NonNull_DeleteProjectV2FieldInput
+
+   _args: DeleteProjectV2FieldPayloadArgs
+
+
+   type: DeleteProjectV2FieldPayload
+
 class deleteProjectV2Item(GQLMutation):
    """
    deleteProjectV2Item - Deletes an item from a Project.
@@ -1670,6 +1821,23 @@ class deleteProjectV2Item(GQLMutation):
 
 
    type: DeleteProjectV2ItemPayload
+
+class deleteProjectV2Workflow(GQLMutation):
+   """
+   deleteProjectV2Workflow - Deletes a project workflow.
+
+   """
+   class DeleteProjectV2WorkflowPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for DeleteProjectV2Workflow
+
+      """
+      input: NonNull_DeleteProjectV2WorkflowInput
+
+   _args: DeleteProjectV2WorkflowPayloadArgs
+
+
+   type: DeleteProjectV2WorkflowPayload
 
 class deletePullRequestReview(GQLMutation):
    """
@@ -1722,6 +1890,23 @@ class deleteRef(GQLMutation):
 
    type: DeleteRefPayload
 
+class deleteRepositoryRuleset(GQLMutation):
+   """
+   deleteRepositoryRuleset - Delete a repository ruleset
+
+   """
+   class DeleteRepositoryRulesetPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for DeleteRepositoryRuleset
+
+      """
+      input: NonNull_DeleteRepositoryRulesetInput
+
+   _args: DeleteRepositoryRulesetPayloadArgs
+
+
+   type: DeleteRepositoryRulesetPayload
+
 class deleteTeamDiscussion(GQLMutation):
    """
    deleteTeamDiscussion - Deletes a team discussion.
@@ -1772,6 +1957,23 @@ class deleteVerifiableDomain(GQLMutation):
 
 
    type: DeleteVerifiableDomainPayload
+
+class dequeuePullRequest(GQLMutation):
+   """
+   dequeuePullRequest - Remove a pull request from the merge queue.
+
+   """
+   class DequeuePullRequestPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for DequeuePullRequest
+
+      """
+      input: NonNull_DequeuePullRequestInput
+
+   _args: DequeuePullRequestPayloadArgs
+
+
+   type: DequeuePullRequestPayload
 
 class disablePullRequestAutoMerge(GQLMutation):
    """
@@ -1840,6 +2042,23 @@ class enablePullRequestAutoMerge(GQLMutation):
 
 
    type: EnablePullRequestAutoMergePayload
+
+class enqueuePullRequest(GQLMutation):
+   """
+   enqueuePullRequest - Add a pull request to the merge queue.
+
+   """
+   class EnqueuePullRequestPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for EnqueuePullRequest
+
+      """
+      input: NonNull_EnqueuePullRequestInput
+
+   _args: EnqueuePullRequestPayloadArgs
+
+
+   type: EnqueuePullRequestPayload
 
 class followOrganization(GQLMutation):
    """
@@ -2027,6 +2246,23 @@ class markFileAsViewed(GQLMutation):
 
 
    type: MarkFileAsViewedPayload
+
+class markProjectV2AsTemplate(GQLMutation):
+   """
+   markProjectV2AsTemplate - Mark a project as a template. Note that only projects which are owned by an Organization can be marked as a template.
+
+   """
+   class MarkProjectV2AsTemplatePayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for MarkProjectV2AsTemplate
+
+      """
+      input: NonNull_MarkProjectV2AsTemplateInput
+
+   _args: MarkProjectV2AsTemplatePayloadArgs
+
+
+   type: MarkProjectV2AsTemplatePayload
 
 class markPullRequestReadyForReview(GQLMutation):
    """
@@ -2401,6 +2637,23 @@ class removeUpvote(GQLMutation):
 
 
    type: RemoveUpvotePayload
+
+class reopenDiscussion(GQLMutation):
+   """
+   reopenDiscussion - Reopen a discussion.
+
+   """
+   class ReopenDiscussionPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for ReopenDiscussion
+
+      """
+      input: NonNull_ReopenDiscussionInput
+
+   _args: ReopenDiscussionPayloadArgs
+
+
+   type: ReopenDiscussionPayload
 
 class reopenIssue(GQLMutation):
    """
@@ -2894,6 +3147,23 @@ class unmarkIssueAsDuplicate(GQLMutation):
 
 
    type: UnmarkIssueAsDuplicatePayload
+
+class unmarkProjectV2AsTemplate(GQLMutation):
+   """
+   unmarkProjectV2AsTemplate - Unmark a project as a template.
+
+   """
+   class UnmarkProjectV2AsTemplatePayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for UnmarkProjectV2AsTemplate
+
+      """
+      input: NonNull_UnmarkProjectV2AsTemplateInput
+
+   _args: UnmarkProjectV2AsTemplatePayloadArgs
+
+
+   type: UnmarkProjectV2AsTemplatePayload
 
 class unminimizeComment(GQLMutation):
    """
@@ -3541,6 +3811,23 @@ class updateProjectV2(GQLMutation):
 
    type: UpdateProjectV2Payload
 
+class updateProjectV2Collaborators(GQLMutation):
+   """
+   updateProjectV2Collaborators - Update the collaborators on a team or a project
+
+   """
+   class UpdateProjectV2CollaboratorsPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for UpdateProjectV2Collaborators
+
+      """
+      input: NonNull_UpdateProjectV2CollaboratorsInput
+
+   _args: UpdateProjectV2CollaboratorsPayloadArgs
+
+
+   type: UpdateProjectV2CollaboratorsPayload
+
 class updateProjectV2DraftIssue(GQLMutation):
    """
    updateProjectV2DraftIssue - Updates a draft issue within a Project.
@@ -3693,6 +3980,23 @@ class updateRepository(GQLMutation):
 
 
    type: UpdateRepositoryPayload
+
+class updateRepositoryRuleset(GQLMutation):
+   """
+   updateRepositoryRuleset - Update a repository ruleset
+
+   """
+   class UpdateRepositoryRulesetPayloadArgs(GQLArgsSet, GQLObject):
+      """
+      input - Parameters for UpdateRepositoryRuleset
+
+      """
+      input: NonNull_UpdateRepositoryRulesetInput
+
+   _args: UpdateRepositoryRulesetPayloadArgs
+
+
+   type: UpdateRepositoryRulesetPayload
 
 class updateRepositoryWebCommitSignoffSetting(GQLMutation):
    """
@@ -3864,10 +4168,12 @@ class Mutations(Enum):
    clearProjectV2ItemFieldValue = clearProjectV2ItemFieldValue
    cloneProject = cloneProject
    cloneTemplateRepository = cloneTemplateRepository
+   closeDiscussion = closeDiscussion
    closeIssue = closeIssue
    closePullRequest = closePullRequest
    convertProjectCardNoteToIssue = convertProjectCardNoteToIssue
    convertPullRequestToDraft = convertPullRequestToDraft
+   copyProjectV2 = copyProjectV2
    createAttributionInvitation = createAttributionInvitation
    createBranchProtectionRule = createBranchProtectionRule
    createCheckRun = createCheckRun
@@ -3882,12 +4188,15 @@ class Mutations(Enum):
    createMigrationSource = createMigrationSource
    createProject = createProject
    createProjectV2 = createProjectV2
+   createProjectV2Field = createProjectV2Field
    createPullRequest = createPullRequest
    createRef = createRef
    createRepository = createRepository
+   createRepositoryRuleset = createRepositoryRuleset
    createSponsorsListing = createSponsorsListing
    createSponsorsTier = createSponsorsTier
    createSponsorship = createSponsorship
+   createSponsorships = createSponsorships
    createTeamDiscussion = createTeamDiscussion
    createTeamDiscussionComment = createTeamDiscussionComment
    declineTopicSuggestion = declineTopicSuggestion
@@ -3903,17 +4212,23 @@ class Mutations(Enum):
    deleteProject = deleteProject
    deleteProjectCard = deleteProjectCard
    deleteProjectColumn = deleteProjectColumn
+   deleteProjectV2 = deleteProjectV2
+   deleteProjectV2Field = deleteProjectV2Field
    deleteProjectV2Item = deleteProjectV2Item
+   deleteProjectV2Workflow = deleteProjectV2Workflow
    deletePullRequestReview = deletePullRequestReview
    deletePullRequestReviewComment = deletePullRequestReviewComment
    deleteRef = deleteRef
+   deleteRepositoryRuleset = deleteRepositoryRuleset
    deleteTeamDiscussion = deleteTeamDiscussion
    deleteTeamDiscussionComment = deleteTeamDiscussionComment
    deleteVerifiableDomain = deleteVerifiableDomain
+   dequeuePullRequest = dequeuePullRequest
    disablePullRequestAutoMerge = disablePullRequestAutoMerge
    dismissPullRequestReview = dismissPullRequestReview
    dismissRepositoryVulnerabilityAlert = dismissRepositoryVulnerabilityAlert
    enablePullRequestAutoMerge = enablePullRequestAutoMerge
+   enqueuePullRequest = enqueuePullRequest
    followOrganization = followOrganization
    followUser = followUser
    grantEnterpriseOrganizationsMigratorRole = grantEnterpriseOrganizationsMigratorRole
@@ -3925,6 +4240,7 @@ class Mutations(Enum):
    lockLockable = lockLockable
    markDiscussionCommentAsAnswer = markDiscussionCommentAsAnswer
    markFileAsViewed = markFileAsViewed
+   markProjectV2AsTemplate = markProjectV2AsTemplate
    markPullRequestReadyForReview = markPullRequestReadyForReview
    mergeBranch = mergeBranch
    mergePullRequest = mergePullRequest
@@ -3947,6 +4263,7 @@ class Mutations(Enum):
    removeReaction = removeReaction
    removeStar = removeStar
    removeUpvote = removeUpvote
+   reopenDiscussion = reopenDiscussion
    reopenIssue = reopenIssue
    reopenPullRequest = reopenPullRequest
    requestReviews = requestReviews
@@ -3976,6 +4293,7 @@ class Mutations(Enum):
    unmarkDiscussionCommentAsAnswer = unmarkDiscussionCommentAsAnswer
    unmarkFileAsViewed = unmarkFileAsViewed
    unmarkIssueAsDuplicate = unmarkIssueAsDuplicate
+   unmarkProjectV2AsTemplate = unmarkProjectV2AsTemplate
    unminimizeComment = unminimizeComment
    unpinIssue = unpinIssue
    unresolveReviewThread = unresolveReviewThread
@@ -4014,6 +4332,7 @@ class Mutations(Enum):
    updateProjectCard = updateProjectCard
    updateProjectColumn = updateProjectColumn
    updateProjectV2 = updateProjectV2
+   updateProjectV2Collaborators = updateProjectV2Collaborators
    updateProjectV2DraftIssue = updateProjectV2DraftIssue
    updateProjectV2ItemFieldValue = updateProjectV2ItemFieldValue
    updateProjectV2ItemPosition = updateProjectV2ItemPosition
@@ -4023,6 +4342,7 @@ class Mutations(Enum):
    updatePullRequestReviewComment = updatePullRequestReviewComment
    updateRef = updateRef
    updateRepository = updateRepository
+   updateRepositoryRuleset = updateRepositoryRuleset
    updateRepositoryWebCommitSignoffSetting = updateRepositoryWebCommitSignoffSetting
    updateSponsorshipPreferences = updateSponsorshipPreferences
    updateSubscription = updateSubscription

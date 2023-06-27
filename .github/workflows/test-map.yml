@@ -5,7 +5,7 @@ name: Pyhon-GraphQL Mapping
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "21-no-support-for-list-return-types" ]
   pull_request:
     branches: [ "develop" ]
 

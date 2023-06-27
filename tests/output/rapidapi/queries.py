@@ -6,25 +6,45 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
+class NonNull_list_EnvConfigCategory(list, EnvConfigCategory): pass
+
 class NonNull_EnvConfigTerm(EnvConfigTerm): pass
+
+class NonNull_list_EnvConfig(list, EnvConfig): pass
 
 class list_Extension(list, Extension): pass
 
 class list_UserAlert(list, UserAlert): pass
 
+class NonNull_list_AlertDefinition(list, AlertDefinition): pass
+
 class NonNull_UserAlertsWhereInput(UserAlertsWhereInput): pass
+
+class NonNull_AnalyticsStatsInput(AnalyticsStatsInput): pass
+
+class NonNull_list_AnalyticsStats(list, AnalyticsStats): pass
+
+class NonNull_list_ApiDeveloper(list, ApiDeveloper): pass
 
 class NonNull_ApiFollowerWhereInput(ApiFollowerWhereInput): pass
 
+class NonNull_list_ApiSpecImportProcess(list, ApiSpecImportProcess): pass
+
 class NonNull_AppAuthorizationsWhereInput(AppAuthorizationsWhereInput): pass
 
+class NonNull_list_ApplicationAuthorization(list, ApplicationAuthorization): pass
+
 class NonNull_AssetWhereInput(AssetWhereInput): pass
+
+class NonNull_list_AssetForDownload(list, AssetForDownload): pass
 
 class NonNull_AsyncApiConfigurationWhereInput(AsyncApiConfigurationWhereInput): pass
 
 class NonNull_AuditWhereInput(AuditWhereInput): pass
 
 class list_authStrategy(list, authStrategy): pass
+
+class list_BillingFeature(list, BillingFeature): pass
 
 class NonNull_BillingItemsWhereInput(BillingItemsWhereInput): pass
 
@@ -35,6 +55,8 @@ class list_CategoryEntity(list, CategoryEntity): pass
 class list_Category(list, Category): pass
 
 class list_CollapsedCollection(list, CollapsedCollection): pass
+
+class NonNull_list_ApiSearch(list, ApiSearch): pass
 
 class list_Follower(list, Follower): pass
 
@@ -61,6 +83,8 @@ class NonNull_EntityMetadataWhereInput(EntityMetadataWhereInput): pass
 class NonNull_EntityRoleWhereInput(EntityRoleWhereInput): pass
 
 class list_LogsCSV(list, LogsCSV): pass
+
+class list_Headline(list, Headline): pass
 
 class NonNull_GetLegalAgreementSigningURLInput(GetLegalAgreementSigningURLInput): pass
 
@@ -92,9 +116,13 @@ class list_UsagesStats(list, UsagesStats): pass
 
 class list_InviteUsersSearch(list, InviteUsersSearch): pass
 
+class NonNull_list_UserSavedApi(list, UserSavedApi): pass
+
 class list_User(list, User): pass
 
 class NonNull_SearchUsersWhereInput(SearchUsersWhereInput): pass
+
+class NonNull_list_User(list, User): pass
 
 class NonNull_UserWhereInput(UserWhereInput): pass
 
@@ -146,7 +174,7 @@ class eventTypes(GQLQuery):
    eventTypes - Get types of Events
 
    """
-   type: EventType
+   type: NonNull_list_EventType[EventType]
 
 class eventConfig(GQLQuery):
    """
@@ -244,7 +272,7 @@ class envConfigCategories(GQLQuery):
    envConfigCategories - A category of enterprise congfiguration
 
    """
-   type: EnvConfigCategory
+   type: NonNull_list_EnvConfigCategory[EnvConfigCategory]
 
 class envConfig(GQLQuery):
    """
@@ -270,7 +298,7 @@ class envConfigs(GQLQuery):
    _args: EnvConfigArgs
 
 
-   type: EnvConfig
+   type: NonNull_list_EnvConfig[EnvConfig]
 
 class adminAuditLogs(GQLQuery):
    """
@@ -361,7 +389,7 @@ class getAlertsDefinitions(GQLQuery):
    getAlertsDefinitions - Get definitions of alerts across RapidAPI
 
    """
-   type: AlertDefinition
+   type: NonNull_list_AlertDefinition[AlertDefinition]
 
 class userAlerts(GQLQuery):
    """
@@ -401,6 +429,21 @@ class allowedPlanDeveloperByPlanId(GQLQuery):
 
 
    type: list_AllowedPlanDeveloper[AllowedPlanDeveloper]
+
+class apiTrafficAnalytics(GQLQuery):
+   """
+   apiTrafficAnalytics - The GraphQL Platform API exposes a useful operation for analyzing API call volume, errors and latency. It allows you to filter and group the data by multiple dimensions such as time, API, consumer and much more. The results are returned in a flat object that can easily be transformed into input for charting or pivot tables.
+
+
+   """
+   class AnalyticsStatsArgs(GQLArgsSet, GQLObject):
+      where: NonNull_AnalyticsStatsInput
+      groupBy: AnalyticsStatsGroupByInput
+
+   _args: AnalyticsStatsArgs
+
+
+   type: NonNull_list_AnalyticsStats[AnalyticsStats]
 
 class apiCertificate(GQLQuery):
    """
@@ -442,7 +485,7 @@ class apiDevelopersByApiId(GQLQuery):
    _args: ApiDeveloperArgs
 
 
-   type: ApiDeveloper
+   type: NonNull_list_ApiDeveloper[ApiDeveloper]
 
 class apiFollowers(GQLQuery):
    """
@@ -523,7 +566,7 @@ class apiSpecImportProgresses(GQLQuery):
    _args: ApiSpecImportProcessArgs
 
 
-   type: ApiSpecImportProcess
+   type: NonNull_list_ApiSpecImportProcess[ApiSpecImportProcess]
 
 class bulkApisSummaryByTrackingIds(GQLQuery):
    """
@@ -689,7 +732,7 @@ class applicationAuthorizations(GQLQuery):
    _args: ApplicationAuthorizationArgs
 
 
-   type: ApplicationAuthorization
+   type: NonNull_list_ApplicationAuthorization[ApplicationAuthorization]
 
 class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLQuery):
    """
@@ -756,7 +799,7 @@ class assets(GQLQuery):
    _args: AssetArgs
 
 
-   type: Asset
+   type: NonNull_list_Asset[Asset]
 
 class assetsDownloadUrls(GQLQuery):
    """
@@ -769,7 +812,7 @@ class assetsDownloadUrls(GQLQuery):
    _args: AssetForDownloadArgs
 
 
-   type: AssetForDownload
+   type: NonNull_list_AssetForDownload[AssetForDownload]
 
 class asyncApiConfigurations(GQLQuery):
    """
@@ -1238,7 +1281,7 @@ class search(GQLQuery):
    _args: ApiSearchArgs
 
 
-   type: ApiSearch
+   type: NonNull_list_ApiSearch[ApiSearch]
 
 class searchEntityByApiId(GQLQuery):
    """
@@ -2106,13 +2149,13 @@ class getLegalAgreementSigningURL(GQLQuery):
    getLegalAgreementSigningURL - Build a legal agreement signging url for the UI as an external integration for signing on plans 
 
    """
-   class AnyArgs(GQLArgsSet, GQLObject):
+   class LegalAgreementInfoUrlArgs(GQLArgsSet, GQLObject):
       input: NonNull_GetLegalAgreementSigningURLInput
 
-   _args: AnyArgs
+   _args: LegalAgreementInfoUrlArgs
 
 
-   type: Any
+   type: LegalAgreementInfoUrl
 
 class logPayloadByRequestId(GQLQuery):
    """
@@ -3038,7 +3081,7 @@ class getUserSavedApis(GQLQuery):
    _args: UserSavedApiArgs
 
 
-   type: UserSavedApi
+   type: NonNull_list_UserSavedApi[UserSavedApi]
 
 class userById(GQLQuery):
    """
@@ -3101,7 +3144,7 @@ class searchUsersV2(GQLQuery):
    _args: UserArgs
 
 
-   type: User
+   type: NonNull_list_User[User]
 
 class user(GQLQuery):
    """
@@ -3290,6 +3333,7 @@ class Queries(Enum):
    userAlerts = userAlerts
    userAlert = userAlert
    allowedPlanDeveloperByPlanId = allowedPlanDeveloperByPlanId
+   apiTrafficAnalytics = apiTrafficAnalytics
    apiCertificate = apiCertificate
    apiCertificates = apiCertificates
    apiDevelopersByApiId = apiDevelopersByApiId

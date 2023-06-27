@@ -16,4 +16,6 @@ Any = str
 
 Upload = str
 
+JSONObject = str
+
 name = str

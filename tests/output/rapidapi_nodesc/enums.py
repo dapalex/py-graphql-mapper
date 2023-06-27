@@ -11,6 +11,7 @@ class Brand(Enum):
    DEFAULT = None
    default = 'default'
    rakuten = 'rakuten'
+   rapidapi = 'rapidapi'
 
 class EventUrlSortables(Enum):
    DEFAULT = None
@@ -104,6 +105,21 @@ class time(Enum):
    hour = 'hour'
    day = 'day'
 
+class AnalyticsStatsGroupBy(Enum):
+   DEFAULT = None
+   API = 'API'
+   ENDPOINT = 'ENDPOINT'
+   ENDPOINT_HASH = 'ENDPOINT_HASH'
+   APP = 'APP'
+   API_VERSION = 'API_VERSION'
+
+class AnalyticsResolution(Enum):
+   DEFAULT = None
+   MINUTES = 'MINUTES'
+   HOURS = 'HOURS'
+   DAYS = 'DAYS'
+   MONTHS = 'MONTHS'
+
 class ApiCertificatePublicKeySignatureAlgorithm(Enum):
    DEFAULT = None
    RSA_ENCRYPTION = 'RSA_ENCRYPTION'
@@ -127,6 +143,7 @@ class ApiFollowerSortingFieldName(Enum):
 class ApiSpecType(Enum):
    DEFAULT = None
    OPENAPI = 'OPENAPI'
+   WSDL = 'WSDL'
    POSTMAN_COLLECTION = 'POSTMAN_COLLECTION'
 
 class ApiSpecImportWarningType(Enum):
@@ -165,6 +182,15 @@ class apiSubTypeEnum(Enum):
    graphql = 'graphql'
    kafka = 'kafka'
    soap = 'soap'
+   async_ = 'async'
+
+class ApiVersionType(Enum):
+   DEFAULT = None
+   rest = 'rest'
+   graphql = 'graphql'
+   kafka = 'kafka'
+   soap = 'soap'
+   async_ = 'async'
 
 class ApiStatus(Enum):
    DEFAULT = None
@@ -216,11 +242,16 @@ class AppAuthorizationType(Enum):
    DEFAULT = None
    RAPIDAPI = 'RAPIDAPI'
    OAUTH2 = 'OAUTH2'
+   HEADER = 'HEADER'
+   BASIC = 'BASIC'
+   BEARER = 'BEARER'
 
 class AuthorizationGrantType(Enum):
    DEFAULT = None
    CLIENT_CREDENTIALS = 'CLIENT_CREDENTIALS'
    AUTHORIZATION_CODE = 'AUTHORIZATION_CODE'
+   PASSWORD = 'PASSWORD'
+   JWT = 'JWT'
 
 class AppAuthorizationStatus(Enum):
    DEFAULT = None
@@ -237,11 +268,17 @@ class EnvironmentName(Enum):
    Testing = 'Testing'
    Production = 'Production'
 
+class CodeChallengeMethod(Enum):
+   DEFAULT = None
+   S256 = 'S256'
+   Plain = 'Plain'
+
 class AuthenticationType(Enum):
    DEFAULT = None
    NO_AUTH = 'NO_AUTH'
    RAPID = 'RAPID'
    BASIC = 'BASIC'
+   BEARER = 'BEARER'
    HEADER = 'HEADER'
    QUERY = 'QUERY'
    OAUTH2 = 'OAUTH2'
@@ -250,6 +287,7 @@ class GrantType(Enum):
    DEFAULT = None
    CLIENT_CREDENTIALS = 'CLIENT_CREDENTIALS'
    AUTHORIZATION_CODE = 'AUTHORIZATION_CODE'
+   PASSWORD = 'PASSWORD'
 
 class SeparatorType(Enum):
    DEFAULT = None
@@ -513,6 +551,17 @@ class SpotlightFieldName(Enum):
    published = 'published'
    updatedAt = 'updatedAt'
    createdAt = 'createdAt'
+
+class Period(Enum):
+   DEFAULT = None
+   day = 'day'
+   month = 'month'
+
+class BillingSubscriptionType(Enum):
+   DEFAULT = None
+   API = 'API'
+   SEATS = 'SEATS'
+   TENANT = 'TENANT'
 
 class LoadBalancingStrategy(Enum):
    DEFAULT = None

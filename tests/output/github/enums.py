@@ -184,6 +184,7 @@ class DependencyGraphEcosystem(Enum):
    ACTIONS = 'ACTIONS' ##GitHub Actions
    RUST = 'RUST' ##Rust crates
    PUB = 'PUB' ##Dart packages hosted at pub.dev
+   SWIFT = 'SWIFT' ##Swift packages
 
 class DeploymentOrderField(Enum):
    """
@@ -224,6 +225,7 @@ class DeploymentState(Enum):
    FAILURE = 'FAILURE' ##The deployment has failed.
    INACTIVE = 'INACTIVE' ##The deployment is inactive.
    PENDING = 'PENDING' ##The deployment is pending.
+   SUCCESS = 'SUCCESS' ##The deployment was successful.
    QUEUED = 'QUEUED' ##The deployment has queued
    IN_PROGRESS = 'IN_PROGRESS' ##The deployment is in progress.
    WAITING = 'WAITING' ##The deployment is waiting.
@@ -252,6 +254,16 @@ class DiffSide(Enum):
    LEFT = 'LEFT' ##The left side of the diff.
    RIGHT = 'RIGHT' ##The right side of the diff.
 
+class DiscussionCloseReason(Enum):
+   """
+   DiscussionCloseReason - The possible reasons for closing a discussion.
+
+   """
+   DEFAULT = None
+   RESOLVED = 'RESOLVED' ##The discussion has been resolved
+   OUTDATED = 'OUTDATED' ##The discussion is no longer relevant
+   DUPLICATE = 'DUPLICATE' ##The discussion is a duplicate of another
+
 class DiscussionOrderField(Enum):
    """
    DiscussionOrderField - Properties by which discussion connections can be ordered.
@@ -269,6 +281,26 @@ class DiscussionPollOptionOrderField(Enum):
    DEFAULT = None
    AUTHORED_ORDER = 'AUTHORED_ORDER' ##Order poll options by the order that the poll author specified when creating the poll.
    VOTE_COUNT = 'VOTE_COUNT' ##Order poll options by the number of votes it has.
+
+class DiscussionState(Enum):
+   """
+   DiscussionState - The possible states of a discussion.
+
+   """
+   DEFAULT = None
+   OPEN = 'OPEN' ##A discussion that is open
+   CLOSED = 'CLOSED' ##A discussion that has been closed
+
+class DiscussionStateReason(Enum):
+   """
+   DiscussionStateReason - The possible state reasons of a discussion.
+
+   """
+   DEFAULT = None
+   RESOLVED = 'RESOLVED' ##The discussion has been resolved
+   OUTDATED = 'OUTDATED' ##The discussion is no longer relevant
+   DUPLICATE = 'DUPLICATE' ##The discussion is a duplicate of another
+   REOPENED = 'REOPENED' ##The discussion was reopened
 
 class DismissReason(Enum):
    """
@@ -686,6 +718,27 @@ class MergeCommitTitle(Enum):
    PR_TITLE = 'PR_TITLE' ##Default to the pull request's title.
    MERGE_MESSAGE = 'MERGE_MESSAGE' ##Default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
 
+class MergeQueueEntryState(Enum):
+   """
+   MergeQueueEntryState - The possible states for a merge queue entry.
+
+   """
+   DEFAULT = None
+   QUEUED = 'QUEUED' ##The entry is currently queued.
+   AWAITING_CHECKS = 'AWAITING_CHECKS' ##The entry is currently waiting for checks to pass.
+   MERGEABLE = 'MERGEABLE' ##The entry is currently mergeable.
+   UNMERGEABLE = 'UNMERGEABLE' ##The entry is currently unmergeable.
+   LOCKED = 'LOCKED' ##The entry is currently locked.
+
+class MergeQueueMergingStrategy(Enum):
+   """
+   MergeQueueMergingStrategy - The possible merging strategies for a merge queue.
+
+   """
+   DEFAULT = None
+   ALLGREEN = 'ALLGREEN' ##Entries only allowed to merge if they are passing.
+   HEADGREEN = 'HEADGREEN' ##Failing Entires are allowed to merge if they are with a passing entry.
+
 class MergeableState(Enum):
    """
    MergeableState - Whether or not a PullRequest can be merged.
@@ -759,13 +812,13 @@ class OIDCProviderType(Enum):
 
 class OauthApplicationCreateAuditEntryState(Enum):
    """
-   OauthApplicationCreateAuditEntryState - The state of an OAuth Application when it was created.
+   OauthApplicationCreateAuditEntryState - The state of an OAuth application when it was created.
 
    """
    DEFAULT = None
-   ACTIVE = 'ACTIVE' ##The OAuth Application was active and allowed to have OAuth Accesses.
-   SUSPENDED = 'SUSPENDED' ##The OAuth Application was suspended from generating OAuth Accesses due to abuse or security concerns.
-   PENDING_DELETION = 'PENDING_DELETION' ##The OAuth Application was in the process of being deleted.
+   ACTIVE = 'ACTIVE' ##The OAuth application was active and allowed to have OAuth Accesses.
+   SUSPENDED = 'SUSPENDED' ##The OAuth application was suspended from generating OAuth Accesses due to abuse or security concerns.
+   PENDING_DELETION = 'PENDING_DELETION' ##The OAuth application was in the process of being deleted.
 
 class OperationType(Enum):
    """
@@ -972,6 +1025,8 @@ class OrganizationMigrationState(Enum):
    POST_REPO_MIGRATION = 'POST_REPO_MIGRATION' ##The Octoshift migration is performing post repository migrations.
    SUCCEEDED = 'SUCCEEDED' ##The Octoshift migration has succeeded.
    FAILED = 'FAILED' ##The Octoshift migration has failed.
+   PENDING_VALIDATION = 'PENDING_VALIDATION' ##The Octoshift migration needs to have its credentials validated.
+   FAILED_VALIDATION = 'FAILED_VALIDATION' ##The Octoshift migration has invalid credentials.
 
 class OrganizationOrderField(Enum):
    """
@@ -1127,6 +1182,17 @@ class ProjectTemplate(Enum):
    AUTOMATED_REVIEWS_KANBAN = 'AUTOMATED_REVIEWS_KANBAN' ##Create a board with triggers to automatically move cards across columns with review automation.
    BUG_TRIAGE = 'BUG_TRIAGE' ##Create a board to triage and prioritize bugs with To do, priority, and Done columns.
 
+class ProjectV2CustomFieldType(Enum):
+   """
+   ProjectV2CustomFieldType - The type of a project field.
+
+   """
+   DEFAULT = None
+   TEXT = 'TEXT' ##Text
+   SINGLE_SELECT = 'SINGLE_SELECT' ##Single Select
+   NUMBER = 'NUMBER' ##Number
+   DATE = 'DATE' ##Date
+
 class ProjectV2FieldOrderField(Enum):
    """
    ProjectV2FieldOrderField - Properties by which project v2 field connections can be ordered.
@@ -1196,6 +1262,32 @@ class ProjectV2OrderField(Enum):
    UPDATED_AT = 'UPDATED_AT' ##The project's date and time of update
    CREATED_AT = 'CREATED_AT' ##The project's date and time of creation
 
+class ProjectV2Roles(Enum):
+   """
+   ProjectV2Roles - The possible roles of a collaborator on a project.
+
+   """
+   DEFAULT = None
+   NONE = 'NONE' ##The collaborator has no direct access to the project
+   READER = 'READER' ##The collaborator can view the project
+   WRITER = 'WRITER' ##The collaborator can view and edit the project
+   ADMIN = 'ADMIN' ##The collaborator can view, edit, and maange the settings of the project
+
+class ProjectV2SingleSelectFieldOptionColor(Enum):
+   """
+   ProjectV2SingleSelectFieldOptionColor - The display color of a single-select field option.
+
+   """
+   DEFAULT = None
+   GRAY = 'GRAY' ##GRAY
+   BLUE = 'BLUE' ##BLUE
+   GREEN = 'GREEN' ##GREEN
+   YELLOW = 'YELLOW' ##YELLOW
+   ORANGE = 'ORANGE' ##ORANGE
+   RED = 'RED' ##RED
+   PINK = 'PINK' ##PINK
+   PURPLE = 'PURPLE' ##PURPLE
+
 class ProjectV2State(Enum):
    """
    ProjectV2State - The possible states of a project v2.
@@ -1213,6 +1305,7 @@ class ProjectV2ViewLayout(Enum):
    DEFAULT = None
    BOARD_LAYOUT = 'BOARD_LAYOUT' ##Board layout
    TABLE_LAYOUT = 'TABLE_LAYOUT' ##Table layout
+   ROADMAP_LAYOUT = 'ROADMAP_LAYOUT' ##Roadmap layout
 
 class ProjectV2ViewOrderField(Enum):
    """
@@ -1223,6 +1316,17 @@ class ProjectV2ViewOrderField(Enum):
    POSITION = 'POSITION' ##Order project v2 views by position
    CREATED_AT = 'CREATED_AT' ##Order project v2 views by creation time
    NAME = 'NAME' ##Order project v2 views by name
+
+class ProjectV2WorkflowsOrderField(Enum):
+   """
+   ProjectV2WorkflowsOrderField - Properties by which project workflows can be ordered.
+
+   """
+   DEFAULT = None
+   NAME = 'NAME' ##The workflows' name
+   NUMBER = 'NUMBER' ##The workflows' number
+   UPDATED_AT = 'UPDATED_AT' ##The workflows' date and time of update
+   CREATED_AT = 'CREATED_AT' ##The workflows' date and time of creation
 
 class PullRequestMergeMethod(Enum):
    """
@@ -1284,6 +1388,15 @@ class PullRequestReviewState(Enum):
    APPROVED = 'APPROVED' ##A review allowing the pull request to merge.
    CHANGES_REQUESTED = 'CHANGES_REQUESTED' ##A review blocking the pull request from merging.
    DISMISSED = 'DISMISSED' ##A review that has been dismissed.
+
+class PullRequestReviewThreadSubjectType(Enum):
+   """
+   PullRequestReviewThreadSubjectType - The possible subject types of a pull request review comment.
+
+   """
+   DEFAULT = None
+   LINE = 'LINE' ##A comment that has been made against the line of a pull request
+   FILE = 'FILE' ##A comment that has been made against the file of a pull request
 
 class PullRequestState(Enum):
    """
@@ -1618,6 +1731,36 @@ class RepositoryPrivacy(Enum):
    PUBLIC = 'PUBLIC' ##Public
    PRIVATE = 'PRIVATE' ##Private
 
+class RepositoryRuleType(Enum):
+   """
+   RepositoryRuleType - The rule types supported in rulesets
+
+   """
+   DEFAULT = None
+   CREATION = 'CREATION' ##Only allow users with bypass permission to create matching refs.
+   UPDATE = 'UPDATE' ##Only allow users with bypass permission to update matching refs.
+   DELETION = 'DELETION' ##Only allow users with bypass permissions to delete matching refs.
+   REQUIRED_LINEAR_HISTORY = 'REQUIRED_LINEAR_HISTORY' ##Prevent merge commits from being pushed to matching branches.
+   REQUIRED_DEPLOYMENTS = 'REQUIRED_DEPLOYMENTS' ##Choose which environments must be successfully deployed to before branches can be merged into a branch that matches this rule.
+   REQUIRED_SIGNATURES = 'REQUIRED_SIGNATURES' ##Commits pushed to matching branches must have verified signatures.
+   PULL_REQUEST = 'PULL_REQUEST' ##Require all commits be made to a non-target branch and submitted via a pull request before they can be merged.
+   REQUIRED_STATUS_CHECKS = 'REQUIRED_STATUS_CHECKS' ##Choose which status checks must pass before branches can be merged into a branch that matches this rule. When enabled, commits must first be pushed to another branch, then merged or pushed directly to a branch that matches this rule after status checks have passed.
+   NON_FAST_FORWARD = 'NON_FAST_FORWARD' ##Prevent users with push access from force pushing to branches.
+   COMMIT_MESSAGE_PATTERN = 'COMMIT_MESSAGE_PATTERN' ##Commit message pattern
+   COMMIT_AUTHOR_EMAIL_PATTERN = 'COMMIT_AUTHOR_EMAIL_PATTERN' ##Commit author email pattern
+   COMMITTER_EMAIL_PATTERN = 'COMMITTER_EMAIL_PATTERN' ##Committer email pattern
+   BRANCH_NAME_PATTERN = 'BRANCH_NAME_PATTERN' ##Branch name pattern
+   TAG_NAME_PATTERN = 'TAG_NAME_PATTERN' ##Tag name pattern
+
+class RepositoryRulesetTarget(Enum):
+   """
+   RepositoryRulesetTarget - The targets supported for rulesets
+
+   """
+   DEFAULT = None
+   BRANCH = 'BRANCH' ##Branch
+   TAG = 'TAG' ##Tag
+
 class RepositoryVisibility(Enum):
    """
    RepositoryVisibility - The repository's visibility level.
@@ -1646,6 +1789,7 @@ class RepositoryVulnerabilityAlertState(Enum):
    OPEN = 'OPEN' ##An alert that is still open.
    FIXED = 'FIXED' ##An alert that has been resolved by a code change.
    DISMISSED = 'DISMISSED' ##An alert that has been manually closed by a user.
+   AUTO_DISMISSED = 'AUTO_DISMISSED' ##An alert that has been automatically closed by Dependabot.
 
 class RequestableCheckStatusState(Enum):
    """
@@ -1668,6 +1812,29 @@ class RoleInOrganization(Enum):
    OWNER = 'OWNER' ##A user with full administrative access to the organization.
    DIRECT_MEMBER = 'DIRECT_MEMBER' ##A user who is a direct member of the organization.
    UNAFFILIATED = 'UNAFFILIATED' ##A user who is unaffiliated with the organization.
+
+class RuleBypassMode(Enum):
+   """
+   RuleBypassMode - The bypass mode for a rule or ruleset.
+
+   """
+   DEFAULT = None
+   NONE = 'NONE' ##Bypassing is disabled
+   REPOSITORY = 'REPOSITORY' ##Those with bypass permission at the repository level can bypass
+   ORGANIZATION = 'ORGANIZATION' ##Those with bypass permission at the organization level can bypass
+   ORGANIZATION_NONE = 'ORGANIZATION_NONE' ##Bypassing is disabled
+   ORGANIZATION_PRS_ONLY = 'ORGANIZATION_PRS_ONLY' ##Those with bypass permission at the organization level can bypass for pull requests only
+   ORGANIZATION_ALWAYS = 'ORGANIZATION_ALWAYS' ##Those with bypass permission at the organization level can always bypass
+
+class RuleEnforcement(Enum):
+   """
+   RuleEnforcement - The level of enforcement for a rule or ruleset.
+
+   """
+   DEFAULT = None
+   DISABLED = 'DISABLED' ##Do not evaluate or enforce rules
+   ACTIVE = 'ACTIVE' ##Rules will be enforced
+   EVALUATE = 'EVALUATE' ##Allow admins to test rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate` is only available with GitHub Enterprise).
 
 class SamlDigestAlgorithm(Enum):
    """
@@ -1736,6 +1903,7 @@ class SecurityAdvisoryEcosystem(Enum):
    PUB = 'PUB' ##Dart packages hosted at pub.dev
    RUBYGEMS = 'RUBYGEMS' ##Ruby gems hosted at RubyGems.org
    RUST = 'RUST' ##Rust crates
+   SWIFT = 'SWIFT' ##Swift packages
 
 class SecurityAdvisoryIdentifierType(Enum):
    """
@@ -1773,6 +1941,23 @@ class SecurityVulnerabilityOrderField(Enum):
    """
    DEFAULT = None
    UPDATED_AT = 'UPDATED_AT' ##Order vulnerability by update time
+
+class SocialAccountProvider(Enum):
+   """
+   SocialAccountProvider - Software or company that hosts social media accounts.
+
+   """
+   DEFAULT = None
+   GENERIC = 'GENERIC' ##Catch-all for social media providers that do not yet have specific handling.
+   FACEBOOK = 'FACEBOOK' ##Social media and networking website.
+   HOMETOWN = 'HOMETOWN' ##Fork of Mastodon with a greater focus on local posting.
+   INSTAGRAM = 'INSTAGRAM' ##Social media website with a focus on photo and video sharing.
+   LINKEDIN = 'LINKEDIN' ##Professional networking website.
+   MASTODON = 'MASTODON' ##Open-source federated microblogging service.
+   REDDIT = 'REDDIT' ##Social news aggregation and discussion website.
+   TWITCH = 'TWITCH' ##Live-streaming service.
+   TWITTER = 'TWITTER' ##Microblogging website.
+   YOUTUBE = 'YOUTUBE' ##Online video platform.
 
 class SponsorOrderField(Enum):
    """
@@ -2221,6 +2406,15 @@ class TeamMembershipType(Enum):
    CHILD_TEAM = 'CHILD_TEAM' ##Includes only child team members for the team.
    ALL = 'ALL' ##Includes immediate and child team members for the team.
 
+class TeamNotificationSetting(Enum):
+   """
+   TeamNotificationSetting - The possible team notification values.
+
+   """
+   DEFAULT = None
+   NOTIFICATIONS_ENABLED = 'NOTIFICATIONS_ENABLED' ##Everyone will receive notifications when the team is @mentioned.
+   NOTIFICATIONS_DISABLED = 'NOTIFICATIONS_DISABLED' ##No one will receive notifications.
+
 class TeamOrderField(Enum):
    """
    TeamOrderField - Properties by which team connections can be ordered.
@@ -2316,3 +2510,15 @@ class WorkflowRunOrderField(Enum):
    """
    DEFAULT = None
    CREATED_AT = 'CREATED_AT' ##Order workflow runs by most recently created
+
+class WorkflowState(Enum):
+   """
+   WorkflowState - The possible states for a workflow.
+
+   """
+   DEFAULT = None
+   ACTIVE = 'ACTIVE' ##The workflow is active.
+   DELETED = 'DELETED' ##The workflow was deleted from the git repository.
+   DISABLED_FORK = 'DISABLED_FORK' ##The workflow was disabled by default on a fork.
+   DISABLED_INACTIVITY = 'DISABLED_INACTIVITY' ##The workflow was disabled for inactivity in the repository.
+   DISABLED_MANUALLY = 'DISABLED_MANUALLY' ##The workflow was disabled manually.

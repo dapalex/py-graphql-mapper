@@ -10,6 +10,12 @@ class list_CodeOfConduct(list, CodeOfConduct): pass
 
 class NonNull_EnterpriseAdministratorRole(GQLObject): pass
 
+class NonNull_list_License(list, License): pass
+
+class NonNull_list_MarketplaceCategory(list, MarketplaceCategory): pass
+
+class NonNull_list_Node(list, Node): pass
+
 class NonNull_URI(URI): pass
 
 class NonNull_SearchType(GQLObject): pass
@@ -120,7 +126,7 @@ class licenses(GQLQuery):
    licenses - Return a list of known open source licenses
 
    """
-   type: License
+   type: NonNull_list_License[License]
 
 class marketplaceCategories(GQLQuery):
    """
@@ -143,7 +149,7 @@ class marketplaceCategories(GQLQuery):
    _args: MarketplaceCategoryArgs
 
 
-   type: MarketplaceCategory
+   type: NonNull_list_MarketplaceCategory[MarketplaceCategory]
 
 class marketplaceCategory(GQLQuery):
    """
@@ -278,7 +284,7 @@ class nodes(GQLQuery):
    _args: NodeArgs
 
 
-   type: Node
+   type: NonNull_list_Node[Node]
 
 class organization(GQLQuery):
    """
@@ -316,10 +322,10 @@ class rateLimit(GQLQuery):
 
 class relay(GQLQuery):
    """
-   relay - Hack to workaround https://github.com/facebook/relay/issues/112 re-exposing the root query object
+   relay - Workaround for re-exposing the root query object. (Refer to https://github.com/facebook/relay/issues/112 for more information.)
 
    """
-   type: None
+   type: any
 
 class repository(GQLQuery):
    """

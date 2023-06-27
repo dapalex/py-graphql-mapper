@@ -4,7 +4,7 @@ import requests
 from pygqlmap.gql_types import ID
 from pygqlmap.helper import mapConfig
 from .consts import GDBC_HEADERS, GDBC_URL
-from .output.gdbc.queries import country, currencies, countries
+from .output.gdbc.queries import country, currencies, countries, timeZones
 import logging as logger
 
 def run_gdbc_nested_object():
@@ -288,6 +288,27 @@ def run_gdbc_obj_composed_args():
         disp_opt.language = Language.EN
         query = country(id = ID('CH'), displayOptions = disp_opt)
         query.type.region._args.code = 'Q12094'
+
+        logger.debug('gqlSource GQL version: ' + query.export_gql_source)
+
+        response = requests.request('POST', url=GDBC_URL,
+                                     json={ "query": query.export_gql_source },
+                                    headers=GDBC_HEADERS)
+        gqlResponse = GQLResponse(response, True)
+
+        gqlResponse.print_msg_out()
+        gqlResponse.map_gqldata_to_obj(query.type)
+        logger.info('result object: ' + str(gqlResponse.result_obj))
+    except Exception as ex:
+        raise ex
+
+    logger.debug("End of run_gdbc_obj_composed_args")
+
+def run_gdbc_nested_obj_with_list():
+    logger.debug('\n\nRunning run_gdbc_obj_composed_args...')
+    try:
+        query = timeZones(first=10 )
+        query.log_progress=True
 
         logger.debug('gqlSource GQL version: ' + query.export_gql_source)
 

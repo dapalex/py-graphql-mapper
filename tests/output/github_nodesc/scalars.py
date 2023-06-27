@@ -2,6 +2,8 @@ from pygqlmap.gql_types import *
 
 Base64String = str
 
+BigInt = str
+
 Boolean = bool
 
 Date = str

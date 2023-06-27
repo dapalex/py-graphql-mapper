@@ -2,6 +2,8 @@ from pygqlmap.gql_types import *
 
 Base64String = str ##A (potentially binary) string encoded using base64.
 
+BigInt = str ##Represents non-fractional signed whole numeric values. Since the value may exceed the size of a 32-bit integer, it's encoded as a string.
+
 Boolean = bool ##Represents `true` or `false` values.
 
 Date = str ##An ISO-8601 encoded date string.

@@ -60,20 +60,20 @@ class SchemaTypeBuilder(Builder):
         return schemaType
 
     def build_scoftype(dataInput):
-        field = SCOfType()
+        ofType = SCOfType()
 
         try:
             while len(dataInput.items()) > 0:
                 fieldField = dataInput.popitem()
                 if fieldField[0] == 'ofType' and fieldField[1]: ##SKIPPING NON NULL MANAGEMENT, it will be back!
-                    return  SchemaTypeBuilder.build_scoftype(fieldField[1])
+                    ofType.ofType = SchemaTypeBuilder.build_scoftype(fieldField[1])
                 else:
-                    setattr(field, fieldField[0], fieldField[1])
+                    setattr(ofType, fieldField[0], fieldField[1])
 
         except Exception as ex:
             raise Exception("Exception during OfType building" + ' - ' + ex.args[0])
 
-        return field
+        return ofType
 
     def build_scfieldtype(dataInput):
         field = SCFieldType()

@@ -671,8 +671,9 @@ class Extractor():
                     (
                     circ_ref_utilizer and \
                     (
-                    py_inline_type.__contains__((gqllist_type := (GQLLIST_PREFIX + new_type))) or \
-                    py_inline_type.__contains__((gqllist_type := (NON_NULL_PREFIX + GQLLIST_PREFIX + new_type)))
+                        py_inline_type.__contains__((gqllist_type := (NON_NULL_PREFIX + GQLLIST_PREFIX + new_type))) or \
+                        py_inline_type.__contains__((gqllist_type := (GQLLIST_PREFIX + new_type)))
+
                     )
                     )
                 ) \

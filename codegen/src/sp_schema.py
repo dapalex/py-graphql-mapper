@@ -9,7 +9,7 @@ class SCEnumValue():
 class SCOfType(SchemaTypeManager):
     kind: str
     name: str
-    ofType: any #SCOfType || SCType
+    ofType: any #SCOfType
 
 class SCArgType(SchemaTypeManager):
     kind: TypeKind
