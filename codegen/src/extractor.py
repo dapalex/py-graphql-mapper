@@ -93,10 +93,10 @@ class Extractor():
                 if currentType[1].kind == TypeKind.SCALAR.name:
                     self.scalars.update({ currentType[0]: currentType[1] })
                     continue
-                if currentType[0] == 'Query':
+                if hasattr(self.schema.queryType, "name") and currentType[0] == self.schema.queryType.name:
                     self.queries = currentType[1]
                     continue
-                if currentType[0] == 'Mutation':
+                if hasattr(self.schema.mutationType, "name") and currentType[0] == self.schema.mutationType.name:
                     self.mutations = currentType[1]
                     continue
                 if currentType[1].kind == TypeKind.ENUM.name:
