@@ -27,6 +27,32 @@ class FieldsShow(ABC):
         except Exception as ex:
            raise handle_recursive_ex(ex, 'Error during fieldShow initialization')
 
+class Builder():
+    @abstractmethod
+    def build(self, dataInput, pyObject):
+        pass
+
+    @abstractmethod
+    def set_py_fields(self, dataInput, opObject, customObject=None):
+        pass
+
+    def build(self, inputDict: dict, pyObject: any):
+        """  for internal use only    """
+
+        try:
+            if self.log_progress: logger.info('Started building of python object: ' + pyObject.__class__.__name__)
+            item = inputDict.popitem() ##extract the KV pair containing object name and content
+
+            if not item[1] == None:
+                self.set_py_fields(item[1], pyObject)
+            else:
+                logger.info(item[0] + ' has no content')
+
+        except Exception as ex:
+            logger.error('Building of python object failed - ' + ex.args[0])
+
+        return pyObject
+
 class GQLExporter():
 
     log_progress: bool

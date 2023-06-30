@@ -45,6 +45,7 @@ import requests
 from ..consts import GDBC_URL, GDBC_HEADERS
 from ..output.gdbc.queries import currencies
 import logging as logger
+from ..utils import stringifyresult
 
 def run_gdbc_connobj_args_vars():
     logger.debug('\n\nRunning run_gdbc_connobj_args_vars...')
@@ -84,7 +85,7 @@ def run_gdbc_connobj_args_vars():
         gqlResponse.map_gqldata_to_obj(query.type)
 ##
 
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 
     except Exception as ex:
         raise ex

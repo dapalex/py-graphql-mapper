@@ -32,6 +32,7 @@ import requests
 from ..consts import GITHUB_HEADERS, GITHUB_URL
 from ..output.github.queries import rateLimit
 import logging as logger
+from ..utils import stringifyresult
 
 def run_simple_obj_args_literal():
     logger.debug('\n\nRunning run_simple_obj_args_literal...')
@@ -63,7 +64,7 @@ def run_simple_obj_args_literal():
 ##
 
 ##RESULT
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex

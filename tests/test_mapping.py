@@ -1,4 +1,3 @@
-import unittest
 from .gh_unittest import (run_add_comment_mutation_literal,
                                run_gh_create_issue_mutation_literal, run_gh_create_issue_mutation_vars,
                                run_gh_create_proj_mutation_literal, run_gh_create_proj_mutation_vars,

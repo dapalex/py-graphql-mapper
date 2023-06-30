@@ -6,6 +6,7 @@ from codegen.generator import CodeGenerator
 from codegen.query_presets import QUERY_SCHEMA_AND_TYPES
 from .consts import RAPIDAPI_HEADERS, RAPIDAPI_URL
 import logging as logger
+from .utils import stringifyresult
 
 def run_ra_create_transformations_mutation_args_literal():
     logger.debug('\nRunning run_ra_create_transformations_mutation_args_literal...')
@@ -55,7 +56,7 @@ def run_ra_create_transformations_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -109,7 +110,7 @@ def run_ra_create_transformations_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -153,7 +154,7 @@ def run_ra_create_gateway_instance_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -197,7 +198,7 @@ def run_ra_create_gateway_instance_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -241,7 +242,7 @@ def run_ra_edit_user_alert_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -285,7 +286,7 @@ def run_ra_edit_user_alert_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -320,7 +321,7 @@ def run_ra_admin_audit_logs_query_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -355,7 +356,7 @@ def run_ra_admin_audit_logs_query_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 

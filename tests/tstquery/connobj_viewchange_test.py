@@ -66,6 +66,7 @@ import requests
 from ..consts import GDBC_URL, GDBC_HEADERS
 from ..output.gdbc.queries import currencies
 import logging as logger
+from ..utils import stringifyresult
 
 def run_gdbc_connobj_viewchange():
     logger.debug('\n\nRunning run_gdbc_connobj_viewchange...')
@@ -107,7 +108,7 @@ def run_gdbc_connobj_viewchange():
 ##
 
 ##RESULT b)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex

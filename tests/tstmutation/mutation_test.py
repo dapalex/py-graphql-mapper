@@ -61,6 +61,7 @@ from ..consts import GITHUB_URL, GITHUB_HEADERS
 from ..output.github.mutations import updateRepository
 from ..output.github.gql_types import Package, UpdateRepositoryInput
 import logging as logger
+from ..utils import stringifyresult
 
 def run_gh_update_mutation_literal():
     logger.debug('\n\nRunning run_gh_update_mutation_literal...')
@@ -118,7 +119,7 @@ def run_gh_update_mutation_literal():
 ##
 
 ##RESULT
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex

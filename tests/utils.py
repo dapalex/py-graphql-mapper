@@ -49,3 +49,17 @@ def restoreOutput(ioWrapper: TextIOWrapper):
         sys.stdout = sys.stdout
     except Exception as ex:
         logger.error('Error during output restore - ' + ex.args[0])
+
+def stringifyresult(py_result):
+    result: str
+    import inspect
+
+    if  list in inspect.getmro(type(py_result)):
+        result = str(py_result.__class__) + ' ['
+        for el in py_result:
+            result += ' ' + str(el)
+
+        result + ' ]'
+        return result
+    else:
+        return str(py_result)

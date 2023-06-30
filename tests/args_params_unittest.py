@@ -9,6 +9,7 @@ from pygqlmap.helper import mapConfig
 from .consts import GDBC_HEADERS, GDBC_URL
 from .output.gdbc.queries import country, currencies, countries
 import logging as logger
+from .utils import stringifyresult
 
 def run_nested_obj_args_literal():
     logger.debug('\n\nRunning run_nested_obj_args_literal...')
@@ -25,7 +26,7 @@ def run_nested_obj_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -50,7 +51,7 @@ def run_nested_obj_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -80,7 +81,7 @@ def run_complex_obj_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -107,7 +108,7 @@ def run_complex_obj_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -145,7 +146,7 @@ def run_complex_obj_viewchange_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -176,7 +177,7 @@ def run_complex_obj_viewchange_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -204,7 +205,7 @@ def run_obj_composed_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -234,7 +235,7 @@ def run_obj_composed_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -280,7 +281,7 @@ def run_add_comment_mutation_args_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -328,7 +329,7 @@ def run_add_comment_mutation_args_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
