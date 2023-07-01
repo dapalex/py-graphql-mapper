@@ -7,6 +7,7 @@ from codegen.generator import CodeGenerator
 from codegen.query_presets import QUERY_SCHEMA_AND_TYPES
 from .consts import GITHUB_HEADERS, GITHUB_URL
 import logging as logger
+from .utils import stringifyresult
 
 def run_fetch_gh_schema():
     logger.debug('\nRunning run_fetch_gh_schema...')
@@ -43,6 +44,32 @@ def run_fetch_gh_schema_no_desc():
         raise ex
 
     logger.debug("End of run_fetch_gh_schema_no_desc")
+
+def run_gh_licenses_query_with_list():
+    logger.debug('\nRunning run_gh_licenses_query_with_list...')
+    try:
+        logger.debug('Creating mutation python object...')
+        from .output.github.queries import licenses
+
+        query = licenses()
+
+        logger.debug(query.export_gql_source)
+
+        logger.debug('Calling GraphQL Server......')
+        response = requests.request('POST', url=GITHUB_URL,
+                                     json={ "query": query.export_gql_source },
+                                    headers=GITHUB_HEADERS)
+        logger.debug('Response Received')
+        gqlResponse = GQLResponse(response)
+
+        gqlResponse.print_msg_out()
+
+        gqlResponse.map_gqldata_to_obj(query.type)
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
+    except Exception as ex:
+        raise ex
+
+    logger.debug("End of run_gh_licenses_query_with_list")
 
 def run_add_comment_mutation_literal():
     logger.debug('\nRunning run_add_comment_mutation_literal... - stack limit for recursion depth')
@@ -86,7 +113,7 @@ def run_add_comment_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -136,7 +163,7 @@ def run_add_comment_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -167,10 +194,14 @@ def run_gh_update_repo_mutation_literal():
         mutation.type.repository.project._args.number = 4
         mutation.type.repository.refs._args.refPrefix = 'pref'
         mutation.type.repository.release._args.tagName = 'tagE'
-        mutation.type.repository.branchProtectionRules._args.first = 1
+        mutation.type.repository.branchProtectionRules._args.first = 4
         mutation.type.repository.branchProtectionRules._args.after = ''
-        mutation.type.repository.assignableUsers._args.first = 1
+        mutation.type.repository.assignableUsers._args.first = 3
         mutation.type.repository.assignableUsers._args.after = ''
+
+        mutation.type.repository.packages.edges.node.version._args.version = '1'
+        mutation.type.repository.deployKeys._args.first = 6
+        mutation.type.repository.deployments._args.first = 6
 
         logger.debug('Creating GQLOperation for mutation...')
         logger.debug(mutation.export_gql_source)
@@ -183,7 +214,7 @@ def run_gh_update_repo_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -214,10 +245,14 @@ def run_gh_update_repo_mutation_vars():
         mutation.type.repository.project._args.number = 4
         mutation.type.repository.refs._args.refPrefix = 'pref'
         mutation.type.repository.release._args.tagName = 'tagE'
-        mutation.type.repository.branchProtectionRules._args.first = 1
+        mutation.type.repository.branchProtectionRules._args.first = 2
         mutation.type.repository.branchProtectionRules._args.after = ''
-        mutation.type.repository.assignableUsers._args.first = 1
+        mutation.type.repository.assignableUsers._args.first = 6
         mutation.type.repository.assignableUsers._args.after = ''
+
+        mutation.type.repository.packages.edges.node.version._args.version = '2'
+        mutation.type.repository.deployKeys._args.first = 5
+        mutation.type.repository.deployments._args.first = 6
 
         mutation._args_type = ArgType.VARIABLES
 
@@ -233,7 +268,7 @@ def run_gh_update_repo_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -256,9 +291,9 @@ def run_gh_create_proj_mutation_literal():
 
         mutation.name = 'MycreateProjectMutation'
 
-        mutation.type.project.columns._args.first = 1
+        mutation.type.project.columns._args.first = 2
         mutation.type.project.columns._args.after = ''
-        mutation.type.project.owner.projects._args.first = 1
+        mutation.type.project.owner.projects._args.first = 7
         mutation.type.project.owner.projects._args.after = ''
 
         logger.debug(mutation.export_gql_source)
@@ -276,7 +311,7 @@ def run_gh_create_proj_mutation_literal():
                 logProjCreated.write(gqlResponse.data['createProject']['project']['id'] + '\n')
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -299,9 +334,9 @@ def run_gh_create_proj_mutation_vars():
 
         mutation.name = 'MycreateProjectMutation'
 
-        mutation.type.project.columns._args.first = 1
+        mutation.type.project.columns._args.first = 2
         mutation.type.project.columns._args.after = ''
-        mutation.type.project.owner.projects._args.first = 1
+        mutation.type.project.owner.projects._args.first = 4
         mutation.type.project.owner.projects._args.after = ''
 
         mutation._args_type = ArgType.VARIABLES
@@ -322,7 +357,7 @@ def run_gh_create_proj_mutation_vars():
                 logProjCreated.write(gqlResponse.data['createProject']['project']['id'] + '\n')
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -354,7 +389,7 @@ def run_gh_delete_proj_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -389,7 +424,7 @@ def run_gh_delete_proj_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -421,7 +456,7 @@ def run_gh_create_projectV2_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -456,7 +491,7 @@ def run_gh_create_projectV2_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -488,7 +523,7 @@ def run_gh_delete_projectV2_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -523,7 +558,7 @@ def run_gh_delete_projectV2_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -598,7 +633,7 @@ def run_gh_create_issue_mutation_literal():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -676,7 +711,7 @@ def run_gh_create_issue_mutation_vars():
         gqlResponse.print_msg_out()
 
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 

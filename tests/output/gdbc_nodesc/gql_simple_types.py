@@ -6,7 +6,7 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class BJKCR_distance_Field(ArguedFloat):
+class IITIY_distance_Field(ArguedFloat):
    class floatArgs(GQLArgsSet, GQLObject):
       toPlaceId: ID
       distanceUnit: DistanceUnit
@@ -27,6 +27,6 @@ class Locale(GQLObject):
    name: str
 
 class Currency(GQLObject):
-   countryCodes: ID
+   countryCodes: NonNull_list[ID]
    code: ID
    symbol: str

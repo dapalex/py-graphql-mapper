@@ -50,6 +50,7 @@ from pygqlmap.gql_operations import GQLMutation
 from pygqlmap.gql_types import ID
 import logging as logger
 import requests
+from ..utils import stringifyresult
 
 class Repository(GQLObject):
     allowUpdateBranch: bool
@@ -155,7 +156,7 @@ def run_gh_insert_mutation_literal():
 ##
 
 ##RESULT
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex

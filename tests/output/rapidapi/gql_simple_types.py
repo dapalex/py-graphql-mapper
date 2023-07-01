@@ -6,7 +6,7 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class JDKLI_name_Field(ArguedStr):
+class OXYKT_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject):
       showDeleted: bool
 
@@ -307,9 +307,13 @@ class SubscriptionsCountWhereInput(GQLObject):
    resolution: Resolution
    isParent: bool
 
-class ActiveSubscriptionCount(GQLObject):
-   date: str
-   count: int
+class ExternalGatewaySubscriptionCreateInput(GQLObject):
+   apiId: str
+   apiVersionId: str
+
+class SubscribeLegalAgreementMetadataInput(GQLObject):
+   dsLegalAccountId: str
+   dsLegalEnvelopId: str
 
 class usageByBillingItem(GQLObject):
    id: ID
@@ -320,23 +324,15 @@ class usageByBillingItem(GQLObject):
    usagePercentages: float
    billingCycleStart: DateTime
 
-class SpotlightWhereInput(GQLObject):
+class SpotlightSortingField(GQLObject):
+   fieldName: SpotlightFieldName
+   by: SortingFieldOrder
+
+class SpotlightDeleteInput(GQLObject):
    id: ID
    apiId: ID
-   type: SpotlightType
-   weight: int
-   published: bool
-   title: str
-   description: str
-   spotlightURL: str
-   status: str
-   slugifiedName: str
-   thumbnailURL: str
-   updatedAt: DateTime
-   createdAt: DateTime
 
-class SpotlightUpdateInput(GQLObject):
-   id: ID
+class SpotlightCreateInput(GQLObject):
    apiId: ID
    type: SpotlightType
    weight: int
@@ -346,151 +342,118 @@ class SpotlightUpdateInput(GQLObject):
    spotlightURL: str
    file: Upload
 
-class SecretParameter(GQLObject):
-   id: ID
-   placement: SecretParameterPlacement
-   name: str
-   value: str
-   description: str
-
-class createSecretDataInput(GQLObject):
-   apiVersionId: str
+class updateBaseUrlInput(GQLObject):
+   secretDataId: str
    url: str
-   secret: str
 
-class SearchCollectionWhereInput(GQLObject):
+class SearchCollectionSortingField(GQLObject):
+   fieldName: SearchCollectionSortingFieldName
+   by: SortingFieldOrder
+
+class SearchBlogPostWhereInput(GQLObject):
    term: str
-   locale: Locale
 
-class SearchBlogPost(GQLObject):
-   slugifiedName: str
-   title: str
-   link: str
-   readTime: str
+class SearchApiSortingField(GQLObject):
+   fieldName: SearchApiSortingFieldName
+   by: SortingFieldOrder
+
+class SearchApiUser(GQLObject):
+   id: int
    thumbnail: str
-   description: str
-   updatedAt: DateTime
+   name: str
+   username: str
 
-class SearchApiWhereInput(GQLObject):
-   categoryNames: list[str]
-   exclude: list[str]
-   term: str
-   tags: list[Any]
-   collectionIds: list[str]
-   privateApisJwt: str
-   locale: Locale
+class RoleSorting(GQLObject):
+   fieldName: RoleSortingFieldName
+   by: SortingFieldOrder
 
-class Score(GQLObject):
-   apiId: str
-   avgSuccessRate: int
-   avgServiceLevel: int
-   avgLatency: int
-   popularityScore: float
-
-class RoleWhereInput(GQLObject):
-   roleLevels: list[RoleLevel]
-
-class RequestLogsOnApiFilters(GQLObject):
-   projectIds: list[ID]
+class RequestLogsOnProjectFilters(GQLObject):
+   apiIds: list[ID]
    endpoints: list[str]
    httpMethods: list[HttpMethod]
    httpStatuses: list[int]
    originIps: list[str]
 
-class RapidReasonInput(GQLObject):
-   consumerUserId: int
-   providerUserId: int
-   externalId: Any
-   eventType: RapidReasonsEvents
-   reasonType: UnsubscribeReasons
-   reasonComments: str
-   apiId: str
-   apiVersionId: str
+class RequestLogFilters(GQLObject):
+   projectIds: list[str]
+   apiIds: list[str]
+   userIds: list[ID]
+   endpoints: list[str]
+   endpointRoutes: list[str]
+   httpMethods: list[HttpMethod]
+   httpStatuses: list[int]
+   originIps: list[str]
+   gatewayIds: list[ID]
 
-class updateProjectAllowedAPIInput(GQLObject):
-   id: int
+class deleteProjectAllowedAPIsInput(GQLObject):
+   projectAllowedAPIIds: NonNull_list[int]
+   projectId: int
+   mashapeId: str
+
+class createProjectAllowedAPIInput(GQLObject):
    projectId: int
    apiId: str
    apiVersionId: str
    mashapeId: str
 
-class ProjectUpdateInput(GQLObject):
-   projectId: ID
-   projectName: str
-   projectDescription: str
-   thumbnail: Upload
-   enableLimitsToAPIs: bool
-
-class EditProjectInput(GQLObject):
-   projectId: ID
-   projectName: str
-   projectDescription: str
-   thumbnail: Upload
-   enableLimitsToAPIs: bool
-
-class AddProjectInput(GQLObject):
+class ProjectCreateInput(GQLObject):
    projectOwner: ID
    projectName: str
    description: str
    thumbnail: Upload
-   billing: str
 
-class ValidateTokenResponse(GQLObject):
-   status: int
-   isValid: bool
-   took: int
+class DeleteProjectInput(GQLObject):
+   projectId: ID
+   projectName: str
+   mashapeId: ID
 
-class CorporateDomainOrganization(GQLObject):
-   organizationId: ID
-   members: int
-   thumbnail: str
-   orgname: str
-
-class OrganizationUpdateInput(GQLObject):
-   organizationId: int
-   name: str
-   email: str
-   seats: int
-   thumbnail: str
-   description: str
-
-class OrganizationWhereInput(GQLObject):
-   userId: ID
-   slugifiedName: str
-
-class MarkNotificationsAsReadInput(GQLObject):
-   userId: str
-   createdAt: str
-
-class MarkNewNotificationAsViewedInput(GQLObject):
-   notificationsIds: list[int]
-   isNew: bool
-
-class NewNotification(GQLObject):
-   id: int
+class PayoutInfo(GQLObject):
+   id: ID
    userId: int
-   type: str
+   mashapeId: str
+   name: str
+   address: str
+   status: str
    createdAt: DateTime
    updatedAt: DateTime
+   deletedAt: DateTime
+
+class ResetUserPasswordInput(GQLObject):
+   password: str
+   confirmPassword: str
+   token: str
+
+class CorporateDomain(GQLObject):
+   domain: str
+   ignore: bool
+
+class UsersInvitation(GQLObject):
+   id: str
+   email: str
+   role: str
+
+class BillingAdditionalValues(GQLObject):
+   total: int
+   subscriptionId: ID
+
+class NotificationMessage(GQLObject):
+   title: str
+   link: str
+   text: str
+   thumbnail: str
+   user: str
+
+class MarkNewNotificationsAsReadInput(GQLObject):
+   notificationId: int
    isRead: bool
-   isNew: bool
-   title: str
-   body: str
-   callToAction: str
-   image: str
-   any: str
 
-class SendMessageInput(GQLObject):
-   fromEmail: str
-   toEmail: str
-   toId: str
-   title: str
-   body: str
-   apiName: str
-   apiId: str
-   type: str
+class ThreadEntityStatusUpdateInput(GQLObject):
+   messageThreadIds: NonNull_list[int]
+   flag: EntityStatusFlag
+   value: bool
 
-class MessageInput(GQLObject):
+class Message(GQLObject):
+   id: ID
    authorId: int
    title: str
    body: str
@@ -501,28 +464,55 @@ class MessageInput(GQLObject):
    ownerDisplayName: str
    entityDisplayName: str
    apiDisplayName: str
+   createdAt: DateTime
+   updatedAt: DateTime
+   deletedAt: DateTime
 
-class MessagesWhereInput(GQLObject):
-   messageThreadId: ID
+class ThreadEntityStatus(GQLObject):
+   id: ID
+   entityId: int
+   messageThreadId: int
+   createdAt: DateTime
+   updatedAt: DateTime
+   flag: int
+   isRead: bool
+   isArchived: bool
+   isStarred: bool
 
-class RelativeARTResponse(GQLObject):
-   currentProviderAverage: float
-   allProvidersAverage: float
+class MessageThreadsWhereInput(GQLObject):
+   apiIds: list[str]
+   apiDisplayName: str
+   entityDisplayName: str
+   entityStatusFlag: EntityStatusFlag
+   entityId: ID
 
-class LogPayload(GQLObject):
+class RestrictedLogPayload(GQLObject):
    requestid: ID
-   reqpayload: Any
+   reqparams: Any
+   reqheaders: Any
+   resheaders: Any
+   reqbody: Any
+   resbody: Any
+   saveRequestQueryParametersLogging: bool
+   saveRequestHeadersLogging: bool
+   saveResponseHeadersLogging: bool
+   saveRequestBodyLogging: bool
+   saveResponseBodyLogging: bool
 
-class CreateLegalAgreementInfo(GQLObject):
+class GetLegalAgreementSigningURLInput(GQLObject):
+   entityId: str
+   legalDocumentId: str
+   legalAccountId: str
+   billingPlanId: str
+
+class UpdateLegalAgreementInfo(GQLObject):
+   id: ID
    refreshToken: str
    accessToken: str
    vendor: str
 
-class EnvelopeDocument(GQLObject):
-   documentId: str
-   uri: str
-   name: str
-   order: int
+class LegalAgreementInfoUrl(GQLObject):
+   url: str
 
 class KafkaOffset(GQLObject):
    partition: int
@@ -552,7 +542,7 @@ class ProduceMessageResponse(GQLObject):
    baseOffset: str
 
 class KafkaSchemas(GQLObject):
-   schemas: str
+   schemas: NonNull_list[str]
 
 class IssueFollowInputV2(GQLObject):
    issueId: int
@@ -569,7 +559,6 @@ class Announcement(GQLObject):
 
 class createHeadlines(GQLObject):
    apiId: str
-   apiVersionId: str
    text: str
    textModified: bool
 
@@ -585,9 +574,11 @@ class GqlDoc(GQLObject):
    visible: bool
 
 class GatewayConfiguration(GQLObject):
+   id: ID
    gatewayDefaultTimeOut: int
    limitRequestSize: int
    allowHttpTraffic: bool
+   apiGatewayInstanceId: int
 
 class LogsCSVExports(GQLObject):
    status: int
@@ -684,77 +675,77 @@ class EndpointAndVersion(GQLObject):
    endpointid: str
    endpointHash: str
 
-class IssueDeleteInput(GQLObject):
-   issueId: int
+class Readme(GQLObject):
+   text: str
+   updatedAt: DateTime
 
-class IssuesDeleteInput(GQLObject):
-   issueIds: list[int]
-
-class Currency(GQLObject):
-   code: str
-   name: str
-   symbol: str
-   symbol_native: str
-   decimal_digits: int
-   rakuten_symbol: Any
-
-class ContactAdminSubscribeToAPIEvent(GQLObject):
-   api_name: str
-   api_link: str
-   team_id: int
-   org_id: int
-   consumer_name: str
-   email: str
-   plan_name: str
-   plan_price: int
-
-class ConsumerQuota(GQLObject):
-   limit: int
-   period: str
-   quotaId: str
+class IssueUpdateInput(GQLObject):
    title: str
-   total: float
-   billingCycleStart: DateTime
-
-class PaginationInput(GQLObject):
-   """
-   first - Returns the first n elements from the list.
-
-   after - Returns the elements in the list that come after the specified cursor.
-
-   last - Returns the last n elements from the list.
-
-   before - Returns the elements in the list that come before the specified cursor.
-
-   """
-   first: int
-   after: str
-   last: int
-   before: str
-
-class Follower(GQLObject):
-   startFollowDate: str
-   id: int
-   email: str
-   username: str
-
-class PagingArgs(GQLObject):
-   offset: int
-   limit: int
-   orderBy: str
-   orderDirection: OrderDirection
-   searchTerm: str
-
-class CommentDeleteInput(GQLObject):
-   issueId: int
-   commentId: int
-
-class CommentCreateInput(GQLObject):
    body: str
    issueId: int
 
-class CollectionUpdateInput(GQLObject):
-   id: ID
+class IssueCreateInputV2(GQLObject):
+   title: str
+   body: str
+   apiId: str
+   apiVersion: str
+
+class ContextEntity(GQLObject):
+   context: Any
+   token: str
+   privateApisJwt: str
+
+class ConsumersWhereInput(GQLObject):
+   apiId: NonNull_list[ID]
+   offset: int
+   limit: int
+   order: str
+   lastActive: list[str]
+   userId: list[int]
+   sort: str
+   usernames: list[str]
+   plansFilter: list[str]
+   consumersType: ConsumersType
+
+class SubscriptionString(GQLObject):
+   status: str
+
+class MultipleValuesQueryFilter(GQLObject):
+   operand: str
+   value: str
+
+class FollowPair(GQLObject):
+   id: int
+   follower: int
+   followee: int
+   status: str
+   updatedAt: DateTime
+   createdAt: DateTime
+
+class Account(GQLObject):
+   id: int
+   credentials: str
+   projectName: str
+   name: str
+   domain: str
+   thumbnail: str
+
+class CommentUpdateInput(GQLObject):
+   body: str
+   issueId: int
+   commentId: int
+
+class UpdateCollectionsInput(GQLObject):
+   collectionId: ID
+   weight: float
+   shortDescription: str
+   longDescription: str
+   thumbnail: str
+   title: str
+   apis: list[ID]
+   ownerId: int
+
+class CollectionCreateInput(GQLObject):
    title: str
    weight: float
    shortDescription: str
@@ -762,54 +753,98 @@ class CollectionUpdateInput(GQLObject):
    thumbnail: str
    apis: list[ID]
    ownerId: int
+   collection_type: str
 
-class BlogPosts(GQLObject):
+class CollapsedCollection(GQLObject):
    id: str
-   link: str
-   type: str
    title: str
+   slugifiedKey: str
+   weight: float
+   shortDescription: str
+   longDescription: str
    thumbnail: str
-   image: str
+   apis: list[str]
 
-class CollectionsWhereInput(GQLObject):
-   ownerId: str
-   isByOwner: bool
-   collectionType: str
+class CollectionsSortingField(GQLObject):
+   fieldName: str
+   order: SortingFieldOrder
 
-class CategoryWhereInput(GQLObject):
-   id: list[ID]
-   name: list[str]
-   language: CategoryLanguage
-   slugifiedName: list[str]
+class CategorySortingField(GQLObject):
+   fieldName: CategorySortingFieldName
+   by: SortingFieldOrder
 
-class CategoryTextualDataInput(GQLObject):
-   language: CategoryLanguage
-   name: str
-   shortDescription: str
-   longDescription: str
-
-class CategoryEntity(GQLObject):
-   createdAt: DateTime
+class DeletedCategory(GQLObject):
    id: ID
-   longDescription: str
+   deleted: bool
+   reason: str
+
+class Category(GQLObject):
+   id: ID
    name: str
-   shortDescription: str
    slugifiedName: str
    status: str
-   type: str
-   updatedAt: DateTime
+   shortDescription: str
+   longDescription: str
+   thumbnail: str
+   pageTitle: str
    weight: int
+   createdAt: DateTime
+   updatedAt: DateTime
+   deletedAt: DateTime
 
-class endpointsAndApiVersionCouples(GQLObject):
-   endpointHash: str
-   apiversion: str
-
-class BlockedUserInput(GQLObject):
-   apiId: str
-   usersIds: list[int]
-
-class BillingLimitInputV2(GQLObject):
+class BlogPost(GQLObject):
+   slugifiedName: str
+   title: str
    id: str
+   link: str
+   readTime: str
+   thumbnail: str
+   description: str
+   image: str
+   updatedAt: DateTime
+
+class EnableBillingFeatureInputV2(GQLObject):
+   id: str
+   billingFeature: str
+   note: str
+   status: str
+
+class RateLimitInputV2(GQLObject):
+   enabled: bool
+   unit: int
+   unitName: str
+   amount: int
+
+class PagingArgsBilling(GQLObject):
+   page: int
+   limit: int
+   orderBy: str
+   orderDirection: OrderDirection
+   visibility: str
+
+class LocalePrice(GQLObject):
+   price: float
+   symbol: str
+
+class EditOrganizationInvoiceInput(GQLObject):
+   organizationId: int
+   freeSeats: int
+   isCustomInvoiceBilling: bool
+
+class BillingPlanMetadataUpdateInput(GQLObject):
+   billingPlanId: str
+   legalDocumentId: str
+   legalAccountId: str
+   name: str
+   visibility: str
+   hidden: bool
+   recommended: bool
+   targetGroup: str
+   isStudent: bool
+   shouldRequestApproval: bool
+   requestApprovalQuestion: str
+
+class BillingLimitInput(GQLObject):
    item: str
    amount: int
    limitType: str
@@ -817,204 +852,176 @@ class BillingLimitInputV2(GQLObject):
    period: str
    unlimited: bool
    perusagePrice: float
-   status: str
    currency: str
 
-class upsertBillingPlanInput(GQLObject):
-   billingPlanId: str
-   name: str
-   targetGroup: str
-   isPrivatePlan: bool
-   isStudent: bool
-   legalDocumentId: str
-   legalAccountId: str
-   shouldRequestApproval: bool
-   requestApprovalQuestion: str
+class PlanDeveloperUserInput(GQLObject):
+   id: str
+   type: str
 
-class BillingPlanVersionFilters(GQLObject):
-   query: str
+class BillingItemsWhereInput(GQLObject):
+   versionId: str
+   apiId: str
 
-class RateLimit(GQLObject):
-   enabled: bool
-   unit: int
-   unitName: str
-   amount: int
+class CreateStripeCustomerInput(GQLObject):
+   cardToken: str
+   fullName: str
+   userId: int
 
-class SeatsBillingInformation(GQLObject):
-   freeSeats: int
-   unitPrice: int
-   isCustomInvoiceBilling: bool
-   billingPlanVersionId: str
+class BillingFeatureEndpoint(GQLObject):
+   """
+   BillingFeatureEndpoint - Deprecated, soon to be removed from schema
 
-class RateLimitInput(GQLObject):
-   enabled: bool
-   unit: int
-   unitName: str
-   amount: int
+   """
+   id: str
+   endpoint: str
+   endpointHash: str
+   billingfeature: str
+   type: str
+   status: str
+   createdAt: DateTime
+   updatedAt: DateTime
 
-class EnableBillingFeatureInput(GQLObject):
-   billingFeature: str
-   note: str
+class billingFeatureEndpointArray(GQLObject):
+   endpoint: str
 
-class OverageLocalePrice(GQLObject):
-   price: float
-   symbol: str
-
-class upsertBillingItem(GQLObject):
-   billingItemId: str
+class AuthenticationParam(GQLObject):
+   id: ID
    name: str
    description: str
-   allEndpoints: bool
-   endpointHashes: list[str]
+   authentication: str
 
-class BillingInformation(GQLObject):
-   id: int
-   stripeId: str
-   userId: int
-   customerId: str
-   fullName: str
-   last4: str
+class AuthenticationExtraMetadata(GQLObject):
+   pkceEnabled: bool
+   codeChallengeMethod: CodeChallengeMethod
+   customOAuth2AuthPrefix: str
+
+class geo(GQLObject):
+   country: str
+   city: str
+   region: str
+   timezone: str
+   ll: list[float]
+
+class params(GQLObject):
+   input: Any
+
+class AuditWhereInput(GQLObject):
+   searchTerm: str
+   from_: int
+   orgId: int
+
+class UserAttributesInput(GQLObject):
    type: str
-   exp_month: int
-   exp_year: int
-   zip: str
-   billingStatus: str
+   attributeValue: list[Any]
+
+class AsyncApiConfigurationWhereInput(GQLObject):
+   apiVersionId: NonNull_list[ID]
+
+class AsyncApiConfiguration(GQLObject):
+   id: ID
+   spec: str
+
+class AssetUpdateInput(GQLObject):
+   id: ID
+   title: str
+   description: str
+   visible: bool
+
+class AssetForDownload(GQLObject):
+   id: ID
+   downloadUrl: str
+   filename: str
+   title: str
+   externalId: str
+   fileSizeBytes: float
+
+class Application(GQLObject):
+   id: ID
    mashapeId: str
+   mashapeAccountId: str
+   name: str
+   thumbnail: str
+   billing: int
+   description: str
+   mashapeApplicationName: str
+   hasLogo: bool
+   favorite: bool
+   status: str
    createdAt: DateTime
    updatedAt: DateTime
    deletedAt: DateTime
-   status: str
 
-class upsertBillingFeatureInput(GQLObject):
-   apiId: str
-   apiVersionId: str
-   name: str
-   description: str
-   billingFeatureId: str
-   endpointHashes: list[str]
-
-class AuthenticationParamInput(GQLObject):
-   id: ID
-   name: str
-   description: str
-   status: str
-
-class authStrategyType(GQLObject):
-   type: str
-
-class attributes(GQLObject):
-   rapidClient: str
-   userAgent: str
-
-class activeEntity(GQLObject):
-   id: int
-   type: str
-   name: str
-
-class ThemeUserAttributesInput(GQLObject):
-   attributeName: str
-   attributeValue: str
-
-class UserAttributesRow(GQLObject):
-   userId: int
-   attributeName: str
-   attributeValue: Any
-
-class AsyncApiConfigurationCreateInput(GQLObject):
-   apiVersionId: ID
-   spec: str
-
-class GenerateAssetUploadUrlInput(GQLObject):
-   externalId: ID
-   filename: str
-   description: str
-   title: str
-
-class AssetWhereInput(GQLObject):
-   """
-   AssetWhereInput - You can search by ID's or externalId or by (ID's will take precedence)
-
-   """
-   ids: list[ID]
-   externalIds: list[ID]
-   visible: bool
-
-class Asset(GQLObject):
-   id: ID
-   externalId: ID
-   filename: str
-   title: str
-   description: str
-   visible: bool
-   fileSizeBytes: float
-   isUploadDone: bool
-   presignedUrl: str
-   createdAt: DateTime
-
-class DeleteApplicationEnvironmentKeyInput(GQLObject):
+class EditApplicationEnviornmentKeyInput(GQLObject):
    applicationEnviornmentId: ID
-
-class AddApplicationEnvironmentKeyInput(GQLObject):
-   applicationId: ID
+   mashapeId: str
+   keyName: str
    environment: str
 
-class AppAuthorizationCreateInput(GQLObject):
-   projectId: ID
-   name: str
-   authorizationType: AppAuthorizationType
-   grantType: AuthorizationGrantType
-   authorizationValues: str
-   gatewayIds: list[ID]
-
-class GqlOptions(GQLObject):
-   """
-   enableSchemaIntrospectionOnHub - Enable schema refresh via introspection on RapidApi Hub. Specify only if introspection input is true
-
-   """
-   enableSchemaIntrospectionOnHub: bool
-
-class ApiSortingField(GQLObject):
-   fieldName: ApiSortingFieldName
-   by: SortingFieldOrder
-
-class ProvisionApiFromFileInput(GQLObject):
-   name: str
-   category: str
-   description: str
-   file: Upload
-   fileFormat: ApiImportFileFormat
-   ownerId: ID
-
-class ApiTagValueInput(GQLObject):
+class AppAuthorizationUpdateInput(GQLObject):
    id: ID
-   definitionId: ID
+   name: str
+
+class AppAuthorizationsWhereInput(GQLObject):
+   projectId: ID
+
+class ApiWhereInput(GQLObject):
+   """
+   ApiWhereInput - Can not act as a single filter, either id, ownerId or subscriberId input must be provided as well.
+
+   ownerId - The owner Id of the API
+
+   visibility - Filter by API visibility
+
+   """
+   id: list[ID]
+   externalCustomIds: list[ID]
+   ownerId: list[ID]
+   subscriberId: list[ID]
+   visibility: ApiVisibility
+   apiSlugifiedName: list[str]
+   ownerSlugifiedName: list[str]
+   name: list[str]
+   isFavorite: bool
+
+class ApiSecurityInfo(GQLObject):
+   """
+   rapidapiProxySecret - Value of the `X-RapidAPI-Proxy-Secret` header that RapidAPI adds on every request.
+This header has a unique value for each API.
+Only APIs owned by the current user would show the actual value on this. Otherwise, the value would be `null`.
+
+   """
+   rapidapiProxySecret: str
+
+class ApiTermsOfServiceInput(GQLObject):
+   text: str
+
+class validateSwaggerInput(GQLObject):
+   file: Upload
+
+class ApiVersionSecretParameterInput(GQLObject):
+   name: str
    value: str
+   description: str
+   placement: SecretParameterPlacement
 
-class createApiVersionBillingPlanVersionInput(GQLObject):
-   billingPlanVersionId: str
-   billingPlanId: str
-   apiVersionId: str
-   showInMarketplace: bool
-
-class ApiCertificateAssociationTarget(GQLObject):
-   apiCertificateId: ID
-
-class ApiVersionCreateInput(GQLObject):
+class GqlApiVersionCreateInput(GQLObject):
    api: str
    name: str
    visibility: Visibility
    oldApiVersionId: str
+   introspectionCallUrl: str
+   isIntrospectionCall: bool
+   allowHubSchemaRefresh: bool
+   gqlFile: Any
 
-class ResponsePayload(GQLObject):
+class RequestPayload(GQLObject):
    id: str
    name: str
    format: str
    body: str
-   headers: str
    description: str
    type: str
    apiversion: str
-   status: str
    createdAt: DateTime
    updatedAt: DateTime
    statusCode: int
@@ -1023,85 +1030,103 @@ class ResponsePayload(GQLObject):
    schema: Any
    schemaDefinition: Any
 
-class ApiVersionWhereInput(GQLObject):
-   id: list[ID]
-   apiId: list[ID]
-   versionStatus: list[VersionStatus]
-
-class APITag(GQLObject):
-   id: str
-   status: str
-   tagdefinition: str
-   value: str
+class Publicdns(GQLObject):
+   address: str
+   proxyMode: str
+   apiversion: str
+   current: bool
+   id: ID
    createdAt: DateTime
+   updatedAt: DateTime
+   status: str
 
-class StatsFilterBy(GQLObject):
-   values: list[str]
-   name: str
-
-class BatchTrackingIdsSummary(GQLObject):
-   success: int
-   failed: int
-   total: int
-   finishedEntities: int
-   totalEntities: int
-
-class ApiSpecImportWarning(GQLObject):
-   type: ApiSpecImportWarningType
-   critical: bool
-   text: str
-   info: Any
-
-class ApiCreateFromRapidOasInput(GQLObject):
-   spec: Upload
-
-class ApiCreateFromSpecInput(GQLObject):
-   spec: Upload
-   specType: ApiSpecType
-   category: str
-   name: str
-   description: str
-
-class ApiSearchUser(GQLObject):
-   id: int
-   thumbnail: str
-   name: str
-   username: str
-
-class Feature(GQLObject):
-   heading: str
-   caption: str
-   image: str
-
-class apiRating(GQLObject):
-   rating: float
-   votes: int
-   bestRating: int
-
-class ApiFollowerWhereInput(GQLObject):
-   apiId: ID
-   followerIds: list[ID]
-
-class ApiFollowerDeleteInput(GQLObject):
-   apiId: ID
-
-class DeleteApiFavoritesInput(GQLObject):
-   apiIds: list[ID]
-
-class CopyApiDevelopersInput(GQLObject):
-   apiId: str
-   apiVersionIdFrom: str
-   apiVersionIdTo: str
-
-class ApiCertificateSortingField(GQLObject):
-   fieldName: ApiCertificateSortingFieldName
+class ApiVersionSortingField(GQLObject):
+   fieldName: ApiSortingFieldName
    by: SortingFieldOrder
 
-class ApiCertificateCreateInput(GQLObject):
-   alias: str
-   certificateFile: Upload
+class CalculatedStatistics(GQLObject):
+   requeststotal: float
+   requestsmax: int
+   requestsmin: int
+   requestsavg: float
+   requeststps: float
+   errorsavg: float
+   errorsmedian: float
+   errorsmax: float
+   errorsmin: float
+   errorstotal: int
+   latencyavg: float
+   latencymedian: float
+   latencymax: float
+   latencymin: float
 
-class ApiCertificateIssuerInfo(GQLObject):
+class StatsData(GQLObject):
+   date: str
+   requests: int
+   errors: float
+   latency: float
+   projectId: str
+   apiid: str
+
+class ApiSpecImportProcessIssue(GQLObject):
+   message: str
+   severity: ApiSpecImportProcessIssueSeverity
+
+class ApiUpdateFromRapidOasInput(GQLObject):
+   spec: Upload
+   apiVersionId: ID
+
+class ApiUpdateFromSpecInput(GQLObject):
+   apiVersionId: ID
+   spec: Upload
+   specType: ApiSpecType
+
+class SearchArguments(GQLObject):
+   categoryName: str
+   categoryNames: list[str]
+   exclude: list[str]
+   term: str
+   sortBy: str
+   size: int
+   offset: int
+   page: int
+   tags: list[Any]
+   collectionIds: list[str]
+   privateApisJwt: str
+
+class ApiReferenceWhereInput(GQLObject):
+   apiVersionId: list[ID]
+
+class RatingInput(GQLObject):
+   apiId: str
+   rating: int
+
+class ApiQuality(GQLObject):
+   apiId: ID
+   score: int
+
+class ApiFollowerSortingField(GQLObject):
+   fieldName: ApiFollowerSortingFieldName
+   by: SortingFieldOrder
+
+class ApiFollowerCreateInput(GQLObject):
+   apiId: ID
+
+class CreateApiFavoritesInput(GQLObject):
+   apiIds: list[ID]
+
+class ApiDeveloperEntityInput(GQLObject):
+   id: ID
+   mashapeId: str
+   name: str
+   type: EntityType
+
+class ApiCertificateWhereInput(GQLObject):
+   id: list[ID]
+   ownerId: list[ID]
+
+class ApiCertificateSubjectInfo(GQLObject):
+   alternativeNames: NonNull_list[str]
    commonName: str
    countryName: str
    localityName: str
@@ -1109,6 +1134,25 @@ class ApiCertificateIssuerInfo(GQLObject):
    organizationalUnitName: str
    stateOrProvinceName: str
    emailAddress: str
+
+class AnalyticsStatsHttpResponseInput(GQLObject):
+   eq: list[int]
+   ne: list[int]
+   lt: int
+   le: int
+   gt: int
+   ge: int
+
+class AnalyticsStats(GQLObject):
+   requests: int
+   errors: int
+   latency: float
+   date: DateTime
+   endpointId: ID
+   apiId: ID
+   endpointHash: ID
+   appMashapeId: ID
+   apiVersionId: ID
 
 class deleteUserAlertsInput(GQLObject):
    ids: NonNull_list[ID]
@@ -1152,10 +1196,10 @@ class UserAlert(GQLObject):
    throttlePeriod: int
    apiIds: list[ID]
    projectIds: list[ID]
-   endpointsIds: ID
+   endpointsIds: NonNull_list[ID]
    baseUrl: str
-   apiVersionsIds: ID
-   billingPlansIds: ID
+   apiVersionsIds: NonNull_list[ID]
+   billingPlansIds: NonNull_list[ID]
    minNextAlertTime: DateTime
    endpointHashes: list[ID]
    deletedAt: DateTime
@@ -1229,10 +1273,13 @@ class EnvConfig(GQLObject):
    id: int
    key: str
    value: str
+   isDefaultValue: bool
    type: EnvConfigType
    description: str
    categoryId: int
    label: str
+   allowAdminAccess: bool
+   isPrivate: bool
    createdAt: DateTime
    updatedAt: DateTime
 

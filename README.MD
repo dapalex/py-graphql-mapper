@@ -59,7 +59,7 @@ The following python files will be generated:
 
 These links show code generated using the library [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/rapidapi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/gdbc)
 
-More command options available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
+More command options are available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
 
 
 ### Execution of a query
@@ -94,7 +94,7 @@ response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi
                             )
 ```
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#executing-an-operation)
+More details on how to set a query [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#executing-an-operation)
 
 
 ### Retrieval of a response

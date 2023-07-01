@@ -62,6 +62,8 @@ class TimeZoneEdge(GQLObject):
    cursor: str
    node: TimeZone
 
+class NonNull_list_TimeZoneEdge(list, TimeZoneEdge): pass
+
 class TimeZonesConnection(GQLObject):
    """
    TimeZonesConnection - A pageable view into time-zone results
@@ -74,12 +76,29 @@ class TimeZonesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: TimeZoneEdge
+   edges: NonNull_list_TimeZoneEdge[TimeZoneEdge]
    pageInfo: ConnectionPageInfo
 
-class AVMOT_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class NonNull_list_GQLObject(list, GQLObject): pass
+
+class CountryPopulatedPlacesConnection(GQLObject):
    """
-   AVMOT_RegionPopulatedPlacesConnection_Field - Find populated places in this region
+   CountryPopulatedPlacesConnection - A pageable view into country populated-place results
+
+   totalCount - The total number of results
+
+   edges - The edges in the current page of results
+
+   pageInfo - Info about the current page of results
+
+   """
+   totalCount: int
+   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
+   pageInfo: ConnectionPageInfo
+
+class TQKCF_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+   """
+   TQKCF_RegionPopulatedPlacesConnection_Field - Find populated places in this region
 
    """
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
@@ -142,6 +161,8 @@ class CountryRegion(GQLObject):
 
    capital - The region's capital city
 
+   containingRegion - The region this region is in, if any
+
    country - The region's country
 
    numPopulatedPlaces - The number of populated places in this region
@@ -154,9 +175,10 @@ class CountryRegion(GQLObject):
    wikiDataId: ID
    name: str
    capital: str
+   containingRegion: NewType('CountryRegion', GQLObject) ## Circular Reference for CountryRegion
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: AVMOT_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: TQKCF_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    """
@@ -170,6 +192,8 @@ class CountryRegionEdge(GQLObject):
    cursor: str
    node: CountryRegion
 
+class NonNull_list_CountryRegionEdge(list, CountryRegionEdge): pass
+
 class CountryRegionsConnection(GQLObject):
    """
    CountryRegionsConnection - A pageable view into region results
@@ -182,12 +206,63 @@ class CountryRegionsConnection(GQLObject):
 
    """
    totalCount: int
-   edges: CountryRegionEdge
+   edges: NonNull_list_CountryRegionEdge[CountryRegionEdge]
    pageInfo: ConnectionPageInfo
 
-class OLXWT_CountryRegion_Field(CountryRegion):
+class GCMWQ_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
    """
-   OLXWT_CountryRegion_Field - Look up a region in this country
+   GCMWQ_CountryPopulatedPlacesConnection_Field - Find populated places in this country
+
+   """
+   class CountryPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
+      """
+      namePrefix - Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language.
+
+      namePrefixDefaultLangResults - When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested.
+
+      minPopulation - Only places having at least this population
+
+      maxPopulation - Only places having no more than this population
+
+      timeZoneIds - Only places in these time-zones
+
+      types - Only places for these types
+
+      sort - How to sort place results
+Format: ±SORT_FIELD,±SORT_FIELD
+where SORT_FIELD = elevation | name | population
+
+      first - How many results to retrieve from the beginning (or after the 'after' cursor, if specified)
+
+      after - The cursor id after which to get results
+
+      last - How many results to retrieve from the end (or before the 'before' cursor, if specified)
+
+      before - The cursor id before which to get results
+
+      includeDeleted - Whether to include any places marked deleted
+
+      """
+      namePrefix: str
+      namePrefixDefaultLangResults: bool
+      minPopulation: int
+      maxPopulation: int
+      timeZoneIds: list[ID]
+      types: list[str]
+      sort: str
+      first: int
+      after: str
+      last: int
+      before: str
+      includeDeleted: IncludeDeletedFilterType
+
+   _args: CountryPopulatedPlacesConnectionArgs
+
+
+
+class IBYOD_CountryRegion_Field(CountryRegion):
+   """
+   IBYOD_CountryRegion_Field - Look up a region in this country
 
    """
    class CountryRegionArgs(GQLArgsSet, GQLObject):
@@ -201,9 +276,9 @@ class OLXWT_CountryRegion_Field(CountryRegion):
 
 
 
-class NQGWL_CountryRegionsConnection_Field(CountryRegionsConnection):
+class NUAOR_CountryRegionsConnection_Field(CountryRegionsConnection):
    """
-   NQGWL_CountryRegionsConnection_Field - Find regions in this country
+   NUAOR_CountryRegionsConnection_Field - Find regions in this country
 
    """
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
@@ -257,6 +332,8 @@ class Country(GQLObject):
 
    numRegions - The number of regions in this country
 
+   populatedPlaces - Find populated places in this country
+
    region - Look up a region in this country
 
    regions - Find regions in this country
@@ -267,11 +344,12 @@ class Country(GQLObject):
    wikiDataId: ID
    capital: str
    name: str
-   currencyCodes: str
+   currencyCodes: NonNull_list[str]
    flagImageUri: str
    numRegions: int
-   region: OLXWT_CountryRegion_Field
-   regions: NQGWL_CountryRegionsConnection_Field
+   populatedPlaces: GCMWQ_CountryPopulatedPlacesConnection_Field
+   region: IBYOD_CountryRegion_Field
+   regions: NUAOR_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    """
@@ -285,12 +363,12 @@ class NearbyPopulatedPlacesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: NewType('PopulatedPlaceEdge', GQLObject) ## Circular Reference for PopulatedPlaceEdge
+   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class ACZHB_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class LSSIL_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    """
-   ACZHB_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
+   LSSIL_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
 
    """
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
@@ -400,9 +478,9 @@ This field has two forms:
    timezone: str
    country: Country
    region: CountryRegion
-   distance: WHTYR_distance_Field
+   distance: CKXYT_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: ACZHB_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: LSSIL_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):
@@ -417,6 +495,8 @@ class PopulatedPlaceEdge(GQLObject):
    cursor: str
    node: PopulatedPlace
 
+class NonNull_list_PopulatedPlaceEdge(list, PopulatedPlaceEdge): pass
+
 class RegionPopulatedPlacesConnection(GQLObject):
    """
    RegionPopulatedPlacesConnection - A pageable view into regional populated-place results
@@ -429,7 +509,7 @@ class RegionPopulatedPlacesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: PopulatedPlaceEdge
+   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class PopulatedPlacesConnection(GQLObject):
@@ -444,7 +524,7 @@ class PopulatedPlacesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: PopulatedPlaceEdge
+   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class LocaleEdge(GQLObject):
@@ -459,6 +539,8 @@ class LocaleEdge(GQLObject):
    cursor: str
    node: Locale
 
+class NonNull_list_LocaleEdge(list, LocaleEdge): pass
+
 class LocalesConnection(GQLObject):
    """
    LocalesConnection - A pageable view into locale results
@@ -471,7 +553,7 @@ class LocalesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: LocaleEdge
+   edges: NonNull_list_LocaleEdge[LocaleEdge]
    pageInfo: ConnectionPageInfo
 
 class CurrencyEdge(GQLObject):
@@ -486,6 +568,8 @@ class CurrencyEdge(GQLObject):
    cursor: str
    node: Currency
 
+class NonNull_list_CurrencyEdge(list, CurrencyEdge): pass
+
 class CurrenciesConnection(GQLObject):
    """
    CurrenciesConnection - A pageable view into currency results
@@ -498,7 +582,7 @@ class CurrenciesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: CurrencyEdge
+   edges: NonNull_list_CurrencyEdge[CurrencyEdge]
    pageInfo: ConnectionPageInfo
 
 class CountryEdge(GQLObject):
@@ -513,6 +597,8 @@ class CountryEdge(GQLObject):
    cursor: str
    node: Country
 
+class NonNull_list_CountryEdge(list, CountryEdge): pass
+
 class CountriesConnection(GQLObject):
    """
    CountriesConnection - A pageable view into country results
@@ -525,5 +611,5 @@ class CountriesConnection(GQLObject):
 
    """
    totalCount: int
-   edges: CountryEdge
+   edges: NonNull_list_CountryEdge[CountryEdge]
    pageInfo: ConnectionPageInfo

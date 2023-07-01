@@ -16,4 +16,6 @@ Any = str ##Dynamic type, returns a value as is.
 
 Upload = str ##The `Upload` scalar type represents a file upload.
 
+JSONObject = str ##The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+
 name = str

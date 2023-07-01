@@ -1,3 +1,4 @@
+from pygqlmap.gql_types import ID, NonNull_ID
 from pygqlmap.network import GQLResponse
 import requests
 from codegen.network import fetch_schema_obj
@@ -5,16 +6,17 @@ from codegen.generator import CodeGenerator
 from codegen.query_presets import QUERY_SCHEMA_AND_TYPES
 from .consts import RAPIDAPI_HEADERS, RAPIDAPI_URL
 import logging as logger
+from .utils import stringifyresult
 
 def run_ra_create_transformations_mutation_args_literal():
     logger.debug('\nRunning run_ra_create_transformations_mutation_args_literal...')
     try:
         logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import TransformationActionType, TransformationType, TransformationConditionType, NonNull_list
-        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput
+        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput, NonNull_list_TransformationCreateInput
 
         input1 = NonNull_TransformationCreateInput()
-        input1.apiVersionId = 1
+        input1.apiVersionId =NonNull_ID("1")
         input1.action = TransformationActionType.ADD
         input1.endpoints = ["myID"]
         input1.transformationType = TransformationType.REQUEST
@@ -23,10 +25,10 @@ def run_ra_create_transformations_mutation_args_literal():
         input1.from_ = "a"
         input1.target = "b"
         input1.value = "val"
-        input1.plans = ["planID"]
+        input1.plans = [NonNull_ID("planID")]
 
         input2 = NonNull_TransformationCreateInput()
-        input2.apiVersionId = 1
+        input2.apiVersionId =NonNull_ID("1")
         input2.action = TransformationActionType.REMOVE
         input2.endpoints = ["myID"]
         input2.transformationType = TransformationType.REQUEST
@@ -35,11 +37,11 @@ def run_ra_create_transformations_mutation_args_literal():
         input2.from_ = "a"
         input2.target = "b"
         input2.value = "val"
-        input2.plans = ["planID"]
+        input2.plans = [NonNull_ID("planID")]
 
         logger.debug('Inserting python mutation input data...')
 
-        transformation_lst = NonNull_list()
+        transformation_lst = NonNull_list_TransformationCreateInput()
         transformation_lst.append(input1)
         transformation_lst.append(input2)
         mutation = Mutations.createTransformations.value(transformations=transformation_lst)
@@ -54,7 +56,7 @@ def run_ra_create_transformations_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -65,10 +67,10 @@ def run_ra_create_transformations_mutation_args_vars():
     try:
         logger.debug('Creating mutation python object...')
         from .output.rapidapi.gql_types import TransformationActionType, TransformationType, TransformationConditionType, NonNull_list
-        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput
+        from .output.rapidapi.mutations import Mutations, NonNull_TransformationCreateInput, NonNull_list_TransformationCreateInput
 
         input1 = NonNull_TransformationCreateInput()
-        input1.apiVersionId = 1
+        input1.apiVersionId =NonNull_ID("1")
         input1.action = TransformationActionType.ADD
         input1.endpoints = ["myID"]
         input1.transformationType = TransformationType.REQUEST
@@ -77,10 +79,10 @@ def run_ra_create_transformations_mutation_args_vars():
         input1.from_ = "a"
         input1.target = "b"
         input1.value = "val"
-        input1.plans = ["planID"]
+        input1.plans = [NonNull_ID("planID")]
 
         input2 = NonNull_TransformationCreateInput()
-        input2.apiVersionId = 1
+        input2.apiVersionId =NonNull_ID("1")
         input2.action = TransformationActionType.REMOVE
         input2.endpoints = ["myID"]
         input2.transformationType = TransformationType.REQUEST
@@ -89,11 +91,11 @@ def run_ra_create_transformations_mutation_args_vars():
         input2.from_ = "a"
         input2.target = "b"
         input2.value = "val"
-        input2.plans = ["planID"]
+        input2.plans = [NonNull_ID("planID")]
 
         logger.debug('Inserting python mutation input data...')
 
-        transformation_lst = NonNull_list()
+        transformation_lst = NonNull_list_TransformationCreateInput()
         transformation_lst.append(input1)
         transformation_lst.append(input2)
         mutation = Mutations.createTransformations.value(transformations=transformation_lst)
@@ -108,7 +110,7 @@ def run_ra_create_transformations_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -152,7 +154,7 @@ def run_ra_create_gateway_instance_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -196,7 +198,7 @@ def run_ra_create_gateway_instance_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -240,7 +242,7 @@ def run_ra_edit_user_alert_mutation_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -284,7 +286,7 @@ def run_ra_edit_user_alert_mutation_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(mutation.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -301,10 +303,10 @@ def run_ra_admin_audit_logs_query_args_literal():
         field1 = AdminAuditLogSortablesSortingField()
         field1.fieldName = AdminAuditLogSortables.CREATED_AT
         field1.order = Order.ASC
-        field2 = AdminAuditLogSortablesSortingField()
-        field2.fieldName = AdminAuditLogSortables.CREATED_AT
-        field2.order = Order.DESC
-        orderby_input.sortingFields = [field1, field2]
+        # field2 = AdminAuditLogSortablesSortingField()
+        # field2.fieldName = AdminAuditLogSortables.CREATED_AT
+        # field2.order = Order.DESC
+        orderby_input.sortingFields = [field1] ##, field2
 
         logger.debug('Creating mutation python object...')
         query = Queries.adminAuditLogs.value(orderBy=orderby_input)
@@ -319,7 +321,7 @@ def run_ra_admin_audit_logs_query_args_literal():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -354,7 +356,7 @@ def run_ra_admin_audit_logs_query_args_vars():
         gqlResponse = GQLResponse(response)
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 

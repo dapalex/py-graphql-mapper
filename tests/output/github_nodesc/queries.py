@@ -10,6 +10,12 @@ class list_CodeOfConduct(list, CodeOfConduct): pass
 
 class NonNull_EnterpriseAdministratorRole(GQLObject): pass
 
+class NonNull_list_License(list, License): pass
+
+class NonNull_list_MarketplaceCategory(list, MarketplaceCategory): pass
+
+class NonNull_list_Node(list, Node): pass
+
 class NonNull_URI(URI): pass
 
 class NonNull_SearchType(GQLObject): pass
@@ -66,7 +72,7 @@ class license(GQLQuery):
    type: License
 
 class licenses(GQLQuery):
-   type: License
+   type: NonNull_list_License[License]
 
 class marketplaceCategories(GQLQuery):
    class MarketplaceCategoryArgs(GQLArgsSet, GQLObject):
@@ -77,7 +83,7 @@ class marketplaceCategories(GQLQuery):
    _args: MarketplaceCategoryArgs
 
 
-   type: MarketplaceCategory
+   type: NonNull_list_MarketplaceCategory[MarketplaceCategory]
 
 class marketplaceCategory(GQLQuery):
    class MarketplaceCategoryArgs(GQLArgsSet, GQLObject):
@@ -138,7 +144,7 @@ class nodes(GQLQuery):
    _args: NodeArgs
 
 
-   type: Node
+   type: NonNull_list_Node[Node]
 
 class organization(GQLQuery):
    class OrganizationArgs(GQLArgsSet, GQLObject):
@@ -159,7 +165,7 @@ class rateLimit(GQLQuery):
    type: RateLimit
 
 class relay(GQLQuery):
-   type: None
+   type: any
 
 class repository(GQLQuery):
    class RepositoryArgs(GQLArgsSet, GQLObject):

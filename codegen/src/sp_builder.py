@@ -1,6 +1,8 @@
 
 import copy
 from pygqlmap.src.builder import Builder
+from pygqlmap.src.enums import BuildingType
+import logging as logger
 from .sp_schema import GQLSchema, SCArg, SCType, SCDirective, SCField, SCEnumValue, SCInterface, SCInputField, SCOperationType,  SCArgType, SCOfType,  SCFieldType
 
 class SchemaTypeBuilder(Builder):
@@ -60,20 +62,20 @@ class SchemaTypeBuilder(Builder):
         return schemaType
 
     def build_scoftype(dataInput):
-        field = SCOfType()
+        ofType = SCOfType()
 
         try:
             while len(dataInput.items()) > 0:
                 fieldField = dataInput.popitem()
                 if fieldField[0] == 'ofType' and fieldField[1]: ##SKIPPING NON NULL MANAGEMENT, it will be back!
-                    return  SchemaTypeBuilder.build_scoftype(fieldField[1])
+                    ofType.ofType = SchemaTypeBuilder.build_scoftype(fieldField[1])
                 else:
-                    setattr(field, fieldField[0], fieldField[1])
+                    setattr(ofType, fieldField[0], fieldField[1])
 
         except Exception as ex:
             raise Exception("Exception during OfType building" + ' - ' + ex.args[0])
 
-        return field
+        return ofType
 
     def build_scfieldtype(dataInput):
         field = SCFieldType()
@@ -193,3 +195,25 @@ class SchemaBuilder(Builder):
             setattr(directive, inputField[0], SchemaTypeBuilder.buildArgsOrInputFields(inputField[1], False) if inputField[0] == 'args' else inputField[1])
 
         return directive
+
+    def set_py_fields(self, dataInput, opObject, customObject=None):
+        """  for internal use only    """
+        newObjModelDict = opObject.__dataclass_fields__ ##maybe asdict better
+        attr_to_del = []
+
+        if type(dataInput) == list:
+            for dataEl in dataInput:
+                if not dataEl: continue
+                self.set_py_fields_inner(newObjModelDict, dataEl, opObject, customObject, attr_to_del)
+        else:
+            self.set_py_fields_inner(newObjModelDict, dataInput, opObject, customObject, attr_to_del)
+
+        for a in attr_to_del:
+            if a in opObject.__dict__.keys():
+                if self.build_sctype == BuildingType.STANDARD:
+                    attr = getattr(opObject, a)
+                    del attr
+                elif self.build_sctype == BuildingType.ALTERCLASS:
+                    logger.info('delete attribute from class')
+                else:
+                    logger.info('should do nothing in new object')

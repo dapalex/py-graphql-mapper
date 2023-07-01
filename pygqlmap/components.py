@@ -127,8 +127,8 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             if hasattr(self, ARGS_DECLARE):
                 setattr(self.type, ARGS_DECLARE, getattr(self, ARGS_DECLARE))
 
-            #Update all objects args with the argument type requested
-            self.manage_args(self.type)
+            #Update all payload arguments (NESTED ARGUMENTS) with the argument type requested
+            self.manage_nested_args(self.type)
             # self.setArgsLocations(self.type, None, rootName, '')
 
             if self._args_type == ArgType.VARIABLES:
@@ -139,12 +139,12 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
         except Exception as ex:
             raise handle_recursive_ex(ex, 'Issue during export of ' + self.name)
 
-    def manage_args(self, currentObj):
+    def manage_nested_args(self, currentObj):
         if not self.arguments: self.arguments = {}
         try:
             if isinstance(currentObj, list): #if it is I have to set the elements as well?
                 for list_el in currentObj:
-                    self.manage_args(list_el)
+                    self.manage_nested_args(list_el)
 
             #if obj contains field with arg name, add arg
             if type(currentObj) in PRIMITIVES or not hasattr(currentObj, '__dataclass_fields__'):
@@ -159,6 +159,6 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
 
             for subObj in currentObj.__dataclass_fields__:
                 if subObj == ARGS_DECLARE:  continue
-                self.manage_args(getattr(currentObj, subObj))
+                self.manage_nested_args(getattr(currentObj, subObj))
         except Exception as ex:
             raise handle_recursive_ex(ex, 'Error during args type propagation - ')

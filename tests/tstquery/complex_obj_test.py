@@ -82,6 +82,7 @@ from ..consts import GDBC_HEADERS, GDBC_URL
 # from ..utils import ManageException
 from ..output.gdbc.queries import countries
 import logging as logger
+from ..utils import stringifyresult
 
 def run_gdbc_complex_obj():
     logger.debug('\n\nRunning test_gdbc_complex_obj...')
@@ -126,7 +127,7 @@ def run_gdbc_complex_obj():
 ##
 
 ##RESULT c)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
 
     except Exception as ex:

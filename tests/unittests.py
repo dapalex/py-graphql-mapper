@@ -4,8 +4,9 @@ import requests
 from pygqlmap.gql_types import ID
 from pygqlmap.helper import mapConfig
 from .consts import GDBC_HEADERS, GDBC_URL
-from .output.gdbc.queries import country, currencies, countries
+from .output.gdbc.queries import country, currencies, countries, timeZones
 import logging as logger
+from .utils import stringifyresult
 
 def run_gdbc_nested_object():
     logger.debug('\n\nRunning run_gdbc_nested_object...')
@@ -20,7 +21,7 @@ def run_gdbc_nested_object():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -54,7 +55,7 @@ def run_gdbc_nested_obj_viewchange():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -92,7 +93,7 @@ def run_gdbc_complex_obj_viewchange_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -117,7 +118,7 @@ def run_gdbc_nested_obj_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -138,7 +139,7 @@ def run_gdbc_nested_obj_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -167,7 +168,7 @@ def run_gdbc_complex_obj_args_literal():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -188,7 +189,7 @@ def run_gdbc_complex_obj_args_literal_2():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -215,7 +216,7 @@ def run_gdbc_complex_obj_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -238,7 +239,7 @@ def run_gdbc_nested_obj_viewchange_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -269,7 +270,7 @@ def run_gdbc_complex_obj_viewchange_args_vars():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 
@@ -298,7 +299,28 @@ def run_gdbc_obj_composed_args():
 
         gqlResponse.print_msg_out()
         gqlResponse.map_gqldata_to_obj(query.type)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
+    except Exception as ex:
+        raise ex
+
+    logger.debug("End of run_gdbc_obj_composed_args")
+
+def run_gdbc_nested_obj_with_list():
+    logger.debug('\n\nRunning run_gdbc_obj_composed_args...')
+    try:
+        query = timeZones(first=10 )
+        query.log_progress=True
+
+        logger.debug('gqlSource GQL version: ' + query.export_gql_source)
+
+        response = requests.request('POST', url=GDBC_URL,
+                                     json={ "query": query.export_gql_source },
+                                    headers=GDBC_HEADERS)
+        gqlResponse = GQLResponse(response, True)
+
+        gqlResponse.print_msg_out()
+        gqlResponse.map_gqldata_to_obj(query.type)
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
     except Exception as ex:
         raise ex
 

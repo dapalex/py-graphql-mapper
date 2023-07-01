@@ -61,6 +61,7 @@ from ..consts import GITHUB_URL, GITHUB_HEADERS
 from ..output.github.mutations import updateRepository
 from ..output.github.gql_types import Package, UpdateRepositoryInput
 import logging as logger
+from ..utils import stringifyresult
 
 def run_gh_update_mutation_literal():
     logger.debug('\n\nRunning run_gh_update_mutation_literal...')
@@ -75,7 +76,7 @@ def run_gh_update_mutation_literal():
     mutationInput.hasIssuesEnabled = False
     mutation._args.input = mutationInput
 
-    mutation.type.repository.assignableUsers._args.first = 1
+    mutation.type.repository.assignableUsers._args.first = 5
 
     mutation.type.repository.branchProtectionRules = type(mutation.type.repository.branchProtectionRules)(number=1, first=1, after='')
     mutation.type.repository.discussion._args.number = 1
@@ -90,6 +91,9 @@ def run_gh_update_mutation_literal():
     mutation.type.repository.refs._args.refPrefix = 'ref'
     mutation.type.repository.release._args.tagName = 'tagX'
 
+    mutation.type.repository.packages.edges.node.version._args.version = '1'
+    mutation.type.repository.deployKeys._args.first = 3
+    mutation.type.repository.deployments._args.first = 5
 
 
     try:
@@ -115,7 +119,7 @@ def run_gh_update_mutation_literal():
 ##
 
 ##RESULT
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
     except Exception as ex:
         raise ex

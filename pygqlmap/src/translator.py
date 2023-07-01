@@ -82,11 +82,12 @@ class Translate():
             elif curr_type == list: #works only for simple lists
                 elements = pyVariable if not is_non_null else pyVariable.__args__
                 from pygqlmap.components import GQLObject
-                if all([type(el) in PRIMITIVES for el in elements]):
+                if all([type(el) in PRIMITIVES or ID in inspect.getmro(type(el)) for el in elements]):
                     return str(pyVariable).replace('\'', '\"')
                 elif all([GQLObject in inspect.getmro(type(el)) for el in elements]):
                     return ' [ ' + ', '.join([Translate.to_json_vars(asdict(el)) for el in elements]) + ' ] '
                 elif any([type(el) in PRIMITIVES for el in elements]):
+                    logger.warning('List of hybrid types')
                     pass #pita
                 else:
                     pass #what
@@ -204,10 +205,7 @@ class Translate():
                 if is_empty_field(objectField): continue
                 try:
                     from pygqlmap.components import GQLObject
-                    if GQLObject in inspect.getmro(type(objectField)):
-                        output += field + ': { ' + Translate.to_graphql_argsset_definition(objectField) + ' } '
-                        output += COMMA_CONCAT
-                    elif isinstance(objectField, list):
+                    if isinstance(objectField, list):
                         output += field + ': [ '
                         for elementList in objectField:
                             if GQLObject in inspect.getmro(type(elementList)):
@@ -216,6 +214,9 @@ class Translate():
                                 output += Translate.to_graphql_value(elementList) + COMMA_CONCAT
                         output = output.removesuffix(COMMA_CONCAT)
                         output += ' ] ' + COMMA_CONCAT
+                    elif GQLObject in inspect.getmro(type(objectField)):
+                        output += field + ': { ' + Translate.to_graphql_argsset_definition(objectField) + ' } '
+                        output += COMMA_CONCAT
                     else:
                         if hasattr(pyObject, field) and not objectField == None:
                             output += Translate.to_graphql_arg_definition(field, objectField)

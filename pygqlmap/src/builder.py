@@ -1,13 +1,9 @@
-from abc import abstractmethod
 from enum import Enum
 import logging as logger
+from pygqlmap.src.base import Builder
 from .enums import BuildingType
 from .consts import GQL_BUILTIN
-
-class Builder():
-    @abstractmethod
-    def build(self, dataInput, pyObject):
-        pass
+import inspect
 
 class QueryBuilder(Builder):
     """  for internal use only    """
@@ -20,29 +16,39 @@ class QueryBuilder(Builder):
 
         super().__init__()
 
-    def build(self, inputDict: dict, pyObject: any):
-        """  for internal use only    """
-
-        try:
-            if self.log_progress: logger.info('Started building of python object: ' + pyObject.__class__.__name__)
-            item = inputDict.popitem() ##extract the KV pair containing object name and content
-
-            if not item[1] == None:
-                self.set_py_fields(item[1], pyObject)
-            else:
-                logger.info(item[0] + ' has no content')
-
-        except Exception as ex:
-            logger.error('Building of python object failed - ' + ex.args[0])
-
-        return pyObject
-
     def set_py_fields(self, dataInput, opObject, customObject=None):
         """  for internal use only    """
-        newObjDict = opObject.__dataclass_fields__ ##maybe asdict better
-        attrToDel = []
+        newObjModelDict = opObject.__dataclass_fields__ ##maybe asdict better
+        attr_to_del = []
 
-        for el in newObjDict:
+        if type(dataInput) == list:
+            ##get element type
+            for t in inspect.getmro(type(opObject)):
+                if t == type(opObject): continue
+                if t == list: continue
+                eltype = t
+                break
+
+            for dataEl in dataInput:
+                if not dataEl: continue
+                element = eltype()
+                self.set_py_fields_inner(element.__dataclass_fields__, dataEl, element, customObject, attr_to_del)
+                opObject.append(element)
+        else:
+            self.set_py_fields_inner(newObjModelDict, dataInput, opObject, customObject, attr_to_del)
+
+        for a in attr_to_del:
+            if a in opObject.__dict__.keys():
+                if self.build_sctype == BuildingType.STANDARD:
+                    attr = getattr(opObject, a)
+                    del attr
+                elif self.build_sctype == BuildingType.ALTERCLASS:
+                    logger.info('delete attribute from class')
+                else:
+                    logger.info('should do nothing in new object')
+
+    def set_py_fields_inner(self, newObjModelDict, dataInput, opObject, customObject, attr_to_del):
+        for el in newObjModelDict:
             try:
                 if self.log_progress: logger.info('Started building of field: ' + el)
 
@@ -73,20 +79,10 @@ class QueryBuilder(Builder):
                         else:
                             self.set_py_field_value(opObject, el, dataInput[el])
                 else:
-                    self.clean_py_value(opObject, el, attrToDel)
+                    self.clean_py_value(opObject, el, attr_to_del)
 
             except Exception as ex:
                 logger.error('Setting value for element ' + el + ' failed - ' + ex.args[0])
-
-        for a in attrToDel:
-            if a in opObject.__dict__.keys():
-                if self.build_sctype == BuildingType.STANDARD:
-                    attr = getattr(opObject, a)
-                    del attr
-                elif self.build_sctype == BuildingType.ALTERCLASS:
-                    logger.info('delete attribute from class')
-                else:
-                    logger.info('should do nothing in new object')
 
     def set_py_field_value(self, obj, attr, value):
         """  for internal use only    """
@@ -101,14 +97,14 @@ class QueryBuilder(Builder):
         except Exception as ex:
             logger.error('Setting value of: ' + attr + ' failed - ' + ex.args[0])
 
-    def clean_py_value(self, obj, field, attrToDel):
+    def clean_py_value(self, obj, field, attr_to_del):
         """  for internal use only    """
         if self.log_progress: logger.info('Cleaning value of: ' + field)
         if self.build_sctype == BuildingType.STANDARD:
             setattr(obj, field, None)
         elif self.build_sctype == BuildingType.ALTERCLASS:
             logger.info('alter class to delete field')
-            attrToDel.append(field)
+            attr_to_del.append(field)
         elif self.build_sctype == BuildingType.CREATENEWCLASS:
             logger.info('do nothing in new class')
         else:

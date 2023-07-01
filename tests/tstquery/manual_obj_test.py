@@ -218,7 +218,7 @@ class countries(GQLQuery):
 
 import requests
 from ..consts import GDBC_HEADERS, GDBC_URL
-# from ..utils import ManageException
+from ..utils import stringifyresult
 
 def run_generated_data():
     logger.debug('\n\nRunning run_generated_data...')
@@ -263,7 +263,7 @@ def run_generated_data():
 ##
 
 ##RESULT c)
-        logger.info('result object: ' + str(gqlResponse.result_obj))
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
 ##
 
     except Exception as ex:
