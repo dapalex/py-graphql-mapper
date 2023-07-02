@@ -37,7 +37,7 @@ class NonNull_ApiCertificateCreateInput(ApiCertificateCreateInput): pass
 
 class NonNull_list_ApiCertificateCreateInput(list, ApiCertificateCreateInput): pass
 
-class NonNull_list_ApiCertificateCreationResult(list, ApiCertificateCreationResult): pass
+class list_ApiCertificateCreationResult(list, ApiCertificateCreationResult): pass
 
 class NonNull_SaveApiDevelopersInput(SaveApiDevelopersInput): pass
 
@@ -53,7 +53,7 @@ class NonNull_ApiCreateFromSpecInput(ApiCreateFromSpecInput): pass
 
 class NonNull_list_ApiCreateFromSpecInput(list, ApiCreateFromSpecInput): pass
 
-class NonNull_list_ApiSpecImportResult(list, ApiSpecImportResult): pass
+class list_ApiSpecImportResult(list, ApiSpecImportResult): pass
 
 class NonNull_ApiUpdateFromSpecInput(ApiUpdateFromSpecInput): pass
 
@@ -70,8 +70,6 @@ class NonNull_list_ApiUpdateFromRapidOasInput(list, ApiUpdateFromRapidOasInput):
 class NonNull_ApiVersionCreateInput(ApiVersionCreateInput): pass
 
 class NonNull_list_ApiVersionCreateInput(list, ApiVersionCreateInput): pass
-
-class NonNull_list_ApiVersion(list, ApiVersion): pass
 
 class NonNull_GqlApiVersionCreateInput(GqlApiVersionCreateInput): pass
 
@@ -107,15 +105,13 @@ class NonNull_AsyncApiConfigurationCreateInput(AsyncApiConfigurationCreateInput)
 
 class NonNull_list_AsyncApiConfigurationCreateInput(list, AsyncApiConfigurationCreateInput): pass
 
-class NonNull_list_AsyncApiConfiguration(list, AsyncApiConfiguration): pass
-
 class NonNull_ThemeUserAttributesInput(ThemeUserAttributesInput): pass
 
 class NonNull_AuthenticationCreateInput(AuthenticationCreateInput): pass
 
 class NonNull_list_AuthenticationCreateInput(list, AuthenticationCreateInput): pass
 
-class NonNull_list_Authentication(list, Authentication): pass
+class list_Authentication(list, Authentication): pass
 
 class NonNull_AuthenticationUpdateInput(AuthenticationUpdateInput): pass
 
@@ -137,7 +133,7 @@ class NonNull_CategoryCreateInput(CategoryCreateInput): pass
 
 class NonNull_CategoryUpdateInput(CategoryUpdateInput): pass
 
-class NonNull_list_DeletedCategory(list, DeletedCategory): pass
+class list_DeletedCategory(list, DeletedCategory): pass
 
 class NonNull_CollectionUpdateInput(CollectionUpdateInput): pass
 
@@ -145,13 +141,13 @@ class NonNull_CollectionCreateInput(CollectionCreateInput): pass
 
 class NonNull_list_UpdateCollectionsInput(list, UpdateCollectionsInput): pass
 
+class NonNull_list_EntityAttribute(list, EntityAttribute): pass
+
 class list_EndpointOrder(list, EndpointOrder): pass
 
 class NonNull_EndpointsGroupCreateInput(EndpointsGroupCreateInput): pass
 
 class NonNull_list_EndpointsGroupCreateInput(list, EndpointsGroupCreateInput): pass
-
-class NonNull_list_EndpointsGroup(list, EndpointsGroup): pass
 
 class NonNull_EndpointsGroupUpdateInput(EndpointsGroupUpdateInput): pass
 
@@ -205,8 +201,6 @@ class NonNull_TargetGroupUpdateInput(TargetGroupUpdateInput): pass
 
 class NonNull_list_TargetGroupUpdateInput(list, TargetGroupUpdateInput): pass
 
-class NonNull_list_TargetGroup(list, TargetGroup): pass
-
 class NonNull_TeamCreateInput(TeamCreateInput): pass
 
 class NonNull_TeamUpdateInput(TeamUpdateInput): pass
@@ -219,7 +213,7 @@ class NonNull_TransformationUpdateInput(TransformationUpdateInput): pass
 
 class NonNull_list_TransformationUpdateInput(list, TransformationUpdateInput): pass
 
-class NonNull_list_DeletedTransformation(list, DeletedTransformation): pass
+class list_DeletedTransformation(list, DeletedTransformation): pass
 
 class NonNull_TutorialCreateInput(TutorialCreateInput): pass
 
@@ -438,7 +432,7 @@ class deleteUserAlerts(GQLMutation):
    _args: IDArgs
 
 
-   type: NonNull_list[ID]
+   type: list[ID]
 
 class editUserAlert(GQLMutation):
    """
@@ -464,7 +458,7 @@ class updateUserAlerts(GQLMutation):
    _args: UserAlertArgs
 
 
-   type: NonNull_list_UserAlert[UserAlert]
+   type: list_UserAlert[UserAlert]
 
 class createApiCertificates(GQLMutation):
    """
@@ -477,7 +471,7 @@ class createApiCertificates(GQLMutation):
    _args: ApiCertificateCreationResultArgs
 
 
-   type: NonNull_list_ApiCertificateCreationResult[ApiCertificateCreationResult]
+   type: list_ApiCertificateCreationResult[ApiCertificateCreationResult]
 
 class deleteApiCertificates(GQLMutation):
    """
@@ -581,7 +575,7 @@ class createApisFromSpecs(GQLMutation):
    _args: ApiSpecImportResultArgs
 
 
-   type: NonNull_list_ApiSpecImportResult[ApiSpecImportResult]
+   type: list_ApiSpecImportResult[ApiSpecImportResult]
 
 class updateApisFromSpecs(GQLMutation):
    """
@@ -596,7 +590,7 @@ https://enterprise-docs.rapidapi.com/docs/graphql-platform-api-examples#update-a
    _args: ApiSpecImportResultArgs
 
 
-   type: NonNull_list_ApiSpecImportResult[ApiSpecImportResult]
+   type: list_ApiSpecImportResult[ApiSpecImportResult]
 
 class createApisFromRapidOas(GQLMutation):
    """
@@ -609,7 +603,7 @@ class createApisFromRapidOas(GQLMutation):
    _args: ApiSpecImportResultArgs
 
 
-   type: NonNull_list_ApiSpecImportResult[ApiSpecImportResult]
+   type: list_ApiSpecImportResult[ApiSpecImportResult]
 
 class updateApisFromRapidOas(GQLMutation):
    """
@@ -622,7 +616,7 @@ class updateApisFromRapidOas(GQLMutation):
    _args: ApiSpecImportResultArgs
 
 
-   type: NonNull_list_ApiSpecImportResult[ApiSpecImportResult]
+   type: list_ApiSpecImportResult[ApiSpecImportResult]
 
 class createApiVersions(GQLMutation):
    """
@@ -635,7 +629,7 @@ class createApiVersions(GQLMutation):
    _args: ApiVersionArgs
 
 
-   type: NonNull_list_ApiVersion[ApiVersion]
+   type: list_ApiVersion[ApiVersion]
 
 class createGqlApiVersions(GQLMutation):
    """
@@ -648,7 +642,7 @@ class createGqlApiVersions(GQLMutation):
    _args: ApiVersionArgs
 
 
-   type: NonNull_list_ApiVersion[ApiVersion]
+   type: list_ApiVersion[ApiVersion]
 
 class updateApiVersions(GQLMutation):
    """
@@ -661,7 +655,7 @@ class updateApiVersions(GQLMutation):
    _args: ApiVersionArgs
 
 
-   type: NonNull_list_ApiVersion[ApiVersion]
+   type: list_ApiVersion[ApiVersion]
 
 class createApiVersionBillingPlanVersion(GQLMutation):
    """
@@ -871,7 +865,7 @@ class upsertAsyncApiConfiguration(GQLMutation):
    _args: AsyncApiConfigurationArgs
 
 
-   type: NonNull_list_AsyncApiConfiguration[AsyncApiConfiguration]
+   type: list_AsyncApiConfiguration[AsyncApiConfiguration]
 
 class upsertUserAttributes(GQLMutation):
    """
@@ -910,7 +904,7 @@ class createAuthentications(GQLMutation):
    _args: AuthenticationArgs
 
 
-   type: NonNull_list_Authentication[Authentication]
+   type: list_Authentication[Authentication]
 
 class updateAuthentications(GQLMutation):
    """
@@ -923,7 +917,7 @@ class updateAuthentications(GQLMutation):
    _args: AuthenticationArgs
 
 
-   type: NonNull_list_Authentication[Authentication]
+   type: list_Authentication[Authentication]
 
 class createOrUpdateAPIVersionAuthentication(GQLMutation):
    """
@@ -1242,7 +1236,7 @@ class deleteCategories(GQLMutation):
    _args: DeletedCategoryArgs
 
 
-   type: NonNull_list_DeletedCategory[DeletedCategory]
+   type: list_DeletedCategory[DeletedCategory]
 
 class deleteCollection(GQLMutation):
    """
@@ -1607,7 +1601,7 @@ class createEndpointsGroups(GQLMutation):
    _args: EndpointsGroupArgs
 
 
-   type: NonNull_list_EndpointsGroup[EndpointsGroup]
+   type: list_EndpointsGroup[EndpointsGroup]
 
 class updateEndpointsGroups(GQLMutation):
    """
@@ -1620,7 +1614,7 @@ class updateEndpointsGroups(GQLMutation):
    _args: EndpointsGroupArgs
 
 
-   type: NonNull_list_EndpointsGroup[EndpointsGroup]
+   type: list_EndpointsGroup[EndpointsGroup]
 
 class deleteEndpointsGroups(GQLMutation):
    """
@@ -1633,7 +1627,7 @@ class deleteEndpointsGroups(GQLMutation):
    _args: IDArgs
 
 
-   type: NonNull_list[ID]
+   type: list[ID]
 
 class duplicateNameCheck(GQLMutation):
    """
@@ -2316,7 +2310,7 @@ class updateTargetGroups(GQLMutation):
    _args: TargetGroupArgs
 
 
-   type: NonNull_list_TargetGroup[TargetGroup]
+   type: list_TargetGroup[TargetGroup]
 
 class removeTeamUserFromAllOrgTeams(GQLMutation):
    """
@@ -2448,7 +2442,7 @@ class createTransformations(GQLMutation):
    _args: TransformationArgs
 
 
-   type: NonNull_list_Transformation[Transformation]
+   type: list_Transformation[Transformation]
 
 class updateTransformations(GQLMutation):
    """
@@ -2461,7 +2455,7 @@ class updateTransformations(GQLMutation):
    _args: TransformationArgs
 
 
-   type: NonNull_list_Transformation[Transformation]
+   type: list_Transformation[Transformation]
 
 class deleteTransformations(GQLMutation):
    """
@@ -2474,7 +2468,7 @@ class deleteTransformations(GQLMutation):
    _args: DeletedTransformationArgs
 
 
-   type: NonNull_list_DeletedTransformation[DeletedTransformation]
+   type: list_DeletedTransformation[DeletedTransformation]
 
 class createTutorial(GQLMutation):
    """

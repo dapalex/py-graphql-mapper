@@ -6,7 +6,7 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class OXYKT_name_Field(ArguedStr):
+class YHPPB_name_Field(ArguedStr):
    class strArgs(GQLArgsSet, GQLObject):
       showDeleted: bool
 
@@ -18,7 +18,7 @@ class Exclusion(GQLObject):
    topic: str
 
 class UpdateWorkflowsInput(GQLObject):
-   workflowIds: NonNull_list[int]
+   workflowIds: list[int]
    status: DeletionStatus
    workflowStatus: WorkflowStatus
    additionalData: Any
@@ -110,7 +110,7 @@ class ProfileInfo(GQLObject):
    googleplus: str
 
 class UserInvitesReactivateInput(GQLObject):
-   emails: NonNull_list[str]
+   emails: list[str]
    orgId: int
 
 class UserInvitesBrandingInput(GQLObject):
@@ -120,7 +120,7 @@ class UserInvitesBrandingInput(GQLObject):
 
 class UserInvitesInput(GQLObject):
    email: str
-   teamIds: NonNull_list[int]
+   teamIds: list[int]
    organizationId: int
    role: str
    id: int
@@ -225,8 +225,8 @@ class TransformationCreateInput(GQLObject):
    target: str
    value: str
    valueType: TransformationValueType
-   plans: NonNull_list[ID]
-   endpoints: NonNull_list[ID]
+   plans: list[ID]
+   endpoints: list[ID]
 
 class Transformation(GQLObject):
    id: ID
@@ -386,7 +386,7 @@ class RequestLogFilters(GQLObject):
    gatewayIds: list[ID]
 
 class deleteProjectAllowedAPIsInput(GQLObject):
-   projectAllowedAPIIds: NonNull_list[int]
+   projectAllowedAPIIds: list[int]
    projectId: int
    mashapeId: str
 
@@ -448,7 +448,7 @@ class MarkNewNotificationsAsReadInput(GQLObject):
    isRead: bool
 
 class ThreadEntityStatusUpdateInput(GQLObject):
-   messageThreadIds: NonNull_list[int]
+   messageThreadIds: list[int]
    flag: EntityStatusFlag
    value: bool
 
@@ -542,7 +542,7 @@ class ProduceMessageResponse(GQLObject):
    baseOffset: str
 
 class KafkaSchemas(GQLObject):
-   schemas: NonNull_list[str]
+   schemas: list[str]
 
 class IssueFollowInputV2(GQLObject):
    issueId: int
@@ -696,7 +696,7 @@ class ContextEntity(GQLObject):
    privateApisJwt: str
 
 class ConsumersWhereInput(GQLObject):
-   apiId: NonNull_list[ID]
+   apiId: list[ID]
    offset: int
    limit: int
    order: str
@@ -915,7 +915,7 @@ class UserAttributesInput(GQLObject):
    attributeValue: list[Any]
 
 class AsyncApiConfigurationWhereInput(GQLObject):
-   apiVersionId: NonNull_list[ID]
+   apiVersionId: list[ID]
 
 class AsyncApiConfiguration(GQLObject):
    id: ID
@@ -1126,7 +1126,7 @@ class ApiCertificateWhereInput(GQLObject):
    ownerId: list[ID]
 
 class ApiCertificateSubjectInfo(GQLObject):
-   alternativeNames: NonNull_list[str]
+   alternativeNames: list[str]
    commonName: str
    countryName: str
    localityName: str
@@ -1155,7 +1155,7 @@ class AnalyticsStats(GQLObject):
    apiVersionId: ID
 
 class deleteUserAlertsInput(GQLObject):
-   ids: NonNull_list[ID]
+   ids: list[ID]
 
 class editUserAlertInput(GQLObject):
    id: ID
@@ -1196,10 +1196,10 @@ class UserAlert(GQLObject):
    throttlePeriod: int
    apiIds: list[ID]
    projectIds: list[ID]
-   endpointsIds: NonNull_list[ID]
+   endpointsIds: list[ID]
    baseUrl: str
-   apiVersionsIds: NonNull_list[ID]
-   billingPlansIds: NonNull_list[ID]
+   apiVersionsIds: list[ID]
+   billingPlansIds: list[ID]
    minNextAlertTime: DateTime
    endpointHashes: list[ID]
    deletedAt: DateTime

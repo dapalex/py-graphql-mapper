@@ -26,21 +26,21 @@ class TimeZoneEdge(GQLObject):
    cursor: str
    node: TimeZone
 
-class NonNull_list_TimeZoneEdge(list, TimeZoneEdge): pass
+class list_TimeZoneEdge(list, TimeZoneEdge): pass
 
 class TimeZonesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_TimeZoneEdge[TimeZoneEdge]
+   edges: list_TimeZoneEdge[TimeZoneEdge]
    pageInfo: ConnectionPageInfo
 
-class NonNull_list_GQLObject(list, GQLObject): pass
+class list_GQLObject(list, GQLObject): pass
 
 class CountryPopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
+   edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class BPDFV_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class EEXMN_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -68,20 +68,20 @@ class CountryRegion(GQLObject):
    containingRegion: NewType('CountryRegion', GQLObject) ## Circular Reference for CountryRegion
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: BPDFV_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: EEXMN_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    cursor: str
    node: CountryRegion
 
-class NonNull_list_CountryRegionEdge(list, CountryRegionEdge): pass
+class list_CountryRegionEdge(list, CountryRegionEdge): pass
 
 class CountryRegionsConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_CountryRegionEdge[CountryRegionEdge]
+   edges: list_CountryRegionEdge[CountryRegionEdge]
    pageInfo: ConnectionPageInfo
 
-class NWKEP_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
+class KYXSW_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
    class CountryPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -100,7 +100,7 @@ class NWKEP_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnect
 
 
 
-class SFKJJ_CountryRegion_Field(CountryRegion):
+class MBDQZ_CountryRegion_Field(CountryRegion):
    class CountryRegionArgs(GQLArgsSet, GQLObject):
       code: ID
 
@@ -108,7 +108,7 @@ class SFKJJ_CountryRegion_Field(CountryRegion):
 
 
 
-class PBCPX_CountryRegionsConnection_Field(CountryRegionsConnection):
+class HWRPD_CountryRegionsConnection_Field(CountryRegionsConnection):
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -128,19 +128,19 @@ class Country(GQLObject):
    wikiDataId: ID
    capital: str
    name: str
-   currencyCodes: NonNull_list[str]
+   currencyCodes: list[str]
    flagImageUri: str
    numRegions: int
-   populatedPlaces: NWKEP_CountryPopulatedPlacesConnection_Field
-   region: SFKJJ_CountryRegion_Field
-   regions: PBCPX_CountryRegionsConnection_Field
+   populatedPlaces: KYXSW_CountryPopulatedPlacesConnection_Field
+   region: MBDQZ_CountryRegion_Field
+   regions: HWRPD_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
+   edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class RIYHR_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class DNFMN_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       radius: float
       distanceUnit: DistanceUnit
@@ -175,56 +175,56 @@ class PopulatedPlace(GQLObject):
    timezone: str
    country: Country
    region: CountryRegion
-   distance: IITIY_distance_Field
+   distance: RJIYF_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: RIYHR_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: DNFMN_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):
    cursor: str
    node: PopulatedPlace
 
-class NonNull_list_PopulatedPlaceEdge(list, PopulatedPlaceEdge): pass
+class list_PopulatedPlaceEdge(list, PopulatedPlaceEdge): pass
 
 class RegionPopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
+   edges: list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class PopulatedPlacesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_PopulatedPlaceEdge[PopulatedPlaceEdge]
+   edges: list_PopulatedPlaceEdge[PopulatedPlaceEdge]
    pageInfo: ConnectionPageInfo
 
 class LocaleEdge(GQLObject):
    cursor: str
    node: Locale
 
-class NonNull_list_LocaleEdge(list, LocaleEdge): pass
+class list_LocaleEdge(list, LocaleEdge): pass
 
 class LocalesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_LocaleEdge[LocaleEdge]
+   edges: list_LocaleEdge[LocaleEdge]
    pageInfo: ConnectionPageInfo
 
 class CurrencyEdge(GQLObject):
    cursor: str
    node: Currency
 
-class NonNull_list_CurrencyEdge(list, CurrencyEdge): pass
+class list_CurrencyEdge(list, CurrencyEdge): pass
 
 class CurrenciesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_CurrencyEdge[CurrencyEdge]
+   edges: list_CurrencyEdge[CurrencyEdge]
    pageInfo: ConnectionPageInfo
 
 class CountryEdge(GQLObject):
    cursor: str
    node: Country
 
-class NonNull_list_CountryEdge(list, CountryEdge): pass
+class list_CountryEdge(list, CountryEdge): pass
 
 class CountriesConnection(GQLObject):
    totalCount: int
-   edges: NonNull_list_CountryEdge[CountryEdge]
+   edges: list_CountryEdge[CountryEdge]
    pageInfo: ConnectionPageInfo

@@ -23,29 +23,32 @@ class QueryBuilder(Builder):
 
         if type(dataInput) == list:
             ##get element type
-            for t in inspect.getmro(type(opObject)):
-                if t == type(opObject): continue
-                if t == list: continue
-                eltype = t
-                break
-
-            for dataEl in dataInput:
-                if not dataEl: continue
-                element = eltype()
-                self.set_py_fields_inner(element.__dataclass_fields__, dataEl, element, customObject, attr_to_del)
-                opObject.append(element)
+            self.set_py_list_fields(dataInput, opObject, customObject, attr_to_del)
         else:
             self.set_py_fields_inner(newObjModelDict, dataInput, opObject, customObject, attr_to_del)
 
-        for a in attr_to_del:
-            if a in opObject.__dict__.keys():
-                if self.build_sctype == BuildingType.STANDARD:
-                    attr = getattr(opObject, a)
-                    del attr
-                elif self.build_sctype == BuildingType.ALTERCLASS:
-                    logger.info('delete attribute from class')
-                else:
-                    logger.info('should do nothing in new object')
+        # for a in attr_to_del:
+        #     if a in opObject.__dict__.keys():
+        #         if self.build_sctype == BuildingType.STANDARD:
+        #             attr = getattr(opObject, a)
+        #             del attr
+        #         elif self.build_sctype == BuildingType.ALTERCLASS:
+        #             logger.info('delete attribute from class')
+        #         else:
+        #             logger.info('should do nothing in new object')
+
+    def set_py_list_fields(self, dataInput, opObject, customObject, attr_to_del):
+        for t in inspect.getmro(type(opObject)):
+            if t == type(opObject): continue
+            if t == list: continue
+            eltype = t
+            break
+
+        for dataEl in dataInput:
+            if not dataEl: continue
+            element = eltype()
+            self.set_py_fields_inner(element.__dataclass_fields__, dataEl, element, customObject, attr_to_del)
+            opObject.append(element)
 
     def set_py_fields_inner(self, newObjModelDict, dataInput, opObject, customObject, attr_to_del):
         for el in newObjModelDict:
@@ -109,3 +112,21 @@ class QueryBuilder(Builder):
             logger.info('do nothing in new class')
         else:
             raise Exception('build_sctype not assigned')
+
+class ResultBuilder(QueryBuilder):
+    def set_py_list_fields(self, dataInput, opObject, customObject, attr_to_del):
+        for t in inspect.getmro(type(opObject)):
+            if t == type(opObject): continue
+            if t == list: continue
+            eltype = t
+            break
+
+        for dataEl in dataInput:
+            if not dataEl: continue
+            element = eltype()
+            self.set_py_fields_inner(element.__dataclass_fields__, dataEl, element, customObject, attr_to_del)
+            opObject.append(element)
+
+        for d_field in opObject.__dataclass_fields__:
+            delattr(opObject, d_field)
+        return

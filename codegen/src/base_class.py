@@ -22,7 +22,7 @@ class SchemaTypeManager():
                     continue
                 elif py_type == TypeKind.LIST.name:
                     is_list = True
-                    type_out += (NON_NULL_PREFIX if is_nonnull else '') + GQLLIST_PREFIX
+                    type_out += (NON_NULL_PREFIX if is_nonnull and is_arg else '') + GQLLIST_PREFIX
                     if is_nonnull: is_nonnull = False
                     continue
 

@@ -6,37 +6,33 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class NonNull_list_EnvConfigCategory(list, EnvConfigCategory): pass
+class list_EnvConfigCategory(list, EnvConfigCategory): pass
 
 class NonNull_EnvConfigTerm(EnvConfigTerm): pass
 
-class NonNull_list_EnvConfig(list, EnvConfig): pass
+class list_EnvConfig(list, EnvConfig): pass
 
 class list_Extension(list, Extension): pass
 
-class list_UserAlert(list, UserAlert): pass
-
-class NonNull_list_AlertDefinition(list, AlertDefinition): pass
+class list_AlertDefinition(list, AlertDefinition): pass
 
 class NonNull_UserAlertsWhereInput(UserAlertsWhereInput): pass
 
 class NonNull_AnalyticsStatsInput(AnalyticsStatsInput): pass
 
-class NonNull_list_AnalyticsStats(list, AnalyticsStats): pass
-
-class NonNull_list_ApiDeveloper(list, ApiDeveloper): pass
+class list_AnalyticsStats(list, AnalyticsStats): pass
 
 class NonNull_ApiFollowerWhereInput(ApiFollowerWhereInput): pass
 
-class NonNull_list_ApiSpecImportProcess(list, ApiSpecImportProcess): pass
+class list_ApiSpecImportProcess(list, ApiSpecImportProcess): pass
 
 class NonNull_AppAuthorizationsWhereInput(AppAuthorizationsWhereInput): pass
 
-class NonNull_list_ApplicationAuthorization(list, ApplicationAuthorization): pass
+class list_ApplicationAuthorization(list, ApplicationAuthorization): pass
 
 class NonNull_AssetWhereInput(AssetWhereInput): pass
 
-class NonNull_list_AssetForDownload(list, AssetForDownload): pass
+class list_AssetForDownload(list, AssetForDownload): pass
 
 class NonNull_AsyncApiConfigurationWhereInput(AsyncApiConfigurationWhereInput): pass
 
@@ -44,19 +40,13 @@ class NonNull_AuditWhereInput(AuditWhereInput): pass
 
 class list_authStrategy(list, authStrategy): pass
 
-class list_BillingFeature(list, BillingFeature): pass
-
 class NonNull_BillingItemsWhereInput(BillingItemsWhereInput): pass
 
 class NonNull_list_endpointsAndApiVersionCouples(list, endpointsAndApiVersionCouples): pass
 
 class list_CategoryEntity(list, CategoryEntity): pass
 
-class list_Category(list, Category): pass
-
 class list_CollapsedCollection(list, CollapsedCollection): pass
-
-class NonNull_list_ApiSearch(list, ApiSearch): pass
 
 class list_Follower(list, Follower): pass
 
@@ -116,21 +106,17 @@ class list_UsagesStats(list, UsagesStats): pass
 
 class list_InviteUsersSearch(list, InviteUsersSearch): pass
 
-class NonNull_list_UserSavedApi(list, UserSavedApi): pass
+class list_UserSavedApi(list, UserSavedApi): pass
 
 class list_User(list, User): pass
 
 class NonNull_SearchUsersWhereInput(SearchUsersWhereInput): pass
-
-class NonNull_list_User(list, User): pass
 
 class NonNull_UserWhereInput(UserWhereInput): pass
 
 class list_Permission(list, Permission): pass
 
 class NonNull_VirtualPermissionWhereInput(VirtualPermissionWhereInput): pass
-
-class list_VirtualPermission(list, VirtualPermission): pass
 
 class list_Exclusion(list, Exclusion): pass
 
@@ -158,7 +144,7 @@ class eventUrl(GQLQuery):
    type: EventUrl
 
 class eventTypes(GQLQuery):
-   type: NonNull_list_EventType[EventType]
+   type: list_EventType[EventType]
 
 class eventConfig(GQLQuery):
    type: EventConfig
@@ -224,7 +210,7 @@ class gatewayTemplateParam(GQLQuery):
    type: GatewayTemplateParam
 
 class envConfigCategories(GQLQuery):
-   type: NonNull_list_EnvConfigCategory[EnvConfigCategory]
+   type: list_EnvConfigCategory[EnvConfigCategory]
 
 class envConfig(GQLQuery):
    class EnvConfigArgs(GQLArgsSet, GQLObject):
@@ -242,7 +228,7 @@ class envConfigs(GQLQuery):
    _args: EnvConfigArgs
 
 
-   type: NonNull_list_EnvConfig[EnvConfig]
+   type: list_EnvConfig[EnvConfig]
 
 class adminAuditLogs(GQLQuery):
    class AdminAuditLogConnectionArgs(GQLArgsSet, GQLObject):
@@ -305,7 +291,7 @@ class getUserAlertsByScope(GQLQuery):
    type: list_UserAlert[UserAlert]
 
 class getAlertsDefinitions(GQLQuery):
-   type: NonNull_list_AlertDefinition[AlertDefinition]
+   type: list_AlertDefinition[AlertDefinition]
 
 class userAlerts(GQLQuery):
    class UserAlertsConnectionArgs(GQLArgsSet, GQLObject):
@@ -342,7 +328,7 @@ class apiTrafficAnalytics(GQLQuery):
    _args: AnalyticsStatsArgs
 
 
-   type: NonNull_list_AnalyticsStats[AnalyticsStats]
+   type: list_AnalyticsStats[AnalyticsStats]
 
 class apiCertificate(GQLQuery):
    class ApiCertificateArgs(GQLArgsSet, GQLObject):
@@ -372,7 +358,7 @@ class apiDevelopersByApiId(GQLQuery):
    _args: ApiDeveloperArgs
 
 
-   type: NonNull_list_ApiDeveloper[ApiDeveloper]
+   type: list_ApiDeveloper[ApiDeveloper]
 
 class apiFollowers(GQLQuery):
    class ApiFollowerConnectionArgs(GQLArgsSet, GQLObject):
@@ -429,7 +415,7 @@ class apiSpecImportProgresses(GQLQuery):
    _args: ApiSpecImportProcessArgs
 
 
-   type: NonNull_list_ApiSpecImportProcess[ApiSpecImportProcess]
+   type: list_ApiSpecImportProcess[ApiSpecImportProcess]
 
 class bulkApisSummaryByTrackingIds(GQLQuery):
    class BatchTrackingIdsSummaryArgs(GQLArgsSet, GQLObject):
@@ -543,7 +529,7 @@ class applicationAuthorizations(GQLQuery):
    _args: ApplicationAuthorizationArgs
 
 
-   type: NonNull_list_ApplicationAuthorization[ApplicationAuthorization]
+   type: list_ApplicationAuthorization[ApplicationAuthorization]
 
 class applicationEnvironmentsKeysByApplicationIdAndEnvironment(GQLQuery):
    class ApplicationEnvironmentPagingArgs(GQLArgsSet, GQLObject):
@@ -590,7 +576,7 @@ class assets(GQLQuery):
    _args: AssetArgs
 
 
-   type: NonNull_list_Asset[Asset]
+   type: list_Asset[Asset]
 
 class assetsDownloadUrls(GQLQuery):
    class AssetForDownloadArgs(GQLArgsSet, GQLObject):
@@ -599,7 +585,7 @@ class assetsDownloadUrls(GQLQuery):
    _args: AssetForDownloadArgs
 
 
-   type: NonNull_list_AssetForDownload[AssetForDownload]
+   type: list_AssetForDownload[AssetForDownload]
 
 class asyncApiConfigurations(GQLQuery):
    class AsyncApiConfigurationConnectionArgs(GQLArgsSet, GQLObject):
@@ -924,7 +910,7 @@ class search(GQLQuery):
    _args: ApiSearchArgs
 
 
-   type: NonNull_list_ApiSearch[ApiSearch]
+   type: list_ApiSearch[ApiSearch]
 
 class searchEntityByApiId(GQLQuery):
    class AnyArgs(GQLArgsSet, GQLObject):
@@ -2192,7 +2178,7 @@ class getUserSavedApis(GQLQuery):
    _args: UserSavedApiArgs
 
 
-   type: NonNull_list_UserSavedApi[UserSavedApi]
+   type: list_UserSavedApi[UserSavedApi]
 
 class userById(GQLQuery):
    class UserArgs(GQLArgsSet, GQLObject):
@@ -2235,7 +2221,7 @@ class searchUsersV2(GQLQuery):
    _args: UserArgs
 
 
-   type: NonNull_list_User[User]
+   type: list_User[User]
 
 class user(GQLQuery):
    class UserArgs(GQLArgsSet, GQLObject):

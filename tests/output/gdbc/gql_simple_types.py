@@ -6,9 +6,9 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class CKXYT_distance_Field(ArguedFloat):
+class VEEXK_distance_Field(ArguedFloat):
    """
-   CKXYT_distance_Field - The distance result from some location-based query
+   VEEXK_distance_Field - The distance result from some location-based query
 This field has two forms:
 - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.
@@ -52,6 +52,6 @@ class Currency(GQLObject):
    Currency - A country currency
 
    """
-   countryCodes: NonNull_list[ID]
+   countryCodes: list[ID]
    code: ID
    symbol: str

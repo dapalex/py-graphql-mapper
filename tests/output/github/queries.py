@@ -10,11 +10,11 @@ class list_CodeOfConduct(list, CodeOfConduct): pass
 
 class NonNull_EnterpriseAdministratorRole(GQLObject): pass
 
-class NonNull_list_License(list, License): pass
+class list_License(list, License): pass
 
-class NonNull_list_MarketplaceCategory(list, MarketplaceCategory): pass
+class list_MarketplaceCategory(list, MarketplaceCategory): pass
 
-class NonNull_list_Node(list, Node): pass
+class list_Node(list, Node): pass
 
 class NonNull_URI(URI): pass
 
@@ -126,7 +126,7 @@ class licenses(GQLQuery):
    licenses - Return a list of known open source licenses
 
    """
-   type: NonNull_list_License[License]
+   type: list_License[License]
 
 class marketplaceCategories(GQLQuery):
    """
@@ -149,7 +149,7 @@ class marketplaceCategories(GQLQuery):
    _args: MarketplaceCategoryArgs
 
 
-   type: NonNull_list_MarketplaceCategory[MarketplaceCategory]
+   type: list_MarketplaceCategory[MarketplaceCategory]
 
 class marketplaceCategory(GQLQuery):
    """
@@ -284,7 +284,7 @@ class nodes(GQLQuery):
    _args: NodeArgs
 
 
-   type: NonNull_list_Node[Node]
+   type: list_Node[Node]
 
 class organization(GQLQuery):
    """

@@ -160,3 +160,6 @@ codegen/codegenlaunch.json
 .vscode/settings__.json
 tests/spotTest.py
 tests/cmd_output/*
+.vscode/launch.json
+.vscode/settings.json
+pytest_log.txt

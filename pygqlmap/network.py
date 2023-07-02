@@ -2,7 +2,7 @@ import json
 from urllib import request
 from urllib.error import HTTPError
 import logging as logger
-from .src.builder import QueryBuilder
+from .src.builder import ResultBuilder
 from .src.enums import BuildingType
 
 def send_http_request(api_url, payload, httpHeaders):
@@ -49,7 +49,7 @@ class GQLResponse():
             build_sctype (BuildingType, optional): Options not yet implemented. Defaults to BuildingType.STANDARD.
         """
         if hasattr(self, 'data') and self.data:
-            myBuilder = QueryBuilder(build_type, self.log_progress)
+            myBuilder = ResultBuilder(build_type, self.log_progress)
             self.result_obj = myBuilder.build(self.data, mapped_py_obj)
         else:
             self.result_obj = None

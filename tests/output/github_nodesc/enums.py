@@ -1128,6 +1128,11 @@ class RepositoryRuleType(Enum):
    BRANCH_NAME_PATTERN = 'BRANCH_NAME_PATTERN' ##Branch name pattern
    TAG_NAME_PATTERN = 'TAG_NAME_PATTERN' ##Tag name pattern
 
+class RepositoryRulesetBypassActorBypassMode(Enum):
+   DEFAULT = None
+   ALWAYS = 'ALWAYS' ##The actor can always bypass rules
+   PULL_REQUEST = 'PULL_REQUEST' ##The actor can only bypass rules via a pull request
+
 class RepositoryRulesetTarget(Enum):
    DEFAULT = None
    BRANCH = 'BRANCH' ##Branch
@@ -1164,15 +1169,6 @@ class RoleInOrganization(Enum):
    OWNER = 'OWNER' ##A user with full administrative access to the organization.
    DIRECT_MEMBER = 'DIRECT_MEMBER' ##A user who is a direct member of the organization.
    UNAFFILIATED = 'UNAFFILIATED' ##A user who is unaffiliated with the organization.
-
-class RuleBypassMode(Enum):
-   DEFAULT = None
-   NONE = 'NONE' ##Bypassing is disabled
-   REPOSITORY = 'REPOSITORY' ##Those with bypass permission at the repository level can bypass
-   ORGANIZATION = 'ORGANIZATION' ##Those with bypass permission at the organization level can bypass
-   ORGANIZATION_NONE = 'ORGANIZATION_NONE' ##Bypassing is disabled
-   ORGANIZATION_PRS_ONLY = 'ORGANIZATION_PRS_ONLY' ##Those with bypass permission at the organization level can bypass for pull requests only
-   ORGANIZATION_ALWAYS = 'ORGANIZATION_ALWAYS' ##Those with bypass permission at the organization level can always bypass
 
 class RuleEnforcement(Enum):
    DEFAULT = None

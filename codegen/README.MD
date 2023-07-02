@@ -213,7 +213,7 @@ my_mutation.name = 'MycreateProjectMutation'
 response = request("POST", graphQLServerUrl, json=json={ "query": my_mutation.export_gql_source }, headers=headers)
 gqlResponse = GQLResponse(response)
 
-print('Result object: ' + str(gqlResponse.result_obj))
+print('Result object: ' + stringifyresult(gqlResponse.result_obj))
 ```
 
 It is possible to create python classes manually (for a customized version for instance) as well only using pygqlmap module.
