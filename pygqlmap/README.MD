@@ -3,7 +3,7 @@
 ## Introduction
 
 This document explains in detail how the core of the mapping works.
-This module can be used to manually create python classes corresponding to a GraphQL type (or a customized version).
+This module can be also used to manually create python classes corresponding to a GraphQL type.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ This module can be used to manually create python classes corresponding to a Gra
     1. [GQLObject](#gqlobject)
 2. [Creation of a operation](#creation-of-an-operation)
     1. [GQLQuery](#gqlquery)
-    2. [GQLMutation](#qglmutation)
+    2. [GQLMutation](#gqlmutation)
         1. [Arguments management](#arguments-management)
 3. [Dynamic visibility of fields](#dynamic-visibility-of-fields)
 4. [Parsing of a response](#parsing-of-a-response)
@@ -20,7 +20,7 @@ This module can be used to manually create python classes corresponding to a Gra
 
 ## Creation of a mappable python object
 
-In order yo create a python class representing a GraphQL object _GQLObject_ class has to be inherited.
+In order to create a python class representing a GraphQL object _GQLObject_ class has to be inherited.
 
 ### GQLObject
 
@@ -106,7 +106,7 @@ myCustomObject(firstArg: "myArgument", secondArg: "myID") {
 
 ## Creation of an operation
 
-GraphQL Operations can be mapped in the same way as for GraphQL types above. In this case _GQLQuery_ class for a query or _GQLMutation_ for a mutation has to be inherited.
+GraphQL Operations can be mapped in the same way as for GraphQL objects. In this case _GQLQuery_ or _GQLMutation_ class has to be inherited respectively for a query or a mutation.
 
 ### GQLQuery
 
@@ -135,7 +135,7 @@ class countries(GQLQuery):
 The creation of the operation requires:
 
 * Inheriting _GQLQuery_/_GQLMutation_ class
-* Declaring a field 'type' representing the content of the query
+* Declaring a field 'type' representing the payload of the query
 * If arguments are needed a field '_args' has to be declared. The class representing its type has to:
     * Inherit from _GQLArgsSet_ and _GQLObject_
     * Fields must be statically declared
@@ -227,8 +227,6 @@ mutation myManualUpdateRepository  {
 }
 ```
 
-Note: Next developments shall allow the usage of automatically generated classes for the queries and mutations
-
 Use cases can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstmutation/)
 
 
@@ -286,9 +284,9 @@ Use cases for queries can be seen here:
 
 [Object with arguments and variables ](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_args_vars_test.py)
 
-[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/connobj_args_vars_test.py)
-
 [Connection with arguments as literal values](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/connobj_args_literal_test.py)
+
+[Connection with arguments and variables](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/connobj_args_vars_test.py)
 
 
 ## Dynamic visibility of fields
@@ -356,7 +354,7 @@ An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob
 
 ## Parsing of a response
 
-Responses received from a GraphQL server can be automatically converted into a python object declared for the query through _mapGQLDataToObj_ function
+Responses received from a GraphQL server can be automatically converted into a python object declared for the query through _map_gqldata_to_obj_ function
 
 
 ```python
@@ -382,21 +380,13 @@ _print_msg_out_ function will print the outcome of the request
 
 ### GQLResponse
 
-The purpose of GQLResponse object is managing the responses received from a GraphQL server.
+The purpose of GQLResponse object is managing the responses received from a GraphQL API server.
 
 The constructor requires the following parameter:
 
 * response: the response received after a POST request to a GraphQL server
 
-The function *mapGQLDataToObj* maps all the information from the HTTP response to the relating python object.
+The function *map_gqldata_to_obj* maps all the information from the HTTP response to the relating python object.
 It requires the following parameter:
 
 * queryObject: the python object that has been created for the [operation](#creation-of-an-operation)
-
-Optional parameter:
-
-* build_sctype: enum *BuildingType* defining how the response will be parsed (right now available only the *Standard* value):
-    * Standard: GQLObject fields set to be hidden when the query gets generated will be present with value None
-    * CREATENEWCLASS: creates a new class type following the content of the response (not implemented yet)
-    * ALTERCLASS: creates a new class following the data within the response (not implemented yet)
-

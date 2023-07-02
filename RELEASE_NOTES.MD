@@ -1,8 +1,20 @@
 py-graphql-mapper Release Update
 
-Release date: Feb. 10, 2023
+Release notes version: 1.1.1
+
+Release date: Jul. 2, 2023
+
+Changes
+
+* Query types not recognized anymore following the conventional "Query" definition but checking *__schema -> QueryType -> name* definition
+
+Bug fixes
+
+* Queries having payload as list return only 1 element of the list: the issue has been solved, also the list type will not show anymore the element type fields in the result
 
 Release notes version: 1.1.0
+
+Release date: Feb. 10, 2023
 
 Features
 

@@ -14,9 +14,9 @@ It translates GraphQL entities into python objects and viceversa in order to avo
 
 This document contains a quick overview of the functionalities, for more details and options you can read here:
 
-* [Code Generation](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
-* [Core Mapper](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD)
-* [Use Cases](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/README.MD)
+* [Code Generation](https://github.com/dapalex/py-graphql-mapper/blob/develop/codegen/README.MD)
+* [Core Mapper](https://github.com/dapalex/py-graphql-mapper/blob/develop/pygqlmap/README.MD)
+* [Use Cases](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/README.MD)
 
 
 The package does not use any third-party libraries, it relies only on python 3 (3.10+) standard libraries.
@@ -38,14 +38,14 @@ pip install py-graphql-mapper
 To generate the code execute the following command:
 
 ```
-pgmcodegen generate ./pathToOutputFolder -apiArgs ./pathToArgsFile/generatorArgs.json
+pgmcodegen generate ./pathToOutputFolder -apiArgs ./<pathToArgsFile>/generatorArgs.json
 ```
 
 This command requires a json file containing the parameters needed to get the GraphQL schema
 
 ![image](https://github.com/dapalex/py-graphql-mapper/blob/develop/docs/cli_args_nutshell.png)
 
-A sample is availabe in the main folder 'cli_args.json'
+A sample is available in the main folder ['cli_args.json'](https://github.com/dapalex/py-graphql-mapper/blob/develop/cli_args.json).
 
 The following python files will be generated:
 
@@ -57,16 +57,16 @@ The following python files will be generated:
 * queries.py
 * mutations.py
 
-These links show code generated using the library [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/rapidapi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/output/gdbc)
+These links show code generated using the library [Github GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/output/github), [Rapid GraphQL API](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/output/rapidapi) and [GeoDBCities API](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/output/gdbc)
 
-More command options are available [here](https://github.com/dapalex/py-graphql-mapper/blob/main/codegen/README.MD)
+More command options are available [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/codegen/README.MD#usage-via-command-line)
 
 
 ### Execution of a query
 
 Choose the query class you want to use from the generated file queries.py (or a mutation from mutations.py):
 
-Instantiate it adding GraphQL arguments as parameters:
+Instantiate it adding GraphQL arguments if needed:
 ```python
 from .output.gdbc.queries import currencies
 
@@ -94,7 +94,7 @@ response = requests.request('POST', url='https://geodb-cities-graphql.p.rapidapi
                             )
 ```
 
-More details on how to set a query [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#executing-an-operation)
+More details on how to set a query [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/pygqlmap/README.MD#creation-of-an-operation)
 
 
 ### Retrieval of a response
@@ -111,10 +111,9 @@ gqlResponse.map_gqldata_to_obj(myCurrenciesQuery.type)
 print('Result object: ' + str(gqlResponse.result_obj))
 ```
 
-The mapped response from the GraphQL server will be available within _gqlResponse_ object: _gqlResponse.result_obj_
+The mapped response from the GraphQL server will be available within _gqlResponse_ object: `_gqlResponse.result_obj_`
 
-More details [here](https://github.com/dapalex/py-graphql-mapper/blob/main/pygqlmap/README.MD#parsing-of-a-response)
+More details [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/pygqlmap/README.MD#parsing-of-a-response)
 
 
-
-A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/README.MD)
+A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/README.MD)

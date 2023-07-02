@@ -38,4 +38,4 @@ Further queries can be found [here](https://github.com/dapalex/py-graphql-mapper
 | Executing a mutation manually created using only _pygqlmap_ with arguments as literal values | create a GraphQL Mutation to mutate a GraphQL type and builds the python class instance containing the payload received from the response | [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstmutation/manual_mutation_test.py) |
 
 
-Further tests can be found [here](https://github.com/dapalex/py-graphql-mapper/blob/main/tests/unittests.py)
+Further tests can be found [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/unittests.py)
