@@ -1,6 +1,6 @@
-py-graphql-mapper Release Update
+# py-graphql-mapper Release Update
 
-Release notes version: 1.1.1
+## Release notes version: 1.1.1
 
 Release date: Jul. 2, 2023
 
@@ -12,7 +12,7 @@ Bug fixes
 
 * Queries having payload as list return only 1 element of the list: the issue has been solved, also the list type will not show anymore the element type fields
 
-Release notes version: 1.1.0
+## Release notes version: 1.1.0
 
 Release date: Feb. 10, 2023
 
@@ -47,7 +47,7 @@ The following signatures have changed:
 | Variables | VARIABLES |
 
 
-Release notes version: 1.0.0
+## Release notes version: 1.0.0
 
 Release note date: Jan. 8, 2023
 
