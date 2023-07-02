@@ -8,14 +8,13 @@ authors = [
   { name="Alex Dap", email="shlisi2017@gmail.com" },
 ]
 readme = "README.md"
-keywords = ["graphql", "mapper"]
+keywords = ["python", "graphql", "mapping"]
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Development Status :: 4 - Beta",
 ]
 dynamic = ["version", "description"]
 
@@ -26,4 +25,4 @@ pgmcodegen = "codegen.__main__:main"
 "Homepage" = "https://github.com/dapalex/py-graphql-mapper/"
 "Source Code" = "https://github.com/dapalex/py-graphql-mapper/"
 "Bug Tracker" = "https://github.com/dapalex/py-graphql-mapper/issues"
-"Release Notes" = "https://github.com/dapalex/py-graphql-mapper/RELEASE_NOTES.MD"
+"Release Notes" = "https://github.com/dapalex/py-graphql-mapper/blob/develop/RELEASE_NOTES.MD"
