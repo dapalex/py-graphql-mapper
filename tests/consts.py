@@ -19,3 +19,7 @@ RAPIDAPI_HEADERS = {
         }
 
 RAPIDAPI_URL = 'https://graphql-rapidapi-test.p.rapidapi.com/'
+
+RE_HEADERS = { "Content-Type": "application/json" }
+
+RE_URL = "https://rippleenergy.com/graphql"

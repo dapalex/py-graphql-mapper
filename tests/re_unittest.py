@@ -6,7 +6,7 @@ from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
 from tests.output.re_nodesc.queries import branding, version
 from tests.utils import stringifyresult
-from consts import RE_HEADERS, RE_URL
+from .consts import RE_HEADERS, RE_URL
 import logging as logger
 
 def run_fetch_re_schema():
