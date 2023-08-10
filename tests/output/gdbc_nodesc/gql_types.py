@@ -40,7 +40,7 @@ class CountryPopulatedPlacesConnection(GQLObject):
    edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class EEXMN_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class INYWV_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -68,7 +68,7 @@ class CountryRegion(GQLObject):
    containingRegion: NewType('CountryRegion', GQLObject) ## Circular Reference for CountryRegion
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: EEXMN_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: INYWV_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    cursor: str
@@ -81,7 +81,7 @@ class CountryRegionsConnection(GQLObject):
    edges: list_CountryRegionEdge[CountryRegionEdge]
    pageInfo: ConnectionPageInfo
 
-class KYXSW_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
+class DCGDO_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
    class CountryPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -100,7 +100,7 @@ class KYXSW_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnect
 
 
 
-class MBDQZ_CountryRegion_Field(CountryRegion):
+class XMBWA_CountryRegion_Field(CountryRegion):
    class CountryRegionArgs(GQLArgsSet, GQLObject):
       code: ID
 
@@ -108,7 +108,7 @@ class MBDQZ_CountryRegion_Field(CountryRegion):
 
 
 
-class HWRPD_CountryRegionsConnection_Field(CountryRegionsConnection):
+class CFNUJ_CountryRegionsConnection_Field(CountryRegionsConnection):
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
       namePrefix: str
       namePrefixDefaultLangResults: bool
@@ -131,16 +131,16 @@ class Country(GQLObject):
    currencyCodes: list[str]
    flagImageUri: str
    numRegions: int
-   populatedPlaces: KYXSW_CountryPopulatedPlacesConnection_Field
-   region: MBDQZ_CountryRegion_Field
-   regions: HWRPD_CountryRegionsConnection_Field
+   populatedPlaces: DCGDO_CountryPopulatedPlacesConnection_Field
+   region: XMBWA_CountryRegion_Field
+   regions: CFNUJ_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    totalCount: int
    edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class DNFMN_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class TRREB_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
       radius: float
       distanceUnit: DistanceUnit
@@ -175,9 +175,9 @@ class PopulatedPlace(GQLObject):
    timezone: str
    country: Country
    region: CountryRegion
-   distance: RJIYF_distance_Field
+   distance: IXUFU_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: DNFMN_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: TRREB_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):

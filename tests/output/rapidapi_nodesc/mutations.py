@@ -2030,13 +2030,23 @@ class verifyEmailCode(GQLMutation):
    type: bool
 
 class updateUser(GQLMutation):
-   class UserArgs(GQLArgsSet, GQLObject):
+   class UpdateUserResultArgs(GQLArgsSet, GQLObject):
       input: NonNull_UserUpdateInput
 
-   _args: UserArgs
+   _args: UpdateUserResultArgs
 
 
-   type: User
+   type: UpdateUserResult
+
+class deleteUser(GQLMutation):
+   class boolArgs(GQLArgsSet, GQLObject):
+      id: NonNull_ID
+      mashapeId: NonNull_str
+
+   _args: boolArgs
+
+
+   type: bool
 
 class createWorkflow(GQLMutation):
    class AnyArgs(GQLArgsSet, GQLObject):
@@ -2270,6 +2280,7 @@ class Mutations(Enum):
    updateUserEmail = updateUserEmail
    verifyEmailCode = verifyEmailCode
    updateUser = updateUser
+   deleteUser = deleteUser
    createWorkflow = createWorkflow
    createSignupApprovalWorkflow = createSignupApprovalWorkflow
    updateWorkflows = updateWorkflows

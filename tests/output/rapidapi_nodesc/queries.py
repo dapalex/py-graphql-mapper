@@ -28,8 +28,6 @@ class list_ApiSpecImportProcess(list, ApiSpecImportProcess): pass
 
 class NonNull_AppAuthorizationsWhereInput(AppAuthorizationsWhereInput): pass
 
-class list_ApplicationAuthorization(list, ApplicationAuthorization): pass
-
 class NonNull_AssetWhereInput(AssetWhereInput): pass
 
 class list_AssetForDownload(list, AssetForDownload): pass
@@ -1642,6 +1640,7 @@ class notificationsByUserId(GQLQuery):
 class organization(GQLQuery):
    class OrganizationArgs(GQLArgsSet, GQLObject):
       id: NonNull_ID
+      where: WhereOrgTeam
 
    _args: OrganizationArgs
 

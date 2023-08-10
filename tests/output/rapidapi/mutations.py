@@ -2834,13 +2834,27 @@ class updateUser(GQLMutation):
    updateUser - Updates user metadata / password 
 
    """
-   class UserArgs(GQLArgsSet, GQLObject):
+   class UpdateUserResultArgs(GQLArgsSet, GQLObject):
       input: NonNull_UserUpdateInput
 
-   _args: UserArgs
+   _args: UpdateUserResultArgs
 
 
-   type: User
+   type: UpdateUserResult
+
+class deleteUser(GQLMutation):
+   """
+   deleteUser - Delete user for admins
+
+   """
+   class boolArgs(GQLArgsSet, GQLObject):
+      id: NonNull_ID
+      mashapeId: NonNull_str
+
+   _args: boolArgs
+
+
+   type: bool
 
 class createWorkflow(GQLMutation):
    """
@@ -3086,6 +3100,7 @@ class Mutations(Enum):
    updateUserEmail = updateUserEmail
    verifyEmailCode = verifyEmailCode
    updateUser = updateUser
+   deleteUser = deleteUser
    createWorkflow = createWorkflow
    createSignupApprovalWorkflow = createSignupApprovalWorkflow
    updateWorkflows = updateWorkflows

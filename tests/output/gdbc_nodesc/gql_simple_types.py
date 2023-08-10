@@ -6,7 +6,7 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class RJIYF_distance_Field(ArguedFloat):
+class IXUFU_distance_Field(ArguedFloat):
    class floatArgs(GQLArgsSet, GQLObject):
       toPlaceId: ID
       distanceUnit: DistanceUnit

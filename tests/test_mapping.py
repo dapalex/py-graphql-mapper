@@ -13,6 +13,7 @@ from .unittests import (run_gdbc_complex_obj_viewchange_vars, run_gdbc_complex_o
                         run_gdbc_complex_obj_args_literal_2, run_gdbc_nested_object, run_gdbc_nested_obj_viewchange,
                         run_gdbc_nested_obj_viewchange_args_vars, run_gdbc_nested_obj_args_vars,
                         run_gdbc_nested_obj_args_literal, run_gdbc_obj_composed_args, run_gdbc_nested_obj_with_list)
+from .re_unittest import (run_re_version_literal, run_re_version_vars)
 from .tstquery.complex_obj_test import run_gdbc_complex_obj
 from .tstquery.connobj_args_literal_test import run_gdbc_connobj_args_literal
 from .tstquery.connobj_args_vars_test import run_gdbc_connobj_args_vars
@@ -37,6 +38,12 @@ from .ra_args_params_unittest import (run_ra_admin_audit_logs_query_args_literal
 # class TestMapper(unittest.TestCase):
 
 ##################### QUERIES EXECUTION - START ##############################
+
+def test_re_version_literal():
+  return run_re_version_literal()
+
+def test_re_version_vars():
+  return run_re_version_vars()
 
 #GeoDBCitiesAPI SAMPLES - START
 def testGeneratedDataAsGQLObject():
@@ -177,11 +184,13 @@ def test_ra_create_transformations_mutation_literal():
 def test_ra_create_transformations_mutation_vars():
   return run_ra_create_transformations_mutation_vars()
 
-def test_ra_create_gateway_instance_mutation_literal():
-  return run_ra_create_gateway_instance_mutation_literal()
+#INCONSISTENT ERROR COMPARED TO SCHEMA
+# def test_ra_create_gateway_instance_mutation_literal():
+#   return run_ra_create_gateway_instance_mutation_literal()
 
-def test_ra_create_gateway_instance_mutation_vars():
-  return run_ra_create_gateway_instance_mutation_vars()
+#INCONSISTENT ERROR COMPARED TO SCHEMA
+# def test_ra_create_gateway_instance_mutation_vars():
+#   return run_ra_create_gateway_instance_mutation_vars()
 
 def test_ra_edit_user_alert_mutation_literal():
   return run_ra_edit_user_alert_mutation_literal()

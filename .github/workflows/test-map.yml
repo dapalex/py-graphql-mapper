@@ -5,9 +5,9 @@ name: Pyhon-GraphQL Mapping
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "25-export_gql_source-error-for-non-recursive-queries" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "25-export_gql_source-error-for-non-recursive-queries" ]
 
 jobs:
   build:

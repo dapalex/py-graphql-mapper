@@ -96,9 +96,9 @@ class CountryPopulatedPlacesConnection(GQLObject):
    edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class UHNMT_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
+class GBGMM_RegionPopulatedPlacesConnection_Field(Generic[RegionPopulatedPlacesConnection]):
    """
-   UHNMT_RegionPopulatedPlacesConnection_Field - Find populated places in this region
+   GBGMM_RegionPopulatedPlacesConnection_Field - Find populated places in this region
 
    """
    class RegionPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
@@ -178,7 +178,7 @@ class CountryRegion(GQLObject):
    containingRegion: NewType('CountryRegion', GQLObject) ## Circular Reference for CountryRegion
    country: NewType('Country', GQLObject) ## Circular Reference for Country
    numPopulatedPlaces: int
-   populatedPlaces: UHNMT_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
+   populatedPlaces: GBGMM_RegionPopulatedPlacesConnection_Field ## Circular Reference for RegionPopulatedPlacesConnection
 
 class CountryRegionEdge(GQLObject):
    """
@@ -209,9 +209,9 @@ class CountryRegionsConnection(GQLObject):
    edges: list_CountryRegionEdge[CountryRegionEdge]
    pageInfo: ConnectionPageInfo
 
-class XYXGZ_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
+class DPCBM_CountryPopulatedPlacesConnection_Field(CountryPopulatedPlacesConnection):
    """
-   XYXGZ_CountryPopulatedPlacesConnection_Field - Find populated places in this country
+   DPCBM_CountryPopulatedPlacesConnection_Field - Find populated places in this country
 
    """
    class CountryPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
@@ -260,9 +260,9 @@ where SORT_FIELD = elevation | name | population
 
 
 
-class APAJQ_CountryRegion_Field(CountryRegion):
+class WYXBP_CountryRegion_Field(CountryRegion):
    """
-   APAJQ_CountryRegion_Field - Look up a region in this country
+   WYXBP_CountryRegion_Field - Look up a region in this country
 
    """
    class CountryRegionArgs(GQLArgsSet, GQLObject):
@@ -276,9 +276,9 @@ class APAJQ_CountryRegion_Field(CountryRegion):
 
 
 
-class VIPBS_CountryRegionsConnection_Field(CountryRegionsConnection):
+class QOEGX_CountryRegionsConnection_Field(CountryRegionsConnection):
    """
-   VIPBS_CountryRegionsConnection_Field - Find regions in this country
+   QOEGX_CountryRegionsConnection_Field - Find regions in this country
 
    """
    class CountryRegionsConnectionArgs(GQLArgsSet, GQLObject):
@@ -347,9 +347,9 @@ class Country(GQLObject):
    currencyCodes: list[str]
    flagImageUri: str
    numRegions: int
-   populatedPlaces: XYXGZ_CountryPopulatedPlacesConnection_Field
-   region: APAJQ_CountryRegion_Field
-   regions: VIPBS_CountryRegionsConnection_Field
+   populatedPlaces: DPCBM_CountryPopulatedPlacesConnection_Field
+   region: WYXBP_CountryRegion_Field
+   regions: QOEGX_CountryRegionsConnection_Field
 
 class NearbyPopulatedPlacesConnection(GQLObject):
    """
@@ -366,9 +366,9 @@ class NearbyPopulatedPlacesConnection(GQLObject):
    edges: list_GQLObject[GQLObject] ## Circular Reference for PopulatedPlaceEdge
    pageInfo: ConnectionPageInfo
 
-class LXYWM_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
+class NEDFN_NearbyPopulatedPlacesConnection_Field(NearbyPopulatedPlacesConnection):
    """
-   LXYWM_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
+   NEDFN_NearbyPopulatedPlacesConnection_Field - Find nearby populated places
 
    """
    class NearbyPopulatedPlacesConnectionArgs(GQLArgsSet, GQLObject):
@@ -478,9 +478,9 @@ This field has two forms:
    timezone: str
    country: Country
    region: CountryRegion
-   distance: VEEXK_distance_Field
+   distance: DWPRF_distance_Field
    locatedIn: NewType('PopulatedPlace', GQLObject) ## Circular Reference for PopulatedPlace
-   nearbyPopulatedPlaces: LXYWM_NearbyPopulatedPlacesConnection_Field
+   nearbyPopulatedPlaces: NEDFN_NearbyPopulatedPlacesConnection_Field
    deleted: bool
 
 class PopulatedPlaceEdge(GQLObject):

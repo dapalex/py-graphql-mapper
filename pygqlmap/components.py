@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import inspect
 from .helper import handle_recursive_ex
 from .src.gql_init import _sub_class_init
 from .src.components import FSTree
@@ -121,7 +122,7 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
         """
         try:
             prefix = self.obj_type.value + ' ' + self.name + ' '
-            self.type.log_progress = self.log_progress
+            if hasattr(self.type, 'log_progress'): self.type.log_progress = self.log_progress
 
             ##Arguments of the operation are arguments of the root object
             if hasattr(self, ARGS_DECLARE):
@@ -134,8 +135,10 @@ class GQLOperation(GQLExporter, GQLOperationArgs):
             if self._args_type == ArgType.VARIABLES:
                 if hasattr(self, ARGS_DECLARE) and self.arguments:
                     prefix += '(' + self.export_gqlarg_keys + ')'
-
-            return prefix + ' { ' + self.__class__.__name__ + self.type.export_gql_source + ' } '
+            if hasattr(self.type, '__dataclass_fields__'):
+                return prefix + ' { ' + self.__class__.__name__ + self.type.export_gql_source + ' } '
+            else:
+                return prefix + ' { ' + self.__class__.__name__ + ' } '
         except Exception as ex:
             raise handle_recursive_ex(ex, 'Issue during export of ' + self.name)
 
