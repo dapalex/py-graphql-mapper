@@ -27,7 +27,8 @@ class SchemaTypeManager():
                     continue
 
                 if is_list:
-                    if py_type in STRING_GQLLIST_BUILTIN or 'ENUM' in self.get_used_typekinds():
+                    #check if py type declaration is explicitly a builtin or if ENUM or SCALAR in gql types included
+                    if py_type in STRING_GQLLIST_BUILTIN or 'ENUM' in self.get_used_typekinds() or 'SCALAR' in self.get_used_typekinds():
                         type_out = type_out.removesuffix('_')
                         type_out += '['
                     else:

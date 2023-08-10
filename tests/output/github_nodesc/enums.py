@@ -297,6 +297,10 @@ class EnterpriseUserDeployment(Enum):
    CLOUD = 'CLOUD' ##The user is part of a GitHub Enterprise Cloud deployment.
    SERVER = 'SERVER' ##The user is part of a GitHub Enterprise Server deployment.
 
+class EnvironmentOrderField(Enum):
+   DEFAULT = None
+   NAME = 'NAME' ##Order environments by name.
+
 class FileViewedState(Enum):
    DEFAULT = None
    DISMISSED = 'DISMISSED' ##The file has new changes since last viewed.
@@ -843,6 +847,11 @@ class ProjectV2WorkflowsOrderField(Enum):
    NUMBER = 'NUMBER' ##The workflows' number
    UPDATED_AT = 'UPDATED_AT' ##The workflows' date and time of update
    CREATED_AT = 'CREATED_AT' ##The workflows' date and time of creation
+
+class PullRequestBranchUpdateMethod(Enum):
+   DEFAULT = None
+   MERGE = 'MERGE' ##Update branch via merge
+   REBASE = 'REBASE' ##Update branch via rebase
 
 class PullRequestMergeMethod(Enum):
    DEFAULT = None
@@ -1641,6 +1650,24 @@ class TeamRole(Enum):
    DEFAULT = None
    ADMIN = 'ADMIN' ##User has admin rights on the team.
    MEMBER = 'MEMBER' ##User is a member of the team.
+
+class ThreadSubscriptionFormAction(Enum):
+   DEFAULT = None
+   NONE = 'NONE' ##The User cannot subscribe or unsubscribe to the thread
+   SUBSCRIBE = 'SUBSCRIBE' ##The User can subscribe to the thread
+   UNSUBSCRIBE = 'UNSUBSCRIBE' ##The User can unsubscribe to the thread
+
+class ThreadSubscriptionState(Enum):
+   DEFAULT = None
+   UNAVAILABLE = 'UNAVAILABLE' ##The subscription status is currently unavailable.
+   DISABLED = 'DISABLED' ##The subscription status is currently disabled.
+   IGNORING_LIST = 'IGNORING_LIST' ##The User is never notified because they are ignoring the list
+   SUBSCRIBED_TO_THREAD_EVENTS = 'SUBSCRIBED_TO_THREAD_EVENTS' ##The User is notified because they chose custom settings for this thread.
+   IGNORING_THREAD = 'IGNORING_THREAD' ##The User is never notified because they are ignoring the thread
+   SUBSCRIBED_TO_LIST = 'SUBSCRIBED_TO_LIST' ##The User is notified becuase they are watching the list
+   SUBSCRIBED_TO_THREAD_TYPE = 'SUBSCRIBED_TO_THREAD_TYPE' ##The User is notified because they chose custom settings for this thread.
+   SUBSCRIBED_TO_THREAD = 'SUBSCRIBED_TO_THREAD' ##The User is notified because they are subscribed to the thread
+   NONE = 'NONE' ##The User is not recieving notifications from this thread
 
 class TopicSuggestionDeclineReason(Enum):
    DEFAULT = None

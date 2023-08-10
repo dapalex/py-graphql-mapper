@@ -183,7 +183,9 @@ def run_gh_update_repo_mutation_literal():
         mutation._args.input.hasWikiEnabled = True
         mutation.type.repository.deployKeys = type(mutation.type.repository.deployKeys)(first=1, after='')
         mutation.type.repository.discussion._args.number = 1
+        mutation.type.repository.discussions = type(mutation.type.repository.discussions)(first=1, after='')
         mutation.type.repository.discussionCategory._args.slug = "1"
+        mutation.type.repository.discussionCategories = type(mutation.type.repository.discussionCategories)(first=1, after='')
         mutation.type.repository.environment._args.name = "nm"
         mutation.type.repository.label._args.name = "nmLbl"
         mutation.type.repository.milestone._args.number = 2
@@ -234,8 +236,11 @@ def run_gh_update_repo_mutation_vars():
         mutation._args.input.hasWikiEnabled = True
         mutation.type.repository.deployKeys = type(mutation.type.repository.deployKeys)(first=1, after='')
         mutation.type.repository.discussion._args.number = 1
-        mutation.type.repository.discussionCategory._args.slug = "1"
+        mutation.type.repository.discussions = type(mutation.type.repository.discussions)(first=1, after='')
+        mutation.type.repository.discussionCategory._args.slug = "345"
+        mutation.type.repository.discussionCategories = type(mutation.type.repository.discussionCategories)(first=1, after='')
         mutation.type.repository.environment._args.name = "nm"
+        mutation.type.repository.environments = type(mutation.type.repository.environments)(first=1, after='')
         mutation.type.repository.label._args.name = "nmLbl"
         mutation.type.repository.milestone._args.number = 2
         from .output.github.gql_types import Package

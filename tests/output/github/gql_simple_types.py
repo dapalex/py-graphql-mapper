@@ -6,9 +6,9 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class GKZDE_anyPinnableItems_Field(ArguedBool):
+class BVSMZ_anyPinnableItems_Field(ArguedBool):
    """
-   GKZDE_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   BVSMZ_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -22,9 +22,9 @@ class GKZDE_anyPinnableItems_Field(ArguedBool):
 
 
 
-class ELUXS_URI_Field(ArguedStr):
+class UOJJB_URI_Field(ArguedStr):
    """
-   ELUXS_URI_Field - URL for the listing's logo image.
+   UOJJB_URI_Field - URL for the listing's logo image.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -38,9 +38,9 @@ class ELUXS_URI_Field(ArguedStr):
 
 
 
-class UAPAG_URI_Field(ArguedStr):
+class VGNVD_URI_Field(ArguedStr):
    """
-   UAPAG_URI_Field - A URL pointing to the app's logo.
+   VGNVD_URI_Field - A URL pointing to the app's logo.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -54,9 +54,9 @@ class UAPAG_URI_Field(ArguedStr):
 
 
 
-class XESGW_URI_Field(ArguedStr):
+class XPWEC_URI_Field(ArguedStr):
    """
-   XESGW_URI_Field - A URL pointing to the enterprise's public avatar.
+   XPWEC_URI_Field - A URL pointing to the enterprise's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -70,9 +70,9 @@ class XESGW_URI_Field(ArguedStr):
 
 
 
-class EJRFT_HTML_Field(ArguedStr):
+class QFPDF_HTML_Field(ArguedStr):
    """
-   EJRFT_HTML_Field - A description of the repository, rendered to HTML without any links in it.
+   QFPDF_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject):
@@ -86,9 +86,9 @@ class EJRFT_HTML_Field(ArguedStr):
 
 
 
-class CGBUE_URI_Field(ArguedStr):
+class CCDMD_URI_Field(ArguedStr):
    """
-   CGBUE_URI_Field - A URL pointing to the enterprise user account's public avatar.
+   CCDMD_URI_Field - A URL pointing to the enterprise user account's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -102,9 +102,9 @@ class CGBUE_URI_Field(ArguedStr):
 
 
 
-class WDZVA_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class CPPFR_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   WDZVA_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   CPPFR_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -124,9 +124,9 @@ class WDZVA_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class VFXER_isSponsoredBy_Field(ArguedBool):
+class ARTOC_isSponsoredBy_Field(ArguedBool):
    """
-   VFXER_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   ARTOC_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -140,9 +140,9 @@ class VFXER_isSponsoredBy_Field(ArguedBool):
 
 
 
-class CIARF_URI_Field(ArguedStr):
+class BXFTL_URI_Field(ArguedStr):
    """
-   CIARF_URI_Field - A URL pointing to the organization's public avatar.
+   BXFTL_URI_Field - A URL pointing to the organization's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -156,9 +156,9 @@ class CIARF_URI_Field(ArguedStr):
 
 
 
-class GWUDW_anyPinnableItems_Field(ArguedBool):
+class VEBII_anyPinnableItems_Field(ArguedBool):
    """
-   GWUDW_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   VEBII_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -172,9 +172,9 @@ class GWUDW_anyPinnableItems_Field(ArguedBool):
 
 
 
-class GCQIJ_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class PMAKA_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   GCQIJ_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   PMAKA_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -194,9 +194,9 @@ class GCQIJ_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class PQKFK_organizationVerifiedDomainEmails_Field(ArguedStr):
+class WIAWR_organizationVerifiedDomainEmails_Field(ArguedStr):
    """
-   PQKFK_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
+   WIAWR_organizationVerifiedDomainEmails_Field - Verified email addresses that match verified domains for a specified organization the user is a member of.
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -210,9 +210,9 @@ class PQKFK_organizationVerifiedDomainEmails_Field(ArguedStr):
 
 
 
-class RDZXD_isSponsoredBy_Field(ArguedBool):
+class FABQT_isSponsoredBy_Field(ArguedBool):
    """
-   RDZXD_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   FABQT_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -226,9 +226,9 @@ class RDZXD_isSponsoredBy_Field(ArguedBool):
 
 
 
-class CTVCB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedBool):
+class MJJHL_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(ArguedBool):
    """
-   CTVCB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
+   MJJHL_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field - Could this user receive email notifications, if the organization had notification restrictions enabled?
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -242,9 +242,9 @@ class CTVCB_canReceiveOrganizationEmailsWhenNotificationsRestricted_Field(Argued
 
 
 
-class TFHJP_URI_Field(ArguedStr):
+class JMHTA_URI_Field(ArguedStr):
    """
-   TFHJP_URI_Field - A URL pointing to the user's public avatar.
+   JMHTA_URI_Field - A URL pointing to the user's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -258,9 +258,9 @@ class TFHJP_URI_Field(ArguedStr):
 
 
 
-class GDNVE_anyPinnableItems_Field(ArguedBool):
+class JEPWY_anyPinnableItems_Field(ArguedBool):
    """
-   GDNVE_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
+   JEPWY_anyPinnableItems_Field - Determine if this repository owner has any items that can be pinned to their profile.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -274,9 +274,9 @@ class GDNVE_anyPinnableItems_Field(ArguedBool):
 
 
 
-class NAJYE_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
+class UKQZV_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
    """
-   NAJYE_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
+   UKQZV_totalSponsorshipAmountAsSponsorInCents_Field - The amount in United States cents (e.g., 500 = $5.00 USD) that this entity has spent on GitHub to fund sponsorships. Only returns a value when viewed by the user themselves or by a user who can manage sponsorships for the requested organization.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -296,9 +296,9 @@ class NAJYE_totalSponsorshipAmountAsSponsorInCents_Field(ArguedInt):
 
 
 
-class HUCUJ_isSponsoredBy_Field(ArguedBool):
+class OTEBA_isSponsoredBy_Field(ArguedBool):
    """
-   HUCUJ_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
+   OTEBA_isSponsoredBy_Field - Whether the given account is sponsoring this user/organization.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -312,9 +312,9 @@ class HUCUJ_isSponsoredBy_Field(ArguedBool):
 
 
 
-class GSAOA_text_Field(ArguedStr):
+class OZLAY_text_Field(ArguedStr):
    """
-   GSAOA_text_Field - UTF8 text data or null if the file is binary
+   OZLAY_text_Field - UTF8 text data or null if the file is binary
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -328,9 +328,9 @@ class GSAOA_text_Field(ArguedStr):
 
 
 
-class YJUMT_totalRepositoryContributions_Field(ArguedInt):
+class BMSBI_totalRepositoryContributions_Field(ArguedInt):
    """
-   YJUMT_totalRepositoryContributions_Field - How many repositories the user created.
+   BMSBI_totalRepositoryContributions_Field - How many repositories the user created.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -344,47 +344,9 @@ class YJUMT_totalRepositoryContributions_Field(ArguedInt):
 
 
 
-class VBYDY_totalRepositoriesWithContributedPullRequests_Field(ArguedInt):
+class FNKPD_totalRepositoriesWithContributedPullRequests_Field(ArguedInt):
    """
-   VBYDY_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject):
-      """
-      excludeFirst - Should the user's first pull request ever be excluded from this count.
-
-      excludePopular - Should the user's most commented pull request be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class RUUQM_totalRepositoriesWithContributedIssues_Field(ArguedInt):
-   """
-   RUUQM_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
-
-   """
-   class intArgs(GQLArgsSet, GQLObject):
-      """
-      excludeFirst - Should the user's first issue ever be excluded from this count.
-
-      excludePopular - Should the user's most commented issue be excluded from this count.
-
-      """
-      excludeFirst: bool
-      excludePopular: bool
-
-   _args: intArgs
-
-
-
-class DVBKA_totalPullRequestContributions_Field(ArguedInt):
-   """
-   DVBKA_totalPullRequestContributions_Field - How many pull requests the user opened.
+   FNKPD_totalRepositoriesWithContributedPullRequests_Field - How many different repositories the user opened pull requests in.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -401,9 +363,9 @@ class DVBKA_totalPullRequestContributions_Field(ArguedInt):
 
 
 
-class OTBMU_totalIssueContributions_Field(ArguedInt):
+class VVYLE_totalRepositoriesWithContributedIssues_Field(ArguedInt):
    """
-   OTBMU_totalIssueContributions_Field - How many issues the user opened.
+   VVYLE_totalRepositoriesWithContributedIssues_Field - How many different repositories the user opened issues in.
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -420,9 +382,47 @@ class OTBMU_totalIssueContributions_Field(ArguedInt):
 
 
 
-class WLCXL_isRequired_Field(ArguedBool):
+class EITDP_totalPullRequestContributions_Field(ArguedInt):
    """
-   WLCXL_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   EITDP_totalPullRequestContributions_Field - How many pull requests the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject):
+      """
+      excludeFirst - Should the user's first pull request ever be excluded from this count.
+
+      excludePopular - Should the user's most commented pull request be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class FYZIX_totalIssueContributions_Field(ArguedInt):
+   """
+   FYZIX_totalIssueContributions_Field - How many issues the user opened.
+
+   """
+   class intArgs(GQLArgsSet, GQLObject):
+      """
+      excludeFirst - Should the user's first issue ever be excluded from this count.
+
+      excludePopular - Should the user's most commented issue be excluded from this count.
+
+      """
+      excludeFirst: bool
+      excludePopular: bool
+
+   _args: intArgs
+
+
+
+class RYMDI_isRequired_Field(ArguedBool):
+   """
+   RYMDI_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -439,9 +439,9 @@ class WLCXL_isRequired_Field(ArguedBool):
 
 
 
-class GKGVB_URI_Field(ArguedStr):
+class DRDDQ_URI_Field(ArguedStr):
    """
-   GKGVB_URI_Field - The avatar of the OAuth application or the user that created the status
+   DRDDQ_URI_Field - The avatar of the OAuth application or the user that created the status
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -455,9 +455,9 @@ class GKGVB_URI_Field(ArguedStr):
 
 
 
-class MMXLZ_isRequired_Field(ArguedBool):
+class FKBFF_isRequired_Field(ArguedBool):
    """
-   MMXLZ_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   FKBFF_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
    class boolArgs(GQLArgsSet, GQLObject):
@@ -474,9 +474,9 @@ class MMXLZ_isRequired_Field(ArguedBool):
 
 
 
-class GBTSP_URI_Field(ArguedStr):
+class AVIVB_URI_Field(ArguedStr):
    """
-   GBTSP_URI_Field - A URL pointing to the author's public avatar.
+   AVIVB_URI_Field - A URL pointing to the author's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -490,25 +490,9 @@ class GBTSP_URI_Field(ArguedStr):
 
 
 
-class LZPAU_viewerMergeHeadlineText_Field(ArguedStr):
+class OBPCW_viewerMergeHeadlineText_Field(ArguedStr):
    """
-   LZPAU_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
-
-   """
-   class strArgs(GQLArgsSet, GQLObject):
-      """
-      mergeType - The merge method for the message.
-
-      """
-      mergeType: PullRequestMergeMethod
-
-   _args: strArgs
-
-
-
-class XCYNJ_viewerMergeBodyText_Field(ArguedStr):
-   """
-   XCYNJ_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+   OBPCW_viewerMergeHeadlineText_Field - The merge headline text for the viewer and method.
 
    """
    class strArgs(GQLArgsSet, GQLObject):
@@ -522,9 +506,25 @@ class XCYNJ_viewerMergeBodyText_Field(ArguedStr):
 
 
 
-class LOVOZ_URI_Field(ArguedStr):
+class HYWKV_viewerMergeBodyText_Field(ArguedStr):
    """
-   LOVOZ_URI_Field - A URL pointing to the team's avatar.
+   HYWKV_viewerMergeBodyText_Field - The merge body text for the viewer and method.
+
+   """
+   class strArgs(GQLArgsSet, GQLObject):
+      """
+      mergeType - The merge method for the message.
+
+      """
+      mergeType: PullRequestMergeMethod
+
+   _args: strArgs
+
+
+
+class JPKBZ_URI_Field(ArguedStr):
+   """
+   JPKBZ_URI_Field - A URL pointing to the team's avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -538,9 +538,9 @@ class LOVOZ_URI_Field(ArguedStr):
 
 
 
-class ERHFD_trackedIssuesCount_Field(ArguedInt):
+class VRVSO_trackedIssuesCount_Field(ArguedInt):
    """
-   ERHFD_trackedIssuesCount_Field - The number of tracked issues for this issue
+   VRVSO_trackedIssuesCount_Field - The number of tracked issues for this issue
 
    """
    class intArgs(GQLArgsSet, GQLObject):
@@ -554,41 +554,9 @@ class ERHFD_trackedIssuesCount_Field(ArguedInt):
 
 
 
-class SMDTK_HTML_Field(ArguedStr):
+class HWFTO_HTML_Field(ArguedStr):
    """
-   SMDTK_HTML_Field - A description of the repository, rendered to HTML without any links in it.
-
-   """
-   class HTMLArgs(GQLArgsSet, GQLObject):
-      """
-      limit - How many characters to return.
-
-      """
-      limit: int
-
-   _args: HTMLArgs
-
-
-
-class OSBRE_URI_Field(ArguedStr):
-   """
-   OSBRE_URI_Field - A URL pointing to the owner's public avatar.
-
-   """
-   class URIArgs(GQLArgsSet, GQLObject):
-      """
-      size - The size of the resulting square image.
-
-      """
-      size: int
-
-   _args: URIArgs
-
-
-
-class XWDQC_HTML_Field(ArguedStr):
-   """
-   XWDQC_HTML_Field - A description of the release, rendered to HTML without any links in it.
+   HWFTO_HTML_Field - A description of the repository, rendered to HTML without any links in it.
 
    """
    class HTMLArgs(GQLArgsSet, GQLObject):
@@ -602,25 +570,9 @@ class XWDQC_HTML_Field(ArguedStr):
 
 
 
-class GWXQC_URI_Field(ArguedStr):
+class DPWTR_URI_Field(ArguedStr):
    """
-   GWXQC_URI_Field - A URL pointing to the GitHub App's public avatar.
-
-   """
-   class URIArgs(GQLArgsSet, GQLObject):
-      """
-      size - The size of the resulting square image.
-
-      """
-      size: int
-
-   _args: URIArgs
-
-
-
-class JYIAS_URI_Field(ArguedStr):
-   """
-   JYIAS_URI_Field - A URL pointing to the actor's public avatar.
+   DPWTR_URI_Field - A URL pointing to the owner's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -634,22 +586,35 @@ class JYIAS_URI_Field(ArguedStr):
 
 
 
-class MGRFS_isRequired_Field(ArguedBool):
+class ZFGNL_HTML_Field(ArguedStr):
    """
-   MGRFS_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
+   ZFGNL_HTML_Field - A description of the release, rendered to HTML without any links in it.
 
    """
-   class boolArgs(GQLArgsSet, GQLObject):
+   class HTMLArgs(GQLArgsSet, GQLObject):
       """
-      pullRequestId - The id of the pull request this is required for
-
-      pullRequestNumber - The number of the pull request this is required for
+      limit - How many characters to return.
 
       """
-      pullRequestId: ID
-      pullRequestNumber: int
+      limit: int
 
-   _args: boolArgs
+   _args: HTMLArgs
+
+
+
+class CQEAN_URI_Field(ArguedStr):
+   """
+   CQEAN_URI_Field - A URL pointing to the GitHub App's public avatar.
+
+   """
+   class URIArgs(GQLArgsSet, GQLObject):
+      """
+      size - The size of the resulting square image.
+
+      """
+      size: int
+
+   _args: URIArgs
 
 
 
@@ -799,11 +764,14 @@ class UpdatePullRequestBranchInput(GQLObject):
 
    expectedHeadOid - The head ref oid for the upstream branch.
 
+   updateMethod - The update branch method to use. If omitted, defaults to 'MERGE'
+
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    pullRequestId: ID
    expectedHeadOid: GitObjectID
+   updateMethod: PullRequestBranchUpdateMethod
    clientMutationId: str
 
 class UpdateProjectV2Input(GQLObject):
@@ -1313,48 +1281,43 @@ class TagNamePatternParameters(GQLObject):
    operator: str
    pattern: str
 
-class Submodule(GQLObject):
+class Subscribable(GQLObject):
    """
-   Submodule - A pointer to a repository at a specific revision embedded inside another repository.
+   Subscribable - Entities that can be subscribed to for web and email notifications.
 
-   branch - The branch of the upstream submodule for tracking updates
+   viewerCanSubscribe - Check if the viewer is able to change their subscription status for the repository.
 
-   gitUrl - The git URL of the submodule repository
-
-   name - The name of the submodule in .gitmodules
-
-   nameRaw - The name of the submodule in .gitmodules (Base64-encoded)
-
-   path - The path in the superproject that this submodule is located in
-
-   pathRaw - The path in the superproject that this submodule is located in (Base64-encoded)
-
-   subprojectCommitOid - The commit revision of the subproject repository being tracked by the submodule
+   viewerSubscription - Identifies if the viewer is watching, not watching, or ignoring the subscribable entity.
 
    """
-   branch: str
-   gitUrl: URI
-   name: str
-   nameRaw: Base64String
-   path: str
-   pathRaw: Base64String
-   subprojectCommitOid: GitObjectID
+   id: ID
+   viewerCanSubscribe: bool
+   viewerSubscription: SubscriptionState
 
-class StatusContextStateCount(GQLObject):
+class SubmitPullRequestReviewInput(GQLObject):
    """
-   StatusContextStateCount - Represents a count of the state of a status context.
+   SubmitPullRequestReviewInput - Autogenerated input type of SubmitPullRequestReview
 
-   count - The number of statuses with this state.
+   pullRequestId - The Pull Request ID to submit any pending reviews.
 
-   state - The state of a status context.
+   pullRequestReviewId - The Pull Request Review ID to submit.
+
+   event - The event to send to the Pull Request Review.
+
+   body - The text field to set on the Pull Request Review.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   count: int
-   state: StatusState
+   pullRequestId: ID
+   pullRequestReviewId: ID
+   event: PullRequestReviewEvent
+   body: str
+   clientMutationId: str
 
-class StatusCheckConfiguration(GQLObject):
+class StatusCheckConfigurationInput(GQLObject):
    """
-   StatusCheckConfiguration - Required status check
+   StatusCheckConfigurationInput - Required status check
 
    context - The status check context name that must be present on the commit.
 
@@ -1364,80 +1327,128 @@ class StatusCheckConfiguration(GQLObject):
    context: str
    integrationId: int
 
-class StartOrganizationMigrationInput(GQLObject):
+class StartRepositoryMigrationInput(GQLObject):
    """
-   StartOrganizationMigrationInput - Autogenerated input type of StartOrganizationMigration
+   StartRepositoryMigrationInput - Autogenerated input type of StartRepositoryMigration
 
-   sourceOrgUrl - The URL of the organization to migrate.
+   sourceId - The ID of the migration source.
 
-   targetOrgName - The name of the target organization.
+   ownerId - The ID of the organization that will own the imported repository.
 
-   targetEnterpriseId - The ID of the enterprise the target organization belongs to.
+   sourceRepositoryUrl - The URL of the source repository.
 
-   sourceAccessToken - The migration source access token.
+   repositoryName - The name of the imported repository.
+
+   continueOnError - Whether to continue the migration on error. Defaults to `false`. We strongly recommend setting this to `true` for the smoothest migration experience. *This default will change to `true` on September 4, 2023.*
+
+   gitArchiveUrl - The signed URL to access the user-uploaded git archive.
+
+   metadataArchiveUrl - The signed URL to access the user-uploaded metadata archive.
+
+   accessToken - The migration source access token.
+
+   githubPat - The GitHub personal access token of the user importing to the target repository.
+
+   skipReleases - Whether to skip migrating releases for the repository.
+
+   targetRepoVisibility - The visibility of the imported repository.
+
+   lockSource - Whether to lock the source repository.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   sourceOrgUrl: URI
-   targetOrgName: str
-   targetEnterpriseId: ID
-   sourceAccessToken: str
+   sourceId: ID
+   ownerId: ID
+   sourceRepositoryUrl: URI
+   repositoryName: str
+   continueOnError: bool
+   gitArchiveUrl: str
+   metadataArchiveUrl: str
+   accessToken: str
+   githubPat: str
+   skipReleases: bool
+   targetRepoVisibility: str
+   lockSource: bool
    clientMutationId: str
 
-class SponsorshipOrder(GQLObject):
+class StarOrder(GQLObject):
    """
-   SponsorshipOrder - Ordering options for sponsorship connections.
+   StarOrder - Ways in which star connections can be ordered.
 
-   field - The field to order sponsorship by.
+   field - The field in which to order nodes by.
+
+   direction - The direction in which to order nodes.
+
+   """
+   field: StarOrderField
+   direction: OrderDirection
+
+class SponsorshipNewsletterOrder(GQLObject):
+   """
+   SponsorshipNewsletterOrder - Ordering options for sponsorship newsletter connections.
+
+   field - The field to order sponsorship newsletters by.
 
    direction - The ordering direction.
 
    """
-   field: SponsorshipOrderField
+   field: SponsorshipNewsletterOrderField
    direction: OrderDirection
 
-class SponsorsTierOrder(GQLObject):
+class SponsorsGoal(GQLObject):
    """
-   SponsorsTierOrder - Ordering options for Sponsors tiers connections.
+   SponsorsGoal - A goal associated with a GitHub Sponsors listing, representing a target the sponsored maintainer would like to attain.
 
-   field - The field to order tiers by.
+   description - A description of the goal from the maintainer.
+
+   kind - What the objective of this goal is.
+
+   percentComplete - The percentage representing how complete this goal is, between 0-100.
+
+   targetValue - What the goal amount is. Represents an amount in USD for monthly sponsorship amount goals. Represents a count of unique sponsors for total sponsors count goals.
+
+   title - A brief summary of the kind and target value of this goal.
+
+   """
+   description: str
+   kind: SponsorsGoalKind
+   percentComplete: int
+   targetValue: int
+   title: str
+
+class SponsorableOrder(GQLObject):
+   """
+   SponsorableOrder - Ordering options for connections to get sponsorable entities for GitHub Sponsors.
+
+   field - The field to order sponsorable entities by.
 
    direction - The ordering direction.
 
    """
-   field: SponsorsTierOrderField
+   field: SponsorableOrderField
    direction: OrderDirection
 
-class SponsorsActivityOrder(GQLObject):
+class SocialAccount(GQLObject):
    """
-   SponsorsActivityOrder - Ordering options for GitHub Sponsors activity connections.
+   SocialAccount - Social media profile associated with a user.
 
-   field - The field to order activity by.
+   displayName - Name of the social media account as it appears on the profile.
 
-   direction - The ordering direction.
+   provider - Software or company that hosts the social media account.
 
-   """
-   field: SponsorsActivityOrderField
-   direction: OrderDirection
-
-class SponsorOrder(GQLObject):
-   """
-   SponsorOrder - Ordering options for connections to get sponsor entities for GitHub Sponsors.
-
-   field - The field to order sponsor entities by.
-
-   direction - The ordering direction.
+   url - URL of the social media account.
 
    """
-   field: SponsorOrderField
-   direction: OrderDirection
+   displayName: str
+   provider: SocialAccountProvider
+   url: URI
 
-class SetUserInteractionLimitInput(GQLObject):
+class SetRepositoryInteractionLimitInput(GQLObject):
    """
-   SetUserInteractionLimitInput - Autogenerated input type of SetUserInteractionLimit
+   SetRepositoryInteractionLimitInput - Autogenerated input type of SetRepositoryInteractionLimit
 
-   userId - The ID of the user to set a limit for.
+   repositoryId - The ID of the repository to set a limit for.
 
    limit - The limit to set.
 
@@ -1446,185 +1457,209 @@ class SetUserInteractionLimitInput(GQLObject):
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   userId: ID
+   repositoryId: ID
    limit: RepositoryInteractionLimit
    expiry: RepositoryInteractionLimitExpiry
    clientMutationId: str
 
-class SetOrganizationInteractionLimitInput(GQLObject):
+class SetEnterpriseIdentityProviderInput(GQLObject):
    """
-   SetOrganizationInteractionLimitInput - Autogenerated input type of SetOrganizationInteractionLimit
+   SetEnterpriseIdentityProviderInput - Autogenerated input type of SetEnterpriseIdentityProvider
 
-   organizationId - The ID of the organization to set a limit for.
+   enterpriseId - The ID of the enterprise on which to set an identity provider.
 
-   limit - The limit to set.
+   ssoUrl - The URL endpoint for the identity provider's SAML SSO.
 
-   expiry - When this limit should expire.
+   issuer - The Issuer Entity ID for the SAML identity provider
 
-   clientMutationId - A unique identifier for the client performing the mutation.
+   idpCertificate - The x509 certificate used by the identity provider to sign assertions and responses.
 
-   """
-   organizationId: ID
-   limit: RepositoryInteractionLimit
-   expiry: RepositoryInteractionLimitExpiry
-   clientMutationId: str
+   signatureMethod - The signature algorithm used to sign SAML requests for the identity provider.
 
-class SecurityVulnerabilityOrder(GQLObject):
-   """
-   SecurityVulnerabilityOrder - Ordering options for security vulnerability connections
-
-   field - The field to order security vulnerabilities by.
-
-   direction - The ordering direction.
-
-   """
-   field: SecurityVulnerabilityOrderField
-   direction: OrderDirection
-
-class SecurityAdvisoryPackageVersion(GQLObject):
-   """
-   SecurityAdvisoryPackageVersion - An individual package version
-
-   identifier - The package name or version
-
-   """
-   identifier: str
-
-class SecurityAdvisoryOrder(GQLObject):
-   """
-   SecurityAdvisoryOrder - Ordering options for security advisory connections
-
-   field - The field to order security advisories by.
-
-   direction - The ordering direction.
-
-   """
-   field: SecurityAdvisoryOrderField
-   direction: OrderDirection
-
-class SecurityAdvisoryIdentifier(GQLObject):
-   """
-   SecurityAdvisoryIdentifier - A GitHub Security Advisory Identifier
-
-   type - The identifier type, e.g. GHSA, CVE
-
-   value - The identifier
-
-   """
-   type: str
-   value: str
-
-class RevokeMigratorRolePayload(GQLObject):
-   """
-   RevokeMigratorRolePayload - Autogenerated return type of RevokeMigratorRole
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   success - Did the operation succeed?
-
-   """
-   clientMutationId: str
-   success: bool
-
-class RevokeEnterpriseOrganizationsMigratorRoleInput(GQLObject):
-   """
-   RevokeEnterpriseOrganizationsMigratorRoleInput - Autogenerated input type of RevokeEnterpriseOrganizationsMigratorRole
-
-   enterpriseId - The ID of the enterprise to which all organizations managed by it will be granted the migrator role.
-
-   login - The login of the user to revoke the migrator role
+   digestMethod - The digest algorithm used to sign SAML requests for the identity provider.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    enterpriseId: ID
-   login: str
+   ssoUrl: URI
+   issuer: str
+   idpCertificate: str
+   signatureMethod: SamlSignatureAlgorithm
+   digestMethod: SamlDigestAlgorithm
    clientMutationId: str
 
-class RevertPullRequestInput(GQLObject):
+class SecurityAdvisoryReference(GQLObject):
    """
-   RevertPullRequestInput - Autogenerated input type of RevertPullRequest
+   SecurityAdvisoryReference - A GitHub Security Advisory Reference
 
-   pullRequestId - The ID of the pull request to revert.
+   url - A publicly accessible reference
 
-   title - The title of the revert pull request.
+   """
+   url: URI
 
-   body - The description of the revert pull request.
+class SecurityAdvisoryPackage(GQLObject):
+   """
+   SecurityAdvisoryPackage - An individual package
 
-   draft - Indicates whether the revert pull request should be a draft.
+   ecosystem - The ecosystem the package belongs to, e.g. RUBYGEMS, NPM
+
+   name - The package name
+
+   """
+   ecosystem: SecurityAdvisoryEcosystem
+   name: str
+
+class SecurityAdvisoryIdentifierFilter(GQLObject):
+   """
+   SecurityAdvisoryIdentifierFilter - An advisory identifier to filter results on.
+
+   type - The identifier type.
+
+   value - The identifier string. Supports exact or partial matching.
+
+   """
+   type: SecurityAdvisoryIdentifierType
+   value: str
+
+class SavedReplyOrder(GQLObject):
+   """
+   SavedReplyOrder - Ordering options for saved reply connections.
+
+   field - The field to order saved replies by.
+
+   direction - The ordering direction.
+
+   """
+   field: SavedReplyOrderField
+   direction: OrderDirection
+
+class RevokeMigratorRoleInput(GQLObject):
+   """
+   RevokeMigratorRoleInput - Autogenerated input type of RevokeMigratorRole
+
+   organizationId - The ID of the organization that the user/team belongs to.
+
+   actor - The user login or Team slug to revoke the migrator role from.
+
+   actorType - Specifies the type of the actor, can be either USER or TEAM.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   pullRequestId: ID
-   title: str
-   body: str
-   draft: bool
+   organizationId: ID
+   actor: str
+   actorType: ActorType
    clientMutationId: str
 
-class ResolveReviewThreadInput(GQLObject):
+class ReviewStatusHovercardContext(GQLObject):
    """
-   ResolveReviewThreadInput - Autogenerated input type of ResolveReviewThread
+   ReviewStatusHovercardContext - A hovercard context with a message describing the current code review state of the pull
+request.
 
-   threadId - The ID of the thread to resolve
+
+   message - A string describing this context
+
+   octicon - An octicon to accompany this context
+
+   reviewDecision - The current status of the pull request with respect to code review.
+
+   """
+   message: str
+   octicon: str
+   reviewDecision: PullRequestReviewDecision
+
+class RetireSponsorsTierInput(GQLObject):
+   """
+   RetireSponsorsTierInput - Autogenerated input type of RetireSponsorsTier
+
+   tierId - The ID of the published tier to retire.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   threadId: ID
+   tierId: ID
    clientMutationId: str
 
-class RequiredStatusCheckInput(GQLObject):
+class RerequestCheckSuiteInput(GQLObject):
    """
-   RequiredStatusCheckInput - Specifies the attributes for a new or updated required status check.
+   RerequestCheckSuiteInput - Autogenerated input type of RerequestCheckSuite
 
-   context - Status check context that must pass for commits to be accepted to the matching branch.
+   repositoryId - The Node ID of the repository.
 
-   appId - The ID of the App that must set the status in order for it to be accepted. Omit this value to use whichever app has recently been setting this status, or use "any" to allow any app to set the status.
+   checkSuiteId - The Node ID of the check suite.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   context: str
-   appId: ID
+   repositoryId: ID
+   checkSuiteId: ID
+   clientMutationId: str
 
-class RequiredDeploymentsParameters(GQLObject):
+class RequiredDeploymentsParametersInput(GQLObject):
    """
-   RequiredDeploymentsParameters - Choose which environments must be successfully deployed to before branches can be merged into a branch that matches this rule.
+   RequiredDeploymentsParametersInput - Choose which environments must be successfully deployed to before branches can be merged into a branch that matches this rule.
 
    requiredDeploymentEnvironments - The environments that must be successfully deployed to before branches can be merged.
 
    """
    requiredDeploymentEnvironments: list[str]
 
-class RequirableByPullRequest(GQLObject):
+class VAEEW_isRequired_Field(ArguedBool):
    """
-   RequirableByPullRequest - Represents a type that can be required by a pull request for merging.
-
-   isRequired - Whether this is required to pass before merging for a specific pull request.
+   VAEEW_isRequired_Field - Whether this is required to pass before merging for a specific pull request.
 
    """
-   isRequired: MGRFS_isRequired_Field
+   class boolArgs(GQLArgsSet, GQLObject):
+      """
+      pullRequestId - The id of the pull request this is required for
 
-class RepositoryRulesetBypassActorInput(GQLObject):
+      pullRequestNumber - The number of the pull request this is required for
+
+      """
+      pullRequestId: ID
+      pullRequestNumber: int
+
+   _args: boolArgs
+
+
+
+class RequestReviewsInput(GQLObject):
    """
-   RepositoryRulesetBypassActorInput - Specifies the attributes for a new or updated ruleset bypass actor. Only one of `actor_id`, `repository_role_database_id`, or `organization_admin` should be specified.
+   RequestReviewsInput - Autogenerated input type of RequestReviews
 
-   actorId - For Team and Integration bypasses, the Team or Integration ID
+   pullRequestId - The Node ID of the pull request to modify.
 
-   repositoryRoleDatabaseId - For role bypasses, the role database ID
+   userIds - The Node IDs of the user to request.
 
-   organizationAdmin - For org admin bupasses, true
+   teamIds - The Node IDs of the team to request.
 
-   bypassMode - The bypass mode for this actor.
+   union - Add users to the set rather than replace.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   actorId: ID
-   repositoryRoleDatabaseId: int
-   organizationAdmin: bool
-   bypassMode: RepositoryRulesetBypassActorBypassMode
+   pullRequestId: ID
+   userIds: list[ID]
+   teamIds: list[ID]
+   union: bool
+   clientMutationId: str
 
-class RepositoryNameConditionTargetInput(GQLObject):
+class RepositoryOrder(GQLObject):
    """
-   RepositoryNameConditionTargetInput - Parameters to be used for the repository_name condition
+   RepositoryOrder - Ordering options for repository connections
+
+   field - The field to order repositories by.
+
+   direction - The ordering direction.
+
+   """
+   field: RepositoryOrderField
+   direction: OrderDirection
+
+class RepositoryNameConditionTarget(GQLObject):
+   """
+   RepositoryNameConditionTarget - Parameters to be used for the repository_name condition
 
    exclude - Array of repository names or patterns to exclude. The condition will not pass if any of these patterns match.
 
@@ -1637,197 +1672,125 @@ class RepositoryNameConditionTargetInput(GQLObject):
    include: list[str]
    protected: bool
 
-class RepositoryMigrationOrder(GQLObject):
+class RepositoryInvitationOrder(GQLObject):
    """
-   RepositoryMigrationOrder - Ordering options for repository migrations.
+   RepositoryInvitationOrder - Ordering options for repository invitation connections.
 
-   field - The field to order repository migrations by.
+   field - The field to order repository invitations by.
 
    direction - The ordering direction.
 
    """
-   field: RepositoryMigrationOrderField
-   direction: RepositoryMigrationOrderDirection
+   field: RepositoryInvitationOrderField
+   direction: OrderDirection
 
-class RepositoryInteractionAbility(GQLObject):
+class RepositoryIdConditionTargetInput(GQLObject):
    """
-   RepositoryInteractionAbility - Repository interaction limit that applies to this object.
-
-   expiresAt - The time the currently active limit expires.
-
-   limit - The current limit that is enabled on this object.
-
-   origin - The origin of the currently active interaction limit.
-
-   """
-   expiresAt: DateTime
-   limit: RepositoryInteractionLimit
-   origin: RepositoryInteractionLimitOrigin
-
-class RepositoryIdConditionTarget(GQLObject):
-   """
-   RepositoryIdConditionTarget - Parameters to be used for the repository_id condition
+   RepositoryIdConditionTargetInput - Parameters to be used for the repository_id condition
 
    repositoryIds - One of these repo IDs must match the repo.
 
    """
    repositoryIds: list[ID]
 
-class RepositoryCodeownersError(GQLObject):
+class RepositoryContactLink(GQLObject):
    """
-   RepositoryCodeownersError - An error in a `CODEOWNERS` file.
+   RepositoryContactLink - A repository contact link.
 
-   column - The column number where the error occurs.
+   about - The contact link purpose.
 
-   kind - A short string describing the type of error.
+   name - The contact link name.
 
-   line - The line number where the error occurs.
-
-   message - A complete description of the error, combining information from other fields.
-
-   path - The path to the file when the error occurs.
-
-   source - The content of the line where the error occurs.
-
-   suggestion - A suggestion of how to fix the error.
+   url - The contact link URL.
 
    """
-   column: int
-   kind: str
-   line: int
-   message: str
-   path: str
-   source: str
-   suggestion: str
+   about: str
+   name: str
+   url: URI
 
-class ReopenIssueInput(GQLObject):
+class ReopenPullRequestInput(GQLObject):
    """
-   ReopenIssueInput - Autogenerated input type of ReopenIssue
+   ReopenPullRequestInput - Autogenerated input type of ReopenPullRequest
 
-   issueId - ID of the issue to be opened.
+   pullRequestId - ID of the pull request to be reopened.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   issueId: ID
+   pullRequestId: ID
    clientMutationId: str
 
-class RemoveUpvoteInput(GQLObject):
+class ReopenDiscussionInput(GQLObject):
    """
-   RemoveUpvoteInput - Autogenerated input type of RemoveUpvote
+   ReopenDiscussionInput - Autogenerated input type of ReopenDiscussion
 
-   subjectId - The Node ID of the discussion or comment to remove upvote.
+   discussionId - ID of the discussion to be reopened.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   subjectId: ID
+   discussionId: ID
    clientMutationId: str
 
-class RemoveReactionInput(GQLObject):
+class RemoveStarInput(GQLObject):
    """
-   RemoveReactionInput - Autogenerated input type of RemoveReaction
+   RemoveStarInput - Autogenerated input type of RemoveStar
 
-   subjectId - The Node ID of the subject to modify.
-
-   content - The name of the emoji reaction to remove.
+   starrableId - The Starrable ID to unstar.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   subjectId: ID
-   content: ReactionContent
+   starrableId: ID
    clientMutationId: str
 
-class RemoveLabelsFromLabelableInput(GQLObject):
+class RemoveOutsideCollaboratorInput(GQLObject):
    """
-   RemoveLabelsFromLabelableInput - Autogenerated input type of RemoveLabelsFromLabelable
+   RemoveOutsideCollaboratorInput - Autogenerated input type of RemoveOutsideCollaborator
 
-   labelableId - The id of the Labelable to remove labels from.
+   userId - The ID of the outside collaborator to remove.
 
-   labelIds - The ids of labels to remove.
+   organizationId - The ID of the organization to remove the outside collaborator from.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   labelableId: ID
-   labelIds: list[ID]
-   clientMutationId: str
-
-class RemoveEnterpriseSupportEntitlementInput(GQLObject):
-   """
-   RemoveEnterpriseSupportEntitlementInput - Autogenerated input type of RemoveEnterpriseSupportEntitlement
-
-   enterpriseId - The ID of the Enterprise which the admin belongs to.
-
-   login - The login of a member who will lose the support entitlement.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   enterpriseId: ID
-   login: str
-   clientMutationId: str
-
-class RemoveEnterpriseMemberInput(GQLObject):
-   """
-   RemoveEnterpriseMemberInput - Autogenerated input type of RemoveEnterpriseMember
-
-   enterpriseId - The ID of the enterprise from which the user should be removed.
-
-   userId - The ID of the user to remove from the enterprise.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   enterpriseId: ID
    userId: ID
+   organizationId: ID
    clientMutationId: str
 
-class RemoveEnterpriseAdminInput(GQLObject):
+class RemoveEnterpriseSupportEntitlementPayload(GQLObject):
    """
-   RemoveEnterpriseAdminInput - Autogenerated input type of RemoveEnterpriseAdmin
+   RemoveEnterpriseSupportEntitlementPayload - Autogenerated return type of RemoveEnterpriseSupportEntitlement
 
-   enterpriseId - The Enterprise ID from which to remove the administrator.
+   clientMutationId - A unique identifier for the client performing the mutation.
 
-   login - The login of the user to remove as an administrator.
+   message - A message confirming the result of removing the support entitlement.
+
+   """
+   clientMutationId: str
+   message: str
+
+class RemoveEnterpriseOrganizationInput(GQLObject):
+   """
+   RemoveEnterpriseOrganizationInput - Autogenerated input type of RemoveEnterpriseOrganization
+
+   enterpriseId - The ID of the enterprise from which the organization should be removed.
+
+   organizationId - The ID of the organization to remove from the enterprise.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    enterpriseId: ID
-   login: str
+   organizationId: ID
    clientMutationId: str
 
-class ReleaseOrder(GQLObject):
+class RemoveEnterpriseIdentityProviderInput(GQLObject):
    """
-   ReleaseOrder - Ways in which lists of releases can be ordered upon return.
+   RemoveEnterpriseIdentityProviderInput - Autogenerated input type of RemoveEnterpriseIdentityProvider
 
-   field - The field in which to order releases by.
-
-   direction - The direction in which to order releases by the specified field.
-
-   """
-   field: ReleaseOrderField
-   direction: OrderDirection
-
-class RegenerateVerifiableDomainTokenPayload(GQLObject):
-   """
-   RegenerateVerifiableDomainTokenPayload - Autogenerated return type of RegenerateVerifiableDomainToken
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   verificationToken - The verification token that was generated.
-
-   """
-   clientMutationId: str
-   verificationToken: str
-
-class RegenerateEnterpriseIdentityProviderRecoveryCodesInput(GQLObject):
-   """
-   RegenerateEnterpriseIdentityProviderRecoveryCodesInput - Autogenerated input type of RegenerateEnterpriseIdentityProviderRecoveryCodes
-
-   enterpriseId - The ID of the enterprise on which to set an identity provider.
+   enterpriseId - The ID of the enterprise from which to remove the identity provider.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
@@ -1835,21 +1798,96 @@ class RegenerateEnterpriseIdentityProviderRecoveryCodesInput(GQLObject):
    enterpriseId: ID
    clientMutationId: str
 
-class RefOrder(GQLObject):
+class RemoveAssigneesFromAssignableInput(GQLObject):
    """
-   RefOrder - Ways in which lists of git refs can be ordered upon return.
+   RemoveAssigneesFromAssignableInput - Autogenerated input type of RemoveAssigneesFromAssignable
 
-   field - The field in which to order refs by.
+   assignableId - The id of the assignable object to remove assignees from.
 
-   direction - The direction in which to order refs by the specified field.
+   assigneeIds - The id of users to remove as assignees.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   field: RefOrderField
-   direction: OrderDirection
+   assignableId: ID
+   assigneeIds: list[ID]
+   clientMutationId: str
 
-class RefNameConditionTarget(GQLObject):
+class RejectDeploymentsInput(GQLObject):
    """
-   RefNameConditionTarget - Parameters to be used for the ref_name condition
+   RejectDeploymentsInput - Autogenerated input type of RejectDeployments
+
+   workflowRunId - The node ID of the workflow run containing the pending deployments.
+
+   environmentIds - The ids of environments to reject deployments
+
+   comment - Optional comment for rejecting deployments
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   workflowRunId: ID
+   environmentIds: list[ID]
+   comment: str
+   clientMutationId: str
+
+class RegenerateVerifiableDomainTokenInput(GQLObject):
+   """
+   RegenerateVerifiableDomainTokenInput - Autogenerated input type of RegenerateVerifiableDomainToken
+
+   id - The ID of the verifiable domain to regenerate the verification token of.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   id: ID
+   clientMutationId: str
+
+class RefUpdateRule(GQLObject):
+   """
+   RefUpdateRule - A ref update rules for a viewer.
+
+   allowsDeletions - Can this branch be deleted.
+
+   allowsForcePushes - Are force pushes allowed on this branch.
+
+   blocksCreations - Can matching branches be created.
+
+   pattern - Identifies the protection rule pattern.
+
+   requiredApprovingReviewCount - Number of approving reviews required to update matching branches.
+
+   requiredStatusCheckContexts - List of required status check contexts that must pass for commits to be accepted to matching branches.
+
+   requiresCodeOwnerReviews - Are reviews from code owners required to update matching branches.
+
+   requiresConversationResolution - Are conversations required to be resolved before merging.
+
+   requiresLinearHistory - Are merge commits prohibited from being pushed to this branch.
+
+   requiresSignatures - Are commits required to be signed.
+
+   viewerAllowedToDismissReviews - Is the viewer allowed to dismiss reviews.
+
+   viewerCanPush - Can the viewer push to the branch
+
+   """
+   allowsDeletions: bool
+   allowsForcePushes: bool
+   blocksCreations: bool
+   pattern: str
+   requiredApprovingReviewCount: int
+   requiredStatusCheckContexts: list[str]
+   requiresCodeOwnerReviews: bool
+   requiresConversationResolution: bool
+   requiresLinearHistory: bool
+   requiresSignatures: bool
+   viewerAllowedToDismissReviews: bool
+   viewerCanPush: bool
+
+class RefNameConditionTargetInput(GQLObject):
+   """
+   RefNameConditionTargetInput - Parameters to be used for the ref_name condition
 
    exclude - Array of ref names or patterns to exclude. The condition will not pass if any of these patterns match.
 
@@ -1859,33 +1897,21 @@ class RefNameConditionTarget(GQLObject):
    exclude: list[str]
    include: list[str]
 
-class RateLimit(GQLObject):
+class ReactionOrder(GQLObject):
    """
-   RateLimit - Represents the client's rate limit.
+   ReactionOrder - Ways in which lists of reactions can be ordered upon return.
 
-   cost - The point cost for the current query counting against the rate limit.
+   field - The field in which to order reactions by.
 
-   limit - The maximum number of points the client is permitted to consume in a 60 minute window.
-
-   nodeCount - The maximum number of nodes this query may return
-
-   remaining - The number of points remaining in the current rate limit window.
-
-   resetAt - The time at which the current rate limit window resets in UTC epoch seconds.
-
-   used - The number of points used in the current rate limit window.
+   direction - The direction in which to order reactions by the specified field.
 
    """
-   cost: int
-   limit: int
-   nodeCount: int
-   remaining: int
-   resetAt: DateTime
-   used: int
+   field: ReactionOrderField
+   direction: OrderDirection
 
-class PullRequestParameters(GQLObject):
+class PullRequestParametersInput(GQLObject):
    """
-   PullRequestParameters - Require all commits be made to a non-target branch and submitted via a pull request before they can be merged.
+   PullRequestParametersInput - Require all commits be made to a non-target branch and submitted via a pull request before they can be merged.
 
    dismissStaleReviewsOnPush - New, reviewable commits pushed will dismiss previous pull request review approvals.
 
@@ -1904,587 +1930,541 @@ class PullRequestParameters(GQLObject):
    requiredApprovingReviewCount: int
    requiredReviewThreadResolution: bool
 
-class PullRequestChangedFile(GQLObject):
+class PullRequestOrder(GQLObject):
    """
-   PullRequestChangedFile - A file changed in a pull request.
+   PullRequestOrder - Ways in which lists of issues can be ordered upon return.
 
-   additions - The number of additions to the file.
+   field - The field in which to order pull requests by.
 
-   changeType - How the file was changed in this PullRequest
-
-   deletions - The number of deletions to the file.
-
-   path - The path of the file.
-
-   viewerViewedState - The state of the file for the viewer.
+   direction - The direction in which to order pull requests by the specified field.
 
    """
-   additions: int
-   changeType: PatchStatus
-   deletions: int
-   path: str
-   viewerViewedState: FileViewedState
+   field: PullRequestOrderField
+   direction: OrderDirection
 
-class PublicKey(GQLObject):
+class PublishSponsorsTierInput(GQLObject):
    """
-   PublicKey - A user's public key.
+   PublishSponsorsTierInput - Autogenerated input type of PublishSponsorsTier
 
-   accessedAt - The last time this authorization was used to perform an action. Values will be null for keys not owned by the user.
+   tierId - The ID of the draft tier to publish.
 
-   createdAt - Identifies the date and time when the key was created. Keys created before March 5th, 2014 have inaccurate values. Values will be null for keys not owned by the user.
-
-   fingerprint - The fingerprint for this PublicKey.
-
-   isReadOnly - Whether this PublicKey is read-only or not. Values will be null for keys not owned by the user.
-
-   key - The public key string.
-
-   updatedAt - Identifies the date and time when the key was updated. Keys created before March 5th, 2014 may have inaccurate values. Values will be null for keys not owned by the user.
+   clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   accessedAt: DateTime
-   createdAt: DateTime
-   fingerprint: str
-   id: ID
-   isReadOnly: bool
-   key: str
-   updatedAt: DateTime
+   tierId: ID
+   clientMutationId: str
 
-class ProjectV2ViewOrder(GQLObject):
+class ProjectV2WorkflowOrder(GQLObject):
    """
-   ProjectV2ViewOrder - Ordering options for project v2 view connections
+   ProjectV2WorkflowOrder - Ordering options for project v2 workflows connections
 
-   field - The field to order the project v2 views by.
+   field - The field to order the project v2 workflows by.
 
    direction - The ordering direction.
 
    """
-   field: ProjectV2ViewOrderField
+   field: ProjectV2WorkflowsOrderField
    direction: OrderDirection
 
-class ProjectV2SingleSelectFieldOption(GQLObject):
+class ProjectV2SingleSelectFieldOptionInput(GQLObject):
    """
-   ProjectV2SingleSelectFieldOption - Single select field option for a configuration for a project.
+   ProjectV2SingleSelectFieldOptionInput - Represents a single select field option
 
-   color - The option's display color.
+   name - The name of the option
 
-   description - The option's plain-text description.
+   color - The display color of the option
 
-   descriptionHTML - The option's description, possibly containing HTML.
-
-   id - The option's ID.
-
-   name - The option's name.
-
-   nameHTML - The option's html name.
+   description - The description text of the option
 
    """
+   name: str
    color: ProjectV2SingleSelectFieldOptionColor
    description: str
-   descriptionHTML: str
-   id: str
-   name: str
-   nameHTML: str
 
-class ProjectV2IterationFieldIteration(GQLObject):
+class ProjectV2Order(GQLObject):
    """
-   ProjectV2IterationFieldIteration - Iteration field iteration settings for a project.
-
-   duration - The iteration's duration in days
-
-   id - The iteration's ID.
-
-   startDate - The iteration's start date
-
-   title - The iteration's title.
-
-   titleHTML - The iteration's html title.
-
-   """
-   duration: int
-   id: str
-   startDate: Date
-   title: str
-   titleHTML: str
-
-class ProjectV2ItemFieldValueOrder(GQLObject):
-   """
-   ProjectV2ItemFieldValueOrder - Ordering options for project v2 item field value connections
-
-   field - The field to order the project v2 item field values by.
-
-   direction - The ordering direction.
-
-   """
-   field: ProjectV2ItemFieldValueOrderField
-   direction: OrderDirection
-
-class ProjectV2FieldValue(GQLObject):
-   """
-   ProjectV2FieldValue - The values that can be used to update a field of an item inside a Project. Only 1 value can be updated at a time.
-
-   text - The text to set on the field.
-
-   number - The number to set on the field.
-
-   date - The ISO 8601 date to set on the field.
-
-   singleSelectOptionId - The id of the single select option to set on the field.
-
-   iterationId - The id of the iteration to set on the field.
-
-   """
-   text: str
-   number: float
-   date: Date
-   singleSelectOptionId: str
-   iterationId: str
-
-class ProjectV2Collaborator(GQLObject):
-   """
-   ProjectV2Collaborator - A collaborator to update on a project. Only one of the userId or teamId should be provided.
-
-   userId - The ID of the user as a collaborator.
-
-   teamId - The ID of the team as a collaborator.
-
-   role - The role to grant the collaborator
-
-   """
-   userId: ID
-   teamId: ID
-   role: ProjectV2Roles
-
-class ProjectOrder(GQLObject):
-   """
-   ProjectOrder - Ways in which lists of projects can be ordered upon return.
+   ProjectV2Order - Ways in which lists of projects can be ordered upon return.
 
    field - The field in which to order projects by.
 
    direction - The direction in which to order projects by the specified field.
 
    """
-   field: ProjectOrderField
+   field: ProjectV2OrderField
    direction: OrderDirection
 
-class PageInfo(GQLObject):
+class ProjectV2ItemOrder(GQLObject):
    """
-   PageInfo - Information about pagination in a connection.
+   ProjectV2ItemOrder - Ordering options for project v2 item connections
 
-   endCursor - When paginating forwards, the cursor to continue.
-
-   hasNextPage - When paginating forwards, are there more items?
-
-   hasPreviousPage - When paginating backwards, are there more items?
-
-   startCursor - When paginating backwards, the cursor to continue.
-
-   """
-   endCursor: str
-   hasNextPage: bool
-   hasPreviousPage: bool
-   startCursor: str
-
-class PackageVersionOrder(GQLObject):
-   """
-   PackageVersionOrder - Ways in which lists of package versions can be ordered upon return.
-
-   field - The field in which to order package versions by.
-
-   direction - The direction in which to order package versions by the specified field.
-
-   """
-   field: PackageVersionOrderField
-   direction: OrderDirection
-
-class PackageOrder(GQLObject):
-   """
-   PackageOrder - Ways in which lists of packages can be ordered upon return.
-
-   field - The field in which to order packages by.
-
-   direction - The direction in which to order packages by the specified field.
-
-   """
-   field: PackageOrderField
-   direction: OrderDirection
-
-class OrganizationOrder(GQLObject):
-   """
-   OrganizationOrder - Ordering options for organization connections.
-
-   field - The field to order organizations by.
+   field - The field to order the project v2 items by.
 
    direction - The ordering direction.
 
    """
-   field: OrganizationOrderField
+   field: ProjectV2ItemOrderField
    direction: OrderDirection
 
-class OrgEnterpriseOwnerOrder(GQLObject):
+class ProjectV2Filters(GQLObject):
    """
-   OrgEnterpriseOwnerOrder - Ordering options for an organization's enterprise owner connections.
+   ProjectV2Filters - Ways in which to filter lists of projects.
 
-   field - The field to order enterprise owners by.
+   state - List project v2 filtered by the state given.
+
+   """
+   state: ProjectV2State
+
+class ProjectV2FieldOrder(GQLObject):
+   """
+   ProjectV2FieldOrder - Ordering options for project v2 field connections
+
+   field - The field to order the project v2 fields by.
 
    direction - The ordering direction.
 
    """
-   field: OrgEnterpriseOwnerOrderField
+   field: ProjectV2FieldOrderField
    direction: OrderDirection
 
-class Node(GQLObject):
+class ProjectProgress(GQLObject):
    """
-   Node - An object with an ID.
+   ProjectProgress - Project progress stats.
 
-   id - ID of the object.
+   doneCount - The number of done cards.
+
+   donePercentage - The percentage of done cards.
+
+   enabled - Whether progress tracking is enabled and cards with purpose exist for this project
+
+   inProgressCount - The number of in-progress cards.
+
+   inProgressPercentage - The percentage of in-progress cards.
+
+   todoCount - The number of to do cards.
+
+   todoPercentage - The percentage of to do cards.
 
    """
-   id: ID
+   doneCount: int
+   donePercentage: float
+   enabled: bool
+   inProgressCount: int
+   inProgressPercentage: float
+   todoCount: int
+   todoPercentage: float
 
-class MoveProjectCardInput(GQLObject):
+class PinIssueInput(GQLObject):
    """
-   MoveProjectCardInput - Autogenerated input type of MoveProjectCard
+   PinIssueInput - Autogenerated input type of PinIssue
 
-   cardId - The id of the card to move.
-
-   columnId - The id of the column to move it into.
-
-   afterCardId - Place the new card after the card with this id. Pass null to place it at the top.
+   issueId - The ID of the issue to be pinned
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   cardId: ID
-   columnId: ID
-   afterCardId: ID
+   issueId: ID
    clientMutationId: str
 
-class Minimizable(GQLObject):
+class PackageVersionStatistics(GQLObject):
    """
-   Minimizable - Entities that can be minimized.
+   PackageVersionStatistics - Represents a object that contains package version activity statistics such as downloads.
 
-   isMinimized - Returns whether or not a comment has been minimized.
-
-   minimizedReason - Returns why the comment was minimized. One of `abuse`, `off-topic`, `outdated`, `resolved`, `duplicate` and `spam`. Note that the case and formatting of these values differs from the inputs to the `MinimizeComment` mutation.
-
-   viewerCanMinimize - Check if the current viewer can minimize this object.
+   downloadsTotalCount - Number of times the package was downloaded since it was created.
 
    """
-   isMinimized: bool
-   minimizedReason: str
-   viewerCanMinimize: bool
+   downloadsTotalCount: int
 
-class MigrationSource(GQLObject):
+class PackageStatistics(GQLObject):
    """
-   MigrationSource - A GitHub Enterprise Importer (GEI) migration source.
+   PackageStatistics - Represents a object that contains package activity statistics such as downloads.
 
-   name - The migration source name.
-
-   type - The migration source type.
-
-   url - The migration source URL, for example `https://github.com` or `https://monalisa.ghe.com`.
+   downloadsTotalCount - Number of times the package was downloaded since it was created.
 
    """
+   downloadsTotalCount: int
+
+class PackageFileOrder(GQLObject):
+   """
+   PackageFileOrder - Ways in which lists of package files can be ordered upon return.
+
+   field - The field in which to order package files by.
+
+   direction - The direction in which to order package files by the specified field.
+
+   """
+   field: PackageFileOrderField
+   direction: OrderDirection
+
+class OrganizationMigration(GQLObject):
+   """
+   OrganizationMigration - A GitHub Enterprise Importer (GEI) organization migration.
+
+   createdAt - Identifies the date and time when the object was created.
+
+   databaseId - Identifies the primary key from the database.
+
+   failureReason - The reason the organization migration failed.
+
+   remainingRepositoriesCount - The remaining amount of repos to be migrated.
+
+   sourceOrgName - The name of the source organization to be migrated.
+
+   sourceOrgUrl - The URL of the source organization to migrate.
+
+   state - The migration state.
+
+   targetOrgName - The name of the target organization.
+
+   totalRepositoriesCount - The total amount of repositories to be migrated.
+
+   """
+   createdAt: DateTime
+   databaseId: str
+   failureReason: str
    id: ID
-   name: str
-   type: MigrationSourceType
-   url: URI
+   remainingRepositoriesCount: int
+   sourceOrgName: str
+   sourceOrgUrl: URI
+   state: OrganizationMigrationState
+   targetOrgName: str
+   totalRepositoriesCount: int
 
-class MergePullRequestInput(GQLObject):
+class OauthApplicationAuditEntryData(GQLObject):
    """
-   MergePullRequestInput - Autogenerated input type of MergePullRequest
+   OauthApplicationAuditEntryData - Metadata for an audit entry with action oauth_application.*
 
-   pullRequestId - ID of the pull request to be merged.
+   oauthApplicationName - The name of the OAuth application.
 
-   commitHeadline - Commit headline to use for the merge commit; if omitted, a default message will be used.
+   oauthApplicationResourcePath - The HTTP path for the OAuth application
 
-   commitBody - Commit body to use for the merge commit; if omitted, a default message will be used
+   oauthApplicationUrl - The HTTP URL for the OAuth application
 
-   expectedHeadOid - OID that the pull request head ref must match to allow merge; if omitted, no check is performed.
+   """
+   oauthApplicationName: str
+   oauthApplicationResourcePath: URI
+   oauthApplicationUrl: URI
 
-   mergeMethod - The merge method to use. If omitted, defaults to 'MERGE'
+class MoveProjectColumnInput(GQLObject):
+   """
+   MoveProjectColumnInput - Autogenerated input type of MoveProjectColumn
 
-   authorEmail - The email address to associate with this merge.
+   columnId - The id of the column to move.
+
+   afterColumnId - Place the new column after the column with this id. Pass null to place it at the front.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   columnId: ID
+   afterColumnId: ID
+   clientMutationId: str
+
+class MinimizeCommentInput(GQLObject):
+   """
+   MinimizeCommentInput - Autogenerated input type of MinimizeComment
+
+   subjectId - The Node ID of the subject to modify.
+
+   classifier - The classification of comment
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   subjectId: ID
+   classifier: ReportedContentClassifiers
+   clientMutationId: str
+
+class MilestoneOrder(GQLObject):
+   """
+   MilestoneOrder - Ordering options for milestone connections.
+
+   field - The field to order milestones by.
+
+   direction - The ordering direction.
+
+   """
+   field: MilestoneOrderField
+   direction: OrderDirection
+
+class MergeQueueConfiguration(GQLObject):
+   """
+   MergeQueueConfiguration - Configuration for a MergeQueue
+
+   checkResponseTimeout - The amount of time in minutes to wait for a check response before considering it a failure.
+
+   maximumEntriesToBuild - The maximum number of entries to build at once.
+
+   maximumEntriesToMerge - The maximum number of entries to merge at once.
+
+   mergeMethod - The merge method to use for this queue.
+
+   mergingStrategy - The strategy to use when merging entries.
+
+   minimumEntriesToMerge - The minimum number of entries required to merge at once.
+
+   minimumEntriesToMergeWaitTime - The amount of time in minutes to wait before ignoring the minumum number of entries in the queue requirement and merging a collection of entries
+
+   """
+   checkResponseTimeout: int
+   maximumEntriesToBuild: int
+   maximumEntriesToMerge: int
+   mergeMethod: PullRequestMergeMethod
+   mergingStrategy: MergeQueueMergingStrategy
+   minimumEntriesToMerge: int
+   minimumEntriesToMergeWaitTime: int
+
+class MergeBranchInput(GQLObject):
+   """
+   MergeBranchInput - Autogenerated input type of MergeBranch
+
+   repositoryId - The Node ID of the Repository containing the base branch that will be modified.
+
+   base - The name of the base branch that the provided head will be merged into.
+
+   head - The head to merge into the base branch. This can be a branch name or a commit GitObjectID.
+
+   commitMessage - Message to use for the merge commit. If omitted, a default will be used.
+
+   authorEmail - The email address to associate with this commit.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   repositoryId: ID
+   base: str
+   head: str
+   commitMessage: str
+   authorEmail: str
+   clientMutationId: str
+
+class MarkPullRequestReadyForReviewInput(GQLObject):
+   """
+   MarkPullRequestReadyForReviewInput - Autogenerated input type of MarkPullRequestReadyForReview
+
+   pullRequestId - ID of the pull request to be marked as ready for review.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    pullRequestId: ID
-   commitHeadline: str
-   commitBody: str
-   expectedHeadOid: GitObjectID
-   mergeMethod: PullRequestMergeMethod
-   authorEmail: str
    clientMutationId: str
 
-class MarketplaceCategory(GQLObject):
+class MarkFileAsViewedInput(GQLObject):
    """
-   MarketplaceCategory - A public description of a Marketplace category.
+   MarkFileAsViewedInput - Autogenerated input type of MarkFileAsViewed
 
-   description - The category's description.
+   pullRequestId - The Node ID of the pull request.
 
-   howItWorks - The technical description of how apps listed in this category work with GitHub.
+   path - The path of the file to mark as viewed
 
-   name - The category's name.
+   clientMutationId - A unique identifier for the client performing the mutation.
 
-   primaryListingCount - How many Marketplace listings have this as their primary category.
+   """
+   pullRequestId: ID
+   path: str
+   clientMutationId: str
 
-   resourcePath - The HTTP path for this Marketplace category.
+class MannequinOrder(GQLObject):
+   """
+   MannequinOrder - Ordering options for mannequins.
 
-   secondaryListingCount - How many Marketplace listings have this as their secondary category.
+   field - The field to order mannequins by.
 
-   slug - The short name of the category used in its URL.
+   direction - The ordering direction.
 
-   url - The HTTP URL for this Marketplace category.
+   """
+   field: MannequinOrderField
+   direction: OrderDirection
+
+class LockLockableInput(GQLObject):
+   """
+   LockLockableInput - Autogenerated input type of LockLockable
+
+   lockableId - ID of the item to be locked.
+
+   lockReason - A reason for why the item will be locked.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   lockableId: ID
+   lockReason: LockReason
+   clientMutationId: str
+
+class LinkProjectV2ToTeamInput(GQLObject):
+   """
+   LinkProjectV2ToTeamInput - Autogenerated input type of LinkProjectV2ToTeam
+
+   projectId - The ID of the project to link to the team.
+
+   teamId - The ID of the team to link to the project.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   projectId: ID
+   teamId: ID
+   clientMutationId: str
+
+class LicenseRule(GQLObject):
+   """
+   LicenseRule - Describes a License's conditions, permissions, and limitations
+
+   description - A description of the rule
+
+   key - The machine-readable rule key
+
+   label - The human-readable rule label
 
    """
    description: str
-   howItWorks: str
+   key: str
+   label: str
+
+class Language(GQLObject):
+   """
+   Language - Represents a given language found in repositories.
+
+   color - The color defined for the current language.
+
+   name - The name of the current language.
+
+   """
+   color: str
    id: ID
    name: str
-   primaryListingCount: int
-   resourcePath: URI
-   secondaryListingCount: int
-   slug: str
+
+class IssueOrder(GQLObject):
+   """
+   IssueOrder - Ways in which lists of issues can be ordered upon return.
+
+   field - The field in which to order issues by.
+
+   direction - The direction in which to order issues by the specified field.
+
+   """
+   field: IssueOrderField
+   direction: OrderDirection
+
+class IssueCommentOrder(GQLObject):
+   """
+   IssueCommentOrder - Ways in which lists of issue comments can be ordered upon return.
+
+   field - The field in which to order issue comments by.
+
+   direction - The direction in which to order issue comments by the specified field.
+
+   """
+   field: IssueCommentOrderField
+   direction: OrderDirection
+
+class InviteEnterpriseAdminInput(GQLObject):
+   """
+   InviteEnterpriseAdminInput - Autogenerated input type of InviteEnterpriseAdmin
+
+   enterpriseId - The ID of the enterprise to which you want to invite an administrator.
+
+   invitee - The login of a user to invite as an administrator.
+
+   email - The email of the person to invite as an administrator.
+
+   role - The role of the administrator.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   enterpriseId: ID
+   invitee: str
+   email: str
+   role: EnterpriseAdministratorRole
+   clientMutationId: str
+
+class GrantMigratorRolePayload(GQLObject):
+   """
+   GrantMigratorRolePayload - Autogenerated return type of GrantMigratorRole
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   success - Did the operation succeed?
+
+   """
+   clientMutationId: str
+   success: bool
+
+class GrantEnterpriseOrganizationsMigratorRoleInput(GQLObject):
+   """
+   GrantEnterpriseOrganizationsMigratorRoleInput - Autogenerated input type of GrantEnterpriseOrganizationsMigratorRole
+
+   enterpriseId - The ID of the enterprise to which all organizations managed by it will be granted the migrator role.
+
+   login - The login of the user to grant the migrator role
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   enterpriseId: ID
+   login: str
+   clientMutationId: str
+
+class GistOrder(GQLObject):
+   """
+   GistOrder - Ordering options for gist connections
+
+   field - The field to order repositories by.
+
+   direction - The ordering direction.
+
+   """
+   field: GistOrderField
+   direction: OrderDirection
+
+class FundingLink(GQLObject):
+   """
+   FundingLink - A funding platform link for a repository.
+
+   platform - The funding platform this link is for.
+
+   url - The configured URL for this funding link.
+
+   """
+   platform: FundingPlatform
    url: URI
 
-class MarkProjectV2AsTemplateInput(GQLObject):
+class FollowOrganizationInput(GQLObject):
    """
-   MarkProjectV2AsTemplateInput - Autogenerated input type of MarkProjectV2AsTemplate
+   FollowOrganizationInput - Autogenerated input type of FollowOrganization
 
-   projectId - The ID of the Project to mark as a template.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   projectId: ID
-   clientMutationId: str
-
-class MarkDiscussionCommentAsAnswerInput(GQLObject):
-   """
-   MarkDiscussionCommentAsAnswerInput - Autogenerated input type of MarkDiscussionCommentAsAnswer
-
-   id - The Node ID of the discussion comment to mark as an answer.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   id: ID
-   clientMutationId: str
-
-class Lockable(GQLObject):
-   """
-   Lockable - An object that can be locked.
-
-   activeLockReason - Reason that the conversation was locked.
-
-   locked - `true` if the object is locked
-
-   """
-   activeLockReason: LockReason
-   locked: bool
-
-class LinkRepositoryToProjectInput(GQLObject):
-   """
-   LinkRepositoryToProjectInput - Autogenerated input type of LinkRepositoryToProject
-
-   projectId - The ID of the Project to link to a Repository
-
-   repositoryId - The ID of the Repository to link to a Project.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   projectId: ID
-   repositoryId: ID
-   clientMutationId: str
-
-class LinkProjectV2ToRepositoryInput(GQLObject):
-   """
-   LinkProjectV2ToRepositoryInput - Autogenerated input type of LinkProjectV2ToRepository
-
-   projectId - The ID of the project to link to the repository.
-
-   repositoryId - The ID of the repository to link to the project.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   projectId: ID
-   repositoryId: ID
-   clientMutationId: str
-
-class LanguageOrder(GQLObject):
-   """
-   LanguageOrder - Ordering options for language connections.
-
-   field - The field to order languages by.
-
-   direction - The ordering direction.
-
-   """
-   field: LanguageOrderField
-   direction: OrderDirection
-
-class LabelOrder(GQLObject):
-   """
-   LabelOrder - Ways in which lists of labels can be ordered upon return.
-
-   field - The field in which to order labels by.
-
-   direction - The direction in which to order labels by the specified field.
-
-   """
-   field: LabelOrderField
-   direction: OrderDirection
-
-class IssueFilters(GQLObject):
-   """
-   IssueFilters - Ways in which to filter lists of issues.
-
-   assignee - List issues assigned to given name. Pass in `null` for issues with no assigned user, and `*` for issues assigned to any user.
-
-   createdBy - List issues created by given name.
-
-   labels - List issues where the list of label names exist on the issue.
-
-   mentioned - List issues where the given name is mentioned in the issue.
-
-   milestone - List issues by given milestone argument. If an string representation of an integer is passed, it should refer to a milestone by its database ID. Pass in `null` for issues with no milestone, and `*` for issues that are assigned to any milestone.
-
-   milestoneNumber - List issues by given milestone argument. If an string representation of an integer is passed, it should refer to a milestone by its number field. Pass in `null` for issues with no milestone, and `*` for issues that are assigned to any milestone.
-
-   since - List issues that have been updated at or after the given date.
-
-   states - List issues filtered by the list of states given.
-
-   viewerSubscribed - List issues subscribed to by viewer.
-
-   """
-   assignee: str
-   createdBy: str
-   labels: list[str]
-   mentioned: str
-   milestone: str
-   milestoneNumber: str
-   since: DateTime
-   states: list[IssueState]
-   viewerSubscribed: bool
-
-class IpAllowListEntryOrder(GQLObject):
-   """
-   IpAllowListEntryOrder - Ordering options for IP allow list entry connections.
-
-   field - The field to order IP allow list entries by.
-
-   direction - The ordering direction.
-
-   """
-   field: IpAllowListEntryOrderField
-   direction: OrderDirection
-
-class HovercardContext(GQLObject):
-   """
-   HovercardContext - An individual line of a hovercard
-
-   message - A string describing this context
-
-   octicon - An octicon to accompany this context
-
-   """
-   message: str
-   octicon: str
-
-class GrantMigratorRoleInput(GQLObject):
-   """
-   GrantMigratorRoleInput - Autogenerated input type of GrantMigratorRole
-
-   organizationId - The ID of the organization that the user/team belongs to.
-
-   actor - The user login or Team slug to grant the migrator role.
-
-   actorType - Specifies the type of the actor, can be either USER or TEAM.
+   organizationId - ID of the organization to follow.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    organizationId: ID
-   actor: str
-   actorType: ActorType
    clientMutationId: str
 
-class GitHubMetadata(GQLObject):
+class FileAddition(GQLObject):
    """
-   GitHubMetadata - Represents information about the GitHub instance.
+   FileAddition - A command to add a file at the given path with the given contents as part of a commit.  Any existing file at that that path will be replaced.
 
-   gitHubServicesSha - Returns a String that's a SHA of `github-services`
+   path - The path in the repository where the file will be located
 
-   gitIpAddresses - IP addresses that users connect to for git operations
-
-   hookIpAddresses - IP addresses that service hooks are sent from
-
-   importerIpAddresses - IP addresses that the importer connects from
-
-   isPasswordAuthenticationVerifiable - Whether or not users are verified
-
-   pagesIpAddresses - IP addresses for GitHub Pages' A records
-
-   """
-   gitHubServicesSha: GitObjectID
-   gitIpAddresses: list[str]
-   hookIpAddresses: list[str]
-   importerIpAddresses: list[str]
-   isPasswordAuthenticationVerifiable: bool
-   pagesIpAddresses: list[str]
-
-class GenericHovercardContext(GQLObject):
-   """
-   GenericHovercardContext - A generic hovercard context with a message and icon
-
-   message - A string describing this context
-
-   octicon - An octicon to accompany this context
-
-   """
-   message: str
-   octicon: str
-
-class FollowUserInput(GQLObject):
-   """
-   FollowUserInput - Autogenerated input type of FollowUser
-
-   userId - ID of the user to follow.
-
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   userId: ID
-   clientMutationId: str
-
-class FileDeletion(GQLObject):
-   """
-   FileDeletion - A command to delete the file at the given path as part of a commit.
-
-   path - The path to delete
+   contents - The base64 encoded contents of the file
 
    """
    path: str
+   contents: Base64String
 
-class ExternalIdentityAttribute(GQLObject):
+class Environments(GQLObject):
    """
-   ExternalIdentityAttribute - An attribute for the External Identity attributes collection
+   Environments - Ordering options for environments
 
-   metadata - The attribute metadata as JSON
+   field - The field to order environments by.
 
-   name - The attribute name
-
-   value - The attribute value
+   direction - The direction in which to order environments by the specified field.
 
    """
-   metadata: str
-   name: str
-   value: str
+   field: EnvironmentOrderField
+   direction: OrderDirection
 
 class EnterpriseServerUserAccountOrder(GQLObject):
    """
@@ -2847,9 +2827,19 @@ class CreateTeamDiscussionCommentInput(GQLObject):
    """
    CreateTeamDiscussionCommentInput - Autogenerated input type of CreateTeamDiscussionComment
 
-   discussionId - The ID of the discussion to which the comment belongs.
+   discussionId - The ID of the discussion to which the comment belongs. This field is required.
 
-   body - The content of the comment.
+**Upcoming Change on 2024-07-01 UTC**
+**Description:** `discussionId` will be removed. Follow the guide at https://github.blog/changelog/2023-02-08-sunset-notice-team-discussions/ to find a suitable replacement.
+**Reason:** The Team Discussions feature is deprecated in favor of Organization Discussions.
+
+
+   body - The content of the comment. This field is required.
+
+**Upcoming Change on 2024-07-01 UTC**
+**Description:** `body` will be removed. Follow the guide at https://github.blog/changelog/2023-02-08-sunset-notice-team-discussions/ to find a suitable replacement.
+**Reason:** The Team Discussions feature is deprecated in favor of Organization Discussions.
+
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
@@ -3465,9 +3455,9 @@ class BranchNamePatternParametersInput(GQLObject):
    operator: str
    pattern: str
 
-class CGAIP_URI_Field(ArguedStr):
+class QTBNS_URI_Field(ArguedStr):
    """
-   CGAIP_URI_Field - A URL pointing to the GitHub App's public avatar.
+   QTBNS_URI_Field - A URL pointing to the GitHub App's public avatar.
 
    """
    class URIArgs(GQLArgsSet, GQLObject):
@@ -3553,188 +3543,233 @@ class AddStarInput(GQLObject):
    starrableId: ID
    clientMutationId: str
 
-class AddPullRequestReviewThreadInput(GQLObject):
+class AddPullRequestReviewThreadReplyInput(GQLObject):
    """
-   AddPullRequestReviewThreadInput - Autogenerated input type of AddPullRequestReviewThread
+   AddPullRequestReviewThreadReplyInput - Autogenerated input type of AddPullRequestReviewThreadReply
 
-   path - Path to the file being commented on.
+   pullRequestReviewId - The Node ID of the pending review to which the reply will belong.
 
-   body - Body of the thread's first comment.
+   pullRequestReviewThreadId - The Node ID of the thread to which this reply is being written.
+
+   body - The text of the reply.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   pullRequestReviewId: ID
+   pullRequestReviewThreadId: ID
+   body: str
+   clientMutationId: str
+
+class AddPullRequestReviewCommentInput(GQLObject):
+   """
+   AddPullRequestReviewCommentInput - Autogenerated input type of AddPullRequestReviewComment
 
    pullRequestId - The node ID of the pull request reviewing
 
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `pullRequestId` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
+
+
    pullRequestReviewId - The Node ID of the review to modify.
 
-   line - The line of the blob to which the thread refers, required for line-level threads. The end of the line range for multi-line comments.
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `pullRequestReviewId` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
 
-   side - The side of the diff on which the line resides. For multi-line comments, this is the side for the end of the line range.
 
-   startLine - The first line of the range to which the comment refers.
+   commitOID - The SHA of the commit to comment on.
 
-   startSide - The side of the diff on which the start line resides.
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `commitOID` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
 
-   subjectType - The level at which the comments in the corresponding thread are targeted, can be a diff line or a file
+
+   body - The text of the comment. This field is required
+
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `body` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
+
+
+   path - The relative path of the file to comment on.
+
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `path` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
+
+
+   position - The line index in the diff to comment on.
+
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `position` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
+
+
+   inReplyTo - The comment id to reply to.
+
+**Upcoming Change on 2023-10-01 UTC**
+**Description:** `inReplyTo` will be removed. use addPullRequestReviewThread or addPullRequestReviewThreadReply instead
+**Reason:** We are deprecating the addPullRequestReviewComment mutation
+
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   path: str
-   body: str
    pullRequestId: ID
    pullRequestReviewId: ID
-   line: int
-   side: DiffSide
-   startLine: int
-   startSide: DiffSide
-   subjectType: PullRequestReviewThreadSubjectType
+   commitOID: GitObjectID
+   body: str
+   path: str
+   position: int
+   inReplyTo: ID
    clientMutationId: str
 
-class AddProjectV2ItemByIdInput(GQLObject):
+class AddProjectV2DraftIssueInput(GQLObject):
    """
-   AddProjectV2ItemByIdInput - Autogenerated input type of AddProjectV2ItemById
+   AddProjectV2DraftIssueInput - Autogenerated input type of AddProjectV2DraftIssue
 
-   projectId - The ID of the Project to add the item to.
+   projectId - The ID of the Project to add the draft issue to.
 
-   contentId - The id of the Issue or Pull Request to add.
+   title - The title of the draft issue. A project item can also be created by providing the URL of an Issue or Pull Request if you have access.
+
+   body - The body of the draft issue.
+
+   assigneeIds - The IDs of the assignees of the draft issue.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    projectId: ID
+   title: str
+   body: str
+   assigneeIds: list[ID]
+   clientMutationId: str
+
+class AddProjectCardInput(GQLObject):
+   """
+   AddProjectCardInput - Autogenerated input type of AddProjectCard
+
+   projectColumnId - The Node ID of the ProjectColumn.
+
+   contentId - The content of the card. Must be a member of the ProjectCardItem union
+
+   note - The note on the card.
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   """
+   projectColumnId: ID
    contentId: ID
+   note: str
    clientMutationId: str
 
-class AddProjectColumnInput(GQLObject):
+class AddEnterpriseSupportEntitlementPayload(GQLObject):
    """
-   AddProjectColumnInput - Autogenerated input type of AddProjectColumn
-
-   projectId - The Node ID of the project.
-
-   name - The name of the column.
+   AddEnterpriseSupportEntitlementPayload - Autogenerated return type of AddEnterpriseSupportEntitlement
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
+   message - A message confirming the result of adding the support entitlement.
+
    """
-   projectId: ID
-   name: str
    clientMutationId: str
+   message: str
 
-class AddLabelsToLabelableInput(GQLObject):
+class AddEnterpriseOrganizationMemberInput(GQLObject):
    """
-   AddLabelsToLabelableInput - Autogenerated input type of AddLabelsToLabelable
+   AddEnterpriseOrganizationMemberInput - Autogenerated input type of AddEnterpriseOrganizationMember
 
-   labelableId - The id of the labelable object to add labels to.
+   enterpriseId - The ID of the enterprise which owns the organization.
 
-   labelIds - The ids of the labels to add.
+   organizationId - The ID of the organization the users will be added to.
 
-   clientMutationId - A unique identifier for the client performing the mutation.
+   userIds - The IDs of the enterprise members to add.
 
-   """
-   labelableId: ID
-   labelIds: list[ID]
-   clientMutationId: str
-
-class AddEnterpriseSupportEntitlementInput(GQLObject):
-   """
-   AddEnterpriseSupportEntitlementInput - Autogenerated input type of AddEnterpriseSupportEntitlement
-
-   enterpriseId - The ID of the Enterprise which the admin belongs to.
-
-   login - The login of a member who will receive the support entitlement.
+   role - The role to assign the users in the organization
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
    enterpriseId: ID
-   login: str
+   organizationId: ID
+   userIds: list[ID]
+   role: OrganizationMemberRole
    clientMutationId: str
 
-class AddDiscussionPollVoteInput(GQLObject):
+class AddDiscussionCommentInput(GQLObject):
    """
-   AddDiscussionPollVoteInput - Autogenerated input type of AddDiscussionPollVote
+   AddDiscussionCommentInput - Autogenerated input type of AddDiscussionComment
 
-   pollOptionId - The Node ID of the discussion poll option to vote for.
+   discussionId - The Node ID of the discussion to comment on.
 
-   clientMutationId - A unique identifier for the client performing the mutation.
-
-   """
-   pollOptionId: ID
-   clientMutationId: str
-
-class AddCommentInput(GQLObject):
-   """
-   AddCommentInput - Autogenerated input type of AddComment
-
-   subjectId - The Node ID of the subject to modify.
+   replyToId - The Node ID of the discussion comment within this discussion to reply to.
 
    body - The contents of the comment.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   subjectId: ID
+   discussionId: ID
+   replyToId: ID
    body: str
    clientMutationId: str
 
-class ActorLocation(GQLObject):
+class AddAssigneesToAssignableInput(GQLObject):
    """
-   ActorLocation - Location information for an actor
+   AddAssigneesToAssignableInput - Autogenerated input type of AddAssigneesToAssignable
 
-   city - City
+   assignableId - The id of the assignable object to add assignees to.
 
-   country - Country name
-
-   countryCode - Country code
-
-   region - Region name
-
-   regionCode - Region or state code
-
-   """
-   city: str
-   country: str
-   countryCode: str
-   region: str
-   regionCode: str
-
-class Actor(GQLObject):
-   """
-   Actor - Represents an object which can take actions on GitHub. Typically a User or Bot.
-
-   avatarUrl - A URL pointing to the actor's public avatar.
-
-   login - The username of the actor.
-
-   resourcePath - The HTTP path for this actor.
-
-   url - The HTTP URL for this actor.
-
-   """
-   avatarUrl: JYIAS_URI_Field
-   login: str
-   resourcePath: URI
-   url: URI
-
-class AcceptEnterpriseAdministratorInvitationInput(GQLObject):
-   """
-   AcceptEnterpriseAdministratorInvitationInput - Autogenerated input type of AcceptEnterpriseAdministratorInvitation
-
-   invitationId - The id of the invitation being accepted
+   assigneeIds - The id of users to add as assignees.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   invitationId: ID
+   assignableId: ID
+   assigneeIds: list[ID]
    clientMutationId: str
 
-class AbortQueuedMigrationsInput(GQLObject):
+class TQGDG_URI_Field(ArguedStr):
    """
-   AbortQueuedMigrationsInput - Autogenerated input type of AbortQueuedMigrations
+   TQGDG_URI_Field - A URL pointing to the actor's public avatar.
 
-   ownerId - The ID of the organization that is running the migrations.
+   """
+   class URIArgs(GQLArgsSet, GQLObject):
+      """
+      size - The size of the resulting square image.
+
+      """
+      size: int
+
+   _args: URIArgs
+
+
+
+class AcceptTopicSuggestionInput(GQLObject):
+   """
+   AcceptTopicSuggestionInput - Autogenerated input type of AcceptTopicSuggestion
+
+   repositoryId - The Node ID of the repository.
+
+   name - The name of the suggested topic.
 
    clientMutationId - A unique identifier for the client performing the mutation.
 
    """
-   ownerId: ID
+   repositoryId: ID
+   name: str
    clientMutationId: str
+
+class AbortQueuedMigrationsPayload(GQLObject):
+   """
+   AbortQueuedMigrationsPayload - Autogenerated return type of AbortQueuedMigrations
+
+   clientMutationId - A unique identifier for the client performing the mutation.
+
+   success - Did the operation succeed?
+
+   """
+   clientMutationId: str
+   success: bool

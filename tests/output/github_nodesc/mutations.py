@@ -41,6 +41,8 @@ class NonNull_AddPullRequestReviewCommentInput(AddPullRequestReviewCommentInput)
 
 class NonNull_AddPullRequestReviewThreadInput(AddPullRequestReviewThreadInput): pass
 
+class NonNull_AddPullRequestReviewThreadReplyInput(AddPullRequestReviewThreadReplyInput): pass
+
 class NonNull_AddReactionInput(AddReactionInput): pass
 
 class NonNull_AddStarInput(AddStarInput): pass
@@ -589,6 +591,15 @@ class addPullRequestReviewThread(GQLMutation):
 
 
    type: AddPullRequestReviewThreadPayload
+
+class addPullRequestReviewThreadReply(GQLMutation):
+   class AddPullRequestReviewThreadReplyPayloadArgs(GQLArgsSet, GQLObject):
+      input: NonNull_AddPullRequestReviewThreadReplyInput
+
+   _args: AddPullRequestReviewThreadReplyPayloadArgs
+
+
+   type: AddPullRequestReviewThreadReplyPayload
 
 class addReaction(GQLMutation):
    class AddReactionPayloadArgs(GQLArgsSet, GQLObject):
@@ -2391,6 +2402,7 @@ class Mutations(Enum):
    addPullRequestReview = addPullRequestReview
    addPullRequestReviewComment = addPullRequestReviewComment
    addPullRequestReviewThread = addPullRequestReviewThread
+   addPullRequestReviewThreadReply = addPullRequestReviewThreadReply
    addReaction = addReaction
    addStar = addStar
    addUpvote = addUpvote

@@ -80,7 +80,9 @@ def run_gh_update_mutation_literal():
 
     mutation.type.repository.branchProtectionRules = type(mutation.type.repository.branchProtectionRules)(number=1, first=1, after='')
     mutation.type.repository.discussion._args.number = 1
+    mutation.type.repository.discussions = type(mutation.type.repository.discussions)(first=1, after='')
     mutation.type.repository.discussionCategory._args.slug = 'slug'
+    mutation.type.repository.discussionCategories = type(mutation.type.repository.discussionCategories)(first=1, after='')
     mutation.type.repository.environment._args.name = 'envName'
     mutation.type.repository.label._args.name = 'lblName'
     mutation.type.repository.milestone._args.number = 2

@@ -59,9 +59,12 @@ class EventLogSortables(Enum):
 class GatewayType(Enum):
    DEFAULT = None
    RapidAPI = 'RapidAPI'
+   rapidapi = 'rapidapi'
    Apigee = 'Apigee'
    Kong = 'Kong'
    WSO2 = 'WSO2'
+   Azure = 'Azure'
+   AWS = 'AWS'
 
 class MessageKey(Enum):
    DEFAULT = None
@@ -115,10 +118,12 @@ class AnalyticsStatsGroupBy(Enum):
 
 class AnalyticsResolution(Enum):
    DEFAULT = None
+   SECONDS = 'SECONDS'
    MINUTES = 'MINUTES'
    HOURS = 'HOURS'
    DAYS = 'DAYS'
    MONTHS = 'MONTHS'
+   YEARS = 'YEARS'
 
 class ApiCertificatePublicKeySignatureAlgorithm(Enum):
    DEFAULT = None
@@ -145,6 +150,7 @@ class ApiSpecType(Enum):
    OPENAPI = 'OPENAPI'
    WSDL = 'WSDL'
    POSTMAN_COLLECTION = 'POSTMAN_COLLECTION'
+   OAS = 'OAS'
 
 class ApiSpecImportWarningType(Enum):
    DEFAULT = None
@@ -170,6 +176,19 @@ class StatsGroupBy(Enum):
    project = 'project'
    date = 'date'
 
+class SpecFormat(Enum):
+   DEFAULT = None
+   WSDL = 'WSDL'
+   XML = 'XML'
+   JSON = 'JSON'
+   YAML = 'YAML'
+
+class SpecType(Enum):
+   DEFAULT = None
+   OAS = 'OAS'
+   WSDL = 'WSDL'
+   POSTMAN_COLLECTION = 'POSTMAN_COLLECTION'
+
 class VersionStatus(Enum):
    DEFAULT = None
    DRAFT = 'DRAFT'
@@ -183,6 +202,7 @@ class apiSubTypeEnum(Enum):
    kafka = 'kafka'
    soap = 'soap'
    async_ = 'async'
+   oas = 'oas'
 
 class ApiVersionType(Enum):
    DEFAULT = None
@@ -191,6 +211,7 @@ class ApiVersionType(Enum):
    kafka = 'kafka'
    soap = 'soap'
    async_ = 'async'
+   oas = 'oas'
 
 class ApiStatus(Enum):
    DEFAULT = None
@@ -208,6 +229,7 @@ class ApiType(Enum):
    http = 'http'
    kafka = 'kafka'
    async_ = 'async'
+   oas = 'oas'
 
 class SchemaValidationUnknownAttributePolicy(Enum):
    DEFAULT = None
@@ -267,6 +289,17 @@ class EnvironmentName(Enum):
    DEFAULT = None
    Testing = 'Testing'
    Production = 'Production'
+
+class SecurityType(Enum):
+   DEFAULT = None
+   HTTP = 'HTTP'
+   API_KEY = 'API_KEY'
+   OAUTH2 = 'OAUTH2'
+
+class SecurityRequirementAuthScope(Enum):
+   DEFAULT = None
+   API_VERSION = 'API_VERSION'
+   ENDPOINT = 'ENDPOINT'
 
 class CodeChallengeMethod(Enum):
    DEFAULT = None
