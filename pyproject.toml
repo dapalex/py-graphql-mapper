@@ -23,6 +23,6 @@ pgmcodegen = "codegen.__main__:main"
 
 [project.urls]
 "Homepage" = "https://github.com/dapalex/py-graphql-mapper/"
-"Source Code" = "https://github.com/dapalex/py-graphql-mapper/"
+"Source Code" = "https://github.com/dapalex/py-graphql-mapper/tree/1.1.2"
 "Bug Tracker" = "https://github.com/dapalex/py-graphql-mapper/issues"
-"Release Notes" = "https://github.com/dapalex/py-graphql-mapper/blob/develop/RELEASE_NOTES.MD"
+"Release Notes" = "https://github.com/dapalex/py-graphql-mapper/tree/1.1.2/RELEASE_NOTES.MD"

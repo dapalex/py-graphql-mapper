@@ -1,12 +1,25 @@
 # py-graphql-mapper Release Update
 
+## Release notes version: 1.1.2
+
+Release date: Aug. 11, 2023
+
+Changes
+
+* Extended visibility of fields feature allowing usage of symbol '*' in order to set same visibility for all fields in a type
+
+Bug fixes
+
+* Operations not exported when payload is scalar type
+* List of custom scalar types unusable
+
 ## Release notes version: 1.1.1
 
 Release date: Jul. 2, 2023
 
 Changes
 
-* Query types not recognition not anymore based on the conventional "Query" string definition but checking *__schema -> QueryType -> name* definition
+* Operation types not anymore based on the conventional "Query/Mutation" string definition but checking *__schema -> QueryType/MutationType -> name* definition
 
 Bug fixes
 
@@ -18,7 +31,7 @@ Release date: Feb. 10, 2023
 
 Features
 
-* Assignment of arguments through parameters: other than using _arg object to set the arguments, now it is possible to assign arguments also using kwargs during construction of the parent object.
+* Assignment of arguments using kwargs: other than using _arg object fields to set the arguments, now it is also possible to assign arguments using kwargs in the constructor of the parent object.
 
 Bug fixes
 
