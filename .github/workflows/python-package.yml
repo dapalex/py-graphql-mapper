@@ -5,9 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ "25-export_gql_source-error-for-non-recursive-queries" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "25-export_gql_source-error-for-non-recursive-queries" ]
+    branches: [ "develop" ]
 
 jobs:
   build:

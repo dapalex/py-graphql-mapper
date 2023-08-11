@@ -351,6 +351,8 @@ hiding _myCode_ and _fieldB_.
 
 An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/simple_obj_viewchange_test.py)
 
+It is possible also hiding all fields for a type using `*`.
+An use case can be seen [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/tstquery/complex_obj_test.py)
 
 ## Parsing of a response
 

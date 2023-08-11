@@ -22,7 +22,11 @@ class FSTree():
             return
 
         attrContainer = self.findBranchContainer(path)
-        if field in attrContainer._fieldsshow.keys():
+
+        if field == '*':
+            for curr_field_name in attrContainer._fieldsshow.keys():
+                attrContainer._fieldsshow[curr_field_name] = show
+        elif field in attrContainer._fieldsshow.keys():
             attrContainer._fieldsshow[field] = show
         else:
             raise Exception('field ' + field + ' not found!')

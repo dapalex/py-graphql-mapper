@@ -1,4 +1,3 @@
-
 """
     USE CASE DESCRIPTION:
     This test shows how to create a GraphQL Query to fetch a GraphQL complex type (made of objects, connections, and scalar fields) combining arguments usage as literal values
@@ -12,30 +11,30 @@
                 cursor
                 node {
                     code
-                    callingCode
+                    callingCode                 (*)
                     wikiDataId
                     capital
                     name
-                    currencyCodes
+                    currencyCodes               (*)
                     flagImageUri
                     numRegions
                     region {
-                        fipsCode
-                        isoCode
-                        wikiDataId
+                        fipsCode                (*)
+                        isoCode                 (*)
+                        wikiDataId              (*)
                         name
-                        capital
-                        country {
+                        capital                 (*)
+                        country {               (*)
                             code
-                            callingCode         (*)
+                            callingCode
                             wikiDataId
                             capital
                             name
-                            currencyCodes       (*)
+                            currencyCodes
                             flagImageUri
                             numRegions
                         }
-                        populatedPlaces {
+                        populatedPlaces {       (*)
                             totalCount
                         }
                     }
@@ -84,6 +83,7 @@ from ..output.gdbc.queries import countries
 import logging as logger
 from ..utils import stringifyresult
 
+
 def run_gdbc_complex_obj():
     logger.debug('\n\nRunning test_gdbc_complex_obj...')
 ##STEP 1
@@ -100,11 +100,13 @@ def run_gdbc_complex_obj():
     query.set_show('countries.edges.node.callingCode', False)
     query.set_show('countries.edges.node.currencyCodes', False)
     query.set_show('countries.edges.node.regions.pageInfo.hasNextPage', False)
-    query.set_show('currencies.pageInfo.hasNextPage', False)
+    query.set_show('countries.edges.node.region.*', False)
+    query.set_show('countries.edges.node.region.name', True)
+    query.set_show('countries.pageInfo.hasNextPage', False)
 ##
 
 ##RESULT a) and b)
-    logger.debug('Query GQL syntax: ' + query.export_gql_source)
+    print('Query GQL syntax: ' + query.export_gql_source)
 ##
 
 ##STEP 4
