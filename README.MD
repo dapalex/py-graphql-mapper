@@ -117,3 +117,5 @@ More details [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/py
 
 
 A suite of use cases [here](https://github.com/dapalex/py-graphql-mapper/blob/develop/tests/README.MD)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://github.com/sponsors/dapalex?frequency=one-time&sponsor=dapalex)
