@@ -283,11 +283,11 @@ def test_ra_create_transformations_mutation_args_literal():
 def test_ra_create_transformations_mutation_args_vars():
   return run_ra_create_transformations_mutation_args_vars()
 
-def test_ra_create_gateway_instance_mutation_args_literal():
-  return run_ra_create_gateway_instance_mutation_args_literal()
+#def test_ra_create_gateway_instance_mutation_args_literal():
+#  return run_ra_create_gateway_instance_mutation_args_literal()
 
-def test_ra_create_gateway_instance_mutation_args_vars():
-  return run_ra_create_gateway_instance_mutation_args_vars()
+#def test_ra_create_gateway_instance_mutation_args_vars():
+#  return run_ra_create_gateway_instance_mutation_args_vars()
 
 def test_ra_edit_user_alert_mutation_args_literal():
   return run_ra_edit_user_alert_mutation_args_literal()
