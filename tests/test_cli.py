@@ -59,7 +59,7 @@ def run_generate_cmd_ra_api_abs():
 
 def run_download_cmd_gdbc_file_rel():
   logger.debug('\nRunning run_download_cmd_gh_file_rel...')
-  command = "pgmcodegen download ./tests/cmd_output/Github/schema.json -apiArgs ./tests/cli_input/gdbc_api/downloaderArgs.json -v" #command to be executed
+  command = "pgmcodegen download ./tests/cmd_output/gdbc/schema.json -apiArgs ./tests/cli_input/gdbc_api/downloaderArgs.json -v" #command to be executed
   logger.debug("Launching: " + command)
 
   res = os.system(command)

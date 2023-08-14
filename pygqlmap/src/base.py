@@ -46,6 +46,7 @@ class Builder():
             if not item[1] == None:
                 self.set_py_fields(item[1], pyObject)
             else:
+                pyObject = item[1]
                 logger.info(item[0] + ' has no content')
 
         except Exception as ex:

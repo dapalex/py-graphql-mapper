@@ -6,9 +6,9 @@ from .enums import *
 from .scalars import *
 from .type_refs import *
 
-class DWPRF_distance_Field(ArguedFloat):
+class FRXHX_distance_Field(ArguedFloat):
    """
-   DWPRF_distance_Field - The distance result from some location-based query
+   FRXHX_distance_Field - The distance result from some location-based query
 This field has two forms:
 - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
 - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.

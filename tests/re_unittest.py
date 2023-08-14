@@ -4,7 +4,10 @@ from codegen.generator import CodeGenerator
 from codegen.query_presets import QUERY_SCHEMA_AND_TYPES
 from pygqlmap.enums import ArgType
 from pygqlmap.network import GQLResponse
-from tests.output.re_nodesc.queries import branding, version
+from tests.output.re_nodesc.enums import Period
+from tests.output.re_nodesc.gql_simple_types import InsightsChartDataInput
+from tests.output.re_nodesc.gql_types import JFUJX_InsightsChartDataOutput_Field
+from tests.output.re_nodesc.queries import allCoops, branding, version
 from tests.utils import stringifyresult
 from .consts import RE_HEADERS, RE_URL
 import logging as logger
@@ -87,3 +90,49 @@ def run_re_version_vars():
         raise ex
 
     logger.debug("End of run_re_version_vars")
+
+def run_re_allcoops():
+    logger.debug('\n\nRunning test_gdbc_complex_obj...')
+##STEP 1
+    query = allCoops()
+##
+
+    insightsChartDataInput = JFUJX_InsightsChartDataOutput_Field.InsightsChartDataOutputArgs()
+    insightsChartDataInput.input = InsightsChartDataInput()
+    insightsChartDataInput.input.startDate = '2022-12-12'
+    insightsChartDataInput.input.endDate = '2023-12-12'
+    insightsChartDataInput.input.genFarmId = "02305"
+    insightsChartDataInput.input.period = Period.Year
+
+    query.type.generationfarm.insightsChartData._args = insightsChartDataInput
+##RESULT a) and b)
+    print('Query GQL syntax: ' + query.export_gql_source)
+##
+
+##STEP 4
+    try:
+        response = requests.request('POST', url=RE_URL,
+                                     json={ "query": query.export_gql_source },
+                                    headers=RE_HEADERS)
+##
+
+##STEP 5
+        from pygqlmap.network import GQLResponse
+
+        gqlResponse = GQLResponse(response)
+##
+
+        gqlResponse.print_msg_out()
+
+##STEP 6
+        gqlResponse.map_gqldata_to_obj(query.type)
+##
+
+##RESULT c)
+        logger.info('result object: ' + stringifyresult(gqlResponse.result_obj))
+##
+
+    except Exception as ex:
+        raise ex
+
+    logger.debug("End of test_gdbc_complex_obj")

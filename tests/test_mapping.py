@@ -1,3 +1,4 @@
+from tests.tstquery.manual_query_fragment_test import run_manual_query_fragment
 from .gh_unittest import (run_add_comment_mutation_literal,
                                run_gh_create_issue_mutation_literal, run_gh_create_issue_mutation_vars,
                                run_gh_create_proj_mutation_literal, run_gh_create_proj_mutation_vars,
@@ -13,7 +14,7 @@ from .unittests import (run_gdbc_complex_obj_viewchange_vars, run_gdbc_complex_o
                         run_gdbc_complex_obj_args_literal_2, run_gdbc_nested_object, run_gdbc_nested_obj_viewchange,
                         run_gdbc_nested_obj_viewchange_args_vars, run_gdbc_nested_obj_args_vars,
                         run_gdbc_nested_obj_args_literal, run_gdbc_obj_composed_args, run_gdbc_nested_obj_with_list)
-from .re_unittest import (run_re_version_literal, run_re_version_vars)
+from .re_unittest import (run_re_version_literal, run_re_version_vars, run_re_allcoops)
 from .tstquery.complex_obj_test import run_gdbc_complex_obj
 from .tstquery.connobj_args_literal_test import run_gdbc_connobj_args_literal
 from .tstquery.connobj_args_vars_test import run_gdbc_connobj_args_vars
@@ -44,6 +45,12 @@ def test_re_version_literal():
 
 def test_re_version_vars():
   return run_re_version_vars()
+
+def test_re_allcoops():
+  return run_re_allcoops()
+
+def test_manual_query_fragment():
+  return run_manual_query_fragment()
 
 #GeoDBCitiesAPI SAMPLES - START
 def testGeneratedDataAsGQLObject():

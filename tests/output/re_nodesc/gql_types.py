@@ -441,7 +441,7 @@ class list_GenerationData(list, GenerationData): pass
 
 class NonNull_InsightsChartDataInput(InsightsChartDataInput): pass
 
-class OXRUE_InsightsChartDataOutput_Field(InsightsChartDataOutput):
+class JFUJX_InsightsChartDataOutput_Field(InsightsChartDataOutput):
    class InsightsChartDataOutputArgs(GQLArgsSet, GQLObject):
       input: NonNull_InsightsChartDataInput
 
@@ -465,7 +465,7 @@ class GenerationFarm(GQLObject):
    generationData: list_GenerationData[GenerationData]
    lightShowImage: str
    capacityToGenerationFactor: float
-   insightsChartData: OXRUE_InsightsChartDataOutput_Field
+   insightsChartData: JFUJX_InsightsChartDataOutput_Field
    latestGenerationDataPoint: GenerationDataPoint
 
 class list_DocumentTag(list, DocumentTag): pass
